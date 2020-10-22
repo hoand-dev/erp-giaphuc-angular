@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+.loading-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+}
+
+.loading-center-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loading-center-child span{
+    color: rgb(150, 150, 150);
+}
+
+/* css cho dx */
+.dx-texteditor-input {
+    min-height: calc(1.8125rem + 2px);
+}
+
+.dx-toast-content {
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 100px;
+}
+
+dx-select-box#ChiNhanhSelectBox div input {
+    color: red;
+    /* font-weight: 600; */
+}
+
+/* css admin template */
+.content-header {
+    padding: 5px 0.5rem;
+}
+
+.card-footer{
+    background: none;
+}
+
+.form-control-sm {
+    height: calc(1.8125rem + 4px);
+}
+
+.layout-footer-fixed .wrapper .content-wrapper {
+    padding-bottom: 0;
+}

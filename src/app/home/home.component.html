@@ -1,0 +1,53 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Trang chủ</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th [style.min-width.px]="120">SELECT BOX</th>
+                    <th [style.min-width.px]="120">TAG BOX</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- dữ liệu ít có thể sử dụng: [items]="simpleProducts" để load nhanh nhất -->
+                <tr *ngFor="let item of hanghoas; index as i">
+                    <td [style.min-width.px]="120">
+                        <dx-select-box id="item_select_{{id}}" [(value)]="item.select_id" [dataSource]="selectBoxData"
+                            [displayExpr]="'title'" [valueExpr]="'id'" [searchMode]="'contains'" [searchExpr]="'title'"
+                            [searchTimeout]="200" [searchEnabled]="true" [minSearchLength]="0"
+                            (onSelectionChanged)="onChanged(i, $event)">
+                        </dx-select-box>
+                    </td>
+                    <td [style.min-width.px]="120" [style.max-width.px]="200">
+                        <dx-tag-box id="item_tag_{{id}}" 
+                            [(value)]="item.tag_id" 
+                            [dataSource]="selectBoxData"
+                            displayExpr="title"
+                            valueExpr="id"
+                            [searchEnabled]="true"
+                            [showSelectionControls]="true" 
+                            applyValueMode="useButtons" 
+                            [multiline]="false">
+                        </dx-tag-box>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <button (click)="onAddHangHoa()" type="button" class="btn btn-default">Add</button>
+        <button (click)="onClick()" type="button" class="btn btn-default">Xem</button>
+    </div>
+</div>

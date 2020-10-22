@@ -1,0 +1,48 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "./out-tsc/app",
+        "types": ["jquery"],
+
+        "typeRoots": [
+            "node_modules/@types",
+            "typings.d.ts"
+        ],
+        "allowJs": true,
+        "allowUnreachableCode": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports":true,
+
+        "paths": {
+            "@app/*": [
+                "src/app/*"
+            ],
+            "@environments/*": [
+                "src/environments/*"
+            ],
+            "jszip": [
+                "node_modules/jszip/dist/jszip.min.js"
+            ],
+            "globalize": [
+                "node_modules/globalize/dist/globalize"
+            ],
+            "globalize/*": [
+                "node_modules/globalize/dist/globalize/*"
+            ],
+            "cldr": [
+                "node_modules/cldrjs/dist/cldr"
+            ],
+            "cldr/*": [
+                "node_modules/cldrjs/dist/cldr/*"
+            ]
+        }
+    },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts"
+    ],
+    "include": [
+        "src/**/*.d.ts"
+    ]
+}

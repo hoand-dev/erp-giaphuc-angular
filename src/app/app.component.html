@@ -1,0 +1,604 @@
+<ng-container *ngIf="isAutorized(); else notAuthorized">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" (click)="onPushMenu($event)" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <!-- <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li> -->
+        </ul>
+
+        <!-- SEARCH FORM -->
+        <!-- <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form> -->
+
+
+        <!-- jwt auth -->
+        <!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
+                <a class="nav-item nav-link" (click)="logout()">Logout</a>
+            </div>
+        </nav> -->
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- chi nhánh selection -->
+            <li class="nav-item">
+                <dx-select-box id="ChiNhanhSelectBox" class="mt-1" placeholder="Chọn chi nhánh"
+                    (onSelectionChanged)="onChangedChiNhanh($event)"
+                    [value]="chinhanhs[0]"
+                    [dataSource]="chinhanhs" displayExpr="Name" 
+                    [searchMode]="'contains'" [searchExpr]="'Name'"
+                    [searchTimeout]="200" [minSearchLength]="0" [searchEnabled]="false">
+                </dx-select-box>
+            </li>
+
+            <!-- Messages Dropdown Menu -->
+            <li hidden class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-comments"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="assets/img/user1-128x128.jpg" alt="User Avatar"
+                                class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="assets/img/user8-128x128.jpg" alt="User Avatar"
+                                class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="assets/img/user3-128x128.jpg" alt="User Avatar"
+                                class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+
+            <!-- Notifications Dropdown Menu -->
+            <li hidden class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+
+            <!-- The Interface -->
+            <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+                        class="fas fa-th-large"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="#" data-widget="pushmenu" (click)="onPushMenu($event)" class="brand-link">
+            <img src="assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                style="opacity: .8">
+            <span class="brand-text font-weight-light">HỒNG NGHI ERP</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div
+            class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
+            <div class="os-resize-observer-host observed">
+                <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+            </div>
+            <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
+                <div class="os-resize-observer"></div>
+            </div>
+            <div class="os-content-glue" style="margin: 0px -8px;"></div>
+            <div class="os-padding">
+                <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
+                    <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+                        <!-- Sidebar user panel (optional) -->
+                        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                            <div class="image">
+                                <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                            </div>
+                            <div class="info">
+                                <a href="#" class="d-block">Quản trị viên</a>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Menu -->
+                        <nav class="mt-2">
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                                data-accordion="false">
+                                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                                <li class="nav-item has-treeview" (click)="onClickMenu($event)">
+                                    <a href="javascript:void(0)" class="nav-link"><!-- active -->
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Dữ liệu cơ sở
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/chi-nhanh']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Chi nhánh</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/danh-muc-gia-cong']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh mục gia công</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/danh-muc-loi']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh mục lỗi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/danh-muc-no']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh mục nợ</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="./index2.html" class="nav-link" routerLinkActive="active"><!-- active -->
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Khu vực</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="./index3.html" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nội dung thu chi</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open" (click)="onClickMenu($event)">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Sản xuất
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/phieu-cap-phat-vat-tu']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu cấp phát vật tư</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open" (click)="onClickMenu($event)">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Mua hàng
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/phieu-mua-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu mua hàng</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open" (click)="onClickMenu($event)">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Bán hàng
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/phieu-ban-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu báng hàng</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open" (click)="onClickMenu($event)">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Kho hàng
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/phieu-nhap-kho']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu nhập kho</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open" (click)="onClickMenu($event)">
+                                    <a href="javascript:void(0)" class="nav-link" routerLinkActive="active">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Kế toán
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="[ '/phieu-thu']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu thu</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- /.sidebar-menu -->
+                    </div>
+                </div>
+            </div>
+            <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+                <div class="os-scrollbar-track">
+                    <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
+                </div>
+            </div>
+            <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden">
+                <div class="os-scrollbar-track">
+                    <div class="os-scrollbar-handle" style="height: 45.9459%; transform: translate(0px, 0px);"></div>
+                </div>
+            </div>
+            <div class="os-scrollbar-corner"></div>
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 521px; padding-top: 5px;">
+        <router-outlet></router-outlet>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3 control-sidebar-content">
+            <h5>The Interface</h5>
+            <hr class="mb-2">
+            <div (click)="onClickNoNarbarBoder()" class="mb-1"><input type="checkbox" [checked]="$no_border_checkbox" class="mr-1"><span>No Navbar border</span></div>
+            <div (click)="onClickTextSmBody()" class="mb-1"><input type="checkbox" [checked]="$text_sm_body_checkbox" class="mr-1"><span>Body small text</span></div>
+            <div (click)="onText_sm_header_checkbox()" class="mb-1"><input type="checkbox" [checked]="$text_sm_header_checkbox" class="mr-1"><span>Navbar small text</span></div>
+            
+            <div (click)="onText_sm_sidebar_checkbox()" class="mb-1"><input type="checkbox" [checked]="$text_sm_sidebar_checkbox" class="mr-1"><span>Sidebar nav small text</span></div>
+            <div (click)="onText_sm_footer_checkbox()" class="mb-1"><input type="checkbox" [checked]="$text_sm_footer_checkbox" class="mr-1"><span>Footer small text</span></div>
+            <div (click)="onFlat_sidebar_checkbox()" class="mb-1"><input type="checkbox" [checked]="$flat_sidebar_checkbox" class="mr-1"><span>Sidebar nav flat style</span></div>
+            <div (click)="onLegacy_sidebar_checkbox()" class="mb-1"><input type="checkbox" [checked]="$legacy_sidebar_checkbox" class="mr-1"><span>Sidebar nav legacy style</span></div>
+            <div (click)="onCompact_sidebar_checkbox()" class="mb-1"><input type="checkbox" [checked]="$compact_sidebar_checkbox" class="mr-1"><span>Sidebar nav compact</span></div>
+            <div (click)="onChild_indent_sidebar_checkbox()" class="mb-1"><input type="checkbox" [checked]="$child_indent_sidebar_checkbox" class="mr-1"><span>Sidebar nav child indent</span></div>
+            <div (click)="onNo_expand_sidebar_checkbox()" class="mb-1"><input type="checkbox" [checked]="$no_expand_sidebar_checkbox" class="mr-1"><span>Main Sidebar disable hover/focus auto expand</span></div>
+            
+            <h6>Navbar Variants</h6>
+            <div class="d-flex">
+                <div class="d-flex flex-wrap mb-3">
+                    <div class="bg-primary elevation-2" (click)="onChangeNavbarColor('primary')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-secondary elevation-2" (click)="onChangeNavbarColor('secondary')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-info elevation-2" (click)="onChangeNavbarColor('info')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-success elevation-2" (click)="onChangeNavbarColor('success')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-danger elevation-2" (click)="onChangeNavbarColor('danger')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-indigo elevation-2" (click)="onChangeNavbarColor('indigo')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-purple elevation-2" (click)="onChangeNavbarColor('purple')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-pink elevation-2" (click)="onChangeNavbarColor('pink')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-navy elevation-2" (click)="onChangeNavbarColor('navy')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-lightblue elevation-2" (click)="onChangeNavbarColor('lightblue')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-teal elevation-2" (click)="onChangeNavbarColor('teal')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-cyan elevation-2" (click)="onChangeNavbarColor('cyan')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-dark elevation-2" (click)="onChangeNavbarColor('dark')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-gray-dark elevation-2" (click)="onChangeNavbarColor('gray-dark')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-gray elevation-2" (click)="onChangeNavbarColor('gray')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-light elevation-2" (click)="onChangeNavbarColor('light')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-warning elevation-2" (click)="onChangeNavbarColor('warning')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-white elevation-2" (click)="onChangeNavbarColor('white')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                    <div class="bg-orange elevation-2" (click)="onChangeNavbarColor('orange')"
+                        style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+            <h6>Accent Color Variants</h6>
+            <div class="d-flex"></div>
+            <div class="d-flex flex-wrap mb-3">
+                <div class="bg-primary elevation-2" (click)="onChangeAccentColor('primary')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-warning elevation-2" (click)="onChangeAccentColor('warning')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-info elevation-2" (click)="onChangeAccentColor('info')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-danger elevation-2" (click)="onChangeAccentColor('danger')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-success elevation-2" (click)="onChangeAccentColor('success')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-indigo elevation-2" (click)="onChangeAccentColor('indigo')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-lightblue elevation-2" (click)="onChangeAccentColor('lightblue')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-navy elevation-2" (click)="onChangeAccentColor('navy')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-purple elevation-2" (click)="onChangeAccentColor('purple')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-fuchsia elevation-2" (click)="onChangeAccentColor('fuchsia')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-pink elevation-2" (click)="onChangeAccentColor('pink')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-maroon elevation-2" (click)="onChangeAccentColor('maroon')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-orange elevation-2" (click)="onChangeAccentColor('orange')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-lime elevation-2" (click)="onChangeAccentColor('lime')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-teal elevation-2" (click)="onChangeAccentColor('teal')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-olive elevation-2" (click)="onChangeAccentColor('olive')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+            </div>
+            <h6>Dark Sidebar Variants</h6>
+            <div class="d-flex"></div>
+            <div class="d-flex flex-wrap mb-3">
+                <div class="bg-primary elevation-2" (click)="onChangeDarkSidebar('primary')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-warning elevation-2" (click)="onChangeDarkSidebar('warning')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-info elevation-2" (click)="onChangeDarkSidebar('info')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-danger elevation-2" (click)="onChangeDarkSidebar('danger')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-success elevation-2" (click)="onChangeDarkSidebar('success')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-indigo elevation-2" (click)="onChangeDarkSidebar('indigo')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-lightblue elevation-2" (click)="onChangeDarkSidebar('lightblue')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-navy elevation-2" (click)="onChangeDarkSidebar('navy')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-purple elevation-2" (click)="onChangeDarkSidebar('purple')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-fuchsia elevation-2" (click)="onChangeDarkSidebar('fuchsia')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-pink elevation-2" (click)="onChangeDarkSidebar('pink')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-maroon elevation-2" (click)="onChangeDarkSidebar('maroon')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-orange elevation-2" (click)="onChangeDarkSidebar('orange')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-lime elevation-2" (click)="onChangeDarkSidebar('lime')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-teal elevation-2" (click)="onChangeDarkSidebar('teal')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-olive elevation-2" (click)="onChangeDarkSidebar('olive')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+            </div>
+            <h6>Light Sidebar Variants</h6>
+            <div class="d-flex"></div>
+            <div class="d-flex flex-wrap mb-3">
+                <div class="bg-primary elevation-2" (click)="onChangeLightSidebar('primary')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-warning elevation-2" (click)="onChangeLightSidebar('warning')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-info elevation-2" (click)="onChangeLightSidebar('info')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-danger elevation-2" (click)="onChangeLightSidebar('danger')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-success elevation-2" (click)="onChangeLightSidebar('success')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-indigo elevation-2" (click)="onChangeLightSidebar('indigo')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-lightblue elevation-2" (click)="onChangeLightSidebar('lightblue')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-navy elevation-2" (click)="onChangeLightSidebar('navy')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-purple elevation-2" (click)="onChangeLightSidebar('purple')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-fuchsia elevation-2" (click)="onChangeLightSidebar('fuchsia')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-pink elevation-2" (click)="onChangeLightSidebar('pink')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-maroon elevation-2" (click)="onChangeLightSidebar('maroon')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-orange elevation-2" (click)="onChangeLightSidebar('orange')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-lime elevation-2" (click)="onChangeLightSidebar('lime')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-teal elevation-2" (click)="onChangeLightSidebar('teal')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+                <div class="bg-olive elevation-2" (click)="onChangeLightSidebar('olive')"
+                    style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;">
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <!-- <footer class="main-footer">
+        <strong>Copyright © 2020 <a href="#">AdminLTE.io</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.0.5
+        </div>
+    </footer> -->
+    <div id="sidebar-overlay" data-widget="pushmenu" (click)="onPushMenu($event)"></div>
+</div>
+</ng-container>
+
+<ng-template #notAuthorized>
+    <app-single-card>
+        <router-outlet></router-outlet>
+    </app-single-card>
+</ng-template>

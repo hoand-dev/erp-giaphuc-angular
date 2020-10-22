@@ -1,0 +1,58 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li (click)="onExit()" class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li (click)="onExit()" class="breadcrumb-item"><a [routerLink]="[ '/phieu-cap-phat-vat-tu']">Phiếu cấp phát vật tư</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="long-title" [style.margin-bottom.px]="20">
+                            <h5>PHIẾU CẤP PHÁT VẬT TƯ - THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form #form (submit)="onFormSubmit($event)">
+                                <dx-form id="form" [colCount]="3" [formData]="phieucapphatvattu" [showValidationSummary]="true">
+                                    <dxi-item [label]="{text: 'NGÀY YÊU CẦU'}" dataField="ngaycapphatvattu">
+                                        <dxi-validation-rule type="required" message="Chọn ngày yêu cầu"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'MÃ PHIẾU'}" [editorOptions]="{ disabled: true }" dataField="tenchinhanh"></dxi-item>
+                                    <dxi-item [label]="{text: 'NGƯỜI YÊU CẦU'}" [editorOptions]="{ disabled: true }" dataField="tenchinhanh"></dxi-item>
+                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea" [colSpan]="3"></dxi-item>
+
+                                    <!-- <dxi-item>
+                                        <button [style.margin-left.px]="5" class="btn btn-sm btn-default float-right" [routerLink]="[ '/chi-nhanh']">
+                                            Quay lại</button>
+                                        
+                                        <button class="btn btn-sm btn-primary float-right" type="submit">Lưu lại</button>
+
+                                        <dx-button id="button" text="Lưu lại" type="success" [useSubmitBehavior]="true"> </dx-button>
+                                        
+                                    </dxi-item> -->
+
+                                    <!-- <dxi-item itemType="button" horizontalAlignment="left" [buttonOptions]=" { text: 'Quay lại'}"></dxi-item> -->
+                                    <dxi-item [colSpan]="3" itemType="button" horizontalAlignment="right"
+                                        [buttonOptions]="buttonSubmitOptions"></dxi-item>
+
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
