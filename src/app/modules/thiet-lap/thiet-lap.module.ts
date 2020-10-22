@@ -15,9 +15,10 @@ import { DanhMucLoiCapNhatComponent } from './pages/danh-muc-loi-cap-nhat/danh-m
 import { DanhMucNoComponent } from './pages/danh-muc-no/danh-muc-no.component';
 import { DanhMucNoCapNhatComponent } from './pages/danh-muc-no-cap-nhat/danh-muc-no-cap-nhat.component';
 import { DanhMucNoThemMoiComponent } from './pages/danh-muc-no-them-moi/danh-muc-no-them-moi.component';
+import { DanhMucTieuChuanComponent } from './pages/danh-muc-tieu-chuan/danh-muc-tieu-chuan.component';
 
 @NgModule({
-    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent],
+    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent],
     imports: [
         CommonModule,
         SharedModule,
