@@ -1,124 +1,100 @@
-<!-- <div class="col-md-6 offset-md-3 mt-5">
-    <div class="alert alert-info">
-        Username: test<br />
-        Password: test
-    </div>
-    <div class="card">
-        <h4 class="card-header">Angular 10 JWT Login Example</h4>
-        <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" formControlName="password" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                </div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
-            </form>
-        </div>
-    </div>
-</div> -->
-
 <div class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo" hidden>
-        <a href="../../index2.html">ERP - HỒNG NGHI</a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg"> <b>ERP - HỒNG NGHI</b> </p>
-
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group mb-3">
-                    <!-- <input type="email" class="form-control" placeholder="Email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div> -->
-                    <label>Tài khoản:</label>
-                    <input type="text" formControlName="username" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Nhập tài khoản"/>
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Vui lòng nhập tên tài khoản</div>
-                    </div>
-
-                </div>
-                <div class="form-group mb-3">
-                    <!-- <input type="password" class="form-control" placeholder="Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div> -->
-                    <label>Mật khẩu:</label>
-                    <input type="password" formControlName="password" class="form-control" placeholder="Nhập mật khẩu"
-                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Vui lòng nhập mật khẩu</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-8" hidden>
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">
-                                Remember Me
-                            </label>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-12">
-                        <button [disabled]="loading" type="submit" class="btn btn-primary btn-block mt-3">
-                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                            Đăng nhập
-                        </button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div *ngIf="error" class="text-red mt-3 mb-0">{{error}}</div>
-                    </div>
-                </div>
-            </form>
-
-            <div hidden class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-            </div>
-            <!-- /.social-auth-links -->
-
-            <p hidden class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-            </p>
-            <p hidden class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
-            </p>
+    <div class="login-box">
+        <div class="login-logo" hidden>
+            <a href="#">ERP - HỒNG NGHI</a>
         </div>
-        <!-- /.login-card-body -->
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg"> <b>ERP - HỒNG NGHI</b> </p>
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group mb-2">
+                        <label>Chi nhánh:</label>
+                        <!-- 
+                            <input 
+                            type="text" 
+                            formControlName="username" 
+                            class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" 
+                            placeholder="Nhập tài khoản" /> 
+                        -->
+
+                        <dx-select-box id="ChiNhanhSelectBox" class="mt-1" placeholder="Chọn chi nhánh"
+                        (onSelectionChanged)="onChangedChiNhanh($event)"
+                        [value]="chinhanhSelected"
+                         [dataSource]="chinhanhs"
+                            displayExpr="tenchinhanh" [searchMode]="'contains'" [searchExpr]="'tenchinhanh'" [searchTimeout]="200"
+                            [minSearchLength]="0" [searchEnabled]="false">
+                        </dx-select-box>
+
+                        <!-- <div *ngIf="submitted && f.chinhanh.errors" class="invalid-feedback">
+                            <div *ngIf="f.chinhanh.errors.required">Vui lòng chọn chi nhánh</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Tài khoản:</label>
+                        <input type="text" formControlName="username" class="form-control form-control-sm"
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Nhập tài khoản" />
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Vui lòng nhập tên tài khoản</div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Mật khẩu:</label>
+                        <input type="password" formControlName="password" class="form-control form-control-sm"
+                            placeholder="Nhập mật khẩu" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Vui lòng nhập mật khẩu</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8" hidden>
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12">
+                            <button [disabled]="loading" type="submit" class="btn btn-primary btn-block mt-3">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Đăng nhập
+                            </button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div *ngIf="error" class="text-red mt-3 mb-0">{{error}}</div>
+                        </div>
+                    </div>
+                </form>
+
+                <div hidden class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
+                <!-- /.social-auth-links -->
+
+                <p hidden class="mb-1">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <p hidden class="mb-0">
+                    <a href="register.html" class="text-center">Register a new membership</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
     </div>
-</div>
-<!-- /.login-box -->
+    <!-- /.login-box -->
 
 </div>
+<!-- /.login-page -->

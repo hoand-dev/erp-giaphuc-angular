@@ -3,8 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
-
-// import { AuthenticationService } from '@app/_services';
+import { ChiNhanhService } from '@app/shared/services/thiet-lap';
+import { ChiNhanh } from '@app/shared/entities';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -18,28 +19,56 @@ export class LoginComponent implements OnInit {
     submitted = false;
     error = '';
 
+    chinhanhs: ChiNhanh[] = [];
+    chinhanhSelected: ChiNhanh;
+    private subscription: Subscription;
+
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
-        // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
-        }
-    }
+        private authenticationService: AuthenticationService,
+        private chinhanhService: ChiNhanhService
+    ) { }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
+
+        // redirect to home if already logged in
+        if (this.authenticationService.currentUserValue) {
+            this.router.navigate(['/']);
+        }
+
+        this.subscription = this.chinhanhService.findChiNhanhs(true).subscribe(
+            data => {
+                this.chinhanhs = data;
+                if (this.authenticationService.currentChiNhanhValue) {
+                    for (let index = 0; index < data.length; index++) {
+                        const element = data[index];
+                        if (element.id == this.authenticationService.currentChiNhanhValue.id) {
+                            this.chinhanhSelected = element;
+                        }
+                    }
+                }
+                else this.chinhanhSelected = data[0];
+            },
+            error => {
+                this.chinhanhService.handleError(error);
+            }
+        );
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
+    onChangedChiNhanh(e) {
+        // thay đổi giá trị chi nhánh hiện tại
+        this.authenticationService.setChiNhanhValue(e.selectedItem);
+    }
+    
     onSubmit() {
         this.submitted = true;
 
@@ -54,8 +83,8 @@ export class LoginComponent implements OnInit {
             .subscribe({
                 next: () => {
                     // get return url from route parameters or default to '/'
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    // this.router.navigate(['/' + returnUrl]);
+                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'trang-chu';
+                    // this.router.navigate(['/' + returnUrl]); // not use navigate
                     location.href = '/' + returnUrl;
                 },
                 error: error => {
