@@ -7,6 +7,10 @@ import { User } from './_models';
 import DataSource from 'devextreme/data/data_source';
 
 import * as $ from 'jquery';
+import { ChiNhanh } from './shared/entities';
+import { ChiNhanhService } from './shared/services';
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -17,13 +21,7 @@ export class AppComponent implements OnInit {
 
     currentUser: User;
 
-    chinhanhs: any[] = [{
-        "ID": 1,
-        "Name": "Hồng Nghi"
-    }, {
-        "ID": 2,
-        "Name": "Gia Phúc"
-    }];
+    chinhanhs: ChiNhanh[] = [];
 
     /* themes */
     navbar_dark_skins = [
@@ -127,15 +125,52 @@ export class AppComponent implements OnInit {
 
     navbar_all_colors = this.navbar_dark_skins.concat(this.navbar_light_skins);
 
+    private subscription: Subscription;
+    private refreshInterval: any;
+    private chinhanhSelected: ChiNhanh;
+
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService
-    ) { 
-        
+        private authenticationService: AuthenticationService,
+        private chinhanhService: ChiNhanhService
+    ) {
+
     }
 
     ngOnInit(): void {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+        if (this.isAutorized()) {
+            this.subscription = this.chinhanhService.findChiNhanhs().subscribe(
+                data => {
+                    this.chinhanhs = data;
+                    if (this.authenticationService.currentChiNhanhValue) {
+                        for (let index = 0; index < data.length; index++) {
+                            const element = data[index];
+                            if (element.id == this.authenticationService.currentChiNhanhValue.id) {
+                                this.chinhanhSelected = element;
+                            }
+                        }
+                    }
+                    else this.chinhanhSelected = data[0];
+                },
+                error => {
+                    this.chinhanhService.handleError(error);
+                }
+            );
+
+            setInterval(() => {
+                this.authenticationService.refreshAuthToken().pipe(first())
+                    .subscribe({
+                        next: () => {
+
+                        },
+                        error: error => {
+
+                        }
+                    });
+            }, 1000 * 15);
+        }
     }
 
     ngAfterViewInit(): void {
@@ -303,9 +338,14 @@ export class AppComponent implements OnInit {
     }
 
     onChangedChiNhanh(e) {
-        // console.log(e);
+        // thay đổi giá trị chi nhánh hiện tại
+        this.authenticationService.setChiNhanhValue(e.selectedItem);
     }
 
+    onValueChanged(e){
+
+    }
+    
     logout() {
         this.authenticationService.logout();
         this.router.navigate(['/login']);

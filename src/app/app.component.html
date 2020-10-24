@@ -42,9 +42,10 @@
             <li class="nav-item">
                 <dx-select-box id="ChiNhanhSelectBox" class="mt-1" placeholder="Chọn chi nhánh"
                     (onSelectionChanged)="onChangedChiNhanh($event)"
-                    [value]="chinhanhs[0]"
-                    [dataSource]="chinhanhs" displayExpr="Name" 
-                    [searchMode]="'contains'" [searchExpr]="'Name'"
+                    (onValueChanged)="onValueChanged($event)"
+                    [value]="chinhanhSelected"
+                    [dataSource]="chinhanhs" displayExpr="tenchinhanh" 
+                    [searchMode]="'contains'" [searchExpr]="'tenchinhanh'"
                     [searchTimeout]="200" [minSearchLength]="0" [searchEnabled]="false">
                 </dx-select-box>
             </li>
@@ -137,6 +138,13 @@
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
+            </li>
+
+            <!-- Logout -->
+            <li class="nav-item" (click)="logout()">
+                <a class="nav-link" href="javascript:void(0)" role="button">
+                    <i class="fas gg-log-off mt-1"></i>
+                </a>
             </li>
 
             <!-- The Interface -->
