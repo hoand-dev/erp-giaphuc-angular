@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from '../_models';
-import { UserService } from '../_services';
+import { AuthenticationService, UserService } from '../_services';
 
 import * as $ from 'jquery';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -211,7 +211,9 @@ export class HomeComponent implements OnInit {
 
     selectBoxData: any = {};
 
-    constructor(@Inject(HttpClient) httpClient: HttpClient, private commonService: CommonService) {
+    constructor(private httpClient: HttpClient, private commonService: CommonService, private authenticationService: AuthenticationService) { }
+
+    ngOnInit() {
         let apiUrl = this.apiUrl;
 
         function isNotEmpty(value: any): boolean {
@@ -236,8 +238,8 @@ export class HomeComponent implements OnInit {
                         if (i in loadOptions && isNotEmpty(loadOptions[i]))
                             params = params.set(i, JSON.stringify(loadOptions[i]));
                     });
-                    
-                    return httpClient.get(apiUrl/* , { params: params } */)
+
+                    return this.httpClient.get(apiUrl/* , { params: params } */)
                         .toPromise()
                         .then(result => {
                             // Here, you can perform operations unsupported by the server
@@ -245,13 +247,16 @@ export class HomeComponent implements OnInit {
                         });
                 },
                 byKey: function (key) {
-                    return httpClient.get(apiUrl + '/' + key).toPromise();
+                    return this.httpClient.get(apiUrl + '/' + key).toPromise();
                 }
             })
         });
-    }
 
-    ngOnInit() { }
+        this.authenticationService.currentChiNhanh.subscribe(x=>{
+            console.log(x);
+            
+        })
+    }
 
     // hàng hóa thay đổi
     onChanged(i, e) {
@@ -266,5 +271,7 @@ export class HomeComponent implements OnInit {
     // xem giá trị arr hàng hóa
     onClick() {
         console.log(this.hanghoas);
+        let currentUser;
+        this.authenticationService.currentUser.subscribe(x => currentUser = x);
     }
 }

@@ -2,40 +2,43 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-// import { User } from '../_models';
-// import { environment } from 'src/environments/environment';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
+import { ChiNhanh } from '@app/shared/entities';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    
+    private currentChiNhanhSubject: BehaviorSubject<ChiNhanh>;
+    public currentChiNhanh: Observable<ChiNhanh>;
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+        
+        this.currentChiNhanhSubject = new BehaviorSubject<ChiNhanh>(JSON.parse(localStorage.getItem('currentChiNhanh')));
+        this.currentChiNhanh = this.currentChiNhanhSubject.asObservable();
     }
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string, grant_type: string = 'password') { // hoand grant_type
-        // return this.http.post<any>(`${environment.apiUrl}/auth-token`, { username, password, grant_type })
-        //     .pipe(map(user => {
-        //         console.log(`User token:`);
-        //         console.log(user);
-                
-        //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        //         localStorage.setItem('currentUser', JSON.stringify(user));
-        //         localStorage.setItem('userToken', JSON.stringify(user.access_token));
-        //         this.currentUserSubject.next(user);
-        //         return user;
-        //     }));
+    public get currentChiNhanhValue(): ChiNhanh {
+        return this.currentChiNhanhSubject.value;
+    }
 
-        var data = "username=" + username + "&password=" + password + "&grant_type=password";
+    public setChiNhanhValue(chinhanh: ChiNhanh): void{
+        localStorage.setItem('currentChiNhanh', JSON.stringify(chinhanh));
+        this.currentChiNhanhSubject.next(chinhanh);
+    }
+
+    login(username: string, password: string, grant_type: string = 'password') { // hoand grant_type
+        var data = "username=" + username + "&password=" + password + "&grant_type=" + grant_type;
         var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
         return this.http.post<any>(environment.apiUrl + '/auth-token', data, { headers: reqHeader })
             .pipe(map(user => {
@@ -50,7 +53,21 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
-        location.reload(true);
+    }
+
+    refreshAuthToken(){
+        if (this.currentUserSubject.value) {
+            let refresh_token: string = this.currentUserSubject.value.refresh_token, grant_type: string = 'refresh_token';
+            var data = "refresh_token=" + refresh_token + "&grant_type=" + grant_type;
+            var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+            return this.http.post<any>(environment.apiUrl + '/auth-token', data, { headers: reqHeader })
+                .pipe(map(user => {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                    return user;
+                }));
+        }
     }
 
     register(user: User) {
