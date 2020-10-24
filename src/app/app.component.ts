@@ -163,13 +163,13 @@ export class AppComponent implements OnInit {
                 this.authenticationService.refreshAuthToken().pipe(first())
                     .subscribe({
                         next: () => {
-
+                            
                         },
                         error: error => {
-
+                            // kiểm tra lỗi nếu hết phiên làm việc -> thông báo -> chuyển đến trang đăng nhập
                         }
                     });
-            }, 1000 * 15);
+            }, 1000 * 60 * 29);
         }
     }
 
