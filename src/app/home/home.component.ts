@@ -9,6 +9,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import { CommonService } from '@app/shared/services/common.service';
+import { Subscription } from 'rxjs';
 
 // import { User } from '@app/_models';
 // import { UserService } from '@app/_services';
@@ -19,12 +20,14 @@ import { CommonService } from '@app/shared/services/common.service';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+    
+    private subscription: Subscription;
+    
     apiUrl: string = 'https://5f60284590cf8d001655758b.mockapi.io/users';
 
     public hanghoas: any[] = [
-        { select_id: "1", tag_id: null },
-        { select_id: "2", tag_id: null },
+        { select_id: '8', tag_id: ['8'] },
+        { select_id: '8', tag_id: ['8'] },
     ];
 
     simpleProducts = [
@@ -211,51 +214,72 @@ export class HomeComponent implements OnInit {
 
     selectBoxData: any = {};
 
-    constructor(private httpClient: HttpClient, private commonService: CommonService, private authenticationService: AuthenticationService) { }
-
-    ngOnInit() {
+    constructor(private httpClient: HttpClient, private commonService: CommonService, private authenticationService: AuthenticationService) { 
         let apiUrl = this.apiUrl;
 
         function isNotEmpty(value: any): boolean {
             return value !== undefined && value !== null && value !== "";
         }
 
-        this.selectBoxData = new DataSource({
-            store: new CustomStore({
-                key: "id",
-                load: (loadOptions) => {
-                    let params: HttpParams = new HttpParams();
-                    [
-                        "skip",
-                        "take",
-                        "sort",
-                        "filter",
-                        "searchExpr",
-                        "searchOperation",
-                        "searchValue",
-                        "group",
-                    ].forEach(function (i) {
-                        if (i in loadOptions && isNotEmpty(loadOptions[i]))
-                            params = params.set(i, JSON.stringify(loadOptions[i]));
-                    });
+        this.subscription = this.authenticationService.currentChiNhanh/* .pipe(first()) */
+        .subscribe(x => {
+            console.log(x);
 
-                    return this.httpClient.get(apiUrl/* , { params: params } */)
-                        .toPromise()
-                        .then(result => {
+            this.selectBoxData = new DataSource({
+                store: new CustomStore({
+                    key: "id",
+                    load: (loadOptions) => {
+                        let params: HttpParams = new HttpParams();
+                        [
+                            "skip",
+                            "take",
+                            "sort",
+                            "filter",
+                            "searchExpr",
+                            "searchOperation",
+                            "searchValue",
+                            "group",
+                        ].forEach(function (i) {
+                            if (i in loadOptions && isNotEmpty(loadOptions[i]))
+                                params = params.set(i, JSON.stringify(loadOptions[i]));
+                        });
+
+                        // return this.httpClient.get(apiUrl/* , { params: params } */)
+                        //     .toPromise()
+                        //     .then(result => {
+                        //         // Here, you can perform operations unsupported by the server
+                        //         return result;
+                        //     });
+
+                        return httpClient.get(apiUrl/* , { params: params } */)
+                            .toPromise()
+                            .then(result => {
+                                // Here, you can perform operations unsupported by the server
+                                return result;
+                            });
+                    },
+                    byKey: function (key) {
+                        return httpClient.get(apiUrl + '/' + key).toPromise().then(result => {
                             // Here, you can perform operations unsupported by the server
                             return result;
                         });
-                },
-                byKey: function (key) {
-                    return this.httpClient.get(apiUrl + '/' + key).toPromise();
-                }
-            })
-        });
-
-        this.authenticationService.currentChiNhanh.subscribe(x=>{
-            console.log(x);
-            
+                    }
+                })
+            });
         })
+    }
+
+    ngOnInit() {
+        
+    }
+
+    ngOnDestroy(): void {
+        //Called once, before the instance is destroyed.
+        //Add 'implements OnDestroy' to the class.
+
+        // xử lý trước khi thoát khỏi trang
+        if (this.subscription)
+            this.subscription.unsubscribe();
     }
 
     // hàng hóa thay đổi
