@@ -1,4 +1,4 @@
-import { DanhMucGiaCong } from '@app/shared/entities';
+import { ChiNhanh, DanhMucGiaCong } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 
@@ -9,6 +9,7 @@ import {
 import { DanhMucGiaCongService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
     selector: 'app-danh-muc-gia-cong-them-moi',
@@ -20,7 +21,8 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucGiaCong: DxFormComponent;
 
     private subscription: Subscription;
-
+    private currentChiNhanh: ChiNhanh;
+    
     public danhmucgiacong: DanhMucGiaCong;
 
     public saveProcessing = false;
@@ -33,6 +35,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private authenticationService: AuthenticationService,
         private danhmucgiacongService: DanhMucGiaCongService
     ) { }
 
@@ -42,6 +45,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.danhmucgiacong = new DanhMucGiaCong();
+        this.subscription = this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x);
     }
 
     ngOnDestroy(): void {
@@ -63,6 +67,8 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
 
     onSubmitForm(e) {
         let danhmucgiacong_req = this.danhmucgiacong;
+        danhmucgiacong_req.chinhanh_id = this.currentChiNhanh.id;
+        
         this.saveProcessing = true;
         this.subscription = this.danhmucgiacongService.addDanhMucGiaCong(danhmucgiacong_req).subscribe(
             data => {
