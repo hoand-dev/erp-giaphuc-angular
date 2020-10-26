@@ -39,6 +39,7 @@ import {
     DanhMucTieuChuanService,
     DonViGiaCongService,
     DonViTinhService,
+    KhoHangService,
     NguoiDungService,
 } from '@app/shared/services/thiet-lap';
 
@@ -94,6 +95,7 @@ import './shared/localization';
         DanhMucTieuChuanService,
         DonViGiaCongService,
         DonViTinhService,
+        KhoHangService,
         NguoiDungService,
     ],
     bootstrap: [AppComponent]

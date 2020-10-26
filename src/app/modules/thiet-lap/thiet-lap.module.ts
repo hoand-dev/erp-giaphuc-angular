@@ -18,9 +18,10 @@ import { DanhMucNoThemMoiComponent } from './pages/danh-muc-no-them-moi/danh-muc
 import { DanhMucTieuChuanComponent } from './pages/danh-muc-tieu-chuan/danh-muc-tieu-chuan.component';
 import { DanhMucTieuChuanCapNhatComponent } from './pages/danh-muc-tieu-chuan-cap-nhat/danh-muc-tieu-chuan-cap-nhat.component';
 import { DanhMucTieuChuanThemMoiComponent } from './pages/danh-muc-tieu-chuan-them-moi/danh-muc-tieu-chuan-them-moi.component';
+import { KhoHangComponent } from './pages/kho-hang/kho-hang.component';
 
 @NgModule({
-    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent, DanhMucTieuChuanCapNhatComponent, DanhMucTieuChuanThemMoiComponent],
+    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent, DanhMucTieuChuanCapNhatComponent, DanhMucTieuChuanThemMoiComponent, KhoHangComponent],
     imports: [
         CommonModule,
         SharedModule,

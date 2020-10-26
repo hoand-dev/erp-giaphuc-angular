@@ -1,3 +1,4 @@
+import { KhoHangComponent } from './pages/kho-hang/kho-hang.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/_helpers';
@@ -50,6 +51,15 @@ const routes: Routes = [
             { path: '', component: DanhMucNoComponent },
             { path: 'them-moi', component: DanhMucNoThemMoiComponent },
             { path: ':id/cap-nhat', component: DanhMucNoCapNhatComponent },
+        ]
+    },
+    {
+        path: 'kho-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: KhoHangComponent },
+            //{ path: 'them-moi', component: DanhMucNoThemMoiComponent },
+            //{ path: ':id/cap-nhat', component: DanhMucNoCapNhatComponent },
         ]
     }
 ];
