@@ -70,26 +70,22 @@ export class AuthenticationService {
         }
     }
 
-    register(user: User) {
-        const body: User = {
-            id: user.id,
-            username: user.username,
-            password: user.password,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName
-        }
-        var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
-        return this.http.post(environment.apiUrl + '/auth-register', body, { headers: reqHeader });
-    }
+    // register(user: User) {
+    //     const body: User = {
+    //         id: user.id,
+    //         username: user.username,
+    //         password: user.password,
+    //         email: user.email,
+    //         firstName: user.firstName,
+    //         lastName: user.lastName
+    //     }
+    //     var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
+    //     return this.http.post(environment.apiUrl + '/auth-register', body, { headers: reqHeader });
+    // }
 
-    authentication(username, password) {
-        var data = "username=" + username + "&password=" + password + "&grant_type=password";
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
-        return this.http.post(environment.apiUrl + '/auth-token', data, { headers: reqHeader });
-    }
-
-    getCurrentUser() {
-        return this.http.get(environment.apiUrl + '/auth-current');
-    }
+    // authentication(username, password) {
+    //     var data = "username=" + username + "&password=" + password + "&grant_type=password";
+    //     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+    //     return this.http.post(environment.apiUrl + '/auth-token', data, { headers: reqHeader });
+    // }
 }
