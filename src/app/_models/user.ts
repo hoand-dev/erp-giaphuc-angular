@@ -5,7 +5,9 @@ export class User {
     email: string;
     firstName: string;
     lastName: string;
-    logintime?: Date;
+    fullName: string;
+    logintime?: string;
+    refreshtime?: string;
     token?: string;
     access_token?: string;
     refresh_token?: string;
