@@ -8,7 +8,7 @@ import DataSource from 'devextreme/data/data_source';
 
 import * as $ from 'jquery';
 import { ChiNhanh } from './shared/entities';
-import { ChiNhanhService } from './shared/services';
+import { ChiNhanhService, NguoiDungService } from './shared/services';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -19,9 +19,12 @@ import { first } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
 
-    currentUser: User;
+    currentUserToken: User;
+    currentUser: User = new User();
 
     chinhanhs: ChiNhanh[] = [];
+
+    fisrtRefreshToken: boolean = true;
 
     /* themes */
     navbar_dark_skins = [
@@ -132,15 +135,19 @@ export class AppComponent implements OnInit {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        private chinhanhService: ChiNhanhService
+        private chinhanhService: ChiNhanhService,
+        private nguoidungService: NguoiDungService,
     ) {
 
     }
 
     ngOnInit(): void {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+        this.subscription = this.authenticationService.currentUser.subscribe(x => this.currentUserToken = x);
 
         if (this.isAutorized()) {
+            this.subscription = this.nguoidungService.getCurrentUser().subscribe(x =>
+                this.currentUser = x
+            );
             this.subscription = this.chinhanhService.findChiNhanhs().subscribe(
                 data => {
                     this.chinhanhs = data;
@@ -158,19 +165,32 @@ export class AppComponent implements OnInit {
                     this.chinhanhService.handleError(error);
                 }
             );
+            
+            if (this.fisrtRefreshToken){
+                console.log("refresh token...");
+                
+                this.fisrtRefreshToken = false;
+                this.refreshAuthToken();
+            }
 
             setInterval(() => {
-                this.authenticationService.refreshAuthToken().pipe(first())
-                    .subscribe({
-                        next: () => {
-                            
-                        },
-                        error: error => {
-                            // kiểm tra lỗi nếu hết phiên làm việc -> thông báo -> chuyển đến trang đăng nhập
-                        }
-                    });
-            }, 1000 * 60 * 29);
+                console.log("interval refresh token...");
+
+                this.refreshAuthToken();
+            }, 1000 * 60 * 25);
         }
+    }
+
+    refreshAuthToken(){
+        this.authenticationService.refreshAuthToken().pipe(first())
+            .subscribe({
+                next: () => {
+
+                },
+                error: error => {
+                    // kiểm tra lỗi nếu hết phiên làm việc -> thông báo -> chuyển đến trang đăng nhập
+                }
+            });
     }
 
     ngAfterViewInit(): void {
@@ -352,7 +372,7 @@ export class AppComponent implements OnInit {
     }
 
     isAutorized() {
-        return this.currentUser ? true : false;
+        return this.currentUserToken ? true : false;
     }
 
     onClickMenu(e) {
