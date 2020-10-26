@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from '../_models';
-import { AuthenticationService, UserService } from '../_services';
+import { AuthenticationService } from '../_services';
 
 import * as $ from 'jquery';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -10,9 +10,6 @@ import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import { CommonService } from '@app/shared/services/common.service';
 import { Subscription } from 'rxjs';
-
-// import { User } from '@app/_models';
-// import { UserService } from '@app/_services';
 
 @Component({
     selector: 'app-home',
