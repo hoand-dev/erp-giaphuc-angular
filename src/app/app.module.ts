@@ -7,6 +7,7 @@ import {
     DxSelectBoxModule,
     DxCheckBoxModule,
     DxTextBoxModule,
+    DxTextAreaModule,
     DxValidatorModule,
     DxFormModule,
     DxValidationSummaryModule,
@@ -38,6 +39,7 @@ import {
     DanhMucTieuChuanService,
     DonViGiaCongService,
     DonViTinhService,
+    NguoiDungService,
 } from '@app/shared/services/thiet-lap';
 
 import { ThietLapModule, MuaHangModule, BanHangModule, SanXuatModule } from '@app/modules';
@@ -66,6 +68,7 @@ import './shared/localization';
         DxSelectBoxModule,
         DxCheckBoxModule,
         DxTextBoxModule,
+        DxTextAreaModule,
         DxValidatorModule,
         DxValidationSummaryModule,
         DxFormModule,
@@ -91,6 +94,7 @@ import './shared/localization';
         DanhMucTieuChuanService,
         DonViGiaCongService,
         DonViTinhService,
+        NguoiDungService,
     ],
     bootstrap: [AppComponent]
 })
