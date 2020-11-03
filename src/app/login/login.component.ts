@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     error = '';
+    submitText: string = 'Đăng nhập';
 
     chinhanhs: ChiNhanh[] = [];
     chinhanhSelected: ChiNhanh;
@@ -42,9 +43,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/']);
         }
 
+        this.loading = true;
+        this.submitText = "Đợi một lát...";
         this.subscription = this.chinhanhService.findChiNhanhs(true).subscribe(
             data => {
+                this.loading = false;
                 this.chinhanhs = data;
+                this.submitText = "Đăng nhập";
                 if (this.authenticationService.currentChiNhanhValue) {
                     for (let index = 0; index < data.length; index++) {
                         const element = data[index];
@@ -56,7 +61,9 @@ export class LoginComponent implements OnInit {
                 else this.chinhanhSelected = data[0];
             },
             error => {
+                this.loading = false;
                 this.chinhanhService.handleError(error);
+                this.submitText = "Lỗi tải dữ liệu chi nhánh!";
             }
         );
     }
