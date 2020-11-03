@@ -30,19 +30,7 @@ import { LoginComponent } from '@app/login/login.component';
 import { HomeComponent } from '@app/home/home.component';
 import { NotFoundComponent } from '@app/shared/components/not-found/not-found.component';
 
-import { AppInfoService, CommonService } from '@app/shared/services';
-import { 
-    ChiNhanhService, 
-    DanhMucGiaCongService,
-    DanhMucLoiService,
-    DanhMucNoService,
-    DanhMucTieuChuanService,
-    DonViGiaCongService,
-    DonViTinhService,
-    KhoHangService,
-    KhuVucService,
-    NguoiDungService,
-} from '@app/shared/services/thiet-lap';
+import { AppInfoService } from '@app/shared/services';
 
 import { ThietLapModule, MuaHangModule, BanHangModule, SanXuatModule } from '@app/modules';
 
@@ -88,17 +76,7 @@ import './shared/localization';
         // provider used to create fake backend
         // fakeBackendProvider,
 
-        AppInfoService, CommonService, 
-        ChiNhanhService, 
-        DanhMucGiaCongService,
-        DanhMucLoiService,
-        DanhMucNoService,
-        DanhMucTieuChuanService,
-        DonViGiaCongService,
-        DonViTinhService,
-        KhuVucService,
-        KhoHangService,
-        NguoiDungService,
+        AppInfoService
     ],
     bootstrap: [AppComponent]
 })
