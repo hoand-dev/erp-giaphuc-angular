@@ -220,7 +220,7 @@ export class HomeComponent implements OnInit {
 
         this.subscription = this.authenticationService.currentChiNhanh/* .pipe(first()) */
         .subscribe(x => {
-            console.log(x);
+            console.log("home page: " + x.id);
 
             this.selectBoxData = new DataSource({
                 store: new CustomStore({
