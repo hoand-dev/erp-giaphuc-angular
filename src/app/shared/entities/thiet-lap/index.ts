@@ -3,6 +3,7 @@ export * from './danh-muc-gia-cong';
 export * from './danh-muc-loi';
 export * from './danh-muc-no';
 export * from './danh-muc-tieu-chuan';
+export * from './dinh-muc';
 export * from './don-vi-gia-cong';
 export * from './don-vi-tinh';
 export * from './khu-vuc';
