@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DanhMucNo } from '@app/shared/entities';
+import { ChiNhanh, DanhMucNo } from '@app/shared/entities';
 import { DanhMucNoService } from '@app/shared/services';
+import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
@@ -15,9 +16,10 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
 
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucNo: DxFormComponent;
 
-    private subscription: Subscription
-    private subscriptionParams: Subscription;
-
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+    private currentChiNhanh: ChiNhanh;
+    
     public danhmucno: DanhMucNo;
     public saveProcessing = false;
 
@@ -29,25 +31,29 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
     }
 
     constructor(
-        private router: Router, private activatedRoute: ActivatedRoute, private danhmucnoService: DanhMucNoService) { }
+        private router: Router, 
+        private activatedRoute: ActivatedRoute, 
+        private authenticationService: AuthenticationService,
+        private danhmucnoService: DanhMucNoService
+    ) { }
 
     ngOnInit(): void {
         this.danhmucno = new DanhMucNo();
-
-        this.subscriptionParams = this.activatedRoute.params.subscribe(params => {
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
+        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let danhmucno_id = params.id;
             // lấy thông tin danh mục nợ
             if (danhmucno_id) {
-                this.subscription = this.danhmucnoService.findDanhMucNo(danhmucno_id).subscribe(
+                this.subscriptions.add(this.danhmucnoService.findDanhMucNo(danhmucno_id).subscribe(
                     data => {
                         this.danhmucno = data[0];
                     },
                     error => {
                         this.danhmucnoService.handleError(error);
                     }
-                );
+                ));
             }
-        });
+        }));
     }
 
     ngOnDestroy(): void {
@@ -55,11 +61,7 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscriptionParams)
-            this.subscriptionParams.unsubscribe();
-
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     asyncValidation(params) {
@@ -72,8 +74,10 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
 
     onSubmitForm(e) {
         let danhmucno_req = this.danhmucno;
+        danhmucno_req.chinhanh_id = this.currentChiNhanh.id;
+        
         this.saveProcessing = true;
-        this.subscription = this.danhmucnoService.updateDanhMucNo(danhmucno_req).subscribe(
+        this.subscriptions.add(this.danhmucnoService.updateDanhMucNo(danhmucno_req).subscribe(
             data => {
                 notify({
                     width: 320,
@@ -88,7 +92,7 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
                 this.danhmucnoService.handleError(error);
                 this.saveProcessing = false;
             }
-        );
+        ));
         e.preventDefault();
     }
 }

@@ -16,7 +16,8 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-    private subscription: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
 
     public stateStoringGrid = {
         enabled: true,
@@ -45,19 +46,18 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     onLoadData() {
-        this.subscription = this.danhmucloiService.findDanhMucLois().subscribe(
+        this.subscriptions.add(this.danhmucloiService.findDanhMucLois().subscribe(
             data => {
                 this.dataGrid.dataSource = data;
             },
             error => {
                 this.danhmucloiService.handleError(error);
             }
-        );
+        ));
     }
 
     onRowDblClick(e) {
@@ -70,7 +70,7 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscription = this.danhmucloiService.deleteDanhMucLoi(id).subscribe(
+                this.subscriptions.add(this.danhmucloiService.deleteDanhMucLoi(id).subscribe(
                     data => {
                         if (data) {
                             notify({
@@ -87,9 +87,8 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
                         // load lại dữ liệu
                         this.onLoadData();
                     }
-                );
+                ));
             }
         });
     }
-
 }

@@ -1,3 +1,5 @@
+import { KhuVuc } from './khu-vuc';
+
 export class KhoHang {
 
     public id: number;
@@ -14,8 +16,10 @@ export class KhoHang {
     public dienthoai: string;
     public diachi: string;
     public khuvuc_id: number;
+    
+    public khuvuc: KhuVuc;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, makhohang: string = null, tenkhohang: string = null, khobe: boolean = false, dienthoai: string = null, diachi: string = null, khuvuc_id: number = null) {
+    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, makhohang: string = null, tenkhohang: string = null, khobe: boolean = false, dienthoai: string = null, diachi: string = null, khuvuc_id: number = null, khuvuc: KhuVuc = null) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -30,5 +34,6 @@ export class KhoHang {
         this.dienthoai = dienthoai;
         this.diachi = diachi;
         this.khuvuc_id = khuvuc_id;
+        this.khuvuc = khuvuc;
     }
 }

@@ -20,6 +20,6 @@ export class BaseService {
             width: 320,
             message: message,
             position: { my: "right top", at: "right top" }
-        }, "error", 475);
+        }, "error", 1000);
     }
 }

@@ -1,0 +1,74 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/hang-hoa-nguyen-lieu']">Nguyên liệu</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>{{ 'Nguyên liệu' | uppercase }} - {{ 'Cập nhật' | uppercase }}</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="2" [formData]="hanghoa" [showValidationSummary]="true">
+                                    <dxi-item [label]="{text: 'MÃ NGUYÊN LIỆU'}" dataField="mahanghoa">
+                                        <dxi-validation-rule type="required" message="Nhập mã nguyên liệu">
+                                        </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2"
+                                            message="Mã nguyên liệu quá ngắn">
+                                        </dxi-validation-rule>
+                                        <dxi-validation-rule type="custom" message="Mã nguyên liệu đã tồn tại"
+                                            [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'TÊN NGUYÊN LIỆU'}" dataField="tenhanghoa">
+                                        <dxi-validation-rule type="required" message="Nhập tên nguyên liệu">
+                                        </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2"
+                                            message="Tên nguyên liệu quá ngắn"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{text: 'ĐƠN VỊ TÍNH'}" dataField="donvitinh"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: lstDonViTinh, searchEnabled: true, displayExpr: 'tendonvitinh' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị tính">
+                                        </dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{text: 'ĐƠN GIÁ'}" dataField="gianhap" editorType="dxNumberBox">
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'ĐỊNH MỨC TỒN'}" dataField="dinhmucton"
+                                        editorType="dxNumberBox"></dxi-item>
+                                    <dxi-item [label]="{text: 'TRỌNG LƯỢNG'}" dataField="trongluong"
+                                        editorType="dxNumberBox"></dxi-item>
+
+                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea"
+                                        [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat"
+                                        editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button"
+                                        horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

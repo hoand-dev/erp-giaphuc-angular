@@ -20,7 +20,9 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
 
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucGiaCong: DxFormComponent;
 
-    private subscription: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+
     private currentChiNhanh: ChiNhanh;
     
     public danhmucgiacong: DanhMucGiaCong;
@@ -45,7 +47,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.danhmucgiacong = new DanhMucGiaCong();
-        this.subscription = this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x);
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
     ngOnDestroy(): void {
@@ -53,8 +55,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     asyncValidation(params) {
@@ -70,7 +71,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
         danhmucgiacong_req.chinhanh_id = this.currentChiNhanh.id;
         
         this.saveProcessing = true;
-        this.subscription = this.danhmucgiacongService.addDanhMucGiaCong(danhmucgiacong_req).subscribe(
+        this.subscriptions.add(this.danhmucgiacongService.addDanhMucGiaCong(danhmucgiacong_req).subscribe(
             data => {
                 notify({
                     width: 320,
@@ -85,7 +86,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
                 this.danhmucgiacongService.handleError(error);
                 this.saveProcessing = false;
             }
-        );
+        ));
         e.preventDefault();
     }
 }

@@ -1,5 +1,5 @@
 import { ChiNhanh } from '@app/shared/entities';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 
 import {
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
     templateUrl: './chi-nhanh-them-moi.component.html',
     styleUrls: ['./chi-nhanh-them-moi.component.css']
 })
-export class ChiNhanhThemMoiComponent implements OnInit {
+export class ChiNhanhThemMoiComponent implements OnInit, OnDestroy {
 
     @ViewChild(DxFormComponent, { static: false }) frmChiNhanh: DxFormComponent;
 
@@ -43,6 +43,7 @@ export class ChiNhanhThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.chinhanh = new ChiNhanh();
+        this.theCallbackValid = this.theCallbackValid.bind(this); // binding function sang html sau compile
     }
 
     ngOnDestroy(): void {
@@ -53,17 +54,14 @@ export class ChiNhanhThemMoiComponent implements OnInit {
         if (this.subscription)
             this.subscription.unsubscribe();
     }
-
-    asyncValidation(params) {
-        // giả sử mã chi nhánh lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    
+    theCallbackValid(params){
+        return this.chinhanhService.checkExistChiNhanh(params.value);
     }
 
     onSubmitForm(e) {
         let chinhanh_req = this.chinhanh;
+
         this.saveProcessing = true;
         this.subscription = this.chinhanhService.addChiNhanh(chinhanh_req).subscribe(
             data => {

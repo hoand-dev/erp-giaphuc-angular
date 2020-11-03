@@ -21,7 +21,7 @@ export class ChiNhanhService extends BaseService {
     }
 
     findChiNhanhs(notAuth: boolean = false): Observable<ChiNhanh[]> {
-        if (notAuth){
+        if (notAuth) {
             var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
             return this.httpClient.get<any>(this.apiUrl + '/not-auth', { headers: reqHeader });
         }
@@ -40,7 +40,20 @@ export class ChiNhanhService extends BaseService {
         return this.httpClient.delete<ChiNhanh>(this.apiUrl + `/${id}`);
     }
 
-    existChiNhanh(machinhanh: string) {
-        return this.httpClient.get<ChiNhanh>(this.apiUrl + `/${machinhanh}`);
+    checkExistChiNhanh(machinhanh: string, machinhanh_old: string = null) {
+        if (machinhanh == machinhanh_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?machinhanh=${machinhanh}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
     }
 }

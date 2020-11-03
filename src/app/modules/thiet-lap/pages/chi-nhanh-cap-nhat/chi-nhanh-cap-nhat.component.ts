@@ -6,8 +6,6 @@ import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
-/* chưa tối ưu performance */
-
 @Component({
     selector: 'app-chi-nhanh-cap-nhat',
     templateUrl: './chi-nhanh-cap-nhat.component.html',
@@ -17,10 +15,11 @@ export class ChiNhanhCapNhatComponent implements OnInit, OnDestroy {
 
     @ViewChild(DxFormComponent, { static: false }) frmChiNhanh: DxFormComponent;
 
-    private subscription: Subscription
-    private subscriptionParams: Subscription;
-
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+    
     public chinhanh: ChiNhanh;
+    public machinhanh_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -34,21 +33,23 @@ export class ChiNhanhCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.chinhanh = new ChiNhanh();
+        this.theCallbackValid = this.theCallbackValid.bind(this); // binding function sang html sau compile
 
-        this.subscriptionParams = this.activatedRoute.params.subscribe(params => {
+        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let chinhanh_id = params.id;
             // lấy thông tin chi nhánh
             if (chinhanh_id) {
-                this.subscription = this.chinhanhService.findChiNhanh(chinhanh_id).subscribe(
+                this.subscriptions.add(this.chinhanhService.findChiNhanh(chinhanh_id).subscribe(
                     data => {
                         this.chinhanh = data[0];
+                        this.machinhanh_old = this.chinhanh.machinhanh;
                     },
                     error => {
                         this.chinhanhService.handleError(error);
                     }
-                );
+                ));
             }
-        });
+        }));
     }
 
     ngOnDestroy(): void {
@@ -56,25 +57,18 @@ export class ChiNhanhCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscriptionParams)
-            this.subscriptionParams.unsubscribe();
-
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã chi nhánh lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params) {
+        return this.chinhanhService.checkExistChiNhanh(params.value, this.machinhanh_old);
     }
 
     onSubmitForm(e) {
         let chinhanh_req = this.chinhanh;
+
         this.saveProcessing = true;
-        this.subscription = this.chinhanhService.updateChiNhanh(chinhanh_req).subscribe(
+        this.subscriptions.add(this.chinhanhService.updateChiNhanh(chinhanh_req).subscribe(
             data => {
                 notify({
                     width: 320,
@@ -89,7 +83,7 @@ export class ChiNhanhCapNhatComponent implements OnInit, OnDestroy {
                 this.chinhanhService.handleError(error);
                 this.saveProcessing = false;
             }
-        );
+        ));
         e.preventDefault();
     }
 }

@@ -1,0 +1,59 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/nguon-nhan-luc']">Nguồn nhân lực</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>NGUỒN NHÂN LỰC - THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="2" [formData]="nguonnhanluc" [showValidationSummary]="true">
+                                    <dxi-item [label]="{text: 'MÃ NGUỒN NHÂN LỰC'}" dataField="manguonnhanluc">
+                                        <dxi-validation-rule type="required" message="Nhập mã nguồn nhân lực">
+                                        </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2"
+                                            message="Mã nguồn nhân lực quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="custom" message="Mã nguồn nhân lực đã tồn tại"
+                                            [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'TÊN NGUỒN NHÂN LỰC'}" dataField="tennguonnhanluc">
+                                        <dxi-validation-rule type="required" message="Nhập tên nguồn nhân lực">
+                                        </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2"
+                                            message="Tên nguồn nhân lực quá ngắn"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea"
+                                        [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat"
+                                        editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button"
+                                        horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

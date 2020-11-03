@@ -17,7 +17,9 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-    private subscription: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+
     private currChiNhanh: ChiNhanh;
 
     public stateStoringGrid = {
@@ -40,12 +42,12 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        this.subscription = this.authenticationService.currentChiNhanh/* .pipe(first()) */
+        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
             .subscribe(x => {
-                console.log(x);
+                console.log("kho hàng page: " + x.id);
                 this.currChiNhanh = x;
                 this.onLoadData(x.id);
-            })
+            }))
     }
 
     ngOnDestroy(): void {
@@ -53,20 +55,19 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     onLoadData(chinhanh_id: number = null) {
         chinhanh_id = chinhanh_id == null ? this.currChiNhanh.id : chinhanh_id;
-        this.subscription = this.khohangService.findKhoHangs(chinhanh_id).subscribe(
+        this.subscriptions.add(this.khohangService.findKhoHangs(chinhanh_id).subscribe(
             data => {
                 this.dataGrid.dataSource = data;
             },
             error => {
                 this.khohangService.handleError(error);
             }
-        );
+        ));
     }
 
     onRowDblClick(e) {
@@ -79,7 +80,7 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscription = this.khohangService.deleteKhoHang(id).subscribe(
+                this.subscriptions.add(this.khohangService.deleteKhoHang(id).subscribe(
                     data => {
                         if (data) {
                             notify({
@@ -96,9 +97,8 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
                         // load lại dữ liệu
                         this.onLoadData(this.currChiNhanh.id);
                     }
-                );
+                ));
             }
         });
     }
-
 }

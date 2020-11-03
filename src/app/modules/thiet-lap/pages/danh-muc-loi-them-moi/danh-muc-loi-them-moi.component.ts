@@ -1,4 +1,4 @@
-import { DanhMucLoi } from '@app/shared/entities';
+import { ChiNhanh, DanhMucLoi } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 
@@ -9,6 +9,7 @@ import {
 import { DanhMucLoiService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
     selector: 'app-danh-muc-loi-them-moi',
@@ -19,7 +20,10 @@ export class DanhMucLoiThemMoiComponent implements OnInit {
 
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucLoi: DxFormComponent;
 
-    private subscription: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+    private currentChiNhanh: ChiNhanh;
+    
     public danhmucloi: DanhMucLoi;
 
     public saveProcessing = false;
@@ -32,7 +36,8 @@ export class DanhMucLoiThemMoiComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private danhmucloiService: DanhMucLoiService
+        private danhmucloiService: DanhMucLoiService,
+        private authenticationService: AuthenticationService
     ) { }
 
     ngAfterViewInit() {
@@ -41,6 +46,7 @@ export class DanhMucLoiThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.danhmucloi = new DanhMucLoi();
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
     ngOnDestroy(): void {
@@ -48,8 +54,7 @@ export class DanhMucLoiThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     asyncValidation(params) {
@@ -62,8 +67,10 @@ export class DanhMucLoiThemMoiComponent implements OnInit {
 
     onSubmitForm(e) {
         let danhmucloi_req = this.danhmucloi;
+        danhmucloi_req.chinhanh_id = this.currentChiNhanh.id;
+        
         this.saveProcessing = true;
-        this.subscription = this.danhmucloiService.addDanhMucLoi(danhmucloi_req).subscribe(
+        this.subscriptions.add(this.danhmucloiService.addDanhMucLoi(danhmucloi_req).subscribe(
             data => {
                 notify({
                     width: 320,
@@ -78,7 +85,7 @@ export class DanhMucLoiThemMoiComponent implements OnInit {
                 this.danhmucloiService.handleError(error);
                 this.saveProcessing = false;
             }
-        );
+        ));
         e.preventDefault();
     }
 }

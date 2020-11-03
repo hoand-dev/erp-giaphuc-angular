@@ -19,8 +19,10 @@ export class KhoHangService extends BaseService {
         return this.httpClient.get<KhoHang>(this.apiUrl + `/${id}`);
     }
 
-    findKhoHangs(chinhanh_id: number): Observable<KhoHang[]> {
-        return this.httpClient.get<KhoHang[]>(this.apiUrl + '?chinhanh_id=' + chinhanh_id);
+    findKhoHangs(chinhanh_id: number = null): Observable<KhoHang[]> {
+        // lấy danh sách kho hàng theo chi nhánh hoặc ngược lại
+        let query_chinhanh = chinhanh_id == null ? "" : '?chinhanh_id=' + chinhanh_id;
+        return this.httpClient.get<KhoHang[]>(this.apiUrl + query_chinhanh);
     }
 
     addKhoHang(khohang: KhoHang): Observable<KhoHang> {

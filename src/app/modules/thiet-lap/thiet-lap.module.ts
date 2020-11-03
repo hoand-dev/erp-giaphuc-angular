@@ -19,9 +19,35 @@ import { DanhMucTieuChuanComponent } from './pages/danh-muc-tieu-chuan/danh-muc-
 import { DanhMucTieuChuanCapNhatComponent } from './pages/danh-muc-tieu-chuan-cap-nhat/danh-muc-tieu-chuan-cap-nhat.component';
 import { DanhMucTieuChuanThemMoiComponent } from './pages/danh-muc-tieu-chuan-them-moi/danh-muc-tieu-chuan-them-moi.component';
 import { KhoHangComponent } from './pages/kho-hang/kho-hang.component';
+import { KhoHangThemMoiComponent } from './pages/kho-hang-them-moi/kho-hang-them-moi.component';
+import { KhoHangCapNhatComponent } from './pages/kho-hang-cap-nhat/kho-hang-cap-nhat.component';
+import { DonViTinhComponent } from './pages/don-vi-tinh/don-vi-tinh.component';
+import { DonViTinhThemMoiComponent } from './pages/don-vi-tinh-them-moi/don-vi-tinh-them-moi.component';
+import { DonViTinhCapNhatComponent } from './pages/don-vi-tinh-cap-nhat/don-vi-tinh-cap-nhat.component';
+import { DonViGiaCongComponent } from './pages/don-vi-gia-cong/don-vi-gia-cong.component';
+import { DonViGiaCongThemMoiComponent } from './pages/don-vi-gia-cong-them-moi/don-vi-gia-cong-them-moi.component';
+import { DonViGiaCongCapNhatComponent } from './pages/don-vi-gia-cong-cap-nhat/don-vi-gia-cong-cap-nhat.component';
+import { NoiDungThuChiComponent } from './pages/noi-dung-thu-chi/noi-dung-thu-chi.component';
+import { NoiDungThuChiCapNhatComponent } from './pages/noi-dung-thu-chi-cap-nhat/noi-dung-thu-chi-cap-nhat.component';
+import { NoiDungThuChiThemMoiComponent } from './pages/noi-dung-thu-chi-them-moi/noi-dung-thu-chi-them-moi.component';
+import { QuyTaiKhoanComponent } from './pages/quy-tai-khoan/quy-tai-khoan.component';
+import { QuyTaiKhoanCapNhatComponent } from './pages/quy-tai-khoan-cap-nhat/quy-tai-khoan-cap-nhat.component';
+import { QuyTaiKhoanThemMoiComponent } from './pages/quy-tai-khoan-them-moi/quy-tai-khoan-them-moi.component';
+import { SoMatComponent } from './pages/so-mat/so-mat.component';
+import { SoMatCapNhatComponent } from './pages/so-mat-cap-nhat/so-mat-cap-nhat.component';
+import { SoMatThemMoiComponent } from './pages/so-mat-them-moi/so-mat-them-moi.component';
+import { NguonNhanLucComponent } from './pages/nguon-nhan-luc/nguon-nhan-luc.component';
+import { NguonNhanLucCapNhatComponent } from './pages/nguon-nhan-luc-cap-nhat/nguon-nhan-luc-cap-nhat.component';
+import { NguonNhanLucThemMoiComponent } from './pages/nguon-nhan-luc-them-moi/nguon-nhan-luc-them-moi.component';
+import { HangHoaNguyenLieuComponent } from './pages/hang-hoa-nguyen-lieu/hang-hoa-nguyen-lieu.component';
+import { HangHoaNguyenLieuCapNhatComponent } from './pages/hang-hoa-nguyen-lieu-cap-nhat/hang-hoa-nguyen-lieu-cap-nhat.component';
+import { HangHoaNguyenLieuThemMoiComponent } from './pages/hang-hoa-nguyen-lieu-them-moi/hang-hoa-nguyen-lieu-them-moi.component';
+import { HangHoaHangTronComponent } from './pages/hang-hoa-hang-tron/hang-hoa-hang-tron.component';
+import { HangHoaHangTronCapNhatComponent } from './pages/hang-hoa-hang-tron-cap-nhat/hang-hoa-hang-tron-cap-nhat.component';
+import { HangHoaHangTronThemMoiComponent } from './pages/hang-hoa-hang-tron-them-moi/hang-hoa-hang-tron-them-moi.component';
 
 @NgModule({
-    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent, DanhMucTieuChuanCapNhatComponent, DanhMucTieuChuanThemMoiComponent, KhoHangComponent],
+    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent, DanhMucTieuChuanCapNhatComponent, DanhMucTieuChuanThemMoiComponent, KhoHangComponent, KhoHangThemMoiComponent, KhoHangCapNhatComponent, DonViTinhComponent, DonViTinhThemMoiComponent, DonViTinhCapNhatComponent, DonViGiaCongComponent, DonViGiaCongThemMoiComponent, DonViGiaCongCapNhatComponent, NoiDungThuChiComponent, NoiDungThuChiCapNhatComponent, NoiDungThuChiThemMoiComponent, QuyTaiKhoanComponent, QuyTaiKhoanCapNhatComponent, QuyTaiKhoanThemMoiComponent, SoMatComponent, SoMatCapNhatComponent, SoMatThemMoiComponent, NguonNhanLucComponent, NguonNhanLucCapNhatComponent, NguonNhanLucThemMoiComponent, HangHoaNguyenLieuComponent, HangHoaNguyenLieuCapNhatComponent, HangHoaNguyenLieuThemMoiComponent, HangHoaHangTronComponent, HangHoaHangTronCapNhatComponent, HangHoaHangTronThemMoiComponent],
     imports: [
         CommonModule,
         SharedModule,

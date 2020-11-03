@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DanhMucGiaCong } from '@app/shared/entities';
+import { ChiNhanh, DanhMucGiaCong } from '@app/shared/entities';
 import { DanhMucGiaCongService } from '@app/shared/services';
+import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
@@ -15,11 +16,12 @@ export class DanhMucGiaCongCapNhatComponent implements OnInit, OnDestroy {
 
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucGiaCong: DxFormComponent;
 
-    private subscription: Subscription
-    private subscriptionParams: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
 
     public danhmucgiacong: DanhMucGiaCong;
     public saveProcessing = false;
+    private currentChiNhanh: ChiNhanh;
 
     public rules: Object = { 'X': /[02-9]/ };
     public buttonSubmitOptions: any = {
@@ -31,25 +33,27 @@ export class DanhMucGiaCongCapNhatComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute, 
-        private danhmucgiacongService: DanhMucGiaCongService) { }
+        private authenticationService: AuthenticationService,
+        private danhmucgiacongService: DanhMucGiaCongService
+    ) { }
 
     ngOnInit(): void {
         this.danhmucgiacong = new DanhMucGiaCong();
-
-        this.subscriptionParams = this.activatedRoute.params.subscribe(params => {
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
+        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let danhmucgiacong_id = params.id;
             // lấy thông tin danh mục gia công
             if (danhmucgiacong_id) {
-                this.subscription = this.danhmucgiacongService.findDanhMucGiaCong(danhmucgiacong_id).subscribe(
+                this.subscriptions.add(this.danhmucgiacongService.findDanhMucGiaCong(danhmucgiacong_id).subscribe(
                     data => {
                         this.danhmucgiacong = data[0];
                     },
                     error => {
                         this.danhmucgiacongService.handleError(error);
                     }
-                );
+                ));
             }
-        });
+        }));
     }
 
     ngOnDestroy(): void {
@@ -57,11 +61,7 @@ export class DanhMucGiaCongCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscriptionParams)
-            this.subscriptionParams.unsubscribe();
-
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     asyncValidation(params) {
@@ -74,8 +74,10 @@ export class DanhMucGiaCongCapNhatComponent implements OnInit, OnDestroy {
 
     onSubmitForm(e) {
         let danhmucgiacong_req = this.danhmucgiacong;
+        danhmucgiacong_req.chinhanh_id = this.currentChiNhanh.id;
+        
         this.saveProcessing = true;
-        this.subscription = this.danhmucgiacongService.updateDanhMucGiaCong(danhmucgiacong_req).subscribe(
+        this.subscriptions.add(this.danhmucgiacongService.updateDanhMucGiaCong(danhmucgiacong_req).subscribe(
             data => {
                 notify({
                     width: 320,
@@ -90,7 +92,7 @@ export class DanhMucGiaCongCapNhatComponent implements OnInit, OnDestroy {
                 this.danhmucgiacongService.handleError(error);
                 this.saveProcessing = false;
             }
-        );
+        ));
         e.preventDefault();
     }
 }

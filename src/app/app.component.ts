@@ -7,6 +7,8 @@ import { User } from './_models';
 import DataSource from 'devextreme/data/data_source';
 
 import * as $ from 'jquery';
+import * as AdminLte from 'admin-lte';
+
 import { ChiNhanh } from './shared/entities';
 import { ChiNhanhService, NguoiDungService } from './shared/services';
 import { Subscription } from 'rxjs';
@@ -128,12 +130,14 @@ export class AppComponent implements OnInit {
 
     navbar_all_colors = this.navbar_dark_skins.concat(this.navbar_light_skins);
 
-    private subscription: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+
     private refreshInterval: any;
     private chinhanhSelected: ChiNhanh;
 
     constructor(
-        private router: Router,
+        public router: Router,
         private authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService,
         private nguoidungService: NguoiDungService,
@@ -142,13 +146,13 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.subscription = this.authenticationService.currentUser.subscribe(x => this.currentUserToken = x);
+        this.subscriptions.add(this.authenticationService.currentUser.subscribe(x => this.currentUserToken = x));
 
         if (this.isAutorized()) {
-            this.subscription = this.nguoidungService.getCurrentUser().subscribe(x =>
+            this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe(x =>
                 this.currentUser = x
-            );
-            this.subscription = this.chinhanhService.findChiNhanhs().subscribe(
+            ));
+            this.subscriptions.add(this.chinhanhService.findChiNhanhs().subscribe(
                 data => {
                     this.chinhanhs = data;
                     if (this.authenticationService.currentChiNhanhValue) {
@@ -164,7 +168,7 @@ export class AppComponent implements OnInit {
                 error => {
                     this.chinhanhService.handleError(error);
                 }
-            );
+            ));
             
             if (this.fisrtRefreshToken){
                 console.log("refresh token...");
@@ -193,168 +197,229 @@ export class AppComponent implements OnInit {
             });
     }
 
+    activeGroupClass(groupName: string = null){
+        const DULIEUCOSO = [
+            "/chi-nhanh", 
+            "/danh-muc-gia-cong",
+            "/danh-muc-loi",
+            "/danh-muc-no",
+            "/danh-muc-tieu-chuan",
+            "/khu-vuc",
+            "/don-vi-gia-cong",
+            "/don-vi-tinh",
+            "/noi-dung-thu-chi",
+            "/quy-tai-khoan",
+            "/so-mat",
+            "/kho-hang",
+            "/hang-hoa-nguyen-lieu",
+            "/hang-hoa-hang-tron"
+        ];
+        const SANXUAT = [
+            "/phieu-cap-phat-vat-tu", 
+        ];
+        const MUAHANG = [
+            "/phieu-mua-hang", 
+        ];
+        const BANHANG = [
+            "/phieu-ban-hang", 
+        ];
+        const KHOHANG = [
+            "/phieu-nhap-kho", 
+        ];
+        const KETOAN = [
+            "/phieu-thu", 
+        ];
+        
+        /* xử lý chuỗi url */
+        function indexOf(string, sub, index) {
+            if (index <= 1){
+                return string.indexOf(sub);
+            }
+            return string.split(sub, index).join(sub).length;
+        }
+
+        let $return = false;
+        let $url = this.router.url;
+        let $indexSecond = indexOf($url, '/', 2);
+        $url = $url.substring(0, $indexSecond);
+
+        /* kiểm tra chuỗi đã xử lý */
+        switch (groupName) {
+            case 'DULIEUCOSO': $return = DULIEUCOSO.includes($url);  break;
+            case 'SANXUAT': $return = SANXUAT.includes($url);  break;
+            case 'MUAHANG': $return = MUAHANG.includes($url);  break;
+            case 'BANHANG': $return = BANHANG.includes($url);  break;
+            case 'KHOHANG': $return = KHOHANG.includes($url);  break;
+            case 'KETOAN': $return = KETOAN.includes($url);  break;
+            default: $return = false; break;
+        }
+        return $return;
+    }
+    
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        /* the interface of user */
-        // check no border header check box
-        if (localStorage.getItem("no_border_checkbox") == 'true') {
-            $('.main-header').addClass('border-bottom-0')
-            this.$no_border_checkbox = true;
-        }
-        else {
-            $('.main-header').removeClass('border-bottom-0')
-            this.$no_border_checkbox = false;
-        }
-
-        // check small text body check box
-        if (localStorage.getItem('text_sm_body_checkbox') == 'true') {
-            $('body').addClass('text-sm')
-            this.$text_sm_body_checkbox = true;
-        }
-        else {
-            $('body').removeClass('text-sm')
-            this.$text_sm_body_checkbox = false;
-        }
-
-        // check header sm text check box
-        if (localStorage.getItem('text_sm_header_checkbox') == 'true') {
-            $('.main-header').addClass('text-sm')
-            this.$text_sm_header_checkbox = true;
-        } else {
-            $('.main-header').removeClass('text-sm')
-            this.$text_sm_header_checkbox = false;
-        }
-
-        // check side bar small text check box
-        if (localStorage.getItem('text_sm_sidebar_checkbox') == 'true') {
-            $('.nav-sidebar').addClass('text-sm')
-            this.$text_sm_sidebar_checkbox = true;
-        }
-        else {
-            $('.nav-sidebar').removeClass('text-sm')
-            this.$text_sm_sidebar_checkbox = false;
-        }
-
-        // check footer small text check box
-        if (localStorage.getItem('text_sm_footer_checkbox') == 'true') {
-            $('.main-footer').addClass('text-sm')
-            this.$text_sm_footer_checkbox = true;
-        }
-        else {
-            $('.main-footer').removeClass('text-sm')
-            this.$text_sm_footer_checkbox = false;
-        }
-
-        // check flat sidebar check box
-        if (localStorage.getItem('flat_sidebar_checkbox') == 'true') {
-            $('.nav-sidebar').addClass('nav-flat')
-            this.$flat_sidebar_checkbox = true;
-        }
-        else {
-            $('.nav-sidebar').removeClass('nav-flat')
-            this.$flat_sidebar_checkbox = false;
-        }
-
-        // check legacy
-        if (localStorage.getItem('legacy_sidebar_checkbox') == 'true') {
-            $('.nav-sidebar').addClass('nav-legacy')
-            this.$legacy_sidebar_checkbox = true;
-        }
-        else {
-            $('.nav-sidebar').removeClass('nav-legacy')
-            this.$legacy_sidebar_checkbox = false;
-        }
-
-        // check compact
-        if (localStorage.getItem('compact_sidebar_checkbox') == 'true') {
-            $('.nav-sidebar').addClass('nav-compact')
-            this.$compact_sidebar_checkbox = true;
-        }
-        else {
-            $('.nav-sidebar').removeClass('nav-compact')
-            this.$compact_sidebar_checkbox = false;
-        }
-
-        // check child
-        if (localStorage.getItem('child_indent_sidebar_checkbox') == 'true') {
-            $('.nav-sidebar').addClass('nav-child-indent')
-            this.$child_indent_sidebar_checkbox = true;
-        }
-        else {
-            $('.nav-sidebar').removeClass('nav-child-indent')
-            this.$child_indent_sidebar_checkbox = false;
-        }
-
-        // check sidebar no expand
-        if (localStorage.getItem('no_expand_sidebar_checkbox') == 'true') {
-            $('.main-sidebar').addClass('sidebar-no-expand')
-            this.$no_expand_sidebar_checkbox = true;
-        }
-        else {
-            $('.main-sidebar').removeClass('sidebar-no-expand')
-            this.$no_expand_sidebar_checkbox = false;
-        }
-
-        // navbar_variants_colors
-        if (localStorage.getItem('navbar_variants_colors') != null) {
-            var color = localStorage.getItem('navbar_variants_colors') // $(this).data('color')
-            var $main_header = $('.main-header')
-            $main_header.removeClass('navbar-dark').removeClass('navbar-light')
-            this.navbar_all_colors.map(function (color) {
-                $main_header.removeClass(color)
-            })
-
-            if (this.navbar_dark_skins.indexOf(color) > -1) {
-                $main_header.addClass('navbar-dark')
-            } else {
-                $main_header.addClass('navbar-light')
+        setTimeout(() => {
+            /* the interface of user */
+            // check no border header check box
+            if (localStorage.getItem("no_border_checkbox") == 'true') {
+                $('.main-header').addClass('border-bottom-0')
+                this.$no_border_checkbox = true;
+            }
+            else {
+                $('.main-header').removeClass('border-bottom-0')
+                this.$no_border_checkbox = false;
             }
 
-            $main_header.addClass(color)
-        }
+            // check small text body check box
+            if (localStorage.getItem('text_sm_body_checkbox') == 'true') {
+                $('body').addClass('text-sm')
+                this.$text_sm_body_checkbox = true;
+            }
+            else {
+                $('body').removeClass('text-sm')
+                this.$text_sm_body_checkbox = false;
+            }
 
-        // accent_variants_color
-        if (localStorage.getItem('accent_variants_color') != null) {
-            var color = localStorage.getItem('accent_variants_color') // $(this).data('color')
-            var accent_class = color
-            var $body = $('body')
-            this.accent_colors.map(function (skin) {
-                $body.removeClass(skin)
-            })
+            // check header sm text check box
+            if (localStorage.getItem('text_sm_header_checkbox') == 'true') {
+                $('.main-header').addClass('text-sm')
+                this.$text_sm_header_checkbox = true;
+            } else {
+                $('.main-header').removeClass('text-sm')
+                this.$text_sm_header_checkbox = false;
+            }
 
-            $body.addClass(accent_class)
-        }
+            // check side bar small text check box
+            if (localStorage.getItem('text_sm_sidebar_checkbox') == 'true') {
+                $('.nav-sidebar').addClass('text-sm')
+                this.$text_sm_sidebar_checkbox = true;
+            }
+            else {
+                $('.nav-sidebar').removeClass('text-sm')
+                this.$text_sm_sidebar_checkbox = false;
+            }
 
-        // sidebar_variants_color
-        if (localStorage.getItem('sidebar_variants_color') != null) {
-            var color = localStorage.getItem('sidebar_variants_color') // $(this).data('color')
-            var sidebar_class = color //'sidebar-dark-' + color.replace('bg-', '')
-            var $sidebar = $('.main-sidebar')
-            this.sidebar_skins.map(function (skin) {
-                $sidebar.removeClass(skin)
-            })
+            // check footer small text check box
+            if (localStorage.getItem('text_sm_footer_checkbox') == 'true') {
+                $('.main-footer').addClass('text-sm')
+                this.$text_sm_footer_checkbox = true;
+            }
+            else {
+                $('.main-footer').removeClass('text-sm')
+                this.$text_sm_footer_checkbox = false;
+            }
 
-            $sidebar.addClass(sidebar_class)
-        }
+            // check flat sidebar check box
+            if (localStorage.getItem('flat_sidebar_checkbox') == 'true') {
+                $('.nav-sidebar').addClass('nav-flat')
+                this.$flat_sidebar_checkbox = true;
+            }
+            else {
+                $('.nav-sidebar').removeClass('nav-flat')
+                this.$flat_sidebar_checkbox = false;
+            }
 
-        /* // sidebar_variants_color
-        if (localStorage.getItem('sidebar_variants_color') != null) {
-            var color = localStorage.getItem('sidebar_variants_color')// $(this).data('color')
-            var sidebar_class = color // 'sidebar-light-' + color.replace('bg-', '')
-            var $sidebar = $('.main-sidebar')
-            this.sidebar_skins.map(function (skin) {
-                $sidebar.removeClass(skin)
-            })
+            // check legacy
+            if (localStorage.getItem('legacy_sidebar_checkbox') == 'true') {
+                $('.nav-sidebar').addClass('nav-legacy')
+                this.$legacy_sidebar_checkbox = true;
+            }
+            else {
+                $('.nav-sidebar').removeClass('nav-legacy')
+                this.$legacy_sidebar_checkbox = false;
+            }
 
-            $sidebar.addClass(sidebar_class)
-        } */
+            // check compact
+            if (localStorage.getItem('compact_sidebar_checkbox') == 'true') {
+                $('.nav-sidebar').addClass('nav-compact')
+                this.$compact_sidebar_checkbox = true;
+            }
+            else {
+                $('.nav-sidebar').removeClass('nav-compact')
+                this.$compact_sidebar_checkbox = false;
+            }
 
-        // remember toggle sidebar
-        if (Boolean(sessionStorage.getItem("sidebar-toggle-collapsed"))) {
-            $("body").addClass('sidebar-collapse')
-        }
+            // check child
+            if (localStorage.getItem('child_indent_sidebar_checkbox') == 'true') {
+                $('.nav-sidebar').addClass('nav-child-indent')
+                this.$child_indent_sidebar_checkbox = true;
+            }
+            else {
+                $('.nav-sidebar').removeClass('nav-child-indent')
+                this.$child_indent_sidebar_checkbox = false;
+            }
+
+            // check sidebar no expand
+            if (localStorage.getItem('no_expand_sidebar_checkbox') == 'true') {
+                $('.main-sidebar').addClass('sidebar-no-expand')
+                this.$no_expand_sidebar_checkbox = true;
+            }
+            else {
+                $('.main-sidebar').removeClass('sidebar-no-expand')
+                this.$no_expand_sidebar_checkbox = false;
+            }
+
+            // navbar_variants_colors
+            if (localStorage.getItem('navbar_variants_colors') != null) {
+                var color = localStorage.getItem('navbar_variants_colors') // $(this).data('color')
+                var $main_header = $('.main-header')
+                $main_header.removeClass('navbar-dark').removeClass('navbar-light')
+                this.navbar_all_colors.map(function (color) {
+                    $main_header.removeClass(color)
+                })
+
+                if (this.navbar_dark_skins.indexOf(color) > -1) {
+                    $main_header.addClass('navbar-dark')
+                } else {
+                    $main_header.addClass('navbar-light')
+                }
+
+                $main_header.addClass(color)
+            }
+
+            // accent_variants_color
+            if (localStorage.getItem('accent_variants_color') != null) {
+                var color = localStorage.getItem('accent_variants_color') // $(this).data('color')
+                var accent_class = color
+                var $body = $('body')
+                this.accent_colors.map(function (skin) {
+                    $body.removeClass(skin)
+                })
+
+                $body.addClass(accent_class)
+            }
+
+            // sidebar_variants_color
+            if (localStorage.getItem('sidebar_variants_color') != null) {
+                var color = localStorage.getItem('sidebar_variants_color') // $(this).data('color')
+                var sidebar_class = color //'sidebar-dark-' + color.replace('bg-', '')
+                var $sidebar = $('.main-sidebar')
+                this.sidebar_skins.map(function (skin) {
+                    $sidebar.removeClass(skin)
+                })
+
+                $sidebar.addClass(sidebar_class)
+            }
+
+            /* // sidebar_variants_color
+            if (localStorage.getItem('sidebar_variants_color') != null) {
+                var color = localStorage.getItem('sidebar_variants_color')// $(this).data('color')
+                var sidebar_class = color // 'sidebar-light-' + color.replace('bg-', '')
+                var $sidebar = $('.main-sidebar')
+                this.sidebar_skins.map(function (skin) {
+                    $sidebar.removeClass(skin)
+                })
+    
+                $sidebar.addClass(sidebar_class)
+            } */
+
+            // remember toggle sidebar
+            if (Boolean(sessionStorage.getItem("sidebar-toggle-collapsed"))) {
+                $("body").addClass('sidebar-collapse')
+            }
+        }, 500);
     }
 
     onChangedChiNhanh(e) {
@@ -373,20 +438,6 @@ export class AppComponent implements OnInit {
 
     isAutorized() {
         return this.currentUserToken ? true : false;
-    }
-
-    onClickMenu(e) {
-        e.target.classList.toggle("active");
-        /* if ($(this).hasClass('nav-item')) {
-                let t= 1;
-            } else {
-                let i = 1;
-            }
-
-        if (this.router.url == e.target.pathname){
-            // e.target.classList.removeClass("active");
-            // e.target.classList.addClass("active");
-        } */
     }
 
     $no_border_checkbox: boolean = false;

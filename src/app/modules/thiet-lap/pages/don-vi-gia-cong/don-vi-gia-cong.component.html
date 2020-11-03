@@ -1,0 +1,99 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Đơn vị gia công</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ĐƠN VỊ GIA CÔNG - DANH SÁCH</h5>
+                        <p class="card-text"></p>
+
+                        <button class="btn btn-sm btn-primary" [routerLink]="[ '/don-vi-gia-cong/them-moi']">
+                            Thêm mới</button>
+                        <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">
+                            Tải lại</button>
+
+                        <!-- columnResizingMode="widget"
+                        [allowColumnResizing]="true" -->
+                        <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true"
+                            [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid" 
+                            [columnAutoWidth]="true"
+                            
+                            (onRowDblClick)="onRowDblClick($event)">
+
+                            <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false"
+                                [allowSorting]="false" cellTemplate="cellTemplate">
+                                <div *dxTemplate="let data of 'cellTemplate'">
+                                    <a [routerLink]="['/don-vi-gia-cong/' + data.value + '/cap-nhat']">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="madonvigiacong" caption="Mã đơn vị gia công"></dxi-column>
+                            <dxi-column dataField="tendonvigiacong" caption="Tên đơn vị gia công"></dxi-column>
+                            <dxi-column dataField="sodienthoai" caption="SĐT"></dxi-column>
+                            <!-- <dxi-column dataField="email" caption="Email"></dxi-column> -->
+                            
+                            <dxi-column dataField="diachi" caption="Địa chỉ"></dxi-column>
+                            <!-- <dxi-column dataField="" caption="Website"></dxi-column> -->
+                            <dxi-column dataField="masothue" caption="Mã số thuế"></dxi-column>
+                            <dxi-column dataField="congnobandau" caption="Công nợ ban đầu"></dxi-column>
+                            
+                            <dxi-column dataField="tennganhang" caption="Tên ngân hàng"></dxi-column>
+                            <dxi-column dataField="sotaikhoan" caption="Số tài khoản"></dxi-column>
+                            <dxi-column dataField="tenchutaikhoan" caption="Chủ tài khoản"></dxi-column>
+                            <dxi-column dataField="khogiacong_tenkho" caption="Kho hàng"></dxi-column>
+                            
+                            <dxi-column dataField="loaigiacong" caption="Nhóm GC" cellTemplate="cellTemplateNhomGC">
+                                <div *dxTemplate="let data of 'cellTemplateNhomGC'">
+                                    <span *ngIf="data.value == 2">
+                                        GC NGOÀI
+                                    </span>
+                                    <span *ngIf="data.value == 1">
+                                        GC TẠI KHO
+                                    </span>
+                                </div>
+                            </dxi-column>
+                            
+                            <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                                    <div class="text-green" *ngIf="data.value == true">
+                                        Kích hoạt
+                                    </div>
+                                    <div class="text-red" *ngIf="data.value != true">
+                                        Ngưng sử dụng
+                                    </div>
+                                </div>
+                            </dxi-column>
+                            
+                            <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+                            <dxo-paging [pageSize]="9" [pageIndex]="1"></dxo-paging>
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)"
+                                [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]"
+                                [showNavigationButtons]="true">
+                            </dxo-pager>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

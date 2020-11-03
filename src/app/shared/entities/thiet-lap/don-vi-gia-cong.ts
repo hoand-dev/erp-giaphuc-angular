@@ -1,3 +1,5 @@
+import { KhoHang } from './kho-hang';
+
 export class DonViGiaCong {
 
     public id: number;
@@ -20,7 +22,12 @@ export class DonViGiaCong {
     public loaigiacong: number;
     public congnobandau: number;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, madonvigiacong: string = null, tendonvigiacong: string = null, sodienthoai: string = null, diachi: string = null, masothue: string = null, tennganhang: string = null, sotaikhoan: string = null, tenchutaikhoan: string = null, khogiacong_id: number = null, loaigiacong: number = null, congnobandau: number = null) {
+    public loaidonvi: boolean;
+    public khogiacong: KhoHang;
+
+    public khogiacong_tenkho: string = null;
+
+    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, madonvigiacong: string = null, tendonvigiacong: string = null, sodienthoai: string = null, diachi: string = null, masothue: string = null, tennganhang: string = null, sotaikhoan: string = null, tenchutaikhoan: string = null, khogiacong_id: number = null, loaigiacong: number = null, congnobandau: number = 0, loaidonvi:boolean = false, khogiacong: KhoHang = null) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -40,5 +47,8 @@ export class DonViGiaCong {
         this.khogiacong_id = khogiacong_id;
         this.loaigiacong = loaigiacong;
         this.congnobandau = congnobandau;
+
+        this.loaidonvi = loaidonvi;
+        this.khogiacong = khogiacong;
     }
 }

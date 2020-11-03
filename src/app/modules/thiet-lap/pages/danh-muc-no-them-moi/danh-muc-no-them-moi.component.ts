@@ -1,4 +1,4 @@
-import { DanhMucNo } from '@app/shared/entities';
+import { ChiNhanh, DanhMucNo } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 
@@ -9,6 +9,7 @@ import {
 import { DanhMucNoService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
     selector: 'app-danh-muc-no-them-moi',
@@ -19,7 +20,10 @@ export class DanhMucNoThemMoiComponent implements OnInit {
 
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucNo: DxFormComponent;
 
-    private subscription: Subscription;
+    /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
+    private currentChiNhanh: ChiNhanh;
+
     public danhmucno: DanhMucNo;
 
     public saveProcessing = false;
@@ -32,6 +36,7 @@ export class DanhMucNoThemMoiComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private authenticationService: AuthenticationService,
         private danhmucnoService: DanhMucNoService
     ) { }
 
@@ -41,6 +46,7 @@ export class DanhMucNoThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.danhmucno = new DanhMucNo();
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
     ngOnDestroy(): void {
@@ -48,8 +54,7 @@ export class DanhMucNoThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
-        if (this.subscription)
-            this.subscription.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     asyncValidation(params) {
@@ -62,8 +67,10 @@ export class DanhMucNoThemMoiComponent implements OnInit {
 
     onSubmitForm(e) {
         let danhmucno_req = this.danhmucno;
+        danhmucno_req.chinhanh_id = this.currentChiNhanh.id;
+
         this.saveProcessing = true;
-        this.subscription = this.danhmucnoService.addDanhMucNo(danhmucno_req).subscribe(
+        this.subscriptions.add(this.danhmucnoService.addDanhMucNo(danhmucno_req).subscribe(
             data => {
                 notify({
                     width: 320,
@@ -78,7 +85,7 @@ export class DanhMucNoThemMoiComponent implements OnInit {
                 this.danhmucnoService.handleError(error);
                 this.saveProcessing = false;
             }
-        );
+        ));
         e.preventDefault();
     }
 }
