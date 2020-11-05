@@ -292,6 +292,12 @@
                                                 <p>Kho hàng</p>
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/danh-sach-xe']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh Sách Xe</p>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item has-treeview" routerLinkActive="menu-open">
@@ -659,7 +665,7 @@
 </ng-container>
 
 <ng-template #notAuthorized>
-    <app-single-card>
+
         <router-outlet></router-outlet>
-    </app-single-card>
+  
 </ng-template>

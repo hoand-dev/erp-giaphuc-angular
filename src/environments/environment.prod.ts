@@ -1,4 +1,4 @@
-const HOST = 'localhost';
+const HOST = '192.168.100.99';
 const PORT = '68';
 
 export const environment = {

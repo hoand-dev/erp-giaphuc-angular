@@ -29,3 +29,7 @@ export * from './so-mat-them-moi/so-mat-them-moi.component';
 export * from './nguon-nhan-luc/nguon-nhan-luc.component';
 export * from './nguon-nhan-luc-cap-nhat/nguon-nhan-luc-cap-nhat.component';
 export * from './nguon-nhan-luc-them-moi/nguon-nhan-luc-them-moi.component';
+
+export * from './danh-sach-xe/danh-sach-xe.component';
+export * from './danh-sach-xe-cap-nhat/danh-sach-xe-cap-nhat.component';
+export * from './danh-sach-xe-them-moi/danh-sach-xe-them-moi.component';
