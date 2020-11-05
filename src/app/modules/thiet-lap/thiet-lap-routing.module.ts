@@ -44,6 +44,9 @@ import { HangHoaNguyenLieuCapNhatComponent } from './pages/hang-hoa-nguyen-lieu-
 import { HangHoaHangTronComponent } from './pages/hang-hoa-hang-tron/hang-hoa-hang-tron.component';
 import { HangHoaHangTronCapNhatComponent } from './pages/hang-hoa-hang-tron-cap-nhat/hang-hoa-hang-tron-cap-nhat.component';
 import { HangHoaHangTronThemMoiComponent } from './pages/hang-hoa-hang-tron-them-moi/hang-hoa-hang-tron-them-moi.component';
+import { DinhMucCapNhatComponent } from './pages/dinh-muc-cap-nhat/dinh-muc-cap-nhat.component';
+import { DinhMucThemMoiComponent } from './pages/dinh-muc-them-moi/dinh-muc-them-moi.component';
+import { DinhMucComponent } from './pages/dinh-muc/dinh-muc.component';
 
 const routes: Routes = [
     {
@@ -161,6 +164,15 @@ const routes: Routes = [
             { path: '', component: HangHoaHangTronComponent },
             { path: 'them-moi', component: HangHoaHangTronThemMoiComponent },
             { path: ':id/cap-nhat', component: HangHoaHangTronCapNhatComponent },
+        ]
+    },
+    {
+        path: 'dinh-muc',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: DinhMucComponent },
+            { path: 'them-moi', component: DinhMucThemMoiComponent },
+            { path: ':id/cap-nhat', component: DinhMucCapNhatComponent },
         ]
     },
     {

@@ -19,6 +19,7 @@ import {
     DxScrollViewModule,
     DxValidationGroupModule
 } from 'devextreme-angular';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -36,6 +37,7 @@ import { ThietLapModule, MuaHangModule, BanHangModule, SanXuatModule } from '@ap
 
 /* devextreme localization */
 import './shared/localization';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -67,7 +69,9 @@ import './shared/localization';
         DxValidationGroupModule,
 
         ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule,
-        AppRoutingModule, // root route phải đặt ở cuối nếu có module con sử dụng route
+        AppRoutingModule,
+        MatTabsModule,
+        BrowserAnimationsModule, // root route phải đặt ở cuối nếu có module con sử dụng route
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
