@@ -134,7 +134,7 @@ export class AppComponent implements OnInit {
     subscriptions: Subscription = new Subscription();
 
     private refreshInterval: any;
-    private chinhanhSelected: ChiNhanh;
+    public chinhanhSelected: ChiNhanh;
 
     constructor(
         public router: Router,
