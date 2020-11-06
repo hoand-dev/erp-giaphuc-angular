@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------- */
 /* You can add global styles to this file, and also import other style files */
-.loading-center{
+.loading-center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
 }
 
-.loading-center-child span{
+.loading-center-child span {
     color: rgb(150, 150, 150);
 }
 
@@ -42,7 +42,7 @@ dx-select-box#ChiNhanhSelectBox div input {
 /* thay đổi font chữ mặc định của devextreme theo admin template */
 .dx-widget {
     /* font-family: 'Times New Roman', Times, serif !important; */
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 /* thay đổi font weight label dx */
@@ -56,7 +56,7 @@ dx-select-box#ChiNhanhSelectBox div input {
     padding: 5px 0.5rem;
 }
 
-.card-footer{
+.card-footer {
     background: none;
 }
 
@@ -68,6 +68,79 @@ dx-select-box#ChiNhanhSelectBox div input {
     padding-bottom: 0;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     font-weight: 400;
+}
+
+/* ------------------------------------------------------------------------- */
+/* icon */
+.gg-btn {
+    cursor: pointer;
+}
+
+.gg-add {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs, 1));
+    border-radius: 22px;
+}
+
+.gg-add::after,
+.gg-add::before {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 5px;
+    top: 8px;
+    left: 4px;
+}
+
+.gg-add::after {
+    width: 2px;
+    height: 10px;
+    top: 4px;
+    left: 8px;
+}
+
+.gg-remove {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    /* border: 2px solid red; */
+    border-radius: 22px;
+}
+
+.gg-remove::before {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background: red;
+    border-radius: 5px;
+    top: 8px;
+    left: 4px;
 }
