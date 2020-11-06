@@ -213,7 +213,7 @@ export class AppComponent implements OnInit {
             "/kho-hang",
             "/hang-hoa-nguyen-lieu",
             "/hang-hoa-hang-tron",
-            "/danh-sach-xe"
+            "/danh-sach-xe",
             "/dinh-muc",
             "/nguon-nhan-luc"
         ];

@@ -64,7 +64,7 @@ export class DanhSachXeComponent implements OnInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa số mặt này?</i>", "Xác nhận xóa");
+        let result = confirm("<i>Bạn có muốn xóa số xe này?</i>", "Xác nhận xóa");
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
