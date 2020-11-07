@@ -5,7 +5,7 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import { DanhMucGiaCongService, DinhMucService } from '@app/shared/services';
+import { AppInfoService, DanhMucGiaCongService, DinhMucService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -48,6 +48,7 @@ export class DinhMucThemMoiComponent implements OnInit {
     dataSource_ChiPhiKhac: any = {};
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private authenticationService: AuthenticationService,
         private giacongService: DanhMucGiaCongService,
@@ -73,7 +74,7 @@ export class DinhMucThemMoiComponent implements OnInit {
         );
         this.loadingVisible = true;
         this.subscriptions.add(
-            this.hanghoaService.findHangHoas().subscribe((x) => {
+            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
                 this.loadingVisible = false;
                 this.dataSource_HangHoa = new DataSource({
                     store: x,
