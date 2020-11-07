@@ -6,7 +6,7 @@ import {
     DxFormComponent
 } from 'devextreme-angular';
 
-import { DonViTinhService, HangHoaService } from '@app/shared/services';
+import { AppInfoService, DonViTinhService, HangHoaService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -42,6 +42,7 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
     }
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private authenticationService: AuthenticationService,
         private tieuchuanService: DanhMucTieuChuanService,
@@ -56,6 +57,8 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.hanghoa = new HangHoa();
+        this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_hangtron;
+
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(
             this.tieuchuanService.findDanhMucTieuChuans().subscribe(

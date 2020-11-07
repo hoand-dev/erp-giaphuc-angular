@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HangHoa } from '@app/shared/entities';
-import { HangHoaService } from '@app/shared/services';
+import { AppInfoService, HangHoaService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -26,6 +26,7 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
     };
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private hanghoaService: HangHoaService
     ) { }
@@ -50,7 +51,7 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     onLoadData() {
-        this.subscriptions.add(this.hanghoaService.findHangHoas().subscribe(
+        this.subscriptions.add(this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_hangtron).subscribe(
             data => {
                 this.dataGrid.dataSource = data;
             },
