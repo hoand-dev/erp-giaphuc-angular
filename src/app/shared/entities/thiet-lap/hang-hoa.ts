@@ -1,6 +1,8 @@
 import { DanhMucTieuChuan } from './danh-muc-tieu-chuan';
 import { LoaiHang } from './loai-hang';
 import { DonViTinh } from './don-vi-tinh';
+import { SoMat } from './so-mat';
+import { DanhMucGiaCong } from './danh-muc-gia-cong';
 
 export class HangHoa {
 
@@ -45,11 +47,11 @@ export class HangHoa {
     public giabansi1: number;
     public dinhmuc_id: number;
 
-    public donvitinh: DonViTinh;
-    public tendonvitinh: string;
+    public giacong: DanhMucGiaCong[];
+    public tengiacong: string;
 
-    public donvitinhphu: DonViTinh;
-    public tendonvitinhphu: string;
+    public somat: SoMat;
+    public tensomat: string;
 
     public tieuchuan: DanhMucTieuChuan;
     public tentieuchuan: string;
@@ -57,7 +59,13 @@ export class HangHoa {
     public loaihang: LoaiHang;
     public tenloaihang: string;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, loaihanghoa: string = null, mahanghoa: string = null, tenhanghoa: string = null, mavach: string = null, tieuchuan_id: number = null, loaihang_id: number = null, day: number = 0, dai: number = 0, rong: number = 0, m3: number = 0, dvt_id: number = null, dvt1_id: number = null, quydoi1: number = 1, gianhap: number = 0, giabanle: number = null, giabansi: number = null, trongluong: number = 0, dinhmucton: number = 0, giatrungbinhhientai: number = null, dinhmuctonduoi: number = null, dinhmuctontren: number = null, somat_id: number = null, chietkhaumua: number = null, chietkhauban: number = null, thuevatmua: number = null, thuevatban: number = null, nhacungcap_id: number = null, ncc: string = null, gianhap1: number = null, giabanle1: number = null, giabansi1: number = null, dinhmuc_id: number = null, donvitinh: DonViTinh = null, donvitinhphu: DonViTinh = null, tieuchuan: DanhMucTieuChuan = null, loaihang: LoaiHang = null) {
+    public donvitinh: DonViTinh;
+    public tendonvitinh: string;
+
+    public donvitinhphu: DonViTinh;
+    public tendonvitinhphu: string;    
+
+    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, loaihanghoa: string = null, mahanghoa: string = null, tenhanghoa: string = null, mavach: string = null, tieuchuan_id: number = null, loaihang_id: number = null, day: number = 0, dai: number = 0, rong: number = 0, m3: number = 0, dvt_id: number = null, dvt1_id: number = null, quydoi1: number = 1, gianhap: number = 0, giabanle: number = null, giabansi: number = null, trongluong: number = 0, dinhmucton: number = 0, giatrungbinhhientai: number = null, dinhmuctonduoi: number = null, dinhmuctontren: number = null, somat_id: number = null, chietkhaumua: number = null, chietkhauban: number = null, thuevatmua: number = null, thuevatban: number = null, nhacungcap_id: number = null, ncc: string = null, gianhap1: number = null, giabanle1: number = null, giabansi1: number = null, dinhmuc_id: number = null, donvitinh: DonViTinh = null, donvitinhphu: DonViTinh = null, tieuchuan: DanhMucTieuChuan = null, loaihang: LoaiHang = null, somat: SoMat = null) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -101,6 +109,7 @@ export class HangHoa {
 
         this.tieuchuan = tieuchuan;
         this.loaihang = loaihang;
+        this.somat = somat;
 
         this.donvitinh = donvitinh;
         this.donvitinhphu = donvitinhphu;
