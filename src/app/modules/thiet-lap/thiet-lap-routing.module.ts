@@ -50,6 +50,9 @@ import { DanhSachXeThemMoiComponent } from './pages/danh-sach-xe-them-moi/danh-s
 import { DinhMucCapNhatComponent } from './pages/dinh-muc-cap-nhat/dinh-muc-cap-nhat.component';
 import { DinhMucThemMoiComponent } from './pages/dinh-muc-them-moi/dinh-muc-them-moi.component';
 import { DinhMucComponent } from './pages/dinh-muc/dinh-muc.component';
+import { TaiXeCapNhatComponent } from './pages/tai-xe-cap-nhat/tai-xe-cap-nhat.component';
+import { TaiXeThemMoiComponent } from './pages/tai-xe-them-moi/tai-xe-them-moi.component';
+import { TaiXeComponent } from './pages/tai-xe/tai-xe.component';
 import { HangHoaThanhPhamComponent } from './pages/hang-hoa-thanh-pham/hang-hoa-thanh-pham.component';
 import { HangHoaThanhPhamCapNhatComponent } from './pages/hang-hoa-thanh-pham-cap-nhat/hang-hoa-thanh-pham-cap-nhat.component';
 import { HangHoaThanhPhamThemMoiComponent } from './pages/hang-hoa-thanh-pham-them-moi/hang-hoa-thanh-pham-them-moi.component';
@@ -206,6 +209,15 @@ const routes: Routes = [
             { path: '', component: DanhSachXeComponent },
             { path: 'them-moi', component: DanhSachXeThemMoiComponent },
             { path: ':id/cap-nhat', component: DanhSachXeCapNhatComponent },
+        ]
+    },
+    {
+        path: 'tai-xe',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: TaiXeComponent },
+            { path: 'them-moi', component: TaiXeThemMoiComponent },
+            { path: ':id/cap-nhat', component: TaiXeCapNhatComponent },
         ]
     }
 ];

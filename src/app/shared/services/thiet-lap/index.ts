@@ -16,3 +16,4 @@ export * from './hang-hoa.service';
 export * from './so-mat.service';
 export * from './nguon-nhan-luc.service';
 export * from './danh-sach-xe.service';
+export * from './tai-xe.service';
