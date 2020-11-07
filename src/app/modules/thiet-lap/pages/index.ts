@@ -33,3 +33,7 @@ export * from './nguon-nhan-luc-them-moi/nguon-nhan-luc-them-moi.component';
 export * from './danh-sach-xe/danh-sach-xe.component';
 export * from './danh-sach-xe-cap-nhat/danh-sach-xe-cap-nhat.component';
 export * from './danh-sach-xe-them-moi/danh-sach-xe-them-moi.component';
+
+export * from './tai-xe/tai-xe.component';
+export * from './tai-xe-cap-nhat/tai-xe-cap-nhat.component';
+export * from './tai-xe-them-moi/tai-xe-them-moi.component';
