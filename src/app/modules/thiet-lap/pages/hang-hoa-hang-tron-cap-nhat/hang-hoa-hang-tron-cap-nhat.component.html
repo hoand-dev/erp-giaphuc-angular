@@ -47,11 +47,19 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn loại hàng"> </dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'NCC' }" dataField="ncc"></dxi-item>
-
-                                    <dxi-item [label]="{ text: 'DÀY' }" dataField="day" editorType="dxNumberBox"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'RỘNG' }" dataField="rong" editorType="dxNumberBox"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'DÀI' }" dataField="dai" editorType="dxNumberBox"> </dxi-item>
+                                    <dxi-item [colSpan]="2" [label]="{text: 'NCC'}" dataField="ncc">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập ncc"></dxi-validation-rule>
+                                    </dxi-item>
+                                    
+                                    <dxi-item [label]="{text: 'DÀY'}" dataField="day" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập độ dày"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'RỘNG'}" dataField="rong" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập độ rộng"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'DÀI'}" dataField="dai" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập độ dài"></dxi-validation-rule>
+                                    </dxi-item>
 
                                     <dxi-item
                                         [label]="{ text: 'ĐƠN VỊ TÍNH' }"
