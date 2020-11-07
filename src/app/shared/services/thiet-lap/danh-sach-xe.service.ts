@@ -11,8 +11,10 @@ import { Injectable } from '@angular/core';
 })
 export class DanhSachXeService extends BaseService {
     //request url khai bao trong evironment
-    private apiUrl: string  = environment.apiUrl +'/danhsachxe';
+    private apiUrl: string  = environment.apiUrl +'/soxe';
+
     constructor(private httpClient: HttpClient){super ();}
+
     findDanhSachXe (id:number) :Observable<DanhSachXe>{
         return this.httpClient.get<DanhSachXe>(this.apiUrl +`/${id}`);
     }
@@ -41,7 +43,7 @@ export class DanhSachXeService extends BaseService {
                 }, 300);
             });
         else
-            return this.httpClient.get(this.apiUrl + `/exist?danhsachxe=${danhsachxe}`)
+            return this.httpClient.get(this.apiUrl + `/exist?soxe=${danhsachxe}`)
                 .toPromise()
                 .then(
                     res => !res

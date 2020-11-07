@@ -26,7 +26,6 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="2" [formData]="danhsachxe" [showValidationSummary]="true">
-        
                                     <dxi-item [label]="{text: 'BIỂN SỐ XE'}" dataField="biensoxe">
                                         <dxi-validation-rule type="required" message="Nhập biển số xe">
                                         </dxi-validation-rule>
