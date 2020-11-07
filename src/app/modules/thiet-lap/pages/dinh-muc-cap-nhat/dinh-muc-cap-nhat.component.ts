@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DinhMuc, DanhMucGiaCong, DinhMuc_ChiPhiKhac, DinhMuc_NguonLuc, DinhMuc_NguyenLieu } from '@app/shared/entities';
-import { DinhMucService, DanhMucGiaCongService, HangHoaService, NguonNhanLucService, NoiDungThuChiService } from '@app/shared/services';
+import { DinhMucService, DanhMucGiaCongService, HangHoaService, NguonNhanLucService, NoiDungThuChiService, AppInfoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
@@ -23,13 +23,18 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     public dinhmuc: DinhMuc;
     public saveProcessing = false;
 
+    // các danh sách dữ liệu bảng con
     public hanghoas: DinhMuc_NguyenLieu[] = [];
     public nguonlucs: DinhMuc_NguonLuc[] = [];
     public chiphikhacs: DinhMuc_ChiPhiKhac[] = [];
 
-    dataSource_HangHoa: any = {};
-    dataSource_NguonLuc: any = {};
-    dataSource_ChiPhiKhac: any = {};
+    // dữ liệu các select box tương ứng từng tab
+    public dataSource_HangHoa: any = {};
+    public dataSource_NguonLuc: any = {};
+    public dataSource_ChiPhiKhac: any = {};
+
+    // dùng để kiểm tra load lần đầu (*)
+    private hanghoalenght: number = 0;
 
     public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
@@ -39,6 +44,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     };
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private authenticationService: AuthenticationService,
@@ -55,7 +61,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
 
         this.saveProcessing = true;
         this.subscriptions.add(
-            this.hanghoaService.findHangHoas().subscribe((x) => {
+            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
                 this.saveProcessing = false;
                 this.dataSource_HangHoa = new DataSource({
                     store: x,
@@ -97,6 +103,9 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
                     this.subscriptions.add(
                         this.dinhmucService.findDinhMuc(dinhmuc_id).subscribe(
                             (data) => {
+                                // gán độ dài danh sách hàng hóa load lần đầu
+                                this.hanghoalenght = data.dinhmuc_nguyenlieu.length;
+
                                 this.dinhmuc = data;
                                 this.hanghoas = this.dinhmuc.dinhmuc_nguyenlieu;
                                 this.nguonlucs = this.dinhmuc.dinhmuc_nguonluc;
@@ -145,15 +154,22 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onHangHoaChanged(index, e) {
+        // lấy thông tin hàng hóa
         let selected = e.selectedItem;
-        
-        // xử lý lại thông tin dựa trên lựa chọn
-        this.hanghoas[index].dvt_id = selected.dvt_id;
-        this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
-        this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
-        this.hanghoas[index].thanhtien_chiphi = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
 
-        // chỉ thêm row mới khi không tồn tài dòng rỗng nào
+        // không cần xử lý lại thông tin nếu load lần dầu (*)
+        if (this.hanghoalenght > 0) {
+            this.hanghoalenght--;
+            //return;
+        } else {
+            // xử lý lại thông tin dựa trên lựa chọn
+            this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
+            this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
+            this.hanghoas[index].thanhtien_chiphi = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
+        }
+
+        // chỉ thêm row mới khi không tồn tại dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.nguyenlieu_id == null);
         if (rowsNull.length == 0) {
             this.onHangHoaAdd();
@@ -217,7 +233,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         let chiphikhacs = this.chiphikhacs.filter((x) => x.noidung_id != null);
 
         let dinhmuc_req = this.dinhmuc;
-        
+
         // gán lại dữ liệu
         dinhmuc_req.chinhanh_id = this.currentChiNhanh.id;
         dinhmuc_req.danhmucgiacong_id = dinhmuc_req.giacong.id;
