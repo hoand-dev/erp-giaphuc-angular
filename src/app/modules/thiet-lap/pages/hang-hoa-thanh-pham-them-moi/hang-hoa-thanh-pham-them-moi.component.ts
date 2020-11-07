@@ -1,4 +1,4 @@
-import { ChiNhanh, DanhMucGiaCong, DonViTinh, HangHoa, SoMat } from '@app/shared/entities';
+import { ChiNhanh, DinhMuc, DonViTinh, HangHoa, SoMat } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 
@@ -6,7 +6,7 @@ import {
     DxFormComponent
 } from 'devextreme-angular';
 
-import { AppInfoService, DanhMucGiaCongService, DonViTinhService, HangHoaService, SoMatService } from '@app/shared/services';
+import { AppInfoService, DinhMucService, DonViTinhService, HangHoaService, SoMatService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -31,7 +31,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
     public hanghoa: HangHoa;
     public lstTieuChuan: DanhMucTieuChuan[] = [];
     public lstLoaiHang: LoaiHang[] = [];
-    public lstGiaCong: DanhMucGiaCong[] = [];
+    public lstGiaCong: DinhMuc[] = [];
     public lstSoMat: SoMat[] = [];
     public lstDonViTinh: DonViTinh[] = [];
 
@@ -49,7 +49,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private tieuchuanService: DanhMucTieuChuanService,
         private loaihangService: LoaiHangService,
-        private giacongService: DanhMucGiaCongService,
+        private giacongService: DinhMucService,
         private somatService: SoMatService,
         private donvitinhService: DonViTinhService,
         private hanghoaService: HangHoaService,
@@ -61,7 +61,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.hanghoa = new HangHoa();
-        this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_hangtron;
+        this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_thanhpham;
 
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(
@@ -77,7 +77,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
                 })
         );
         this.subscriptions.add(
-            this.giacongService.findDanhMucGiaCongs().subscribe(
+            this.giacongService.findDinhMucs().subscribe(
                 x => {
                     this.lstGiaCong = x;
                 })
@@ -134,10 +134,10 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
             let magiacong: string = "";
             let tengiacong: string = "";
 
-            if(this.hanghoa.giacong != null){
-                this.hanghoa.giacong.forEach((value, index)=>{
-                    magiacong += value.madanhmuc;
-                    tengiacong += value.tendanhmuc + " ";
+            if(this.hanghoa.dinhmuc_giacong != null){
+                this.hanghoa.dinhmuc_giacong.forEach((value, index)=>{
+                    magiacong += value.madinhmuc;
+                    tengiacong += value.tendinhmuc + " ";
                 });
 
                 tengiacong = tengiacong.trim();
@@ -184,11 +184,10 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         hanghoa_req.tieuchuan_id = hanghoa_req.tieuchuan.id;
         hanghoa_req.loaihang_id = hanghoa_req.loaihang.id;
        
-        hanghoa_req.giacong = hanghoa_req.giacong;
         hanghoa_req.somat_id = hanghoa_req.somat.id;
 
         hanghoa_req.dvt_id = hanghoa_req.donvitinh.id;
-        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu.id;
+        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu ? hanghoa_req.donvitinhphu.id : null;
 
         this.saveProcessing = true;
         this.subscriptions.add(this.hanghoaService.addHangHoa(hanghoa_req).subscribe(

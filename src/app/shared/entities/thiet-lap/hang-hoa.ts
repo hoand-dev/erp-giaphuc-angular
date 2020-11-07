@@ -3,6 +3,7 @@ import { LoaiHang } from './loai-hang';
 import { DonViTinh } from './don-vi-tinh';
 import { SoMat } from './so-mat';
 import { DanhMucGiaCong } from './danh-muc-gia-cong';
+import { DinhMuc } from './dinh-muc';
 
 export class HangHoa {
 
@@ -47,7 +48,7 @@ export class HangHoa {
     public giabansi1: number;
     public dinhmuc_id: number;
 
-    public giacong: DanhMucGiaCong[];
+    public dinhmuc_giacong: DinhMuc[];
     public tengiacong: string;
 
     public somat: SoMat;

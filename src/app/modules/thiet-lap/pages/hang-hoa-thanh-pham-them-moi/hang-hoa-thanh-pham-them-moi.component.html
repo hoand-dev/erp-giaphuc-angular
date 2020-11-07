@@ -27,10 +27,10 @@
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="hanghoa" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="form_fieldDataChanged($event)">
                                     
-                                    <dxi-item [label]="{text: 'GIA CÔNG'}" dataField="giacong" editorType="dxTagBox" [editorOptions]="{ dataSource: lstGiaCong, searchEnabled: true, displayExpr: 'tendanhmuc' }">
+                                    <dxi-item [colSpan]="2" [label]="{text: 'GIA CÔNG'}" dataField="dinhmuc_giacong" editorType="dxTagBox" [editorOptions]="{ dataSource: lstGiaCong, searchEnabled: true, displayExpr: 'tendinhmuc' }">
                                         <dxi-validation-rule type="required" message="Vui lòng chọn gia công"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'SỐ MẶT'}" dataField="loaihang" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstSoMat, searchEnabled: true, displayExpr: 'tensomat' }">
+                                    <dxi-item [label]="{text: 'SỐ MẶT'}" dataField="somat" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstSoMat, searchEnabled: true, displayExpr: 'tensomat' }">
                                         <dxi-validation-rule type="required" message="Vui lòng chọn số mặt"></dxi-validation-rule>
                                     </dxi-item>
 

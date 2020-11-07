@@ -149,6 +149,12 @@ export class AppComponent implements OnInit {
         this.subscriptions.add(this.authenticationService.currentUser.subscribe(x => this.currentUserToken = x));
 
         if (this.isAutorized()) {
+            // phải refresh token trước khi lấy thông tin người dùng
+            if (this.fisrtRefreshToken){
+                console.log("refresh token...");
+                this.fisrtRefreshToken = false;
+                this.refreshAuthToken();
+            }
             this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe(x =>
                 this.currentUser = x
             ));
@@ -169,17 +175,9 @@ export class AppComponent implements OnInit {
                     this.chinhanhService.handleError(error);
                 }
             ));
-            
-            if (this.fisrtRefreshToken){
-                console.log("refresh token...");
-                
-                this.fisrtRefreshToken = false;
-                this.refreshAuthToken();
-            }
 
             setInterval(() => {
                 console.log("interval refresh token...");
-
                 this.refreshAuthToken();
             }, 1000 * 60 * 25);
         }

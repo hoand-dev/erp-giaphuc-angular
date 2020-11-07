@@ -154,7 +154,7 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
         hanghoa_req.tieuchuan_id = hanghoa_req.tieuchuan.id;
         hanghoa_req.loaihang_id = hanghoa_req.loaihang.id;
         hanghoa_req.dvt_id = hanghoa_req.donvitinh.id;
-        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu.id;
+        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu ? hanghoa_req.donvitinhphu.id : null;
 
         this.saveProcessing = true;
         this.subscriptions.add(this.hanghoaService.updateHangHoa(hanghoa_req).subscribe(
