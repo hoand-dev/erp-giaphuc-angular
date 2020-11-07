@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/hang-hoa-hang-tron']">Hàng trơn</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/hang-hoa-thanh-pham']">Thành phẩm</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div><!-- /.col -->
@@ -21,18 +21,26 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title" [style.margin-bottom.px]="20">
-                            <h5>{{ 'Hàng trơn' | uppercase }} - THÊM MỚI</h5>
+                            <h5>{{ 'Thành phẩm' | uppercase }} - THÊM MỚI</h5>
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="hanghoa" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="form_fieldDataChanged($event)">
-                                    <dxi-item [colSpan]="2" [label]="{text: 'TIÊU CHUẨN'}" dataField="tieuchuan" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstTieuChuan, searchEnabled: true, displayExpr: 'tendanhmuctieuchuan' }">
+                                    
+                                    <dxi-item [colSpan]="2" [label]="{text: 'GIA CÔNG'}" dataField="dinhmuc_giacong" editorType="dxTagBox" [editorOptions]="{ dataSource: lstGiaCong, searchEnabled: true, displayExpr: 'tendinhmuc' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn gia công"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'SỐ MẶT'}" dataField="somat" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstSoMat, searchEnabled: true, displayExpr: 'tensomat' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn số mặt"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{text: 'TIÊU CHUẨN'}" dataField="tieuchuan" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstTieuChuan, searchEnabled: true, displayExpr: 'tendanhmuctieuchuan' }">
                                         <dxi-validation-rule type="required" message="Vui lòng chọn tiêu chuẩn"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{text: 'LOẠI HÀNG'}" dataField="loaihang" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstLoaiHang, searchEnabled: true, displayExpr: 'tenloaihang' }">
+                                    <dxi-item [label]="{text: 'LOẠI HÀNG'}" dataField="loaihang" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstLoaiHang, searchEnabled: true, displayExpr: 'tenloaihang' }">
                                         <dxi-validation-rule type="required" message="Vui lòng chọn loại hàng"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{text: 'NCC'}" dataField="ncc">
+                                    <dxi-item [label]="{text: 'NCC'}" dataField="ncc">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập ncc"></dxi-validation-rule>
                                     </dxi-item>
                                     
@@ -56,14 +64,14 @@
                                         <dxi-validation-rule type="custom" message="Quy đổi phải lớn hơn 0" [validationCallback]="checkQuyDoi"></dxi-validation-rule>
                                     </dxi-item>
 
-                                    <dxi-item [colSpan]="2" [label]="{text: 'MÃ HÀNG TRƠN'}" dataField="mahanghoa" [editorOptions]="{ disabled: true }">
-                                        <dxi-validation-rule type="required" message="Nhập mã hàng trơn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã hàng trơn quá ngắn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="custom" message="Mã hàng trơn đã tồn tại" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    <dxi-item [colSpan]="2" [label]="{text: 'MÃ THÀNH PHẨM'}" dataField="mahanghoa" [editorOptions]="{ disabled: true }">
+                                        <dxi-validation-rule type="required" message="Nhập mã thành phẩm"></dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã thành phẩm quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="custom" message="Mã thành phẩm đã tồn tại" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{text: 'TÊN HÀNG TRƠN'}" dataField="tenhanghoa" [editorOptions]="{ disabled: true }">
-                                        <dxi-validation-rule type="required" message="Nhập tên hàng trơn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên hàng trơn quá ngắn"></dxi-validation-rule>
+                                    <dxi-item [colSpan]="2" [label]="{text: 'TÊN THÀNH PHẨM'}" dataField="tenhanghoa" [editorOptions]="{ disabled: true }">
+                                        <dxi-validation-rule type="required" message="Nhập tên thành phẩm"></dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên thành phẩm quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{text: 'M3/TẤM'}" dataField="m3" editorType="dxNumberBox" [editorOptions]="{ disabled: true }"></dxi-item>
                                     <dxi-item [label]="{text: 'ĐƠN GIÁ'}" dataField="gianhap" editorType="dxNumberBox"></dxi-item>

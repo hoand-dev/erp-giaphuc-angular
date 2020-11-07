@@ -6,7 +6,7 @@ import {
     DxFormComponent
 } from 'devextreme-angular';
 
-import { DonViTinhService, HangHoaService } from '@app/shared/services';
+import { AppInfoService, DonViTinhService, HangHoaService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -42,6 +42,7 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
     }
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private authenticationService: AuthenticationService,
         private tieuchuanService: DanhMucTieuChuanService,
@@ -56,6 +57,8 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.hanghoa = new HangHoa();
+        this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_hangtron;
+
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(
             this.tieuchuanService.findDanhMucTieuChuans().subscribe(
@@ -144,7 +147,7 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
         hanghoa_req.tieuchuan_id = hanghoa_req.tieuchuan.id;
         hanghoa_req.loaihang_id = hanghoa_req.loaihang.id;
         hanghoa_req.dvt_id = hanghoa_req.donvitinh.id;
-        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu.id;
+        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu ? hanghoa_req.donvitinhphu.id : null;
 
         this.saveProcessing = true;
         this.subscriptions.add(this.hanghoaService.addHangHoa(hanghoa_req).subscribe(

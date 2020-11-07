@@ -19,7 +19,9 @@ export class HangHoaService extends BaseService {
         return this.httpClient.get<HangHoa>(this.apiUrl + `/${id}`);
     }
 
-    findHangHoas(): Observable<HangHoa[]> {
+    findHangHoas(loaihanghoa: string = null): Observable<HangHoa[]> {
+        if(loaihanghoa)
+            return this.httpClient.get<HangHoa[]>(this.apiUrl + '?loaihanghoa=' + loaihanghoa);
         return this.httpClient.get<HangHoa[]>(this.apiUrl);
     }
 

@@ -1,1 +1,191 @@
-<p>dinh-muc-cap-nhat works!</p>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/dinh-muc']">Định mức</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>{{ 'Định mức' | uppercase }} - THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="3" [formData]="dinhmuc" [showValidationSummary]="true">
+                                    <dxi-item
+                                        [label]="{ text: 'GIA CÔNG' }"
+                                        dataField="giacong"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: lstGiaCong, searchEnabled: true, displayExpr: 'tendanhmuc' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn gia công"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{ text: 'MÃ ĐỊNH MỨC' }" dataField="madinhmuc">
+                                        <dxi-validation-rule type="required" message="Nhập mã định mức"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã định mức quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="custom" message="Mã định mức đã tồn tại" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{ text: 'TÊN ĐỊNH MỨC' }" dataField="tendinhmuc">
+                                        <dxi-validation-rule type="required" message="Nhập tên định mức"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên định mức quá ngắn"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="3"></dxi-item>
+
+                                    <dxi-item [colSpan]="3">
+                                        <mat-tab-group mat-align-tabs="start" [style.margin-top.px]="10" class="tab-label-letf">
+                                            <mat-tab label="ĐỊNH MỨC - NGUYÊN LIỆU">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th [style.min-width.px]="120">NGUYÊN LIỆU</th>
+                                                            <th [style.min-width.px]="120">ĐVT</th>
+                                                            <th [style.min-width.px]="120">SL</th>
+                                                            <th [style.min-width.px]="120">ĐƠN GIÁ</th>
+                                                            <th [style.min-width.px]="120">CHI PHÍ</th>
+                                                            <th [style.min-width.px]="120">GHI CHÚ</th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of hanghoas; index as i">
+                                                            <td [style.min-width.px]="120">
+                                                                <dx-select-box
+                                                                    id="nguyenlieu_row_{{ i }}"
+                                                                    [(value)]="item.nguyenlieu_id"
+                                                                    [dataSource]="dataSource_HangHoa"
+                                                                    [displayExpr]="'tenhanghoa'"
+                                                                    [valueExpr]="'id'"
+                                                                    [searchMode]="'contains'"
+                                                                    [searchExpr]="['mahanghoa', 'tenhanghoa']"
+                                                                    [searchTimeout]="200"
+                                                                    [searchEnabled]="true"
+                                                                    [minSearchLength]="0"
+                                                                    (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                                >
+                                                                </dx-select-box>
+                                                            </td>
+                                                            <td>{{item.tendonvitinh}}</td>
+                                                            <td><dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box></td>
+                                                            <td><dx-number-box format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box></td>
+                                                            <td>{{ item.thanhtien_chiphi | number:'1.0-3' }}</td>
+                                                            <td><dx-text-box value="ghi chú" [(value)]="item.chuthich"></dx-text-box></td>
+                                                            <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </mat-tab>
+                                            <mat-tab label="ĐỊNH MỨC - NGUỒN LỰC">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th [style.min-width.px]="120">NGUỒN LỰC</th>
+                                                            <th [style.min-width.px]="120">CHI PHÍ</th>
+                                                            <th [style.min-width.px]="120">GHI CHÚ</th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onNguonLucAdd()"></i></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of nguonlucs; index as i">
+                                                            <td [style.min-width.px]="120">
+                                                                <dx-select-box
+                                                                    id="nguonluc_row_{{ i }}"
+                                                                    [(value)]="item.nguonnhanluc_id"
+                                                                    [dataSource]="dataSource_NguonLuc"
+                                                                    [displayExpr]="'tennguonnhanluc'"
+                                                                    [valueExpr]="'id'"
+                                                                    [searchMode]="'contains'"
+                                                                    [searchExpr]="'tennguonnhanluc'"
+                                                                    [searchTimeout]="200"
+                                                                    [searchEnabled]="true"
+                                                                    [minSearchLength]="0"
+                                                                    (onSelectionChanged)="onNguonLucChanged(i, $event)"
+                                                                >
+                                                                </dx-select-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-number-box format="#,##0.###" [(value)]="item.chiphi"></dx-number-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-text-box value="ghi chú" [(value)]="item.chuthich"></dx-text-box>
+                                                            </td>
+                                                            <td><i class="gg-btn gg-remove" (click)="onNguonLucDelete(item)"></i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </mat-tab>
+                                            <mat-tab label="ĐỊNH MỨC - CHI PHÍ KHÁC">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th [style.min-width.px]="120">CHI PHÍ KHÁC</th>
+                                                            <th [style.min-width.px]="120">CHI PHÍ</th>
+                                                            <th [style.min-width.px]="120">TÍNH CÔNG NỢ</th>
+                                                            <th [style.min-width.px]="120">GHI CHÚ</th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onChiPhiKhacAdd()"></i></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of chiphikhacs; index as i">
+                                                            <td [style.min-width.px]="120">
+                                                                <dx-select-box
+                                                                    id="chiphikhac_row_{{ i }}"
+                                                                    [(value)]="item.noidung_id"
+                                                                    [dataSource]="dataSource_ChiPhiKhac"
+                                                                    [displayExpr]="'tennoidungthuchi'"
+                                                                    [valueExpr]="'id'"
+                                                                    [searchMode]="'contains'"
+                                                                    [searchExpr]="'tennoidungthuchi'"
+                                                                    [searchTimeout]="200"
+                                                                    [searchEnabled]="true"
+                                                                    [minSearchLength]="0"
+                                                                    (onSelectionChanged)="onChiPhiKhacChanged(i, $event)"
+                                                                >
+                                                                </dx-select-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-number-box format="#,##0.###" [(value)]="item.chiphi"></dx-number-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-check-box text="Có tính" [(value)]="item.tinhphi"></dx-check-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-text-box value="ghi chú" [(value)]="item.chuthich"></dx-text-box>
+                                                            </td>
+                                                            <td><i class="gg-btn gg-remove" (click)="onChiPhiKhacDelete(item)"></i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </dxi-item>
+
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -53,7 +53,9 @@ export class DinhMuc_NguyenLieu {
     public tylequydoibandau: number;
     public dinhmuc_id: number;
 
-    constructor(id: number = null, nguyenlieu_id: number = null, dvt_id: number = null, soluong: number = null, dongia: number = null, thanhtien_chiphi: number = null, loainguyenlieu: string = null, chuthich: string = null, tylequydoibandau: number = null, dinhmuc_id: number = null) {
+    public tendonvitinh: string;
+
+    constructor(id: number = null, nguyenlieu_id: number = null, dvt_id: number = null, soluong: number = 1, dongia: number = 0, thanhtien_chiphi: number = 0, loainguyenlieu: string = null, chuthich: string = null, tylequydoibandau: number = null, dinhmuc_id: number = null) {
         this.id = id;
         this.nguyenlieu_id = nguyenlieu_id;
         this.dvt_id = dvt_id;
@@ -72,12 +74,14 @@ export class DinhMuc_NguonLuc {
     public id: number;
     public nguonnhanluc_id: number;
     public chiphi: number;
+    public chuthich: string;
     public dinhmuc_id: number;
 
-    constructor(id: number = null, nguonnhanluc_id: number = null, chiphi: number = null, dinhmuc_id: number = null) {
+    constructor(id: number = null, nguonnhanluc_id: number = null, chiphi: number = 0, chuthich: string = null, dinhmuc_id: number = null) {
         this.id = id;
         this.nguonnhanluc_id = nguonnhanluc_id;
         this.chiphi = chiphi;
+        this.chuthich = chuthich;
         this.dinhmuc_id = dinhmuc_id;
     }
 }
@@ -91,7 +95,7 @@ export class DinhMuc_ChiPhiKhac {
     public chuthich: string;
     public dinhmuc_id: number;
 
-    constructor(id: number = null, noidung_id: number = null, chiphi: number = null, tinhphi: boolean = null, chuthich: string = null, dinhmuc_id: number = null) {
+    constructor(id: number = null, noidung_id: number = null, chiphi: number = 0, tinhphi: boolean = false, chuthich: string = null, dinhmuc_id: number = null) {
         this.id = id;
         this.noidung_id = noidung_id;
         this.chiphi = chiphi;

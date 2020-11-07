@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HangHoa } from '@app/shared/entities';
 import { AppInfoService, HangHoaService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -8,11 +6,11 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-hang-hoa-hang-tron',
-    templateUrl: './hang-hoa-hang-tron.component.html',
-    styleUrls: ['./hang-hoa-hang-tron.component.css']
+    selector: 'app-hang-hoa-thanh-pham',
+    templateUrl: './hang-hoa-thanh-pham.component.html',
+    styleUrls: ['./hang-hoa-thanh-pham.component.css']
 })
-export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HangHoaThanhPhamComponent implements OnInit, OnDestroy, AfterViewInit {
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
@@ -22,12 +20,11 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
     public stateStoringGrid = {
         enabled: true,
         type: "localStorage",
-        storageKey: "dxGrid_HangHoaHangTron"
+        storageKey: "dxGrid_HangHoaThanhPham"
     };
 
     constructor(
         public appInfoService: AppInfoService,
-        private router: Router,
         private hanghoaService: HangHoaService
     ) { }
 
@@ -51,7 +48,7 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     onLoadData() {
-        this.subscriptions.add(this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_hangtron).subscribe(
+        this.subscriptions.add(this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_thanhpham).subscribe(
             data => {
                 this.dataGrid.dataSource = data;
             },
@@ -67,7 +64,7 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa hàng trơn này?</i>", "Xác nhận xóa");
+        let result = confirm("<i>Bạn có muốn xóa thành phẩm này?</i>", "Xác nhận xóa");
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa

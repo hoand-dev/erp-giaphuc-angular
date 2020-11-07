@@ -13,6 +13,11 @@ import supplementalCldrData from 'devextreme-cldr-data/supplemental.json';
 
 import Globalize from 'globalize';
 
+// set lại định dạng của number box vi
+viCldrData.main.vi.numbers["symbols-numberSystem-latn"].decimal = ".";
+viCldrData.main.vi.numbers["symbols-numberSystem-latn"].group = ",";
+
+// thiết lập global
 Globalize.load( viCldrData, supplementalCldrData );
 Globalize.loadMessages(viMessages);
 Globalize.locale('vi');
