@@ -287,9 +287,33 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a [routerLink]="['/dinh-muc']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Định mức</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/hang-hoa-thanh-pham']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Thành phẩm</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a [routerLink]="['/kho-hang']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Kho hàng</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/danh-sach-xe']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh Sách Xe</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/tai-xe']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Tài Xế</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -659,7 +683,5 @@
 </ng-container>
 
 <ng-template #notAuthorized>
-    <app-single-card>
-        <router-outlet></router-outlet>
-    </app-single-card>
+    <router-outlet></router-outlet>
 </ng-template>

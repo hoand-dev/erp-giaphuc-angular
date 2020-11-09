@@ -17,8 +17,10 @@ import {
     DxColorBoxModule,
     DxFormModule,
     DxNumberBoxModule,
+    DxTagBoxModule,
     
 } from 'devextreme-angular';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     declarations: [],
@@ -27,23 +29,7 @@ import {
         FormsModule,
 
         DxSelectBoxModule,
-        DxCheckBoxModule,
-        DxTextBoxModule,
-        DxValidatorModule,
-        DxValidationSummaryModule,
-        DxDataGridModule,
-        DxButtonModule,
-        DxDateBoxModule,
-        DxTemplateModule,
-        DxColorBoxModule,
-        DxFormModule,
-        DxNumberBoxModule
-    ],
-    exports: [
-        CommonModule,
-        FormsModule,
-
-        DxSelectBoxModule,
+        DxTagBoxModule,
         DxCheckBoxModule,
         DxTextBoxModule,
         DxValidatorModule,
@@ -55,6 +41,28 @@ import {
         DxColorBoxModule,
         DxFormModule,
         DxNumberBoxModule,
+
+        MatTabsModule
+    ],
+    exports: [
+        CommonModule,
+        FormsModule,
+
+        DxSelectBoxModule,
+        DxTagBoxModule,
+        DxCheckBoxModule,
+        DxTextBoxModule,
+        DxValidatorModule,
+        DxValidationSummaryModule,
+        DxDataGridModule,
+        DxButtonModule,
+        DxDateBoxModule,
+        DxTemplateModule,
+        DxColorBoxModule,
+        DxFormModule,
+        DxNumberBoxModule,
+
+        MatTabsModule
     ]
 })
 export class SharedModule { }

@@ -44,6 +44,18 @@ import { HangHoaNguyenLieuCapNhatComponent } from './pages/hang-hoa-nguyen-lieu-
 import { HangHoaHangTronComponent } from './pages/hang-hoa-hang-tron/hang-hoa-hang-tron.component';
 import { HangHoaHangTronCapNhatComponent } from './pages/hang-hoa-hang-tron-cap-nhat/hang-hoa-hang-tron-cap-nhat.component';
 import { HangHoaHangTronThemMoiComponent } from './pages/hang-hoa-hang-tron-them-moi/hang-hoa-hang-tron-them-moi.component';
+import { DanhSachXeComponent } from './pages/danh-sach-xe/danh-sach-xe.component';
+import { DanhSachXeCapNhatComponent } from './pages/danh-sach-xe-cap-nhat/danh-sach-xe-cap-nhat.component';
+import { DanhSachXeThemMoiComponent } from './pages/danh-sach-xe-them-moi/danh-sach-xe-them-moi.component';
+import { DinhMucCapNhatComponent } from './pages/dinh-muc-cap-nhat/dinh-muc-cap-nhat.component';
+import { DinhMucThemMoiComponent } from './pages/dinh-muc-them-moi/dinh-muc-them-moi.component';
+import { DinhMucComponent } from './pages/dinh-muc/dinh-muc.component';
+import { TaiXeCapNhatComponent } from './pages/tai-xe-cap-nhat/tai-xe-cap-nhat.component';
+import { TaiXeThemMoiComponent } from './pages/tai-xe-them-moi/tai-xe-them-moi.component';
+import { TaiXeComponent } from './pages/tai-xe/tai-xe.component';
+import { HangHoaThanhPhamComponent } from './pages/hang-hoa-thanh-pham/hang-hoa-thanh-pham.component';
+import { HangHoaThanhPhamCapNhatComponent } from './pages/hang-hoa-thanh-pham-cap-nhat/hang-hoa-thanh-pham-cap-nhat.component';
+import { HangHoaThanhPhamThemMoiComponent } from './pages/hang-hoa-thanh-pham-them-moi/hang-hoa-thanh-pham-them-moi.component';
 
 const routes: Routes = [
     {
@@ -164,12 +176,48 @@ const routes: Routes = [
         ]
     },
     {
+        path: 'dinh-muc',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: DinhMucComponent },
+            { path: 'them-moi', component: DinhMucThemMoiComponent },
+            { path: ':id/cap-nhat', component: DinhMucCapNhatComponent },
+        ]
+    },
+    {
+        path: 'hang-hoa-thanh-pham',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: HangHoaThanhPhamComponent },
+            { path: 'them-moi', component: HangHoaThanhPhamThemMoiComponent },
+            { path: ':id/cap-nhat', component: HangHoaThanhPhamCapNhatComponent },
+        ]
+    },
+    {
         path: 'kho-hang',
         canActivate: [AuthGuard],
         children: [
             { path: '', component: KhoHangComponent },
             { path: 'them-moi', component: KhoHangThemMoiComponent },
             { path: ':id/cap-nhat', component: KhoHangCapNhatComponent },
+        ]
+    },
+    {
+        path: 'danh-sach-xe',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: DanhSachXeComponent },
+            { path: 'them-moi', component: DanhSachXeThemMoiComponent },
+            { path: ':id/cap-nhat', component: DanhSachXeCapNhatComponent },
+        ]
+    },
+    {
+        path: 'tai-xe',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: TaiXeComponent },
+            { path: 'them-moi', component: TaiXeThemMoiComponent },
+            { path: ':id/cap-nhat', component: TaiXeCapNhatComponent },
         ]
     }
 ];

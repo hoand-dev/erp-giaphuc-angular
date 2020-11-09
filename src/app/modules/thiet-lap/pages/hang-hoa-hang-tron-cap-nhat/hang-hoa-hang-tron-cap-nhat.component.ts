@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DanhMucTieuChuan, DonViTinh, HangHoa, LoaiHang } from '@app/shared/entities';
-import { DanhMucTieuChuanService, DonViTinhService, HangHoaService, LoaiHangService } from '@app/shared/services';
+import { AppInfoService, DanhMucTieuChuanService, DonViTinhService, HangHoaService, LoaiHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
@@ -34,6 +34,7 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
     }
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private authenticationService: AuthenticationService,
@@ -45,6 +46,7 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.hanghoa = new HangHoa();
+        this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_hangtron;
 
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
@@ -152,7 +154,7 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
         hanghoa_req.tieuchuan_id = hanghoa_req.tieuchuan.id;
         hanghoa_req.loaihang_id = hanghoa_req.loaihang.id;
         hanghoa_req.dvt_id = hanghoa_req.donvitinh.id;
-        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu.id;
+        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu ? hanghoa_req.donvitinhphu.id : null;
 
         this.saveProcessing = true;
         this.subscriptions.add(this.hanghoaService.updateHangHoa(hanghoa_req).subscribe(

@@ -45,9 +45,27 @@ import { HangHoaNguyenLieuThemMoiComponent } from './pages/hang-hoa-nguyen-lieu-
 import { HangHoaHangTronComponent } from './pages/hang-hoa-hang-tron/hang-hoa-hang-tron.component';
 import { HangHoaHangTronCapNhatComponent } from './pages/hang-hoa-hang-tron-cap-nhat/hang-hoa-hang-tron-cap-nhat.component';
 import { HangHoaHangTronThemMoiComponent } from './pages/hang-hoa-hang-tron-them-moi/hang-hoa-hang-tron-them-moi.component';
+import { DanhSachXeComponent } from './pages/danh-sach-xe/danh-sach-xe.component';
+import { DanhSachXeCapNhatComponent } from './pages/danh-sach-xe-cap-nhat/danh-sach-xe-cap-nhat.component';
+import { DanhSachXeThemMoiComponent } from './pages/danh-sach-xe-them-moi/danh-sach-xe-them-moi.component';
+import { DinhMucComponent } from './pages/dinh-muc/dinh-muc.component';
+import { DinhMucCapNhatComponent } from './pages/dinh-muc-cap-nhat/dinh-muc-cap-nhat.component';
+import { DinhMucThemMoiComponent } from './pages/dinh-muc-them-moi/dinh-muc-them-moi.component';
+
+import { TaiXeComponent } from './pages/tai-xe/tai-xe.component';
+import { TaiXeCapNhatComponent } from './pages/tai-xe-cap-nhat/tai-xe-cap-nhat.component';
+import { TaiXeThemMoiComponent } from './pages/tai-xe-them-moi/tai-xe-them-moi.component';
+
+import { LoaiHangComponent } from './pages/loai-hang/loai-hang.component';
+import { LoaiHangCapNhatComponent } from './pages/loai-hang-cap-nhat/loai-hang-cap-nhat.component';
+import { LoaiHangThemMoiComponent } from './pages/loai-hang-them-moi/loai-hang-them-moi.component';
+
+import { HangHoaThanhPhamComponent } from './pages/hang-hoa-thanh-pham/hang-hoa-thanh-pham.component';
+import { HangHoaThanhPhamCapNhatComponent } from './pages/hang-hoa-thanh-pham-cap-nhat/hang-hoa-thanh-pham-cap-nhat.component';
+import { HangHoaThanhPhamThemMoiComponent } from './pages/hang-hoa-thanh-pham-them-moi/hang-hoa-thanh-pham-them-moi.component';
 
 @NgModule({
-    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent, DanhMucTieuChuanCapNhatComponent, DanhMucTieuChuanThemMoiComponent, KhoHangComponent, KhoHangThemMoiComponent, KhoHangCapNhatComponent, DonViTinhComponent, DonViTinhThemMoiComponent, DonViTinhCapNhatComponent, DonViGiaCongComponent, DonViGiaCongThemMoiComponent, DonViGiaCongCapNhatComponent, NoiDungThuChiComponent, NoiDungThuChiCapNhatComponent, NoiDungThuChiThemMoiComponent, QuyTaiKhoanComponent, QuyTaiKhoanCapNhatComponent, QuyTaiKhoanThemMoiComponent, SoMatComponent, SoMatCapNhatComponent, SoMatThemMoiComponent, NguonNhanLucComponent, NguonNhanLucCapNhatComponent, NguonNhanLucThemMoiComponent, HangHoaNguyenLieuComponent, HangHoaNguyenLieuCapNhatComponent, HangHoaNguyenLieuThemMoiComponent, HangHoaHangTronComponent, HangHoaHangTronCapNhatComponent, HangHoaHangTronThemMoiComponent],
+    declarations: [ChiNhanhComponent, ChiNhanhThemMoiComponent, ChiNhanhCapNhatComponent, DanhMucGiaCongComponent, DanhMucGiaCongThemMoiComponent, DanhMucGiaCongCapNhatComponent, DanhMucLoiComponent, DanhMucLoiThemMoiComponent, DanhMucLoiCapNhatComponent, DanhMucNoComponent, DanhMucNoCapNhatComponent, DanhMucNoThemMoiComponent, DanhMucTieuChuanComponent, DanhMucTieuChuanCapNhatComponent, DanhMucTieuChuanThemMoiComponent, KhoHangComponent, KhoHangThemMoiComponent, KhoHangCapNhatComponent, DonViTinhComponent, DonViTinhThemMoiComponent, DonViTinhCapNhatComponent, DonViGiaCongComponent, DonViGiaCongThemMoiComponent, DonViGiaCongCapNhatComponent, NoiDungThuChiComponent, NoiDungThuChiCapNhatComponent, NoiDungThuChiThemMoiComponent, QuyTaiKhoanComponent, QuyTaiKhoanCapNhatComponent, QuyTaiKhoanThemMoiComponent, SoMatComponent, SoMatCapNhatComponent, SoMatThemMoiComponent, NguonNhanLucComponent, NguonNhanLucCapNhatComponent, NguonNhanLucThemMoiComponent, HangHoaNguyenLieuComponent, HangHoaNguyenLieuCapNhatComponent, HangHoaNguyenLieuThemMoiComponent, HangHoaHangTronComponent, HangHoaHangTronCapNhatComponent, HangHoaHangTronThemMoiComponent, DinhMucComponent, DinhMucCapNhatComponent, DinhMucThemMoiComponent, DanhSachXeComponent, DanhSachXeCapNhatComponent, DanhSachXeThemMoiComponent, HangHoaThanhPhamComponent, HangHoaThanhPhamCapNhatComponent, HangHoaThanhPhamThemMoiComponent, TaiXeComponent, TaiXeCapNhatComponent, TaiXeThemMoiComponent, LoaiHangComponent, LoaiHangCapNhatComponent, LoaiHangThemMoiComponent],
     imports: [
         CommonModule,
         SharedModule,

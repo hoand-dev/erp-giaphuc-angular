@@ -1,0 +1,93 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/hang-hoa-thanh-pham']">Thành phẩm</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>{{ 'Thành phẩm' | uppercase }} - THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="6" [formData]="hanghoa" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="form_fieldDataChanged($event)">
+                                    
+                                    <dxi-item [colSpan]="2" [label]="{text: 'GIA CÔNG'}" dataField="dinhmuc_giacong" editorType="dxTagBox" [editorOptions]="{ dataSource: lstGiaCong, searchEnabled: true, displayExpr: 'tendinhmuc' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn gia công"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'SỐ MẶT'}" dataField="somat" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstSoMat, searchEnabled: true, displayExpr: 'tensomat' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn số mặt"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{text: 'TIÊU CHUẨN'}" dataField="tieuchuan" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstTieuChuan, searchEnabled: true, displayExpr: 'tendanhmuctieuchuan' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn tiêu chuẩn"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'LOẠI HÀNG'}" dataField="loaihang" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstLoaiHang, searchEnabled: true, displayExpr: 'tenloaihang' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn loại hàng"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'NCC'}" dataField="ncc">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập ncc"></dxi-validation-rule>
+                                    </dxi-item>
+                                    
+                                    <dxi-item [label]="{text: 'DÀY'}" dataField="day" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập độ dày"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'RỘNG'}" dataField="rong" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập độ rộng"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'DÀI'}" dataField="dai" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập độ dài"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{text: 'ĐƠN VỊ TÍNH'}" dataField="donvitinh" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstDonViTinh, searchEnabled: true, displayExpr: 'tendonvitinh' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị tính"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'ĐƠN VỊ TÍNH 1'}" dataField="donvitinhphu" editorType="dxSelectBox" [editorOptions]="{ dataSource: lstDonViTinh, searchEnabled: true, displayExpr: 'tendonvitinh' }">
+                                        <!-- <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị tính 1"></dxi-validation-rule> -->
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'QUY ĐỔI'}" dataField="quydoi1" editorType="dxNumberBox">
+                                        <dxi-validation-rule type="custom" message="Quy đổi phải lớn hơn 0" [validationCallback]="checkQuyDoi"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [colSpan]="2" [label]="{text: 'MÃ THÀNH PHẨM'}" dataField="mahanghoa" [editorOptions]="{ disabled: true }">
+                                        <dxi-validation-rule type="required" message="Nhập mã thành phẩm"></dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã thành phẩm quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="custom" message="Mã thành phẩm đã tồn tại" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [colSpan]="2" [label]="{text: 'TÊN THÀNH PHẨM'}" dataField="tenhanghoa" [editorOptions]="{ disabled: true }">
+                                        <dxi-validation-rule type="required" message="Nhập tên thành phẩm"></dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên thành phẩm quá ngắn"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'M3/TẤM'}" dataField="m3" editorType="dxNumberBox" [editorOptions]="{ disabled: true }"></dxi-item>
+                                    <dxi-item [label]="{text: 'ĐƠN GIÁ'}" dataField="gianhap" editorType="dxNumberBox"></dxi-item>
+                                    <dxi-item [label]="{text: 'ĐỊNH MỨC TỒN'}" dataField="dinhmucton" editorType="dxNumberBox"></dxi-item>
+                                    <dxi-item [label]="{text: 'TRỌNG LƯỢNG'}" dataField="trongluong" editorType="dxNumberBox"></dxi-item>
+
+                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" [colSpan]="4"></dxi-item> <!-- editorType="dxTextArea" -->
+                                    <dxi-item [colSpan]="3" [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+
+                                    <dxi-item [colSpan]="3" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

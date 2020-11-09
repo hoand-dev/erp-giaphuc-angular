@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DonViTinh, HangHoa } from '@app/shared/entities';
-import { DonViTinhService, HangHoaService } from '@app/shared/services';
+import { AppInfoService, DonViTinhService, HangHoaService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
@@ -32,6 +32,7 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
     }
 
     constructor(
+        public appInfoService: AppInfoService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private authenticationService: AuthenticationService,
@@ -41,6 +42,7 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.hanghoa = new HangHoa();
+        this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_nguyenlieu;
 
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
