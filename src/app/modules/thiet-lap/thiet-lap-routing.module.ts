@@ -56,6 +56,9 @@ import { TaiXeComponent } from './pages/tai-xe/tai-xe.component';
 import { HangHoaThanhPhamComponent } from './pages/hang-hoa-thanh-pham/hang-hoa-thanh-pham.component';
 import { HangHoaThanhPhamCapNhatComponent } from './pages/hang-hoa-thanh-pham-cap-nhat/hang-hoa-thanh-pham-cap-nhat.component';
 import { HangHoaThanhPhamThemMoiComponent } from './pages/hang-hoa-thanh-pham-them-moi/hang-hoa-thanh-pham-them-moi.component';
+import { LoaiHangCapNhatComponent } from './pages/loai-hang-cap-nhat/loai-hang-cap-nhat.component';
+import { LoaiHangThemMoiComponent } from './pages/loai-hang-them-moi/loai-hang-them-moi.component';
+import { LoaiHangComponent } from './pages/loai-hang/loai-hang.component';
 
 const routes: Routes = [
     {
@@ -218,6 +221,15 @@ const routes: Routes = [
             { path: '', component: TaiXeComponent },
             { path: 'them-moi', component: TaiXeThemMoiComponent },
             { path: ':id/cap-nhat', component: TaiXeCapNhatComponent },
+        ]
+    },
+    {
+        path: 'loai-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: LoaiHangComponent },
+            { path: 'them-moi', component: LoaiHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: LoaiHangCapNhatComponent },
         ]
     }
 ];
