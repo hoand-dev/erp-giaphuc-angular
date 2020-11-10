@@ -62,7 +62,7 @@ import {
     KhuVucComponent,
     KhuVucThemMoiComponent,
     KhuVucCapNhatComponent
-} from '.';
+} from './pages';
 
 const routes: Routes = [
     {

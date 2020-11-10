@@ -13,7 +13,7 @@ import {
     PhieuTraHangNCCCapNhatComponent,
     PhieuTraHangNCCComponent,
     PhieuTraHangNCCThemMoiComponent
-} from '.';
+} from './pages';
 
 const routes: Routes = [
     {
