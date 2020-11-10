@@ -68,7 +68,7 @@ import {
     NhomNhaCungCapThemMoiComponent,
     NhomKhachHangCapNhatComponent,
     NhomKhachHangThemMoiComponent,
-} from '.';
+} from './pages';
 
 const routes: Routes = [
     {

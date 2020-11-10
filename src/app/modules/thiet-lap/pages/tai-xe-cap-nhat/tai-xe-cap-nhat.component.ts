@@ -5,9 +5,8 @@ import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { TaiXeService } from '@app/shared/services';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tai-xe-cap-nhat',
