@@ -61,7 +61,13 @@ import {
     LoaiHangCapNhatComponent,
     KhuVucComponent,
     KhuVucThemMoiComponent,
-    KhuVucCapNhatComponent
+    KhuVucCapNhatComponent,
+    NhomKhachHangComponent,
+    NhomNhaCungCapCapNhatComponent,
+    NhomNhaCungCapComponent,
+    NhomNhaCungCapThemMoiComponent,
+    NhomKhachHangCapNhatComponent,
+    NhomKhachHangThemMoiComponent,
 } from '.';
 
 const routes: Routes = [
@@ -243,6 +249,24 @@ const routes: Routes = [
             { path: '', component: KhuVucComponent },
             { path: 'them-moi', component: KhuVucThemMoiComponent },
             { path: ':id/cap-nhat', component: KhuVucCapNhatComponent }
+        ]
+    },
+    {
+        path: 'nhom-nha-cung-cap',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: NhomNhaCungCapComponent },
+            { path: 'them-moi', component: NhomNhaCungCapThemMoiComponent },
+            { path: ':id/cap-nhat', component: NhomNhaCungCapCapNhatComponent }
+        ]
+    },
+    {
+        path: 'nhom-khach-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: NhomKhachHangComponent },
+            { path: 'them-moi', component:NhomKhachHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: NhomKhachHangCapNhatComponent }
         ]
     }
 ];
