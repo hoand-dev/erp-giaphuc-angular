@@ -34,4 +34,21 @@ export class DonViGiaCongService extends BaseService {
     deleteDonViGiaCong(id: number): Observable<DonViGiaCong> {
         return this.httpClient.delete<DonViGiaCong>(this.apiUrl + `/${id}`);
     }
+
+    checkExistDonViGiaCong(madonvigiacong: string, madonvigiacong_old: string = null) {
+        if (madonvigiacong == madonvigiacong_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?madonvigiacong=${madonvigiacong}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

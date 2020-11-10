@@ -21,6 +21,8 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
     private currentChiNhanh: ChiNhanh;
 
     public nguonnhanluc: NguonNhanLuc;
+
+    public manguonnhanluc_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -39,6 +41,7 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.nguonnhanluc = new NguonNhanLuc();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let nguonnhanluc_id = params.id;
@@ -47,6 +50,7 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.nguonnhanlucService.findNguonNhanLuc(nguonnhanluc_id).subscribe(
                     data => {
                         this.nguonnhanluc = data[0];
+                        this.manguonnhanluc_old = this.nguonnhanluc.manguonnhanluc;
                     },
                     error => {
                         this.nguonnhanlucService.handleError(error);
@@ -64,12 +68,8 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã nguồn nhân lực lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.nguonnhanlucService.checkExistNguonNhanLuc(params.value, this.manguonnhanluc_old);
     }
 
     onSubmitForm(e) {

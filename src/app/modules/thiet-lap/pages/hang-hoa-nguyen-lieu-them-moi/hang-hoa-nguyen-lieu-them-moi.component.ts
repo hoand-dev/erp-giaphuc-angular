@@ -51,6 +51,7 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
         this.hanghoa = new HangHoa();
         this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_nguyenlieu;
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(
             this.donvitinhService.findDonViTinhs().subscribe(
@@ -68,12 +69,8 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục nguyên liệu lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.hanghoaService.checkExistHangHoa(params.value);
     }
 
     onSubmitForm(e) {

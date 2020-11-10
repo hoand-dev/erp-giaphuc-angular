@@ -34,4 +34,21 @@ export class DanhMucGiaCongService extends BaseService {
     deleteDanhMucGiaCong(id: number): Observable<DanhMucGiaCong> {
         return this.httpClient.delete<DanhMucGiaCong>(this.apiUrl + `/${id}`);
     }
+
+    checkExistDanhMucGiaCong(madanhmucgiacong: string, madanhmucgiacong_old: string = null) {
+        if (madanhmucgiacong == madanhmucgiacong_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?madanhmucgiacong=${madanhmucgiacong}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

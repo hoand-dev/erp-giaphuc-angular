@@ -36,4 +36,21 @@ export class HangHoaService extends BaseService {
     deleteHangHoa(id: number): Observable<HangHoa> {
         return this.httpClient.delete<HangHoa>(this.apiUrl + `/${id}`);
     }
+
+    checkExistHangHoa(mahanghoa: string, mahanghoa_old: string = null) {
+        if (mahanghoa == mahanghoa_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?mahanghoa=${mahanghoa}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

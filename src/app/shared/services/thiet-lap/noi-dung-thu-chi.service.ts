@@ -34,4 +34,21 @@ export class NoiDungThuChiService extends BaseService {
     deleteNoiDungThuChi(id: number): Observable<NoiDungThuChi> {
         return this.httpClient.delete<NoiDungThuChi>(this.apiUrl + `/${id}`);
     }
+
+    checkExistNoiDungThuChi(manoidungthuchi: string, manoidungthuchi_old: string = null) {
+        if (manoidungthuchi == manoidungthuchi_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?manoidungthuchi=${manoidungthuchi}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

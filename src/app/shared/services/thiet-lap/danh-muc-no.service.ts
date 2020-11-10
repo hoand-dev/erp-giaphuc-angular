@@ -34,4 +34,21 @@ export class DanhMucNoService extends BaseService {
     deleteDanhMucNo(id: number): Observable<DanhMucNo> {
         return this.httpClient.delete<DanhMucNo>(this.apiUrl + `/${id}`);
     }
+
+    checkExistDanhMucNo(madanhmucno: string, madanhmucno_old: string = null) {
+        if (madanhmucno == madanhmucno_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?madanhmucno=${madanhmucno}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

@@ -34,4 +34,21 @@ export class DonViTinhService extends BaseService {
     deleteDonViTinh(id: number): Observable<DonViTinh> {
         return this.httpClient.delete<DonViTinh>(this.apiUrl + `/${id}`);
     }
+
+    checkExistDonViTinh(madonvitinh: string, madonvitinh_old: string = null) {
+        if (madonvitinh == madonvitinh_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?madonvitinh=${madonvitinh}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

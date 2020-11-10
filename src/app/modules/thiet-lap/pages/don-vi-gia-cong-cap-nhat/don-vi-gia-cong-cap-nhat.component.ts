@@ -22,6 +22,8 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
     private currentChiNhanh: ChiNhanh;
     public lstKhoHang: KhoHang[] = [];
     public donvigiacong: DonViGiaCong;
+
+    public madonvigiacong_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -41,6 +43,8 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.donvigiacong = new DonViGiaCong();
+
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let donvigiacong_id = params.id;
@@ -49,6 +53,7 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.donvigiacongService.findDonViGiaCong(donvigiacong_id).subscribe(
                     data => {
                         this.donvigiacong = data[0];
+                        this.madonvigiacong_old = this.donvigiacong.madonvigiacong;
                         this.donvigiacong.loaidonvi = this.donvigiacong.loaigiacong == 2 ? true : false; // 2: gia công ngoài
                     },
                     error => {
@@ -75,12 +80,8 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã kho hàng lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.donvigiacongService.checkExistDonViGiaCong(params.value, this.madonvigiacong_old);
     }
 
     onSubmitForm(e) {

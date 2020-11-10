@@ -34,4 +34,21 @@ export class NguonNhanLucService extends BaseService {
     deleteNguonNhanLuc(id: number): Observable<NguonNhanLuc> {
         return this.httpClient.delete<NguonNhanLuc>(this.apiUrl + `/${id}`);
     }
+
+    checkExistNguonNhanLuc(manguonnhanluc: string, manguonnhanluc_old: string = null) {
+        if (manguonnhanluc == manguonnhanluc_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?manguonnhanluc=${manguonnhanluc}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

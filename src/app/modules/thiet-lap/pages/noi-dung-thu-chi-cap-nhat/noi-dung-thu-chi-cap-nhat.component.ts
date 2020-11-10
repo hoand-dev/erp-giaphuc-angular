@@ -22,6 +22,8 @@ export class NoiDungThuChiCapNhatComponent implements OnInit, OnDestroy {
     
     public noidungthuchi: NoiDungThuChi;
     public saveProcessing = false;
+    
+    public manoidungthuchi_old: string;
     public lstLoaiThuChi: any[] = ["thu", "chi"];
     
     public rules: Object = { 'X': /[02-9]/ };
@@ -41,6 +43,7 @@ export class NoiDungThuChiCapNhatComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.noidungthuchi = new NoiDungThuChi();
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let noidungthuchi_id = params.id;
@@ -49,6 +52,7 @@ export class NoiDungThuChiCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.noidungthuchiService.findNoiDungThuChi(noidungthuchi_id).subscribe(
                     data => {
                         this.noidungthuchi = data[0];
+                        this.manoidungthuchi_old = this.noidungthuchi.manoidungthuchi;
                     },
                     error => {
                         this.noidungthuchiService.handleError(error);
@@ -66,12 +70,8 @@ export class NoiDungThuChiCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã nội dung thu chi lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.noidungthuchiService.checkExistNoiDungThuChi(params.value, this.manoidungthuchi_old);
     }
 
     onSubmitForm(e) {

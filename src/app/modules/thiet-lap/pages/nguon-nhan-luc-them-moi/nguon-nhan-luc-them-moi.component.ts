@@ -46,6 +46,7 @@ export class NguonNhanLucThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.nguonnhanluc = new NguonNhanLuc();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
@@ -57,12 +58,8 @@ export class NguonNhanLucThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã nguồn nhân lực lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.nguonnhanlucService.checkExistNguonNhanLuc(params.value);
     }
 
     onSubmitForm(e) {

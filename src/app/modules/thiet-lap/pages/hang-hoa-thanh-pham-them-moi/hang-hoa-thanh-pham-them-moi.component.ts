@@ -29,6 +29,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
 
     public hanghoa: HangHoa;
+
     public lstTieuChuan: DanhMucTieuChuan[] = [];
     public lstLoaiHang: LoaiHang[] = [];
     public lstGiaCong: DinhMuc[] = [];
@@ -63,19 +64,8 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         this.hanghoa = new HangHoa();
         this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_thanhpham;
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(
-            this.tieuchuanService.findDanhMucTieuChuans().subscribe(
-                x => {
-                    this.lstTieuChuan = x;
-                })
-        );
-        this.subscriptions.add(
-            this.loaihangService.findLoaiHangs().subscribe(
-                x => {
-                    this.lstLoaiHang = x;
-                })
-        );
         this.subscriptions.add(
             this.giacongService.findDinhMucs().subscribe(
                 x => {
@@ -86,6 +76,18 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
             this.somatService.findSoMats().subscribe(
                 x => {
                     this.lstSoMat = x;
+                })
+        );
+        this.subscriptions.add(
+            this.tieuchuanService.findDanhMucTieuChuans().subscribe(
+                x => {
+                    this.lstTieuChuan = x;
+                })
+        );
+        this.subscriptions.add(
+            this.loaihangService.findLoaiHangs().subscribe(
+                x => {
+                    this.lstLoaiHang = x;
                 })
         );
         this.subscriptions.add(
@@ -104,12 +106,8 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục thành phẩm lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.hanghoaService.checkExistHangHoa(params.value);
     }
 
     checkQuyDoi(params){
@@ -122,7 +120,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
     form_fieldDataChanged(e){
         /* tạo mã + tên hàng hóa */
         if (
-            e.dataField == "giacong" ||
+            e.dataField == "dinhmuc_giacong" ||
             e.dataField == "somat" ||
             e.dataField == "tieuchuan" ||
             e.dataField == "day" ||

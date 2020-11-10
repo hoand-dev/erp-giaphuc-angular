@@ -21,6 +21,8 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     private currentChiNhanh: ChiNhanh;
     public lstGiaCong: DanhMucGiaCong[] = [];
     public dinhmuc: DinhMuc;
+
+    public madinhmuc_old: string;
     public saveProcessing = false;
 
     // các danh sách dữ liệu bảng con
@@ -57,6 +59,8 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.dinhmuc = new DinhMuc();
+
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
 
         this.saveProcessing = true;
@@ -107,6 +111,8 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
                                 this.hanghoalenght = data.dinhmuc_nguyenlieu.length;
 
                                 this.dinhmuc = data;
+                                this.madinhmuc_old = this.dinhmuc.madinhmuc;
+                                
                                 this.hanghoas = this.dinhmuc.dinhmuc_nguyenlieu;
                                 this.nguonlucs = this.dinhmuc.dinhmuc_nguonluc;
                                 this.chiphikhacs = this.dinhmuc.dinhmuc_chiphikhac;
@@ -135,12 +141,8 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã định mức lấy dc từ api true (đã tồn tại)
-        if (params.value == 'ssss') {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.dinhmucService.checkExistDinhMuc(params.value, this.madinhmuc_old);
     }
 
     onHangHoaAdd() {

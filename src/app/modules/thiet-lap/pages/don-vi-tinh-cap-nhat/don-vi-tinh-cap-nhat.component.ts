@@ -21,6 +21,8 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
     private currentChiNhanh: ChiNhanh;
 
     public donvitinh: DonViTinh;
+
+    public madonvitinh_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -40,6 +42,7 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.donvitinh = new DonViTinh();
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let donvitinh_id = params.id;
@@ -48,6 +51,7 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.donvitinhService.findDonViTinh(donvitinh_id).subscribe(
                     data => {
                         this.donvitinh = data[0];
+                        this.madonvitinh_old = this.donvitinh.madonvitinh;
                     },
                     error => {
                         this.donvitinhService.handleError(error);
@@ -65,12 +69,8 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã đơn vị tính lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.donvitinhService.checkExistDonViTinh(params.value, this.madonvitinh_old);
     }
 
     onSubmitForm(e) {

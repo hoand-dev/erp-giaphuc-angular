@@ -23,6 +23,8 @@ export class QuyTaiKhoanCapNhatComponent implements OnInit, OnDestroy {
     public quytaikhoan: QuyTaiKhoan;
     public saveProcessing = false;
 
+    public maquy_old: string;
+
     public rules: Object = { 'X': /[02-9]/ };
     public buttonSubmitOptions: any = {
         text: "Lưu lại",
@@ -40,6 +42,7 @@ export class QuyTaiKhoanCapNhatComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.quytaikhoan = new QuyTaiKhoan();
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let quytaikhoan_id = params.id;
@@ -48,6 +51,7 @@ export class QuyTaiKhoanCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.quytaikhoanService.findQuyTaiKhoan(quytaikhoan_id).subscribe(
                     data => {
                         this.quytaikhoan = data[0];
+                        this.maquy_old = this.quytaikhoan.maquy;
                     },
                     error => {
                         this.quytaikhoanService.handleError(error);
@@ -65,12 +69,8 @@ export class QuyTaiKhoanCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã quỹ lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.quytaikhoanService.checkExistQuyTaiKhoan(params.value, this.maquy_old);
     }
 
     onSubmitForm(e) {

@@ -34,4 +34,21 @@ export class SoMatService extends BaseService {
     deleteSoMat(id: number): Observable<SoMat> {
         return this.httpClient.delete<SoMat>(this.apiUrl + `/${id}`);
     }
+
+    checkExistSoMat(masomat: string, masomat_old: string = null) {
+        if (masomat == masomat_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?masomat=${masomat}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

@@ -4,13 +4,16 @@
         <div class="row mb-2">
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/don-vi-tinh']">Đơn vị tính</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/don-vi-tinh']">Đơn vị tính</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 
@@ -26,28 +29,19 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="2" [formData]="donvitinh" [showValidationSummary]="true">
-                                    <dxi-item [label]="{text: 'MÃ ĐƠN VỊ TÍNH'}" dataField="madonvitinh">
-                                        <dxi-validation-rule type="required" message="Nhập mã đơn vị tính">
-                                        </dxi-validation-rule>
-                                        <dxi-validation-rule type="stringLength" [min]="2"
-                                            message="Mã đơn vị tính quá ngắn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="custom" message="Mã đơn vị tính đã tồn tại"
-                                            [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    <dxi-item [label]="{ text: 'MÃ ĐƠN VỊ TÍNH' }" dataField="madonvitinh">
+                                        <dxi-validation-rule type="required" message="Nhập mã đơn vị tính"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã đơn vị tính quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'TÊN ĐƠN VỊ TÍNH'}" dataField="tendonvitinh">
-                                        <dxi-validation-rule type="required" message="Nhập tên đơn vị tính">
-                                        </dxi-validation-rule>
-                                        <dxi-validation-rule type="stringLength" [min]="2"
-                                            message="Tên đơn vị tính quá ngắn"></dxi-validation-rule>
+                                    <dxi-item [label]="{ text: 'TÊN ĐƠN VỊ TÍNH' }" dataField="tendonvitinh">
+                                        <dxi-validation-rule type="required" message="Nhập tên đơn vị tính"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên đơn vị tính quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea"
-                                        [colSpan]="2"></dxi-item>
-                                    <dxi-item [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat"
-                                        editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
 
-                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button"
-                                        horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
-
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
                                 </dx-form>
                             </form>
                         </div>

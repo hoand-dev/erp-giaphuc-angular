@@ -46,6 +46,7 @@ export class QuyTaiKhoanThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.quytaikhoan = new QuyTaiKhoan();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
@@ -57,12 +58,8 @@ export class QuyTaiKhoanThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục quỹ lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.quytaikhoanService.checkExistQuyTaiKhoan(params.value);
     }
 
     onSubmitForm(e) {

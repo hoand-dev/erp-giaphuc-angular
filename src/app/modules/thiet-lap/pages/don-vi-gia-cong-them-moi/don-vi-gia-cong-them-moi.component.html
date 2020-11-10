@@ -4,13 +4,16 @@
         <div class="row mb-2">
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/don-vi-gia-cong']">Đơn vị gia công</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/don-vi-gia-cong']">Đơn vị gia công</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 
@@ -26,47 +29,40 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="2" [formData]="donvigiacong" [showValidationSummary]="true">
-                                    <dxi-item [label]="{text: 'MÃ ĐƠN VỊ GIA CÔNG'}" dataField="madonvigiacong">
-                                        <dxi-validation-rule type="required" message="Nhập mã đơn vị gia công">
-                                        </dxi-validation-rule>
-                                        <dxi-validation-rule type="stringLength" [min]="2"
-                                            message="Mã đơn vị gia công quá ngắn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="custom" message="Mã đơn vị gia công đã tồn tại"
-                                            [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    <dxi-item [label]="{ text: 'MÃ ĐƠN VỊ GIA CÔNG' }" dataField="madonvigiacong">
+                                        <dxi-validation-rule type="required" message="Nhập mã đơn vị gia công"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã đơn vị gia công quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'TÊN ĐƠN VỊ GIA CÔNG'}" dataField="tendonvigiacong">
-                                        <dxi-validation-rule type="required" message="Nhập tên đơn vị gia công">
-                                        </dxi-validation-rule>
-                                        <dxi-validation-rule type="stringLength" [min]="2"
-                                            message="Tên đơn vị gia công quá ngắn"></dxi-validation-rule>
+                                    <dxi-item [label]="{ text: 'TÊN ĐƠN VỊ GIA CÔNG' }" dataField="tendonvigiacong">
+                                        <dxi-validation-rule type="required" message="Nhập tên đơn vị gia công"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên đơn vị gia công quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
 
-                                    <dxi-item [label]="{text: 'SĐT'}" dataField="sodienthoai"></dxi-item>
+                                    <dxi-item [label]="{ text: 'SĐT' }" dataField="sodienthoai"></dxi-item>
                                     <!-- <dxi-item [label]="{text: 'EMAIL'}" dataField="email"></dxi-item> -->
-                                    <dxi-item [label]="{text: 'MÃ SỐ THUẾ'}" dataField="masothue"></dxi-item>
-                                    <dxi-item [label]="{text: 'CÔNG NỢ BAN ĐẦU'}" dataField="congnobandau" editorType="dxNumberBox"></dxi-item>
+                                    <dxi-item [label]="{ text: 'MÃ SỐ THUẾ' }" dataField="masothue"></dxi-item>
+                                    <dxi-item [label]="{ text: 'CÔNG NỢ BAN ĐẦU' }" dataField="congnobandau" editorType="dxNumberBox"></dxi-item>
 
-                                    <dxi-item [label]="{text: 'SỐ TÀI KHOẢN'}" dataField="sotaikhoan"></dxi-item>
-                                    <dxi-item [label]="{text: 'NGÂN HÀNG'}" dataField="tennganhang"></dxi-item>
-                                    <dxi-item [label]="{text: 'CHỦ TÀI KHOẢN'}" dataField="tenchutaikhoan"></dxi-item>
+                                    <dxi-item [label]="{ text: 'SỐ TÀI KHOẢN' }" dataField="sotaikhoan"></dxi-item>
+                                    <dxi-item [label]="{ text: 'NGÂN HÀNG' }" dataField="tennganhang"></dxi-item>
+                                    <dxi-item [label]="{ text: 'CHỦ TÀI KHOẢN' }" dataField="tenchutaikhoan"></dxi-item>
 
-                                    <dxi-item [label]="{text: 'ĐỊA CHỈ'}" dataField="diachi" [colSpan]="2"></dxi-item>
-                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea"
-                                        [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
 
-                                    <dxi-item [label]="{text: 'GC NGOÀI'}" dataField="loaidonvi" editorType="dxCheckBox"
-                                        [editorOptions]="{ text: 'Là đơn vị gia công ngoài' }"></dxi-item>
-                                    <dxi-item [label]="{text: 'KHO GIA CÔNG'}" dataField="khogiacong" editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoHang, searchEnabled: true, displayExpr: 'tenkhohang' }">
-                                        <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công">
-                                        </dxi-validation-rule>
+                                    <dxi-item [label]="{ text: 'GC NGOÀI' }" dataField="loaidonvi" editorType="dxCheckBox" [editorOptions]="{ text: 'Là đơn vị gia công ngoài' }"></dxi-item>
+                                    <dxi-item
+                                        [label]="{ text: 'KHO GIA CÔNG' }"
+                                        dataField="khogiacong"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: lstKhoHang, searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"> </dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat"
-                                        editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
 
-                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button"
-                                        horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
-
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
                                 </dx-form>
                             </form>
                         </div>
