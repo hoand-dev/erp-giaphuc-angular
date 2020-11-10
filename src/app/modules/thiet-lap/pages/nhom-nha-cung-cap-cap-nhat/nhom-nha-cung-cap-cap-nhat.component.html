@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/chi-nhanh']">Nhóm Khách Hàng</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/chi-nhanh']">Nhóm Nhà Cung Cấp</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div><!-- /.col -->
@@ -21,20 +21,20 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title" [style.margin-bottom.px]="20">
-                            <h5>NHÓM KHÁCH HÀNG - CẬP NHẬT</h5>
+                            <h5>NHÓM NHÀ CUNG CẤP - CẬP NHẬT</h5>
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form #test id="form" [colCount]="2" [formData]="nhomkhachhang" [showValidationSummary]="true">
-                                    <dxi-item [label]="{text: 'MÃ NHÓM KHÁCH HÀNG'}" dataField="manhomkhachhang">
-                                        <dxi-validation-rule type="required" message="Nhập mã nhóm khách hàng">
+                                <dx-form #test id="form" [colCount]="2" [formData]="nhomnhacungcap" [showValidationSummary]="true">
+                                    <dxi-item [label]="{text: 'MÃ NHÓM NHÀ CUNG CẤP'}" dataField="manhomnhacungcap">
+                                        <dxi-validation-rule type="required" message="Nhập mã nhóm nhà cung cấp">
                                         </dxi-validation-rule>               
-                                        <dxi-validation-rule type="async" message="Mã nhóm khách hàng đã tồn tại" [validationCallback]="theCallbackValid">
+                                        <dxi-validation-rule type="async" message="Mã nhóm nhà cung cấp đã tồn tại" [validationCallback]="theCallbackValid">
                                             <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
                                         </dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'TÊN NHÓM KHÁCH HÀNG'}" dataField="tennhomkhachhang">
-                                        <dxi-validation-rule type="required" message="Nhập tên nhóm khách hàng">
+                                    <dxi-item [label]="{text: 'TÊN NHÓM NHÀ CUNG CẤP'}" dataField="tennhomnhacungcap">
+                                        <dxi-validation-rule type="required" message="Nhập tên nhóm nhà cung cấp">
                                         </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2"
                                             message="Tên chi nhánh quá ngắn"></dxi-validation-rule>
