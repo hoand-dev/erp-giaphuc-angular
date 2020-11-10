@@ -1,3 +1,4 @@
+import { KhuVucComponent } from './pages/khu-vuc/khu-vuc.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/_helpers';
@@ -59,6 +60,8 @@ import { HangHoaThanhPhamThemMoiComponent } from './pages/hang-hoa-thanh-pham-th
 import { LoaiHangCapNhatComponent } from './pages/loai-hang-cap-nhat/loai-hang-cap-nhat.component';
 import { LoaiHangThemMoiComponent } from './pages/loai-hang-them-moi/loai-hang-them-moi.component';
 import { LoaiHangComponent } from './pages/loai-hang/loai-hang.component';
+import { KhuVucCapNhatComponent } from './pages/khu-vuc-cap-nhat/khu-vuc-cap-nhat.component';
+import { KhuVucThemMoiComponent } from './pages/khu-vuc-them-moi/khu-vuc-them-moi.component';
 
 const routes: Routes = [
     {
@@ -230,6 +233,15 @@ const routes: Routes = [
             { path: '', component: LoaiHangComponent },
             { path: 'them-moi', component: LoaiHangThemMoiComponent },
             { path: ':id/cap-nhat', component: LoaiHangCapNhatComponent },
+        ]
+    }
+    {
+        path: 'khu-vuc',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: KhuVucComponent },
+            { path: 'them-moi', component: KhuVucThemMoiComponent },
+            { path: ':id/cap-nhat', component: KhuVucCapNhatComponent },
         ]
     }
 ];

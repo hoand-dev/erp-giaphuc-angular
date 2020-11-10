@@ -34,4 +34,25 @@ export class KhuVucService extends BaseService {
     deleteKhuVuc(id: number): Observable<KhuVuc> {
         return this.httpClient.delete<KhuVuc>(this.apiUrl + `/${id}`);
     }
+
+    checkKhuVucExist(khuvuc: string, khuvuc_old: string = null) {
+        if (khuvuc == khuvuc_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?khuvuc=${khuvuc}`)
+                .toPromise()
+                .then(
+                    res => !res
+                    ) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                    return false; // tuong duong da ton tai
+                });
+      }
+
 }

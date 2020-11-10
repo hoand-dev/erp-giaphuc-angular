@@ -18,3 +18,4 @@ export * from './nguon-nhan-luc.service';
 export * from './danh-sach-xe.service';
 export * from './tai-xe.service';
 export * from './loai-hang.service';
+export * from './nhom-khach-hang.service';
