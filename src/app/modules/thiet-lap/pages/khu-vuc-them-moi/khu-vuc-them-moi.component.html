@@ -1,0 +1,51 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="[ '/khu-vuc']">Khu Vực</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>KHU VỰC- THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="2" [formData]="khuvuc" [showValidationSummary]="true">
+                                    <dxi-item [label]="{text: 'MÃ KHU VỰC'}" dataField="makhuvuc">
+                                        <dxi-validation-rule type="required" message="Nhập mã khu vực"></dxi-validation-rule>
+                                           <dxi-validation-rule type="async" message="Mã khu vực đã tồn tại" [validationCallback]="theCallbackValid">
+                                            <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
+                                        </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'TÊN KHU VỰC'}" dataField="tenkhuvuc">
+                                        <dxi-validation-rule type="required" message="Nhập tên khu vực"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                    
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

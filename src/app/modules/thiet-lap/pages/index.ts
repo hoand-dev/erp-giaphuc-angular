@@ -41,3 +41,7 @@ export * from './danh-sach-xe-them-moi/danh-sach-xe-them-moi.component';
 export * from './tai-xe/tai-xe.component';
 export * from './tai-xe-cap-nhat/tai-xe-cap-nhat.component';
 export * from './tai-xe-them-moi/tai-xe-them-moi.component';
+
+export * from './khu-vuc/khu-vuc.component';
+export * from './khu-vuc-cap-nhat/khu-vuc-cap-nhat.component';
+export * from './khu-vuc-them-moi/khu-vuc-them-moi.component';
