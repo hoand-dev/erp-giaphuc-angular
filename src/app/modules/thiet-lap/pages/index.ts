@@ -81,3 +81,13 @@ export * from './tai-xe-them-moi/tai-xe-them-moi.component';
 export * from './khu-vuc/khu-vuc.component';
 export * from './khu-vuc-cap-nhat/khu-vuc-cap-nhat.component';
 export * from './khu-vuc-them-moi/khu-vuc-them-moi.component';
+
+export * from './nhom-nha-cung-cap/nhom-nha-cung-cap.component';
+export * from './nhom-nha-cung-cap-cap-nhat/nhom-nha-cung-cap-cap-nhat.component';
+export * from './nhom-nha-cung-cap-them-moi/nhom-nha-cung-cap-them-moi.component';
+
+export * from './nhom-khach-hang/nhom-khach-hang.component';
+export * from './nhom-khach-hang-cap-nhat/nhom-khach-hang-cap-nhat.component';
+export * from './nhom-khach-hang-them-moi/nhom-khach-hang-them-moi.component';
+
+

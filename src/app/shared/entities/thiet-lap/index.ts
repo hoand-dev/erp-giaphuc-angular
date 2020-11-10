@@ -16,3 +16,4 @@ export * from './loai-hang';
 export * from './hang-hoa';
 export * from './nguon-nhan-luc';
 export * from './nhom-khach-hang';
+export * from './nhom-nha-cung-cap';
