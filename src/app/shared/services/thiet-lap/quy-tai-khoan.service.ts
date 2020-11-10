@@ -34,4 +34,21 @@ export class QuyTaiKhoanService extends BaseService {
     deleteQuyTaiKhoan(id: number): Observable<QuyTaiKhoan> {
         return this.httpClient.delete<QuyTaiKhoan>(this.apiUrl + `/${id}`);
     }
+
+    checkExistQuyTaiKhoan(maquytaikhoan: string, maquytaikhoan_old: string = null) {
+        if (maquytaikhoan == maquytaikhoan_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?maquytaikhoan=${maquytaikhoan}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

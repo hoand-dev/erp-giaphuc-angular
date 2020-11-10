@@ -51,6 +51,7 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.donvigiacong = new DonViGiaCong();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => {
             this.currentChiNhanh = x;
             // khi thêm mới thay đổi chi nhánh thì load lại danh sách kho hàng theo chi nhánh đó
@@ -73,12 +74,8 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã đơn vị gia công lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.donvigiacongService.checkExistDonViGiaCong(params.value);
     }
 
     onSubmitForm(e) {

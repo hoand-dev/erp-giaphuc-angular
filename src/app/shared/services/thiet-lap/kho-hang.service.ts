@@ -36,4 +36,21 @@ export class KhoHangService extends BaseService {
     deleteKhoHang(id: number): Observable<KhoHang> {
         return this.httpClient.delete<KhoHang>(this.apiUrl + `/${id}`);
     }
+
+    checkExistKhoHang(makhohang: string, makhohang_old: string = null) {
+        if (makhohang == makhohang_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?makhohang=${makhohang}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }

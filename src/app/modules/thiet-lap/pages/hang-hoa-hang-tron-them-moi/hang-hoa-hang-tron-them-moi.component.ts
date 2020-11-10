@@ -59,6 +59,7 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
         this.hanghoa = new HangHoa();
         this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_hangtron;
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(
             this.tieuchuanService.findDanhMucTieuChuans().subscribe(
@@ -88,12 +89,8 @@ export class HangHoaHangTronThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục hàng trơn lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.hanghoaService.checkExistHangHoa(params.value);
     }
 
     checkQuyDoi(params){

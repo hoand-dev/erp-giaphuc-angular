@@ -46,6 +46,7 @@ export class DonViTinhThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.donvitinh = new DonViTinh();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
@@ -57,12 +58,8 @@ export class DonViTinhThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục đơn vị tính lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){	
+        return this.donvitinhService.checkExistDonViTinh(params.value);
     }
 
     onSubmitForm(e) {

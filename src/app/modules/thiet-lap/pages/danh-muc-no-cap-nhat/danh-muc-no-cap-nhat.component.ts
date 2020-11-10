@@ -21,6 +21,8 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
     private currentChiNhanh: ChiNhanh;
     
     public danhmucno: DanhMucNo;
+
+    public madanhmucno_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -39,6 +41,8 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.danhmucno = new DanhMucNo();
+
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let danhmucno_id = params.id;
@@ -47,6 +51,7 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.danhmucnoService.findDanhMucNo(danhmucno_id).subscribe(
                     data => {
                         this.danhmucno = data[0];
+                        this.madanhmucno_old = this.danhmucno.madanhmucno;
                     },
                     error => {
                         this.danhmucnoService.handleError(error);
@@ -64,12 +69,8 @@ export class DanhMucNoCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục nợ lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.danhmucnoService.checkExistDanhMucNo(params.value, this.madanhmucno_old);
     }
 
     onSubmitForm(e) {

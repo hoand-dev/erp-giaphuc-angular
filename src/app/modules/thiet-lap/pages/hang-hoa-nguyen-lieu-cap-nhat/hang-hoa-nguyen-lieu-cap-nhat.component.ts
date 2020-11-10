@@ -22,6 +22,8 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
 
     public lstDonViTinh: DonViTinh[] = [];
     public hanghoa: HangHoa;
+
+    public mahanghoa_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -44,6 +46,7 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
         this.hanghoa = new HangHoa();
         this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_nguyenlieu;
 
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let hanghoa_id = params.id;
@@ -51,7 +54,8 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
             if (hanghoa_id) {
                 this.subscriptions.add(this.hanghoaService.findHangHoa(hanghoa_id).subscribe(
                     data => {
-                        this.hanghoa = data[0];
+                        this.hanghoa = data;
+                        this.mahanghoa_old = this.hanghoa.mahanghoa;
                     },
                     error => {
                         this.hanghoaService.handleError(error);
@@ -76,12 +80,8 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã nguyên liệu lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.hanghoaService.checkExistHangHoa(params.value, this.mahanghoa_old);
     }
 
     onSubmitForm(e) {

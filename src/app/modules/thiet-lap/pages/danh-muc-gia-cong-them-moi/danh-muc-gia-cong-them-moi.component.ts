@@ -47,6 +47,7 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
 
     ngOnInit(): void {
         this.danhmucgiacong = new DanhMucGiaCong();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     }
 
@@ -58,12 +59,8 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã danh mục gia công lấy dc từ api true (đã tồn tại) là "ssss"
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.danhmucgiacongService.checkExistDanhMucGiaCong(params.value);
     }
 
     onSubmitForm(e) {

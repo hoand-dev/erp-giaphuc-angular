@@ -47,17 +47,17 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn loại hàng"> </dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{text: 'NCC'}" dataField="ncc">
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'NCC' }" dataField="ncc">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập ncc"></dxi-validation-rule>
                                     </dxi-item>
-                                    
-                                    <dxi-item [label]="{text: 'DÀY'}" dataField="day" editorType="dxNumberBox">
+
+                                    <dxi-item [label]="{ text: 'DÀY' }" dataField="day" editorType="dxNumberBox">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập độ dày"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'RỘNG'}" dataField="rong" editorType="dxNumberBox">
+                                    <dxi-item [label]="{ text: 'RỘNG' }" dataField="rong" editorType="dxNumberBox">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập độ rộng"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'DÀI'}" dataField="dai" editorType="dxNumberBox">
+                                    <dxi-item [label]="{ text: 'DÀI' }" dataField="dai" editorType="dxNumberBox">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập độ dài"></dxi-validation-rule>
                                     </dxi-item>
 
@@ -81,16 +81,16 @@
                                         <dxi-validation-rule type="custom" message="Quy đổi phải lớn hơn 0" [validationCallback]="checkQuyDoi"></dxi-validation-rule>
                                     </dxi-item>
 
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'MÃ HÀNG TRƠN' }" dataField="mahanghoa" [editorOptions]="{ disabled: true }">
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'MÃ HÀNG TRƠN' }" dataField="mahanghoa" [editorOptions]="{ readOnly: true }">
                                         <dxi-validation-rule type="required" message="Nhập mã hàng trơn"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã hàng trơn quá ngắn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="custom" message="Mã hàng trơn đã tồn tại" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                        <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'TÊN HÀNG TRƠN' }" dataField="tenhanghoa" [editorOptions]="{ disabled: true }">
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'TÊN HÀNG TRƠN' }" dataField="tenhanghoa" [editorOptions]="{ readOnly: true }">
                                         <dxi-validation-rule type="required" message="Nhập tên hàng trơn"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Tên hàng trơn quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'M3/TẤM' }" dataField="m3" editorType="dxNumberBox" [editorOptions]="{ disabled: true }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'M3/TẤM' }" dataField="m3" editorType="dxNumberBox" [editorOptions]="{ readOnly: true }"></dxi-item>
                                     <dxi-item [label]="{ text: 'ĐƠN GIÁ' }" dataField="gianhap" editorType="dxNumberBox"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊNH MỨC TỒN' }" dataField="dinhmucton" editorType="dxNumberBox"></dxi-item>
                                     <dxi-item [label]="{ text: 'TRỌNG LƯỢNG' }" dataField="trongluong" editorType="dxNumberBox"></dxi-item>

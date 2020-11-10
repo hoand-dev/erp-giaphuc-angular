@@ -23,6 +23,8 @@ export class SoMatCapNhatComponent implements OnInit, OnDestroy {
     public somat: SoMat;
     public saveProcessing = false;
 
+    public masomat_old: string;
+
     public rules: Object = { 'X': /[02-9]/ };
     public buttonSubmitOptions: any = {
         text: "Lưu lại",
@@ -39,6 +41,7 @@ export class SoMatCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.somat = new SoMat();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
 
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
@@ -48,6 +51,7 @@ export class SoMatCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.somatService.findSoMat(somat_id).subscribe(
                     data => {
                         this.somat = data[0];
+                        this.masomat_old = this.somat.masomat;
                     },
                     error => {
                         this.somatService.handleError(error);
@@ -65,12 +69,8 @@ export class SoMatCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã số mặt lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.somatService.checkExistSoMat(params.value, this.masomat_old);
     }
 
     onSubmitForm(e) {

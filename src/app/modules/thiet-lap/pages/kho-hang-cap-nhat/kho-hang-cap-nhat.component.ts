@@ -22,6 +22,7 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
     private currentChiNhanh: ChiNhanh;
     public lstKhuVuc: KhuVuc[] = [];
     public khohang: KhoHang;
+    public makhohang_old: string;
     public saveProcessing = false;
 
     public rules: Object = { 'X': /[02-9]/ };
@@ -41,6 +42,7 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.khohang = new KhoHang();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let khohang_id = params.id;
@@ -49,6 +51,7 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
                 this.subscriptions.add(this.khohangService.findKhoHang(khohang_id).subscribe(
                     data => {
                         this.khohang = data[0];
+                        this.makhohang_old = this.khohang.makhohang;
                     },
                     error => {
                         this.khohangService.handleError(error);
@@ -74,12 +77,8 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    asyncValidation(params) {
-        // giả sử mã kho hàng lấy dc từ api true (đã tồn tại)
-        if (params.value == "ssss") {
-            return false;
-        }
-        return true;
+    theCallbackValid(params){
+        return this.khohangService.checkExistKhoHang(params.value, this.makhohang_old);
     }
 
     onSubmitForm(e) {

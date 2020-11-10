@@ -34,4 +34,21 @@ export class DinhMucService extends BaseService {
     deleteDinhMuc(id: number): Observable<DinhMuc> {
         return this.httpClient.delete<DinhMuc>(this.apiUrl + `/${id}`);
     }
+
+    checkExistDinhMuc(madinhmuc: string, madinhmuc_old: string = null) {
+        if (madinhmuc == madinhmuc_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?madinhmuc=${madinhmuc}`)
+                .toPromise()
+                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                });
+    }
 }
