@@ -22,7 +22,7 @@ import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 })
 export class DanhSachXeThemMoiComponent implements OnInit {
 
-    @ViewChild(DxFormComponent, { static: false }) frmSoMat: DxFormComponent;
+    @ViewChild(DxFormComponent, { static: false }) frmDanhSachXe: DxFormComponent;
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
@@ -79,7 +79,7 @@ export class DanhSachXeThemMoiComponent implements OnInit {
                     position: { my: "right top", at: "right top" }
                 }, "success", 475);
                 this.router.navigate(['/danh-sach-xe']); // chuyển trang sau khi thêm
-                this.frmSoMat.instance.resetValues();
+                this.frmDanhSachXe.instance.resetValues();
                 this.saveProcessing = false;
             },
             error => {
