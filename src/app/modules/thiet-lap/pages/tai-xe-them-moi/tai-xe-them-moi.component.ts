@@ -1,15 +1,18 @@
-import { AuthenticationService } from './../../../../_services/authentication.service';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { ChiNhanh } from '@app/shared/entities';
-import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
+import notify from 'devextreme/ui/notify';
 
 
 import { 
   DxFormComponent
 }from 'devextreme-angular';
-import { Subscription } from 'rxjs';
+
 import { TaiXeService } from '@app/shared/services';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from '@app/_services';
+import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
+import { ChiNhanh } from '@app/shared/entities';
 
 
 @Component({
@@ -64,8 +67,23 @@ export class TaiXeThemMoiComponent implements OnInit {
     taixe_req.chinhanh_id = this.currentChiNhanh.id;
 
     this.saveProcessing = true;
-    this.subscriptions.add
-
+    this.subscriptions.add(this.taixeService.addTaiXe(taixe_req).subscribe(
+      data => {
+        notify({
+          width: 320,
+          message: "Lưu thành công",
+          position: {my: "right top", at: "right top"}
+        },"success", 475);
+        this.router.navigate(['/tai-xe']);
+        this.frmTaiXe.instance.resetValues();
+        this.saveProcessing =true;
+      },
+      error => {
+        this.taixeService.handleError(error);
+        this.saveProcessing = false;
+      },
+    ));
+      e.preventDefault();
   }
   
 

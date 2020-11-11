@@ -35,15 +35,15 @@ export class KhuVucService extends BaseService {
         return this.httpClient.delete<KhuVuc>(this.apiUrl + `/${id}`);
     }
 
-    checkKhuVucExist(khuvuc: string, khuvuc_old: string = null) {
-        if (khuvuc == khuvuc_old)
+    checkKhuVucExist(makhuvuc: string, makhuvuc_old: string = null) {
+        if (makhuvuc == makhuvuc_old)
             return new Promise((resolve) => {
                 setTimeout(function () {
                     resolve(true); // chưa tồn tại
                 }, 300);
             });
         else
-            return this.httpClient.get(this.apiUrl + `/exist?khuvuc=${khuvuc}`)
+            return this.httpClient.get(this.apiUrl + `/exist?makhuvuc=${makhuvuc}`)
                 .toPromise()
                 .then(
                     res => !res

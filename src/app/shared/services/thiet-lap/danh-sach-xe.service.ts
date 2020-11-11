@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 })
 export class DanhSachXeService extends BaseService {
     //request url khai bao trong evironment
-    private apiUrl: string  = environment.apiUrl +'/soxe';
+    private apiUrl: string  = environment.apiUrl +'/danhsachxe';
 
     constructor(private httpClient: HttpClient){super ();}
 
@@ -27,23 +27,23 @@ export class DanhSachXeService extends BaseService {
     }
 
  
-    updateDanhSachXe(danhsachxe: DanhSachXe) :  Observable<DanhSachXe>{
-        return this.httpClient.put<DanhSachXe>(this.apiUrl +`/${danhsachxe.id}`, danhsachxe);
+    updateDanhSachXe(biensoxe: DanhSachXe) :  Observable<DanhSachXe>{
+        return this.httpClient.put<DanhSachXe>(this.apiUrl +`/${biensoxe.id}`, biensoxe);
     }
 
     deleteDanhSachXe(id: number): Observable<DanhSachXe>{
         return this.httpClient.delete<DanhSachXe>(this.apiUrl+`/${id}`);
     }
 
-    checkDanhSachXeExist(danhsachxe: string, danhsachxe_old: string = null) {
-        if (danhsachxe == danhsachxe_old)
+    checkDanhSachXeExist(biensoxe: string, danhsachxe_old: string = null) {
+        if (biensoxe == danhsachxe_old)
             return new Promise((resolve) => {
                 setTimeout(function () {
                     resolve(true); // chưa tồn tại
                 }, 300);
             });
         else
-            return this.httpClient.get(this.apiUrl + `/exist?soxe=${danhsachxe}`)
+            return this.httpClient.get(this.apiUrl + `/exist?biensoxe=${biensoxe}`)
                 .toPromise()
                 .then(
                     res => !res

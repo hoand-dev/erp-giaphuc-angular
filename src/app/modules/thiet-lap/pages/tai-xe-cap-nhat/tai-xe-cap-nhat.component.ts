@@ -43,7 +43,7 @@ export class TaiXeCapNhatComponent implements OnInit {
 
     this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh =x ));
     this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-      let taixe_id = params.taixe_id;
+      let taixe_id = params.id;
       //lấy thông tin tài Xế
       if(taixe_id) {
         this.subscriptions.add(this.taixeService.findTaiXe(taixe_id).subscribe(

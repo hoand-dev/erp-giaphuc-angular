@@ -32,7 +32,7 @@ export class TaiXeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngafterViewInit(): void {
+  ngAfterViewInit(): void {
     //called once before the instance is destroyed
     // Add 'implements OnDestroy' to the class.
 

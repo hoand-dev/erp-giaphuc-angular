@@ -14,16 +14,16 @@ export class TaiXeService extends BaseService{
   constructor(private httpClient: HttpClient) {super(); }
 
   findTaiXe(id:number): Observable<TaiXe> {
-    return this.httpClient.get<TaiXe>(this.apiUrl +`/${id}`)
+    return this.httpClient.get<TaiXe>(this.apiUrl +`/${id}`);
   }
 
   findTaiXes(): Observable<TaiXe[]>{
-    return this.httpClient.get<TaiXe[]>(this.apiUrl)
+    return this.httpClient.get<TaiXe[]>(this.apiUrl);
   }
 
   addTaiXe(taixe:TaiXe): Observable<TaiXe>{
 
-    return this.httpClient.post<TaiXe>(this.apiUrl, taixe)
+    return this.httpClient.post<TaiXe>(this.apiUrl, taixe);
   }
 
 //   updateSoMat(somat: SoMat): Observable<SoMat> {
@@ -31,23 +31,23 @@ export class TaiXeService extends BaseService{
 // }
 
   updateTaiXe(taixe:TaiXe): Observable<TaiXe>{
-    return this.httpClient.put<TaiXe>(this.apiUrl + `/${taixe.id}`, taixe)
+    return this.httpClient.put<TaiXe>(this.apiUrl + `/${taixe.id}`, taixe);
   }
 
 
   deleteTaiXe(id:number): Observable<TaiXe>{
-    return this.httpClient.delete<TaiXe>(this.apiUrl + `/${id}`)
+    return this.httpClient.delete<TaiXe>(this.apiUrl + `/${id}`);
   }
 
-  checkTaiXeExist(taixe: string, taixe_old: string = null) {
-    if (taixe == taixe_old)
+  checkTaiXeExist(mataixe: string, mataixe_old: string = null) {
+    if (mataixe == mataixe_old)
         return new Promise((resolve) => {
             setTimeout(function () {
                 resolve(true); // chưa tồn tại
             }, 300);
         });
     else
-        return this.httpClient.get(this.apiUrl + `/exist?taixe=${taixe}`)
+        return this.httpClient.get(this.apiUrl + `/exist?mataixe=${mataixe}`)
             .toPromise()
             .then(
                 res => !res
