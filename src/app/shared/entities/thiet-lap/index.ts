@@ -18,3 +18,4 @@ export * from './nguon-nhan-luc';
 export * from './nhom-khach-hang';
 export * from './nhom-nha-cung-cap';
 export * from './khach-hang';
+export * from './nha-cung-cap';
