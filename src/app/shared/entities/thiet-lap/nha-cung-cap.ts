@@ -22,7 +22,7 @@ export class NhaCungCap {
     public nhomnhacungcap_id: number;
     public dachicongno: number;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = null, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, manhacungcap: string = null, tennhacungcap: string = null, sodienthoai: string = null, diachi: string = null, masothue: string = null, email: string = null, tennguoidaidien: string = null, sotaikhoan: string = null, tenchutaikhoan: string = null, congnobandau: number = null, tennganhang: string = null, nhomnhacungcap_id: number = null, dachicongno: number = null){
+    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, manhacungcap: string = null, tennhacungcap: string = null, sodienthoai: string = null, diachi: string = null, masothue: string = null, email: string = null, tennguoidaidien: string = null, sotaikhoan: string = null, tenchutaikhoan: string = null, congnobandau: number = null, tennganhang: string = null, nhomnhacungcap_id: number = null, dachicongno: number = null){
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;

@@ -9,82 +9,80 @@ import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 
 @Component({
-  selector: 'app-khach-hang',
-  templateUrl: './khach-hang.component.html',
-  styleUrls: ['./khach-hang.component.css']
+    selector: 'app-khach-hang',
+    templateUrl: './khach-hang.component.html',
+    styleUrls: ['./khach-hang.component.css']
 })
 export class KhachHangComponent implements OnInit {
+    @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-  @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+    /*tối ưu subscriptions */
 
-  /*tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
 
-  subscriptions: Subscription = new Subscription();
+    private currentChiNhanh = ChiNhanh;
 
-  private currentChiNhanh = ChiNhanh;
+    public stateStoringGrid = {
+        enable: true,
+        type: 'localStorage',
+        storageKey: 'dxGrid_KhachHang'
+    };
 
-  public stateStoringGrid = {
-    enable: true,
-    type: "localStorage",
-    storageKey: "dxGrid_KhachHang"
-  };
+    constructor(private router: Router, private khachhangService: KhachHangService, private authenticationService: AuthenticationService) {}
 
-    constructor(
-      private router: Router,
-      private khachhangService: KhachHangService,
-      private  authenticationService: AuthenticationService
-    ) { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+    ngAfterViewInit(): void {
+        this.onLoadData();
+    }
 
-  ngAfterViewInit():void {
-    this.onLoadData();
-  }
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
+    onLoadData() {
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.khachhangService.handleError(error);
+                }
+            )
+        );
+    }
 
-  onLoadData(){
-    this.subscriptions.add(this.khachhangService.findKhachHangs().subscribe(
-      data => {
-        this.dataGrid.dataSource = data;
-      },
-      error => {
-        this.khachhangService.handleError(error);
-      }
-    ));
-  }
+    onRowDblClick(e) {
+        console.log(`khachhang_id: ${e.key.id}`);
+    }
 
-  onRowDblClick(e){
-    console.log(`khachhang_id: ${e.key.id}`);
-  }
-
-
-  onRowDelete(id){
-    let result = confirm("<i> Bạn có muốn xóa khách hàng này</i>", "Xác nhận xóa");
-    result.then((dialogResult) => {
-      if(dialogResult){
-        this.subscriptions.add(this.khachhangService.deleteKhachHang(id).subscribe(
-          data => {
-            if(data){
-              notify({
-                width: 320,
-                message: "Xóa thành công",
-                position: {my: "right top", at: "right top"}
-              }, "sucess", 475)
+    onRowDelete(id) {
+        let result = confirm('<i> Bạn có muốn xóa khách hàng này</i>', 'Xác nhận xóa');
+        result.then((dialogResult) => {
+            if (dialogResult) {
+                this.subscriptions.add(
+                    this.khachhangService.deleteKhachHang(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'sucess',
+                                    475
+                                );
+                            }
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.onLoadData();
+                        }
+                    )
+                );
             }
-            this.onLoadData();
-          },
-          error => {
-            this.onLoadData();
-          }
-            
-        ));
-        }
-      });
-    
-  }
-
+        });
+    }
 }
