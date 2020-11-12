@@ -79,7 +79,7 @@ export class KhuVucCapNhatComponent implements OnInit {
         this.saveProcessing = true;
         this.subscriptions.add(
             this.khuvucService.updateKhuVuc(khuvuc_req).subscribe(
-                (data) => {
+                data => {
                     notify(
                         {
                             width: 320,

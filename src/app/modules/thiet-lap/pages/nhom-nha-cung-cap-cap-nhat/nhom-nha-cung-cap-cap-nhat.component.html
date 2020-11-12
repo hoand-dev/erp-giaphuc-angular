@@ -29,7 +29,7 @@
                                     <dxi-item [label]="{text: 'MÃ NHÓM NHÀ CUNG CẤP'}" dataField="manhomnhacungcap">
                                         <dxi-validation-rule type="required" message="Nhập mã nhóm nhà cung cấp">
                                         </dxi-validation-rule>               
-                                        <dxi-validation-rule type="async" message="Mã nhóm nhà cung cấp đã tồn tại" [validationCallback]="theCallbackValid">
+                                        <dxi-validation-rule type="async" message="Mã nhóm nhà cung cấp đã tồn tại" [validationCallback]="theCallBackValid">
                                             <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
                                         </dxi-validation-rule>
                                     </dxi-item>

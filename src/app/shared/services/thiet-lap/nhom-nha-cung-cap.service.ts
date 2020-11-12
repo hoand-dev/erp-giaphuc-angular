@@ -19,10 +19,6 @@ export class NhomNhaCungCapService extends BaseService {
   }
 
   findNhomNhaCungCaps(noAuth: boolean =false): Observable<NhomNhaCungCap[]>{
-    if(noAuth){
-      var reqHeader = new HttpHeaders ({'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True'});
-      return this.httpClient.get<any>(this.apiUrl + `/not-auth`, {headers: reqHeader});
-    }
     return this.httpClient.get<NhomNhaCungCap[]>(this.apiUrl );
   }
 

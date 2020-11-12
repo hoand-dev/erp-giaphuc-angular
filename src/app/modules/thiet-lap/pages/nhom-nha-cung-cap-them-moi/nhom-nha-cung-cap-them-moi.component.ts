@@ -26,7 +26,7 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
     type: "success",
     useSubmitBehavior: true
   }
-  theCallbackValid: any;
+
 
   constructor(
     private router: Router,
@@ -40,7 +40,7 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
 
   ngOnInit(): void {
     this.nhomnhacungcap = new NhomNhaCungCap();
-    this.theCallbackValid = this.theCallbackValid.bind(this);
+    this.theCallBackValid = this.theCallBackValid.bind(this);
   }
   ngOnDestroy(): void {
     if(this.subscriptions){
