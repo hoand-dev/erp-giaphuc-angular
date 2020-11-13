@@ -1,5 +1,5 @@
-const HOST = '192.168.100.99';
-const PORT = '68';
+const HOST = 'localhost';
+const PORT = '1769';
 
 export const environment = {
     production: true,

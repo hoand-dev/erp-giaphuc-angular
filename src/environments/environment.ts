@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 const HOST = 'localhost';
-const PORT = '68';
+const PORT = '1769';
 
 export const environment = {
     production: false,
