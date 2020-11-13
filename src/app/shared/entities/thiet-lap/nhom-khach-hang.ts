@@ -20,8 +20,8 @@ export class NhomKhachHang {
         thoigiansua: Date = null,
         ghichu: string = null,
         manhomkhachhang: string = null,
-        tennhomkhachhang: string = null) 
-        {
+        tennhomkhachhang: string = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -32,7 +32,5 @@ export class NhomKhachHang {
         this.ghichu = ghichu;
         this.manhomkhachhang = manhomkhachhang;
         this.tennhomkhachhang = tennhomkhachhang;
-
     }
-
 }

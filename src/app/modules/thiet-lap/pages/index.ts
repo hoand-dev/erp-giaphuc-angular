@@ -90,4 +90,8 @@ export * from './nhom-khach-hang/nhom-khach-hang.component';
 export * from './nhom-khach-hang-cap-nhat/nhom-khach-hang-cap-nhat.component';
 export * from './nhom-khach-hang-them-moi/nhom-khach-hang-them-moi.component';
 
+export * from './khach-hang/khach-hang.component';
+export * from './khach-hang-cap-nhat/khach-hang-cap-nhat.component';
+export * from './khach-hang-them-moi/khach-hang-them-moi.component';
+
 

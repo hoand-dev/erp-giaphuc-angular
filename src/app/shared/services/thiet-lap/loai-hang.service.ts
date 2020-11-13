@@ -34,4 +34,23 @@ export class LoaiHangService extends BaseService {
     deleteLoaiHang(id: number): Observable<LoaiHang> {
         return this.httpClient.delete<LoaiHang>(this.apiUrl + `/${id}`);
     }
+    checkLoaiHangExist(maloaihang: string,maloaihang_old: string = null) {
+        if (maloaihang == maloaihang_old)
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    resolve(true); // chưa tồn tại
+                }, 300);
+            });
+        else
+            return this.httpClient.get(this.apiUrl + `/exist?maloaihang=${maloaihang}`)
+                .toPromise()
+                .then(
+                    res => !res
+                    ) // false -> true (chưa tồn tại) và ngược lại
+                .catch(err => {
+                    console.error(err);
+                    this.handleError(err);
+                    return false; // tuong duong da ton tai
+                });
+      }
 }
