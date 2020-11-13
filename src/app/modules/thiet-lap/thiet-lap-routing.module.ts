@@ -68,6 +68,9 @@ import {
     NhomNhaCungCapThemMoiComponent,
     NhomKhachHangCapNhatComponent,
     NhomKhachHangThemMoiComponent,
+    KhachHangCapNhatComponent,
+    KhachHangComponent,
+    KhachHangThemMoiComponent,
 } from './pages';
 
 const routes: Routes = [
@@ -267,6 +270,15 @@ const routes: Routes = [
             { path: '', component: NhomKhachHangComponent },
             { path: 'them-moi', component:NhomKhachHangThemMoiComponent },
             { path: ':id/cap-nhat', component: NhomKhachHangCapNhatComponent }
+        ]
+    },
+    {
+        path: 'khach-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: KhachHangComponent },
+            { path: 'them-moi', component:KhachHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: KhachHangCapNhatComponent }
         ]
     }
 ];

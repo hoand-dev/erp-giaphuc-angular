@@ -6,6 +6,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import notify from 'devextreme/ui/notify';
+import { AuthenticationService } from '@app/_services';
+import { ChiNhanh } from '@app/shared/entities';
 
 @Component({
   selector: 'app-nhom-nha-cung-cap-cap-nhat',
@@ -19,6 +21,7 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
   /*tối ưu subscriptions */
 
   subscriptions: Subscription = new Subscription();
+  private currentChiNhanh: ChiNhanh;
 
   public nhomnhacungcap: NhomNhaCungCap;
   public  manhomnhacungcap_old: string;
@@ -30,35 +33,40 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
     type: "success",
     useSubmitBehavior: true
   };
-  theCallbackValid: any;
+
 
   constructor(
     private  router: Router,
     private activatedRoute: ActivatedRoute,
+    private authenticationService: AuthenticationService,
     private nhomnhacungcapService: NhomNhaCungCapService
   ) { }
 
   ngOnInit(): void {
     this.nhomnhacungcap = new NhomNhaCungCap();
-    this.theCallbackValid = this.theCallbackValid.bind(this);
-    this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-      let nhomnhacungcap_id = params.id;
+    this.theCallBackValid = this.theCallBackValid.bind(this);
 
-      //lấy thông tin nhà cung cấp
-
-      if(nhomnhacungcap_id){
-        this.subscriptions.add(this.nhomnhacungcapService.findNhomNhaCungCap(nhomnhacungcap_id).subscribe(
-          data => {
-            this.nhomnhacungcap = data [0];
-            this.manhomnhacungcap_old = this.nhomnhacungcap.manhomnhacungcap;
-          },
-          error => {
-            this.nhomnhacungcapService.handleError(error);
-          }
-        ));
-      }
-      }));
-    }
+    //danh sách khu vực là tên nhóm nhà cung cấp trùng=> kiểm tra nhóm nhà cung cấp trùng
+    this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x )));
+    this.subscriptions.add(
+      this.activatedRoute.params.subscribe((params) => {
+        let manhomnhacungcap_id = params.id;
+        if(manhomnhacungcap_id){
+          this.subscriptions.add(
+            this.nhomnhacungcapService.findNhomNhaCungCap(manhomnhacungcap_id).subscribe(
+              (data)=>{
+                this.nhomnhacungcap = data [0];
+                this.manhomnhacungcap_old = this.nhomnhacungcap.manhomnhacungcap;
+              },
+              (error) =>{
+                this.nhomnhacungcapService.handleError(error);
+              }
+            )
+          );
+        }
+      })
+    );
+}
      
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -70,15 +78,17 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
 
   onSubmitForm(e){
     let nhomnhacungcap_req = this.nhomnhacungcap;
+    nhomnhacungcap_req.chinhanh_id = this.currentChiNhanh.id;
     this.saveProcessing = true;
-    this.subscriptions.add(this.nhomnhacungcapService.updateNhomNhaCungCap(nhomnhacungcap_req).subscribe(
-      data => {
+    this.subscriptions.add(
+      this.nhomnhacungcapService.updateNhomNhaCungCap(nhomnhacungcap_req).subscribe(
+        data => {
         notify({
           width: 320,
           mesesage: "Lưu thành công",
           position: {my: "right top", at: "right top"}
         }, "success", 475);
-        this.router.navigate(['/nhomnhacungcap']);
+        this.router.navigate(['/nhom-nha-cung-cap']);
         this.saveProcessing = false;
       },
       error => {
