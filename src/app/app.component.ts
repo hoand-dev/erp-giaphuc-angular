@@ -227,10 +227,12 @@ export class AppComponent implements OnInit {
 
         ];
         const SANXUAT = [
-            "/phieu-cap-phat-vat-tu", 
+            "/phieu-cap-phat-vat-tu",
         ];
         const MUAHANG = [
-            "/phieu-mua-hang", 
+            "/phieu-dat-hang-ncc",
+            "/phieu-mua-hang-ncc",
+            "/phieu-tra-hang-ncc",
         ];
         const BANHANG = [
             "/phieu-ban-hang", 

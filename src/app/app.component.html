@@ -369,9 +369,21 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a [routerLink]="['/phieu-mua-hang']" class="nav-link" routerLinkActive="active">
+                                            <a [routerLink]="['/phieu-dat-hang-ncc']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Phiếu mua hàng</p>
+                                                <p>Phiếu đặt hàng ncc</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-mua-hang-ncc']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu mua hàng ncc</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-tra-hang-ncc']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu trả hàng ncc</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -449,7 +461,7 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 521px; padding-top: 5px;">
+    <div class="content-wrapper">
         <router-outlet></router-outlet>
     </div>
     <!-- /.content-wrapper -->
