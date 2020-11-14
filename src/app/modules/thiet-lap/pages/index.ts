@@ -94,4 +94,7 @@ export * from './khach-hang/khach-hang.component';
 export * from './khach-hang-cap-nhat/khach-hang-cap-nhat.component';
 export * from './khach-hang-them-moi/khach-hang-them-moi.component';
 
+export * from './nha-cung-cap/nha-cung-cap.component';
+export * from './nha-cung-cap-cap-nhat/nha-cung-cap-cap-nhat.component';
+export * from './nha-cung-cap-them-moi/nha-cung-cap-them-moi.component';
 

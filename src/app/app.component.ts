@@ -217,14 +217,13 @@ export class AppComponent implements OnInit {
             "/tai-xe",
             "/hang-hoa-thanh-pham",
             "/nguon-nhan-luc",
-            "/loai-hang",
-            "/nhom-nha-cung-cap",
             "/nhom-khach-hang",
             "/khu-vuc",
             "/loai-hang",
             "/nhom-nha-cung-cap",
             "/nhom-khach-hang",
             "/khach-hang",
+            "/nha-cung-cap",
 
         ];
         const SANXUAT = [

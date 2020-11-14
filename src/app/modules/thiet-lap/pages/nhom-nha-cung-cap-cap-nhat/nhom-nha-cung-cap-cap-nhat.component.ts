@@ -24,8 +24,9 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
   private currentChiNhanh: ChiNhanh;
 
   public nhomnhacungcap: NhomNhaCungCap;
-  public  manhomnhacungcap_old: string;
   public  saveProcessing = false;
+  public  manhomnhacungcap_old: string;
+
 
   public  rules: Object = {'X': /[02-9]/};
   public  buttonSubmitOptions : any = {
@@ -83,11 +84,11 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
     this.subscriptions.add(
       this.nhomnhacungcapService.updateNhomNhaCungCap(nhomnhacungcap_req).subscribe(
         data => {
-        notify({
-          width: 320,
-          mesesage: "Lưu thành công",
-          position: {my: "right top", at: "right top"}
-        }, "success", 475);
+            notify({
+                width: 320,
+                message: "Lưu thành công",
+                position: { my: "right top", at: "right top"}
+              }, "success", 475);
         this.router.navigate(['/nhom-nha-cung-cap']);
         this.saveProcessing = false;
       },

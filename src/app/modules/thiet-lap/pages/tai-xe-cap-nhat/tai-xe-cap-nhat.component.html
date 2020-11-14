@@ -32,7 +32,7 @@
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã tài xế quá ngắn">
                                         </dxi-validation-rule>
                                         <dxi-validation-rule type="custom" message="Mã tài xế đã tồn tại"
-                                            [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                            [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{text: 'TÊN TÀI XẾ'}" dataField="tentaixe">
                                         <dxi-validation-rule type="required" message="Nhập tên tài xế">

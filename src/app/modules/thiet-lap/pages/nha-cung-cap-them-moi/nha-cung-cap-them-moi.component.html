@@ -1,0 +1,113 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/nha-cung-cap']">Nhà cung cấp</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>{{ 'Nhà cung cấp' | uppercase }} - THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="3" [formData]="nhacungcap" [showValidationSummary]="true">
+                                    <dxi-item [label]="{ text: 'MÃ NHÀ CUNG CẤP' }" dataField="manhacungcap">
+                                        <dxi-validation-rule type="required" message="Nhập mã nhà cung cấp"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã nhà cung cấp quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'TÊN NHÀ CUNG CẤP' }" dataField="tennhacungcap">
+                                        <dxi-validation-rule type="required" message="Nhập tên nhà cung cấp"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Tên nhà cung cấp quá ngắn"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item  [label]="{ text: 'SĐT' }" dataField="sodienthoai">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập SĐT"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="9" [max]="12" message="Số điện thoại không đúng định dạng"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{ text: 'EMAIL' }" dataField="email"></dxi-item>
+                                    <dxi-item [label]="{ text: 'MÃ SỐ THUẾ' }" dataField="masothue"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'CÔNG NỢ BAN ĐẦU' }" dataField="congnobandau" editorType="dxNumberBox"></dxi-item>
+
+                                
+                                    <dxi-item [label]="{ text: 'NGƯỜI ĐẠI DIỆN' }" dataField="nguoidaidien"></dxi-item>
+                                    <dxi-item [label]="{ text: 'CHỨC VỤ' }" dataField="chucvu"></dxi-item>
+
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
+
+                                    <dxi-item
+                                        [label]="{ text: 'NHÓM NHÀ CUNG CẤP ' }"
+                                        dataField="nhomnhacungcap"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: lstNhomNhaCungCap, searchEnabled: true, displayExpr: 'tennhomnhacungcap' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn nhóm nhà cung cấp"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [colSpan]="3">
+                                        <mat-tab-group mat-align-tabs="start" [style.margin-top.px]="10">
+                                           
+                                            <mat-tab label="NCC - SỐ TÀI KHOẢN">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th [style.min-width.px]="120">SỐ TÀI KHOẢN</th>
+                                                            <th [style.min-width.px]="120">TÊN CHỦ TÀI KHOẢN</th>
+                                                            <th [style.min-width.px]="120">TÊN NGÂN HÀNG</th>
+                                                            <th [style.min-width.px]="120">CHI NHÁNH NGÂN HÀNG</th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onAddSoTaiKhoan()"></i></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of sotaikhoans; index as i">
+                                                         
+                                                            <td>
+                                                                <dx-number-box value="số tài khoản" [(value)]="item.sotaikhoan"></dx-number-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-text-box value="chủ tài khoản" [(value)]="item.tentaikhoan"></dx-text-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-text-box value="tên ngân hàng" [(value)]="item.tennganhang"></dx-text-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-text-box value="chinhanhnganhang" [(value)]="item.diachinganhang"></dx-text-box>
+                                                            </td>
+                                                            <td><i class="gg-btn gg-remove" (click)="onDeleteSoTaiKhoan(item)"></i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </mat-tab>
+                                         
+                                        </mat-tab-group>
+                                    </dxi-item>
+
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
