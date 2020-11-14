@@ -29,7 +29,7 @@ export class NhomKhachHangCapNhatComponent implements OnInit {
   public buttonSubmitOptions: any ={
     text: "Lưu Lại",
     type: "success",
-    userSubmitBehavior: true
+    useSubmitBehavior: true
   }
   
   constructor(
@@ -74,11 +74,11 @@ export class NhomKhachHangCapNhatComponent implements OnInit {
     this.subscriptions.add(this.nhomkhachhangService.updateNhomKhachHang(nhomkhachhang_req).subscribe(
       data => {
         notify({
-          width: 320,
-          message: " Lưu thành công",
-          position: {my: "right top", at: "right top"}
-        }, "success", 475);
-        this.router.navigate(['/nhomkhachhang']);
+            width: 320,
+            message: "Lưu thành công",
+            position: { my: "right top", at: "right top"}
+          }, "success", 475);
+        this.router.navigate(['/nhom-khach-hang']);
         this.saveProcessing = false;
       },
       error => {

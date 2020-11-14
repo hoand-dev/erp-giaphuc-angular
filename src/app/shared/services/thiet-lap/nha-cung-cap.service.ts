@@ -34,4 +34,21 @@ export class NhaCungCapService extends BaseService {
     deleteNhaCungCap(id: number): Observable<NhaCungCap> {
         return this.httpClient.delete<NhaCungCap>(this.apiUrl + `/${id}`);
     }
+    checkExistNhaCungCap(manhacungcap: string, manhacungcap_old: string = null){
+        if(manhacungcap == manhacungcap_old){
+            return new Promise((resolve) =>{
+                setTimeout( function(){
+                    resolve(true);
+                },300 );
+            });
+        }else{
+            return this.httpClient.get(this.apiUrl + `/exist?manhacungcap=${manhacungcap}`)
+            .toPromise()
+            .then(res => !res )
+            .catch(err =>{
+                console.error(err);
+                this.handleError(err);
+            });
+        }
+    }
 }

@@ -24,13 +24,14 @@ export class LoaiHangCapNhatComponent implements OnInit {
 
   public loaihang: LoaiHang;
   public saveProcessing = false;
+  loaihang_old: string;
 
   public rules: Object = {'X': /[02-9]/};
   public buttonSubmitOptions: any = {
     text: "Lưu lại",
     type: "success",
     useSubmitBehavior: true
-  };
+  }
 
   constructor(
     private router: Router,
@@ -41,15 +42,17 @@ export class LoaiHangCapNhatComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaihang = new LoaiHang();
+    this.theCallbackValid = this.theCallbackValid.bind(this);
 
     this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
     this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
       let loaihang_id = params.id;
-      //lấy thông tin đơn vị 
+      
       if(loaihang_id) {
         this.subscriptions.add(this.loaihangService.findLoaiHang(loaihang_id).subscribe(
           data => {
-            this.loaihang = data [0]
+            this.loaihang = data [0];
+            this.loaihang_old =  this.loaihang.maloaihang;
           },
           error => {
             this.loaihangService.handleError(error);
@@ -62,12 +65,9 @@ export class LoaiHangCapNhatComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-
-  asyncValidation(params){
-    if(params.value = "ssss"){
-      return false;
-    }
-    return true;
+  
+  theCallbackValid(params){
+      return this.loaihangService.checkLoaiHangExist(params.value, this.loaihang_old);
   }
 
   onSubmitForm(e) {

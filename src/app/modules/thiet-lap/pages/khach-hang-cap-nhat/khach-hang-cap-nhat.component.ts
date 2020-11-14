@@ -75,7 +75,7 @@ export class KhachHangCapNhatComponent implements OnInit {
                     this.subscriptions.add(
                         this.nhomkhachhangService.findNhomKhachHangs().subscribe((data) => {
                             this.lstNhomKhachHang = data;
-                            // tìm thông tin theo khuvuc_id
+                            // tìm thông tin theo nhomkhachhang_id
                             this.khachhang.nhomkhachang = data.find((o) => o.id == this.khachhang.nhomkhachhang_id);
                         })
                     );
