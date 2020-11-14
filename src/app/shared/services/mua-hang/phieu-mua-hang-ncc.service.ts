@@ -5,6 +5,7 @@ import { PhieuMuaHangNCC } from '@app/shared/entities';
 
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
+import moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -20,8 +21,10 @@ export class PhieuMuaHangNCCService extends BaseService {
         return this.httpClient.get<PhieuMuaHangNCC>(this.apiUrl + `/${id}`);
     }
 
-    findPhieuMuaHangNCCs(): Observable<PhieuMuaHangNCC[]> {
-        return this.httpClient.get<PhieuMuaHangNCC[]>(this.apiUrl);
+    findPhieuMuaHangNCCs(fromDay:Date, toDay: Date): Observable<PhieuMuaHangNCC[]> {
+        let tungay = moment(fromDay).format("YYYY-MM-DD HH:mm:ss");
+        let denngay = moment(toDay).format("YYYY-MM-DD HH:mm:ss");
+        return this.httpClient.get<PhieuMuaHangNCC[]>(this.apiUrl+ `?tungay=${tungay}&denngay=${denngay}`);
     }
 
     addPhieuMuaHangNCC(phieumuahangncc: PhieuMuaHangNCC): Observable<PhieuMuaHangNCC> {

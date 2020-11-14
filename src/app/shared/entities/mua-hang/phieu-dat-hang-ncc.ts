@@ -1,3 +1,5 @@
+import { NhaCungCap } from '../thiet-lap';
+
 export class PhieuDatHangNCC {
     public id: number;
     public chinhanh_id: number;
@@ -21,10 +23,21 @@ export class PhieuDatHangNCC {
     public dieukien_thanhtoan: string;
     public diachi_giaohang: string;
 
+    public phieudathangncc_chitiet: PhieuDatHangNCC_ChiTiet[];
+
+    /* các thông tin hiển thị trên view */
+    public nhacungcap: NhaCungCap;
+    public tennhacungcap: string;
+    public dienthoainhacungcap: string;
+    public diachinhacungcap: string;
+
+    public nocu: number = 0;
+    public tennguoitao: string = '';
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,
-        kichhoat: boolean = null,
+        kichhoat: boolean = true,
         nguoitao_id: number = null,
         thoigiantao: Date = null,
         nguoisua_id: number = null,
@@ -32,17 +45,19 @@ export class PhieuDatHangNCC {
         ghichu: string = null,
         ids: number = null,
         sort: string = null,
-        ngaydathangncc: Date = null,
+        ngaydathangncc: Date = new Date(),
         ngaynhanhang_dukien: Date = null,
         maphieudathangncc: string = null,
         nhacungcap_id: number = null,
-        tongtienhang: number = null,
-        thuevat: number = null,
-        chietkhau: number = null,
-        tongthanhtien: number = null,
+        tongtienhang: number = 0,
+        thuevat: number = 0,
+        chietkhau: number = 0,
+        tongthanhtien: number = 0,
         trangthainhan: string = null,
         dieukien_thanhtoan: string = null,
-        diachi_giaohang: string = null
+        diachi_giaohang: string = null,
+        nhacungcap: NhaCungCap = null,
+        phieudathangncc_chitiet: PhieuDatHangNCC_ChiTiet[] = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -65,6 +80,9 @@ export class PhieuDatHangNCC {
         this.trangthainhan = trangthainhan;
         this.dieukien_thanhtoan = dieukien_thanhtoan;
         this.diachi_giaohang = diachi_giaohang;
+
+        this.nhacungcap = nhacungcap;
+        this.phieudathangncc_chitiet = phieudathangncc_chitiet;
     }
 }
 
@@ -87,23 +105,25 @@ export class PhieuDatHangNCC_ChiTiet {
     public soluongdanhan: number;
     public trangthainhan: string;
 
+    public tendonvitinh: string;
+
     constructor(
         id: number = null,
         phieudathangncc_id: number = null,
         hanghoa_id: number = null,
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
-        tilequydoi: number = null,
-        giatriquydoi_kien: number = null,
-        quycachdai: number = null,
-        quycachrong: number = null,
-        soluong: number = null,
-        dongia: number = null,
-        thuevat: number = null,
-        chietkhau: number = null,
-        thanhtien: number = null,
+        tilequydoi: number = 1,
+        giatriquydoi_kien: number = 1,
+        quycachdai: number = 1,
+        quycachrong: number = 1,
+        soluong: number = 1,
+        dongia: number = 0,
+        thuevat: number = 0,
+        chietkhau: number = 0,
+        thanhtien: number = 0,
         chuthich: string = null,
-        soluongdanhan: number = null,
+        soluongdanhan: number = 0,
         trangthainhan: string = null
     ) {
         this.id = id;

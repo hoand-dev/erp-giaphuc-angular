@@ -68,6 +68,10 @@ dx-select-box#ChiNhanhSelectBox div input {
     padding-bottom: 0;
 }
 
+.table.table-vertical th, .table.table-vertical td {
+    vertical-align: middle;
+}
+
 h1,
 h2,
 h3,
