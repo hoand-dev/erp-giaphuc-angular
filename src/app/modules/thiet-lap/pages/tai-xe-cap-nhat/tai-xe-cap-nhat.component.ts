@@ -9,87 +9,90 @@ import { TaiXeService } from '@app/shared/services';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-tai-xe-cap-nhat',
-  templateUrl: './tai-xe-cap-nhat.component.html',
-  styleUrls: ['./tai-xe-cap-nhat.component.css']
+    selector: 'app-tai-xe-cap-nhat',
+    templateUrl: './tai-xe-cap-nhat.component.html',
+    styleUrls: ['./tai-xe-cap-nhat.component.css']
 })
 export class TaiXeCapNhatComponent implements OnInit {
+    @ViewChild(DxDataGridComponent, { static: false }) frmTaiXe: DxDataGridComponent;
+    /* Tối ưu subsriptions  */
 
-  @ViewChild(DxDataGridComponent, {static: false}) frmTaiXe: DxDataGridComponent;
-  /* Tối ưu subsriptions  */
+    subscriptions: Subscription = new Subscription();
+    private currentChiNhanh: ChiNhanh;
 
-  subscriptions: Subscription = new Subscription();
-  private currentChiNhanh: ChiNhanh;
+    public taixe: TaiXe;
+    public saveProcessing = false;
+    taixe_old: string;
 
-  public taixe: TaiXe;
-  public saveProcessing = false;
+    public rules: Object = { X: /[02-9]/ };
+    public buttonSubmitOptions: any = {
+        text: 'Lưu lại',
+        type: 'success',
+        useSubmitBehavior: true
+    };
 
-  public rules: Object = { 'X': /[02-9]/};
-  public buttonSubmitOptions: any = {
-    text: "Lưu lại",
-    type: "success",
-    useSubmitBehavior: true
-  }
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private taixeService: TaiXeService) {}
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private authenticationService: AuthenticationService,
-    private taixeService: TaiXeService,
-  ) { }
+    ngOnInit(): void {
+        this.taixe = new TaiXe();
+        this.theCallbackValid = this.theCallbackValid.bind(this); // lấy thông tin củ
 
-  ngOnInit(): void {
-    this.taixe = new TaiXe();
-
-    this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh =x ));
-    this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-      let taixe_id = params.id;
-      //lấy thông tin tài Xế
-      if(taixe_id) {
-        this.subscriptions.add(this.taixeService.findTaiXe(taixe_id).subscribe(
-          data => {
-            this.taixe = data [0];
-          },
-          error =>{
-            this.taixeService.handleError(error);
-          }
-        ));
-      }
-    }));
-  }
-
-  ngOnDestroy(): void {
-    //xử lý trước khi thoát khỏi trang ng
-    this.subscriptions.unsubscribe();
-  }
-
-  asyncValidation(params){
-    //giả sử mã tài xế đã tồn tại 
-    if(params.value == "ssss"){
-      return false;
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let taixe_id = params.id;
+                //lấy thông tin tài Xế
+                if (taixe_id) {
+                    this.subscriptions.add(
+                        this.taixeService.findTaiXe(taixe_id).subscribe(
+                            (data) => {
+                                this.taixe = data[0];
+                            },
+                            (error) => {
+                                this.taixeService.handleError(error);
+                            }
+                        )
+                    );
+                }
+            })
+        );
     }
-    return true;
-  }
-  onSubmitForm(e){
-    let taixe_req = this.taixe;
-    taixe_req.chinhanh_id = this.currentChiNhanh.id;
 
-    this.saveProcessing = true;
-    this.subscriptions.add(this.taixeService.updateTaiXe(taixe_req).subscribe(
-      data =>{
-        notify({
-          width: 320,
-          message: "lưu thành công",
-          position: { my: "right top", at: "right top"}
-        }, "success", 475);
-        this.router.navigate(['/tai-xe']);
-        this.saveProcessing = false;
-      },
-      error =>{
-        this.taixeService.handleError(error);
-        this.saveProcessing = false;
-      }
-    ));
-    e.preventDefault();
-  }
+    ngOnDestroy(): void {
+        //xử lý trước khi thoát khỏi trang ng
+        this.subscriptions.unsubscribe();
+    }
+
+    theCallbackValid(params) {
+        return this.taixeService.checkTaiXeExist(params.value, this.taixe_old);
+    }
+
+    onSubmitForm(e) {
+        let taixe_req = this.taixe;
+        taixe_req.chinhanh_id = this.currentChiNhanh.id;
+
+        this.saveProcessing = true;
+        this.subscriptions.add(
+            this.taixeService.updateTaiXe(taixe_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/tai-xe']);
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.taixeService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
+        e.preventDefault();
+    }
 }

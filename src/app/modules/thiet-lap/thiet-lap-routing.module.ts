@@ -72,6 +72,9 @@ import {
     KhachHangComponent,
     KhachHangThemMoiComponent,
 } from './pages';
+import { NhaCungCapCapNhatComponent } from './pages/nha-cung-cap-cap-nhat/nha-cung-cap-cap-nhat.component';
+import { NhaCungCapThemMoiComponent } from './pages/nha-cung-cap-them-moi/nha-cung-cap-them-moi.component';
+import { NhaCungCapComponent } from './pages/nha-cung-cap/nha-cung-cap.component';
 
 const routes: Routes = [
     {
@@ -279,6 +282,15 @@ const routes: Routes = [
             { path: '', component: KhachHangComponent },
             { path: 'them-moi', component:KhachHangThemMoiComponent },
             { path: ':id/cap-nhat', component: KhachHangCapNhatComponent }
+        ]
+    },
+    {
+        path: 'nha-cung-cap',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: NhaCungCapComponent },
+            { path: 'them-moi', component:NhaCungCapThemMoiComponent },
+            { path: ':id/cap-nhat', component: NhaCungCapCapNhatComponent }
         ]
     }
 ];

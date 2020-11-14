@@ -42,7 +42,7 @@ export class LoaiHangService extends BaseService {
                 }, 300);
             });
         else
-            return this.httpClient.get(this.apiUrl + `/exist?maloaihang=${maloaihang}`)
+            return this.httpClient.get(this.apiUrl + `/exist?loaihang=${maloaihang}`)
                 .toPromise()
                 .then(
                     res => !res
