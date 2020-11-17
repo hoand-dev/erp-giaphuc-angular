@@ -39,12 +39,18 @@ import { ThietLapModule, MuaHangModule, BanHangModule, SanXuatModule } from '@ap
 import './shared/localization';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+/* test report */
+import { ReportPageComponent } from './report-page/report-page.component';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         HomeComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        ReportPageComponent
     ],
     imports: [
         BrowserModule,
@@ -71,6 +77,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule,
         AppRoutingModule,
         MatTabsModule,
+        ModalModule.forRoot(),
         BrowserAnimationsModule, // root route phải đặt ở cuối nếu có module con sử dụng route
     ],
     providers: [
