@@ -23,6 +23,7 @@ export class NhaCungCapCapNhatComponent implements OnInit {
     public lstNhomNhaCungCap: NhomNhaCungCap[] = [];
     public manhacungcap_old: string;
     public saveProcessing = false;
+    public sotaikhoan_old: string;
 
     public sotaikhoans: NhaCungCap_SoTaiKhoan [] = [];
     dataSource_SoTaiKhoan: any ={};
@@ -54,6 +55,7 @@ export class NhaCungCapCapNhatComponent implements OnInit {
                   (data) =>{
                       this.nhacungcap= data;
                       this.manhacungcap_old= this.nhacungcap.manhacungcap;
+                      this.sotaikhoans = this.nhacungcap.nhacungcap_sotaikhoan;
                   },
                   error =>{
                         this.nhacungcapService.handleError(error);
@@ -105,7 +107,7 @@ export class NhaCungCapCapNhatComponent implements OnInit {
   
         this.saveProcessing = true;
         this.subscriptions.add(
-            this.nhacungcapService.addNhaCungCap(nhacungcap_req).subscribe(
+            this.nhacungcapService.updateNhaCungCap(nhacungcap_req).subscribe(
                 (data)=> {
                     notify({
                         width: 320,
@@ -113,7 +115,7 @@ export class NhaCungCapCapNhatComponent implements OnInit {
                         position: { my: 'right top', at: 'right top'}
                     },'success', 475);
                     this.router.navigate(['/nha-cung-cap']);
-                    this.frmNhaCungCap.instance.resetValues();
+                  //  this.frmNhaCungCap.instance.resetValues();
                     this.saveProcessing = false;
                 },
                 (error)=>{
