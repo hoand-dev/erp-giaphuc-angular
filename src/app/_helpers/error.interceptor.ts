@@ -15,7 +15,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // auto logout if 401 response returned from api
                 if (err.status === 401 || (err.status === 400 && request.url.indexOf('auth-token') != -1)) {
                     this.authenticationService.logout();
-                    location.reload(true);
+                    location.reload();
                     alert('Hết phiên làm việc. Đăng nhập lại nhé ^_^');
                     return throwError('Hết phiên làm việc');
                 }
