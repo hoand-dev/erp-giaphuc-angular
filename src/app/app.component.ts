@@ -236,6 +236,7 @@ export class AppComponent implements OnInit {
         ];
         const BANHANG = [
             "/phieu-ban-hang", 
+            "/theo-doi-hop-dong",
         ];
         const KHOHANG = [
             "/phieu-nhap-kho", 
