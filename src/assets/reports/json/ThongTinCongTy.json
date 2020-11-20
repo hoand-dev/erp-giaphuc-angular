@@ -1,0 +1,24 @@
+{
+    "ThongTinCongTy": {
+        "avatar": null,
+        "TenCongTy": null,
+        "DiaChi": null,
+        "DienThoai": null,
+        "Fax": null,
+        "Email": null,
+        "Website": null,
+        "MaSoThue": null,
+
+        "DiaChiKho1": null,
+        "DiaChiKho2": null,
+        "DiaChiKho3": null,
+
+        "DienThoai1": null,
+        "DienThoai2": null,
+        "DienThoai3": null,
+
+        "Fax1": null,
+        "Fax2": null,
+        "Fax3": null
+    }
+}

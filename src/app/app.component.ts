@@ -138,7 +138,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         public router: Router,
-        private authenticationService: AuthenticationService,
+        public authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService,
         private nguoidungService: NguoiDungService,
     ) {
@@ -198,39 +198,45 @@ export class AppComponent implements OnInit {
     activeGroupClass(groupName: string = null){
         const DULIEUCOSO = [
             "/chi-nhanh", 
-            "/danh-muc-gia-cong",
-            "/danh-muc-loi",
             "/danh-muc-no",
-            "/danh-muc-tieu-chuan",
             "/khu-vuc",
             "/don-vi-gia-cong",
-            "/don-vi-tinh",
             "/noi-dung-thu-chi",
             "/quy-tai-khoan",
-            "/so-mat",
             "/kho-hang",
-            "/hang-hoa-nguyen-lieu",
-            "/hang-hoa-hang-tron",
             "/danh-sach-xe",
-            "/dinh-muc",
             "/nguon-nhan-luc",
             "/tai-xe",
-            "/hang-hoa-thanh-pham",
             "/nguon-nhan-luc",
-            "/nhom-khach-hang",
             "/khu-vuc",
-            "/loai-hang",
-            "/nhom-nha-cung-cap",
+        ];
+        const KHACHHANG = [
             "/nhom-khach-hang",
             "/khach-hang",
+        ];
+        const NHACUNGCAP = [
+            "/nhom-nha-cung-cap",
             "/nha-cung-cap",
-
+        ];
+        const HANGHOA = [
+            "/danh-muc-gia-cong",
+            "/danh-muc-loi",
+            "/danh-muc-tieu-chuan",
+            "/loai-hang",
+            "/don-vi-tinh",
+            "/so-mat",
+            "/hang-hoa-nguyen-lieu",
+            "/hang-hoa-hang-tron",
+            "/dinh-muc",
+            "/hang-hoa-thanh-pham",
         ];
         const SANXUAT = [
-            "/phieu-cap-phat-vat-tu", 
+            "/phieu-cap-phat-vat-tu",
         ];
         const MUAHANG = [
-            "/phieu-mua-hang", 
+            "/phieu-dat-hang-ncc",
+            "/phieu-mua-hang-ncc",
+            "/phieu-tra-hang-ncc",
         ];
         const BANHANG = [
             "/phieu-ban-hang", 
@@ -258,12 +264,15 @@ export class AppComponent implements OnInit {
 
         /* kiểm tra chuỗi đã xử lý */
         switch (groupName) {
-            case 'DULIEUCOSO': $return = DULIEUCOSO.includes($url);  break;
-            case 'SANXUAT': $return = SANXUAT.includes($url);  break;
-            case 'MUAHANG': $return = MUAHANG.includes($url);  break;
-            case 'BANHANG': $return = BANHANG.includes($url);  break;
-            case 'KHOHANG': $return = KHOHANG.includes($url);  break;
-            case 'KETOAN': $return = KETOAN.includes($url);  break;
+            case 'DULIEUCOSO': $return = DULIEUCOSO.includes($url); break;
+            case 'KHACHHANG': $return = KHACHHANG.includes($url);   break;
+            case 'NHACUNGCAP': $return = NHACUNGCAP.includes($url); break;
+            case 'HANGHOA': $return = HANGHOA.includes($url);   break;
+            case 'SANXUAT': $return = SANXUAT.includes($url);   break;
+            case 'MUAHANG': $return = MUAHANG.includes($url);   break;
+            case 'BANHANG': $return = BANHANG.includes($url);   break;
+            case 'KHOHANG': $return = KHOHANG.includes($url);   break;
+            case 'KETOAN': $return = KETOAN.includes($url);     break;
             default: $return = false; break;
         }
         return $return;

@@ -1,3 +1,4 @@
+/* devextreme */
 // devextreme globalize integration
 import 'devextreme/localization/globalize/number';
 import 'devextreme/localization/globalize/date';
@@ -21,3 +22,12 @@ viCldrData.main.vi.numbers["symbols-numberSystem-latn"].group = ",";
 Globalize.load( viCldrData, supplementalCldrData );
 Globalize.loadMessages(viMessages);
 Globalize.locale('vi');
+
+/* Stimulsoft Report */
+declare var Stimulsoft: any;
+
+Stimulsoft.Base.StiLicense.loadFromFile("assets/reports/license/license.key");
+Stimulsoft.Base.Localization.StiLocalization.setLocalizationFile("assets/reports/localization/vi.xml", true);
+
+import { setTheme } from 'ngx-bootstrap/utils';
+setTheme('bs4'); // 'bs3' or 'bs4'

@@ -31,7 +31,7 @@
                                         <!-- dữ liệu ít có thể sử dụng: [items]="simpleProducts" để load nhanh nhất -->
                                         <tr *ngFor="let item of hanghoas; index as i">
                                             <td [style.min-width.px]="120">
-                                                <dx-select-box id="item_select_{{id}}" [(value)]="item.select_id"
+                                                <dx-select-box id="item_select_{{i}}" [(value)]="item.select_id"
                                                     [dataSource]="selectBoxData" [displayExpr]="'title'"
                                                     [valueExpr]="'id'" [searchMode]="'contains'" [searchExpr]="'title'"
                                                     [searchTimeout]="200" [searchEnabled]="true" [minSearchLength]="0"
@@ -39,7 +39,7 @@
                                                 </dx-select-box>
                                             </td>
                                             <td [style.min-width.px]="120" [style.max-width.px]="200">
-                                                <dx-tag-box id="item_tag_{{id}}" [(value)]="item.tag_id"
+                                                <dx-tag-box id="item_tag_{{i}}" [(value)]="item.tag_id"
                                                     [dataSource]="selectBoxData" displayExpr="title" valueExpr="id"
                                                     [searchEnabled]="true" [showSelectionControls]="true"
                                                     applyValueMode="useButtons" [multiline]="false">

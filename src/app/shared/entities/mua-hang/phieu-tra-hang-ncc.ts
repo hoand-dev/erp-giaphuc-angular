@@ -1,3 +1,5 @@
+import { KhoHang, NhaCungCap } from '../thiet-lap';
+
 export class PhieuTraHangNCC {
     public id: number;
     public chinhanh_id: number;
@@ -21,10 +23,24 @@ export class PhieuTraHangNCC {
     public khoxuat_id: number;
     public phieumuahang_id: number;
 
+    public phieutrahangncc_chitiet: PhieuTraHangNCC_ChiTiet[];
+
+    /* các thông tin hiển thị trên view */
+    public maphieumuahangncc: string;
+    public nhacungcap: NhaCungCap;
+    public tennhacungcap: string;
+    public dienthoainhacungcap: string;
+    public diachinhacungcap: string;
+
+    public khoxuat: KhoHang;
+
+    public nocu: number = 0;
+    public tennguoitao: string = '';
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,
-        kichhoat: boolean = null,
+        kichhoat: boolean = true,
         nguoitao_id: number = null,
         thoigiantao: Date = null,
         nguoisua_id: number = null,
@@ -32,16 +48,18 @@ export class PhieuTraHangNCC {
         ghichu: string = null,
         ids: number = null,
         sort: string = null,
-        ngaytrahangncc: Date = null,
+        ngaytrahangncc: Date = new Date(),
         maphieutrahangncc: string = null,
         nhacungcap_id: number = null,
-        tongtienhang: number = null,
-        thuevat: number = null,
-        chietkhau: number = null,
-        cuocvanchuyen: number = null,
-        tongthanhtien: number = null,
+        tongtienhang: number = 0,
+        thuevat: number = 0,
+        chietkhau: number = 0,
+        cuocvanchuyen: number = 0,
+        tongthanhtien: number = 0,
         trangthaixuat: string = null,
         khoxuat_id: number = null,
+        nhacungcap: NhaCungCap = null,
+        khoxuat: KhoHang = null,
         phieumuahang_id: number = null
     ) {
         this.id = id;
@@ -64,6 +82,8 @@ export class PhieuTraHangNCC {
         this.tongthanhtien = tongthanhtien;
         this.trangthaixuat = trangthaixuat;
         this.khoxuat_id = khoxuat_id;
+        this.nhacungcap = nhacungcap;
+        this.khoxuat = khoxuat;
         this.phieumuahang_id = phieumuahang_id;
     }
 }
@@ -82,12 +102,16 @@ export class PhieuTraHangNCC_ChiTiet {
     public dongia: number;
     public thuevat: number;
     public chietkhau: number;
-    public cuocvanchuyen: string;
+    public cuocvanchuyen: number;
     public thanhtien: number;
     public chuthich: string;
+    public khoxuat_id: number;
     public soluongdaxuatkho: number;
     public trangthaixuatkho: string;
+    public loaihanghoa: string;
     public phieumuahang_chitiet_id: number;
+
+    public tendonvitinh: string;
 
     constructor(
         id: number = null,
@@ -95,19 +119,21 @@ export class PhieuTraHangNCC_ChiTiet {
         hanghoa_id: number = null,
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
-        tilequydoi: number = null,
-        giatriquydoi_kien: number = null,
-        quycachdai: number = null,
-        quycachrong: number = null,
-        soluong: number = null,
-        dongia: number = null,
-        thuevat: number = null,
-        chietkhau: number = null,
-        cuocvanchuyen: string = null,
-        thanhtien: number = null,
+        tilequydoi: number = 1,
+        giatriquydoi_kien: number = 1,
+        quycachdai: number = 0,
+        quycachrong: number = 0,
+        soluong: number = 0,
+        dongia: number = 0,
+        thuevat: number = 0,
+        chietkhau: number = 0,
+        cuocvanchuyen: number = 0,
+        thanhtien: number = 0,
         chuthich: string = null,
-        soluongdaxuatkho: number = null,
+        khoxuat_id: number = null,
+        soluongdaxuatkho: number = 0,
         trangthaixuatkho: string = null,
+        loaihanghoa: string = null,
         phieumuahang_chitiet_id: number = null
     ) {
         this.id = id;
@@ -126,8 +152,10 @@ export class PhieuTraHangNCC_ChiTiet {
         this.cuocvanchuyen = cuocvanchuyen;
         this.thanhtien = thanhtien;
         this.chuthich = chuthich;
+        this.khoxuat_id = khoxuat_id;
         this.soluongdaxuatkho = soluongdaxuatkho;
         this.trangthaixuatkho = trangthaixuatkho;
+        this.loaihanghoa = loaihanghoa;
         this.phieumuahang_chitiet_id = phieumuahang_chitiet_id;
     }
 }
