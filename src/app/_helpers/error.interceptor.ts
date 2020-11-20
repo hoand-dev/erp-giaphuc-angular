@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { AuthenticationService } from '@app/_services';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -14,9 +15,17 @@ export class ErrorInterceptor implements HttpInterceptor {
             catchError((err) => {
                 // auto logout if 401 response returned from api
                 if (err.status === 401 || (err.status === 400 && request.url.indexOf('auth-token') != -1)) {
-                    this.authenticationService.logout();
-                    location.reload();
-                    alert('Hết phiên làm việc. Đăng nhập lại nhé ^_^');
+                    
+                    Swal.fire({
+                        title: 'Hết phiên làm việc!',
+                        html: 'Đăng nhập lại nhé',
+                        icon: 'warning',
+                        timer: 3000,
+                        timerProgressBar: true
+                    }).then(()=>{
+                        this.authenticationService.logout(true);
+                    });
+
                     return throwError('Hết phiên làm việc');
                 }
                 const error = err.error.message || err.statusText;
