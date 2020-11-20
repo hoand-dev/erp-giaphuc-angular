@@ -13,60 +13,68 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./kho-hang-cap-nhat.component.css']
 })
 export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
-
     @ViewChild(DxFormComponent, { static: false }) frmKhoHang: DxFormComponent;
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
-    
+
     private currentChiNhanh: ChiNhanh;
     public lstKhuVuc: KhuVuc[] = [];
     public khohang: KhoHang;
     public makhohang_old: string;
     public saveProcessing = false;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
     constructor(
-        private router: Router, 
-        private activatedRoute: ActivatedRoute, 
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
         private khuvucService: KhuVucService,
-        private khohangService: KhoHangService, 
+        private khohangService: KhoHangService,
         private authenticationService: AuthenticationService
-    ) { }
+    ) {}
 
     ngOnInit(): void {
         this.khohang = new KhoHang();
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-            let khohang_id = params.id;
-            // lấy thông tin kho hàng
-            if (khohang_id) {
-                this.subscriptions.add(this.khohangService.findKhoHang(khohang_id).subscribe(
-                    data => {
-                        this.khohang = data[0];
-                        this.makhohang_old = this.khohang.makhohang;
-                    },
-                    error => {
-                        this.khohangService.handleError(error);
-                    }
-                ));
-                this.subscriptions.add(
-                    this.khuvucService.findKhuVucs().subscribe(
-                        data => {
+
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.currentChiNhanh = x;
+            })
+        );
+
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let khohang_id = params.id;
+                // lấy thông tin kho hàng
+                if (khohang_id) {
+                    this.subscriptions.add(
+                        this.khohangService.findKhoHang(khohang_id).subscribe(
+                            (data) => {
+                                this.khohang = data[0];
+                                this.makhohang_old = this.khohang.makhohang;
+                            },
+                            (error) => {
+                                this.khohangService.handleError(error);
+                            }
+                        )
+                    );
+                    this.subscriptions.add(
+                        this.khuvucService.findKhuVucs().subscribe((data) => {
                             this.lstKhuVuc = data;
-                            // tìm thông tin khu vực theo khuvuc_id                            
-                            this.khohang.khuvuc = data.find(o => o.id == this.khohang.khuvuc_id);; // set trước dữ liệu khu vực
+                            // tìm thông tin khu vực theo khuvuc_id
+                            this.khohang.khuvuc = data.find((o) => o.id == this.khohang.khuvuc_id); // set trước dữ liệu khu vực
                         })
-                );
-            }
-        }));
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -77,7 +85,7 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    theCallbackValid(params) {
         return this.khohangService.checkExistKhoHang(params.value, this.makhohang_old);
     }
 
@@ -87,22 +95,28 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
         khohang_req.khuvuc_id = khohang_req.khuvuc.id; // set lại khuvuc_id
 
         this.saveProcessing = true;
-        this.subscriptions.add(this.khohangService.updateKhoHang(khohang_req).subscribe(
-            data => {
-                notify({
-                    width: 320,
-                    message: "Lưu thành công",
-                    position: { my: "right top", at: "right top" }
-                }, "success", 475);
-                this.router.navigate(['/kho-hang']);
-                // this.frmKhoHang.instance.resetValues();
-                this.saveProcessing = false;
-            },
-            error => {
-                this.khohangService.handleError(error);
-                this.saveProcessing = false;
-            }
-        ));
+        this.subscriptions.add(
+            this.khohangService.updateKhoHang(khohang_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/kho-hang']);
+                    // this.frmKhoHang.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.khohangService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
         e.preventDefault();
     }
 }
