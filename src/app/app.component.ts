@@ -138,7 +138,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         public router: Router,
-        private authenticationService: AuthenticationService,
+        public authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService,
         private nguoidungService: NguoiDungService,
     ) {
@@ -217,13 +217,18 @@ export class AppComponent implements OnInit {
             "/tai-xe",
             "/hang-hoa-thanh-pham",
             "/nguon-nhan-luc",
-            "/nhom-khach-hang",
             "/khu-vuc",
             "/loai-hang",
-            "/nhom-nha-cung-cap",
+        ];
+        const KHACHHANG = [
             "/nhom-khach-hang",
             "/khach-hang",
+        ];
+        const NHACUNGCAP = [
+            "/nhom-nha-cung-cap",
             "/nha-cung-cap",
+        ];
+        const HANGHOA = [
 
         ];
         const SANXUAT = [
@@ -259,12 +264,15 @@ export class AppComponent implements OnInit {
 
         /* kiểm tra chuỗi đã xử lý */
         switch (groupName) {
-            case 'DULIEUCOSO': $return = DULIEUCOSO.includes($url);  break;
-            case 'SANXUAT': $return = SANXUAT.includes($url);  break;
-            case 'MUAHANG': $return = MUAHANG.includes($url);  break;
-            case 'BANHANG': $return = BANHANG.includes($url);  break;
-            case 'KHOHANG': $return = KHOHANG.includes($url);  break;
-            case 'KETOAN': $return = KETOAN.includes($url);  break;
+            case 'DULIEUCOSO': $return = DULIEUCOSO.includes($url); break;
+            case 'KHACHHANG': $return = KHACHHANG.includes($url);   break;
+            case 'NHACUNGCAP': $return = NHACUNGCAP.includes($url); break;
+            case 'HANGHOA': $return = HANGHOA.includes($url);   break;
+            case 'SANXUAT': $return = SANXUAT.includes($url);   break;
+            case 'MUAHANG': $return = MUAHANG.includes($url);   break;
+            case 'BANHANG': $return = BANHANG.includes($url);   break;
+            case 'KHOHANG': $return = KHOHANG.includes($url);   break;
+            case 'KETOAN': $return = KETOAN.includes($url);     break;
             default: $return = false; break;
         }
         return $return;

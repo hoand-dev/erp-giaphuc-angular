@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="['/phieu-dat-hang-ncc']">Phiếu mua hàng ncc</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/phieu-mua-hang-ncc']">Phiếu mua hàng ncc</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group float-right">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModalPhieuDatHangNCC" ng-click="PhieuDatHangNCC_HienDanhSachChon()">
+                                        <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">
                                             CHỌN TỪ PHIẾU ĐẶT HÀNG NCC
                                         </button>
                                     </div>

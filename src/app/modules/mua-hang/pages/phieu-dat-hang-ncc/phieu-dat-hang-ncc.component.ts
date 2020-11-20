@@ -8,6 +8,7 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
     selector: 'app-phieu-dat-hang-ncc',
@@ -30,19 +31,24 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         storageKey: 'dxGrid_PhieuDatHangNCC'
     };
 
-    constructor(private router: Router, private objPhieuDatHangNCCService: PhieuDatHangNCCService) {}
+    constructor(private router: Router, private objPhieuDatHangNCCService: PhieuDatHangNCCService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
-        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), moment().get('date'));
-        this.currDayTime = moment(this.firstDayTime).add(1, 'days').toDate();
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().add(1, 'days').toDate();
     }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        this.onLoadData();
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -55,7 +61,7 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
 
     onLoadData() {
         this.subscriptions.add(
-            this.objPhieuDatHangNCCService.findPhieuDatHangNCCs(this.firstDayTime, this.currDayTime).subscribe(
+            this.objPhieuDatHangNCCService.findPhieuDatHangNCCs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

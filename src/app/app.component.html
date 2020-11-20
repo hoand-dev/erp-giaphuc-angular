@@ -44,6 +44,7 @@
                     (onSelectionChanged)="onChangedChiNhanh($event)"
                     (onValueChanged)="onValueChanged($event)"
                     [value]="chinhanhSelected"
+                    [readOnly]="authenticationService.disableChiNhanhValue"
                     [dataSource]="chinhanhs" displayExpr="tenchinhanh" 
                     [searchMode]="'contains'" [searchExpr]="'tenchinhanh'"
                     [searchTimeout]="200" [minSearchLength]="0" [searchEnabled]="false">
@@ -209,39 +210,15 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a [routerLink]="['/danh-muc-gia-cong']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Danh mục gia công</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/danh-muc-loi']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Danh mục lỗi</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a [routerLink]="['/danh-muc-no']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Danh mục nợ</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a [routerLink]="['/danh-muc-tieu-chuan']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Danh mục tiêu chuẩn</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a [routerLink]="['/don-vi-gia-cong']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Đơn vị gia công</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/don-vi-tinh']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Đơn vị tính</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -266,6 +243,117 @@
                                             <a [routerLink]="['/quy-tai-khoan']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Quỹ tài khoản</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/kho-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Kho hàng</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/danh-sach-xe']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh Sách Xe</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/tai-xe']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Tài Xế</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/khu-vuc']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Khu Vực</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('KHACHHANG')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Khách hàng
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/nhom-khach-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nhóm khách hàng</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/khach-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Khách hàng</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('NHACUNGCAP')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Nhà cung cấp
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/nhom-nha-cung-cap']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nhóm nhà cung cấp</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/nha-cung-cap']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nhà cung cấp</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('HANGHOA')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Hàng hoá
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/danh-muc-gia-cong']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh mục gia công</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/danh-muc-loi']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh mục lỗi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/danh-muc-tieu-chuan']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Danh mục tiêu chuẩn</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/don-vi-tinh']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Đơn vị tính</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/loai-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Loại Hàng</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -298,61 +386,6 @@
                                                 <p>Thành phẩm</p>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/kho-hang']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Kho hàng</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/danh-sach-xe']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Danh Sách Xe</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/tai-xe']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Tài Xế</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/khu-vuc']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Khu Vực</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/loai-hang']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Loại Hàng</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/nhom-nha-cung-cap']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Nhóm Nhà Cung Cấp</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/nhom-khach-hang']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Nhóm Khách hàng</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/khach-hang']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Khách Hàng</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a [routerLink]="['/nha-cung-cap']" class="nav-link" routerLinkActive="active">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Nhà Cung Cấp</p>
-                                            </a>
-                                        </li>
-
                                     </ul>
                                 </li>
                                 <li class="nav-item has-treeview" routerLinkActive="menu-open">

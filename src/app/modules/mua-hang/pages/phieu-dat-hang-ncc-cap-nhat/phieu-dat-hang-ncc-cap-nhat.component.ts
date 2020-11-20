@@ -60,10 +60,19 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
     ngAfterViewInit() {
         // this.frmPhieuDatHangNCC.instance.validate(); // showValidationSummary sau khi focus out
     }
-    
+
     ngOnInit(): void {
+        // cập nhật thông tin phiếu không cho thay đổi chi nhánh
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
+
         this.phieudathangncc = new PhieuDatHangNCC();
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.currentChiNhanh = x;
+            })
+        );
 
         this.loadingVisible = true;
         this.subscriptions.add(
@@ -115,29 +124,31 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 
     onFormFieldChanged(e) {
         // nếu thay đổi nhà cung cấp
-        if (e.dataField == 'nhacungcap') {
+        if (e.dataField == 'nhacungcap' && e.value !== undefined) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
 
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
             this.phieudathangncc.dienthoainhacungcap = e.value ? e.value.sodienthoai : null;
             this.phieudathangncc.diachinhacungcap = e.value ? e.value.diachi : null;
+            this.phieudathangncc.nhacungcap_id = e.value ? e.value.id : null;
 
             // load nợ cũ ncc
             this.subscriptions.add(
-                this.commonService.nhaCungCap_LoadNoCu(1, 1).subscribe((data) => {
+                this.commonService.nhaCungCap_LoadNoCu(this.phieudathangncc.nhacungcap_id, this.phieudathangncc.sort).subscribe((data) => {
                     this.phieudathangncc.nocu = data;
                 })
             );
         }
 
         // nếu thay đổi chiết khấu -> set chiết khấu hàng hoá = 0
-        if (e.dataField == 'chietkhau'  && e.value != 0) {
+        if (e.dataField == 'chietkhau' && e.value != 0) {
             this.hanghoas.forEach((v, i) => {
                 v.chietkhau = 0;
             });
@@ -172,8 +183,10 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
             this.hanghoalenght--;
             //return;
         } else {
+            this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
+
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }

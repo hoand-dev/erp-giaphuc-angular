@@ -100,24 +100,25 @@ export class PhieuDatHangNCCThemMoiComponent implements OnInit {
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
             this.phieudathangncc.dienthoainhacungcap = e.value ? e.value.sodienthoai : null;
             this.phieudathangncc.diachinhacungcap = e.value ? e.value.diachi : null;
+            this.phieudathangncc.nhacungcap_id = e.value ? e.value.id : null;
 
             // load nợ cũ ncc
             this.subscriptions.add(
-                this.commonService.nhaCungCap_LoadNoCu(1, 1).subscribe((data) => {
+                this.commonService.nhaCungCap_LoadNoCu(this.phieudathangncc.nhacungcap_id).subscribe((data) => {
                     this.phieudathangncc.nocu = data;
                 })
             );
         }
 
         // nếu thay đổi chiết khấu -> set chiết khấu hàng hoá = 0
-        if (e.dataField == 'chietkhau') {
+        if (e.dataField == 'chietkhau' && e.value != 0) {
             this.hanghoas.forEach((v, i) => {
                 v.chietkhau = 0;
             });
         }
 
         // nếu thay đổi thuế vat -> set thuế vat hàng hoá = 0
-        if (e.dataField == 'thuevat') {
+        if (e.dataField == 'thuevat' && e.value != 0) {
             this.hanghoas.forEach((v, i) => {
                 v.thuevat = 0;
             });
@@ -141,6 +142,7 @@ export class PhieuDatHangNCCThemMoiComponent implements OnInit {
         let selected = e.selectedItem;
 
         // xử lý lại thông tin dựa trên lựa chọn
+        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].dvt_id = selected.dvt_id;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
 
