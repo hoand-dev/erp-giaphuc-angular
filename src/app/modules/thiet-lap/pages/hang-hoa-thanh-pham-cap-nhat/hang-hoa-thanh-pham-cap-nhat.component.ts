@@ -75,6 +75,12 @@ export class HangHoaThanhPhamCapNhatComponent implements OnInit, OnDestroy {
                     this.giacongService.findDinhMucs().subscribe(
                         x => {
                             this.lstGiaCong = x;
+
+                            let dinhmuc_giacongs = [];
+                            this.hanghoa.dinhmuc_giacong.forEach((v, i)=>{
+                                dinhmuc_giacongs.push(x.find(o=> o.id == v.id))
+                            })
+                            this.hanghoa.dinhmuc_giacong = dinhmuc_giacongs;
                         })
                 );
                 this.subscriptions.add(
@@ -132,7 +138,7 @@ export class HangHoaThanhPhamCapNhatComponent implements OnInit, OnDestroy {
     form_fieldDataChanged(e) {
         /* tạo mã + tên hàng hóa */
         if (
-            e.dataField == "giacong" ||
+            e.dataField == "dinhmuc_giacong" ||
             e.dataField == "somat" ||
             e.dataField == "tieuchuan" ||
             e.dataField == "day" ||
