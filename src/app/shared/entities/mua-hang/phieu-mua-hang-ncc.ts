@@ -33,6 +33,7 @@ export class PhieuMuaHangNCC {
 
     public nocu: number = 0;
     public tennguoitao: string = '';
+    
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -99,6 +100,8 @@ export class PhieuMuaHangNCC_ChiTiet {
     public chuthich: string;
     public soluongdanhapkho: number;
     public trangthainhapkho: string;
+    public soluongtattoan: number;
+    public loaihanghoa: string;
     public phieudathangncc_chitiet_id: number;
     
     public tendonvitinh: string;
@@ -122,6 +125,8 @@ export class PhieuMuaHangNCC_ChiTiet {
         chuthich: string = null,
         soluongdanhapkho: number = 0,
         trangthainhapkho: string = null,
+        soluongtattoan: number = 0,
+        loaihanghoa: string = null,
         phieudathangncc_chitiet_id: number = null
     ) {
         this.id = id;
@@ -142,6 +147,8 @@ export class PhieuMuaHangNCC_ChiTiet {
         this.chuthich = chuthich;
         this.soluongdanhapkho = soluongdanhapkho;
         this.trangthainhapkho = trangthainhapkho;
+        this.soluongtattoan = soluongtattoan;
+        this.loaihanghoa = loaihanghoa;
         this.phieudathangncc_chitiet_id = phieudathangncc_chitiet_id;
     }
 }

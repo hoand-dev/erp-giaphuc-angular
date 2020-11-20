@@ -21,10 +21,11 @@ export class PhieuDatHangNCCService extends BaseService {
         return this.httpClient.get<PhieuDatHangNCC>(this.apiUrl + `/${id}`);
     }
 
-    findPhieuDatHangNCCs(fromDay:Date, toDay: Date): Observable<PhieuDatHangNCC[]> {
+    findPhieuDatHangNCCs(chinhanh_id: number = null, fromDay:Date, toDay: Date): Observable<PhieuDatHangNCC[]> {
+        let query_chinhanh = chinhanh_id == null ? "?" : '?chinhanh_id=' + chinhanh_id + '&';
         let tungay = moment(fromDay).format("YYYY-MM-DD HH:mm:ss");
         let denngay = moment(toDay).format("YYYY-MM-DD HH:mm:ss");
-        return this.httpClient.get<PhieuDatHangNCC[]>(this.apiUrl + `?tungay=${tungay}&denngay=${denngay}`);
+        return this.httpClient.get<PhieuDatHangNCC[]>(this.apiUrl + query_chinhanh + `tungay=${tungay}&denngay=${denngay}`);
     }
 
     addPhieuDatHangNCC(phieudathangncc: PhieuDatHangNCC): Observable<PhieuDatHangNCC> {

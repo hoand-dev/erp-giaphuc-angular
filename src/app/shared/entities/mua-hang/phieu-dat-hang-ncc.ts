@@ -104,6 +104,8 @@ export class PhieuDatHangNCC_ChiTiet {
     public chuthich: string;
     public soluongdanhan: number;
     public trangthainhan: string;
+    public soluongtattoan: number;
+    public loaihanghoa: string;
 
     public tendonvitinh: string;
 
@@ -124,7 +126,9 @@ export class PhieuDatHangNCC_ChiTiet {
         thanhtien: number = 0,
         chuthich: string = null,
         soluongdanhan: number = 0,
-        trangthainhan: string = null
+        trangthainhan: string = null,
+        soluongtattoan: number = 0,
+        loaihanghoa: string = null,
     ) {
         this.id = id;
         this.phieudathangncc_id = phieudathangncc_id;
@@ -143,5 +147,7 @@ export class PhieuDatHangNCC_ChiTiet {
         this.chuthich = chuthich;
         this.soluongdanhan = soluongdanhan;
         this.trangthainhan = trangthainhan;
+        this.soluongtattoan = soluongtattoan;
+        this.loaihanghoa = loaihanghoa;
     }
 }
