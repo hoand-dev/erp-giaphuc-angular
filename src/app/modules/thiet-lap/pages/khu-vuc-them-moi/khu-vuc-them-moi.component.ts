@@ -1,11 +1,12 @@
-
-import { KhuVuc } from './../../../../shared/entities/thiet-lap/khu-vuc';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DxFormComponent } from 'devextreme-angular';
-import { Subscription } from 'rxjs';
-import notify from 'devextreme/ui/notify';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ChiNhanh, KhuVuc } from '@app/shared/entities';
 import { KhuVucService } from '@app/shared/services';
+import { AuthenticationService } from '@app/_services';
+import { DxFormComponent } from 'devextreme-angular';
+import notify from 'devextreme/ui/notify';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-khu-vuc-them-moi',
@@ -16,8 +17,11 @@ export class KhuVucThemMoiComponent implements OnInit {
 
   @ViewChild(DxFormComponent, { static: false }) frmKhuVuc: DxFormComponent;
 
-  private subscription: Subscription;
+  subscriptions: Subscription = new Subscription();  
+  private currentChiNhanh: ChiNhanh;
   public khuvuc: KhuVuc;
+
+ 
 
   public saveProcessing = false;
 
@@ -31,7 +35,8 @@ export class KhuVucThemMoiComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private khuvucService: KhuVucService
+    private khuvucService: KhuVucService,
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngAfterViewInit() {
@@ -40,15 +45,17 @@ export class KhuVucThemMoiComponent implements OnInit {
 
   ngOnInit(): void {
     this.khuvuc = new KhuVuc();
-    this.theCallbackValid = this.theCallbackValid.bind(this); // binding function sang html sau compile
+    this.theCallbackValid = this.theCallbackValid.bind(this);
+    this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh =x));
+
   }
 
   ngOnDestroy(): void {
     
     // xử lý trước khi thoát khỏi trang
-    if(this.subscription){
-      this.subscription.unsubscribe();
-    }
+ 
+      this.subscriptions.unsubscribe();
+    
   }
 
     theCallbackValid(params) {
@@ -57,9 +64,10 @@ export class KhuVucThemMoiComponent implements OnInit {
 
     onSubmitForm(e) {
       let khuvuc_req = this.khuvuc;
+      khuvuc_req.chinhanh_id = this.currentChiNhanh.id;
 
       this.saveProcessing = true;
-      this.subscription = this.khuvucService.addKhuVuc(khuvuc_req).subscribe(
+      this.subscriptions = this.khuvucService.addKhuVuc(khuvuc_req).subscribe(
         data => {
           notify({
             width: 320,

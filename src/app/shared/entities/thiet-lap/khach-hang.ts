@@ -27,6 +27,7 @@ export class KhachHang {
     public chucvu: string;
     public dathucongno: number;
     public email: string;
+    public tennganhang: string;
 
     public nhomkhachang: NhomKhachHang;
     public tennhomkhachhang: String;
@@ -60,6 +61,7 @@ export class KhachHang {
         chucvu: string = null,
         dathucongno: number = null,
         email: string = null,
+        tennganhang:string = null,
         nhomkhachang: NhomKhachHang = null,
         tennhomkhachhang: string = null,
 
@@ -91,6 +93,7 @@ export class KhachHang {
         this.chucvu = chucvu;
         this.dathucongno = dathucongno;
         this.email = email;
+        this.tennganhang = tennganhang;
         this.nhomkhachang = nhomkhachang;
         this.tennhomkhachhang = tennhomkhachhang;
 

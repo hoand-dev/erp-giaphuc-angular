@@ -43,8 +43,13 @@ export class LoaiHangThemMoiComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaihang = new LoaiHang();
+    this.theCallbackValid = this.theCallbackValid.bind(this);
     this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
   }
+
+  theCallbackValid(params){	
+    return this.loaihangService.checkLoaiHangExist(params.value);
+}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
