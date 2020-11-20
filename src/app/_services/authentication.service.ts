@@ -16,12 +16,18 @@ export class AuthenticationService {
     private currentChiNhanhSubject: BehaviorSubject<ChiNhanh>;
     public currentChiNhanh: Observable<ChiNhanh>;
 
+    private disableChiNhanhSubject: BehaviorSubject<boolean>;
+    public disableChiNhanh: Observable<boolean>;
+
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
         
         this.currentChiNhanhSubject = new BehaviorSubject<ChiNhanh>(JSON.parse(localStorage.getItem('currentChiNhanh')));
         this.currentChiNhanh = this.currentChiNhanhSubject.asObservable();
+        
+        this.disableChiNhanhSubject = new BehaviorSubject<boolean>(false);
+        this.disableChiNhanh = this.disableChiNhanhSubject.asObservable();
     }
 
     public get currentUserValue(): User {
@@ -32,9 +38,17 @@ export class AuthenticationService {
         return this.currentChiNhanhSubject.value;
     }
 
+    public get disableChiNhanhValue(): boolean {
+        return this.disableChiNhanhSubject.value;
+    }
+
     public setChiNhanhValue(chinhanh: ChiNhanh): void{
         localStorage.setItem('currentChiNhanh', JSON.stringify(chinhanh));
         this.currentChiNhanhSubject.next(chinhanh);
+    }
+
+    public setDisableChiNhanh(disable: boolean): void{
+        this.disableChiNhanhSubject.next(disable);
     }
 
     login(username: string, password: string, grant_type: string = 'password') { // hoand grant_type
@@ -49,11 +63,11 @@ export class AuthenticationService {
             }));
     }
 
-    logout() {
+    logout(reload: boolean = true) {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
-        location.reload();
+        if(reload) location.reload();
     }
 
     refreshAuthToken(){
