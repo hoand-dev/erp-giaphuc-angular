@@ -198,27 +198,17 @@ export class AppComponent implements OnInit {
     activeGroupClass(groupName: string = null){
         const DULIEUCOSO = [
             "/chi-nhanh", 
-            "/danh-muc-gia-cong",
-            "/danh-muc-loi",
             "/danh-muc-no",
-            "/danh-muc-tieu-chuan",
             "/khu-vuc",
             "/don-vi-gia-cong",
-            "/don-vi-tinh",
             "/noi-dung-thu-chi",
             "/quy-tai-khoan",
-            "/so-mat",
             "/kho-hang",
-            "/hang-hoa-nguyen-lieu",
-            "/hang-hoa-hang-tron",
             "/danh-sach-xe",
-            "/dinh-muc",
             "/nguon-nhan-luc",
             "/tai-xe",
-            "/hang-hoa-thanh-pham",
             "/nguon-nhan-luc",
             "/khu-vuc",
-            "/loai-hang",
         ];
         const KHACHHANG = [
             "/nhom-khach-hang",
@@ -229,7 +219,16 @@ export class AppComponent implements OnInit {
             "/nha-cung-cap",
         ];
         const HANGHOA = [
-
+            "/danh-muc-gia-cong",
+            "/danh-muc-loi",
+            "/danh-muc-tieu-chuan",
+            "/loai-hang",
+            "/don-vi-tinh",
+            "/so-mat",
+            "/hang-hoa-nguyen-lieu",
+            "/hang-hoa-hang-tron",
+            "/dinh-muc",
+            "/hang-hoa-thanh-pham",
         ];
         const SANXUAT = [
             "/phieu-cap-phat-vat-tu",
