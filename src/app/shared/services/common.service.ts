@@ -16,7 +16,7 @@ export class CommonService {
         return value !== undefined && value !== null && value !== "";
     }
 
-    nhaCungCap_LoadNoCu(nhacungcap_id: number, ids: number): Observable<number> {
-        return this.httpClient.get<number>(this.apiUrl + '/nhacungcap-loadnocu' + `?nhacungcap_id=${nhacungcap_id}&ids=${ids}`);
+    nhaCungCap_LoadNoCu(nhacungcap_id: number = null, sort: string = null): Observable<number> {
+        return this.httpClient.get<number>(this.apiUrl + '/nhacungcap-loadnocu' + `?nhacungcap_id=${nhacungcap_id}&sort=${sort}`);
     }
 }
