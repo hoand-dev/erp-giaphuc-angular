@@ -1,0 +1,87 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/theo-doi-hop-dong']">Theo dõi hợp đồng</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20">
+                            <h5>THEO DÕI HỢP ĐỒNG - THÊM MỚI</h5>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="2" [formData]="hopdong" [showValidationSummary]="true">
+                                    <dxi-item [label]="{ text: 'SỐ HỢP ĐỒNG' }" dataField="masohopdong">
+                                        <dxi-validation-rule type="required" message="Nhập số hợp đồng"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="2" message="Mã hợp đồng quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallBackValid"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item
+                                        [label]="{ text: 'KHÁCH HÀNG' }"
+                                        dataField="khachhang"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: lstKhachHang,searchExpr: ['makhachhang','tenkhachhang'], searchEnabled: true, displayExpr: 'tenkhachhang' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn khách hàng"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'NỘI DUNG THANH TOÁN' }" dataField="noidungthanhtoan" editorType="dxTextArea" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'THỜI GIAN CÔNG NỢ' }" dataField="thoigiancongno">
+                                        <dxi-validation-rule type="required" message="Vui lòng thời gian công nợ"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="range" min="0" max="99" message="Vui lòng nhập thời gian công nợ"> </dxi-validation-rule>
+                                    </dxi-item>
+                                        <dxi-item [label]="{ text: 'NGÀY KÝ' }" dataField="ngayky" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn ngày ký"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'NGÀY HẾT HẠN' }" dataField="ngayhethan" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập thời gian công nợ"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'THỜI GIAN CÒN LẠI' }" dataField="thoigianconlai"></dxi-item>
+                                    <dxi-item [label]="{ text: 'NGƯỜI KÝ BÊN A' }" dataField="nguoikybena"></dxi-item>
+                                    <dxi-item [label]="{ text: 'NGƯỜI KÝ BÊN B' }" dataField="nguoikybenb"></dxi-item>
+                                    <dxi-item [label]="{ text: 'THÔNG TIN LIÊN HỆ' }" dataField="thongtinlienhe"></dxi-item>
+                                    <dxi-item
+                                    [label]="{ text: 'NHÂN VIÊN KD' }"
+                                    dataField="nguoidung"
+                                    editorType="dxSelectBox"
+                                    [editorOptions]="{ dataSource: lstNguoiDung, searchEnabled: true, displayExpr: 'hoten' }"
+                                    >
+                                    <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item
+                                        [label]="{ text: 'LOẠI HỢP ĐỒNG' }"
+                                        dataField="nhomkhachang"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: lstNhomKhachHang, searchEnabled: true, displayExpr: 'tennhomkhachhang' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn loại hợp đồng"> </dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+
+                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
