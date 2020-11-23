@@ -69,7 +69,7 @@ export class NhomKhachHangComponent implements OnInit {
               notify({
                 width: 320,
                 message: "Xóa thành công",
-                positon: { my: "right top", at: "right top" }
+                position: { my: "right top", at: "right top" }
               }, "success", 475);
             }
             this.onLoadData();
