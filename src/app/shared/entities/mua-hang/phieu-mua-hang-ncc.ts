@@ -88,9 +88,6 @@ export class PhieuMuaHangNCC_ChiTiet {
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
-    public giatriquydoi_kien: number;
-    public quycachdai: number;
-    public quycachrong: number;
     public soluong: number;
     public dongia: number;
     public thuevat: number;
@@ -113,9 +110,6 @@ export class PhieuMuaHangNCC_ChiTiet {
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
         tilequydoi: number = 1,
-        giatriquydoi_kien: number = 1,
-        quycachdai: number = 1,
-        quycachrong: number = 1,
         soluong: number = 0,
         dongia: number = 0,
         thuevat: number = 0,
@@ -135,9 +129,6 @@ export class PhieuMuaHangNCC_ChiTiet {
         this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.dvt_id = dvt_id;
         this.tilequydoi = tilequydoi;
-        this.giatriquydoi_kien = giatriquydoi_kien;
-        this.quycachdai = quycachdai;
-        this.quycachrong = quycachrong;
         this.soluong = soluong;
         this.dongia = dongia;
         this.thuevat = thuevat;

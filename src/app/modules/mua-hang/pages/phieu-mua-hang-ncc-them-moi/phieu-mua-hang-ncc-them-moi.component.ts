@@ -99,6 +99,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.activatedRoute.queryParams.subscribe((params) => {
                 if (this.commonService.isNotEmpty(params.tuphieu)) {
+                    this.hanghoas = [];
                     // lấy thông tin phiếu đặt hàng ncc từ api
                     this.objPhieuDatHangNCCService.findPhieuDatHangNCC(params.tuphieu).subscribe(
                         (data) => {
@@ -124,21 +125,22 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
                             
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieudathangncc_chitiet.forEach((value, index) => {
-                                this.hanghoas[index].loaihanghoa = value.loaihanghoa;
-                                this.hanghoas[index].hanghoa_id = value.hanghoa_id;
-                                this.hanghoas[index].hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                this.hanghoas[index].dvt_id = value.dvt_id;
-                                this.hanghoas[index].tilequydoi = value.tilequydoi;
-                                this.hanghoas[index].giatriquydoi_kien = value.giatriquydoi_kien;
-                                this.hanghoas[index].quycachdai = value.quycachdai;
-                                this.hanghoas[index].quycachrong = value.quycachrong;
-                                this.hanghoas[index].soluong = value.soluong - value.soluongdanhan;
-                                this.hanghoas[index].dongia = value.dongia;
-                                this.hanghoas[index].thuevat = value.thuevat;
-                                this.hanghoas[index].chietkhau = value.chietkhau;
-                                this.hanghoas[index].thanhtien = value.thanhtien;
-                                this.hanghoas[index].chuthich = value.chuthich;
-                                this.hanghoas[index].phieudathangncc_chitiet_id = value.id;
+                                let item = new PhieuMuaHangNCC_ChiTiet();
+                                
+                                item.loaihanghoa = value.loaihanghoa;
+                                item.hanghoa_id = value.hanghoa_id;
+                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                item.dvt_id = value.dvt_id;
+                                item.tilequydoi = value.tilequydoi;
+                                item.soluong = value.soluong - value.soluongdanhan;
+                                item.dongia = value.dongia;
+                                item.thuevat = value.thuevat;
+                                item.chietkhau = value.chietkhau;
+                                item.thanhtien = value.thanhtien;
+                                item.chuthich = value.chuthich;
+                                item.phieudathangncc_chitiet_id = value.id;
+
+                                this.hanghoas.push(item);
                             });
                         },
                         (error) => {
@@ -150,7 +152,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         );
 
         // thêm sẵn 1 dòng cho user
-        this.onHangHoaAdd();
+        // this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
