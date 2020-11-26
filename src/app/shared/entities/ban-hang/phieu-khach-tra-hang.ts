@@ -1,3 +1,7 @@
+import { PhieuBanHang_ChiTiet } from '.';
+import { KhachHang } from '..';
+import { KhoHang } from '../thiet-lap';
+
 export class PhieuKhachTraHang {
 
     public id: number;
@@ -25,6 +29,22 @@ export class PhieuKhachTraHang {
     public khonhap_id: number;
     public trangthainhap: string;
     public phieubanhang_id: number;
+
+    public phieubanhang_chitiet: PhieuBanHang_ChiTiet [];
+
+    /* các thông tin hiển thị trên view được lấy từ các bảng khác */
+
+    public maphieudathang: string;
+    public khachhang: KhachHang;
+    public tenkhachhang: string;
+    public sodienthoaikhachhang: string;
+    public diachikhachhang: string;
+
+    public nocu: number =0;
+    public tennguoitao: '';
+
+    public khonhan: KhoHang;
+
 
     constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = null, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, ids: number = null, sort: string = null, ngaykhachtrahang: Date = null, maphieukhachtrahang: string = null, nhanviensale_id: number = null, khachhang_id: number = null, khachhang_hoten: string = null, khachhang_diachi: string = null, khachhang_dienthoai: string = null, tongtienhang: number = null, cuocvanchuyen: number = null, chietkhau: number = null, thuevat: number = null, tongthanhtien: number = null, khonhap_id: number = null, trangthainhap: string = null, phieubanhang_id: number = null){
         this.id = id;

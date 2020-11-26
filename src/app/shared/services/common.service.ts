@@ -19,4 +19,7 @@ export class CommonService {
     nhaCungCap_LoadNoCu(nhacungcap_id: number = null, sort: string = null): Observable<number> {
         return this.httpClient.get<number>(this.apiUrl + '/nhacungcap-loadnocu' + `?nhacungcap_id=${nhacungcap_id}&sort=${sort}`);
     }
+    khachHang_LoadNoCu(khachhang_id: number = null, sort: string = null): Observable<number> {
+        return this.httpClient.get<number>(this.apiUrl + '/khachhang-loadnocu' + `?khachhang_id=${khachhang_id}&sort=${sort}`);
+    }
 }
