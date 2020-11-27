@@ -7,11 +7,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-danh-sach-phieu-ban-hang',
-  templateUrl: './danh-sach-phieu-ban-hang.component.html',
-  styleUrls: ['./danh-sach-phieu-ban-hang.component.css']
+  selector: 'app-danh-sach-phieu-ban-hang-modal',
+  templateUrl: './danh-sach-phieu-ban-hang-modal.component.html',
+  styleUrls: ['./danh-sach-phieu-ban-hang-modal.component.css']
 })
-export class DanhSachPhieuBanHangComponent implements OnInit {
+export class DanhSachPhieuBanHangModalComponent implements OnInit {
 
     public subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;

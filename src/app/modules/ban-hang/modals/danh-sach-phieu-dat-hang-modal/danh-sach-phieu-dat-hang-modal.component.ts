@@ -12,11 +12,11 @@ import { AuthenticationService } from '@app/_services';
 
 
 @Component({
-  selector: 'app-danh-sach-phieu-dat-hang',
-  templateUrl: './danh-sach-phieu-dat-hang.component.html',
-  styleUrls: ['./danh-sach-phieu-dat-hang.component.css']
+  selector: 'app-danh-sach-phieu-dat-hang-modal',
+  templateUrl: './danh-sach-phieu-dat-hang-modal.component.html',
+  styleUrls: ['./danh-sach-phieu-dat-hang-modal.component.css']
 })
-export class DanhSachPhieuDatHangComponent implements OnInit {
+export class DanhSachPhieuDatHangModalComponent implements OnInit {
 
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
