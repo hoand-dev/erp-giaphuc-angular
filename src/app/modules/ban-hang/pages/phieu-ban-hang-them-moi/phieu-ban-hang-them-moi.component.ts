@@ -1,7 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, KhachHang, KhoHang, NguoiDung, PhieuBanHang, PhieuBanHang_ChiTiet, PhieuDatHang, PhieuDatHang_ChiTiet } from '@app/shared/entities';
-import { AppInfoService, CommonService, HangHoaService, KhachHangService, KhoHangService, NguoiDungService, PhieuBanHangService, PhieuDatHangService, RouteInterceptorService } from '@app/shared/services';
+import {
+    AppInfoService,
+    CommonService,
+    HangHoaService,
+    KhachHangService,
+    KhoHangService,
+    NguoiDungService,
+    PhieuBanHangService,
+    PhieuDatHangService,
+    RouteInterceptorService
+} from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
@@ -11,12 +21,12 @@ import { Subscription } from 'rxjs';
 import { DanhSachPhieuDatHangModalComponent } from '../../modals/danh-sach-phieu-dat-hang-modal/danh-sach-phieu-dat-hang-modal.component';
 
 @Component({
-  selector: 'app-phieu-ban-hang-them-moi',
-  templateUrl: './phieu-ban-hang-them-moi.component.html',
-  styleUrls: ['./phieu-ban-hang-them-moi.component.css']
+    selector: 'app-phieu-ban-hang-them-moi',
+    templateUrl: './phieu-ban-hang-them-moi.component.html',
+    styleUrls: ['./phieu-ban-hang-them-moi.component.css']
 })
 export class PhieuBanHangThemMoiComponent implements OnInit {
-    @ViewChild(DxFormComponent, {static: false}) frmPhieuBanHang : DxFormComponent;
+    @ViewChild(DxFormComponent, { static: false }) frmPhieuBanHang: DxFormComponent;
 
     bsModalRef: BsModalRef;
 
@@ -26,17 +36,15 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
 
     public phieubanhang: PhieuBanHang;
-    public phieudathang: PhieuDatHang;
-    public lstKhachHang: KhachHang [] = [];
+    public lstKhachHang: KhachHang[] = [];
     public lstKhoHang: KhoHang[] = [];
     public lstNguoiDung: NguoiDung[] = [];
 
-    public hanghoas: PhieuBanHang_ChiTiet [] = [];
+    public hanghoas: PhieuBanHang_ChiTiet[] = [];
     public dataSource_HangHoa: any = {};
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
 
-    
     public saveProcessing = false;
     public loadingVisible = true;
 
@@ -69,10 +77,10 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     ngAfterViewInit() {
         // this.frmphieubanhang.instance.validate(); // showValidationSummary sau khi focus out
     }
-    
+
     ngOnInit(): void {
         this.phieubanhang = new PhieuBanHang();
-       
+
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
@@ -94,14 +102,12 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
             })
         );
         this.subscriptions.add(
-            this.nguoidungService.findNguoiDungs().subscribe(
-                x => {
+            this.nguoidungService.findNguoiDungs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstNguoiDung = x;
             })
         );
-       
-    
+
         this.loadingVisible = true;
         this.subscriptions.add(
             this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
@@ -149,11 +155,11 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieudathang_chitiet.length;
-                            
+
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieudathang_chitiet.forEach((value, index) => {
                                 let item = new PhieuBanHang_ChiTiet();
-                                
+
                                 item.loaihanghoa = value.loaihanghoa;
                                 item.hanghoa_id = value.hanghoa_id;
                                 item.hanghoa_lohang_id = value.hanghoa_lohang_id;
@@ -180,7 +186,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         );
 
         // thêm sẵn 1 dòng cho user
-         this.onHangHoaAdd();
+        this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
@@ -197,7 +203,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         const initialState = {
             title: 'DANH SÁCH PHIẾU ĐẶT HÀNG' // và nhiều hơn thế nữa
         };
-        
+
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(DanhSachPhieuDatHangModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
@@ -240,6 +246,14 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         if (e.dataField == 'thuevat' && e.value != 0) {
             this.hanghoas.forEach((v, i) => {
                 v.thuevat = 0;
+            });
+        }
+
+        // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
+        if (e.dataField == 'khoxuat') {
+            this.phieubanhang.khoxuat_id = e.value ? this.phieubanhang.khoxuat.id : null;
+            this.hanghoas.forEach((v, i) => {
+                v.khoxuat_id = this.phieubanhang.khoxuat_id;
             });
         }
 
@@ -321,8 +335,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
             tongtienhang += v.thanhtien;
         });
         this.phieubanhang.tongtienhang = tongtienhang;
-        this.phieubanhang.tongthanhtien =
-            tongtienhang - tongtienhang * this.phieubanhang.chietkhau + (tongtienhang - tongtienhang * this.phieubanhang.chietkhau) * this.phieubanhang.thuevat;
+        this.phieubanhang.tongthanhtien = tongtienhang - tongtienhang * this.phieubanhang.chietkhau + (tongtienhang - tongtienhang * this.phieubanhang.chietkhau) * this.phieubanhang.thuevat;
     }
 
     public onSubmitForm(e) {
@@ -336,7 +349,6 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         phieubanhang_req.nhanviensale_id = this.phieubanhang.nguoidung.id;
         phieubanhang_req.khoxuat_id = this.phieubanhang.khoxuat.id;
         phieubanhang_req.phieubanhang_chitiet = hanghoas;
-       
 
         this.saveProcessing = true;
         this.subscriptions.add(

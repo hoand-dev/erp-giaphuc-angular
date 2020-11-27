@@ -80,7 +80,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
                     this.khohangService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstKhoHang = x;
-                        this.phieudathang.khoxuat = this.lstKhoHang.find((x) => x.id == this.phieudathang.khoxuat_id);
+                        this.phieudathang.khoxuat = x.find((x) => x.id == this.phieudathang.khoxuat_id);
                     })
                 );
             })
@@ -98,6 +98,20 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             })
         );
 
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
+            })
+        );
+
+        this.subscriptions.add(
+            this.nguoidungService.findNguoiDungs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstNguoiDung = x;
+            })
+        );
+
         this.loadingVisible = true;
         this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
@@ -112,20 +126,10 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
                                 this.phieudathang = data;
                                 this.hanghoas = this.phieudathang.phieudathang_chitiet;
-                                this.subscriptions.add(
-                                    this.khachhangService.findKhachHangs().subscribe((x) => {
-                                        this.loadingVisible = false;
-                                        this.lstKhachHang = x;
-                                        this.phieudathang.khachhang = x.find((o) => o.id == this.phieudathang.khachhang_id);
-                                    })
-                                );
-                                this.subscriptions.add(
-                                    this.nguoidungService.findNguoiDungs().subscribe((x) => {
-                                        this.loadingVisible = false;
-                                        this.lstNguoiDung = x;
-                                        this.phieudathang.nguoidung = x.find((o) => o.id == this.phieudathang.nhanviensale_id);
-                                    })
-                                );
+
+                                this.phieudathang.khachhang = this.lstKhachHang.find((o) => o.id == this.phieudathang.khachhang_id);
+                                this.phieudathang.khoxuat = this.lstKhoHang.find((x) => x.id == this.phieudathang.khoxuat_id);
+                                this.phieudathang.nguoidung = this.lstNguoiDung.find((o) => o.id == this.phieudathang.nhanviensale_id);
                             },
                             (error) => {
                                 this.phieudathangService.handleError(error);
@@ -160,11 +164,12 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             this.phieudathang.khachhang_id = e.value ? e.value.id : null;
 
             // load nợ cũ ncc
-            this.subscriptions.add(
-                this.commonService.khachHang_LoadNoCu(this.phieudathang.khachhang_id).subscribe((data) => {
+            this.subscriptions
+                .add
+                /* this.commonService.khachHang_LoadNoCu(this.phieudathang.khachhang_id).subscribe((data) => {
                     this.phieudathang.nocu = data;
-                })
-            );
+                }) */
+                ();
         }
 
         // nếu thay đổi chiết khấu -> set chiết khấu hàng hoá = 0
@@ -183,8 +188,9 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
         if (e.dataField == 'khoxuat') {
+            this.phieudathang.khoxuat_id = e.value ? e.value.id : null;
             this.hanghoas.forEach((v, i) => {
-                v.khoxuat_id = this.phieudathang.khoxuat.id;
+                v.khoxuat_id = this.phieudathang.khoxuat_id;
             });
         }
 
