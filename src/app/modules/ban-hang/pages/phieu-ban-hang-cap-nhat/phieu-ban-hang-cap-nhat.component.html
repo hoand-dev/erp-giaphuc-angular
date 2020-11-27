@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="['/phieu-dat-hang']">Phiếu đặt hàng</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/phieu-ban-hang']">Phiếu bán hàng</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
@@ -23,17 +23,23 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title" [style.margin-bottom.px]="20">
-                            <h5>{{ 'Phiếu đặt hàng' | uppercase }} - THÊM MỚI</h5>
+                        <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>{{ 'Phiếu bán hàng' | uppercase }} - THÊM MỚI</h5>
+                                </div>
+                               
+                            </div>
                         </div>
+
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="6" [formData]="phieudathang" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY ĐẶT HÀNG' }" dataField="ngaydathang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
-                                        <dxi-validation-rule type="required" message="Chọn ngày đặt hàng"></dxi-validation-rule>
+                                <dx-form id="form" [colCount]="6" [formData]="phieubanhang" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                                    <dxi-item [label]="{ text: 'NGÀY BÁN HÀNG' }" dataField="ngaybanhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                        <dxi-validation-rule type="required" message="Chọn ngày ngày bán hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
-                                        [colSpan]="2"
+                                        [colSpan]="3"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang"
                                         editorType="dxSelectBox"
@@ -43,9 +49,7 @@
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="khachhang_dienthoai" [editorOptions]="{ readOnly: true }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'GIỮ HÀNG' }" dataField="giuhang" editorType="dxCheckBox" [editorOptions]="{ text: 'Giữ hàng' }"> 
-                                        <dxi-validation-rule type="custom" message="Vui lòng chọn kho hàng" [validationCallback]="asyncValidation"></dxi-validation-rule>
-                                    </dxi-item>
+                                   
 
                                     <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
@@ -57,9 +61,11 @@
                                         dataField="khoxuat"
                                         editorType="dxSelectBox"
                                         [editorOptions]="{ dataSource: lstKhoHang, searchEnabled: true, displayExpr: 'tenkhohang' }"
+             
                                     >
+                                    <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieudathang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieubanhang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item
                                         [colSpan]="6"
                                         [label]="{ text: 'NHÂN VIÊN KINH DOANH' }"
@@ -144,8 +150,8 @@
                                                         </td>
 
                                                         <td>{{ item.thanhtien | number: '1.0-3' }}</td>
-                                                        <td>{{ item.soluongdagiao | number: '1.0-3' }}</td>
-                                                        <td>{{ item.soluong - item.soluongdagiao | number: '1.0-3' }}</td>
+                                                        <td>{{ item.soluongdaxuatkho | number: '1.0-3' }}</td>
+                                                        <td>{{ item.soluong - item.soluongdaxuatkho | number: '1.0-3' }}</td>
 
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td>

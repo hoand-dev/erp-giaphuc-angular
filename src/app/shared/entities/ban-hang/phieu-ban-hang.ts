@@ -1,4 +1,4 @@
-import { KhachHang, NguoiDung } from '../thiet-lap';
+import { HangHoa, KhachHang, KhoHang, NguoiDung } from '../thiet-lap';
 
 export class PhieuBanHang {
 
@@ -38,12 +38,19 @@ export class PhieuBanHang {
 
     public maphieudathang: string;
     public khachhang: KhachHang;
-    public tenkhachhang: string;
+    
     public sodienthoaikhachhang: string;
     public diachikhachhang: string;
-
+    
+    /* select box dùng đối tượng khai báo  và sử dụng trên contructor */
     public nguoidung: NguoiDung;
     public hoten: string;
+
+    
+    public khoxuat: KhoHang;
+    public tenkhohang: string;
+
+
 
     public nocu: number =0;
     public tennguoitao: '';
@@ -80,6 +87,9 @@ export class PhieuBanHang {
         trangthaixuat: string = null, 
         phieudathang_id: number = null,
         hoten: string = null,
+        khachhang: KhachHang = null,
+        khoxuat: KhoHang = null,
+        nguoidung: NguoiDung = null,
         )
         {
         this.id = id;
@@ -112,6 +122,10 @@ export class PhieuBanHang {
         this.trangthaixuat = trangthaixuat;
         this.phieudathang_id = phieudathang_id;
         this.hoten = hoten;
+        this.khachhang = khachhang;
+        this.khoxuat = khoxuat;
+        this.nguoidung = nguoidung;
+
     }
 }
 
@@ -139,7 +153,10 @@ export class PhieuBanHang_ChiTiet {
     public phieudathang_chitiet_id: number;
     public soluongtattoan: number;
 
+    public tendonvitinh: string;
+
     public phieudathang_chitiet: number;
+  
 
     constructor(
         id: number = null, 
@@ -160,9 +177,11 @@ export class PhieuBanHang_ChiTiet {
         khoxuat_id: number = null, 
         soluongdaxuatkho: number = null, 
         trangthaixuatkho: string = null, 
-        soluong_tudondathang: number = null, 
+        soluong_tudondathang: number = null,
         phieudathang_chitiet_id: number = null, 
-        soluongtattoan: number = null
+        soluongtattoan: number = null,
+
+        
         
         )
         {
@@ -187,5 +206,6 @@ export class PhieuBanHang_ChiTiet {
         this.soluong_tudondathang = soluong_tudondathang;
         this.phieudathang_chitiet_id = phieudathang_chitiet_id;
         this.soluongtattoan = soluongtattoan;
+  
     }
 }
