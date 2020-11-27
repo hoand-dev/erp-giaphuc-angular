@@ -9,12 +9,11 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-phieu-dat-hang-cap-nhat',
-  templateUrl: './phieu-dat-hang-cap-nhat.component.html',
-  styleUrls: ['./phieu-dat-hang-cap-nhat.component.css']
+    selector: 'app-phieu-dat-hang-cap-nhat',
+    templateUrl: './phieu-dat-hang-cap-nhat.component.html',
+    styleUrls: ['./phieu-dat-hang-cap-nhat.component.css']
 })
 export class PhieuDatHangCapNhatComponent implements OnInit {
-
     @ViewChild(DxFormComponent, { static: false }) frmPhieuDatHang: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -23,22 +22,20 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
     public phieudathang: PhieuDatHang;
     public lstKhachHang: KhachHang[] = [];
-    public lstNguoiDung: NguoiDung[] =[];
-    public lstKhoHang: KhoHang[] =[];
+    public lstNguoiDung: NguoiDung[] = [];
+    public lstKhoHang: KhoHang[] = [];
 
     public saveProcessing = false;
     public loadingVisible = true;
 
-       // điều kiện để hiển thị danh sách hàng hoá
-       public isValidForm: boolean = false;
+    // điều kiện để hiển thị danh sách hàng hoá
+    public isValidForm: boolean = false;
 
-       // dùng để kiểm tra load lần đầu (*)
-       private hanghoalenght: number = 0;
+    // dùng để kiểm tra load lần đầu (*)
+    private hanghoalenght: number = 0;
 
     public hanghoas: PhieuDatHang_ChiTiet[] = [];
     public dataSource_HangHoa: any = {};
-
-
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -73,7 +70,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
         this.phieudathang = new PhieuDatHang();
         this.asyncValidation = this.checkGiuHang.bind(this);
-         this.subscriptions.add(
+        this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
 
@@ -83,6 +80,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
                     this.khohangService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstKhoHang = x;
+                        this.phieudathang.khoxuat = x.find((x) => x.id == this.phieudathang.khoxuat_id);
                     })
                 );
             })
@@ -100,11 +98,25 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             })
         );
 
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
+            })
+        );
+
+        this.subscriptions.add(
+            this.nguoidungService.findNguoiDungs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstNguoiDung = x;
+            })
+        );
+
         this.loadingVisible = true;
         this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
                 let phieudathang_id = params.id;
-               // lấy thông tin định mức
+                // lấy thông tin định mức
                 if (phieudathang_id) {
                     this.subscriptions.add(
                         this.phieudathangService.findPhieuDatHang(phieudathang_id).subscribe(
@@ -114,20 +126,10 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
                                 this.phieudathang = data;
                                 this.hanghoas = this.phieudathang.phieudathang_chitiet;
-                                this.subscriptions.add(
-                                    this.khachhangService.findKhachHangs().subscribe((x) => {
-                                        this.loadingVisible = false;
-                                        this.lstKhachHang = x;
-                                        this.phieudathang.khachhang = x.find((o) => o.id == this.phieudathang.khachhang_id);
-                                    })
-                                );
-                                this.subscriptions.add(
-                                    this.nguoidungService.findNguoiDungs().subscribe((x) => {
-                                        this.loadingVisible = false;
-                                        this.lstNguoiDung = x;
-                                        this.phieudathang.nguoidung = x.find((o) => o.id == this.phieudathang.nhanviensale_id);
-                                    })
-                                );
+
+                                this.phieudathang.khachhang = this.lstKhachHang.find((o) => o.id == this.phieudathang.khachhang_id);
+                                this.phieudathang.khoxuat = this.lstKhoHang.find((x) => x.id == this.phieudathang.khoxuat_id);
+                                this.phieudathang.nguoidung = this.lstNguoiDung.find((o) => o.id == this.phieudathang.nhanviensale_id);
                             },
                             (error) => {
                                 this.phieudathangService.handleError(error);
@@ -135,7 +137,6 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
                         )
                     );
                 }
-
             })
         );
     }
@@ -158,18 +159,17 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             // gán lại thông tin điện thoại + địa chỉ khách hàng
             this.phieudathang.khachhang_dienthoai = e.value ? e.value.sodienthoai : null;
             this.phieudathang.khachhang_diachi = e.value ? e.value.diachi : null;
-            this.phieudathang.khachhang_hoten =e.value ? e.value.tenkhachhang : null;
+            this.phieudathang.khachhang_hoten = e.value ? e.value.tenkhachhang : null;
             this.phieudathang.hoten = e.value ? e.value.hoten : null;
             this.phieudathang.khachhang_id = e.value ? e.value.id : null;
-            
-            
 
             // load nợ cũ ncc
-            this.subscriptions.add(
-                this.commonService.khachHang_LoadNoCu(this.phieudathang.khachhang_id).subscribe((data) => {
+            this.subscriptions
+                .add
+                /* this.commonService.khachHang_LoadNoCu(this.phieudathang.khachhang_id).subscribe((data) => {
                     this.phieudathang.nocu = data;
-                })
-            );
+                }) */
+                ();
         }
 
         // nếu thay đổi chiết khấu -> set chiết khấu hàng hoá = 0
@@ -185,11 +185,12 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
                 v.thuevat = 0;
             });
         }
-         
+
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
         if (e.dataField == 'khoxuat') {
+            this.phieudathang.khoxuat_id = e.value ? e.value.id : null;
             this.hanghoas.forEach((v, i) => {
-                v.khoxuat_id = this.phieudathang.khoxuat.id;
+                v.khoxuat_id = this.phieudathang.khoxuat_id;
             });
         }
 
@@ -264,10 +265,10 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
     }
 
     checkGiuHang(params) {
-        if (params.value == true && (this.phieudathang.khoxuat == null)) { //có check
+        if (params.value == true && this.phieudathang.khoxuat == null) {
+            //có check
             return false;
-        }
-        else{
+        } else {
             this.phieudathang.khoxuat = this.phieudathang.khoxuat != null ? null : this.phieudathang.khoxuat;
         }
         return true;
@@ -281,8 +282,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             tongtienhang += v.thanhtien;
         });
         this.phieudathang.tongtienhang = tongtienhang;
-        this.phieudathang.tongthanhtien =
-            tongtienhang - tongtienhang * this.phieudathang.chietkhau + (tongtienhang - tongtienhang * this.phieudathang.chietkhau) * this.phieudathang.thuevat;
+        this.phieudathang.tongthanhtien = tongtienhang - tongtienhang * this.phieudathang.chietkhau + (tongtienhang - tongtienhang * this.phieudathang.chietkhau) * this.phieudathang.thuevat;
     }
 
     public onSubmitForm(e) {
@@ -294,7 +294,6 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
         phieudathang_req.chinhanh_id = this.currentChiNhanh.id;
         phieudathang_req.khachhang_id = phieudathang_req.khachhang.id;
         phieudathang_req.phieudathang_chitiet = hanghoas;
-        
 
         this.saveProcessing = true;
         this.subscriptions.add(
@@ -321,5 +320,4 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
         );
         e.preventDefault();
     }
-
 }

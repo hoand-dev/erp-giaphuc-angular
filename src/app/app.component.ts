@@ -244,6 +244,10 @@ export class AppComponent implements OnInit {
         ];
         const KHOHANG = [
             "/phieu-nhap-kho", 
+            "/phieu-xuat-kho", 
+            "/phieu-dieu-chinh-kho", 
+            "/phieu-xuat-chuyen-kho", 
+            "/phieu-nhap-chuyen-kho", 
         ];
         const KETOAN = [
             "/phieu-thu", 

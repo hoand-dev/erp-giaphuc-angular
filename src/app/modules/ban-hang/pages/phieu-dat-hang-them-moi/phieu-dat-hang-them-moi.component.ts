@@ -8,10 +8,12 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
+import Validator from 'devextreme/ui/validator';
+
 @Component({
-  selector: 'app-phieu-dat-hang-them-moi',
-  templateUrl: './phieu-dat-hang-them-moi.component.html',
-  styleUrls: ['./phieu-dat-hang-them-moi.component.css']
+    selector: 'app-phieu-dat-hang-them-moi',
+    templateUrl: './phieu-dat-hang-them-moi.component.html',
+    styleUrls: ['./phieu-dat-hang-them-moi.component.css']
 })
 export class PhieuDatHangThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmPhieuDatHang: DxFormComponent;
@@ -20,12 +22,10 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
 
-
     public phieudathang: PhieuDatHang;
     public lstKhachHang: KhachHang[] = [];
-    public lstNguoiDung: NguoiDung[] =[];
-    public lstKhoHang: KhoHang[] =[];
-
+    public lstNguoiDung: NguoiDung[] = [];
+    public lstKhoHang: KhoHang[] = [];
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -61,11 +61,8 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
 
     asyncValidation: Function;
     ngOnInit(): void {
-
         this.phieudathang = new PhieuDatHang();
         this.asyncValidation = this.checkGiuHang.bind(this);
-
-        
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -88,14 +85,12 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
             })
         );
         this.subscriptions.add(
-            this.nguoidungService.findNguoiDungs().subscribe(
-                x => {
+            this.nguoidungService.findNguoiDungs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstNguoiDung = x;
             })
         );
-       
-    
+
         this.loadingVisible = true;
         this.subscriptions.add(
             this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
@@ -128,8 +123,8 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
             // gán lại thông tin điện thoại + địa chỉ khách hàng
             this.phieudathang.khachhang_dienthoai = e.value ? e.value.sodienthoai : null;
             this.phieudathang.khachhang_diachi = e.value ? e.value.diachi : null;
-            this.phieudathang.khachhang_hoten =e.value ? e.value.tenkhachhang : null;
-            this.phieudathang.khoxuat_id =e .value ? e.value.tenkhohang :null;
+            this.phieudathang.khachhang_hoten = e.value ? e.value.tenkhachhang : null;
+            this.phieudathang.khoxuat_id = e.value ? e.value.tenkhohang : null;
             this.phieudathang.khachhang_id = e.value ? e.value.id : null;
             // load nợ cũ ncc
             this.subscriptions.add(
@@ -152,12 +147,20 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
                 v.thuevat = 0;
             });
         }
-        
-        
-       // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
+
+        // thay đổi check giữ hàng
+        if (e.dataField == 'giuhang') {
+            if (e.value == false)
+                //this.frmPhieuDatHang.instance.getEditor('khoxuat').reset();
+                this.phieudathang.khoxuat = null;
+            this.frmPhieuDatHang.instance.validate();
+        }
+
+        // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
         if (e.dataField == 'khoxuat') {
+            this.phieudathang.khoxuat_id = e.value ? this.phieudathang.khoxuat.id : null;
             this.hanghoas.forEach((v, i) => {
-                v.khoxuat_id = this.phieudathang.khoxuat.id;
+                v.khoxuat_id = this.phieudathang.khoxuat_id;
             });
         }
 
@@ -166,13 +169,16 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
     }
 
     checkGiuHang(params) {
-        if (params.value == true && (this.phieudathang.khoxuat == null)) { //có check
-            return false;
+        let valid = true;
+        if (this.phieudathang.giuhang && params.value == null) {
+            valid = false;
         }
-        else{
-            this.phieudathang.khoxuat = this.phieudathang.khoxuat != null ? null : this.phieudathang.khoxuat;
-        }
-        return true;
+
+        return new Promise((resolve) => {
+            setTimeout(function () {
+                resolve(valid);
+            }, 300);
+        });
     }
 
     public onHangHoaAdd() {
@@ -244,8 +250,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
             tongtienhang += v.thanhtien;
         });
         this.phieudathang.tongtienhang = tongtienhang;
-        this.phieudathang.tongthanhtien =
-            tongtienhang - tongtienhang * this.phieudathang.chietkhau + (tongtienhang - tongtienhang * this.phieudathang.chietkhau) * this.phieudathang.thuevat;
+        this.phieudathang.tongthanhtien = tongtienhang - tongtienhang * this.phieudathang.chietkhau + (tongtienhang - tongtienhang * this.phieudathang.chietkhau) * this.phieudathang.thuevat;
     }
 
     public onSubmitForm(e) {
@@ -259,8 +264,6 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         phieudathang_req.nhanviensale_id = this.phieudathang.nguoidung.id;
         phieudathang_req.khoxuat_id = this.phieudathang.khoxuat.id;
         phieudathang_req.phieudathang_chitiet = hanghoas;
-      
-
 
         this.saveProcessing = true;
         this.subscriptions.add(
@@ -287,5 +290,4 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         );
         e.preventDefault();
     }
-
 }

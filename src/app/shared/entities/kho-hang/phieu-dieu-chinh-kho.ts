@@ -1,3 +1,5 @@
+import { KhoHang } from '../thiet-lap';
+
 export class PhieuDieuChinhKho {
     public id: number;
     public chinhanh_id: number;
@@ -12,7 +14,14 @@ export class PhieuDieuChinhKho {
     public maphieudieuchinhkho: string;
     public ngaydieuchinhkho: Date;
     public khodieuchinh_id: number;
-    public khobe_id: number;
+
+    public phieudieuchinhkho_chitiets: PhieuDieuChinhKho_ChiTiet[];
+
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
+    public khodieuchinh: KhoHang;
+    public tenkhodieuchinh: string;
 
     constructor(
         id: number = null,
@@ -26,9 +35,12 @@ export class PhieuDieuChinhKho {
         ids: number = null,
         sort: string = null,
         maphieudieuchinhkho: string = null,
-        ngaydieuchinhkho: Date = null,
+        ngaydieuchinhkho: Date = new Date(),
         khodieuchinh_id: number = null,
-        khobe_id: number = null
+
+        phieudieuchinhkho_chitiets: PhieuDieuChinhKho_ChiTiet[] = [],
+
+        khodieuchinh: KhoHang = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -43,7 +55,10 @@ export class PhieuDieuChinhKho {
         this.maphieudieuchinhkho = maphieudieuchinhkho;
         this.ngaydieuchinhkho = ngaydieuchinhkho;
         this.khodieuchinh_id = khodieuchinh_id;
-        this.khobe_id = khobe_id;
+
+        this.phieudieuchinhkho_chitiets = phieudieuchinhkho_chitiets;
+
+        this.khodieuchinh = khodieuchinh;
     }
 }
 
@@ -51,47 +66,42 @@ export class PhieuDieuChinhKho_ChiTiet {
     public id: number;
     public phieudieuchinhkho_id: number;
     public khodieuchinh_id: number;
-    public khobe_id: number;
     public loaihanghoa: string;
     public hanghoa_id: number;
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
-    public quycachdai: number;
-    public quycachrong: number;
     public soluong: number;
     public dongia: number;
     public thanhtien: number;
     public chuthich: string;
 
+    public mahanghoa: string;
+    public tenhanghoa: string;
+    public tendonvitinh: string;
+
     constructor(
         id: number = null,
         phieudieuchinhkho_id: number = null,
         khodieuchinh_id: number = null,
-        khobe_id: number = null,
         loaihanghoa: string = null,
         hanghoa_id: number = null,
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
-        tilequydoi: number = null,
-        quycachdai: number = null,
-        quycachrong: number = null,
-        soluong: number = null,
-        dongia: number = null,
-        thanhtien: number = null,
+        tilequydoi: number = 1,
+        soluong: number = 0,
+        dongia: number = 0,
+        thanhtien: number = 0,
         chuthich: string = null
     ) {
         this.id = id;
         this.phieudieuchinhkho_id = phieudieuchinhkho_id;
         this.khodieuchinh_id = khodieuchinh_id;
-        this.khobe_id = khobe_id;
         this.loaihanghoa = loaihanghoa;
         this.hanghoa_id = hanghoa_id;
         this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.dvt_id = dvt_id;
         this.tilequydoi = tilequydoi;
-        this.quycachdai = quycachdai;
-        this.quycachrong = quycachrong;
         this.soluong = soluong;
         this.dongia = dongia;
         this.thanhtien = thanhtien;
