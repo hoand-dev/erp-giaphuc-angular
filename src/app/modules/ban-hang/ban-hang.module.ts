@@ -9,12 +9,15 @@ import { SharedModule } from '../shared.module';
 import { PhieuDatHangComponent } from './pages/phieu-dat-hang/phieu-dat-hang.component';
 import { PhieuDatHangThemMoiComponent } from './pages/phieu-dat-hang-them-moi/phieu-dat-hang-them-moi.component';
 import { PhieuDatHangCapNhatComponent } from './pages/phieu-dat-hang-cap-nhat/phieu-dat-hang-cap-nhat.component';
-import { DanhSachPhieuDatHangComponent } from './modals/danh-sach-phieu-dat-hang/danh-sach-phieu-dat-hang.component';
-import { DanhSachPhieuBanHangComponent } from './modals/danh-sach-phieu-ban-hang/danh-sach-phieu-ban-hang.component';
+import { DanhSachPhieuDatHangModalComponent } from './modals/danh-sach-phieu-dat-hang-modal/danh-sach-phieu-dat-hang-modal.component';
+import { DanhSachPhieuBanHangModalComponent } from './modals/danh-sach-phieu-ban-hang-modal/danh-sach-phieu-ban-hang-modal.component';
+import { PhieuBanHangComponent } from './pages/phieu-ban-hang/phieu-ban-hang.component';
+import { PhieuBanHangThemMoiComponent } from './pages/phieu-ban-hang-them-moi/phieu-ban-hang-them-moi.component';
+import { PhieuBanHangCapNhatComponent } from './pages/phieu-ban-hang-cap-nhat/phieu-ban-hang-cap-nhat.component';
 
 
 @NgModule({
-  declarations: [TheoDoiHopDongComponent, TheoDoiHopDongThemMoiComponent, TheoDoiHopDongCapNhatComponent, PhieuDatHangComponent, PhieuDatHangThemMoiComponent, PhieuDatHangCapNhatComponent, DanhSachPhieuDatHangComponent, DanhSachPhieuBanHangComponent],
+  declarations: [TheoDoiHopDongComponent, TheoDoiHopDongThemMoiComponent, TheoDoiHopDongCapNhatComponent, PhieuDatHangComponent, PhieuDatHangThemMoiComponent, PhieuDatHangCapNhatComponent, DanhSachPhieuDatHangModalComponent, DanhSachPhieuBanHangModalComponent, PhieuBanHangComponent, PhieuBanHangThemMoiComponent, PhieuBanHangCapNhatComponent],
   imports: [
     CommonModule,
     SharedModule,
