@@ -10,6 +10,8 @@ export class TaiXe {
     public mataixe: string;
     public tentaixe: string;
 
+    public dienthoai: string;
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -20,7 +22,9 @@ export class TaiXe {
         thoigiansua: Date = null,
         ghichu: string = null,
         mataixe: string = null,
-        tentaixe: string = null) {
+        tentaixe: string = null,
+        dienthoai: string = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -30,9 +34,7 @@ export class TaiXe {
         this.thoigiansua = thoigiansua;
         this.ghichu = ghichu;
         this.mataixe = mataixe;
-        this.tentaixe = tentaixe
-
+        this.tentaixe = tentaixe;
+        this.dienthoai = dienthoai;
     }
-
-
 }

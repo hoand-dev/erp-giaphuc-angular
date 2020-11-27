@@ -33,7 +33,7 @@ import { NotFoundComponent } from '@app/shared/components/not-found/not-found.co
 
 import { AppInfoService } from '@app/shared/services';
 
-import { ThietLapModule, MuaHangModule, BanHangModule, SanXuatModule } from '@app/modules';
+import { ThietLapModule, MuaHangModule, BanHangModule, KhoHangModule, SanXuatModule } from '@app/modules';
 
 /* devextreme localization */
 import './shared/localization';
@@ -43,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportPageComponent } from './report-page/report-page.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { KeToanModule } from './modules/ke-toan/ke-toan.module';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         LoginComponent,
         HomeComponent,
         NotFoundComponent,
-        ReportPageComponent
+        ReportPageComponent,
     ],
     imports: [
         BrowserModule,
@@ -74,11 +75,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
         DxValidatorModule,
         DxValidationGroupModule,
 
-        ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule,
-        AppRoutingModule,
         MatTabsModule,
         ModalModule.forRoot(),
-        BrowserAnimationsModule, // root route phải đặt ở cuối nếu có module con sử dụng route
+        BrowserAnimationsModule,
+
+        ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule, KhoHangModule, KeToanModule,
+
+        AppRoutingModule, // root route phải đặt ở cuối nếu có module con sử dụng route
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

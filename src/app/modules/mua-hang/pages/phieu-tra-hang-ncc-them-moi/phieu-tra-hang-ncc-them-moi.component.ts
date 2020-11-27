@@ -233,8 +233,9 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
 
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
         if (e.dataField == 'khoxuat') {
+            this.phieutrahangncc.khoxuat_id = e.value ? e.value.id : null;
             this.hanghoas.forEach((v, i) => {
-                v.khoxuat_id = this.phieutrahangncc.khoxuat.id;
+                v.khoxuat_id = this.phieutrahangncc.khoxuat_id;
             });
         }
 
