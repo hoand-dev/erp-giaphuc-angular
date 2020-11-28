@@ -41,6 +41,10 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
     public lstXe: DanhSachXe[] = [];
     public lstKhoXuat: KhoHang[] = [];
 
+    public dataSource_TaiXe: DataSource;
+    public dataSource_Xe: DataSource;
+    public dataSource_KhoXuat: DataSource;
+
     public saveProcessing = false;
     public loadingVisible = true;
 
@@ -91,6 +95,12 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                     this.khoxuatService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstKhoXuat = x;
+
+                        this.dataSource_KhoXuat = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
                     })
                 );
             })
@@ -101,6 +111,12 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
             this.taixeService.findTaiXes().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstTaiXe = x;
+
+                this.dataSource_TaiXe = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -109,6 +125,12 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
             this.xeService.findDanhSachXes().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstXe = x;
+
+                this.dataSource_Xe = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -150,6 +172,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                             // xử lý phần thông tin phiếu
                             this.phieuxuatkho.loaiphieuxuatkho = 'xuattrahangncc';
                             this.phieuxuatkho.nhacungcap_id = data.nhacungcap_id;
+                            this.phieuxuatkho.khoxuat_id = data.khoxuat_id;
 
                             this.phieuxuatkho.nguoinhan_hoten = data.tennhacungcap;
                             this.phieuxuatkho.nguoinhan_diachi = data.diachinhacungcap;
@@ -164,15 +187,14 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                             this.phieuxuatkho.thuevat = data.thuevat;
                             this.phieuxuatkho.tongthanhtien = data.tongthanhtien;
 
-                            this.phieuxuatkho.khoxuat = this.lstKhoXuat.find(x => x.id == data.khoxuat_id);
-
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieutrahangncc_chitiet.length;
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieutrahangncc_chitiet.forEach((value, index) => {
-                                if(value.trangthaixuatkho != ETrangThaiPhieu.daxuat){
+                                if (value.trangthaixuatkho != ETrangThaiPhieu.daxuat) {
                                     let chitiet = new PhieuXuatKho_ChiTiet();
+                                    chitiet.khoxuat_id = this.phieuxuatkho.khoxuat_id;
                                     chitiet.loaihanghoa = value.loaihanghoa;
                                     chitiet.hanghoa_id = value.hanghoa_id;
                                     chitiet.hanghoa_lohang_id = value.hanghoa_lohang_id;
@@ -236,32 +258,26 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
 
     onFormFieldChanged(e) {
         // nếu thay đổi nhà cung cấp
-        if (e.dataField == 'khoxuat' && e.value !== undefined && e.value !== null) {
+        if (e.dataField == 'khoxuat_id' && e.value !== undefined && e.value !== null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             // this.isValidForm = true;
 
-            this.phieuxuatkho.khoxuat_id = e.value.id;
             this.hanghoas.forEach((v, i) => {
-                v.khoxuat_id = e.value.id;
+                v.khoxuat_id = this.phieuxuatkho.khoxuat_id;
             });
         }
 
-        if(e.dataField == 'taixe'){
-            this.phieuxuatkho.taixe_id = e.value ? e.value.id : null;
-            this.phieuxuatkho.taixe_dienthoai = e.value ? e.value.dienthoai: null;
-        }
-
-        if(e.dataField == 'xe'){
-            this.phieuxuatkho.xe_id = e.value ? e.value.id : null;
+        if (e.dataField == 'taixe_id') {
+            let taixe = this.lstTaiXe.find((x) => x.id == this.phieuxuatkho.taixe_id);
+            this.phieuxuatkho.taixe_dienthoai = taixe ? taixe.dienthoai : null;
         }
 
         // thay đổi ngày tới hạn
-        if(e.dataField == 'songaytoihan'){
+        if (e.dataField == 'songaytoihan') {
             // trường hợp số ngày tới hạn bằng 0 và ngược lại
-            if(e.value == 0 || e.value == null){
+            if (e.value == 0 || e.value == null) {
                 this.phieuxuatkho.ngaytoihan = null;
-            }
-            else{
+            } else {
                 this.phieuxuatkho.ngaytoihan = moment(this.phieuxuatkho.ngayxuatkho).add(e.value, 'days').toDate();
             }
         }
@@ -306,6 +322,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
             });
         } else {
+            this.hanghoas[index].khoxuat_id = this.phieuxuatkho.khoxuat_id;
             this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
@@ -364,10 +381,9 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
         this.phieuxuatkho.tongthanhtien = tongtienhang - tongtienhang * this.phieuxuatkho.chietkhau + (tongtienhang - tongtienhang * this.phieuxuatkho.chietkhau) * this.phieuxuatkho.thuevat;
     }
 
-
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
-        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && (x.soluong != 0));
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && x.soluong != 0);
         let phieuxuatkho_req = this.phieuxuatkho;
 
         // gán lại dữ liệu

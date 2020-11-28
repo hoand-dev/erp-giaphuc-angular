@@ -46,9 +46,9 @@
                                     <dxi-item
                                         [colSpan]="4"
                                         [label]="{ text: 'KHO NHẬP' }"
-                                        dataField="khonhap"
+                                        dataField="khonhap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoNhap, searchEnabled: true, displayExpr: 'tenkhohang', readOnly: true }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang', readOnly: true }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho nhập"></dxi-validation-rule>
                                     </dxi-item>
@@ -119,7 +119,7 @@
                                                             <dx-select-box
                                                                 id="khonhaphong_row_{{ i }}"
                                                                 [(value)]="item.khonhaphong_id"
-                                                                [dataSource]="lstKhoNhap"
+                                                                [dataSource]="dataSource_KhoNhap"
                                                                 [displayExpr]="'tenkhohang'"
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"

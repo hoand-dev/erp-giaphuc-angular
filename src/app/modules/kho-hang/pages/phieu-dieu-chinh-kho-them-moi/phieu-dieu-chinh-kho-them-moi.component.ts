@@ -24,9 +24,10 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-
     public phieudieuchinhkho: PhieuDieuChinhKho;
+
     public lstKhoDieuChinh: KhoHang[] = [];
+    public dataSource_KhoDieuChinh: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -73,6 +74,12 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
                     this.khodieuchinhService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstKhoDieuChinh = x;
+
+                        this.dataSource_KhoDieuChinh = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                            });
                     })
                 );
             })
@@ -105,13 +112,12 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
 
     onFormFieldChanged(e) {
         // nếu thay đổi nhà cung cấp
-        if (e.dataField == 'khodieuchinh' && e.value !== undefined && e.value !== null) {
+        if (e.dataField == 'khodieuchinh_id' && e.value !== undefined && e.value !== null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
 
-            this.phieudieuchinhkho.khodieuchinh_id = e.value.id;
             this.hanghoas.forEach((v, i) => {
-                v.khodieuchinh_id = e.value.id;
+                v.khodieuchinh_id = this.phieudieuchinhkho.khodieuchinh_id;
             });
         }
 
@@ -154,6 +160,8 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
             });
         } else {
+            this.hanghoas[index].khodieuchinh_id = this.phieudieuchinhkho.khodieuchinh_id;
+
             this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].mahanghoa = selected.mahanghoa;
             this.hanghoas[index].tenhanghoa = selected.tenhanghoa;

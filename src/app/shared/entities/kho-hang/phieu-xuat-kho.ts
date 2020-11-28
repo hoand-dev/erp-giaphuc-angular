@@ -1,7 +1,3 @@
-import { KhoHang } from '../thiet-lap';
-import { DanhSachXe } from '../thiet-lap/danh-sach-xe';
-import { TaiXe } from '../thiet-lap/tai-xe';
-
 export class PhieuXuatKho {
     public id: number;
     public chinhanh_id: number;
@@ -43,14 +39,8 @@ export class PhieuXuatKho {
     public phieuxuatkho_chitiets: PhieuXuatKho_ChiTiet[];
 
     public tumaphieu: string;
-
-    public taixe: TaiXe;
     public taixe_hoten: string;
-
-    public xe: DanhSachXe;
     public biensoxe: string;
-
-    public khoxuat: KhoHang;
     public tenkhoxuat: string;
 
     constructor(
@@ -92,10 +82,6 @@ export class PhieuXuatKho {
         trangthaithu: string = null,
 
         phieuxuatkho_chitiets: PhieuXuatKho_ChiTiet[] = [],
-
-        taixe: TaiXe = null,
-        xe: DanhSachXe = null,
-        khoxuat: KhoHang = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -135,10 +121,6 @@ export class PhieuXuatKho {
         this.trangthaithu = trangthaithu;
 
         this.phieuxuatkho_chitiets = phieuxuatkho_chitiets;
-
-        this.taixe = taixe;
-        this.xe = xe;
-        this.khoxuat = khoxuat;
     }
 }
 

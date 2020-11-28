@@ -46,18 +46,18 @@
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'TÀI XẾ' }"
-                                        dataField="taixe"
+                                        dataField="taixe_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstTaiXe, searchEnabled: true, displayExpr: 'tentaixe' }"
+                                        [editorOptions]="{ dataSource: dataSource_TaiXe, valueExpr: 'id', searchEnabled: true, displayExpr: 'tentaixe' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn tài xế"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'XE' }"
-                                        dataField="xe"
+                                        dataField="xe_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstXe, searchEnabled: true, displayExpr: 'biensoxe' }"
+                                        [editorOptions]="{ dataSource: dataSource_Xe, valueExpr: 'id', searchEnabled: true, displayExpr: 'biensoxe' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn xe"></dxi-validation-rule>
                                     </dxi-item>
@@ -72,9 +72,9 @@
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'KHO XUẤT' }"
-                                        dataField="khoxuat"
+                                        dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoXuat, searchEnabled: true, displayExpr: 'tenkhohang', readOnly: true }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang', readOnly: true }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>

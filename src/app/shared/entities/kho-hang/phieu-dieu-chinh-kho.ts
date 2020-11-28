@@ -1,5 +1,3 @@
-import { KhoHang } from '../thiet-lap';
-
 export class PhieuDieuChinhKho {
     public id: number;
     public chinhanh_id: number;
@@ -20,7 +18,6 @@ export class PhieuDieuChinhKho {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
-    public khodieuchinh: KhoHang;
     public tenkhodieuchinh: string;
 
     constructor(
@@ -38,9 +35,7 @@ export class PhieuDieuChinhKho {
         ngaydieuchinhkho: Date = new Date(),
         khodieuchinh_id: number = null,
 
-        phieudieuchinhkho_chitiets: PhieuDieuChinhKho_ChiTiet[] = [],
-
-        khodieuchinh: KhoHang = null
+        phieudieuchinhkho_chitiets: PhieuDieuChinhKho_ChiTiet[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -57,8 +52,6 @@ export class PhieuDieuChinhKho {
         this.khodieuchinh_id = khodieuchinh_id;
 
         this.phieudieuchinhkho_chitiets = phieudieuchinhkho_chitiets;
-
-        this.khodieuchinh = khodieuchinh;
     }
 }
 
