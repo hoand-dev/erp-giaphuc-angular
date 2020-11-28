@@ -27,12 +27,9 @@ export class PhieuTraHangNCC {
 
     /* các thông tin hiển thị trên view */
     public maphieumuahangncc: string;
-    public nhacungcap: NhaCungCap;
     public tennhacungcap: string;
     public dienthoainhacungcap: string;
     public diachinhacungcap: string;
-
-    public khoxuat: KhoHang;
 
     public nocu: number = 0;
     public tennguoitao: string = '';
@@ -58,8 +55,6 @@ export class PhieuTraHangNCC {
         tongthanhtien: number = 0,
         trangthaixuatkho: string = null,
         khoxuat_id: number = null,
-        nhacungcap: NhaCungCap = null,
-        khoxuat: KhoHang = null,
         phieumuahang_id: number = null
     ) {
         this.id = id;
@@ -82,8 +77,6 @@ export class PhieuTraHangNCC {
         this.tongthanhtien = tongthanhtien;
         this.trangthaixuatkho = trangthaixuatkho;
         this.khoxuat_id = khoxuat_id;
-        this.nhacungcap = nhacungcap;
-        this.khoxuat = khoxuat;
         this.phieumuahang_id = phieumuahang_id;
     }
 }
