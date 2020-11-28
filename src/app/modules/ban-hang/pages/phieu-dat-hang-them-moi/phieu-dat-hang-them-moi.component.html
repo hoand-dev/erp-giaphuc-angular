@@ -35,9 +35,9 @@
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
-                                        dataField="khachhang"
+                                        dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhachHang, searchEnabled: true, displayExpr: 'tenkhachhang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhachhang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -52,9 +52,9 @@
                                     <dxi-item
                                         [colSpan]="1"
                                         [label]="{ text: 'KHO HÀNG' }"
-                                        dataField="khoxuat"
+                                        dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoHang, searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="async" message="Vui lòng chọn kho hàng" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
@@ -62,9 +62,9 @@
                                     <dxi-item
                                         [colSpan]="6"
                                         [label]="{ text: 'NHÂN VIÊN KINH DOANH' }"
-                                        dataField="nguoidung"
+                                        dataField="nhanviensale_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstNguoiDung, searchEnabled: true, displayExpr: 'hoten' }"
+                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
