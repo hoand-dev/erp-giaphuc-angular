@@ -22,10 +22,15 @@
                         <h5 class="card-title">{{'Danh sách hợp đồng' | uppercase}} - DANH SÁCH</h5>
                         <p class="card-text"></p>
 
-                        <button class="btn btn-sm btn-primary" [routerLink]="['/theo-doi-hop-dong/them-moi']">
-                            Thêm mới</button>
-                        <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">
-                            Tải lại</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['them-moi']">Thêm mới</button>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
 
                         <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true"
                             [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid"[columnAutoWidth]="true"

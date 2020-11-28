@@ -34,7 +34,8 @@
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã khách hàng quá ngắn"></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallBackValid"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'TÊN KHÁCH HÀNG' }" dataField="tenkhachhang">
+                                    <dxi-item [label]="{ text: 'TÊN KHÁCH HÀNG' }" 
+                                        dataField="tenkhachhang">
                                         <dxi-validation-rule type="required" message="Nhập tên khách hàng"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Tên khách hàng quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
@@ -60,17 +61,17 @@
                                     <!-- <dxi-item [label]="{ text: 'GC NGOÀI' }" dataField="loaidonvi" editorType="dxCheckBox" [editorOptions]="{ text: 'Là đơn vị gia công ngoài' }"></dxi-item> -->
                                     <dxi-item
                                         [label]="{ text: 'KHU VỰC' }"
-                                        dataField="khuvuc"
+                                        dataField="khuvuc_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhuVuc, searchEnabled: true, displayExpr: 'tenkhuvuc' }"
+                                        [editorOptions]="{  dataSource: dataSource_KhuVuc, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhuvuc' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn khu vực"> </dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'NHÓM KHÁCH HÀNG' }"
-                                        dataField="nhomkhachang"
+                                        dataField="nhomkhachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstNhomKhachHang, searchEnabled: true, displayExpr: 'tennhomkhachhang' }"
+                                        [editorOptions]="{  dataSource: dataSource_NhomKhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennhomkhachhang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhóm khách hàng"> </dxi-validation-rule>
                                     </dxi-item>

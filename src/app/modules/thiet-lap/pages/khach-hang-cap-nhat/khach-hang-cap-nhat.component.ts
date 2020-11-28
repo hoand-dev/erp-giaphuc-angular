@@ -5,6 +5,7 @@ import { ChiNhanh, KhachHang, KhuVuc, NhomKhachHang } from '@app/shared/entities
 import { KhachHangService, NhomKhachHangService, KhuVucService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
+import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
@@ -16,19 +17,25 @@ import { Subscription } from 'rxjs';
 export class KhachHangCapNhatComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmKhachHang: DxFormComponent;
 
-    /* tối ưu subscription */
-
+   
+    /*tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
-
     private currentChiNhanh: ChiNhanh;
+
     public lstKhuVuc: KhuVuc[] = [];
     public lstNhomKhachHang: NhomKhachHang[] = [];
 
+    public dataSource_KhuVuc: DataSource;
+    public dataSource_NhomKhachHang: DataSource;
+
     public khachhang: KhachHang;
+
+    public saveProcessing = false;
+    public loadingVisible = true;
 
     public makhachhang_old: string;
 
-    public saveProcessing = false;
+
 
     public rules: Object = { 'X': /[02-9]/ };
     public buttonSubmitOptions: any = {
@@ -65,20 +72,29 @@ export class KhachHangCapNhatComponent implements OnInit {
                                 this.khachhangService.handleError(error);
                             }
                         ));
-                    this.subscriptions.add(
-                        this.khuvucService.findKhuVucs().subscribe((data) => {
-                            this.lstKhuVuc = data;
-                            // tìm thông tin theo khuvuc_id
-                            this.khachhang.khuvuc = data.find((o) => o.id == this.khachhang.khuvuc_id);
-                        })
-                    );
-                    this.subscriptions.add(
-                        this.nhomkhachhangService.findNhomKhachHangs().subscribe((data) => {
-                            this.lstNhomKhachHang = data;
-                            // tìm thông tin theo nhomkhachhang_id
-                            this.khachhang.nhomkhachang = data.find((o) => o.id == this.khachhang.nhomkhachhang_id);
-                        })
-                    );
+                        this.subscriptions.add(
+                            this.khuvucService.findKhuVucs().subscribe((x) => {
+                                this.loadingVisible = false;
+                                this.lstKhuVuc = x;
+                                this.dataSource_KhuVuc = new DataSource({
+                                    store: x,
+                                    paginate: true,
+                                    pageSize: 50
+                                });
+                            })
+                        );
+                
+                        this.subscriptions.add(
+                            this.nhomkhachhangService.findNhomKhachHangs().subscribe((x) => {
+                                this.loadingVisible = false;
+                                this.lstNhomKhachHang = x;
+                                this.dataSource_NhomKhachHang = new DataSource({
+                                    store: x,
+                                    paginate: true,
+                                    pageSize: 50
+                                });
+                            })
+                        );
                 }
             }));
     }

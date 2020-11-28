@@ -4,6 +4,7 @@ import { ChiNhanh, NhaCungCap, NhaCungCap_SoTaiKhoan, NhomNhaCungCap } from '@ap
 import { NhaCungCapService, NhomNhaCungCapService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent, DxFormModule } from 'devextreme-angular';
+import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
@@ -15,25 +16,31 @@ import { Subscription } from 'rxjs';
 export class NhaCungCapCapNhatComponent implements OnInit {
     @ViewChild(DxFormModule, {static:false}) frmNhaCungCap: DxFormComponent;
 
-    /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
-    private currentChiNhanh: ChiNhanh;
+     /*tối ưu subscription */
 
-    public nhacungcap: NhaCungCap;
-    public lstNhomNhaCungCap: NhomNhaCungCap[] = [];
-    public manhacungcap_old: string;
-    public saveProcessing = false;
-    public sotaikhoan_old: string;
+     subscriptions: Subscription = new Subscription();
+     private currentChiNhanh: ChiNhanh;
+ 
+     public nhacungcap: NhaCungCap;
+     public lstNhomNhaCungCap: NhomNhaCungCap[] = [];
+ 
+     public dataSource_NhomNhaCungCap: DataSource;
+ 
+     public saveProcessing = false;
+     public loadingVisible = true;
 
-    public sotaikhoans: NhaCungCap_SoTaiKhoan [] = [];
-    dataSource_SoTaiKhoan: any ={};
+     public sotaikhoan_old: string;
+     public manhacungcap_old: string;
 
-    public rules: Object = { 'X': /[02-9]/};
-    public buttonSubmitOptions: any ={
-        text: 'Lưu lại',
-        type: 'success',
-        useSubmitBehavior: true
-    };
+     public sotaikhoans: NhaCungCap_SoTaiKhoan [] = [];
+ 
+     public buttonSubmitOptions: any ={
+         text: 'Lưu lại',
+         type: 'sucess',
+         useSubmitBehavior: true
+     };
+
+
 
   constructor(
       private router: Router,
@@ -61,10 +68,16 @@ export class NhaCungCapCapNhatComponent implements OnInit {
                         this.nhacungcapService.handleError(error);
                   }
               ));
-              this.subscriptions.add(this.nhomnhacungcapService.findNhomNhaCungCaps().subscribe((data) =>{
-                  this.lstNhomNhaCungCap = data;
-                  this.nhacungcap.nhomnhacungcap = data.find((o) => o.id == this.nhacungcap.nhomnhacungcap_id);
-              })
+              this.subscriptions.add(
+                this.nhomnhacungcapService.findNhomNhaCungCaps().subscribe((x) => {
+                    this.loadingVisible = false;
+                    this.lstNhomNhaCungCap = x;
+                    this.dataSource_NhomNhaCungCap = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
+                })
             );
            // this.subscriptions.add(this.sotaikhoans) lay thong tin stk
           }
@@ -98,12 +111,13 @@ export class NhaCungCapCapNhatComponent implements OnInit {
 
     onSubmitForm(e){
         let nhacungcap_sotaikhoan = this.sotaikhoans.filter((x) => x.nhacungcap_id != null);
-        let nhacungcap_req = this.nhacungcap;
-        
-        nhacungcap_req.chinhanh_id = this.currentChiNhanh.id;
-        nhacungcap_req.nhomnhacungcap_id = nhacungcap_req.nhomnhacungcap.id;
-         
-        nhacungcap_req.nhacungcap_sotaikhoan = this.sotaikhoans;
+      let nhacungcap_req = this.nhacungcap;
+      
+      nhacungcap_req.chinhanh_id = this.currentChiNhanh.id;
+
+      nhacungcap_req.nhomnhacungcap_id = nhacungcap_req.nhomnhacungcap_id;
+       
+      nhacungcap_req.nhacungcap_sotaikhoan = this.sotaikhoans;
   
         this.saveProcessing = true;
         this.subscriptions.add(

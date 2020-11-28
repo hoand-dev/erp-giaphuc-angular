@@ -56,9 +56,9 @@
 
                                     <dxi-item
                                         [label]="{ text: 'NHÓM NHÀ CUNG CẤP ' }"
-                                        dataField="nhomnhacungcap"
+                                        dataField="nhomnhacungcap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstNhomNhaCungCap, searchEnabled: true, displayExpr: 'tennhomnhacungcap' }"
+                                        [editorOptions]="{ dataSource: dataSource_NhomNhaCungCap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennhomnhacungcap' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhóm nhà cung cấp"> </dxi-validation-rule>
                                     </dxi-item>
