@@ -26,9 +26,10 @@ export class DinhMucThemMoiComponent implements OnInit {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-
     public dinhmuc: DinhMuc;
+
     public lstGiaCong: DanhMucGiaCong[] = [];
+    public dataSource_GiaCong: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -71,6 +72,12 @@ export class DinhMucThemMoiComponent implements OnInit {
             this.giacongService.findDanhMucGiaCongs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstGiaCong = x;
+
+                this.dataSource_GiaCong = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                    });
             })
         );
         this.loadingVisible = true;
@@ -210,7 +217,6 @@ export class DinhMucThemMoiComponent implements OnInit {
 
         // gán lại dữ liệu
         dinhmuc_req.chinhanh_id = this.currentChiNhanh.id;
-        dinhmuc_req.danhmucgiacong_id = dinhmuc_req.giacong.id;
 
         dinhmuc_req.dinhmuc_nguyenlieu = hanghoas;
         dinhmuc_req.dinhmuc_nguonluc = nguonlucs;

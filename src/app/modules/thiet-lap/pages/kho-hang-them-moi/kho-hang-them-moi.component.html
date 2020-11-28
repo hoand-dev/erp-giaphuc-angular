@@ -45,9 +45,9 @@
                                     <dxi-item [label]="{ text: 'KHO BỂ' }" dataField="khobe" editorType="dxCheckBox" [editorOptions]="{ text: 'Là kho bể' }"></dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'KHU VỰC' }"
-                                        dataField="khuvuc"
+                                        dataField="khuvuc_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhuVuc, searchEnabled: true, displayExpr: 'tenkhuvuc' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhuVuc, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhuvuc' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn khu vực"> </dxi-validation-rule>
                                     </dxi-item>

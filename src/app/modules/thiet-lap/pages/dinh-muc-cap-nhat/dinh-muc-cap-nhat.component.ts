@@ -19,8 +19,10 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-    public lstGiaCong: DanhMucGiaCong[] = [];
     public dinhmuc: DinhMuc;
+
+    public lstGiaCong: DanhMucGiaCong[] = [];
+    public dataSource_GiaCong: DataSource;
 
     public madinhmuc_old: string;
     public saveProcessing = false;
@@ -62,6 +64,18 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+
+        this.subscriptions.add(
+            this.giacongService.findDanhMucGiaCongs().subscribe((data) => {
+                this.lstGiaCong = data;
+                
+                this.dataSource_GiaCong = new DataSource({
+                    store: data,
+                    paginate: true,
+                    pageSize: 50
+                    });
+            })
+        );
 
         this.saveProcessing = true;
         this.subscriptions.add(
@@ -122,12 +136,6 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
                             }
                         )
                     );
-                    this.subscriptions.add(
-                        this.giacongService.findDanhMucGiaCongs().subscribe((data) => {
-                            this.lstGiaCong = data;
-                            this.dinhmuc.giacong = data.find((o) => o.id == this.dinhmuc.danhmucgiacong_id);
-                        })
-                    );
                 }
             })
         );
@@ -162,7 +170,6 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         // không cần xử lý lại thông tin nếu load lần dầu (*)
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
-            //return;
         } else {
             // xử lý lại thông tin dựa trên lựa chọn
             this.hanghoas[index].dvt_id = selected.dvt_id;
@@ -238,7 +245,6 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
 
         // gán lại dữ liệu
         dinhmuc_req.chinhanh_id = this.currentChiNhanh.id;
-        dinhmuc_req.danhmucgiacong_id = dinhmuc_req.giacong.id;
 
         dinhmuc_req.dinhmuc_nguyenlieu = hanghoas;
         dinhmuc_req.dinhmuc_nguonluc = nguonlucs;

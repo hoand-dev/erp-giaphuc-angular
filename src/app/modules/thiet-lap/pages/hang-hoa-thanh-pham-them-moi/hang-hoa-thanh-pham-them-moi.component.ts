@@ -14,6 +14,7 @@ import { DanhMucTieuChuan } from '../../../../shared/entities/thiet-lap/danh-muc
 import { LoaiHang } from '../../../../shared/entities/thiet-lap/loai-hang';
 import { DanhMucTieuChuanService } from '../../../../shared/services/thiet-lap/danh-muc-tieu-chuan.service';
 import { LoaiHangService } from '../../../../shared/services/thiet-lap/loai-hang.service';
+import DataSource from 'devextreme/data/data_source';
 
 @Component({
     selector: 'app-hang-hoa-thanh-pham-them-moi',
@@ -25,9 +26,8 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmHangHoa: DxFormComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
+    private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-
     public hanghoa: HangHoa;
 
     public lstTieuChuan: DanhMucTieuChuan[] = [];
@@ -35,6 +35,12 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
     public lstGiaCong: DinhMuc[] = [];
     public lstSoMat: SoMat[] = [];
     public lstDonViTinh: DonViTinh[] = [];
+
+    public dataSource_GiaCong: DataSource;
+    public dataSource_SoMat: DataSource;
+    public dataSource_TieuChuan: DataSource;
+    public dataSource_LoaiHang: DataSource;
+    public dataSource_DonViTinh: DataSource;
 
     public saveProcessing = false;
 
@@ -70,30 +76,60 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
             this.giacongService.findDinhMucs().subscribe(
                 x => {
                     this.lstGiaCong = x;
+
+                    this.dataSource_GiaCong = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
         );
         this.subscriptions.add(
             this.somatService.findSoMats().subscribe(
                 x => {
                     this.lstSoMat = x;
+
+                    this.dataSource_SoMat = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
         );
         this.subscriptions.add(
             this.tieuchuanService.findDanhMucTieuChuans().subscribe(
                 x => {
                     this.lstTieuChuan = x;
+
+                    this.dataSource_TieuChuan = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
         );
         this.subscriptions.add(
             this.loaihangService.findLoaiHangs().subscribe(
                 x => {
                     this.lstLoaiHang = x;
+
+                    this.dataSource_LoaiHang = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
         );
         this.subscriptions.add(
             this.donvitinhService.findDonViTinhs().subscribe(
                 x => {
                     this.lstDonViTinh = x;
+
+                    this.dataSource_DonViTinh = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
         );
     }
@@ -122,41 +158,41 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         if (
             e.dataField == "dinhmuc_giacong" ||
             e.dataField == "somat" ||
-            e.dataField == "tieuchuan" ||
+            e.dataField == "tieuchuan_id" ||
             e.dataField == "day" ||
             e.dataField == "rong"||
             e.dataField == "dai" ||
             e.dataField == "ncc" ||
-            e.dataField == "loaihang"
+            e.dataField == "loaihang_id"
         ){
+            let somat: SoMat = this.lstSoMat.find(x => x.id == this.hanghoa.somat_id);
+            let tieuchuan: DanhMucTieuChuan = this.lstTieuChuan.find((x) => x.id == this.hanghoa.tieuchuan_id);
+            let loaihang: LoaiHang = this.lstLoaiHang.find((x) => x.id == this.hanghoa.loaihang_id);
+
             let magiacong: string = "";
             let tengiacong: string = "";
-
             if(this.hanghoa.dinhmuc_giacong != null){
                 this.hanghoa.dinhmuc_giacong.forEach((value, index)=>{
-                    magiacong += value.madinhmuc;
-                    tengiacong += value.tendinhmuc + " ";
+                    if (typeof value === 'object') {
+                        magiacong += value.madinhmuc;
+                        tengiacong += value.tendinhmuc + ' ';
+                    }
                 });
 
                 tengiacong = tengiacong.trim();
             }
+            let masomat: string = somat != null ? somat.masomat.toString().trim() : "";
+            let tensomat: string = somat != null ? somat.tensomat.toString().trim() : "";
 
-            let masomat: string = this.hanghoa.somat != null ? this.hanghoa.somat.masomat.toString().trim() : "";
-            let tensomat: string = this.hanghoa.somat != null ? this.hanghoa.somat.tensomat.toString().trim() : "";
-
-            let matieuchuan: string = this.hanghoa.tieuchuan != null ? this.hanghoa.tieuchuan.madanhmuctieuchuan.toString().trim() : "";
-            let tentieuchuan: string = this.hanghoa.tieuchuan != null ? this.hanghoa.tieuchuan.tendanhmuctieuchuan.toString().trim() : "";
-            
-            let day: string = this.hanghoa.day != null ? this.hanghoa.day.toString().trim() : "";
-            let rong: string = this.hanghoa.rong != null ? "x" + this.hanghoa.rong.toString().trim() : "";
-            let dai: string = this.hanghoa.dai != null ? "x" + this.hanghoa.dai.toString().trim() : "";
-            
-            let ncc: string = this.hanghoa.ncc != null ? this.hanghoa.ncc.toString().trim() : "";
-            
-            let maloaihang: string = this.hanghoa.loaihang != null ? this.hanghoa.loaihang.maloaihang.toString().trim() : "";
-            let tenloaihang: string = this.hanghoa.loaihang != null ? this.hanghoa.loaihang.tenloaihang.toString().trim() : "";
-            
-            let _: string = " ";
+            let matieuchuan: string = tieuchuan != null ? tieuchuan.madanhmuctieuchuan.toString().trim() : '';
+            let tentieuchuan: string = tieuchuan != null ? tieuchuan.tendanhmuctieuchuan.toString().trim() : '';
+            let day: string = this.hanghoa.day != null ? this.hanghoa.day.toString().trim() : '';
+            let rong: string = this.hanghoa.rong != null ? 'x' + this.hanghoa.rong.toString().trim() : '';
+            let dai: string = this.hanghoa.dai != null ? 'x' + this.hanghoa.dai.toString().trim() : '';
+            let ncc: string = this.hanghoa.ncc != null ? this.hanghoa.ncc.toString().trim() : '';
+            let maloaihang: string = loaihang != null ? loaihang.maloaihang.toString().trim() : '';
+            let tenloaihang: string = loaihang != null ? loaihang.tenloaihang.toString().trim() : '';
+            let _: string = ' ';
 
             let mahanghoa: string = magiacong + masomat + matieuchuan + "(" + day + rong + dai + ")" + ncc + maloaihang;
             let tenhanghoa: string = tengiacong + _ + tensomat + _ + tentieuchuan + _ + "(" + day + rong + dai + ")" + _ + ncc + _ + tenloaihang;
@@ -179,14 +215,6 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         let hanghoa_req = this.hanghoa;
         hanghoa_req.chinhanh_id = this.currentChiNhanh.id;
         
-        hanghoa_req.tieuchuan_id = hanghoa_req.tieuchuan.id;
-        hanghoa_req.loaihang_id = hanghoa_req.loaihang.id;
-       
-        hanghoa_req.somat_id = hanghoa_req.somat.id;
-
-        hanghoa_req.dvt_id = hanghoa_req.donvitinh.id;
-        hanghoa_req.dvt1_id = hanghoa_req.donvitinhphu ? hanghoa_req.donvitinhphu.id : null;
-
         this.saveProcessing = true;
         this.subscriptions.add(this.hanghoaService.addHangHoa(hanghoa_req).subscribe(
             data => {

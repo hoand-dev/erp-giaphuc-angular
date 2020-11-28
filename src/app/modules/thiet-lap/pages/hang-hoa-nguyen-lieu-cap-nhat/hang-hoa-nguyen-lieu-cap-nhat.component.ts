@@ -4,6 +4,7 @@ import { ChiNhanh, DonViTinh, HangHoa } from '@app/shared/entities';
 import { AppInfoService, DonViTinhService, HangHoaService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
+import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
@@ -19,9 +20,10 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
+    public hanghoa: HangHoa;
 
     public lstDonViTinh: DonViTinh[] = [];
-    public hanghoa: HangHoa;
+    public dataSource_DonViTinh: DataSource;
 
     public mahanghoa_old: string;
     public saveProcessing = false;
@@ -65,7 +67,11 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
                     this.donvitinhService.findDonViTinhs().subscribe(
                         x => {
                             this.lstDonViTinh = x;
-                            this.hanghoa.donvitinh = x.find(o => o.id == this.hanghoa.dvt_id);
+                            this.dataSource_DonViTinh = new DataSource({
+                                store: x,
+                                paginate: true,
+                                pageSize: 50
+                                });
                         })
                 );
             }
@@ -87,7 +93,6 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
     onSubmitForm(e) {
         let hanghoa_req = this.hanghoa;
         hanghoa_req.chinhanh_id = this.currentChiNhanh.id;
-        hanghoa_req.dvt_id = hanghoa_req.donvitinh.id;
 
         this.saveProcessing = true;
         this.subscriptions.add(this.hanghoaService.updateHangHoa(hanghoa_req).subscribe(

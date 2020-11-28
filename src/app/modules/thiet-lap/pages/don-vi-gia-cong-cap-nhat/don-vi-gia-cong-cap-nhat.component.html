@@ -54,9 +54,9 @@
                                     <dxi-item [label]="{ text: 'GC NGOÀI' }" dataField="loaidonvi" editorType="dxCheckBox" [editorOptions]="{ text: 'Là đơn vị gia công ngoài' }"></dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'KHO GIA CÔNG' }"
-                                        dataField="khogiacong"
+                                        dataField="khogiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoHang, searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"> </dxi-validation-rule>
                                     </dxi-item>

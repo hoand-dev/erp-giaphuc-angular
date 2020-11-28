@@ -10,6 +10,7 @@ import { DonViGiaCongService, KhoHangService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
+import DataSource from 'devextreme/data/data_source';
 
 @Component({
     selector: 'app-don-vi-gia-cong-them-moi',
@@ -22,11 +23,12 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
-
     private currentChiNhanh: ChiNhanh;
 
-    public lstKhoHang: KhoHang[] = [];
     public donvigiacong: DonViGiaCong;
+
+    public lstKhoHang: KhoHang[] = [];
+    public dataSource_KhoHang: DataSource;
 
     public saveProcessing = false;
 
@@ -52,14 +54,20 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
     ngOnInit(): void {
         this.donvigiacong = new DonViGiaCong();
         this.theCallbackValid = this.theCallbackValid.bind(this);
+
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => {
             this.currentChiNhanh = x;
+            
             // khi thêm mới thay đổi chi nhánh thì load lại danh sách kho hàng theo chi nhánh đó
             this.subscriptions.add(
                 this.khogiacongService.findKhoHangs(this.currentChiNhanh.id).subscribe(
                     x => {
                         this.lstKhoHang = x;
-                        // this.donvigiacong.khogiacong = null; // set trước dữ liệu khu vực
+                        this.dataSource_KhoHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
                     })
             );
         }));
@@ -81,7 +89,6 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
     onSubmitForm(e) {
         let donvigiacong_req = this.donvigiacong;
         donvigiacong_req.chinhanh_id = this.currentChiNhanh.id;
-        donvigiacong_req.khogiacong_id = donvigiacong_req.khogiacong.id; // set lại khogiacong_id
         donvigiacong_req.loaigiacong = this.donvigiacong.loaidonvi ? 2 : 1;
 
         this.saveProcessing = true;

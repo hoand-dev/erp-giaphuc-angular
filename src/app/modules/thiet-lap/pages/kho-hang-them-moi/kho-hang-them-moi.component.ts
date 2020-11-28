@@ -10,6 +10,7 @@ import { KhoHangService, KhuVucService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
+import DataSource from 'devextreme/data/data_source';
 
 @Component({
     selector: 'app-kho-hang-them-moi',
@@ -21,11 +22,12 @@ export class KhoHangThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmKhoHang: DxFormComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
+    public subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-    
-    public lstKhuVuc: KhuVuc[] = [];
     public khohang: KhoHang;
+
+    public lstKhuVuc: KhuVuc[] = [];
+    public dataSource_KhuVuc: DataSource;
 
     public saveProcessing = false;
 
@@ -57,7 +59,12 @@ export class KhoHangThemMoiComponent implements OnInit {
             this.khuvucService.findKhuVucs().subscribe(
                 x => {
                     this.lstKhuVuc = x;
-                    // this.khohang.khuvuc = null; // set trước dữ liệu khu vực
+                    
+                    this.dataSource_KhuVuc = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
         );
     }
@@ -77,7 +84,6 @@ export class KhoHangThemMoiComponent implements OnInit {
     onSubmitForm(e) {
         let khohang_req = this.khohang;
         khohang_req.chinhanh_id = this.currentChiNhanh.id;
-        khohang_req.khuvuc_id = khohang_req.khuvuc.id; // set lại khuvuc_id
 
         this.saveProcessing = true;
         this.subscriptions.add(this.khohangService.addKhoHang(khohang_req).subscribe(

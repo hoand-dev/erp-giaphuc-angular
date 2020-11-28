@@ -4,6 +4,7 @@ import { ChiNhanh, DonViGiaCong, KhoHang } from '@app/shared/entities';
 import { DonViGiaCongService, KhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
+import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
@@ -18,10 +19,11 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
-
     private currentChiNhanh: ChiNhanh;
-    public lstKhoHang: KhoHang[] = [];
     public donvigiacong: DonViGiaCong;
+
+    public lstKhoHang: KhoHang[] = [];
+    public dataSource_KhoHang: DataSource;
 
     public madonvigiacong_old: string;
     public saveProcessing = false;
@@ -45,7 +47,24 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
         this.donvigiacong = new DonViGiaCong();
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
+
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => {
+            this.currentChiNhanh = x;
+            
+            // khi thêm mới thay đổi chi nhánh thì load lại danh sách kho hàng theo chi nhánh đó
+            this.subscriptions.add(
+                this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe(
+                    x => {
+                        this.lstKhoHang = x;
+                        this.dataSource_KhoHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+            );
+        }));
+
         this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
             let donvigiacong_id = params.id;
             // lấy thông tin kho hàng
@@ -60,14 +79,6 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
                         this.donvigiacongService.handleError(error);
                     }
                 ));
-                this.subscriptions.add(
-                    this.khohangService.findKhoHangs(null).subscribe(
-                        data => {
-                            this.lstKhoHang = data;
-                            // tìm thông tin khu vực theo khohang_id                            
-                            this.donvigiacong.khogiacong = data.find(o => o.id == this.donvigiacong.khogiacong_id);; // set trước dữ liệu khu vực
-                        })
-                );
             }
         }));
     }
@@ -87,7 +98,6 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
     onSubmitForm(e) {
         let donvigiacong_req = this.donvigiacong;
         donvigiacong_req.chinhanh_id = this.currentChiNhanh.id;
-        donvigiacong_req.khogiacong_id = donvigiacong_req.khogiacong.id; // set lại khohang_id
         donvigiacong_req.loaigiacong = this.donvigiacong.loaidonvi ? 2 : 1;
 
         this.saveProcessing = true;

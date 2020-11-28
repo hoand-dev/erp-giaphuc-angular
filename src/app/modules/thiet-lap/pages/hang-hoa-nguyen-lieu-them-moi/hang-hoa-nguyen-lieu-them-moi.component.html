@@ -41,9 +41,9 @@
 
                                     <dxi-item
                                         [label]="{ text: 'ĐƠN VỊ TÍNH' }"
-                                        dataField="donvitinh"
+                                        dataField="dvt_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstDonViTinh, searchEnabled: true, displayExpr: 'tendonvitinh' }"
+                                        [editorOptions]="{ dataSource: dataSource_DonViTinh, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendonvitinh' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị tính"></dxi-validation-rule>
                                     </dxi-item>
