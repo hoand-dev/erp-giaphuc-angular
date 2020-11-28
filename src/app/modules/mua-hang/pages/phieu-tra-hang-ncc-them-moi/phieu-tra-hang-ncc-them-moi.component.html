@@ -47,9 +47,9 @@
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'NHÀ CUNG CẤP' }"
-                                        dataField="nhacungcap"
+                                        dataField="nhacungcap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstNhaCungCap, searchEnabled: true, displayExpr: 'tennhacungcap' }"
+                                        [editorOptions]="{ dataSource: dataSource_NhaCungCap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennhacungcap' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
@@ -67,9 +67,9 @@
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'KHO XUẤT' }"
-                                        dataField="khoxuat"
+                                        dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoXuat, searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>
