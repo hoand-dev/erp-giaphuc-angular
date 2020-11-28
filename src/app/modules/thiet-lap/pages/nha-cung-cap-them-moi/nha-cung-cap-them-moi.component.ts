@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChiNhanh, NhaCungCap, NhaCungCap_SoTaiKhoan, NhomNhaCungCap } from '@app/shared/entities';
@@ -6,6 +7,8 @@ import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
+import DataSource from 'devextreme/data/data_source';
+
 
 @Component({
   selector: 'app-nha-cung-cap-them-moi',
@@ -23,6 +26,8 @@ export class NhaCungCapThemMoiComponent implements OnInit {
 
     public nhacungcap: NhaCungCap;
     public lstNhomNhaCungCap: NhomNhaCungCap[] = [];
+
+    public dataSource_NhomNhaCungCap: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -56,11 +61,16 @@ export class NhaCungCapThemMoiComponent implements OnInit {
 
       this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) =>(this.currentChiNhanh =x)));
       this.subscriptions.add(
-          this.nhomnhacungcapService.findNhomNhaCungCaps().subscribe((x) =>{
-              this.loadingVisible = false;
-              this.lstNhomNhaCungCap =x;
-          })
-      );
+        this.nhomnhacungcapService.findNhomNhaCungCaps().subscribe((x) => {
+            this.loadingVisible = false;
+            this.lstNhomNhaCungCap = x;
+            this.dataSource_NhomNhaCungCap = new DataSource({
+                store: x,
+                paginate: true,
+                pageSize: 50
+            });
+        })
+    );
       let rowsNull = this.sotaikhoans.filter((x) => x.nhacungcap_id == null);
         if (rowsNull.length == 0) {
             this.onAddSoTaiKhoan();
@@ -91,7 +101,8 @@ export class NhaCungCapThemMoiComponent implements OnInit {
       let nhacungcap_req = this.nhacungcap;
       
       nhacungcap_req.chinhanh_id = this.currentChiNhanh.id;
-      nhacungcap_req.nhomnhacungcap_id = nhacungcap_req.nhomnhacungcap.id;
+
+      nhacungcap_req.nhomnhacungcap_id = nhacungcap_req.nhomnhacungcap_id;
        
       nhacungcap_req.nhacungcap_sotaikhoan = this.sotaikhoans;
 

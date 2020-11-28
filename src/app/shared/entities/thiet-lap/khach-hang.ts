@@ -1,5 +1,4 @@
-import { NhomKhachHang } from './nhom-khach-hang';
-import { KhuVuc } from './khu-vuc';
+
 
 export class KhachHang {
     public id: number;
@@ -29,11 +28,6 @@ export class KhachHang {
     public email: string;
     public tennganhang: string;
 
-    public nhomkhachang: NhomKhachHang;
-    public tennhomkhachhang: String;
-
-    public khuvuc: KhuVuc;
-    public tenkhuvuc: string;
 
     constructor(
         id: number = null,
@@ -62,11 +56,7 @@ export class KhachHang {
         dathucongno: number = null,
         email: string = null,
         tennganhang:string = null,
-        nhomkhachang: NhomKhachHang = null,
-        tennhomkhachhang: string = null,
-
-        khuvuc: KhuVuc = null,
-        tenkhuvuc: string = null
+  
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -94,10 +84,6 @@ export class KhachHang {
         this.dathucongno = dathucongno;
         this.email = email;
         this.tennganhang = tennganhang;
-        this.nhomkhachang = nhomkhachang;
-        this.tennhomkhachhang = tennhomkhachhang;
-
-        this.khuvuc = khuvuc;
-        this.tenkhuvuc = tenkhuvuc;
+    
     }
 }

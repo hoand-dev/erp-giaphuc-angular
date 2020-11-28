@@ -1,9 +1,11 @@
+import { BaseService } from '@app/shared/services';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TheoDoiHopDong } from '@app/shared/entities';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { BaseService } from '..';
+
+import moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +19,11 @@ export class TheoDoiHopDongService extends BaseService {
       return this.httpClient.get<TheoDoiHopDong>(this.apiUrl +`/${id}`);
     }
   
-    findHopDongs(): Observable<TheoDoiHopDong[]>{
-      return  this.httpClient.get<TheoDoiHopDong[]>(this.apiUrl);
+    findtheodoihopdongs(chinhanh_id: number = null, fromDay: Date, toDay: Date): Observable<TheoDoiHopDong[]> {
+        let query_chinhanh = chinhanh_id == null ? '?' : '?chinhanh_id=' + chinhanh_id + '&';
+        let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
+        let denngay = moment(toDay).format('YYYY-MM-DD HH:mm:ss');
+        return this.httpClient.get<TheoDoiHopDong[]>(this.apiUrl + query_chinhanh + `tungay=${tungay}&denngay=${denngay}`);
     }
     
     addHopDong(hopdong: TheoDoiHopDong): Observable<TheoDoiHopDong>{

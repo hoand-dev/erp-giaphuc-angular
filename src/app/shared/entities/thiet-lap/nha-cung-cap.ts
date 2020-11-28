@@ -1,4 +1,4 @@
-import { NhomNhaCungCap } from './nhom-nha-cung-cap';
+
 
 
 export class NhaCungCap {
@@ -25,9 +25,7 @@ export class NhaCungCap {
     public nhomnhacungcap_id: number;
     public dachicongno: number;
 
-    
-    public nhomnhacungcap: NhomNhaCungCap;
-    public tennhomnhacungcap: string;
+
 
     public nhacungcap_sotaikhoan: NhaCungCap_SoTaiKhoan[];
 
@@ -39,10 +37,7 @@ export class NhaCungCap {
         tennganhang: string = null, 
         nhomnhacungcap_id: number = null, 
         dachicongno: number = null,
-        nhomnhacungcap: NhomNhaCungCap = null,
-        tennhomnhacungcap: string = null
-
-        ,
+ 
         ){
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -65,8 +60,7 @@ export class NhaCungCap {
         this.tennganhang = tennganhang;
         this.nhomnhacungcap_id = nhomnhacungcap_id;
         this.dachicongno = dachicongno;
-        this.nhomnhacungcap  = nhomnhacungcap;
-        this.tennhomnhacungcap= tennhomnhacungcap;
+
 
     }
 
