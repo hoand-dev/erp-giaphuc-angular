@@ -19,7 +19,46 @@ export class BangGia {
     public thoigiangiao: string;
     public diadiemgiao: string;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = null, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, ids: number = null, sort: string = null, ngaybanggia: Date = null, ngaycohieuluc: Date = null, mabanggia: string = null, tenmathang: string = null, khachhang_id: number = null, noidungno_id: number = null, thoigiangiao: string = null, diadiemgiao: string = null){
+    public banggia_chitiet: BangGia_ChiTiet[];
+
+    public tenkhachhang: string;
+    public diachi: string;
+    public sodienthoai: string;
+
+    public hoten: string;
+
+    
+
+    constructor(
+        id: number = null, 
+        chinhanh_id: number = null, 
+        kichhoat: boolean = true, 
+        nguoitao_id: number = null, 
+        thoigiantao: Date = null, 
+        nguoisua_id: number = null, 
+        thoigiansua: Date = null, 
+        ghichu: string = null, 
+        ids: number = null, 
+        sort: string = null, 
+        ngaybanggia: Date = new Date(), 
+        ngaycohieuluc: Date = null, 
+        mabanggia: string = null, 
+        tenmathang: string = null, 
+        khachhang_id: number = null, 
+        noidungno_id: number = null, 
+        thoigiangiao: string = null, 
+        diadiemgiao: string = null,
+        tenkhachhang: string = null,
+        diachi: string = null,
+        sodienthoai: string = null,
+        hoten: string = null
+
+
+     
+  
+        )
+        
+        {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -38,6 +77,10 @@ export class BangGia {
         this.noidungno_id = noidungno_id;
         this.thoigiangiao = thoigiangiao;
         this.diadiemgiao = diadiemgiao;
+        this.tenkhachhang = tenkhachhang;
+        this.diachi = diachi;
+        this.sodienthoai = sodienthoai;
+        this.hoten = hoten;
     }
 }
 
@@ -53,6 +96,7 @@ export class BangGia_ChiTiet {
     public dongia: number;
     public chuthich: string;
     public tenhanghoa_inphieu: string;
+    public tendonvitinh: string;
 
     constructor(id: number = null, banggia_id: number = null, loaihanghoa: string = null, hanghoa_id: number = null, hanghoa_lohang_id: number = null, dvt_id: number = null, tilequydoi: number = null, dongia: number = null, chuthich: string = null, tenhanghoa_inphieu: string = null){
         this.id = id;

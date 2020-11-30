@@ -17,10 +17,13 @@ import { PhieuBanHangCapNhatComponent } from './pages/phieu-ban-hang-cap-nhat/ph
 import { PhieuKhachTraHangComponent } from './pages/phieu-khach-tra-hang/phieu-khach-tra-hang.component';
 import { PhieuKhachTraHangThemMoiComponent } from './pages/phieu-khach-tra-hang-them-moi/phieu-khach-tra-hang-them-moi.component';
 import { PhieuKhachTraHangCapNhatComponent } from './pages/phieu-khach-tra-hang-cap-nhat/phieu-khach-tra-hang-cap-nhat.component';
+import { BangGiaComponent } from './pages/bang-gia/bang-gia.component';
+import { BangGiaThemMoiComponent } from './pages/bang-gia-them-moi/bang-gia-them-moi.component';
+import { BangGiaCapNhatComponent } from './pages/bang-gia-cap-nhat/bang-gia-cap-nhat.component';
 
 
 @NgModule({
-  declarations: [TheoDoiHopDongComponent, TheoDoiHopDongThemMoiComponent, TheoDoiHopDongCapNhatComponent, PhieuDatHangComponent, PhieuDatHangThemMoiComponent, PhieuDatHangCapNhatComponent, DanhSachPhieuDatHangModalComponent, DanhSachPhieuBanHangModalComponent, PhieuBanHangComponent, PhieuBanHangThemMoiComponent, PhieuBanHangCapNhatComponent, PhieuKhachTraHangComponent, PhieuKhachTraHangThemMoiComponent, PhieuKhachTraHangCapNhatComponent],
+  declarations: [TheoDoiHopDongComponent, TheoDoiHopDongThemMoiComponent, TheoDoiHopDongCapNhatComponent, PhieuDatHangComponent, PhieuDatHangThemMoiComponent, PhieuDatHangCapNhatComponent, DanhSachPhieuDatHangModalComponent, DanhSachPhieuBanHangModalComponent, PhieuBanHangComponent, PhieuBanHangThemMoiComponent, PhieuBanHangCapNhatComponent, PhieuKhachTraHangComponent, PhieuKhachTraHangThemMoiComponent, PhieuKhachTraHangCapNhatComponent, BangGiaComponent, BangGiaThemMoiComponent, BangGiaCapNhatComponent],
   imports: [
     CommonModule,
     SharedModule,

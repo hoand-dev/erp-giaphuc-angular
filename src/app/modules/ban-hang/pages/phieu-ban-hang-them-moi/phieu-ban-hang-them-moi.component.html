@@ -30,9 +30,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group float-right">
-                                        <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">
-                                            CHỌN TỪ PHIẾU ĐẶT HÀNG
-                                        </button>
+                                        <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">CHỌN TỪ PHIẾU ĐẶT HÀNG</button>
                                     </div>
                                 </div>
                             </div>
@@ -47,15 +45,15 @@
                                     <dxi-item
                                         [colSpan]="3"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
-                                        dataField="khachhang"
+                                        dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhachHang, searchEnabled: true, displayExpr: 'tenkhachhang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhachhang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="khachhang_dienthoai" [editorOptions]="{ readOnly: true }"> </dxi-item>
+
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                   
 
                                     <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
@@ -64,20 +62,19 @@
                                     <dxi-item
                                         [colSpan]="1"
                                         [label]="{ text: 'KHO HÀNG' }"
-                                        dataField="khoxuat"
+                                        dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstKhoHang, searchEnabled: true, displayExpr: 'tenkhohang' }"
-             
+                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
                                     >
-                                    <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieubanhang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item
                                         [colSpan]="6"
                                         [label]="{ text: 'NHÂN VIÊN KINH DOANH' }"
-                                        dataField="nguoidung"
+                                        dataField="nhanviensale_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstNguoiDung, searchEnabled: true, displayExpr: 'hoten' }"
+                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
@@ -85,9 +82,18 @@
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0.###' }">
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+                                    <dxi-item 
+                                    [label]="{ text: 'CÓ LẤY THUẾ' }" 
+                                    dataField="xuathoadon" 
+                                    editorType="dxCheckBox" 
+                                    [editorOptions]="{ text: 'Có lấy thuế' }"> 
+                                    <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    </dxi-item>
+
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
                                             <table class="table table-vertical table-hover mt-4">
@@ -164,7 +170,6 @@
                                                             <dx-text-box [(value)]="item.tenhanghoa_inphieu"></dx-text-box>
                                                         </td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
-                                                        
                                                     </tr>
                                                     <dxi-validation-rule type="required" message="Vui lòng chọn hàng hóa"></dxi-validation-rule>
                                                 </tbody>

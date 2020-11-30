@@ -36,21 +36,7 @@ export class PhieuBanHang {
 
     /* các thông tin hiển thị trên view được lấy từ các bảng khác */
 
-    public maphieudathang: string;
-    public khachhang: KhachHang;
-    
-    public sodienthoaikhachhang: string;
-    public diachikhachhang: string;
-    
-    /* select box dùng đối tượng khai báo  và sử dụng trên contructor */
-    public nguoidung: NguoiDung;
-    public hoten: string;
-
-    
-    public khoxuat: KhoHang;
-    public tenkhohang: string;
-
-
+ 
 
     public nocu: number =0;
     public tennguoitao: '';
@@ -86,10 +72,7 @@ export class PhieuBanHang {
         khoxuat_id: number = null, 
         trangthaixuat: string = null, 
         phieudathang_id: number = null,
-        hoten: string = null,
-        khachhang: KhachHang = null,
-        khoxuat: KhoHang = null,
-        nguoidung: NguoiDung = null,
+  
         )
         {
         this.id = id;
@@ -121,10 +104,7 @@ export class PhieuBanHang {
         this.khoxuat_id = khoxuat_id;
         this.trangthaixuat = trangthaixuat;
         this.phieudathang_id = phieudathang_id;
-        this.hoten = hoten;
-        this.khachhang = khachhang;
-        this.khoxuat = khoxuat;
-        this.nguoidung = nguoidung;
+
 
     }
 }
