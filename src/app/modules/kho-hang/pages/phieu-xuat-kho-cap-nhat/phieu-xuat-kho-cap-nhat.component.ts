@@ -34,6 +34,10 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
     public lstXe: DanhSachXe[] = [];
     public lstKhoXuat: KhoHang[] = [];
 
+    public dataSource_TaiXe: DataSource;
+    public dataSource_Xe: DataSource;
+    public dataSource_KhoXuat: DataSource;
+
     public saveProcessing = false;
     public loadingVisible = true;
 
@@ -87,6 +91,12 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
             this.taixeService.findTaiXes().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstTaiXe = x;
+
+                this.dataSource_TaiXe = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -95,6 +105,27 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
             this.xeService.findDanhSachXes().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstXe = x;
+
+                this.dataSource_Xe = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
+        // ? lấy danh sách kho hàng theo chi nhánh hiện tại
+        this.loadingVisible = true;
+        this.subscriptions.add(
+            this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhoXuat = x;
+                
+                this.dataSource_KhoXuat = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -123,26 +154,12 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
                                 this.hanghoalenght = data.phieuxuatkho_chitiets.length;
 
                                 this.phieuxuatkho = data;
-
-                                this.phieuxuatkho.taixe = this.lstTaiXe.find(x => x.id == data.taixe_id);
-                                this.phieuxuatkho.xe = this.lstXe.find(x => x.id == data.xe_id);
-
                                 this.hanghoas = this.phieuxuatkho.phieuxuatkho_chitiets;
                             },
                             (error) => {
                                 this.phieuxuatkhoService.handleError(error);
                             }
                         )
-                    );
-
-                    // ? lấy danh sách kho hàng theo chi nhánh hiện tại
-                    this.loadingVisible = true;
-                    this.subscriptions.add(
-                        this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
-                            this.loadingVisible = false;
-                            this.lstKhoXuat = x;
-                            this.phieuxuatkho.khoxuat = x.find((o) => o.id == this.phieuxuatkho.khoxuat_id);
-                        })
                     );
                 }
             })
@@ -186,21 +203,18 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
         // }
 
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
-        if (e.dataField == 'khoxuat' && e.value != null) {
+        if (e.dataField == 'khoxuat_id' && e.value !== undefined && e.value !== null) {
+            // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
-            this.phieuxuatkho.khoxuat_id = e.value ? e.value.id : null;
+            
             this.hanghoas.forEach((v, i) => {
                 v.khoxuat_id = this.phieuxuatkho.khoxuat_id;
             });
         }
 
-        if(e.dataField == 'taixe'){
-            this.phieuxuatkho.taixe_id = e.value ? e.value.id : null;
-            this.phieuxuatkho.taixe_dienthoai = e.value ? e.value.dienthoai: null;
-        }
-
-        if(e.dataField == 'xe'){
-            this.phieuxuatkho.xe_id = e.value ? e.value.id : null;
+        if (e.dataField == 'taixe_id') {
+            let taixe = this.lstTaiXe.find(x => x.id == this.phieuxuatkho.taixe_id);
+            this.phieuxuatkho.taixe_dienthoai = taixe ? taixe.dienthoai : null;
         }
 
         // thay đổi ngày tới hạn
@@ -304,9 +318,6 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
 
         // gán lại dữ liệu
         phieuxuatkho_req.chinhanh_id = this.currentChiNhanh.id;
-        //phieuxuatkho_req.nhacungcap_id = phieuxuatkho_req.nhacungcap.id;
-        phieuxuatkho_req.khoxuat_id = phieuxuatkho_req.khoxuat.id;
-
         phieuxuatkho_req.phieuxuatkho_chitiets = hanghoas;
 
         this.saveProcessing = true;

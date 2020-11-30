@@ -29,9 +29,10 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-
     public phieumuahangncc: PhieuMuaHangNCC;
+
     public lstNhaCungCap: NhaCungCap[] = [];
+    public dataSource_NhaCungCap: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -78,6 +79,12 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
             this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstNhaCungCap = x;
+
+                this.dataSource_NhaCungCap = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -117,8 +124,6 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
                             this.phieumuahangncc.tongthanhtien = data.tongthanhtien;
                             this.phieumuahangncc.phieudathangncc_id = data.id;
                             this.phieumuahangncc.maphieudathangncc = data.maphieudathangncc;
-
-                            this.phieumuahangncc.nhacungcap = this.lstNhaCungCap.find((x) => x.id == data.nhacungcap_id);
 
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieudathangncc_chitiet.length;
@@ -182,14 +187,14 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
 
     onFormFieldChanged(e) {
         // nếu thay đổi nhà cung cấp
-        if (e.dataField == 'nhacungcap') {
+        if (e.dataField == 'nhacungcap_id') {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
 
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
-            this.phieumuahangncc.dienthoainhacungcap = e.value ? e.value.sodienthoai : null;
-            this.phieumuahangncc.diachinhacungcap = e.value ? e.value.diachi : null;
-            this.phieumuahangncc.nhacungcap_id = e.value ? e.value.id : null;
+            let nhacungcap = this.lstNhaCungCap.find(x => x.id == this.phieumuahangncc.nhacungcap_id);
+            this.phieumuahangncc.dienthoainhacungcap = nhacungcap ? nhacungcap.sodienthoai : null;
+            this.phieumuahangncc.diachinhacungcap = nhacungcap ? nhacungcap.diachi : null;
 
             // load nợ cũ ncc
             this.subscriptions.add(
@@ -301,8 +306,6 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
 
         // gán lại dữ liệu
         phieumuahangncc_req.chinhanh_id = this.currentChiNhanh.id;
-        phieumuahangncc_req.nhacungcap_id = phieumuahangncc_req.nhacungcap.id;
-
         phieumuahangncc_req.phieumuahangncc_chitiet = hanghoas;
 
         this.saveProcessing = true;

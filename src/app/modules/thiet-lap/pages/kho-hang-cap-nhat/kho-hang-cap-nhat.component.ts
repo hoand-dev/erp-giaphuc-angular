@@ -4,6 +4,7 @@ import { ChiNhanh, KhoHang, KhuVuc } from '@app/shared/entities';
 import { KhoHangService, KhuVucService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
+import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
@@ -16,11 +17,13 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
     @ViewChild(DxFormComponent, { static: false }) frmKhoHang: DxFormComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
-
+    public subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-    public lstKhuVuc: KhuVuc[] = [];
     public khohang: KhoHang;
+
+    public lstKhuVuc: KhuVuc[] = [];
+    public dataSource_KhuVuc: DataSource;
+    
     public makhohang_old: string;
     public saveProcessing = false;
 
@@ -50,6 +53,18 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
         );
 
         this.subscriptions.add(
+            this.khuvucService.findKhuVucs().subscribe((data) => {
+                this.lstKhuVuc = data;
+
+                this.dataSource_KhuVuc = new DataSource({
+                    store: data,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
+        this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
                 let khohang_id = params.id;
                 // lấy thông tin kho hàng
@@ -64,13 +79,6 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
                                 this.khohangService.handleError(error);
                             }
                         )
-                    );
-                    this.subscriptions.add(
-                        this.khuvucService.findKhuVucs().subscribe((data) => {
-                            this.lstKhuVuc = data;
-                            // tìm thông tin khu vực theo khuvuc_id
-                            this.khohang.khuvuc = data.find((o) => o.id == this.khohang.khuvuc_id); // set trước dữ liệu khu vực
-                        })
                     );
                 }
             })
@@ -92,7 +100,6 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
     onSubmitForm(e) {
         let khohang_req = this.khohang;
         khohang_req.chinhanh_id = this.currentChiNhanh.id;
-        khohang_req.khuvuc_id = khohang_req.khuvuc.id; // set lại khuvuc_id
 
         this.saveProcessing = true;
         this.subscriptions.add(

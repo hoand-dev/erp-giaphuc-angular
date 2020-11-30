@@ -23,15 +23,20 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
 
     public phieudathang: PhieuDatHang;
+
     public lstKhachHang: KhachHang[] = [];
     public lstNguoiDung: NguoiDung[] = [];
     public lstKhoHang: KhoHang[] = [];
+
+    public dataSource_KhachHang: DataSource;
+    public dataSource_NguoiDung: DataSource;
+    public dataSource_KhoHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
 
     public hanghoas: PhieuDatHang_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -47,11 +52,13 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private authenticationService: AuthenticationService,
+
         private phieudathangService: PhieuDatHangService,
         private khachhangService: KhachHangService,
-        private hanghoaService: HangHoaService,
         private nguoidungService: NguoiDungService,
         private khohangService: KhoHangService,
+
+        private hanghoaService: HangHoaService,
         private commonService: CommonService
     ) {}
 
@@ -74,20 +81,40 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
                     this.khohangService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstKhoHang = x;
+
+                        this.dataSource_KhoHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
                     })
                 );
             })
         );
+
         this.subscriptions.add(
             this.khachhangService.findKhachHangs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstKhachHang = x;
+
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
+
         this.subscriptions.add(
             this.nguoidungService.findNguoiDungs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstNguoiDung = x;
+
+                this.dataSource_NguoiDung = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -95,6 +122,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
                 this.loadingVisible = false;
+
                 this.dataSource_HangHoa = new DataSource({
                     store: x,
                     paginate: true,
@@ -116,19 +144,19 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
 
     onFormFieldChanged(e) {
         // nếu thay đổi khách hàng
-        if (e.dataField == 'khachhang') {
-            // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
+        if (e.dataField == 'khachhang_id' && e.value !== undefined && e.value != null) {
+            // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn khách hàng
             this.isValidForm = true;
 
-            // gán lại thông tin điện thoại + địa chỉ khách hàng
-            this.phieudathang.khachhang_dienthoai = e.value ? e.value.sodienthoai : null;
-            this.phieudathang.khachhang_diachi = e.value ? e.value.diachi : null;
-            this.phieudathang.khachhang_hoten = e.value ? e.value.tenkhachhang : null;
-            this.phieudathang.khoxuat_id = e.value ? e.value.tenkhohang : null;
-            this.phieudathang.khachhang_id = e.value ? e.value.id : null;
-            // load nợ cũ ncc
+            // gán lại thông tin điện thoại + địa chỉ
+            let khachhang = this.lstKhachHang.find((o) => o.id == this.phieudathang.khachhang_id);
+            this.phieudathang.khachhang_hoten = khachhang.tenkhachhang;
+            this.phieudathang.khachhang_dienthoai = khachhang.sodienthoai;
+            this.phieudathang.khachhang_diachi = khachhang.diachi;
+
+            // load nợ cũ
             this.subscriptions.add(
-                this.commonService.khachHang_LoadNoCu(this.phieudathang.khachhang_id).subscribe((data) => {
+                this.commonService.khachHang_LoadNoCu(this.phieudathang.khachhang_id, this.phieudathang.sort).subscribe((data) => {
                     this.phieudathang.nocu = data;
                 })
             );
@@ -152,13 +180,12 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         if (e.dataField == 'giuhang') {
             if (e.value == false)
                 //this.frmPhieuDatHang.instance.getEditor('khoxuat').reset();
-                this.phieudathang.khoxuat = null;
+                this.phieudathang.khoxuat_id = null;
             this.frmPhieuDatHang.instance.validate();
         }
 
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
-        if (e.dataField == 'khoxuat') {
-            this.phieudathang.khoxuat_id = e.value ? this.phieudathang.khoxuat.id : null;
+        if (e.dataField == 'khoxuat_id') {
             this.hanghoas.forEach((v, i) => {
                 v.khoxuat_id = this.phieudathang.khoxuat_id;
             });
@@ -195,6 +222,8 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         let selected = e.selectedItem;
 
         // xử lý lại thông tin dựa trên lựa chọn
+        this.hanghoas[index].khoxuat_id = this.phieudathang.khoxuat_id;
+
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].dvt_id = selected.dvt_id;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
@@ -260,9 +289,6 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
 
         // gán lại dữ liệu
         phieudathang_req.chinhanh_id = this.currentChiNhanh.id;
-        phieudathang_req.khachhang_id = this.phieudathang.khachhang.id;
-        phieudathang_req.nhanviensale_id = this.phieudathang.nguoidung.id;
-        phieudathang_req.khoxuat_id = this.phieudathang.khoxuat.id;
         phieudathang_req.phieudathang_chitiet = hanghoas;
 
         this.saveProcessing = true;

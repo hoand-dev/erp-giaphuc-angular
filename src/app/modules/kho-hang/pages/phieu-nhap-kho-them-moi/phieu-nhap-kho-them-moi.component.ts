@@ -34,6 +34,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
 
     public phieunhapkho: PhieuNhapKho;
     public lstKhoNhap: KhoHang[] = [];
+    public dataSource_KhoNhap: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -82,6 +83,12 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                     this.nhacungcapService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstKhoNhap = x;
+
+                        this.dataSource_KhoNhap = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
                     })
                 );
             })
@@ -139,8 +146,9 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieumuahangncc_chitiet.forEach((value, index) => {
-                                if(value.trangthainhapkho != ETrangThaiPhieu.danhap){
+                                if (value.trangthainhapkho != ETrangThaiPhieu.danhap) {
                                     let chitiet = new PhieuNhapKho_ChiTiet();
+                                    chitiet.khonhap_id = this.phieunhapkho.khonhap_id;
                                     chitiet.loaihanghoa = value.loaihanghoa;
                                     chitiet.hanghoa_id = value.hanghoa_id;
                                     chitiet.hanghoa_lohang_id = value.hanghoa_lohang_id;
@@ -206,13 +214,12 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
 
     onFormFieldChanged(e) {
         // nếu thay đổi nhà cung cấp
-        if (e.dataField == 'khonhap' && e.value !== undefined && e.value !== null) {
+        if (e.dataField == 'khonhap_id' && e.value !== undefined && e.value !== null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             // this.isValidForm = true;
-
-            this.phieunhapkho.khonhap_id = e.value.id;
+            
             this.hanghoas.forEach((v, i) => {
-                v.khonhap_id = e.value.id;
+                v.khonhap_id = this.phieunhapkho.khonhap_id;
             });
         }
 
@@ -256,6 +263,8 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
             });
         } else {
+            this.hanghoas[index].khonhap_id = this.phieunhapkho.khonhap_id;
+
             this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
@@ -314,8 +323,8 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
         this.phieunhapkho.tongthanhtien = tongtienhang - tongtienhang * this.phieunhapkho.chietkhau + (tongtienhang - tongtienhang * this.phieunhapkho.chietkhau) * this.phieunhapkho.thuevat;
     }
 
-    public valid_khonhaphong(): boolean{
-        if(this.hanghoas.filter((x) => x.soluonghong != 0 && x.khonhaphong_id == null).length > 0){
+    public valid_khonhaphong(): boolean {
+        if (this.hanghoas.filter((x) => x.soluonghong != 0 && x.khonhaphong_id == null).length > 0) {
             Swal.fire({
                 title: 'Chọn kho nhập hỏng',
                 html: 'Vui lòng chọn kho nhập cho số lượng hỏng đã nhập',
@@ -329,7 +338,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.valid_khonhaphong()) return;
+        if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && (x.soluong != 0 || x.soluonghong != 0));

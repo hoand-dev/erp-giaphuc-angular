@@ -29,6 +29,7 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
     public phieunhapkho: PhieuNhapKho;
     public lstNhaCungCap: NhaCungCap[] = [];
     public lstKhoNhap: KhoHang[] = [];
+    public dataSource_KhoNhap: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -77,6 +78,21 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
             })
         );
 
+        // ? lấy danh sách kho hàng theo chi nhánh hiện tại
+        this.loadingVisible = true;
+        this.subscriptions.add(
+            this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhoNhap = x;
+                
+                this.dataSource_KhoNhap = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                    });
+            })
+        );
+
         this.loadingVisible = true;
         this.subscriptions.add(
             this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
@@ -108,16 +124,6 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
                                 this.phieunhapkhoService.handleError(error);
                             }
                         )
-                    );
-
-                    // ? lấy danh sách kho hàng theo chi nhánh hiện tại
-                    this.loadingVisible = true;
-                    this.subscriptions.add(
-                        this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
-                            this.loadingVisible = false;
-                            this.lstKhoNhap = x;
-                            this.phieunhapkho.khonhap = x.find((o) => o.id == this.phieunhapkho.khonhap_id);
-                        })
                     );
                 }
             })
@@ -161,10 +167,10 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
         // }
 
         // nếu thay đổi kho xuất -> set khonhap_id cho hàng hoá
-        if (e.dataField == 'khonhap' && e.value != null) {
+        if (e.dataField == 'khonhap_id' && e.value != null) {
             this.isValidForm = true;
             this.hanghoas.forEach((v, i) => {
-                v.khonhap_id = this.phieunhapkho.khonhap.id;
+                v.khonhap_id = this.phieunhapkho.khonhap_id;
             });
         }
 
@@ -193,6 +199,8 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
             });
         } else {
+            this.hanghoas[index].khonhap_id = this.phieunhapkho.khonhap_id;
+
             this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
@@ -274,9 +282,6 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
 
         // gán lại dữ liệu
         phieunhapkho_req.chinhanh_id = this.currentChiNhanh.id;
-        //phieunhapkho_req.nhacungcap_id = phieunhapkho_req.nhacungcap.id;
-        phieunhapkho_req.khonhap_id = phieunhapkho_req.khonhap.id;
-
         phieunhapkho_req.phieunhapkho_chitiets = hanghoas;
 
         this.saveProcessing = true;

@@ -1,5 +1,3 @@
-import { KhoHang } from '../thiet-lap';
-
 export class PhieuNhapKho {
     public phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[];
 
@@ -31,7 +29,6 @@ export class PhieuNhapKho {
     public trangthaichi: string;
 
     /* liên kết vs khoá ngoại và thông tin thêm */
-    public khonhap: KhoHang;
     public tenkhonhap: string;
 
     public tuphieu: string;
@@ -70,7 +67,6 @@ export class PhieuNhapKho {
         sotiendachi: number = 0,
         trangthaichi: string = null,
 
-        khonhap: KhoHang = null,
         phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[] = []
     ) {
         this.id = id;
@@ -100,7 +96,6 @@ export class PhieuNhapKho {
         this.sotiendachi = sotiendachi;
         this.trangthaichi = trangthaichi;
 
-        this.khonhap = khonhap;
         this.phieunhapkho_chitiets = phieunhapkho_chitiets;
     }
 }
@@ -128,8 +123,6 @@ export class PhieuNhapKho_ChiTiet {
     public khonhaphong_id: number;
 
     /* liên kết vs khoá ngoại và thông tin thêm */
-    public khonhaphong: KhoHang;
-
     public mahanghoa: string;
     public tenhanghoa: string;
     public tendonvitinh: string;
@@ -154,8 +147,7 @@ export class PhieuNhapKho_ChiTiet {
         phieumuahangncc_chitiet_id: number = null,
         phieukhachtrahang_chitiet_id: number = null,
         soluonghong: number = 0,
-        khonhaphong_id: number = null,
-        khonhaphong: KhoHang = null
+        khonhaphong_id: number = null
     ) {
         this.id = id;
         this.phieunhapkho_id = phieunhapkho_id;
@@ -177,7 +169,5 @@ export class PhieuNhapKho_ChiTiet {
         this.phieukhachtrahang_chitiet_id = phieukhachtrahang_chitiet_id;
         this.soluonghong = soluonghong;
         this.khonhaphong_id = khonhaphong_id;
-        
-        this.khonhaphong = khonhaphong;
     }
 }

@@ -31,9 +31,9 @@
                                 <dx-form id="form" [colCount]="3" [formData]="dinhmuc" [showValidationSummary]="true">
                                     <dxi-item
                                         [label]="{ text: 'GIA CÔNG' }"
-                                        dataField="giacong"
+                                        dataField="danhmucgiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: lstGiaCong, searchEnabled: true, displayExpr: 'tendanhmuc' }"
+                                        [editorOptions]="{ dataSource: dataSource_GiaCong, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendanhmuc' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn gia công"></dxi-validation-rule>
                                     </dxi-item>

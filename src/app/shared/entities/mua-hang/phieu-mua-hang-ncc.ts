@@ -1,5 +1,3 @@
-import { NhaCungCap } from '../thiet-lap';
-
 export class PhieuMuaHangNCC {
     public id: number;
     public chinhanh_id: number;
@@ -26,7 +24,6 @@ export class PhieuMuaHangNCC {
 
     /* các thông tin hiển thị trên view */
     public maphieudathangncc: string;
-    public nhacungcap: NhaCungCap;
     public tennhacungcap: string;
     public dienthoainhacungcap: string;
     public diachinhacungcap: string;
@@ -54,7 +51,6 @@ export class PhieuMuaHangNCC {
         cuocvanchuyen: number = 0,
         tongthanhtien: number = 0,
         trangthainhap: string = null,
-        nhacungcap: NhaCungCap = null,
         phieudathangncc_id: number = null
     ) {
         this.id = id;
@@ -76,7 +72,6 @@ export class PhieuMuaHangNCC {
         this.cuocvanchuyen = cuocvanchuyen;
         this.tongthanhtien = tongthanhtien;
         this.trangthainhap = trangthainhap;
-        this.nhacungcap = nhacungcap;
         this.phieudathangncc_id = phieudathangncc_id;
     }
 }

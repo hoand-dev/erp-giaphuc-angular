@@ -24,10 +24,13 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-
     public phieutrahangncc: PhieuTraHangNCC;
+
     public lstNhaCungCap: NhaCungCap[] = [];
     public lstKhoXuat: KhoHang[] = [];
+
+    public dataSource_NhaCungCap: DataSource;
+    public dataSource_KhoXuat: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -73,6 +76,33 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                // ? lấy danh sách kho hàng theo chi nhánh hiện tại
+                this.loadingVisible = true;
+                this.subscriptions.add(
+                    this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
+                        this.loadingVisible = false;
+                        this.lstKhoXuat = x;
+                        this.dataSource_KhoXuat = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
+            })
+        );
+
+        this.subscriptions.add(
+            this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstNhaCungCap = x;
+                
+                this.dataSource_NhaCungCap = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -108,24 +138,6 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
                             }
                         )
                     );
-
-                    this.subscriptions.add(
-                        this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
-                            this.loadingVisible = false;
-                            this.lstNhaCungCap = x;
-                            this.phieutrahangncc.nhacungcap = x.find((o) => o.id == this.phieutrahangncc.nhacungcap_id);
-                        })
-                    );
-
-                    // ? lấy danh sách kho hàng theo chi nhánh hiện tại
-                    this.loadingVisible = true;
-                    this.subscriptions.add(
-                        this.khohangService.findKhoHangs().subscribe((x) => {
-                            this.loadingVisible = false;
-                            this.lstKhoXuat = x;
-                            this.phieutrahangncc.khoxuat = x.find((o) => o.id == this.phieutrahangncc.khoxuat_id);
-                        })
-                    );
                 }
             })
         );
@@ -144,14 +156,14 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
         if (e.value === undefined) return;
 
         // nếu thay đổi nhà cung cấp
-        if (e.dataField == 'nhacungcap' && e.value !== undefined) {
+        if (e.dataField == 'nhacungcap_id' && e.value !== undefined) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
 
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
-            this.phieutrahangncc.dienthoainhacungcap = e.value ? e.value.sodienthoai : null;
-            this.phieutrahangncc.diachinhacungcap = e.value ? e.value.diachi : null;
-            this.phieutrahangncc.nhacungcap_id = e.value ? e.value.id : null;
+            let nhacungcap = this.lstNhaCungCap.find(x => x.id == this.phieutrahangncc.nhacungcap_id);
+            this.phieutrahangncc.dienthoainhacungcap = nhacungcap ? nhacungcap.sodienthoai : null;
+            this.phieutrahangncc.diachinhacungcap = nhacungcap ? nhacungcap.diachi : null;
 
             // load nợ cũ ncc
             this.subscriptions.add(
@@ -176,9 +188,9 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
         }
 
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
-        if (e.dataField == 'khoxuat') {
+        if (e.dataField == 'khoxuat_id') {
             this.hanghoas.forEach((v, i) => {
-                v.khoxuat_id = this.phieutrahangncc.khoxuat.id;
+                v.khoxuat_id = this.phieutrahangncc.khoxuat_id;
             });
         }
 
@@ -204,6 +216,8 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
             this.hanghoalenght--;
             //return;
         } else {
+            this.hanghoas[index].khoxuat_id = this.phieutrahangncc.khoxuat_id;
+
             this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
@@ -270,9 +284,6 @@ export class PhieuTraHangNCCCapNhatComponent implements OnInit {
 
         // gán lại dữ liệu
         phieutrahangncc_req.chinhanh_id = this.currentChiNhanh.id;
-        phieutrahangncc_req.nhacungcap_id = phieutrahangncc_req.nhacungcap.id;
-        phieutrahangncc_req.khoxuat_id = phieutrahangncc_req.khoxuat.id;
-
         phieutrahangncc_req.phieutrahangncc_chitiet = hanghoas;
 
         this.saveProcessing = true;

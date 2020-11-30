@@ -1,5 +1,3 @@
-import { KhachHang, KhoHang, NguoiDung } from '../thiet-lap';
-
 export class PhieuDatHang {
     public id: number;
     public chinhanh_id: number;
@@ -29,18 +27,8 @@ export class PhieuDatHang {
 
     public phieudathang_chitiet: PhieuDatHang_ChiTiet[];
 
-    public khachhang: KhachHang;
-    public tenkhachhang: string;
-    public sodienthoaikhachhang: string;
-    public diachikhachhang: string;
-
     public nocu: number = 0;
-    public tennguoitao: '';
-
-    public khoxuat: KhoHang;
     public tenkhohang: string;
-    public nguoidung: NguoiDung;
-    public hoten: string;
 
     constructor(
         id: number = null,
@@ -68,12 +56,7 @@ export class PhieuDatHang {
         giuhang: boolean = true,
         khoxuat_id: number = null,
         trangthainhan: string = null,
-        phieudathang_chitiet: PhieuDatHang_ChiTiet[] = null,
-
-        khachhang: KhachHang = null,
-        tenkhachhang: string = null,
-        nguoidung: NguoiDung = null,
-        khoxuat: KhoHang = null
+        phieudathang_chitiet: PhieuDatHang_ChiTiet[] = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -101,12 +84,6 @@ export class PhieuDatHang {
         this.khoxuat_id = khoxuat_id;
         this.trangthainhan = trangthainhan;
         this.phieudathang_chitiet = phieudathang_chitiet;
-
-        this.khachhang = khachhang;
-        this.tenkhachhang = tenkhachhang;
-        this.nguoidung = nguoidung;
-
-        this.khoxuat = khoxuat;
     }
 }
 
