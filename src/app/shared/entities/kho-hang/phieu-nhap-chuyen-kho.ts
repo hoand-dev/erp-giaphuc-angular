@@ -13,11 +13,21 @@ export class PhieuNhapChuyenKho {
     public ngaynhapchuyenkho: Date;
     public khoxuatchuyen_id: number;
     public khonhap_id: number;
+    public phieuxuatchuyenkho_id: number;
+
+    public phieunhapchuyenkho_chitiets: PhieuNhapChuyenKho_ChiTiet[];
+
+    public tenkhoxuatchuyen: string;
+    public tenkhonhap: string;
+    public tumaphieu: string;
+
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
 
     constructor(
         id: number = null,
         chinhanh_id: number = null,
-        kichhoat: boolean = null,
+        kichhoat: boolean = true,
         nguoitao_id: number = null,
         thoigiantao: Date = null,
         nguoisua_id: number = null,
@@ -26,9 +36,11 @@ export class PhieuNhapChuyenKho {
         ids: number = null,
         sort: string = null,
         maphieunhapchuyenkho: string = null,
-        ngaynhapchuyenkho: Date = null,
+        ngaynhapchuyenkho: Date = new Date(),
         khoxuatchuyen_id: number = null,
-        khonhap_id: number = null
+        khonhap_id: number = null,
+
+        phieunhapchuyenkho_chitiets: PhieuNhapChuyenKho_ChiTiet[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -44,13 +56,15 @@ export class PhieuNhapChuyenKho {
         this.ngaynhapchuyenkho = ngaynhapchuyenkho;
         this.khoxuatchuyen_id = khoxuatchuyen_id;
         this.khonhap_id = khonhap_id;
+        
+        this.phieunhapchuyenkho_chitiets = phieunhapchuyenkho_chitiets;
     }
 }
 
 export class PhieuNhapChuyenKho_ChiTiet {
     public id: number;
     public phieunhapchuyenkho_id: number;
-    public khonhan_id: number;
+    public khonhap_id: number;
     public loaihanghoa: string;
     public hanghoa_id: number;
     public hanghoa_lohang_id: number;
@@ -62,24 +76,28 @@ export class PhieuNhapChuyenKho_ChiTiet {
     public chuthich: string;
     public phieuxuatchuyenkho_chitiet_id: number;
 
+    public mahanghoa: string;
+    public tenhanghoa: string;
+    public tendonvitinh: string;
+
     constructor(
         id: number = null,
         phieunhapchuyenkho_id: number = null,
-        khonhan_id: number = null,
+        khonhap_id: number = null,
         loaihanghoa: string = null,
         hanghoa_id: number = null,
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
-        tilequydoi: number = null,
-        soluong: number = null,
-        dongia: number = null,
-        thanhtien: number = null,
+        tilequydoi: number = 1,
+        soluong: number = 0,
+        dongia: number = 0,
+        thanhtien: number = 0,
         chuthich: string = null,
         phieuxuatchuyenkho_chitiet_id: number = null
     ) {
         this.id = id;
         this.phieunhapchuyenkho_id = phieunhapchuyenkho_id;
-        this.khonhan_id = khonhan_id;
+        this.khonhap_id = khonhap_id;
         this.loaihanghoa = loaihanghoa;
         this.hanghoa_id = hanghoa_id;
         this.hanghoa_lohang_id = hanghoa_lohang_id;

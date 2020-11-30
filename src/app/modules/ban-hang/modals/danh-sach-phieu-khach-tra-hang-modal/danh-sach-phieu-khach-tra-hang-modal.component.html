@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left"><b>{{ title }}</b></h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+
+            <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <dx-data-grid
+                            id="gridContainer"
+                            [showBorders]="true"
+                            [showRowLines]="true"
+                            [hoverStateEnabled]="true"
+                            [stateStoring]="stateStoringGrid"
+                            [columnAutoWidth]="true"
+                            (onRowDblClick)="onRowDblClick($event)"
+                        >
+                            <!-- <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
+                                <div *dxTemplate="let data of 'cellTemplate'">
+                                    <a [routerLink]="['/phieu-khach-tra-hang/' + data.value + '/cap-nhat']">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                </div>
+                            </dxi-column> -->
+
+                            <dxi-column dataField="ngaykhachtrahang" dataType="datetime" caption="Ngày trả hàng"></dxi-column>
+                            <dxi-column dataField="maphieukhachtrahang" caption="Mã phiếu"></dxi-column>
+                            <dxi-column dataField="phieubanhang_id" caption="Từ phiếu"></dxi-column>
+                            <dxi-column dataField="khachhang_hoten" caption="Nhà cung cấp"></dxi-column>
+                            <dxi-column dataField="tongtienhang" caption="Tiền hàng"></dxi-column>
+                            <dxi-column dataField="cuocvanchuyen" caption="Cước vận chuyển"></dxi-column>
+                            <dxi-column dataField="chietkhau" caption="Chiết khấu"></dxi-column>
+                            <dxi-column dataField="thuevat" caption="Thuế VAT"></dxi-column>
+                            <dxi-column dataField="tongthanhtien" caption="Tổng tiền"></dxi-column>
+
+                            <dxi-column dataField="trangthaixuat" caption="Trạng thái xuất" cellTemplate="cellTemplateTrangThaiXuat">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiXuat'">
+                                    <span *ngIf="data.value == null">Chưa xuất</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+
+                            <!-- <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                                    <span class="text-green" *ngIf="data.value == true">Kích hoạt</span>
+                                    <span class="text-red" *ngIf="data.value != true">Ngưng sử dụng</span>
+                                </div>
+                            </dxi-column> -->
+                            <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <!-- dx-data-grid option -->
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-paging [pageSize]="9" [pageIndex]="1"></dxo-paging>
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
+                            </dxo-pager>
+                        </dx-data-grid>            
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div>

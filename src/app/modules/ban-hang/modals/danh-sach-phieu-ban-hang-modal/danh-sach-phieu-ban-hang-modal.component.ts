@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import { PhieuBanHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -57,7 +58,7 @@ export class DanhSachPhieuBanHangModalComponent implements OnInit {
   onLoadData(){
       this.subscriptions.add(this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
           data => {
-              this.dataGrird.dataSource = data;
+              this.dataGrird.dataSource = data.filter(x => x.trangthaixuat != ETrangThaiPhieu.daxuat);
           },
           (error) => {
               this.objPhieuBanHangService.handleError(error);

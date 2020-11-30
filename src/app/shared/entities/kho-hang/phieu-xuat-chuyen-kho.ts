@@ -15,6 +15,14 @@ export class PhieuXuatChuyenKho {
     public khonhap_id: number;
     public trangthainhap: string;
 
+    public phieuxuatchuyenkho_chitiets:  PhieuXuatChuyenKho_ChiTiet[];
+
+    public tenkhoxuatchuyen: string;
+    public tenkhonhap: string;
+
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -27,10 +35,11 @@ export class PhieuXuatChuyenKho {
         ids: number = null,
         sort: string = null,
         maphieuxuatchuyenkho: string = null,
-        ngayxuatchuyenkho: Date = null,
+        ngayxuatchuyenkho: Date = new Date(),
         khoxuatchuyen_id: number = null,
         khonhap_id: number = null,
-        trangthainhap: string = null
+        trangthainhap: string = null,
+        phieuxuatchuyenkho_chitiets: PhieuXuatChuyenKho_ChiTiet[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -47,13 +56,15 @@ export class PhieuXuatChuyenKho {
         this.khoxuatchuyen_id = khoxuatchuyen_id;
         this.khonhap_id = khonhap_id;
         this.trangthainhap = trangthainhap;
+
+        this.phieuxuatchuyenkho_chitiets = phieuxuatchuyenkho_chitiets;
     }
 }
 
 export class PhieuXuatChuyenKho_ChiTiet {
     public id: number;
     public phieuxuatchuyenkho_id: number;
-    public khoxuat_id: number;
+    public khoxuatchuyen_id: number;
     public loaihanghoa: string;
     public hanghoa_id: number;
     public hanghoa_lohang_id: number;
@@ -66,25 +77,29 @@ export class PhieuXuatChuyenKho_ChiTiet {
     public soluongdanhap: number;
     public trangthainhap: string;
 
+    public mahanghoa: string;
+    public tenhanghoa: string;
+    public tendonvitinh: string;
+
     constructor(
         id: number = null,
         phieuxuatchuyenkho_id: number = null,
-        khoxuat_id: number = null,
+        khoxuatchuyen_id: number = null,
         loaihanghoa: string = null,
         hanghoa_id: number = null,
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
-        tilequydoi: number = null,
-        soluong: number = null,
-        dongia: number = null,
-        thanhtien: number = null,
+        tilequydoi: number = 1,
+        soluong: number = 0,
+        dongia: number = 0,
+        thanhtien: number = 0,
         chuthich: string = null,
-        soluongdanhap: number = null,
+        soluongdanhap: number = 0,
         trangthainhap: string = null
     ) {
         this.id = id;
         this.phieuxuatchuyenkho_id = phieuxuatchuyenkho_id;
-        this.khoxuat_id = khoxuat_id;
+        this.khoxuatchuyen_id = khoxuatchuyen_id;
         this.loaihanghoa = loaihanghoa;
         this.hanghoa_id = hanghoa_id;
         this.hanghoa_lohang_id = hanghoa_lohang_id;
