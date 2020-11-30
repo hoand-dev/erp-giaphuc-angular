@@ -6,6 +6,14 @@ export * from './phieu-xuat-kho/phieu-xuat-kho.component';
 export * from './phieu-xuat-kho-cap-nhat/phieu-xuat-kho-cap-nhat.component';
 export * from './phieu-xuat-kho-them-moi/phieu-xuat-kho-them-moi.component';
 
+export * from './phieu-xuat-chuyen-kho/phieu-xuat-chuyen-kho.component';
+export * from './phieu-xuat-chuyen-kho-cap-nhat/phieu-xuat-chuyen-kho-cap-nhat.component';
+export * from './phieu-xuat-chuyen-kho-them-moi/phieu-xuat-chuyen-kho-them-moi.component';
+
+export * from './phieu-nhap-chuyen-kho/phieu-nhap-chuyen-kho.component';
+export * from './phieu-nhap-chuyen-kho-cap-nhat/phieu-nhap-chuyen-kho-cap-nhat.component';
+export * from './phieu-nhap-chuyen-kho-them-moi/phieu-nhap-chuyen-kho-them-moi.component';
+
 export * from './phieu-dieu-chinh-kho/phieu-dieu-chinh-kho.component';
 export * from './phieu-dieu-chinh-kho-cap-nhat/phieu-dieu-chinh-kho-cap-nhat.component';
 export * from './phieu-dieu-chinh-kho-them-moi/phieu-dieu-chinh-kho-them-moi.component';
