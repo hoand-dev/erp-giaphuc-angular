@@ -244,9 +244,9 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
             if (!this.firstLoad_KhachHang) {
                 let khachhang = this.lstKhachHang.find((x) => x.id == this.phieukhachtrahang.khachhang_id);
 
-                this.phieukhachtrahang.khachhang_dienthoai = khachhang.sodienthoai;
-                this.phieukhachtrahang.khachhang_diachi = khachhang.diachi;
-                this.phieukhachtrahang.khachhang_hoten = khachhang.tenkhachhang;
+                this.phieukhachtrahang.khachhang_dienthoai = khachhang ? khachhang.sodienthoai : null;
+                this.phieukhachtrahang.khachhang_diachi = khachhang ? khachhang.diachi : null;
+                this.phieukhachtrahang.khachhang_hoten =  khachhang ? khachhang.tenkhachhang : null;
             } else {
                 this.firstLoad_KhachHang = false;
             }

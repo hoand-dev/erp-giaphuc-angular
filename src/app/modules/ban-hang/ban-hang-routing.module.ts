@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@app/_helpers';
+import { BangGiaCapNhatComponent } from './pages/bang-gia-cap-nhat/bang-gia-cap-nhat.component';
+import { BangGiaThemMoiComponent } from './pages/bang-gia-them-moi/bang-gia-them-moi.component';
+import { BangGiaComponent } from './pages/bang-gia/bang-gia.component';
 import { PhieuBanHangCapNhatComponent } from './pages/phieu-ban-hang-cap-nhat/phieu-ban-hang-cap-nhat.component';
 import { PhieuBanHangThemMoiComponent } from './pages/phieu-ban-hang-them-moi/phieu-ban-hang-them-moi.component';
 import { PhieuBanHangComponent } from './pages/phieu-ban-hang/phieu-ban-hang.component';
@@ -49,6 +52,15 @@ const routes: Routes = [
             { path: '', component: PhieuKhachTraHangComponent },
             { path: 'them-moi', component: PhieuKhachTraHangThemMoiComponent },
             { path: ':id/cap-nhat', component: PhieuKhachTraHangCapNhatComponent }
+        ]
+    },
+    {
+        path: 'bang-gia',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: BangGiaComponent },
+            { path: 'them-moi', component: BangGiaThemMoiComponent },
+            { path: ':id/cap-nhat', component: BangGiaCapNhatComponent }
         ]
     },
 ];

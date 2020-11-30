@@ -7,6 +7,9 @@ import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
+import DataSource from 'devextreme/data/data_source';
+
+
 
 @Component({
   selector: 'app-theo-doi-hop-dong-them-moi',
@@ -24,11 +27,15 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     public lstNhomKhachHang: NhomKhachHang[] = [];
     public lstNguoiDung: NguoiDung[] = [];
 
-    public khachhang: KhachHang;
-    public nhomkhachhang: NhomKhachHang;
-    public nguoidung: NguoiDung;
+   public dataSource_KhachHang: DataSource;
+    public dataSource_NhomKhachHang: DataSource;
+    public dataSource_NguoiDung: DataSource;
+
     public hopdong: TheoDoiHopDong;
+
+
     public saveProcessing = false;
+    public loadingVisible = true;
 
     public rules: Object = { 'X': /[02-9]/ };
     public buttonSubmitOptions: any = {
@@ -61,24 +68,36 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
 
         //khi thêm mới thay đổi chi nhánh thì load lại danh sách khách hàng
         this.subscriptions.add(
-            this.nhomkhachhangService.findNhomKhachHangs().subscribe( 
-                x => {
-                this.lstNhomKhachHang = x;
-            })
-        );
-
-
-        this.subscriptions.add(
-            this.khachhangService.findKhachHangs().subscribe(
-                x => {
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
                 this.lstKhachHang = x;
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
-        
         this.subscriptions.add(
-            this.nguoidungService.findNguoiDungs().subscribe(
-                x => {
+            this.nhomkhachhangService.findNhomKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstNhomKhachHang = x;
+                this.dataSource_NhomKhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+        this.subscriptions.add(
+            this.nguoidungService.findNguoiDungs().subscribe((x) => {
+                this.loadingVisible = false;
                 this.lstNguoiDung = x;
+                this.dataSource_NguoiDung = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
     }
@@ -94,12 +113,10 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     onSubmitForm(e) {
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
-        hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachang.id;
-        hopdong_req.khachhang_id = hopdong_req.khachhang.id;
-        hopdong_req.user_id = hopdong_req.nguoidung.id;
 
-        //khachhang_req.loaikhachhang = this.khachhang_req.loaikhachhang_id ? 2 : 1
-        //nếu muốn chi ra khách sỉ hay lẻ thì xử lý thêm chỗ này
+        hopdong_req.khachhang_id = hopdong_req.khachhang_id;
+        hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachhang_id;
+        hopdong_req.user_id = hopdong_req.user_id;
 
         this.saveProcessing = true;
         this.subscriptions.add(

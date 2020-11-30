@@ -6,14 +6,14 @@ import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
+import DataSource from 'devextreme/data/data_source';
 
 @Component({
-  selector: 'app-theo-doi-hop-dong-cap-nhat',
-  templateUrl: './theo-doi-hop-dong-cap-nhat.component.html',
-  styleUrls: ['./theo-doi-hop-dong-cap-nhat.component.css']
+    selector: 'app-theo-doi-hop-dong-cap-nhat',
+    templateUrl: './theo-doi-hop-dong-cap-nhat.component.html',
+    styleUrls: ['./theo-doi-hop-dong-cap-nhat.component.css']
 })
 export class TheoDoiHopDongCapNhatComponent implements OnInit {
-
     @ViewChild(DxFormComponent, { static: false }) frmTheoDoiHopDong: DxFormComponent;
 
     /*tối ưu subscriptions */
@@ -24,20 +24,23 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
     public lstNhomKhachHang: NhomKhachHang[] = [];
     public lstNguoiDung: NguoiDung[] = [];
 
-    public khachhang: KhachHang;
-    public nhomkhachhang: NhomKhachHang;
-    public nguoidung: NguoiDung;
+    public dataSource_KhachHang: DataSource;
+    public dataSource_NhomKhachHang: DataSource;
+    public dataSource_NguoiDung: DataSource;
+
     public hopdong: TheoDoiHopDong;
+
     public saveProcessing = false;
+    public loadingVisible = true;
 
     public sohopdong_old: string;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
     constructor(
         private router: Router,
@@ -55,12 +58,14 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
         this.hopdong = new TheoDoiHopDong();
 
         this.theCallBackValid = this.theCallBackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
                 let hopdong_id = params.id;
                 //lấy thông tin khách hàng
                 if (hopdong_id) {
-                    this.subscriptions.add(this.theodoihopdongService.findHopDong(hopdong_id).subscribe(
+                    this.subscriptions.add(
+                        this.theodoihopdongService.findHopDong(hopdong_id).subscribe(
                             (data) => {
                                 this.hopdong = data[0];
                                 this.sohopdong_old = this.hopdong.masohopdong;
@@ -69,32 +74,46 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
                             (error) => {
                                 this.theodoihopdongService.handleError(error);
                             }
-                        ));
+                        )
+                    );
+                    //khi thêm mới thay đổi chi nhánh thì load lại danh sách khách hàng
                     this.subscriptions.add(
-                        this.khachhangService.findKhachHangs().subscribe((data) => {
-                            this.lstKhachHang = data;
-                            // tìm thông tin theo khuvuc_id
-                            this.hopdong.khachhang = data.find((o) => o.id == this.hopdong.khachhang_id);
+                        this.khachhangService.findKhachHangs().subscribe((x) => {
+                            this.loadingVisible = false;
+                            this.lstKhachHang = x;
+                            this.dataSource_KhachHang = new DataSource({
+                                store: x,
+                                paginate: true,
+                                pageSize: 50
+                            });
                         })
                     );
                     this.subscriptions.add(
-                        this.nhomkhachhangService.findNhomKhachHangs().subscribe((data) => {
-                            this.lstNhomKhachHang = data;
-                            // tìm thông tin theo nhomkhachhang_id
-                            this.hopdong.nhomkhachang = data.find((o) => o.id == this.hopdong.nhomkhachhang_id);
+                        this.nhomkhachhangService.findNhomKhachHangs().subscribe((x) => {
+                            this.loadingVisible = false;
+                            this.lstNhomKhachHang = x;
+                            this.dataSource_NhomKhachHang = new DataSource({
+                                store: x,
+                                paginate: true,
+                                pageSize: 50
+                            });
                         })
                     );
                     this.subscriptions.add(
-                        this.nguoidungService.findNguoiDungs().subscribe((data) => {
-                            this.lstNguoiDung = data;
-                            // tìm thông tin theo user_id
-                            this.hopdong.nguoidung = data.find((o) => o.id == this.hopdong.user_id);
+                        this.nguoidungService.findNguoiDungs().subscribe((x) => {
+                            this.loadingVisible = false;
+                            this.lstNguoiDung = x;
+                            this.dataSource_NguoiDung = new DataSource({
+                                store: x,
+                                paginate: true,
+                                pageSize: 50
+                            });
                         })
                     );
                 }
-            }));
+            })
+        );
     }
-    
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
@@ -107,10 +126,10 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
     onSubmitForm(e) {
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
-        hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachang.id;
-        hopdong_req.khachhang_id = hopdong_req.khachhang.id;
-        hopdong_req.user_id = hopdong_req.nguoidung.id;
 
+        hopdong_req.khachhang_id = hopdong_req.khachhang_id;
+        hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachhang_id;
+        hopdong_req.user_id = hopdong_req.user_id;
         //khachhang_req.loaikhachhang = this.khachhang_req.loaikhachhang_id ? 2 : 1
         //nếu muốn chi ra khách sỉ hay lẻ thì xử lý thêm chỗ này
 
@@ -139,5 +158,4 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
         );
         e.preventDefault();
     }
-
 }
