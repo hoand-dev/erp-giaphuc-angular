@@ -85,7 +85,7 @@
                                     [label]="{ text: 'CÓ LẤY THUẾ' }" 
                                     dataField="xuathoadon" 
                                     editorType="dxCheckBox" 
-                                    [editorOptions]="{ text: 'Có lấy thuế' }"> 
+                                    [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 }"> 
                                     <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
