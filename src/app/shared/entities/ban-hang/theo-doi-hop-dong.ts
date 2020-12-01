@@ -40,7 +40,6 @@ export class TheoDoiHopDong {
         nguoikybenb: string = null,
         thongtinlienhe: string = null,
         user_id: number = null,
-
         nhomkhachhang_id: number = null
     ) {
         this.id = id;
@@ -61,8 +60,7 @@ export class TheoDoiHopDong {
         this.nguoikybena = nguoikybena;
         this.nguoikybenb = nguoikybenb;
         this.thongtinlienhe = thongtinlienhe;
-        this.nhomkhachhang_id = nhomkhachhang_id;
-
         this.user_id = user_id;
+        this.nhomkhachhang_id = nhomkhachhang_id;
     }
 }

@@ -186,7 +186,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
                                 item.hanghoa_lohang_id = value.hanghoa_lohang_id;
                                 item.dvt_id = value.dvt_id;
                                 item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong - value.soluongdaxuatkho;
+                                item.soluong = value.soluong - value.soluongdaxuat;
                                 item.dongia = value.dongia;
                                 item.thuevat = value.thuevat;
                                 item.chietkhau = value.chietkhau;

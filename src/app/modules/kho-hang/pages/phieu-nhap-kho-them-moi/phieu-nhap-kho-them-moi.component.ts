@@ -8,7 +8,7 @@ import { DxFormComponent } from 'devextreme-angular';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
-import { AppInfoService, CommonService, KhoHangService, PhieuMuaHangNCCService, PhieuNhapKhoService, RouteInterceptorService } from '@app/shared/services';
+import { AppInfoService, CommonService, KhoHangService, PhieuKhachTraHangService, PhieuMuaHangNCCService, PhieuNhapKhoService, RouteInterceptorService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -17,6 +17,7 @@ import { KhoHang } from '@app/shared/entities';
 import { HangHoaService } from '@app/shared/services';
 import { DanhSachPhieuMuaHangNCCModalComponent } from '@app/modules/mua-hang/modals/danh-sach-phieu-mua-hang-ncc-modal/danh-sach-phieu-mua-hang-ncc-modal.component';
 import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
+import { DanhSachPhieuKhachTraHangModalComponent } from '@app/modules/ban-hang/modals/danh-sach-phieu-khach-tra-hang-modal/danh-sach-phieu-khach-tra-hang-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-kho-them-moi',
@@ -63,6 +64,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
         private authenticationService: AuthenticationService,
 
         private objPhieuMuaHangNCCService: PhieuMuaHangNCCService,
+        private objPhieuKhachTraHangService: PhieuKhachTraHangService,
         private phieunhapkhoService: PhieuNhapKhoService,
         private nhacungcapService: KhoHangService,
         private hanghoaService: HangHoaService,
@@ -146,7 +148,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieumuahangncc_chitiet.forEach((value, index) => {
-                                if (value.trangthainhapkho != ETrangThaiPhieu.danhap) {
+                                if (value.trangthainhap != ETrangThaiPhieu.danhap) {
                                     let chitiet = new PhieuNhapKho_ChiTiet();
                                     chitiet.khonhap_id = this.phieunhapkho.khonhap_id;
                                     chitiet.loaihanghoa = value.loaihanghoa;
@@ -155,7 +157,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                                     chitiet.dvt_id = value.dvt_id;
                                     chitiet.tilequydoi = value.tilequydoi;
 
-                                    chitiet.soluong = value.soluong - value.soluongdanhapkho;
+                                    chitiet.soluong = value.soluong - value.soluongdanhap;
                                     chitiet.soluonghong = 0;
                                     chitiet.khonhaphong_id = null;
 
@@ -171,6 +173,75 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
 
                                     chitiet.phieumuahangncc_chitiet_id = value.id;
 
+                                    this.hanghoas.push(chitiet);
+                                }
+                            });
+                        },
+                        (error) => {
+                            this.phieunhapkhoService.handleError(error);
+                        }
+                    );
+                }
+
+                // chọn từ phiếu khách trả hàng
+                if (this.commonService.isNotEmpty(params.tuphieukhachtrahang)) {
+                    // cho hiển thị danh sách hàng hoá
+                    this.isValidForm = true;
+                    this.hanghoas = [];
+                
+                    /* chọn từ phiếu không cho thay đổi chi nhánh */
+                    setTimeout(() => {
+                        this.authenticationService.setDisableChiNhanh(true);
+                    });
+                
+                    // lấy thông tin phiếu mua hàng từ api
+                    this.objPhieuKhachTraHangService.findPhieuKhachTraHang(params.tuphieukhachtrahang).subscribe(
+                        (data) => {
+                            /* phiếu mua hàng -> phiếu nhập kho */
+                            // xử lý phần thông tin phiếu
+                            this.phieunhapkho.loaiphieunhapkho = 'nhapkhachtrahang';
+                            this.phieunhapkho.khachhang_id = data.khachhang_id;
+                            this.phieunhapkho.nguoigiao_hoten = data.khachhang_hoten;
+                
+                            this.phieunhapkho.phieukhachtrahang_id = data.id;
+                            this.phieunhapkho.tumaphieu = data.maphieukhachtrahang;
+                
+                            this.phieunhapkho.tongtienhang = data.tongtienhang;
+                            this.phieunhapkho.cuocvanchuyen = data.cuocvanchuyen;
+                            this.phieunhapkho.chietkhau = data.chietkhau;
+                            this.phieunhapkho.thuevat = data.thuevat;
+                            this.phieunhapkho.tongthanhtien = data.tongthanhtien;
+                
+                            // gán độ dài danh sách hàng hóa load lần đầu
+                            this.hanghoalenght = data.phieukhachtrahang_chitiet.length;
+                
+                            // xử lý phần thông tin chi tiết phiếu
+                            data.phieukhachtrahang_chitiet.forEach((value, index) => {
+                                if (value.trangthainhap != ETrangThaiPhieu.danhap) {
+                                    let chitiet = new PhieuNhapKho_ChiTiet();
+                                    chitiet.khonhap_id = this.phieunhapkho.khonhap_id;
+                                    chitiet.loaihanghoa = value.loaihanghoa;
+                                    chitiet.hanghoa_id = value.hanghoa_id;
+                                    chitiet.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                    chitiet.dvt_id = value.dvt_id;
+                                    chitiet.tilequydoi = value.tilequydoi;
+                
+                                    chitiet.soluong = value.soluong - value.soluongdanhap;
+                                    chitiet.soluonghong = 0;
+                                    chitiet.khonhaphong_id = null;
+                
+                                    chitiet.dongia = value.dongia;
+                                    chitiet.cuocvanchuyen = value.cuocvanchuyen;
+                                    chitiet.chietkhau = value.chietkhau;
+                                    chitiet.thuevat = value.thuevat;
+                                    chitiet.thanhtien = value.thanhtien;
+                                    chitiet.chuthich = value.chuthich;
+                
+                                    // mua hàng không quản lý tên hàng hoá in phiếu
+                                    // chitiet.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
+                
+                                    chitiet.phieukhachtrahang_chitiet_id = value.id;
+                
                                     this.hanghoas.push(chitiet);
                                 }
                             });
@@ -196,19 +267,24 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    openModal() {
+    openModal(tuphieu: string) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'DANH SÁCH PHIẾU MUA HÀNG NCC' // và nhiều hơn thế nữa
+            title: tuphieu == 'muahang' ? 'DANH SÁCH PHIẾU MUA HÀNG NCC' : 'DANH SÁCH PHIẾU KHÁCH TRẢ HÀNG' // và nhiều hơn thế nữa
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachPhieuMuaHangNCCModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        if(tuphieu == 'muahang'){
+            this.bsModalRef = this.modalService.show(DanhSachPhieuMuaHangNCCModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        }
+        else this.bsModalRef = this.modalService.show(DanhSachPhieuKhachTraHangModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
-            this.router.navigate([`/phieu-nhap-kho/them-moi`], { queryParams: { tuphieumuahang: result.id } });
+            if(tuphieu == 'muahang')
+                this.router.navigate([`/phieu-nhap-kho/them-moi`], { queryParams: { tuphieumuahang: result.id } });
+            else this.router.navigate([`/phieu-nhap-kho/them-moi`], { queryParams: { tuphieukhachtrahang: result.id } });
         });
     }
 

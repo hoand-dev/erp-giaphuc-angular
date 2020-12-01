@@ -90,8 +90,8 @@ export class PhieuMuaHangNCC_ChiTiet {
     public cuocvanchuyen: number;
     public thanhtien: number;
     public chuthich: string;
-    public soluongdanhapkho: number;
-    public trangthainhapkho: string;
+    public soluongdanhap: number;
+    public trangthainhap: string;
     public soluongtattoan: number;
     public loaihanghoa: string;
     public phieudathangncc_chitiet_id: number;
@@ -112,8 +112,8 @@ export class PhieuMuaHangNCC_ChiTiet {
         cuocvanchuyen: number = 0,
         thanhtien: number = 0,
         chuthich: string = null,
-        soluongdanhapkho: number = 0,
-        trangthainhapkho: string = null,
+        soluongdanhap: number = 0,
+        trangthainhap: string = null,
         soluongtattoan: number = 0,
         loaihanghoa: string = null,
         phieudathangncc_chitiet_id: number = null
@@ -131,8 +131,8 @@ export class PhieuMuaHangNCC_ChiTiet {
         this.cuocvanchuyen = cuocvanchuyen;
         this.thanhtien = thanhtien;
         this.chuthich = chuthich;
-        this.soluongdanhapkho = soluongdanhapkho;
-        this.trangthainhapkho = trangthainhapkho;
+        this.soluongdanhap = soluongdanhap;
+        this.trangthainhap = trangthainhap;
         this.soluongtattoan = soluongtattoan;
         this.loaihanghoa = loaihanghoa;
         this.phieudathangncc_chitiet_id = phieudathangncc_chitiet_id;

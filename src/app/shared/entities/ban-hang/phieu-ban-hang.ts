@@ -1,7 +1,4 @@
-import { HangHoa, KhachHang, KhoHang, NguoiDung } from '../thiet-lap';
-
 export class PhieuBanHang {
-
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -32,49 +29,43 @@ export class PhieuBanHang {
     public trangthaixuat: string;
     public phieudathang_id: number;
 
-    public phieubanhang_chitiet: PhieuBanHang_ChiTiet [];
+    public phieubanhang_chitiet: PhieuBanHang_ChiTiet[];
 
     /* các thông tin hiển thị trên view được lấy từ các bảng khác */
-
- 
-
-    public nocu: number =0;
+    public nocu: number = 0;
     public tennguoitao: '';
 
-    
-
-    constructor(id: number = null, 
-        chinhanh_id: number = null, 
-        kichhoat: boolean = true, 
-        nguoitao_id: number = null, 
-        thoigiantao: Date = null, 
-        nguoisua_id: number = null, 
-        thoigiansua: Date = null, 
-        ghichu: string = null, 
-        ids: number = null, 
-        sort: string = null, 
-        ngaybanhang: Date = new Date(), 
-        ngaygiaohang: Date = null, 
-        maphieubanhang: string = null, 
-        nhanviensale_id: number = null, 
-        khachhang_id: number = null, 
-        khachhang_hoten: string = null, 
-        khachhang_diachi: string = null, 
-        khachhang_dienthoai: string = null, 
-        songayno: number = null, 
-        tongtienhang: number = 0, 
-        cuocvanchuyen: number = 0, 
-        chietkhau: number = 0, 
-        thuevat: number = 0, 
-        tongthanhtien: number = 0, 
-        notienmat: boolean = null, 
-        xuathoadon: boolean = null, 
-        khoxuat_id: number = null, 
-        trangthaixuat: string = null, 
-        phieudathang_id: number = null,
-  
-        )
-        {
+    constructor(
+        id: number = null,
+        chinhanh_id: number = null,
+        kichhoat: boolean = true,
+        nguoitao_id: number = null,
+        thoigiantao: Date = null,
+        nguoisua_id: number = null,
+        thoigiansua: Date = null,
+        ghichu: string = null,
+        ids: number = null,
+        sort: string = null,
+        ngaybanhang: Date = new Date(),
+        ngaygiaohang: Date = null,
+        maphieubanhang: string = null,
+        nhanviensale_id: number = null,
+        khachhang_id: number = null,
+        khachhang_hoten: string = null,
+        khachhang_diachi: string = null,
+        khachhang_dienthoai: string = null,
+        songayno: number = null,
+        tongtienhang: number = 0,
+        cuocvanchuyen: number = 0,
+        chietkhau: number = 0,
+        thuevat: number = 0,
+        tongthanhtien: number = 0,
+        notienmat: boolean = null,
+        xuathoadon: boolean = null,
+        khoxuat_id: number = null,
+        trangthaixuat: string = null,
+        phieudathang_id: number = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -104,13 +95,10 @@ export class PhieuBanHang {
         this.khoxuat_id = khoxuat_id;
         this.trangthaixuat = trangthaixuat;
         this.phieudathang_id = phieudathang_id;
-
-
     }
 }
 
 export class PhieuBanHang_ChiTiet {
-
     public id: number;
     public phieubanhang_id: number;
     public loaihanghoa: string;
@@ -127,8 +115,8 @@ export class PhieuBanHang_ChiTiet {
     public chuthich: string;
     public tenhanghoa_inphieu: string;
     public khoxuat_id: number;
-    public soluongdaxuatkho: number;
-    public trangthaixuatkho: string;
+    public soluongdaxuat: number;
+    public trangthaixuat: string;
     public soluong_tudondathang: number;
     public phieudathang_chitiet_id: number;
     public soluongtattoan: number;
@@ -136,35 +124,30 @@ export class PhieuBanHang_ChiTiet {
     public tendonvitinh: string;
 
     public phieudathang_chitiet: number;
-  
 
     constructor(
-        id: number = null, 
-        phieubanhang_id: number = null, 
-        loaihanghoa: string = null, 
-        hanghoa_id: number = null, 
-        hanghoa_lohang_id: number = null, 
-        dvt_id: number = null, 
-        tilequydoi: number = null, 
-        soluong: number = 0, 
-        dongia: number = 0, 
-        cuocvanchuyen: number = 0, 
-        chietkhau: number = 0, 
-        thuevat: number = 0, 
-        thanhtien: number = 0, 
-        chuthich: string = null, 
-        tenhanghoa_inphieu: string = null, 
-        khoxuat_id: number = null, 
-        soluongdaxuatkho: number = null, 
-        trangthaixuatkho: string = null, 
+        id: number = null,
+        phieubanhang_id: number = null,
+        loaihanghoa: string = null,
+        hanghoa_id: number = null,
+        hanghoa_lohang_id: number = null,
+        dvt_id: number = null,
+        tilequydoi: number = 1,
+        soluong: number = 0,
+        dongia: number = 0,
+        cuocvanchuyen: number = 0,
+        chietkhau: number = 0,
+        thuevat: number = 0,
+        thanhtien: number = 0,
+        chuthich: string = null,
+        tenhanghoa_inphieu: string = null,
+        khoxuat_id: number = null,
+        soluongdaxuat: number = 0,
+        trangthaixuat: string = null,
         soluong_tudondathang: number = null,
-        phieudathang_chitiet_id: number = null, 
-        soluongtattoan: number = null,
-
-        
-        
-        )
-        {
+        phieudathang_chitiet_id: number = null,
+        soluongtattoan: number = null
+    ) {
         this.id = id;
         this.phieubanhang_id = phieubanhang_id;
         this.loaihanghoa = loaihanghoa;
@@ -181,11 +164,10 @@ export class PhieuBanHang_ChiTiet {
         this.chuthich = chuthich;
         this.tenhanghoa_inphieu = tenhanghoa_inphieu;
         this.khoxuat_id = khoxuat_id;
-        this.soluongdaxuatkho = soluongdaxuatkho;
-        this.trangthaixuatkho = trangthaixuatkho;
+        this.soluongdaxuat = soluongdaxuat;
+        this.trangthaixuat = trangthaixuat;
         this.soluong_tudondathang = soluong_tudondathang;
         this.phieudathang_chitiet_id = phieudathang_chitiet_id;
         this.soluongtattoan = soluongtattoan;
-  
     }
 }
