@@ -19,7 +19,7 @@ export class PhieuTraHangNCC {
     public chietkhau: number;
     public cuocvanchuyen: number;
     public tongthanhtien: number;
-    public trangthaixuatkho: string;
+    public trangthaixuat: string;
     public khoxuat_id: number;
     public phieumuahang_id: number;
 
@@ -53,7 +53,7 @@ export class PhieuTraHangNCC {
         chietkhau: number = 0,
         cuocvanchuyen: number = 0,
         tongthanhtien: number = 0,
-        trangthaixuatkho: string = null,
+        trangthaixuat: string = null,
         khoxuat_id: number = null,
         phieumuahang_id: number = null
     ) {
@@ -75,7 +75,7 @@ export class PhieuTraHangNCC {
         this.chietkhau = chietkhau;
         this.cuocvanchuyen = cuocvanchuyen;
         this.tongthanhtien = tongthanhtien;
-        this.trangthaixuatkho = trangthaixuatkho;
+        this.trangthaixuat = trangthaixuat;
         this.khoxuat_id = khoxuat_id;
         this.phieumuahang_id = phieumuahang_id;
     }
@@ -96,8 +96,8 @@ export class PhieuTraHangNCC_ChiTiet {
     public thanhtien: number;
     public chuthich: string;
     public khoxuat_id: number;
-    public soluongdaxuatkho: number;
-    public trangthaixuatkho: string;
+    public soluongdaxuat: number;
+    public trangthaixuat: string;
     public loaihanghoa: string;
     public phieumuahang_chitiet_id: number;
 
@@ -118,8 +118,8 @@ export class PhieuTraHangNCC_ChiTiet {
         thanhtien: number = 0,
         chuthich: string = null,
         khoxuat_id: number = null,
-        soluongdaxuatkho: number = 0,
-        trangthaixuatkho: string = null,
+        soluongdaxuat: number = 0,
+        trangthaixuat: string = null,
         loaihanghoa: string = null,
         phieumuahang_chitiet_id: number = null
     ) {
@@ -137,8 +137,8 @@ export class PhieuTraHangNCC_ChiTiet {
         this.thanhtien = thanhtien;
         this.chuthich = chuthich;
         this.khoxuat_id = khoxuat_id;
-        this.soluongdaxuatkho = soluongdaxuatkho;
-        this.trangthaixuatkho = trangthaixuatkho;
+        this.soluongdaxuat = soluongdaxuat;
+        this.trangthaixuat = trangthaixuat;
         this.loaihanghoa = loaihanghoa;
         this.phieumuahang_chitiet_id = phieumuahang_chitiet_id;
     }

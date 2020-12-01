@@ -90,7 +90,7 @@
                                     [label]="{ text: 'CÓ LẤY THUẾ' }" 
                                     dataField="xuathoadon" 
                                     editorType="dxCheckBox" 
-                                    [editorOptions]="{ text: 'Có lấy thuế' }"> 
+                                    [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 }"> 
                                     <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
 
@@ -162,8 +162,8 @@
                                                         </td>
 
                                                         <td>{{ item.thanhtien | number: '1.0-3' }}</td>
-                                                        <td>{{ item.soluongdaxuatkho | number: '1.0-3' }}</td>
-                                                        <td>{{ item.soluong - item.soluongdaxuatkho | number: '1.0-3' }}</td>
+                                                        <td>{{ item.soluongdaxuat | number: '1.0-3' }}</td>
+                                                        <td>{{ item.soluong - item.soluongdaxuat | number: '1.0-3' }}</td>
 
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td>

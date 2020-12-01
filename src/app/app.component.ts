@@ -239,8 +239,10 @@ export class AppComponent implements OnInit {
             "/phieu-tra-hang-ncc",
         ];
         const BANHANG = [
-            "/phieu-dat-hang", 
             "/theo-doi-hop-dong",
+            "/phieu-dat-hang", 
+            "/phieu-ban-hang", 
+            "/phieu-khach-tra-hang", 
         ];
         const KHOHANG = [
             "/phieu-nhap-kho", 

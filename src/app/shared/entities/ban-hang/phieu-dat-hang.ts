@@ -23,7 +23,7 @@ export class PhieuDatHang {
     public tongthanhtien: number;
     public giuhang: boolean;
     public khoxuat_id: number;
-    public trangthainhan: string;
+    public trangthaigiao: string;
 
     public phieudathang_chitiet: PhieuDatHang_ChiTiet[];
 
@@ -55,7 +55,7 @@ export class PhieuDatHang {
         tongthanhtien: number = 0,
         giuhang: boolean = true,
         khoxuat_id: number = null,
-        trangthainhan: string = null,
+        trangthaigiao: string = null,
         phieudathang_chitiet: PhieuDatHang_ChiTiet[] = null
     ) {
         this.id = id;
@@ -82,7 +82,7 @@ export class PhieuDatHang {
         this.tongthanhtien = tongthanhtien;
         this.giuhang = giuhang;
         this.khoxuat_id = khoxuat_id;
-        this.trangthainhan = trangthainhan;
+        this.trangthaigiao = trangthaigiao;
         this.phieudathang_chitiet = phieudathang_chitiet;
     }
 }
