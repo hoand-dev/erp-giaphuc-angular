@@ -130,10 +130,7 @@ export class BangGiaThemMoiComponent implements OnInit {
             // gán lại thông tin điện thoại + địa chỉ
             let khachhang = this.lstKhachHang.find((o) => o.id == this.banggia.khachhang_id);
             this.banggia.tenkhachhang = khachhang.tenkhachhang;
-            //this.banggia.khachhang_id =  khachhang.tenkhachhang
-            // this.banggia. = khachhang.tenkhachhang;
-            // this.banggia.khachhang_id = khachhang.sodienthoai;
-            // this.banggia.khachhang_id = khachhang.diachi;
+                
         }
 
     

@@ -5,6 +5,8 @@ import { NhomNhaCungCap } from './../../../../shared/entities/thiet-lap/nhom-nha
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxFormComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
+import { AuthenticationService } from '@app/_services';
+import { ChiNhanh } from '@app/shared/entities';
 
 @Component({
   selector: 'app-nhom-nha-cung-cap-them-moi',
@@ -15,8 +17,10 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
 
   @ViewChild(DxFormComponent, {static: false}) frmNhomNhaCungCap: DxFormComponent;
 
-  private subscriptions: Subscription;
+  subscriptions: Subscription = new Subscription();
   public  nhomnhacungcap: NhomNhaCungCap;
+
+  private currentChiNhanh: ChiNhanh;
 
   public  saveProcessing = false;
 
@@ -31,7 +35,8 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private nhomnhacungcapService: NhomNhaCungCapService
+    private nhomnhacungcapService: NhomNhaCungCapService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngAfterViewInit(){
@@ -41,6 +46,8 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
   ngOnInit(): void {
     this.nhomnhacungcap = new NhomNhaCungCap();
     this.theCallBackValid = this.theCallBackValid.bind(this);
+    this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
+
   }
   ngOnDestroy(): void {
     if(this.subscriptions){
@@ -54,9 +61,10 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
 
   onSubmitForm(e){
     let nhomnhacungcap_req = this.nhomnhacungcap;
+    nhomnhacungcap_req.chinhanh_id = this.currentChiNhanh.id;
 
     this.saveProcessing = true;
-    this.subscriptions = this.nhomnhacungcapService.addNhomNhaCungCap(nhomnhacungcap_req).subscribe(
+    this.subscriptions.add(this.nhomnhacungcapService.addNhomNhaCungCap(nhomnhacungcap_req).subscribe(
       data => {
         notify({
           width:320,
@@ -70,7 +78,7 @@ export class NhomNhaCungCapThemMoiComponent implements OnInit {
         this.nhomnhacungcapService.handleError(error);
         this.saveProcessing = false;
       }
-    );
+    ));
     e.preventDefault();
   }
 

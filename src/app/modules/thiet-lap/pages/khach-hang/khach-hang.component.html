@@ -44,7 +44,8 @@
                             <dxi-column dataField="sodienthoai" caption="SĐT"></dxi-column>
                             <dxi-column dataField="diachi" caption="Địa chỉ"></dxi-column>
                             <dxi-column dataField="masothue" caption="Mã số thuế"></dxi-column>
- 
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime"  caption="Thời gian tạo"></dxi-column>
                             
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
@@ -60,7 +61,7 @@
 
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
                             <dxo-paging [pageSize]="9" [pageIndex]="1"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)"
                                 [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]"

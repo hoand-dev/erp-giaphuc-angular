@@ -23,6 +23,7 @@ export class TheoDoiHopDongService extends BaseService {
         let query_chinhanh = chinhanh_id == null ? '?' : '?chinhanh_id=' + chinhanh_id + '&';
         let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
         let denngay = moment(toDay).format('YYYY-MM-DD HH:mm:ss');
+       
         return this.httpClient.get<TheoDoiHopDong[]>(this.apiUrl + query_chinhanh + `tungay=${tungay}&denngay=${denngay}`);
     }
     

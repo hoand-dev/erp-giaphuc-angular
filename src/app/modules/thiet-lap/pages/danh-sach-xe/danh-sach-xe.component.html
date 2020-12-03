@@ -26,8 +26,11 @@
                         <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">
                             Tải lại</button>
 
-                        <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true"
-                            [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid"
+                        <dx-data-grid id="gridContainer" 
+                            [showBorders]="true" [showRowLines]="true"
+                            [hoverStateEnabled]="true" 
+                            [columnAutoWidth]="true"
+                            [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)">
 
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false"
@@ -39,6 +42,8 @@
                             </dxi-column>
 
                             <dxi-column dataField="biensoxe" caption="Biển số xe"></dxi-column>
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime"  caption="Thời gian tạo"></dxi-column>
                                 <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
                                     <span class="text-green" *ngIf="data.value == true">
@@ -52,6 +57,7 @@
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
 
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
                             <dxo-paging [pageSize]="9" [pageIndex]="1"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)"

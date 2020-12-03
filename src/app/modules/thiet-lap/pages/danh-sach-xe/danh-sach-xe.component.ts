@@ -5,6 +5,7 @@ import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
+import moment from 'moment';
 @Component({
   selector: 'app-danh-sach-xe',
   templateUrl: './danh-sach-xe.component.html',
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class DanhSachXeComponent implements OnInit {
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+    public timeCreateAt: Date = new Date();
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
@@ -29,6 +31,7 @@ export class DanhSachXeComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.timeCreateAt = moment().add(1, 'days').toDate();
 
     }
 
