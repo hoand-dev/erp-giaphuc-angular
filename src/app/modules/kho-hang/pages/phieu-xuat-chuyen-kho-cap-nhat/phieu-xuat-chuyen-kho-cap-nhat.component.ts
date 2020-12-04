@@ -179,7 +179,7 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
         }
 
         // tính tổng tiền
-        // this.onTinhTong();
+        // this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -242,17 +242,16 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
                 break; */
         }
 
-        this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
-
-        // tính tổng tiền sau chiết khấu
-        this.onTinhTong();
+        // tính tiền sau chiết khấu
+        this.onTinhTien();
     }
 
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    private onTinhTong() {
+    // tính tiền sau chiết khấu và tổng
+    private onTinhTien() {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.thanhtien = v.soluong * v.dongia;
             tongtienhang += v.thanhtien;
         });
         //this.phieuxuatchuyenkho.tongtienhang = tongtienhang;

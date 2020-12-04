@@ -1,5 +1,6 @@
 export class PhieuNhapKho {
     public phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[];
+    public phieunhapkho_chitiets_old: PhieuNhapKho_ChiTiet[];
 
     public id: number;
     public chinhanh_id: number;
@@ -67,7 +68,8 @@ export class PhieuNhapKho {
         sotiendachi: number = 0,
         trangthaichi: string = null,
 
-        phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[] = []
+        phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[] = [],
+        phieunhapkho_chitiets_old: PhieuNhapKho_ChiTiet[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -97,6 +99,7 @@ export class PhieuNhapKho {
         this.trangthaichi = trangthaichi;
 
         this.phieunhapkho_chitiets = phieunhapkho_chitiets;
+        this.phieunhapkho_chitiets_old = phieunhapkho_chitiets_old;
     }
 }
 

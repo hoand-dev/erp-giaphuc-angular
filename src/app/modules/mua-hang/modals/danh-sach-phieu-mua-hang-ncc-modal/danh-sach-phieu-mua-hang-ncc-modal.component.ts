@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import { PhieuMuaHangNCCService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -21,6 +22,8 @@ export class DanhSachPhieuMuaHangNCCModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
+
+    public trangthainhap: string = ETrangThaiPhieu.danhap;
     
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
@@ -56,7 +59,7 @@ export class DanhSachPhieuMuaHangNCCModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuMuaHangNCCService.findPhieuMuaHangNCCs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data;
+                    this.dataGrid.dataSource = data.filter(x => x.trangthainhap != this.trangthainhap);
                 },
                 (error) => {
                     this.objPhieuMuaHangNCCService.handleError(error);

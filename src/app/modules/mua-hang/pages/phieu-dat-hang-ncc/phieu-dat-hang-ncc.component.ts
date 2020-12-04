@@ -59,6 +59,26 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         this.subscriptions.unsubscribe();
     }
 
+    addMenuItems(e) { 
+        if (e.row.rowType === "data") {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+            
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+
+            // Add a custom menu item
+            // e.items.push(
+            //     {
+            //         text: "Tất toán", icon: "edit", // visible: false,
+            //         onItemClick: () => {
+            //             console.log(e.column.caption);
+            //             this.router.navigate([`/phieu-dat-hang-ncc/${e.row.key.id}/cap-nhat`], {queryParams: {tattoan: "ok"}});
+            //         }
+            //     }
+            // );
+        }
+    }
+
     onLoadData() {
         this.subscriptions.add(
             this.objPhieuDatHangNCCService.findPhieuDatHangNCCs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(

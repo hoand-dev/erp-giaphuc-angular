@@ -146,7 +146,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
                                     chitiet.dvt_id = value.dvt_id;
                                     chitiet.tilequydoi = value.tilequydoi;
 
-                                    chitiet.soluong = value.soluong - value.soluongdanhap;
+                                    chitiet.soluong = value.soluong - (value.soluongdanhap / value.tilequydoi);
                                     chitiet.dongia = value.dongia;
                                     chitiet.thanhtien = value.thanhtien;
                                     chitiet.chuthich = value.chuthich;
@@ -222,8 +222,8 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
         //     });
         // }
 
-        // // tính tổng tiền
-        // this.onTinhTong();
+        // tính tổng tiền
+         this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -289,21 +289,16 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
                 break; */
         }
 
-        this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
-        /* this.hanghoas[index].thanhtien =
-            this.hanghoas[index].thanhtien -
-            this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau +
-            (this.hanghoas[index].thanhtien - this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau) * this.hanghoas[index].thuevat; */
-
-        // tính tổng tiền sau chiết khấu
-        this.onTinhTong();
+        // tính tiền sau chiết khấu
+        this.onTinhTien();
     }
 
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    private onTinhTong() {
+    // tính tiền sau chiết khấu và tổng
+    private onTinhTien() {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.thanhtien = v.soluong * v.dongia;
             tongtienhang += v.thanhtien;
         });
         //this.phieunhapchuyenkho.tongtienhang = tongtienhang;

@@ -11,14 +11,16 @@ import moment from 'moment';
     providedIn: 'root'
 })
 export class PhieuBanHangService extends BaseService {
-
     private apiUrl: string = environment.apiUrl + '/phieubanhang';
 
-    constructor(private httpClient: HttpClient) { super(); }
-		
-		findPhieuBanHang(id: number): Observable<PhieuBanHang> {
+    constructor(private httpClient: HttpClient) {
+        super();
+    }
+
+    findPhieuBanHang(id: number): Observable<PhieuBanHang> {
         return this.httpClient.get<PhieuBanHang>(this.apiUrl + `/${id}`);
     }
+    
     findPhieuBanHangs(chinhanh_id: number = null, fromDay: Date, toDay: Date): Observable<PhieuBanHang[]> {
         let query_chinhanh = chinhanh_id == null ? '?' : '?chinhanh_id=' + chinhanh_id + '&';
         let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
@@ -32,6 +34,10 @@ export class PhieuBanHangService extends BaseService {
 
     updatePhieuBanHang(phieubanhang: PhieuBanHang): Observable<PhieuBanHang> {
         return this.httpClient.put<PhieuBanHang>(this.apiUrl + `/${phieubanhang.id}`, phieubanhang);
+    }
+
+    updateTatToanPhieuBanHang(phieubanhang: PhieuBanHang): Observable<PhieuBanHang> {
+        return this.httpClient.put<PhieuBanHang>(this.apiUrl + `/tattoan`, phieubanhang);
     }
 
     deletePhieuBanHang(id: number): Observable<PhieuBanHang> {

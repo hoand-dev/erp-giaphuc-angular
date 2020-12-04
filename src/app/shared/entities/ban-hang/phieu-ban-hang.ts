@@ -28,6 +28,7 @@ export class PhieuBanHang {
     public khoxuat_id: number;
     public trangthaixuat: string;
     public phieudathang_id: number;
+    public trangthaitra: string;
 
     public phieubanhang_chitiet: PhieuBanHang_ChiTiet[];
 
@@ -120,10 +121,11 @@ export class PhieuBanHang_ChiTiet {
     public soluong_tudondathang: number;
     public phieudathang_chitiet_id: number;
     public soluongtattoan: number;
+    public phieudathang_chitiet: number;
+    public trangthaitra: string;
+    public soluongdatra: number;
 
     public tendonvitinh: string;
-
-    public phieudathang_chitiet: number;
 
     constructor(
         id: number = null,

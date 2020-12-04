@@ -21,10 +21,10 @@ export class PhieuDatHangNCCService extends BaseService {
         return this.httpClient.get<PhieuDatHangNCC>(this.apiUrl + `/${id}`);
     }
 
-    findPhieuDatHangNCCs(chinhanh_id: number = null, fromDay:Date, toDay: Date): Observable<PhieuDatHangNCC[]> {
-        let query_chinhanh = chinhanh_id == null ? "?" : '?chinhanh_id=' + chinhanh_id + '&';
-        let tungay = moment(fromDay).format("YYYY-MM-DD HH:mm:ss");
-        let denngay = moment(toDay).format("YYYY-MM-DD HH:mm:ss");
+    findPhieuDatHangNCCs(chinhanh_id: number = null, fromDay: Date, toDay: Date): Observable<PhieuDatHangNCC[]> {
+        let query_chinhanh = chinhanh_id == null ? '?' : '?chinhanh_id=' + chinhanh_id + '&';
+        let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
+        let denngay = moment(toDay).format('YYYY-MM-DD HH:mm:ss');
         return this.httpClient.get<PhieuDatHangNCC[]>(this.apiUrl + query_chinhanh + `tungay=${tungay}&denngay=${denngay}`);
     }
 
@@ -34,6 +34,10 @@ export class PhieuDatHangNCCService extends BaseService {
 
     updatePhieuDatHangNCC(phieudathangncc: PhieuDatHangNCC): Observable<PhieuDatHangNCC> {
         return this.httpClient.put<PhieuDatHangNCC>(this.apiUrl + `/${phieudathangncc.id}`, phieudathangncc);
+    }
+
+    updateTatToanPhieuDatHangNCC(phieudathangncc: PhieuDatHangNCC): Observable<PhieuDatHangNCC> {
+        return this.httpClient.put<PhieuDatHangNCC>(this.apiUrl + `/tattoan`, phieudathangncc);
     }
 
     deletePhieuDatHangNCC(id: number): Observable<PhieuDatHangNCC> {

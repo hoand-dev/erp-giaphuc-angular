@@ -36,6 +36,10 @@ export class PhieuDatHangService extends BaseService {
         return this.httpClient.put<PhieuDatHang>(this.apiUrl + `/${phieudathang.id}`, phieudathang);
     }
 
+    updateTatToanPhieuDatHang(phieudathang: PhieuDatHang): Observable<PhieuDatHang> {
+        return this.httpClient.put<PhieuDatHang>(this.apiUrl + `/tattoan`, phieudathang);
+    }
+
     deletePhieuDatHang(id: number): Observable<PhieuDatHang> {
         return this.httpClient.delete<PhieuDatHang>(this.apiUrl + `/${id}`);
     }

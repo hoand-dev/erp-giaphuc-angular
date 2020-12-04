@@ -43,9 +43,8 @@
                                         [label]="{ text: 'LOẠI HÀNG' }"
                                         dataField="loaihang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_LoaiHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenloaihang' }"
+                                        [editorOptions]="{ showClearButton: true, dataSource: dataSource_LoaiHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenloaihang' }"
                                     >
-                                        <dxi-validation-rule type="required" message="Vui lòng chọn loại hàng"> </dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [colSpan]="2" [label]="{ text: 'NCC' }" dataField="ncc">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập ncc"></dxi-validation-rule>

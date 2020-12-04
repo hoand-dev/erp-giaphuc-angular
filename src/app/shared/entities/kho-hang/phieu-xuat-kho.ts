@@ -37,6 +37,7 @@ export class PhieuXuatKho {
     public trangthaithu: string;
 
     public phieuxuatkho_chitiets: PhieuXuatKho_ChiTiet[];
+    public phieuxuatkho_chitiets_old: PhieuXuatKho_ChiTiet[];
 
     public tumaphieu: string;
     public taixe_hoten: string;
@@ -82,6 +83,7 @@ export class PhieuXuatKho {
         trangthaithu: string = null,
 
         phieuxuatkho_chitiets: PhieuXuatKho_ChiTiet[] = [],
+        phieuxuatkho_chitiets_old: PhieuXuatKho_ChiTiet[] = [],
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -121,6 +123,7 @@ export class PhieuXuatKho {
         this.trangthaithu = trangthaithu;
 
         this.phieuxuatkho_chitiets = phieuxuatkho_chitiets;
+        this.phieuxuatkho_chitiets_old = phieuxuatkho_chitiets_old;
     }
 }
 

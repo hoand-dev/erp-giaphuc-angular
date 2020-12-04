@@ -19,6 +19,7 @@ export class PhieuMuaHangNCC {
     public tongthanhtien: number;
     public trangthainhap: string;
     public phieudathangncc_id: number;
+    public trangthaitra: string;
 
     public phieumuahangncc_chitiet: PhieuMuaHangNCC_ChiTiet[];
 
@@ -95,6 +96,8 @@ export class PhieuMuaHangNCC_ChiTiet {
     public soluongtattoan: number;
     public loaihanghoa: string;
     public phieudathangncc_chitiet_id: number;
+    public trangthaitra: string;
+    public soluongdatra: number;
     
     public tendonvitinh: string;
 
