@@ -31,7 +31,7 @@
                             [showBorders]="true" [showRowLines]="true"
                             [hoverStateEnabled]="true" 
                             [columnAutoWidth]="true"
-                            [stateStoring]="stateStoringGrid" [columnAutoWidth]="true" 
+                            [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)">
 
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false"
@@ -78,7 +78,7 @@
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
-                            <dxo-paging [pageSize]="9" [pageIndex]="1"></dxo-paging>
+                            <dxo-paging [pageSize]="9"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)"
                                 [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]"
                                 [showNavigationButtons]="true">
