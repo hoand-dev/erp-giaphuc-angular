@@ -127,17 +127,17 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
 
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieudathangncc_chitiet.length;
-                            
+
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieudathangncc_chitiet.forEach((value, index) => {
                                 let item = new PhieuMuaHangNCC_ChiTiet();
-                                
+
                                 item.loaihanghoa = value.loaihanghoa;
                                 item.hanghoa_id = value.hanghoa_id;
                                 item.hanghoa_lohang_id = value.hanghoa_lohang_id;
                                 item.dvt_id = value.dvt_id;
                                 item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong - value.soluongdanhan;
+                                item.soluong = value.soluong - value.soluongtattoan - (value.soluongdanhan / value.tilequydoi);
                                 item.dongia = value.dongia;
                                 item.thuevat = value.thuevat;
                                 item.chietkhau = value.chietkhau;
@@ -174,7 +174,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         const initialState = {
             title: 'DANH SÁCH PHIẾU ĐẶT HÀNG NCC' // và nhiều hơn thế nữa
         };
-        
+
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(DanhSachPhieuDatHangNCCModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
@@ -192,7 +192,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
             this.isValidForm = true;
 
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
-            let nhacungcap = this.lstNhaCungCap.find(x => x.id == this.phieumuahangncc.nhacungcap_id);
+            let nhacungcap = this.lstNhaCungCap.find((x) => x.id == this.phieumuahangncc.nhacungcap_id);
             this.phieumuahangncc.dienthoainhacungcap = nhacungcap ? nhacungcap.sodienthoai : null;
             this.phieumuahangncc.diachinhacungcap = nhacungcap ? nhacungcap.diachi : null;
 
@@ -219,7 +219,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         }
 
         // tính tổng tiền
-        this.onTinhTong();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -277,21 +277,18 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
                 break;
         }
 
-        this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
-        this.hanghoas[index].thanhtien =
-            this.hanghoas[index].thanhtien -
-            this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau +
-            (this.hanghoas[index].thanhtien - this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau) * this.hanghoas[index].thuevat;
-
-        // tính tổng tiền sau chiết khấu
-        this.onTinhTong();
+        // tính tiền sau chiết khấu
+        this.onTinhTien();
     }
 
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    private onTinhTong() {
+    // tính tiền sau chiết khấu và tổng
+    private onTinhTien() {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.thanhtien = v.soluong * v.dongia;
+            v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
+            
             tongtienhang += v.thanhtien;
         });
         this.phieumuahangncc.tongtienhang = tongtienhang;
