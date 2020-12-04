@@ -32,6 +32,10 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     public dataSource_NguoiDung: DataSource;
 
     public hopdong: TheoDoiHopDong;
+    
+    public ngayky: Date;
+    public ngayhethan: Date;
+    public thoigianconlai: Date;
 
 
     public saveProcessing = false;
@@ -110,13 +114,16 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
         return this.theodoihopdongService.checkExistHopDong(params.value);
     }
 
+    public hieuluc(params){
+        //formatDate(value: string | number | Date, format: string, locale: string): string
+    }
+
     onSubmitForm(e) {
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
 
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
-        hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachhang_id;
-        hopdong_req.user_id = hopdong_req.user_id;
+ 
 
         this.saveProcessing = true;
         this.subscriptions.add(

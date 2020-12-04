@@ -33,7 +33,9 @@
                         </div>
 
                         <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true"
-                            [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid"[columnAutoWidth]="true"
+                            [hoverStateEnabled]="true" 
+                            [stateStoring]="stateStoringGrid"
+                            [columnAutoWidth]="true"
                             (onRowDblClick)="onRowDblClick($event)" >
 
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false"
@@ -53,14 +55,8 @@
                             <dxi-column dataField="thoigianconlai" caption="Thời gian còn lại"></dxi-column>
                             <dxi-column dataField="hoten" caption="Nhân viên kinh doanh"></dxi-column>
                             <dxi-column dataField="tennhomkhachhang" caption="Loại hợp đồng"></dxi-column>
-
-                            <!-- <dxi-column dataField="congnobandau" caption="Công nợ ban đầu"></dxi-column>
-                            <dxi-column dataField="nhomnhacungcap_id" caption="Nhóm nhà cung cấp"></dxi-column>
-                            <dxi-column dataField="sotaikhoan" caption="Số tài khoản"></dxi-column>
-                            <dxi-column dataField="tenchutaikhoan" caption="Tên chủ tài khoản"></dxi-column>
-                            <dxi-column dataField="dinhmuccongno" caption="Định mức công nợ"></dxi-column>
-                            <dxi-column dataField="songayno" caption="Số ngày nợ"></dxi-column>
-                            <dxi-column dataField="dachicongno" caption="Đã chi công nợ ban đầu"></dxi-column>-->
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime"  caption="Thời gian tạo"></dxi-column>
 
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
@@ -76,6 +72,7 @@
 
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
                             <dxo-paging [pageSize]="9" [pageIndex]="1"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)"
                                 [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]"

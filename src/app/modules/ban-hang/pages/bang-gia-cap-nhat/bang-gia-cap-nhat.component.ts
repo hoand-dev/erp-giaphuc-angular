@@ -9,12 +9,11 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-bang-gia-cap-nhat',
-  templateUrl: './bang-gia-cap-nhat.component.html',
-  styleUrls: ['./bang-gia-cap-nhat.component.css']
+    selector: 'app-bang-gia-cap-nhat',
+    templateUrl: './bang-gia-cap-nhat.component.html',
+    styleUrls: ['./bang-gia-cap-nhat.component.css']
 })
 export class BangGiaCapNhatComponent implements OnInit {
-    
     @ViewChild(DxFormComponent, { static: false }) frmPhieuDatHang: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -22,6 +21,8 @@ export class BangGiaCapNhatComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
 
     public banggia: BangGia;
+      // dùng để kiểm tra load lần đầu (*)
+      private hanghoalenght: number = 0;
 
     public lstKhachHang: KhachHang[] = [];
     public lstDanhMucNo: DanhMucNo[] = [];
@@ -32,11 +33,12 @@ export class BangGiaCapNhatComponent implements OnInit {
     public dataSource_KhoHang: DataSource;
     public dataSource_HangHoa: DataSource;
 
+
+
     public saveProcessing = false;
     public loadingVisible = true;
 
     public hanghoas: BangGia_ChiTiet[] = [];
-
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -69,23 +71,22 @@ export class BangGiaCapNhatComponent implements OnInit {
     ngOnInit(): void {
         this.banggia = new BangGia();
 
+
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+                this.subscriptions.add(
+                    this.khachhangService.findKhachHangs().subscribe((x) => {
+                        this.loadingVisible = false;
+                        this.lstKhachHang = x;
 
-             })
-        );
-
-        this.subscriptions.add(
-            this.khachhangService.findKhachHangs().subscribe((x) => {
-                this.loadingVisible = false;
-                this.lstKhachHang = x;
-
-                this.dataSource_KhachHang = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
+                        this.dataSource_KhachHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
 
@@ -113,12 +114,34 @@ export class BangGiaCapNhatComponent implements OnInit {
                 });
             })
         );
+        this.loadingVisible = true;
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let banggia_id = params.id;
+                // lấy thông tin định mức
+                if (banggia_id) {
+                    this.subscriptions.add(
+                        this.banggiaService.findBangGia(banggia_id).subscribe(
+                            (data) => {
+                                // gán độ dài danh sách hàng hóa load lần đầu
+                                this.hanghoalenght = data.banggia_chitiet.length;
+
+                                this.banggia = data;
+                                this.hanghoas = this.banggia.banggia_chitiet;
+                            },
+                            (error) => {
+                                this.banggiaService.handleError(error);
+                            }
+                        )
+                    );
+                }
+            })
+        );
 
         this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
-
         // xử lý trước khi thoát khỏi trang
         this.subscriptions.unsubscribe();
     }
@@ -135,11 +158,7 @@ export class BangGiaCapNhatComponent implements OnInit {
             // this.banggia.khachhang_id = khachhang.sodienthoai;
             // this.banggia.khachhang_id = khachhang.diachi;
         }
-
-    
-        
     }
-    
 
     public onHangHoaAdd() {
         this.hanghoas.push(new BangGia_ChiTiet());
@@ -176,11 +195,7 @@ export class BangGiaCapNhatComponent implements OnInit {
                 this.hanghoas[index].dongia = e.value;
                 break;
         }
-
-       
     }
-
-    
 
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
@@ -216,9 +231,4 @@ export class BangGiaCapNhatComponent implements OnInit {
         );
         e.preventDefault();
     }
-
-
-
-
-
 }

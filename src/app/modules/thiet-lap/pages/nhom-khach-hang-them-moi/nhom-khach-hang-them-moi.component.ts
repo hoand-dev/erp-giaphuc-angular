@@ -1,11 +1,16 @@
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { DxFormComponent } from 'devextreme-angular';
+import { ChiNhanh, NhomKhachHang } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { NhomKhachHang } from '@app/shared/entities';
-import { NhomKhachHangService } from '@app/shared/services';
 import notify from 'devextreme/ui/notify';
+
+import {
+    DxFormComponent
+} from 'devextreme-angular';
+
+import { NhomKhachHangService } from '@app/shared/services';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from '@app/_services';
+
 
 @Component({
   selector: 'app-nhom-khach-hang-them-moi',
@@ -16,9 +21,10 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
 
   @ViewChild(DxFormComponent, {static: false}) frmNhomKhachHang: DxFormComponent;
 
-  private subscription: Subscription;
+  subscriptions: Subscription = new Subscription();
   public  nhomkhachhang: NhomKhachHang;
 
+  private currentChiNhanh: ChiNhanh;
   public  saveProcessing = false;
 
   public  rules: Object = { 'X': /[02-9]/};
@@ -31,7 +37,8 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
   constructor(
     private router: Router,
     private  activatedRoute: ActivatedRoute,
-    private nhomkhachhangService: NhomKhachHangService
+    private nhomkhachhangService: NhomKhachHangService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngAfterViewInit(){
@@ -41,10 +48,11 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
   ngOnInit(): void {
     this.nhomkhachhang = new NhomKhachHang();
     this.theCallbackValid = this.theCallbackValid.bind(this);
+    this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
   }
   ngOnDestroy(): void {
-    if(this.subscription){
-      this.subscription.unsubscribe();
+    if(this.subscriptions){
+      this.subscriptions.unsubscribe();
     }
   }
 
@@ -55,9 +63,10 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
 
   onSubmitForm(e){
     let nhomkhachhang_req = this.nhomkhachhang;
+    nhomkhachhang_req.chinhanh_id = this.currentChiNhanh.id;
 
     this.saveProcessing =true;
-    this.subscription = this.nhomkhachhangService.addNhomKhachHang(nhomkhachhang_req).subscribe(
+    this.subscriptions.add(this.nhomkhachhangService.addNhomKhachHang(nhomkhachhang_req).subscribe(
       data => {
         notify({
           width: 320,
@@ -72,7 +81,7 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
         this.nhomkhachhangService.handleError(error);
         this.saveProcessing = false;
       }
-    );
+      ));
     e.preventDefault();
   }
 

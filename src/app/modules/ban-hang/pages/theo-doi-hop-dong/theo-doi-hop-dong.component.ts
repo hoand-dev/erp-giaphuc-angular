@@ -27,6 +27,7 @@ export class TheoDoiHopDongComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
+    public timeCreateAt: Date = new Date();
 
     public stateStoringGrid = {
         enable: true,
@@ -43,6 +44,7 @@ export class TheoDoiHopDongComponent implements OnInit {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+        this.timeCreateAt = moment().add(1, 'days').toDate();
     }
 
     ngAfterViewInit(): void {

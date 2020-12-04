@@ -25,6 +25,8 @@ export class PhieuBanHangComponent implements OnInit {
 
     public firstDayTime: Date;
     public currDayTime : Date = new Date();
+    public timeCreateAt: Date = new Date();
+    
 
     public stateStoringGrid = {
         enable: true,
@@ -43,6 +45,7 @@ export class PhieuBanHangComponent implements OnInit {
   ngOnInit(): void {
       this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
       this.currDayTime = moment().add(1, 'days').toDate();
+      this.timeCreateAt = moment().add(1, 'days').toDate();
   }
 
   ngAfterViewInit(): void{
