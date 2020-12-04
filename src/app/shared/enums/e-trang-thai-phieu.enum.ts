@@ -25,4 +25,10 @@ export enum ETrangThaiPhieu {
 
     choduyet = "Chờ duyệt",
     daduyet = "Đã duyệt",
+
+    dahuy = "Đã huỷ",
+
+    chuatra = "Chưa trả",
+    dangtra = "Đang trả",
+    datra   = "Đã trả"
 }
