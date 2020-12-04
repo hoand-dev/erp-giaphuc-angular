@@ -1,5 +1,3 @@
-
-
 export class KhachHang {
     public id: number;
     public chinhanh_id: number;
@@ -28,6 +26,8 @@ export class KhachHang {
     public email: string;
     public tennganhang: string;
 
+    public tennhomkhachhang: string;
+    public tenkhuvuc: string;
 
     constructor(
         id: number = null,

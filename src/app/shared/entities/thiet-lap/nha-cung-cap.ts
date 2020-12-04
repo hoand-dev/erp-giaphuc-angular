@@ -1,6 +1,3 @@
-
-
-
 export class NhaCungCap {
 
     public id: number;
@@ -25,9 +22,9 @@ export class NhaCungCap {
     public nhomnhacungcap_id: number;
     public dachicongno: number;
 
-
-
     public nhacungcap_sotaikhoan: NhaCungCap_SoTaiKhoan[];
+
+    public tennhomnhacungcap: string;
 
     constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, manhacungcap: string = null, tennhacungcap: string = null, sodienthoai: string = null, diachi: string = null, masothue: string = null, email: string = null, 
         tennguoidaidien: string = null, 
