@@ -15,6 +15,7 @@ import { AuthenticationService } from '@app/_services';
 import { NhaCungCap } from '@app/shared/entities';
 import { HangHoaService } from '@app/shared/services';
 import { DanhSachPhieuMuaHangNCCModalComponent } from '../../modals/danh-sach-phieu-mua-hang-ncc-modal/danh-sach-phieu-mua-hang-ncc-modal.component';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 
 @Component({
     selector: 'app-phieu-tra-hang-ncc-them-moi',
@@ -163,7 +164,7 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
                                 item.hanghoa_lohang_id = value.hanghoa_lohang_id;
                                 item.dvt_id = value.dvt_id;
                                 item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong; // trừ số lượng đã trả hay không?
+                                item.soluong = (value.soluongdanhap - value.soluongdatra) / value.tilequydoi;
                                 item.dongia = value.dongia;
                                 item.thuevat = value.thuevat;
                                 item.chietkhau = value.chietkhau;
@@ -183,7 +184,7 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
         );
 
         // thêm sẵn 1 dòng cho user
-        this.onHangHoaAdd();
+        // this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
@@ -198,7 +199,8 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'DANH SÁCH PHIẾU MUA HÀNG NCC' // và nhiều hơn thế nữa
+            title: 'DANH SÁCH PHIẾU MUA HÀNG NCC', // và nhiều hơn thế nữa
+            trangthainhap: ETrangThaiPhieu.chuanhap
         };
 
         /* hiển thị modal */
@@ -252,7 +254,7 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
         }
 
         // tính tổng tiền
-        this.onTinhTong();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -310,21 +312,18 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
                 break;
         }
 
-        this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
-        this.hanghoas[index].thanhtien =
-            this.hanghoas[index].thanhtien -
-            this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau +
-            (this.hanghoas[index].thanhtien - this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau) * this.hanghoas[index].thuevat;
-
-        // tính tổng tiền sau chiết khấu
-        this.onTinhTong();
+        // tính tiền sau chiết khấu
+        this.onTinhTien();
     }
 
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    private onTinhTong() {
+    // tính tiền sau chiết khấu và tổng
+    private onTinhTien() {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.thanhtien = v.soluong * v.dongia;
+            v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
+
             tongtienhang += v.thanhtien;
         });
         this.phieutrahangncc.tongtienhang = tongtienhang;
