@@ -1,5 +1,3 @@
-import { KhuVuc } from './khu-vuc';
-
 export class KhoHang {
     public id: number;
     public chinhanh_id: number;
@@ -15,6 +13,8 @@ export class KhoHang {
     public dienthoai: string;
     public diachi: string;
     public khuvuc_id: number;
+
+    public tenkhuvuc: string;
 
     constructor(
         id: number = null,
