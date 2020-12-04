@@ -39,6 +39,9 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
 
+    // tất toán
+    public isTatToan: boolean = false;
+
     // dùng để kiểm tra load lần đầu (*)
     private hanghoalenght: number = 0;
 
@@ -163,6 +166,15 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
                 }
             })
         );
+
+        // kiểm tra queryParams
+        this.subscriptions.add(
+            this.activatedRoute.queryParams.subscribe((params) => {
+                if (this.commonService.isNotEmpty(params.tattoan)) {
+                    this.isTatToan = true;
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -224,7 +236,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
         }
 
         // tính tổng tiền
-        this.onTinhTong();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -264,6 +276,9 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
         switch (col) {
+            case 'soluongtattoan':
+                this.hanghoas[index].soluongtattoan = e.value;
+                break;
             case 'soluong':
                 this.hanghoas[index].soluong = e.value;
                 break;
@@ -284,14 +299,8 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
                 break;
         }
 
-        this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
-        this.hanghoas[index].thanhtien =
-            this.hanghoas[index].thanhtien -
-            this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau +
-            (this.hanghoas[index].thanhtien - this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau) * this.hanghoas[index].thuevat;
-
-        // tính tổng tiền sau chiết khấu
-        this.onTinhTong();
+        // tính tiền sau chiết khấu
+        this.onTinhTien();
     }
 
     checkGiuHang(params) {
@@ -306,11 +315,14 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
         });
     }
 
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    private onTinhTong() {
+    // tính tiền sau chiết khấu và tổng
+    private onTinhTien() {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia;
+            v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
+
             tongtienhang += v.thanhtien;
         });
         this.phieudathang.tongtienhang = tongtienhang;
@@ -327,28 +339,53 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
         phieudathang_req.phieudathang_chitiet = hanghoas;
 
         this.saveProcessing = true;
-        this.subscriptions.add(
-            this.phieudathangService.updatePhieuDatHang(phieudathang_req).subscribe(
-                (data) => {
-                    notify(
-                        {
-                            width: 320,
-                            message: 'Lưu thành công',
-                            position: { my: 'right top', at: 'right top' }
-                        },
-                        'success',
-                        475
-                    );
-                    this.frmPhieuDatHang.instance.resetValues();
-                    this.saveProcessing = false;
-                    this.router.navigate(['/phieu-dat-hang']);
-                },
-                (error) => {
-                    this.phieudathangService.handleError(error);
-                    this.saveProcessing = false;
-                }
-            )
-        );
+
+        if(this.isTatToan)
+            this.subscriptions.add(
+                this.phieudathangService.updateTatToanPhieuDatHang(phieudathang_req).subscribe(
+                    (data) => {
+                        notify(
+                            {
+                                width: 320,
+                                message: 'Lưu thành công',
+                                position: { my: 'right top', at: 'right top' }
+                            },
+                            'success',
+                            475
+                        );
+                        this.frmPhieuDatHang.instance.resetValues();
+                        this.saveProcessing = false;
+                        this.router.navigate(['/phieu-dat-hang']);
+                    },
+                    (error) => {
+                        this.phieudathangService.handleError(error);
+                        this.saveProcessing = false;
+                    }
+                )
+            );
+        else
+            this.subscriptions.add(
+                this.phieudathangService.updatePhieuDatHang(phieudathang_req).subscribe(
+                    (data) => {
+                        notify(
+                            {
+                                width: 320,
+                                message: 'Lưu thành công',
+                                position: { my: 'right top', at: 'right top' }
+                            },
+                            'success',
+                            475
+                        );
+                        this.frmPhieuDatHang.instance.resetValues();
+                        this.saveProcessing = false;
+                        this.router.navigate(['/phieu-dat-hang']);
+                    },
+                    (error) => {
+                        this.phieudathangService.handleError(error);
+                        this.saveProcessing = false;
+                    }
+                )
+            );
         e.preventDefault();
     }
 }

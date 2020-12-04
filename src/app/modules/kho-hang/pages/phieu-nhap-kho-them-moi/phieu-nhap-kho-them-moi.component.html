@@ -110,6 +110,7 @@
                                                         </td>
                                                         <td>
                                                             <dx-number-box
+                                                                [max]="item.soluong"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.soluonghong"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluonghong', i, $event)"

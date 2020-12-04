@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChiNhanh, KhachHang, KhoHang, NguoiDung, PhieuBanHang_ChiTiet, PhieuKhachTraHang, PhieuKhachTraHang_ChiTiet } from '@app/shared/entities';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import {
     AppInfoService,
     CommonService,
@@ -186,7 +187,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
                                 item.hanghoa_lohang_id = value.hanghoa_lohang_id;
                                 item.dvt_id = value.dvt_id;
                                 item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong - value.soluongdaxuat;
+                                item.soluong = (value.soluongdaxuat - value.soluongdatra) / value.tilequydoi;
                                 item.dongia = value.dongia;
                                 item.thuevat = value.thuevat;
                                 item.chietkhau = value.chietkhau;
@@ -222,7 +223,8 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'DANH SÁCH PHIẾU BÁN HÀNG' // và nhiều hơn thế nữa
+            title: 'DANH SÁCH PHIẾU BÁN HÀNG', // và nhiều hơn thế nữa
+            trangthaixuat: ETrangThaiPhieu.chuaxuat
         };
 
         /* hiển thị modal */
@@ -280,7 +282,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
         }
 
         // tính tổng tiền
-        this.onTinhTong();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -340,21 +342,18 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
                 break;
         }
 
-        this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
-        this.hanghoas[index].thanhtien =
-            this.hanghoas[index].thanhtien -
-            this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau +
-            (this.hanghoas[index].thanhtien - this.hanghoas[index].thanhtien * this.hanghoas[index].chietkhau) * this.hanghoas[index].thuevat;
-
-        // tính tổng tiền sau chiết khấu
-        this.onTinhTong();
+        // tính tiền sau chiết khấu
+        this.onTinhTien();
     }
 
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    private onTinhTong() {
+    // tính tiền sau chiết khấu và tổng
+    private onTinhTien() {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.thanhtien = v.soluong * v.dongia;
+            v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
+
             tongtienhang += v.thanhtien;
         });
         this.phieukhachtrahang.tongtienhang = tongtienhang;
