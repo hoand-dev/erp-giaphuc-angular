@@ -41,6 +41,8 @@
 
                             <dxi-column dataField="mataixe" caption="Mã Tài Xế"></dxi-column>
                             <dxi-column dataField="tentaixe" caption="Tên Tài Xế"></dxi-column>
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime"  caption="Thời gian tạo"></dxi-column>
                               <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
                                     <span class="text-green" *ngIf="data.value == true">

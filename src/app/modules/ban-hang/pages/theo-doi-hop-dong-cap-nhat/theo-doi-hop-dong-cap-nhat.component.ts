@@ -67,7 +67,7 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
                     this.subscriptions.add(
                         this.theodoihopdongService.findHopDong(hopdong_id).subscribe(
                             (data) => {
-                                this.hopdong = data[0];
+                                this.hopdong = data;
                                 this.sohopdong_old = this.hopdong.masohopdong;
                                 // this.khachhang.loaikhachhang = this.khachhang.loaikhachhang == 2 true : false; -- khi nào cần xử lý loại khách hàng thì xử lý ở đây
                             },
@@ -126,6 +126,8 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
     onSubmitForm(e) {
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
+
+        
 
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
         hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachhang_id;

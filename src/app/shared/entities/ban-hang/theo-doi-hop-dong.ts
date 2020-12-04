@@ -19,6 +19,8 @@ export class TheoDoiHopDong {
     public thongtinlienhe: string;
     public user_id: number;
     public nhomkhachhang_id: number;
+    public ids: number;
+    public sort: string;
 
     constructor(
         id: number = null,
@@ -40,7 +42,9 @@ export class TheoDoiHopDong {
         nguoikybenb: string = null,
         thongtinlienhe: string = null,
         user_id: number = null,
-        nhomkhachhang_id: number = null
+        nhomkhachhang_id: number = null,
+        ids: number = null, 
+        sort: string = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -62,5 +66,7 @@ export class TheoDoiHopDong {
         this.thongtinlienhe = thongtinlienhe;
         this.user_id = user_id;
         this.nhomkhachhang_id = nhomkhachhang_id;
+        this.ids = ids;
+        this.sort = sort;
     }
 }
