@@ -41,11 +41,11 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="khachhang_dienthoai" > </dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai" > </dxi-item>
 
                                     <dxi-item [label]="{ text: 'NGÀY CÓ HIỆU LỰC' }" dataField="ngaycohieuluc" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="khachhang_diachi" [colSpan]="3"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="diachi" [colSpan]="3"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="mabanggia" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item
@@ -66,7 +66,7 @@
                                                         <th [style.min-width.px]="250">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
-
+                                                        <th [style.min-width.px]="120">ĐƠN GIÁ CÓ LẤY THUẾ</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
                                                         <th [style.min-width.px]="250">TÊN IN RA</th>
                                                         <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
@@ -93,6 +93,9 @@
                                                         <td>{{ item.tendonvitinh }}</td>
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                        </td>
+                                                        <td>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiacothue" (onValueChanged)="onHangHoaChangeRow('dongiacothue', i, $event)"></dx-number-box>
                                                         </td>
 
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
