@@ -21,8 +21,8 @@ export class BangGiaCapNhatComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
 
     public banggia: BangGia;
-      // dùng để kiểm tra load lần đầu (*)
-      private hanghoalenght: number = 0;
+    // dùng để kiểm tra load lần đầu (*)
+    private hanghoalenght: number = 0;
 
     public lstKhachHang: KhachHang[] = [];
     public lstDanhMucNo: DanhMucNo[] = [];
@@ -32,8 +32,6 @@ export class BangGiaCapNhatComponent implements OnInit {
     public dataSource_DanhMucNo: DataSource;
     public dataSource_KhoHang: DataSource;
     public dataSource_HangHoa: DataSource;
-
-
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -70,7 +68,6 @@ export class BangGiaCapNhatComponent implements OnInit {
 
     ngOnInit(): void {
         this.banggia = new BangGia();
-
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -170,17 +167,21 @@ export class BangGiaCapNhatComponent implements OnInit {
         });
     }
 
+   
+
     public onHangHoaChanged(index, e) {
         let selected = e.selectedItem;
 
         // xử lý lại thông tin dựa trên lựa chọn
-        //this.hanghoas[index].hanghoa_id = selected.;
+        if (this.hanghoalenght > 0) {
+            this.hanghoalenght--;
+        } else {
+            this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
+        }
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
-        this.hanghoas[index].dvt_id = selected.dvt_id;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
-
-        this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

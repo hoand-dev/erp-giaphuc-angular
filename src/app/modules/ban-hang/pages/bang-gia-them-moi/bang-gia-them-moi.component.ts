@@ -126,10 +126,14 @@ export class BangGiaThemMoiComponent implements OnInit {
         // nếu thay đổi khách hàng
         if (e.dataField == 'khachhang_id' && e.value !== undefined && e.value != null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn khách hàng
+
             this.isValidForm = true;
             // gán lại thông tin điện thoại + địa chỉ
             let khachhang = this.lstKhachHang.find((o) => o.id == this.banggia.khachhang_id);
             this.banggia.tenkhachhang = khachhang.tenkhachhang;
+            this.banggia.diachi = khachhang.diachi;
+            this.banggia.sodienthoai = khachhang.sodienthoai;
+            
                 
         }
 

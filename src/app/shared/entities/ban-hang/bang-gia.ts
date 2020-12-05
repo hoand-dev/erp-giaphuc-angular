@@ -97,8 +97,11 @@ export class BangGia_ChiTiet {
     public chuthich: string;
     public tenhanghoa_inphieu: string;
     public tendonvitinh: string;
+    public dongiacothue: number;
 
-    constructor(id: number = null, banggia_id: number = null, loaihanghoa: string = null, hanghoa_id: number = null, hanghoa_lohang_id: number = null, dvt_id: number = null, tilequydoi: number = null, dongia: number = null, chuthich: string = null, tenhanghoa_inphieu: string = null){
+    constructor(id: number = null, banggia_id: number = null, loaihanghoa: string = null, hanghoa_id: number = null, hanghoa_lohang_id: number = null, dvt_id: number = null, tilequydoi: number = null, dongia: number = null, chuthich: string = null
+        , tenhanghoa_inphieu: string = null
+        , dongiacothue: number = null){
         this.id = id;
         this.banggia_id = banggia_id;
         this.loaihanghoa = loaihanghoa;
@@ -109,5 +112,6 @@ export class BangGia_ChiTiet {
         this.dongia = dongia;
         this.chuthich = chuthich;
         this.tenhanghoa_inphieu = tenhanghoa_inphieu;
+        this.dongiacothue = dongiacothue;
     }
 }
