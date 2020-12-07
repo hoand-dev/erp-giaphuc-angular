@@ -107,7 +107,9 @@ export class PhieuDatHang_ChiTiet {
     public soluongtattoan: number;
     public tenhanghoa_inphieu: string;
 
+    public trongluong: number;
     public tendonvitinh: string;
+    public tendonvitinhphu: string;
 
     constructor(
         id: number = null,
@@ -127,7 +129,8 @@ export class PhieuDatHang_ChiTiet {
         trangthaigiao: string = null,
         khoxuat_id: number = null,
         soluongtattoan: number = 0,
-        tenhanghoa_inphieu: string = null
+        tenhanghoa_inphieu: string = null,
+        trongluong: number = 0
     ) {
         this.id = id;
         this.phieudathang_id = phieudathang_id;
@@ -147,5 +150,6 @@ export class PhieuDatHang_ChiTiet {
         this.khoxuat_id = khoxuat_id;
         this.soluongtattoan = soluongtattoan;
         this.tenhanghoa_inphieu = tenhanghoa_inphieu;
+        this.trongluong = trongluong;
     }
 }

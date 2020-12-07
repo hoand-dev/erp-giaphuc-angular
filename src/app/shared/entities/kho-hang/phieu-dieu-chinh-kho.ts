@@ -71,7 +71,9 @@ export class PhieuDieuChinhKho_ChiTiet {
 
     public mahanghoa: string;
     public tenhanghoa: string;
+    public trongluong: number;
     public tendonvitinh: string;
+    public tendonvitinhphu: string;
 
     constructor(
         id: number = null,
@@ -85,7 +87,8 @@ export class PhieuDieuChinhKho_ChiTiet {
         soluong: number = 0,
         dongia: number = 0,
         thanhtien: number = 0,
-        chuthich: string = null
+        chuthich: string = null,
+        trongluong: number = 0
     ) {
         this.id = id;
         this.phieudieuchinhkho_id = phieudieuchinhkho_id;
@@ -99,5 +102,6 @@ export class PhieuDieuChinhKho_ChiTiet {
         this.dongia = dongia;
         this.thanhtien = thanhtien;
         this.chuthich = chuthich;
+        this.trongluong = trongluong;
     }
 }

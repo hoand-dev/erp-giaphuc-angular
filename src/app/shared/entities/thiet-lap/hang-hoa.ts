@@ -51,6 +51,9 @@ export class HangHoa {
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 
+    public soluong_tonhientai: number;
+    public soluong_tonduocxuat: number;
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,

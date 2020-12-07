@@ -34,7 +34,7 @@
                                                 <dx-select-box id="item_select_{{i}}" [(value)]="item.select_id"
                                                     [dataSource]="selectBoxData" [displayExpr]="'title'"
                                                     [valueExpr]="'id'" [searchMode]="'contains'" [searchExpr]="'title'"
-                                                    [searchTimeout]="200" [searchEnabled]="true" [minSearchLength]="0"
+                                                    [searchTimeout]="500" [searchEnabled]="true" [minSearchLength]="0"
                                                     (onSelectionChanged)="onChanged(i, $event)">
                                                 </dx-select-box>
                                             </td>
