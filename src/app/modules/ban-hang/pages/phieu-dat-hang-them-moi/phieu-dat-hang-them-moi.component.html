@@ -81,10 +81,10 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
-                                                        <th [style.min-width.px]="250">HÀNG HOÁ</th>
+                                                        <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
-                                                        <th [style.min-width.px]="75">KIỆN</th>
-                                                        <th [style.min-width.px]="75">KG</th>
+                                                        <th [style.min-width.px]="75">ĐVT1</th>
+                                                        <th [style.min-width.px]="75">KL</th>
                                                         <th [style.min-width.px]="80">SL</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="75">CK</th>
@@ -108,17 +108,21 @@
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
                                                                 [searchExpr]="['mahanghoa', 'tenhanghoa']"
-                                                                [searchTimeout]="200"
+                                                                [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
                                                                 (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                                itemTemplate="item"
                                                             >
+                                                                <div *dxTemplate="let data of 'item'">
+                                                                    <div style="display: inline-block">{{ data.tenhanghoa }}, ({{ data.soluong_tonhientai }}, {{ data.soluong_tonduocxuat }})</div>
+                                                                </div>
                                                             </dx-select-box>
                                                         </td>
-                                                        <td>{{ item.tendonvitinh }}</td>
+                                                        <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ '3 kiện' }}</td>
-                                                        <td>{{ '3 m³' }}</td>
+                                                        <td>{{ item.soluong / item.tilequydoiphu | number: '1.0-3' }} {{ item.tendonvitinhphu }}</td>
+                                                        <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
 
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>

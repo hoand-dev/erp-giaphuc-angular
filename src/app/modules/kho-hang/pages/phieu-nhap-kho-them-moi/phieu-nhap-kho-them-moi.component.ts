@@ -18,6 +18,7 @@ import { HangHoaService } from '@app/shared/services';
 import { DanhSachPhieuMuaHangNCCModalComponent } from '@app/modules/mua-hang/modals/danh-sach-phieu-mua-hang-ncc-modal/danh-sach-phieu-mua-hang-ncc-modal.component';
 import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import { DanhSachPhieuKhachTraHangModalComponent } from '@app/modules/ban-hang/modals/danh-sach-phieu-khach-tra-hang-modal/danh-sach-phieu-khach-tra-hang-modal.component';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
     selector: 'app-phieu-nhap-kho-them-moi',
@@ -96,17 +97,29 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
             })
         );
 
-        this.loadingVisible = true;
-        this.subscriptions.add(
-            this.hanghoaService.findHangHoas().subscribe((x) => {
-                this.loadingVisible = false;
-                this.dataSource_HangHoa = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
+        this.dataSource_HangHoa = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, null, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findHangHoa(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
             })
-        );
+        });
 
         // console.log(this.routeInterceptorService.previousUrl);
 
@@ -340,14 +353,17 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
             });
         } else {
             this.hanghoas[index].khonhap_id = this.phieunhapkho.khonhap_id;
-
-            this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
-            this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
+
+        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
+        this.hanghoas[index].tilequydoiphu = selected.quydoi1;
+        this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
+        this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

@@ -112,6 +112,7 @@ export class PhieuNhapKho_ChiTiet {
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
+    public tilequydoiphu: number;
     public soluong: number;
     public dongia: number;
     public cuocvanchuyen: number;
@@ -128,7 +129,9 @@ export class PhieuNhapKho_ChiTiet {
     /* liên kết vs khoá ngoại và thông tin thêm */
     public mahanghoa: string;
     public tenhanghoa: string;
+    public trongluong: number;
     public tendonvitinh: string;
+    public tendonvitinhphu: string;
 
     constructor(
         id: number = null,
@@ -139,6 +142,7 @@ export class PhieuNhapKho_ChiTiet {
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
         tilequydoi: number = 1,
+        tilequydoiphu: number = 1,
         soluong: number = 0,
         dongia: number = 0,
         cuocvanchuyen: number = 0,
@@ -150,7 +154,8 @@ export class PhieuNhapKho_ChiTiet {
         phieumuahangncc_chitiet_id: number = null,
         phieukhachtrahang_chitiet_id: number = null,
         soluonghong: number = 0,
-        khonhaphong_id: number = null
+        khonhaphong_id: number = null,
+        trongluong: number = 0
     ) {
         this.id = id;
         this.phieunhapkho_id = phieunhapkho_id;
@@ -160,6 +165,7 @@ export class PhieuNhapKho_ChiTiet {
         this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.dvt_id = dvt_id;
         this.tilequydoi = tilequydoi;
+        this.tilequydoiphu = tilequydoiphu;
         this.soluong = soluong;
         this.dongia = dongia;
         this.cuocvanchuyen = cuocvanchuyen;
@@ -172,5 +178,6 @@ export class PhieuNhapKho_ChiTiet {
         this.phieukhachtrahang_chitiet_id = phieukhachtrahang_chitiet_id;
         this.soluonghong = soluonghong;
         this.khonhaphong_id = khonhaphong_id;
+        this.trongluong = trongluong;
     }
 }

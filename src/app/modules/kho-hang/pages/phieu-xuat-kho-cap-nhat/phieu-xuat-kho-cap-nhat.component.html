@@ -92,7 +92,7 @@
                                                         <th [style.min-width.px]="250">TÊN HÀNG</th>
                                                         <th [style.min-width.px]="250">MÃ HÀNG</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
-                                                        <th [style.min-width.px]="75">KIỆN</th>
+                                                        <th [style.min-width.px]="75">ĐVT1</th>
                                                         <th [style.min-width.px]="75">M³</th>
                                                         <th [style.min-width.px]="80">SL</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
@@ -113,19 +113,23 @@
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
                                                                 [searchExpr]="['mahanghoa', 'tenhanghoa']"
-                                                                [searchTimeout]="200"
+                                                                [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
                                                                 (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                                itemTemplate="item"
                                                             >
+                                                                <div *dxTemplate="let data of 'item'">
+                                                                    <div style="display: inline-block">{{ data.tenhanghoa }}, ({{ data.soluong_tonhientai }}, {{ data.soluong_tonduocxuat }})</div>
+                                                                </div>
                                                             </dx-select-box>
                                                         </td>
                                                         <td>{{ item.tenhanghoa }}</td>
                                                         <td>{{ item.mahanghoa }}</td>
-                                                        <td>{{ item.tendonvitinh }}</td>
+                                                        <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ '3 kiện' }}</td>
-                                                        <td>{{ '3 m³' }}</td>
+                                                        <td>{{ item.soluong / item.tilequydoiphu | number: '1.0-3' }} {{ item.tendonvitinhphu }}</td>
+                                                        <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
 
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>

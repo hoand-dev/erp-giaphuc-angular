@@ -127,7 +127,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
         );
          this.loadingVisible = true;
         this.subscriptions.add(
-            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
+            this.hanghoaService.findHangHoas().subscribe((x) => {
                 this.loadingVisible = false;
                 this.dataSource_HangHoa = new DataSource({
                     store: x,
@@ -239,16 +239,19 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
         // xử lý lại thông tin dựa trên lựa chọn
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
-            //return;
         } else {
-            this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
-            this.hanghoas[index].dvt_id = selected.tendonvitinh;
-            this.hanghoas[index].tenhanghoabanhang_inphieu = selected.tnhanghoa;
+            this.hanghoas[index].tenhanghoabanhang_inphieu = selected.tenhanghoa;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
+
+        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
+        this.hanghoas[index].tilequydoiphu = selected.quydoi1;
+        this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
+        this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

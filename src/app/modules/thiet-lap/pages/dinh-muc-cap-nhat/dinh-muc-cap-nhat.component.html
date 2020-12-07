@@ -76,14 +76,14 @@
                                                                     [valueExpr]="'id'"
                                                                     [searchMode]="'contains'"
                                                                     [searchExpr]="['mahanghoa', 'tenhanghoa']"
-                                                                    [searchTimeout]="200"
+                                                                    [searchTimeout]="500"
                                                                     [searchEnabled]="true"
                                                                     [minSearchLength]="0"
                                                                     (onSelectionChanged)="onHangHoaChanged(i, $event)"
                                                                 >
                                                                 </dx-select-box>
                                                             </td>
-                                                            <td>{{ item.tendonvitinh }}</td>
+                                                            <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
                                                             <td>
                                                                 <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                             </td>
@@ -118,7 +118,7 @@
                                                                     [valueExpr]="'id'"
                                                                     [searchMode]="'contains'"
                                                                     [searchExpr]="'tennguonnhanluc'"
-                                                                    [searchTimeout]="200"
+                                                                    [searchTimeout]="500"
                                                                     [searchEnabled]="true"
                                                                     [minSearchLength]="0"
                                                                     (onSelectionChanged)="onNguonLucChanged(i, $event)"
@@ -158,7 +158,7 @@
                                                                     [valueExpr]="'id'"
                                                                     [searchMode]="'contains'"
                                                                     [searchExpr]="'tennoidungthuchi'"
-                                                                    [searchTimeout]="200"
+                                                                    [searchTimeout]="500"
                                                                     [searchEnabled]="true"
                                                                     [minSearchLength]="0"
                                                                     (onSelectionChanged)="onChiPhiKhacChanged(i, $event)"

@@ -7,6 +7,7 @@ export class PhieuCapPhatVatTuChiTiet {
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
+    public tilequydoiphu: number;
     public soluong: number;
     public dinhmuc_quydoi: number;
     public chuthich: string;

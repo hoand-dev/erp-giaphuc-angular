@@ -63,7 +63,7 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
-                                                        <th [style.min-width.px]="250">HÀNG HOÁ</th>
+                                                        <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ CÓ LẤY THUẾ</th>
@@ -83,7 +83,7 @@
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
                                                                 [searchExpr]="['mahanghoa', 'tenhanghoa']"
-                                                                [searchTimeout]="200"
+                                                                [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
                                                                 (onSelectionChanged)="onHangHoaChanged(i, $event)"

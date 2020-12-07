@@ -136,6 +136,7 @@ export class PhieuXuatKho_ChiTiet {
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
+    public tilequydoiphu: number;
     public soluong: number;
     public dongia: number;
     public cuocvanchuyen: number;
@@ -150,7 +151,9 @@ export class PhieuXuatKho_ChiTiet {
     public mahanghoa: string;
     public tenhanghoa: string;
 
+    public trongluong: number;
     public tendonvitinh: string;
+    public tendonvitinhphu: string;
 
     constructor(
         id: number = null,
@@ -161,6 +164,7 @@ export class PhieuXuatKho_ChiTiet {
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
         tilequydoi: number = 1,
+        tilequydoiphu: number = 1,
         soluong: number = 0,
         dongia: number = 0,
         cuocvanchuyen: number = 0,
@@ -170,7 +174,8 @@ export class PhieuXuatKho_ChiTiet {
         chuthich: string = null,
         tenhanghoa_inphieu: string = null,
         phieubanhang_chitiet_id: number = null,
-        phieutrahangncc_chitiet_id: number = null
+        phieutrahangncc_chitiet_id: number = null,
+        trongluong: number = 0
     ) {
         this.id = id;
         this.phieuxuatkho_id = phieuxuatkho_id;
@@ -180,6 +185,7 @@ export class PhieuXuatKho_ChiTiet {
         this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.dvt_id = dvt_id;
         this.tilequydoi = tilequydoi;
+        this.tilequydoiphu = tilequydoiphu;
         this.soluong = soluong;
         this.dongia = dongia;
         this.cuocvanchuyen = cuocvanchuyen;
@@ -190,5 +196,6 @@ export class PhieuXuatKho_ChiTiet {
         this.tenhanghoa_inphieu = tenhanghoa_inphieu;
         this.phieubanhang_chitiet_id = phieubanhang_chitiet_id;
         this.phieutrahangncc_chitiet_id = phieutrahangncc_chitiet_id;
+        this.trongluong = trongluong;
     }
 }

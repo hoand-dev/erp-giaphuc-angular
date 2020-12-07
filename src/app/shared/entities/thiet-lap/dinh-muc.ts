@@ -64,7 +64,9 @@ export class DinhMuc_NguyenLieu {
     public tylequydoibandau: number;
     public dinhmuc_id: number;
 
+    public trongluong: number;
     public tendonvitinh: string;
+    public tendonvitinhphu: string;
 
     constructor(
         id: number = null,

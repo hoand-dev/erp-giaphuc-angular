@@ -9,7 +9,9 @@ export class DonViTinh {
     public thoigiansua: Date;
     public ghichu: string;
     public madonvitinh: string;
+    public trongluong: number;
     public tendonvitinh: string;
+    public tendonvitinhphu: string;
 
     constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, madonvitinh: string = null, tendonvitinh: string = null) {
         this.id = id;
