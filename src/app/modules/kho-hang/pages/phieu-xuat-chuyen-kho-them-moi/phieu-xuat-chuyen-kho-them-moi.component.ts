@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 
 import { KhoHang } from '@app/shared/entities';
 import { HangHoaService } from '@app/shared/services';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
     selector: 'app-phieu-xuat-chuyen-kho-them-moi',
@@ -85,17 +86,29 @@ export class PhieuXuatChuyenKhoThemMoiComponent implements OnInit {
             })
         );
 
-        this.loadingVisible = true;
-        this.subscriptions.add(
-            this.hanghoaService.findHangHoas().subscribe((x) => {
-                this.loadingVisible = false;
-                this.dataSource_HangHoa = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
+        this.dataSource_HangHoa = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, null, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findHangHoa(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
             })
-        );
+        });
 
         // thêm sẵn 1 dòng cho user
         this.onHangHoaAdd();
@@ -166,10 +179,7 @@ export class PhieuXuatChuyenKhoThemMoiComponent implements OnInit {
             });
         } else {
             this.hanghoas[index].khoxuatchuyen_id = this.phieuxuatchuyenkho.khoxuatchuyen_id;
-
-            this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].mahanghoa = selected.mahanghoa;
-            this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
 
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
@@ -177,6 +187,12 @@ export class PhieuXuatChuyenKhoThemMoiComponent implements OnInit {
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
+
+        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
+        this.hanghoas[index].tilequydoiphu = selected.quydoi1;
+        this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
+        this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

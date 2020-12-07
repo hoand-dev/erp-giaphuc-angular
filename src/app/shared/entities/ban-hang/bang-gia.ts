@@ -83,6 +83,7 @@ export class BangGia_ChiTiet {
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
+    public tilequydoiphu: number;
     public dongia: number;
     public dongiacothue: number;
     public chuthich: string;
@@ -99,9 +100,10 @@ export class BangGia_ChiTiet {
         hanghoa_id: number = null,
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
-        tilequydoi: number = null,
-        dongia: number = null,
-        dongiacothue: number = null,
+        tilequydoi: number = 1,
+        tilequydoiphu: number = 1,
+        dongia: number = 0,
+        dongiacothue: number = 0,
         chuthich: string = null,
         tenhanghoa_inphieu: string = null,
         trongluong: number = 0
@@ -113,6 +115,7 @@ export class BangGia_ChiTiet {
         this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.dvt_id = dvt_id;
         this.tilequydoi = tilequydoi;
+        this.tilequydoiphu = tilequydoiphu;
         this.dongia = dongia;
         this.dongiacothue = dongiacothue;
         this.chuthich = chuthich;

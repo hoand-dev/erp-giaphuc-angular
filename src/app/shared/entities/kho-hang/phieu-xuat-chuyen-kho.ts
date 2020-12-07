@@ -70,6 +70,7 @@ export class PhieuXuatChuyenKho_ChiTiet {
     public hanghoa_lohang_id: number;
     public dvt_id: number;
     public tilequydoi: number;
+    public tilequydoiphu: number;
     public soluong: number;
     public dongia: number;
     public thanhtien: number;
@@ -92,6 +93,7 @@ export class PhieuXuatChuyenKho_ChiTiet {
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
         tilequydoi: number = 1,
+        tilequydoiphu: number = 1,
         soluong: number = 0,
         dongia: number = 0,
         thanhtien: number = 0,
@@ -108,6 +110,7 @@ export class PhieuXuatChuyenKho_ChiTiet {
         this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.dvt_id = dvt_id;
         this.tilequydoi = tilequydoi;
+        this.tilequydoiphu = tilequydoiphu;
         this.soluong = soluong;
         this.dongia = dongia;
         this.thanhtien = thanhtien;

@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 
 import { NhaCungCap } from '@app/shared/entities';
 import { HangHoaService } from '@app/shared/services';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
     selector: 'app-phieu-dat-hang-ncc-cap-nhat',
@@ -92,16 +93,29 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
         );
 
         this.loadingVisible = true;
-        this.subscriptions.add(
-            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe((x) => {
-                this.loadingVisible = false;
-                this.dataSource_HangHoa = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
+        this.dataSource_HangHoa = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, null, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findHangHoa(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
             })
-        );
+        });
 
         this.loadingVisible = true;
         this.subscriptions.add(
@@ -151,7 +165,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
         if (e.dataField == 'nhacungcap_id' && e.value !== undefined) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
-            
+
             // chỉ thêm row mới khi không tồn tài dòng rỗng nào
             let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
             if (rowsNull.length == 0) {
@@ -159,7 +173,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
             }
 
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
-            let nhacungcap = this.lstNhaCungCap.find(x => x.id == this.phieudathangncc.nhacungcap_id);
+            let nhacungcap = this.lstNhaCungCap.find((x) => x.id == this.phieudathangncc.nhacungcap_id);
             this.phieudathangncc.dienthoainhacungcap = nhacungcap ? nhacungcap.sodienthoai : null;
             this.phieudathangncc.diachinhacungcap = nhacungcap ? nhacungcap.diachi : null;
 
@@ -207,13 +221,17 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
             this.hanghoalenght--;
             //return;
         } else {
-            this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
             this.hanghoas[index].dvt_id = selected.dvt_id;
-            this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
+
+        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
+        this.hanghoas[index].tilequydoiphu = selected.quydoi1;
+        this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
+        this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
@@ -246,7 +264,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
                 }
                 break;
         }
-        
+
         // tính tiền sau chiết khấu
         this.onTinhTien();
     }
@@ -276,7 +294,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
         phieudathangncc_req.phieudathangncc_chitiet = hanghoas;
 
         this.saveProcessing = true;
-        if(this.isTatToan){
+        if (this.isTatToan) {
             this.subscriptions.add(
                 this.phieudathangnccService.updateTatToanPhieuDatHangNCC(phieudathangncc_req).subscribe(
                     (data) => {
@@ -299,8 +317,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
                     }
                 )
             );
-        }
-        else
+        } else
             this.subscriptions.add(
                 this.phieudathangnccService.updatePhieuDatHangNCC(phieudathangncc_req).subscribe(
                     (data) => {

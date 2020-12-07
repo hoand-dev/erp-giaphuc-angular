@@ -86,12 +86,13 @@
                                     </dxi-item>
 
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
-                                    <dxi-item 
-                                    [label]="{ text: 'CÓ LẤY THUẾ' }" 
-                                    dataField="xuathoadon" 
-                                    editorType="dxCheckBox" 
-                                    [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 }"> 
-                                    <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    <dxi-item
+                                        [label]="{ text: 'CÓ LẤY THUẾ' }"
+                                        dataField="xuathoadon"
+                                        editorType="dxCheckBox"
+                                        [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 }"
+                                    >
+                                        <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
@@ -130,12 +131,16 @@
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
                                                                 (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                                itemTemplate="item"
                                                             >
+                                                                <div *dxTemplate="let data of 'item'">
+                                                                    <div style="display: inline-block">{{ data.tenhanghoa }}, ({{ data.soluong_tonhientai }}, {{ data.soluong_tonduocxuat }})</div>
+                                                                </div>
                                                             </dx-select-box>
                                                         </td>
                                                         <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ (item.soluong / item.tilequydoi) | number: '1.0-3' }} {{item.tendonvitinhphu}}</td>
+                                                        <td>{{ item.soluong / item.tilequydoiphu | number: '1.0-3' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
 
                                                         <td>

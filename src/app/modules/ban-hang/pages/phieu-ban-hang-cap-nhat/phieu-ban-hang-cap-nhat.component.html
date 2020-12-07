@@ -50,7 +50,8 @@
 
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan }">
+                                    </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="khachhang_diachi" [colSpan]="2"> </dxi-item>
@@ -81,12 +82,13 @@
                                     </dxi-item>
 
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
-                                    <dxi-item 
-                                    [label]="{ text: 'CÓ LẤY THUẾ' }" 
-                                    dataField="xuathoadon" 
-                                    editorType="dxCheckBox" 
-                                    [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 || isTatToan }"> 
-                                    <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                    <dxi-item
+                                        [label]="{ text: 'CÓ LẤY THUẾ' }"
+                                        dataField="xuathoadon"
+                                        editorType="dxCheckBox"
+                                        [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 || isTatToan }"
+                                    >
+                                        <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
@@ -126,25 +128,45 @@
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
                                                                 (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                                itemTemplate="item"
                                                             >
+                                                                <div *dxTemplate="let data of 'item'">
+                                                                    <div style="display: inline-block">{{ data.tenhanghoa }}, ({{ data.soluong_tonhientai }}, {{ data.soluong_tonduocxuat }})</div>
+                                                                </div>
                                                             </dx-select-box>
                                                         </td>
                                                         <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ (item.soluong / item.tilequydoi) | number: '1.0-3' }} {{item.tendonvitinhphu}}</td>
+                                                        <td>{{ item.soluong / item.tilequydoiphu | number: '1.0-3' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
 
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [readOnly]="!isTatToan" [max]="item.soluong - item.soluongdaxuat" [(value)]="item.soluongtattoan" (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [readOnly]="!isTatToan"
+                                                                [max]="item.soluong - item.soluongdaxuat"
+                                                                [(value)]="item.soluongtattoan"
+                                                                (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [readOnly]="isTatToan" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [readOnly]="isTatToan"
+                                                                [(value)]="item.soluong"
+                                                                (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [readOnly]="isTatToan" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [readOnly]="isTatToan"
+                                                                [(value)]="item.dongia"
+                                                                (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box 
+                                                            <dx-number-box
                                                                 [readOnly]="isTatToan"
                                                                 format="#0%"
                                                                 [step]="0.01"
@@ -153,7 +175,7 @@
                                                             ></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box 
+                                                            <dx-number-box
                                                                 [readOnly]="isTatToan"
                                                                 format="#0%"
                                                                 [step]="0.01"

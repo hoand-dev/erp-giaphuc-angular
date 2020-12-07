@@ -111,12 +111,16 @@
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
                                                                 (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                                itemTemplate="item"
                                                             >
+                                                                <div *dxTemplate="let data of 'item'">
+                                                                    <div style="display: inline-block">{{ data.tenhanghoa }}, ({{ data.soluong_tonhientai }}, {{ data.soluong_tonduocxuat }})</div>
+                                                                </div>
                                                             </dx-select-box>
                                                         </td>
                                                         <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ (item.soluong / item.tilequydoi) | number: '1.0-3' }} {{item.tendonvitinhphu}}</td>
+                                                        <td>{{ item.soluong / item.tilequydoiphu | number: '1.0-3' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
 
                                                         <td>
@@ -161,7 +165,8 @@
                                         editorType="dxCheckBox"
                                         [editorOptions]="{ text: 'Kích hoạt', readOnly: true }"
                                     ></dxi-item>
-                                    <dxi-item [colSpan]="2" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                    <dxi-item [colSpan]="2" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    </dxi-item>
                                 </dx-form>
                             </form>
                         </div>

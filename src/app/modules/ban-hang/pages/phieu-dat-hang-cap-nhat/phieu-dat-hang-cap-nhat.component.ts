@@ -270,16 +270,17 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
         } else {
             this.hanghoas[index].khoxuat_id = this.phieudathang.khoxuat_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
             
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
+        
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
-        this.hanghoas[index].tilequydoi = selected.quydoi1;
+        this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-        this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
         
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
