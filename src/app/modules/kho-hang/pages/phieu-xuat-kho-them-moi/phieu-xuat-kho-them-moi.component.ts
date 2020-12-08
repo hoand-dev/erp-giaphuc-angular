@@ -1,4 +1,4 @@
-import { ChiNhanh, PhieuXuatKho, PhieuXuatKho_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, KhachHang, PhieuXuatKho, PhieuXuatKho_ChiTiet } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import { DxFormComponent } from 'devextreme-angular';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
-import { AppInfoService, CommonService, DanhSachXeService, KhoHangService, PhieuBanHangService, PhieuTraHangNCCService, PhieuXuatKhoService, RouteInterceptorService, TaiXeService } from '@app/shared/services';
+import { AppInfoService, CommonService, DanhSachXeService, KhachHangService, KhoHangService, PhieuBanHangService, PhieuTraHangNCCService, PhieuXuatKhoService, RouteInterceptorService, TaiXeService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -39,6 +39,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
 
     public phieuxuatkho: PhieuXuatKho;
+    public lstKhachHang: KhachHang[] = [];
     public lstTaiXe: TaiXe[] = [];
     public lstXe: DanhSachXe[] = [];
     public lstKhoXuat: KhoHang[] = [];
@@ -76,6 +77,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
         private objPhieuTraHangNCCService: PhieuTraHangNCCService,
         private objPhieuBanHangService: PhieuBanHangService,
         private phieuxuatkhoService: PhieuXuatKhoService,
+        private khachhangService: KhachHangService,
         private taixeService: TaiXeService,
         private xeService: DanhSachXeService,
         private khoxuatService: KhoHangService,
@@ -120,6 +122,14 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                     paginate: true,
                     pageSize: 50
                 });
+            })
+        );
+
+        this.loadingVisible = true;
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x; // không có select box nên khỏi data source
             })
         );
 
@@ -357,6 +367,12 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
             this.hanghoas.forEach((v, i) => {
                 v.khoxuat_id = this.phieuxuatkho.khoxuat_id;
             });
+
+            // sài nhờ trường này đi do không có element trên html
+            let khachhang = this.lstKhachHang.find(x => x.id == this.phieuxuatkho.khachhang_id);
+            if(khachhang){
+                this.phieuxuatkho.songaytoihan = khachhang.songayno;
+            }
         }
 
         if (e.dataField == 'taixe_id') {
