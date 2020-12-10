@@ -252,6 +252,7 @@ export class AppComponent implements OnInit {
             "/phieu-nhap-chuyen-kho", 
         ];
         const KETOAN = [
+            "/lenh-vay",
             "/phieu-thu", 
         ];
         
