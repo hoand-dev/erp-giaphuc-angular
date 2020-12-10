@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { QuyTaiKhoan } from '@app/shared/entities';
 
@@ -19,8 +19,11 @@ export class QuyTaiKhoanService extends BaseService {
         return this.httpClient.get<QuyTaiKhoan>(this.apiUrl + `/${id}`);
     }
 
-    findQuyTaiKhoans(): Observable<QuyTaiKhoan[]> {
-        return this.httpClient.get<QuyTaiKhoan[]>(this.apiUrl);
+    findQuyTaiKhoans(chinhanh_id ? : number): Observable<QuyTaiKhoan[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set("chinhanh_id", chinhanh_id ? chinhanh_id.toString() : null);
+        
+        return this.httpClient.get<QuyTaiKhoan[]>(this.apiUrl, { params: query_params });
     }
 
     addQuyTaiKhoan(quytaikhoan: QuyTaiKhoan): Observable<QuyTaiKhoan> {

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { QuyTaiKhoan } from '@app/shared/entities';
+import { ChiNhanh, QuyTaiKhoan } from '@app/shared/entities';
 import { QuyTaiKhoanService } from '@app/shared/services';
+import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -18,6 +19,7 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
+    currChiNhanh: ChiNhanh;
 
     public stateStoringGrid = {
         enabled: true,
@@ -27,6 +29,7 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
 
     constructor(
         private router: Router,
+        private authenticationService: AuthenticationService,
         private quytaikhoanService: QuyTaiKhoanService
     ) { }
 
@@ -38,7 +41,11 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        this.onLoadData();
+        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
+            .subscribe(x => {
+                this.currChiNhanh = x;
+                this.onLoadData();
+            }))
     }
 
     ngOnDestroy(): void {
@@ -50,7 +57,7 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onLoadData() {
-        this.subscriptions.add(this.quytaikhoanService.findQuyTaiKhoans().subscribe(
+        this.subscriptions.add(this.quytaikhoanService.findQuyTaiKhoans(this.currChiNhanh.id).subscribe(
             data => {
                 this.dataGrid.dataSource = data;
             },

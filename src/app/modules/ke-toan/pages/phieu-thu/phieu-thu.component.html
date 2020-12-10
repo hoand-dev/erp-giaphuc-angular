@@ -1,0 +1,99 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Phiếu thu</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Phiếu thu' | uppercase }} - DANH SÁCH</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false"> Thu tiền </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" [routerLink]="['/phieu-thu/them-moi']" [queryParams]="{ loaiphieuthu: 'khac' }">Khác</a>
+                                    <a class="dropdown-item" [routerLink]="['/phieu-thu/them-moi']" [queryParams]="{ loaiphieuthu: 'khachhang' }">Khách hàng</a>
+                                    <!-- <div class="dropdown-divider"></div> -->
+                                    <a class="dropdown-item" [routerLink]="['/phieu-thu/them-moi']" [queryParams]="{ loaiphieuthu: 'nhacungcap' }">Nhà cung cấp</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <dx-data-grid
+                            id="gridContainer"
+                            [showBorders]="true"
+                            [showRowLines]="true"
+                            [hoverStateEnabled]="true"
+                            [columnAutoWidth]="true"
+                            [stateStoring]="stateStoringGrid"
+                            (onRowDblClick)="onRowDblClick($event)"
+                        >
+                            <!-- dx-data-grid column -->
+                            <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
+                                <div *dxTemplate="let data of 'cellTemplate'">
+                                    <a [routerLink]="['/phieu-thu/' + data.value + '/cap-nhat']">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="ngaythu" dataType="datetime" caption="Ngày thu"></dxi-column>
+                            <dxi-column dataField="maphieuthu" caption="Mã phiếu"></dxi-column>
+                            <dxi-column dataField="loaiphieuthu" caption="Loại phiếu"></dxi-column>
+                            <dxi-column dataField="chungtu" caption="Chứng từ"></dxi-column>
+                            <dxi-column dataField="nguoinop_hoten" caption="Người nộp"></dxi-column>
+                            <dxi-column dataField="nguoinop_diachi" caption="Địa chỉ"></dxi-column>
+                            <dxi-column dataField="nguoinop_dienthoai" caption="Điện thoại"></dxi-column>
+                            <dxi-column dataField="tenquythu" caption="Quỹ thu"></dxi-column>
+                            <dxi-column dataField="tennoidungthu" caption="Nội dung"></dxi-column>
+                            <dxi-column dataField="sotienthu" caption="Số tiền thu" format="#,##0.###"></dxi-column>
+                            <dxi-column dataField="sotiengiam" caption="Số tiền giảm" format="#,##0.###"></dxi-column>
+
+                            <!-- <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                                    <span class="text-green" *ngIf="data.value == true">Kích hoạt</span>
+                                    <span class="text-red" *ngIf="data.value != true">Ngưng sử dụng</span>
+                                </div>
+                            </dxi-column> -->
+                            <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+                            <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
+
+                            <!-- dx-data-grid option -->
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                            <dxo-paging [pageSize]="9"></dxo-paging>
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
+                            </dxo-pager>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
