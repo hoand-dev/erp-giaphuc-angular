@@ -171,7 +171,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         );
 
         // thêm sẵn 1 dòng cho user
-        // this.onHangHoaAdd();
+         this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
