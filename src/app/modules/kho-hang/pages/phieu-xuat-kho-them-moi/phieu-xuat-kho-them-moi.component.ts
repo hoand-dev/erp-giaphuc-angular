@@ -305,9 +305,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                                     chitiet.thanhtien = value.thanhtien;
                                     chitiet.chuthich = value.chuthich;
                 
-                                    // mua hàng không quản lý tên hàng hoá in phiếu
-                                    // chitiet.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
-                
+                                    chitiet.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
                                     chitiet.phieubanhang_chitiet_id = value.id;
                 
                                     this.hanghoas.push(chitiet);
