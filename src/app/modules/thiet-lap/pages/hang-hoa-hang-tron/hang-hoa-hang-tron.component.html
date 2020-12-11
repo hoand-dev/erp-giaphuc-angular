@@ -4,12 +4,15 @@
         <div class="row mb-2">
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
                     <li class="breadcrumb-item active">Hàng trơn</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 
@@ -22,20 +25,19 @@
                         <h5 class="card-title">{{ 'Hàng trơn' | uppercase }} - DANH SÁCH</h5>
                         <p class="card-text"></p>
 
-                        <button class="btn btn-sm btn-primary" [routerLink]="[ '/hang-hoa-hang-tron/them-moi']">
-                            Thêm mới</button>
-                        <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">
-                            Tải lại</button>
+                        <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/hang-hoa-hang-tron/them-moi']">Thêm mới</button>
 
-                        <dx-data-grid id="gridContainer" 
-                            [showBorders]="true" [showRowLines]="true"
-                            [hoverStateEnabled]="true" 
+                        <dx-data-grid
+                            id="gridContainer"
+                            [showBorders]="true"
+                            [showRowLines]="true"
+                            [hoverStateEnabled]="true"
                             [columnAutoWidth]="true"
                             [stateStoring]="stateStoringGrid"
-                            (onRowDblClick)="onRowDblClick($event)">
-
-                            <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false"
-                                [allowSorting]="false" cellTemplate="cellTemplate">
+                            (onRowDblClick)="onRowDblClick($event)"
+                        >
+                            <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
                                     <a [routerLink]="['/hang-hoa-hang-tron/' + data.value + '/cap-nhat']">Sửa</a> |
                                     <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
@@ -65,12 +67,8 @@
 
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
-                                    <span class="text-green" *ngIf="data.value == true">
-                                        Kích hoạt
-                                    </span>
-                                    <span class="text-red" *ngIf="data.value != true">
-                                        Ngưng sử dụng
-                                    </span>
+                                    <span class="text-green" *ngIf="data.value == true"> Kích hoạt </span>
+                                    <span class="text-red" *ngIf="data.value != true"> Ngưng sử dụng </span>
                                 </div>
                             </dxi-column>
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
@@ -79,14 +77,12 @@
                             <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
-                            
+
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="9"></dxo-paging>
-                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)"
-                                [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]"
-                                [showNavigationButtons]="true">
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
                             </dxo-pager>
                         </dx-data-grid>
                     </div>

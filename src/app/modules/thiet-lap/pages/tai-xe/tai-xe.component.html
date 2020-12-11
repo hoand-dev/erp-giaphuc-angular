@@ -25,8 +25,8 @@
                         <h5 class="card-title">TÀI XẾ - DANH SÁCH</h5>
                         <p class="card-text"></p>
 
-                        <button class="btn btn-sm btn-primary" [routerLink]="['/tai-xe/them-moi']">Thêm mới</button>
-                        <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                        <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/tai-xe/them-moi']">Thêm mới</button>
 
                         <dx-data-grid
                             id="gridContainer"
@@ -46,7 +46,7 @@
 
                             <dxi-column dataField="mataixe" caption="Mã Tài Xế"></dxi-column>
                             <dxi-column dataField="tentaixe" caption="Tên Tài Xế"></dxi-column>
-                            
+
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
                                     <span class="text-green" *ngIf="data.value == true"> Kích hoạt </span>

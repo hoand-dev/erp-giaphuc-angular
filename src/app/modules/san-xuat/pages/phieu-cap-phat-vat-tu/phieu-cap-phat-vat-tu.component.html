@@ -7,28 +7,29 @@
                         <h5 class="card-title">DANH SÁCH PHIẾU CẤP PHÁT VẬT TƯ</h5>
                         <p class="card-text"></p>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <dx-date-box [style.width.px]="200" type="date"></dx-date-box>
-                                    <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date"></dx-date-box>
-                                    <button [style.margin-left.px]="5" class="btn btn-sm btn-success" [routerLink]="[ '/phieu-cap-phat-vat-tu/1/cap-nhat']">
-                                        Tải lại</button>
-                                    <button [style.margin-left.px]="5" (click)="onThemMoi()" class="btn btn-sm btn-primary" [routerLink]="[ '/phieu-cap-phat-vat-tu/them-moi']">
-                                        Thêm mới</button>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date"></dx-date-box>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" [routerLink]="['/phieu-cap-phat-vat-tu/1/cap-nhat']">Tải lại</button>
+                                <button [style.margin-left.px]="5" (click)="onThemMoi()" class="btn btn-sm btn-primary" [routerLink]="['/phieu-cap-phat-vat-tu/them-moi']">Thêm mới</button>
                             </div>
-                            
-                            <dx-data-grid id="gridContainer_PhieuYeuCauCapPhatVatTu" [dataSource]="customers"
-                                [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']" [showBorders]="true"
-                                (onToolbarPreparing)="onToolbarPreparing($event)">
-                                <dxo-search-panel [visible]="true"></dxo-search-panel>
-                                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
-                                <dxo-paging [pageSize]="5" [pageIndex]="1"></dxo-paging>
-                                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true"
-                                    [allowedPageSizes]="[5, 10, 20]" [showNavigationButtons]="true">
-                                </dxo-pager>
-                            </dx-data-grid>
+                        </div>
+
+                        <dx-data-grid
+                            id="gridContainer_PhieuYeuCauCapPhatVatTu"
+                            [dataSource]="customers"
+                            [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+                            [showBorders]="true"
+                            (onToolbarPreparing)="onToolbarPreparing($event)"
+                        >
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                            <dxo-paging [pageSize]="5" [pageIndex]="1"></dxo-paging>
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showNavigationButtons]="true">
+                            </dxo-pager>
+                        </dx-data-grid>
                     </div>
                 </div>
             </div>

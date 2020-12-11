@@ -24,8 +24,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Xe - DANH SÁCH</h5>
                         <p class="card-text"></p>
-                        <button class="btn btn-sm btn-primary" [routerLink]="['/danh-sach-xe/them-moi']">Thêm mới</button>
-                        <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+
+                        <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/danh-sach-xe/them-moi']">Thêm mới</button>
 
                         <dx-data-grid
                             id="gridContainer"
