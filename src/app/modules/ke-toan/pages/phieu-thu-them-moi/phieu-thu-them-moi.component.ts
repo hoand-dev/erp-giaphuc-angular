@@ -156,7 +156,7 @@ export class PhieuThuThemMoiComponent implements OnInit {
 
             // lấy nợ cũ
             this.subscriptions.add(
-                this.commonService.khachHang_LoadNoCu(this.phieuthu.khachhang_id, this.phieuthu.sort).subscribe((data) => {
+                this.commonService.khachHang_LoadNoCu(this.phieuthu.khachhang_id, this.currentChiNhanh.id, this.phieuthu.sort).subscribe((data) => {
                     this.phieuthu.nocu = data;
                 })
             );
@@ -181,7 +181,7 @@ export class PhieuThuThemMoiComponent implements OnInit {
 
             // lấy nợ cũ
             this.subscriptions.add(
-                this.commonService.nhaCungCap_LoadNoCu(this.phieuthu.nhacungcap_id, this.phieuthu.sort).subscribe((data) => {
+                this.commonService.nhaCungCap_LoadNoCu(this.phieuthu.nhacungcap_id, this.currentChiNhanh.id, this.phieuthu.sort).subscribe((data) => {
                     this.phieuthu.nocu = data;
                 })
             );

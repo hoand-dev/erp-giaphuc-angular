@@ -32,6 +32,14 @@ export class PhieuXuatKhoService extends BaseService {
         return this.httpClient.post<PhieuXuatKho>(this.apiUrl, phieuxuatkho);
     }
 
+    updateHoaDonPhieuXuatKho(phieuxuatkho_id: number, sohoadon: string): Observable<boolean> {
+        let dataReq = {
+            phieuxuatkho_id: phieuxuatkho_id,
+            sohoadon: sohoadon
+        };
+        return this.httpClient.put<boolean>(this.apiUrl + `/capnhat-hoadon`, dataReq);
+    }
+
     updatePhieuXuatKho(phieuxuatkho: PhieuXuatKho): Observable<PhieuXuatKho> {
         return this.httpClient.put<PhieuXuatKho>(this.apiUrl + `/${phieuxuatkho.id}`, phieuxuatkho);
     }
