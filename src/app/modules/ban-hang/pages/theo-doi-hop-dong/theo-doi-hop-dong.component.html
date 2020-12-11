@@ -55,9 +55,7 @@
                             <dxi-column dataField="thoigianconlai" caption="Thời gian còn lại"></dxi-column>
                             <dxi-column dataField="hoten" caption="Nhân viên kinh doanh"></dxi-column>
                             <dxi-column dataField="tennhomkhachhang" caption="Loại hợp đồng"></dxi-column>
-                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
-                            <dxi-column dataField="thoigiantao" dataType="datetime"  caption="Thời gian tạo"></dxi-column>
-
+                            
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
                                     <div class="text-green" *ngIf="data.value == true">
@@ -69,6 +67,11 @@
                                 </div>
                             </dxi-column>
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+                            <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>

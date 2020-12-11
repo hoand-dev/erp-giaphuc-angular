@@ -1,4 +1,7 @@
 export class PhieuDatHangNCC {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -29,7 +32,6 @@ export class PhieuDatHangNCC {
     public diachinhacungcap: string;
 
     public nocu: number = 0;
-    public tennguoitao: string = '';
 
     constructor(
         id: number = null,

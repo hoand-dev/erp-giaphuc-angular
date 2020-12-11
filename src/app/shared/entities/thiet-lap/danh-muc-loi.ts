@@ -1,4 +1,6 @@
 export class DanhMucLoi {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
 
     public id: number;
     public chinhanh_id: number;
@@ -11,7 +13,18 @@ export class DanhMucLoi {
     public madanhmucloi: string;
     public tendanhmucloi: string;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = true, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, madanhmucloi: string = null, tendanhmucloi: string = null) {
+    constructor(
+        id: number = null,
+        chinhanh_id: number = null,
+        kichhoat: boolean = true,
+        nguoitao_id: number = null,
+        thoigiantao: Date = null,
+        nguoisua_id: number = null,
+        thoigiansua: Date = null,
+        ghichu: string = null,
+        madanhmucloi: string = null,
+        tendanhmucloi: string = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;

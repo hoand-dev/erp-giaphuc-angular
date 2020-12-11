@@ -1,4 +1,7 @@
 export class BangGia {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -23,8 +26,6 @@ export class BangGia {
     public tenkhachhang: string;
     public diachi: string;
     public sodienthoai: string;
-
-    public hoten: string;
 
     constructor(
         id: number = null,
@@ -71,7 +72,6 @@ export class BangGia {
         this.tenkhachhang = tenkhachhang;
         this.diachi = diachi;
         this.sodienthoai = sodienthoai;
-        this.hoten = hoten;
     }
 }
 

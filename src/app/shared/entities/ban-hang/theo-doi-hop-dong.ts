@@ -1,4 +1,7 @@
 export class TheoDoiHopDong {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -43,7 +46,7 @@ export class TheoDoiHopDong {
         thongtinlienhe: string = null,
         user_id: number = null,
         nhomkhachhang_id: number = null,
-        ids: number = null, 
+        ids: number = null,
         sort: string = null
     ) {
         this.id = id;
