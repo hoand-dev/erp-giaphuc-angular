@@ -426,6 +426,9 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
             setTimeout(() => {
                 this.hanghoas[index].mahanghoa = selected.mahanghoa;
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
+                if(this.phieuxuatkho.loaiphieuxuatkho = 'xuattrahangncc'){
+                    this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
+                }
             });
         } else {
             this.hanghoas[index].khoxuat_id = this.phieuxuatkho.khoxuat_id;
