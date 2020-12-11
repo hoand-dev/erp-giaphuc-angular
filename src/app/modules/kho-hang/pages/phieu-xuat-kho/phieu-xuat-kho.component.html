@@ -43,6 +43,7 @@
                             [columnAutoWidth]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
+                            (onContextMenuPreparing)="addMenuItems($event)"
                         >
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
@@ -63,7 +64,7 @@
 
                             <dxi-column dataField="trangthaithu" caption="Trạng thái thu" cellTemplate="cellTemplateTrangThaiThu">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThaiThu'">
-                                    <span *ngIf="data.value == null">Chưa chi</span>
+                                    <span *ngIf="data.value == null">Chưa thu</span>
                                     <span *ngIf="data.value != null">{{ data.value }}</span>
                                 </div>
                             </dxi-column>
