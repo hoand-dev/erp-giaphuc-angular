@@ -1,6 +1,9 @@
 import { DinhMuc } from './dinh-muc';
 
 export class HangHoa {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -94,7 +97,7 @@ export class HangHoa {
         gianhap1: number = null,
         giabanle1: number = null,
         giabansi1: number = null,
-        dinhmuc_id: number = null,
+        dinhmuc_id: number = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;

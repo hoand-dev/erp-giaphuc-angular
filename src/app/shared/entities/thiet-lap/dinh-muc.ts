@@ -1,5 +1,7 @@
-import { DanhMucGiaCong } from './danh-muc-gia-cong';
 export class DinhMuc {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;

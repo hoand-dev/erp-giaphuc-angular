@@ -1,4 +1,7 @@
 export class TaiXe {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -9,7 +12,6 @@ export class TaiXe {
     public ghichu: string;
     public mataixe: string;
     public tentaixe: string;
-
     public dienthoai: string;
 
     constructor(

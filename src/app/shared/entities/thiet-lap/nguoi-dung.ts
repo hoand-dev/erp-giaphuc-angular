@@ -1,4 +1,6 @@
 export class NguoiDung {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
 
     public id: number;
     public chinhanh_id: number;
@@ -21,7 +23,28 @@ export class NguoiDung {
     public login_chinhanh: boolean;
     public sys: boolean;
 
-    constructor(id: number = null, chinhanh_id: number = null, kichhoat: boolean = null, nguoitao_id: number = null, thoigiantao: Date = null, nguoisua_id: number = null, thoigiansua: Date = null, ghichu: string = null, avatar: string = null, username: string = null, password: string = null, hoten: string = null, ngaysinh: Date = null, gioitinh: boolean = null, cmnd: string = null, dienthoai: string = null, email: string = null, diachi: string = null, login_chinhanh: boolean = null, sys: boolean = null) {
+    constructor(
+        id: number = null,
+        chinhanh_id: number = null,
+        kichhoat: boolean = null,
+        nguoitao_id: number = null,
+        thoigiantao: Date = null,
+        nguoisua_id: number = null,
+        thoigiansua: Date = null,
+        ghichu: string = null,
+        avatar: string = null,
+        username: string = null,
+        password: string = null,
+        hoten: string = null,
+        ngaysinh: Date = null,
+        gioitinh: boolean = null,
+        cmnd: string = null,
+        dienthoai: string = null,
+        email: string = null,
+        diachi: string = null,
+        login_chinhanh: boolean = null,
+        sys: boolean = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
