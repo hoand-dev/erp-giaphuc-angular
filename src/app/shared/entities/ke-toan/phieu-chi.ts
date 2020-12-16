@@ -1,4 +1,19 @@
 export class PhieuChi {
+    public phieuchi_phieunhapkhos: PhieuChi_PhieuNhapKho[];
+    public phieuchi_phieunhapkhos_old: PhieuChi_PhieuNhapKho[];
+
+    public nocu: number;
+    public tongchi: number;
+    public conno: number;
+
+    public tenquythu: string;
+    public tennoidungthu: string;
+
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
+
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -34,11 +49,12 @@ export class PhieuChi {
     public lenhvay_id: number;
     public sotienchi_lenhvay: number;
     public sotienchi_laixuat: number;
+    public nguoinhan_diachi: string;
+    public nguoinhan_dienthoai: string;
+    public donvigiacong_id: number;
+    public khogiacong_id: number;
 
-    public phieuchi_phieunhapkhos: phieuchi_phieunhapkho[];
-
-    
-
+ 
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -71,12 +87,21 @@ export class PhieuChi {
         sotienchi_duvat: number = null,
         sotienchi_dukhongvat: number = null,
         sotienchi_congnobandau: number = null,
-        sotienchi_dagiam: number = null,
+        sotienchi_dagiam: number = 0,
         lenhvay_id: number = null,
         sotienchi_lenhvay: number = null,
         sotienchi_laixuat: number = null,
+        nguoinhan_diachi: string = null,
+        nguoinhan_dienthoai: string = null,
+        donvigiacong_id: number = null,
+        khogiacong_id: number = null,
 
-        phieuchi_phieunhapkhos: phieuchi_phieunhapkho[] = []
+        nocu: number = 0,
+        tongchi: number = 0,
+        conno: number = 0,
+
+        phieuchi_phieunhapkhos: PhieuChi_PhieuNhapKho[] = [],
+        phieuchi_phieunhapkhos_old: PhieuChi_PhieuNhapKho[] = []
 
     ) {
         this.id = id;
@@ -114,12 +139,22 @@ export class PhieuChi {
         this.lenhvay_id = lenhvay_id;
         this.sotienchi_lenhvay = sotienchi_lenhvay;
         this.sotienchi_laixuat = sotienchi_laixuat;
+        this.nguoinhan_diachi = nguoinhan_diachi;
+        this.nguoinhan_dienthoai = nguoinhan_dienthoai;
+        this.donvigiacong_id = donvigiacong_id;
+        this.khogiacong_id = khogiacong_id;
+
+       
+        this.nocu = nocu;
+        this.tongchi = tongchi;
+        this.conno = conno;
 
         this.phieuchi_phieunhapkhos = phieuchi_phieunhapkhos;
+        this.phieuchi_phieunhapkhos_old = phieuchi_phieunhapkhos_old;
     }
 }
 
-export class phieuchi_phieunhapkho {
+export class PhieuChi_PhieuNhapKho {
     public id: number;
     public phieuchi_id: number;
     public phieunhapkho_id: number;
@@ -132,6 +167,15 @@ export class phieuchi_phieunhapkho {
     public sotiengiam_khongvat: number;
     public sotienchi_dagiam: number;
     public chuthich: string;
+
+
+    public ngaynhapkho: Date;
+    public maphieunhapkho: string;
+    public cothuevat: boolean;
+    public thuevat: number;
+    public tongthanhtien: number;
+    public sotienchitruoc: number;
+
 
     constructor(
         id: number = null,
