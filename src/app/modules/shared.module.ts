@@ -18,7 +18,7 @@ import {
     DxFormModule,
     DxNumberBoxModule,
     DxTagBoxModule,
-
+    DxDropDownBoxModule
  
     
 } from 'devextreme-angular';
@@ -43,6 +43,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         DxColorBoxModule,
         DxFormModule,
         DxNumberBoxModule,
+        DxDropDownBoxModule,
 
         MatTabsModule
     ],
@@ -63,6 +64,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         DxColorBoxModule,
         DxFormModule,
         DxNumberBoxModule,
+        DxDropDownBoxModule,
 
         MatTabsModule
     ]

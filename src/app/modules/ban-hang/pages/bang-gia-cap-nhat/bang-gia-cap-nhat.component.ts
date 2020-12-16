@@ -177,7 +177,6 @@ export class BangGiaCapNhatComponent implements OnInit {
             this.hanghoalenght--;
         } else {
             this.hanghoas[index].dvt_id = selected.dvt_id;
-<<<<<<< Updated upstream
             this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
         }
@@ -187,13 +186,6 @@ export class BangGiaCapNhatComponent implements OnInit {
         this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-=======
-            this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
-        }
-        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
-        this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
-        this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
->>>>>>> Stashed changes
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

@@ -231,6 +231,8 @@ export class AppComponent implements OnInit {
             "/hang-hoa-thanh-pham",
         ];
         const SANXUAT = [
+            "/bang-gia-gia-cong",
+            "/phieu-xuat-kho-gia-cong",
             "/phieu-cap-phat-vat-tu",
         ];
         const MUAHANG = [
@@ -255,6 +257,9 @@ export class AppComponent implements OnInit {
             "/lenh-vay",
             "/phieu-thu", 
         ];
+        const THONGKE_CONGNO = [
+            "/cong-no-qua-han",
+        ];
         
         /* xử lý chuỗi url */
         function indexOf(string, sub, index) {
@@ -265,7 +270,7 @@ export class AppComponent implements OnInit {
         }
 
         let $return = false;
-        let $url = this.router.url;
+        let $url = this.router.url.replace("/thong-ke", "");
         let $indexSecond = indexOf($url, '/', 2);
         $url = $url.substring(0, $indexSecond);
 
@@ -280,6 +285,7 @@ export class AppComponent implements OnInit {
             case 'BANHANG': $return = BANHANG.includes($url);   break;
             case 'KHOHANG': $return = KHOHANG.includes($url);   break;
             case 'KETOAN': $return = KETOAN.includes($url);     break;
+            case 'THONGKE-CONGNO': $return = THONGKE_CONGNO.includes($url); break;
             default: $return = false; break;
         }
         return $return;
