@@ -91,8 +91,6 @@ export class BangGia_ChiTiet {
 
     public trongluong: number;
     public tendonvitinh: string;
-    public tendonvitinhphu: string;
-
     constructor(
         id: number = null,
         banggia_id: number = null,
@@ -107,7 +105,11 @@ export class BangGia_ChiTiet {
         chuthich: string = null,
         tenhanghoa_inphieu: string = null,
         trongluong: number = 0
-    ) {
+        
+    ) 
+
+{
+
         this.id = id;
         this.banggia_id = banggia_id;
         this.loaihanghoa = loaihanghoa;
@@ -121,5 +123,6 @@ export class BangGia_ChiTiet {
         this.chuthich = chuthich;
         this.tenhanghoa_inphieu = tenhanghoa_inphieu;
         this.trongluong = trongluong;
+
     }
 }

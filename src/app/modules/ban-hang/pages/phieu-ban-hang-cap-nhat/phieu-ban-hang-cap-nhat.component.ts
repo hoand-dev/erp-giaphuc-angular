@@ -332,8 +332,13 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         this.onTinhTien();
     }
 
+
     // tính tiền sau chiết khấu và tổng
     private onTinhTien() {
+
+    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
+    
+
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
