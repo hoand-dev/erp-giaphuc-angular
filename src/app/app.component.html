@@ -392,6 +392,18 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
+                                            <a [routerLink]="['/bang-gia-gia-cong']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Bảng giá</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-xuat-kho-gia-cong']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu xuất kho gia công</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a [routerLink]="['/phieu-cap-phat-vat-tu']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Phiếu cấp phát vật tư</p>
@@ -535,6 +547,40 @@
                                             <a [routerLink]="['/phieu-chi']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Phiếu Chi</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('THONGKE-CONGNO')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Thống kê công nợ
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/thong-ke/cong-no-qua-han']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Công nợ quá hạn</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('HETHONG')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Hệ thống
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/nguoi-dung']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nhân viên</p>
                                             </a>
                                         </li>
                                     </ul>

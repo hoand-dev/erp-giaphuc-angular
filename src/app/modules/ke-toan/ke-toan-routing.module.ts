@@ -22,27 +22,27 @@ const routes: Routes = [
         ]
     },
     {
-<<<<<<< HEAD
         path: 'phieu-chi',
         canActivate: [AuthGuard],
         children: [
             { path: '', component: PhieuChiComponent },
             { path: 'them-moi', component: PhieuChiThemMoiComponent },
             { path: ':id/cap-nhat', component: PhieuChiCapNhatComponent }
-=======
+        ]
+    },
+    {
         path: 'lenh-vay',
         canActivate: [AuthGuard],
         children: [
             { path: '', component: LenhVayComponent },
             { path: 'them-moi', component: LenhVayThemMoiComponent },
             { path: ':id/cap-nhat', component: LenhVayCapNhatComponent }
->>>>>>> e347cce5a9393ac6e8370bb3eaca58ef6ca19b24
         ]
-    },
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class KeToanRoutingModule { }
+export class KeToanRoutingModule {}
