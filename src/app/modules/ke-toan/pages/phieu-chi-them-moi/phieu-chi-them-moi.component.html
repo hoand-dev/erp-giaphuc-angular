@@ -1,1 +1,144 @@
-<p>phieu-chi-them-moi works!</p>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/phieu-chi']">Phiếu chi</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content" *ngIf="loaiphieuchi != null">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5>{{ 'Phiếu chi' | uppercase }} - THÊM MỚI</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="6" [formData]="phieuchi" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                                    <dxi-item [label]="{ text: 'NGÀY THU' }" dataField="ngaychi" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                        <dxi-validation-rule type="required" message="Chọn ngày chi"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item *ngIf="loaiphieuchi == 'khachhang' || loaiphieuchi == 'khac'"
+                                        [colSpan]="3"
+                                        [label]="{ text: 'KHÁCH HÀNG' }"
+                                        dataField="khachhang_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhachhang', readOnly: loaiphieuchi == 'khac' }"
+                                    >
+                                        <dxi-validation-rule *ngIf="loaiphieuchi != 'khac'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item *ngIf="loaiphieuchi == 'nhacungcap'"
+                                        [colSpan]="3"
+                                        [label]="{ text: 'NHÀ CUNG CẤP' }"
+                                        dataField="nhacungcap_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_NhaCungCap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennhacungcap' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
+                                    </dxi-item>
+
+                                    <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    
+                                    <dxi-item [label]="{ text: 'TIỀN CHI' }" editorType="dxNumberBox" dataField="sotienchi" [editorOptions]="{ format: '#,##0.###' }"></dxi-item>
+
+                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuchi" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'NGƯỜI NỘP TIỀN' }" dataField="nguoinhan_hoten"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="nguoinhan_diachi" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinhan_dienthoai"></dxi-item>
+                                    
+                                    <dxi-item [label]="{ text: 'TIỀN GIẢM' }" editorType="dxNumberBox" dataField="sotiengiam" [editorOptions]="{ format: '#,##0.###' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'CHỨNG TỪ' }" dataField="chungtu"></dxi-item>
+                                    <dxi-item
+                                        [label]="{ text: 'QUỸ CHI' }"
+                                        dataField="quythu_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn quỹ thu"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'NỘI DUNG' }"
+                                        dataField="noidungthuchi_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_NoiDungThuChi, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennoidungthuchi' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'CÒN NỢ' }" editorType="dxNumberBox" dataField="conno" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'TỔNG CHI' }" editorType="dxNumberBox" dataField="tongchi" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+
+                                    <dxi-item [colSpan]="6" *ngIf="phieunhapkhos.length > 0">
+                                        <div class="table-responsive">
+                                            <table class="table table-vertical table-hover mt-4">
+                                                <thead>
+                                                    <tr>
+                                                        <th [style.min-width.px]="45">STT</th>
+                                                        <th [style.min-width.px]="120">NGÀY NHẬP</th>
+                                                        <th [style.min-width.px]="120">MÃ PHIẾU</th>
+                                                        <th [style.min-width.px]="120">GIÁ TRỊ PHIẾU</th>
+                                                        <th [style.min-width.px]="120">LOẠI VAT</th>
+                                                        <th [style.min-width.px]="120">VAT</th>
+                                                        <th [style.min-width.px]="120">ĐÃ THU TRƯỚC</th>
+                                                        <th [style.min-width.px]="120">CÒN CẦN THU</th>
+                                                        <th [style.min-width.px]="120">TIỀN THU</th>
+                                                        <th [style.min-width.px]="120">TIỀN GIẢM</th>
+                                                        <th [style.min-width.px]="250">GHI CHÚ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of phieunhapkhos; index as i">
+                                                        <td>{{i+1}}</td>
+                                                        <td>{{ item.ngaynhapkho | date:'HH:mm dd/MM/yyyy' }}</td>
+                                                        <td>{{item.maphieunhapkho}}</td>
+                                                        <td>{{item.tongthanhtien | number: '1.0-3'}}</td>
+                                                        <td>{{item.cothuevat ? 'Có VAT' : 'Không VAT'}}</td>
+                                                        <td>{{item.thuevat * 100}}%</td>
+                                                        <td>{{item.sotienchitruoc | number: '1.0-3'}}</td>
+                                                        <td>{{item.tongthanhtien - item.sotienchitruoc | number: '1.0-3'}}</td>
+                                                        <td>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.sotienchi" (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"></dx-number-box>
+                                                        </td>
+                                                        <td>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.sotiengiam" (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"></dx-number-box>
+                                                        </td>
+                                                        <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </dxi-item>
+
+                                    <dxi-item [colSpan]="6" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
