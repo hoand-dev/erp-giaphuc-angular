@@ -1,0 +1,65 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/lenh-vay']">Lệnh vay</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5>{{ 'Lệnh vay' | uppercase }} - CẬP NHẬT</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="6" [formData]="lenhvay" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                                    <dxi-item [label]="{ text: 'NGÀY VAY' }" dataField="ngayvay" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                        <dxi-validation-rule type="required" message="Chọn ngày vay"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'QUỸ NHẬN' }"
+                                        dataField="quynhan_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn quỹ nhận"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'SỐ TIỀN VAY' }" editorType="dxNumberBox" dataField="sotienvay" [editorOptions]="{ format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'LÃI SUẤT' }" dataField="laixuat" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'NGÀY HẾT HẠN' }" dataField="ngayhethan" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'MÃ LỆNH' }" dataField="malenhvay" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+
+                                    <dxi-item [colSpan]="6" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

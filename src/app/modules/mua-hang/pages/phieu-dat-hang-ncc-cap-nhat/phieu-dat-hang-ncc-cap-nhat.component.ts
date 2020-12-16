@@ -179,7 +179,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
 
             // load nợ cũ ncc
             this.subscriptions.add(
-                this.commonService.nhaCungCap_LoadNoCu(this.phieudathangncc.nhacungcap_id, this.phieudathangncc.sort).subscribe((data) => {
+                this.commonService.nhaCungCap_LoadNoCu(this.phieudathangncc.nhacungcap_id, this.currentChiNhanh.id, this.phieudathangncc.sort).subscribe((data) => {
                     this.phieudathangncc.nocu = data;
                 })
             );

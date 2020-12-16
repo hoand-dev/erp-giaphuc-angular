@@ -20,7 +20,7 @@ export class PhieuBanHangService extends BaseService {
     findPhieuBanHang(id: number): Observable<PhieuBanHang> {
         return this.httpClient.get<PhieuBanHang>(this.apiUrl + `/${id}`);
     }
-    
+
     findPhieuBanHangs(chinhanh_id: number = null, fromDay: Date, toDay: Date): Observable<PhieuBanHang[]> {
         let query_chinhanh = chinhanh_id == null ? '?' : '?chinhanh_id=' + chinhanh_id + '&';
         let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
@@ -38,6 +38,14 @@ export class PhieuBanHangService extends BaseService {
 
     updateTatToanPhieuBanHang(phieubanhang: PhieuBanHang): Observable<PhieuBanHang> {
         return this.httpClient.put<PhieuBanHang>(this.apiUrl + `/tattoan`, phieubanhang);
+    }
+
+    updateDuyetGiaPhieuBanHang(phieubanhang_id: number, duyet: boolean): Observable<boolean> {
+        let dataReq = {
+            phieubanhang_id: phieubanhang_id,
+            duyet: duyet
+        };
+        return this.httpClient.put<boolean>(this.apiUrl + `/duyetgia`, dataReq);
     }
 
     deletePhieuBanHang(id: number): Observable<PhieuBanHang> {

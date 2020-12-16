@@ -1,7 +1,7 @@
-import { PhieuCapPhatVatTuChiTiet } from "./phieu-cap-phat-vat-tu-chi-tiet";
-
 export class PhieuCapPhatVatTu {
-    
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -19,4 +19,20 @@ export class PhieuCapPhatVatTu {
     public trangthaiphieu: string;
 
     public PhieuCapPhatVatTuChiTiets: PhieuCapPhatVatTuChiTiet[];
+}
+
+export class PhieuCapPhatVatTuChiTiet {
+
+    public id: number;
+    public phieuxuatkho_id: number;
+    public loaihanghoa: string;
+    public hanghoa_id: number;
+    public hanghoa_lohang_id: number;
+    public dvt_id: number;
+    public tilequydoi: number;
+    public tilequydoiphu: number;
+    public soluong: number;
+    public dinhmuc_quydoi: number;
+    public chuthich: string;
+    
 }

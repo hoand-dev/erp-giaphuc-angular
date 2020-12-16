@@ -2,6 +2,9 @@ export class PhieuNhapKho {
     public phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[];
     public phieunhapkho_chitiets_old: PhieuNhapKho_ChiTiet[];
 
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;

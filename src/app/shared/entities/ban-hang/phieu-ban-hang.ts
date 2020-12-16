@@ -1,4 +1,7 @@
 export class PhieuBanHang {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+    
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -34,7 +37,6 @@ export class PhieuBanHang {
 
     /* các thông tin hiển thị trên view được lấy từ các bảng khác */
     public nocu: number = 0;
-    public tennguoitao: '';
 
     constructor(
         id: number = null,

@@ -1,4 +1,7 @@
 export class NhomNhaCungCap {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -20,8 +23,8 @@ export class NhomNhaCungCap {
         thoigiansua: Date = null,
         ghichu: string = null,
         manhomnhacungcap: string = null,
-        tennhomnhacungcap: string = null) 
-        {
+        tennhomnhacungcap: string = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -32,8 +35,5 @@ export class NhomNhaCungCap {
         this.ghichu = ghichu;
         this.manhomnhacungcap = manhomnhacungcap;
         this.tennhomnhacungcap = tennhomnhacungcap;
-
     }
-
 }
-

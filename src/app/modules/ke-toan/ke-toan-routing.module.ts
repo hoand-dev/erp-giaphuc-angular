@@ -7,6 +7,9 @@ import { PhieuChiComponent } from './pages/phieu-chi/phieu-chi.component';
 import { PhieuThuCapNhatComponent } from './pages/phieu-thu-cap-nhat/phieu-thu-cap-nhat.component';
 import { PhieuThuThemMoiComponent } from './pages/phieu-thu-them-moi/phieu-thu-them-moi.component';
 import { PhieuThuComponent } from './pages/phieu-thu/phieu-thu.component';
+import { LenhVayComponent } from './pages/lenh-vay/lenh-vay.component';
+import { LenhVayCapNhatComponent } from './pages/lenh-vay-cap-nhat/lenh-vay-cap-nhat.component';
+import { LenhVayThemMoiComponent } from './pages/lenh-vay-them-moi/lenh-vay-them-moi.component';
 
 const routes: Routes = [
     {
@@ -19,12 +22,21 @@ const routes: Routes = [
         ]
     },
     {
+<<<<<<< HEAD
         path: 'phieu-chi',
         canActivate: [AuthGuard],
         children: [
             { path: '', component: PhieuChiComponent },
             { path: 'them-moi', component: PhieuChiThemMoiComponent },
             { path: ':id/cap-nhat', component: PhieuChiCapNhatComponent }
+=======
+        path: 'lenh-vay',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: LenhVayComponent },
+            { path: 'them-moi', component: LenhVayThemMoiComponent },
+            { path: ':id/cap-nhat', component: LenhVayCapNhatComponent }
+>>>>>>> e347cce5a9393ac6e8370bb3eaca58ef6ca19b24
         ]
     },
 ];

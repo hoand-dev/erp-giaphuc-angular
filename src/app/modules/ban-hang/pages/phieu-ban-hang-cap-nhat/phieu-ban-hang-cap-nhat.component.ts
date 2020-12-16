@@ -19,6 +19,7 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-phieu-ban-hang-cap-nhat',
@@ -221,7 +222,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
             // load nợ cũ ncc
             this.subscriptions.add(
-                this.commonService.nhaCungCap_LoadNoCu(this.phieubanhang.khachhang_id, this.phieubanhang.sort).subscribe((data) => {
+                this.commonService.khachHang_LoadNoCu(this.phieubanhang.khachhang_id, this.currentChiNhanh.id, this.phieubanhang.sort).subscribe((data) => {
                     this.phieubanhang.nocu = data;
                 })
             );
@@ -351,6 +352,30 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         this.phieubanhang.tongthanhtien = tongtienhang - tongtienhang * this.phieubanhang.chietkhau + (tongtienhang - tongtienhang * this.phieubanhang.chietkhau) * this.phieubanhang.thuevat;
     }
 
+    onRowDuyetGia(id: number, duyet: boolean) {
+        Swal.fire({
+            title: duyet ? 'DUYỆT GIÁ BÁN?' : 'HUỶ DUYỆT GIÁ?',
+            text: "Bạn có muốn tiếp tục!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: `Không`,
+            confirmButtonText: `Đồng ý, ${duyet ? 'duyệt' : 'huỷ duyệt'}!`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.subscriptions.add(
+                    this.phieubanhangService.updateDuyetGiaPhieuBanHang(id, duyet).subscribe(
+                        (data) => {},
+                        (error) => {
+                            this.phieubanhangService.handleError(error);
+                        }
+                    )
+                );
+            }
+        });
+    }
+    
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

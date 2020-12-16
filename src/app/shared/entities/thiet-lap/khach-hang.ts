@@ -1,4 +1,7 @@
 export class KhachHang {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -42,7 +45,7 @@ export class KhachHang {
         tenkhachhang: string = null,
         sodienthoai: string = null,
         diachi: string = null,
-        masothue: string =null,
+        masothue: string = null,
         congnobandau: number = null,
         nhomkhachhang_id: number = null,
         khuvuc_id: number = null,
@@ -55,8 +58,7 @@ export class KhachHang {
         chucvu: string = null,
         dathucongno: number = null,
         email: string = null,
-        tennganhang:string = null,
-  
+        tennganhang: string = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -84,6 +86,5 @@ export class KhachHang {
         this.dathucongno = dathucongno;
         this.email = email;
         this.tennganhang = tennganhang;
-    
     }
 }

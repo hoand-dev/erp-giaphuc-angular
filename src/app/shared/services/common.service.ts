@@ -15,16 +15,26 @@ export class CommonService {
         return value !== undefined && value !== null && value !== '';
     }
 
-    nhaCungCap_LoadNoCu(nhacungcap_id: number = null, sort: string = null): Observable<number> {
-        return this.httpClient.get<number>(this.apiUrl + '/nhacungcap-loadnocu' + `?nhacungcap_id=${nhacungcap_id}&sort=${sort}`);
+    nhaCungCap_LoadNoCu(nhacungcap_id: number, chinhanh_id: number = null, sort: string = null): Observable<number> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set("nhacungcap_id", nhacungcap_id.toString());
+        query_params = query_params.set("chinhanh_id", chinhanh_id ? chinhanh_id.toString() : null);
+        query_params = query_params.set("sort", sort);
+
+        return this.httpClient.get<number>(this.apiUrl + '/nhacungcap-loadnocu', { params: query_params });
     }
 
-    khachHang_LoadNoCu(khachhang_id: number = null, sort: string = null): Observable<number> {
-        return this.httpClient.get<number>(this.apiUrl + '/khachhang-loadnocu' + `?khachhang_id=${khachhang_id}&sort=${sort}`);
+    khachHang_LoadNoCu(khachhang_id: number = null, chinhanh_id: number = null, sort: string = null): Observable<number> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set("khachhang_id", khachhang_id.toString());
+        query_params = query_params.set("chinhanh_id", chinhanh_id ? chinhanh_id.toString() : null);
+        query_params = query_params.set("sort", sort);
+
+        return this.httpClient.get<number>(this.apiUrl + '/khachhang-loadnocu', { params: query_params });
     }
     
     hangHoa_TonKhoHienTai(chinhanh_id: number = null, khohang_id: number = null, loaihanghoa: string = null, loadOptions: LoadOptions): Observable<HangHoa[]> {
-        let params: HttpParams = new HttpParams();
+        let query_params: HttpParams = new HttpParams();
         [
             "skip",
             "take",
@@ -36,17 +46,17 @@ export class CommonService {
             "group",
         ].forEach((i) => {
             if (i in loadOptions && this.isNotEmpty(loadOptions[i]))
-                params = params.set(i, JSON.stringify(loadOptions[i]));
+                query_params = query_params.set(i, JSON.stringify(loadOptions[i]));
         });
         
-        params = params.set("chinhanh_id", chinhanh_id.toString());
-        params = params.set("khohang_id", khohang_id ? khohang_id.toString() : null);
+        query_params = query_params.set("chinhanh_id", chinhanh_id.toString());
+        query_params = query_params.set("khohang_id", khohang_id ? khohang_id.toString() : null);
         
-        if(loaihanghoa) params = params.set("loaihanghoa", loaihanghoa);
+        if(loaihanghoa) query_params = query_params.set("loaihanghoa", loaihanghoa);
 
-        if(params.get("searchValue") == null ){
-            params = params.set("searchValue", " ");
+        if(query_params.get("searchValue") == null ){
+            query_params = query_params.set("searchValue", " ");
         }
-        return this.httpClient.get<HangHoa[]>(this.apiUrl + '/hanghoa-tonkhohientai', { params: params });
+        return this.httpClient.get<HangHoa[]>(this.apiUrl + '/hanghoa-tonkhohientai', { params: query_params });
     }
 }

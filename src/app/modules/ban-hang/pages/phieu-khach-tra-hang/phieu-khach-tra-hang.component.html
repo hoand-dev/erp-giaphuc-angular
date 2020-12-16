@@ -30,8 +30,8 @@
                                 <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
-                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/phieu-khach-tra-hang/them-moi']">Thêm mới</button>
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/phieu-khach-tra-hang/them-moi']">Thêm mới</button>
                             </div>
                         </div>
 
@@ -60,9 +60,7 @@
                             <dxi-column dataField="chietkhau" caption="Chiết khấu" format="#0%"></dxi-column>
                             <dxi-column dataField="thuevat" caption="Thuế VAT" format="#0%"></dxi-column>
                             <dxi-column dataField="tongthanhtien" caption="Tổng tiền" format="#,##0.###"></dxi-column>
-                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
-                            <dxi-column dataField="thoigiantao"dataType="datetime" caption="Thời gian tạo"></dxi-column>
-
+                            
                             <dxi-column dataField="trangthaixuat" caption="Trạng thái xuất" cellTemplate="cellTemplateTrangThaiXuat">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThaiXuat'">
                                     <span *ngIf="data.value == null">Chưa xuất</span>
@@ -77,6 +75,11 @@
                                 </div>
                             </dxi-column> -->
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+                            <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
                             <!-- dx-data-grid option -->
                             <dxo-search-panel [visible]="true"></dxo-search-panel>

@@ -1,4 +1,7 @@
 export class DanhSachXe {
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -18,7 +21,8 @@ export class DanhSachXe {
         nguoisua_id: number = null,
         thoigiansua: Date = null,
         ghichu: string = null,
-        biensoxe: string = null) {
+        biensoxe: string = null
+    ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
         this.kichhoat = kichhoat;
@@ -28,9 +32,5 @@ export class DanhSachXe {
         this.thoigiansua = thoigiansua;
         this.ghichu = ghichu;
         this.biensoxe = biensoxe;
-
-
     }
-
-
 }

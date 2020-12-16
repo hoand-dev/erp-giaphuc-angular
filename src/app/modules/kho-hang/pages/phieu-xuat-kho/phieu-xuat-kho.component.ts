@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-phieu-xuat-kho',
@@ -70,6 +71,68 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
             )
         );
+    }
+
+    addMenuItems(e) { 
+        if (e.row.rowType === "data") {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+            
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+
+            // Add a custom menu item
+            e.items.push(
+                {
+                    text: "Cập nhật hoá đơn", icon: "edit", visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
+                    }
+                }
+            );
+        }
+    }
+
+    async onCapNhatHoaDon(id: number, maphieu: string, sohoadon?: string) {
+        const { value: soHoaDon } = await Swal.fire({
+            title: 'CẬP NHẬT HOÁ ĐƠN',
+            input: 'text',
+            inputLabel: maphieu,
+            inputValue: sohoadon,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Bạn chưa nhập số hoá đơn!';
+                }
+            }
+        });
+
+        if (soHoaDon) {
+            this.subscriptions.add(
+                this.objPhieuXuatKhoService.updateHoaDonPhieuXuatKho(id, soHoaDon).subscribe(
+                    (data) => {
+                        if (data) {
+                            notify(
+                                {
+                                    width: 320,
+                                    message: 'Cập nhật hoá đơn thành công',
+                                    position: { my: 'right top', at: 'right top' }
+                                },
+                                'success',
+                                475
+                            );
+                        }
+                        // load lại dữ liệu
+                        this.onLoadData();
+                    },
+                    (error) => {
+                        this.objPhieuXuatKhoService.handleError(error);
+                        // load lại dữ liệu
+                        this.onLoadData();
+                    }
+                )
+            );
+        }
     }
 
     onRowDblClick(e) {
