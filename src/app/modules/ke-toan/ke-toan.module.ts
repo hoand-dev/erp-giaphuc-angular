@@ -12,10 +12,11 @@ import { PhieuThuCapNhatComponent } from './pages/phieu-thu-cap-nhat/phieu-thu-c
 import { LenhVayComponent } from './pages/lenh-vay/lenh-vay.component';
 import { LenhVayCapNhatComponent } from './pages/lenh-vay-cap-nhat/lenh-vay-cap-nhat.component';
 import { LenhVayThemMoiComponent } from './pages/lenh-vay-them-moi/lenh-vay-them-moi.component';
+import { DanhSachLenhVayModalComponent } from './modals/danh-sach-lenh-vay/danh-sach-lenh-vay-modal.component';
 
 
 @NgModule({
-  declarations: [PhieuChiComponent, PhieuChiThemMoiComponent, PhieuChiCapNhatComponent, PhieuThuComponent, PhieuThuThemMoiComponent, PhieuThuCapNhatComponent, LenhVayComponent, LenhVayCapNhatComponent, LenhVayThemMoiComponent],
+  declarations: [PhieuChiComponent, PhieuChiThemMoiComponent, PhieuChiCapNhatComponent, PhieuThuComponent, PhieuThuThemMoiComponent, PhieuThuCapNhatComponent, LenhVayComponent, LenhVayCapNhatComponent, LenhVayThemMoiComponent, DanhSachLenhVayModalComponent],
   imports: [
     CommonModule,
     SharedModule,
