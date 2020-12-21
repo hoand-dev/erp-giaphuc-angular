@@ -33,7 +33,7 @@ import { NotFoundComponent } from '@app/shared/components/not-found/not-found.co
 
 import { AppInfoService } from '@app/shared/services';
 
-import { ThietLapModule, MuaHangModule, BanHangModule, KhoHangModule, SanXuatModule } from '@app/modules';
+import { ThietLapModule, MuaHangModule, BanHangModule, KhoHangModule, SanXuatModule, ThongKeModule } from '@app/modules';
 
 /* devextreme localization */
 import './shared/localization';
@@ -79,7 +79,7 @@ import { KeToanModule } from './modules/ke-toan/ke-toan.module';
         ModalModule.forRoot(),
         BrowserAnimationsModule,
 
-        ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule, KhoHangModule, KeToanModule,
+        ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule, KhoHangModule, KeToanModule, ThongKeModule,
 
         AppRoutingModule, // root route phải đặt ở cuối nếu có module con sử dụng route
     ],

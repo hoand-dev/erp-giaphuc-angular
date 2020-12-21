@@ -256,9 +256,17 @@ export class AppComponent implements OnInit {
         const KETOAN = [
             "/lenh-vay",
             "/phieu-thu", 
+            "/phieu-chi", 
+            "/phieu-can-tru", 
         ];
         const THONGKE_CONGNO = [
             "/cong-no-qua-han",
+            "/cong-no-khach-hang",
+            "/cong-no-nha-cung-cap",
+        ];
+        const THONGKE_THUCHI = [
+            "/thu-chi-noi-dung",
+            "/thu-chi-ton-quy",
         ];
         
         /* xử lý chuỗi url */
@@ -286,6 +294,7 @@ export class AppComponent implements OnInit {
             case 'KHOHANG': $return = KHOHANG.includes($url);   break;
             case 'KETOAN': $return = KETOAN.includes($url);     break;
             case 'THONGKE-CONGNO': $return = THONGKE_CONGNO.includes($url); break;
+            case 'THONGKE-THUCHI': $return = THONGKE_THUCHI.includes($url); break;
             default: $return = false; break;
         }
         return $return;
