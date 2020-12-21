@@ -1,0 +1,100 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thống kê công nợ khách hàng</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Thống kê công nợ khách hàng' | uppercase }}</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [columnAutoWidth]="true" [stateStoring]="stateStoringGrid">
+                                    <dxo-selection mode="single"></dxo-selection>
+                                    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                                    <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                                    
+                                    <!-- dx-data-grid option -->
+                                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                                    <dxo-paging [pageSize]="50"></dxo-paging>
+                                    <dxo-pager
+                                        [showInfo]="true"
+                                        infoText="Page #{0}. Total: {1} ({2} items)"
+                                        [showPageSizeSelector]="true"
+                                        [allowedPageSizes]="[10, 20]"
+                                        [showNavigationButtons]="true"
+                                    >
+                                    </dxo-pager>
+
+                                    <dxi-column dataField="tennhomkhachhang" caption="Nhóm khách hàng"></dxi-column>
+                                    <dxi-column dataField="tenkhachhang" caption="Khách hàng" [groupIndex]="0"></dxi-column>
+                                    <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>
+                                    <dxi-column dataField="diachi" caption="Địa chỉ"></dxi-column>
+                                    <dxi-column dataField="sodienthoai" caption="Điện thoại"></dxi-column>
+
+                                    <dxi-column dataField="ngayphatsinh" caption="Ngày phát sinh" dataType="date"></dxi-column>
+                                    <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
+                                    <dxi-column dataField="noidung" caption="Nội dung"></dxi-column>
+                                    <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+                                    <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
+
+                                    <dxi-column dataField="nodauky" caption="Nợ đầu" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="tongtienban" caption="Tiền bán" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="tongtienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="tongtientra" caption="Tiền trả" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="tongtienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="nocuoiky" caption="Nợ cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="congnohientai" caption="Số dư cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+
+                                    <dxi-column dataField="luytien" caption="Luỹ tiến" alignment="right" format="#,##0.###"></dxi-column>
+
+                                    <dxo-summary [calculateCustomSummary]="calculateSummary">
+                                        <dxi-group-item showInColumn="makhachhang" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>
+                                        
+                                        <dxi-group-item name="RowsSummaryNoDauKy" summaryType="custom" showInColumn="nodauky" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="false" [alignByColumn]="true"> </dxi-group-item>
+                                        <dxi-group-item column="tongtienthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item column="tongtienchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item column="tongtienban" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item column="tongtientra" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item name="RowsSummaryNoCuoiKy" summaryType="custom" showInColumn="nocuoiky" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item name="RowsSummaryCongNoHienTai" summaryType="custom" showInColumn="congnohientai" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                    </dxo-summary>
+
+                                    <dxi-sort-by-group-summary-info summaryItem="count"></dxi-sort-by-group-summary-info>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
