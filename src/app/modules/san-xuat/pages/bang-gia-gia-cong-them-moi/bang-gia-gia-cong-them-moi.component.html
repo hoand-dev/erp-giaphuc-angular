@@ -1,0 +1,119 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/bang-gia-gia-cong']">Bảng giá gia công</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5>{{ 'Bảng giá gia công' | uppercase }} - THÊM MỚI</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="6" [formData]="banggiagiacong" [showValidationSummary]="true" labelLocation="top">
+                                    <dxi-item [label]="{ text: 'NGÀY ÁP DỤNG' }" dataField="ngayapdung" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                        <dxi-validation-rule type="required" message="Chọn ngày áp dụng"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'MÃ BẢNG GIÁ' }" dataField="mabanggiacong" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
+                                        dataField="donvigiacong_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_DonViGiaCong, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendonvigiacong' }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="2"></dxi-item>
+
+                                    <dxi-item [colSpan]="6">
+                                        <div class="table-responsive">
+                                            <table class="table table-vertical table-hover mt-4">
+                                                <thead>
+                                                    <tr>
+                                                        <th [style.min-width.px]="200">GIA CÔNG</th>
+                                                        <th [style.min-width.px]="200">TIÊU CHUẨN</th>
+                                                        <th [style.min-width.px]="100">ĐƠN GIÁ</th>
+                                                        <th [style.min-width.px]="250">GHI CHÚ</th>
+                                                        <th [style.max-width.px]="20" (click)="onHangHoaAdd()">
+                                                            <i class="gg-btn gg-add btn-primary"></i>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of chitiets; index as i">
+                                                        <td>
+                                                            <dx-select-box
+                                                                id="danhmucgiacong_row_{{ i }}"
+                                                                [(value)]="item.danhmucgiacong_id"
+                                                                [dataSource]="dataSource_DanhMucGiaCong"
+                                                                [displayExpr]="'tendanhmuc'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['madanhmuc', 'tendanhmuc']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                                (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
+                                                        <td>
+                                                            <dx-select-box
+                                                                id="tieuchuan_row_{{ i }}"
+                                                                [(value)]="item.tieuchuan_id"
+                                                                [dataSource]="dataSource_TieuChuan"
+                                                                [displayExpr]="'tendanhmuctieuchuan'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['madanhmuctieuchuan', 'tendanhmuctieuchuan']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                                (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
+                                                        <td><dx-number-box format="#,##0.###" [(value)]="item.dongia"></dx-number-box></td>
+                                                        <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                        <td (click)="onHangHoaDelete(item)"><i class="gg-btn gg-remove"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </dxi-item>
+
+                                    <dxi-item [colSpan]="6" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    </dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
