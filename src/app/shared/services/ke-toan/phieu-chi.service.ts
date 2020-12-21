@@ -7,6 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PhieuChi, PhieuChi_PhieuNhapKho } from '../../entities/ke-toan/phieu-chi';
 import { BaseService } from '../base-service';
+import { LenhVay } from '@app/shared/entities';
 
 
 @Injectable({
@@ -38,7 +39,7 @@ export class PhieuChiService extends BaseService {
         
         return this.httpClient.get<PhieuChi_PhieuNhapKho[]>(this.apiUrl + "/phieu-nhap-kho", { params: query_params });
     }
-
+    
     addPhieuChi(PhieuChi: PhieuChi): Observable<PhieuChi> {
         return this.httpClient.post<PhieuChi>(this.apiUrl, PhieuChi);
     }
