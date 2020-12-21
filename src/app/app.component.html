@@ -546,7 +546,13 @@
                                         <li class="nav-item">
                                             <a [routerLink]="['/phieu-chi']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Phiếu Chi</p>
+                                                <p>Phiếu chi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-can-tru']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu cấn trừ</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -564,6 +570,41 @@
                                             <a [routerLink]="['/thong-ke/cong-no-qua-han']" class="nav-link" routerLinkActive="active">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Công nợ quá hạn</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/thong-ke/cong-no-khach-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Công nợ khách hàng</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/thong-ke/cong-no-nha-cung-cap']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Công nợ nhà cung cấp</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('THONGKE-THUCHI')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Thống kê thu chi
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/thong-ke/thu-chi-noi-dung']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Nội dung thu chi</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/thong-ke/thu-chi-ton-quy']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Tồn quỹ</p>
                                             </a>
                                         </li>
                                     </ul>
