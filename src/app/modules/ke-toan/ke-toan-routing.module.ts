@@ -10,6 +10,9 @@ import { PhieuThuComponent } from './pages/phieu-thu/phieu-thu.component';
 import { LenhVayComponent } from './pages/lenh-vay/lenh-vay.component';
 import { LenhVayCapNhatComponent } from './pages/lenh-vay-cap-nhat/lenh-vay-cap-nhat.component';
 import { LenhVayThemMoiComponent } from './pages/lenh-vay-them-moi/lenh-vay-them-moi.component';
+import { PhieuCanTruComponent } from './pages/phieu-can-tru/phieu-can-tru.component';
+import { PhieuCanTruCapNhatComponent } from './pages/phieu-can-tru-cap-nhat/phieu-can-tru-cap-nhat.component';
+import { PhieuCanTruThemMoiComponent } from './pages/phieu-can-tru-them-moi/phieu-can-tru-them-moi.component';
 
 const routes: Routes = [
     {
@@ -37,6 +40,15 @@ const routes: Routes = [
             { path: '', component: LenhVayComponent },
             { path: 'them-moi', component: LenhVayThemMoiComponent },
             { path: ':id/cap-nhat', component: LenhVayCapNhatComponent }
+        ]
+    },
+    {
+        path: 'phieu-can-tru',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: PhieuCanTruComponent },
+            { path: 'them-moi', component: PhieuCanTruThemMoiComponent },
+            { path: ':id/cap-nhat', component: PhieuCanTruCapNhatComponent }
         ]
     }
 ];
