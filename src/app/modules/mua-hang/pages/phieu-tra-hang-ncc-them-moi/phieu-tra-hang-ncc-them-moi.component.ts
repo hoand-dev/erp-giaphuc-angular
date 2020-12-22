@@ -159,7 +159,6 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
                             // xử lý phần thông tin phiếu
                             this.phieutrahangncc.nhacungcap_id = data.nhacungcap_id;
                             this.phieutrahangncc.tongtienhang = data.tongtienhang;
-                            this.phieutrahangncc.cuocvanchuyen = data.cuocvanchuyen;
                             this.phieutrahangncc.thuevat = data.thuevat;
                             this.phieutrahangncc.chietkhau = data.chietkhau;
                             this.phieutrahangncc.tongthanhtien = data.tongthanhtien;

@@ -22,7 +22,6 @@ export class PhieuXuatKho {
     public cothuevat: boolean;
     public chungtu: string;
     public tongtienhang: number;
-    public cuocvanchuyen: number;
     public chietkhau: number;
     public thuevat: number;
     public tongthanhtien: number;
@@ -68,7 +67,6 @@ export class PhieuXuatKho {
         cothuevat: boolean = null,
         chungtu: string = null,
         tongtienhang: number = 0,
-        cuocvanchuyen: number = 0,
         chietkhau: number = 0,
         thuevat: number = 0,
         tongthanhtien: number = 0,
@@ -108,7 +106,6 @@ export class PhieuXuatKho {
         this.cothuevat = cothuevat;
         this.chungtu = chungtu;
         this.tongtienhang = tongtienhang;
-        this.cuocvanchuyen = cuocvanchuyen;
         this.chietkhau = chietkhau;
         this.thuevat = thuevat;
         this.tongthanhtien = tongthanhtien;
