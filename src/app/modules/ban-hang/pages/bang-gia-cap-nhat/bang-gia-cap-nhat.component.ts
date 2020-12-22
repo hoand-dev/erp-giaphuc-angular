@@ -150,10 +150,9 @@ export class BangGiaCapNhatComponent implements OnInit {
             this.isValidForm = true;
             // gán lại thông tin điện thoại + địa chỉ
             let khachhang = this.lstKhachHang.find((o) => o.id == this.banggia.khachhang_id);
-            //this.banggia.khachhang_id =  khachhang.tenkhachhang
-            // this.banggia. = khachhang.tenkhachhang;
-            // this.banggia.khachhang_id = khachhang.sodienthoai;
-            // this.banggia.khachhang_id = khachhang.diachi;
+            this.banggia.tenkhachhang = khachhang.tenkhachhang;
+            this.banggia.diachi = khachhang.diachi;
+            this.banggia.sodienthoai = khachhang.sodienthoai;
         }
     }
 
@@ -179,6 +178,7 @@ export class BangGiaCapNhatComponent implements OnInit {
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
+            this.hanghoas[index].dongiacothue = this.hanghoas[index].dongia;
         }
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;

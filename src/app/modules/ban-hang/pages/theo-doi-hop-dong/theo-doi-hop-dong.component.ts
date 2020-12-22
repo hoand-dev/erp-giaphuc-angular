@@ -10,20 +10,19 @@ import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
 
 @Component({
-  selector: 'app-theo-doi-hop-dong',
-  templateUrl: './theo-doi-hop-dong.component.html',
-  styleUrls: ['./theo-doi-hop-dong.component.css']
+    selector: 'app-theo-doi-hop-dong',
+    templateUrl: './theo-doi-hop-dong.component.html',
+    styleUrls: ['./theo-doi-hop-dong.component.css']
 })
 export class TheoDoiHopDongComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-
-/*tối ưu subscriptions */
+    /*tối ưu subscriptions */
 
     subscriptions: Subscription = new Subscription();
 
     private currentChiNhanh = ChiNhanh;
-    
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -35,12 +34,9 @@ export class TheoDoiHopDongComponent implements OnInit {
         storageKey: 'dxGrid_DanhSachHopDong'
     };
 
-    constructor(
-        private router: Router, 
-        private theodoihopdongService: TheoDoiHopDongService, 
-        private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private theodoihopdongService: TheoDoiHopDongService, private authenticationService: AuthenticationService) {}
 
-  ngOnInit(): void {
+    ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
@@ -73,7 +69,7 @@ export class TheoDoiHopDongComponent implements OnInit {
     }
 
     onRowDelete(id) {
-        let result = confirm('<i> Bạn có muốn xóa khách hàng này</i>', 'Xác nhận xóa');
+        let result = confirm('<i> Bạn có muốn xóa "hợp đồng này" này</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 this.subscriptions.add(
@@ -100,5 +96,4 @@ export class TheoDoiHopDongComponent implements OnInit {
             }
         });
     }
-
 }

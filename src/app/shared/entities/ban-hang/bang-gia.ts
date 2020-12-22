@@ -15,7 +15,6 @@ export class BangGia {
     public ngaybanggia: Date;
     public ngaycohieuluc: Date;
     public mabanggia: string;
-    public tenmathang: string;
     public khachhang_id: number;
     public noidungno_id: number;
     public thoigiangiao: string;
@@ -26,6 +25,7 @@ export class BangGia {
     public tenkhachhang: string;
     public diachi: string;
     public sodienthoai: string;
+    public dkthanhtoan: string;
 
     constructor(
         id: number = null,
@@ -41,7 +41,6 @@ export class BangGia {
         ngaybanggia: Date = new Date(),
         ngaycohieuluc: Date = null,
         mabanggia: string = null,
-        tenmathang: string = null,
         khachhang_id: number = null,
         noidungno_id: number = null,
         thoigiangiao: string = null,
@@ -64,7 +63,6 @@ export class BangGia {
         this.ngaybanggia = ngaybanggia;
         this.ngaycohieuluc = ngaycohieuluc;
         this.mabanggia = mabanggia;
-        this.tenmathang = tenmathang;
         this.khachhang_id = khachhang_id;
         this.noidungno_id = noidungno_id;
         this.thoigiangiao = thoigiangiao;

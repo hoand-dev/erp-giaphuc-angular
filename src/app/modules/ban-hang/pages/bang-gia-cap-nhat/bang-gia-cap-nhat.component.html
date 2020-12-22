@@ -33,7 +33,7 @@
                                         <dxi-validation-rule type="required" message="Chọn ngày báo giá"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
-                                        [colSpan]="4"
+                                        [colSpan]="2"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
@@ -41,13 +41,12 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai" > </dxi-item>
 
                                     <dxi-item [label]="{ text: 'NGÀY CÓ HIỆU LỰC' }" dataField="ngaycohieuluc" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="diachi" [colSpan]="3"> </dxi-item>
-
-                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="mabanggia" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    
+                                    <dxi-item [label]="{ text: 'ĐỊA ĐIỂM GIAO' }" dataField="diadiemgiao" [colSpan]="4"></dxi-item>
                                     <dxi-item
                                         [colSpan]="1"
                                         [label]="{ text: 'ĐK THANH TOÁN' }"
@@ -57,7 +56,10 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung nợ"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐỊA ĐIỂM GIAO' }" dataField="diadiemgiao" [colSpan]="4"></dxi-item>
+
+                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="mabanggia" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
                                             <table class="table table-vertical table-hover mt-4">
@@ -66,7 +68,7 @@
                                                         <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
-                                                        <th [style.min-width.px]="120">ĐƠN GIÁ CÓ LẤY THUẾ</th>
+                                                        <th [style.min-width.px]="120">ĐƠN GIÁ VAT</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
                                                         <th [style.min-width.px]="250">TÊN IN RA</th>
                                                         <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
