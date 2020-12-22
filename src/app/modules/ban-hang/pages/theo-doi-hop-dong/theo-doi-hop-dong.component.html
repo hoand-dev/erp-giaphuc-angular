@@ -53,8 +53,13 @@
                             <dxi-column dataField="ngayky" dataType="datetime" caption="Ngày ký"></dxi-column>
                             <dxi-column dataField="ngayhethan"dataType="datetime" caption="Ngày hết hạn"></dxi-column>
                             <dxi-column dataField="thoigianconlai" caption="Thời gian còn lại"></dxi-column>
-                            <dxi-column dataField="hoten" caption="Nhân viên kinh doanh"></dxi-column>
-                            <dxi-column dataField="tennhomkhachhang" caption="Loại hợp đồng"></dxi-column>
+
+                            <dxi-column dataField="nguoikybena" caption="Bên A"></dxi-column>
+                            <dxi-column dataField="nguoikybenb" caption="Bên B"></dxi-column>
+                            <dxi-column dataField="thongtinlienhe" caption="Thông tin liên hệ"></dxi-column>
+
+                            <dxi-column dataField="tennhanviensale" caption="Nhân viên kinh doanh"></dxi-column>
+                            <dxi-column dataField="loaihopdong" caption="Loại hợp đồng"></dxi-column>
                             
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">

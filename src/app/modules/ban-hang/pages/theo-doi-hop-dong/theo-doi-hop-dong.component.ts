@@ -29,9 +29,9 @@ export class TheoDoiHopDongComponent implements OnInit {
     public timeCreateAt: Date = new Date();
 
     public stateStoringGrid = {
-        enable: true,
+        enabled: true,
         type: 'localStorage',
-        storageKey: 'dxGrid_DanhSachHopDong'
+        storageKey: 'dxGrid_TheoDoiHopDong'
     };
 
     constructor(private router: Router, private theodoihopdongService: TheoDoiHopDongService, private authenticationService: AuthenticationService) {}

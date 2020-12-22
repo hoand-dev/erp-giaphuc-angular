@@ -1,4 +1,7 @@
 export class TheoDoiHopDong {
+    public tennhanviensale: string;
+    public loaihopdong: string;
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
