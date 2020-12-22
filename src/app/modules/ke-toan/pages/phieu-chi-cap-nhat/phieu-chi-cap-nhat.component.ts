@@ -168,11 +168,11 @@ export class PhieuChiCapNhatComponent implements OnInit {
             this.onTinhNoConLai();
 
             // lấy danh sách phiếu xuất kho
-            this.subscriptions.add(
-                this.phieuchiService.findPhieuNhapKhos(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.nhacungcap_id).subscribe((data) => {
-                    this.phieunhapkhos = data;
-                })
-            );
+            // this.subscriptions.add(
+            //     this.phieuchiService.findPhieuNhapKhos(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.nhacungcap_id).subscribe((data) => {
+            //         this.phieunhapkhos = data;
+            //     })
+            // );
         }
 
         if (e.dataField == 'nhacungcap_id' && e.value !== undefined && e.value !== null) {
@@ -194,11 +194,11 @@ export class PhieuChiCapNhatComponent implements OnInit {
             this.onTinhNoConLai();
 
             // lấy danh sách phiếu nhập kho
-            this.subscriptions.add(
-                this.phieuchiService.findPhieuNhapKhos(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.nhacungcap_id).subscribe((data) => {
-                    this.phieunhapkhos = data;
-                })
-            );
+            // this.subscriptions.add(
+            //     this.phieuchiService.findPhieuNhapKhos(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.nhacungcap_id).subscribe((data) => {
+            //         this.phieunhapkhos = data;
+            //     })
+            // );
         }
 
         if (e.dataField == 'sotienchi' && e.value !== undefined && e.value !== null) {

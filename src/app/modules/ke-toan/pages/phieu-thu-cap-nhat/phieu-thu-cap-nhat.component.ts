@@ -198,11 +198,11 @@ export class PhieuThuCapNhatComponent implements OnInit {
             this.onTinhNoConLai();
 
             // lấy danh sách phiếu xuất kho
-            this.subscriptions.add(
-                this.phieuthuService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieuthu.khachhang_id, this.phieuthu.nhacungcap_id).subscribe((data) => {
-                    this.phieuxuatkhos = data;
-                })
-            );
+            // this.subscriptions.add(
+            //     this.phieuthuService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieuthu.khachhang_id, this.phieuthu.nhacungcap_id).subscribe((data) => {
+            //         this.phieuxuatkhos = data;
+            //     })
+            // );
         }
 
         if (e.dataField == 'nhacungcap_id' && e.value !== undefined && e.value !== null) {
@@ -226,11 +226,11 @@ export class PhieuThuCapNhatComponent implements OnInit {
             this.onTinhNoConLai();
 
             // lấy danh sách phiếu xuất kho
-            this.subscriptions.add(
-                this.phieuthuService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieuthu.khachhang_id, this.phieuthu.nhacungcap_id).subscribe((data) => {
-                    this.phieuxuatkhos = data;
-                })
-            );
+            // this.subscriptions.add(
+            //     this.phieuthuService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieuthu.khachhang_id, this.phieuthu.nhacungcap_id).subscribe((data) => {
+            //         this.phieuxuatkhos = data;
+            //     })
+            // );
         }
 
         if (e.dataField == 'sotienthu' && e.value !== undefined && e.value !== null) {
