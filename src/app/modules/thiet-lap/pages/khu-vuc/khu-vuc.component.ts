@@ -8,80 +8,80 @@ import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 
 @Component({
-  selector: 'app-khu-vuc',
-  templateUrl: './khu-vuc.component.html',
-  styleUrls: ['./khu-vuc.component.css']
+    selector: 'app-khu-vuc',
+    templateUrl: './khu-vuc.component.html',
+    styleUrls: ['./khu-vuc.component.css']
 })
 export class KhuVucComponent implements OnInit {
+    @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-  @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+    /* tối ưu subscriptions */
 
-  /* tối ưu subscriptions */
+    subscriptions: Subscription = new Subscription();
 
-  subscriptions: Subscription = new Subscription();
+    public stateStoringGrid = {
+        enabled: true,
+        type: 'localStorage',
+        storageKey: 'dxGrid_KhuVuc'
+    };
 
+    constructor(private router: Router, private khuvucService: KhuVucService) {}
 
-  public stateStoringGrid = {
-    enabled: true,
-    type: "localStorage",
-    storageKey: "dxGrid_KhuVuc"
-  };
+    ngOnInit(): void {}
 
-  constructor(
-    private router: Router,
-    private khuvucService: KhuVucService
-  ) { }
-
-  ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
-    this.onLoadData();
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  onLoadData(){
-    this.subscriptions.add(this.khuvucService.findKhuVucs().subscribe(
-      data => {
-        this.dataGrid.dataSource = data;
-      },
-      error =>{
-        this.khuvucService.handleError(error);
-      }
-    ));
-  }
-
-  onRowDblClick(e){
-    console.log(`khuvuc_id: ${e.key.id}`);
-  }
-
-  onRowDelete(id){
-    let result = confirm("<i>Bạn có muốn xóa số xe này?</i>", "Xác nhận xóa");
-  result.then((dialogResult) => {
-    if(dialogResult){
-      //gọi service xóa
-      this.subscriptions.add(this.khuvucService.deleteKhuVuc(id).subscribe(
-        data => {
-          if(data){
-            notify({
-              width: 320,
-              message: "Xóa thành công",
-              position: { my: "right top", at: "right top"}
-            }, "success", 475)
-          }
-          this.onLoadData();
-        },
-        error => {
-          this.onLoadData();
-        }
-
-      ));
+    ngAfterViewInit(): void {
+        this.onLoadData();
     }
-  });
-  }
 
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
+
+    onLoadData() {
+        this.subscriptions.add(
+            this.khuvucService.findKhuVucs().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.khuvucService.handleError(error);
+                }
+            )
+        );
+    }
+
+    onRowDblClick(e) {
+        console.log(`khuvuc_id: ${e.key.id}`);
+    }
+
+    onRowDelete(id) {
+        let result = confirm('<i>Bạn có muốn xóa khu vực này?</i>', 'Xác nhận xóa');
+        result.then((dialogResult) => {
+            if (dialogResult) {
+                //gọi service xóa
+                this.subscriptions.add(
+                    this.khuvucService.deleteKhuVuc(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.khuvucService.handleError(error);
+                            this.onLoadData();
+                        }
+                    )
+                );
+            }
+        });
+    }
 }
