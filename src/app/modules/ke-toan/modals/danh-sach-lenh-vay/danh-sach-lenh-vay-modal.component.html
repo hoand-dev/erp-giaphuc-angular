@@ -1,6 +1,7 @@
-
 <div class="modal-header">
-    <h6 class="modal-title pull-left"><b>{{ title }}</b></h6>
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -27,15 +28,14 @@
             >
                 <dxi-column dataField="ngayvay" dataType="datetime" caption="Ngày vay"></dxi-column>
                 <dxi-column dataField="malenhvay" caption="Mã lệnh vay"></dxi-column>
-                <dxi-column dataField="sotienvay" caption="Số tiền vay"></dxi-column>
-    
+                <dxi-column dataField="sotienvay" caption="Số tiền vay" format="#,##0.###"></dxi-column>
+
                 <dxi-column dataField="trangthaichi" caption="Trạng thái chi" cellTemplate="cellTemplateTrangThaiChi">
                     <div *dxTemplate="let data of 'cellTemplateTrangThaiChi'">
                         <span *ngIf="data.value == null">Chưa chi</span>
-                        <span *ngIf="data.value != null">{{data.value}}</span>
+                        <span *ngIf="data.value != null">{{ data.value }}</span>
                     </div>
                 </dxi-column>
-              
 
                 <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                     <div *dxTemplate="let data of 'cellTemplateTrangThai'">
@@ -47,12 +47,10 @@
 
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                 <dxo-paging [pageSize]="9"></dxo-paging>
-                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
-                </dxo-pager>
+                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
             </dx-data-grid>
-            
         </div>
     </div>
 </div>
