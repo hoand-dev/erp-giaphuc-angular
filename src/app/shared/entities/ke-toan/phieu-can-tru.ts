@@ -40,7 +40,7 @@ export class PhieuCanTru {
     constructor(
         id: number = null,
         chinhanh_id: number = null,
-        kichhoat: boolean = null,
+        kichhoat: boolean = true,
         nguoitao_id: number = null,
         thoigiantao: Date = null,
         nguoisua_id: number = null,
