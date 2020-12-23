@@ -186,13 +186,11 @@ export class PhieuChiThemMoiComponent implements OnInit {
 
             // lấy nợ cũ
             this.subscriptions.add(
-                this.commonService.khachHang_LoadNoCu(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.sort).subscribe((data) => {
+                this.commonService.khachHang_LoadNoCu(this.phieuchi.khachhang_id, this.currentChiNhanh.id, this.phieuchi.sort).subscribe((data) => {
                     this.phieuchi.nocu = data;
+                    this.onTinhNoConLai();
                 })
             );
-
-            // tính tiền
-            this.onTinhNoConLai();
 
             // lấy danh sách phiếu xuất kho
             this.subscriptions.add(
@@ -211,13 +209,11 @@ export class PhieuChiThemMoiComponent implements OnInit {
 
             // lấy nợ cũ
             this.subscriptions.add(
-                this.commonService.nhaCungCap_LoadNoCu(this.currentChiNhanh.id, this.phieuchi.nhacungcap_id, this.phieuchi.sort).subscribe((data) => {
+                this.commonService.nhaCungCap_LoadNoCu(this.phieuchi.nhacungcap_id, this.currentChiNhanh.id, this.phieuchi.sort).subscribe((data) => {
                     this.phieuchi.nocu = data;
+                    this.onTinhNoConLai();
                 })
             );
-
-            // tính tiền
-            this.onTinhNoConLai();
 
             // lấy danh sách phiếu nhập kho
             this.subscriptions.add(
@@ -270,6 +266,13 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 });
             }
         }
+
+        if (e.dataField == 'sotienchi_lenhvay' && e.value !== undefined && e.value !== null) {
+            this.onTinhNoConLai();
+        }
+        if (e.dataField == 'sotienchi_laixuat' && e.value !== undefined && e.value !== null) {
+            this.onTinhNoConLai();
+        }
     }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
@@ -296,11 +299,28 @@ export class PhieuChiThemMoiComponent implements OnInit {
     private onTinhNoConLai() {
         this.phieuchi.tongchi = this.phieuchi.sotienchi + this.phieuchi.sotiengiam;
 
-        // ? nếu thu khác còn nợ = 0
-        this.phieuchi.conno = this.loaiphieuchi == 'khac' ? 0 : this.phieuchi.nocu - this.phieuchi.tongchi;
+        switch (this.loaiphieuchi) {
+            case 'khac':
+                this.phieuchi.nocu = null;
+                this.phieuchi.conno = null;
+                return;
+                break;
+            case 'lenhvay':
+                this.phieuchi.tongchi = this.phieuchi.sotienchi_lenhvay + this.phieuchi.sotienchi_laixuat;
+                this.phieuchi.nocu = null;
+                this.phieuchi.conno = null;
+                return;
+                break;
+            case 'khachhang':
+                this.phieuchi.conno = this.phieuchi.nocu + this.phieuchi.tongchi;
+                break;
+            case 'nhacungcap':
+                this.phieuchi.conno = this.phieuchi.nocu - this.phieuchi.tongchi;
+                break;
+        }
 
         // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
-        if (this.loaiphieuchi == 'khac') return; // thu khác không làm gì nữa
+        // if (this.loaiphieuchi == 'khac') return; // thu khác không làm gì nữa
         let sotienchidu: number = 0;
         let tongchi_chitiet: number = 0;
 

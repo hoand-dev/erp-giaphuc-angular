@@ -1,5 +1,3 @@
-
-
 export class PhieuChi {
     public phieuchi_phieunhapkhos: PhieuChi_PhieuNhapKho[];
     public phieuchi_phieunhapkhos_old: PhieuChi_PhieuNhapKho[];
@@ -14,8 +12,6 @@ export class PhieuChi {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
     public malenhvay: string;
-
-
 
     public id: number;
     public chinhanh_id: number;
@@ -57,7 +53,6 @@ export class PhieuChi {
     public donvigiacong_id: number;
     public khogiacong_id: number;
 
- 
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -69,7 +64,7 @@ export class PhieuChi {
         ghichu: string = null,
         ids: number = null,
         sort: string = null,
-        ngaychi: Date = new Date,
+        ngaychi: Date = new Date(),
         maphieuchi: string = null,
         loaiphieuchi: string = null,
         chungtu: string = null,
@@ -106,8 +101,7 @@ export class PhieuChi {
         phieuchi_phieunhapkhos: PhieuChi_PhieuNhapKho[] = [],
         phieuchi_phieunhapkhos_old: PhieuChi_PhieuNhapKho[] = [],
 
-        malenhvay: string =null
-
+        malenhvay: string = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -149,7 +143,6 @@ export class PhieuChi {
         this.donvigiacong_id = donvigiacong_id;
         this.khogiacong_id = khogiacong_id;
 
-       
         this.nocu = nocu;
         this.tongchi = tongchi;
         this.conno = conno;
@@ -175,14 +168,12 @@ export class PhieuChi_PhieuNhapKho {
     public sotienchi_dagiam: number;
     public chuthich: string;
 
-
     public ngaynhapkho: Date;
     public maphieunhapkho: string;
     public cothuevat: boolean;
     public thuevat: number;
     public tongthanhtien: number;
     public sotienchitruoc: number;
-
 
     constructor(
         id: number = null,
@@ -198,11 +189,9 @@ export class PhieuChi_PhieuNhapKho {
         sotienchi_dagiam: number = 0,
         chuthich: string = null,
         cothuevat: boolean = null,
-        thuevat:number = 0,
+        thuevat: number = 0,
         tongthanhtien: number = 0,
-        sotienchitruoc: number = 0,
-
-
+        sotienchitruoc: number = 0
     ) {
         this.id = id;
         this.phieuchi_id = phieuchi_id;
@@ -220,6 +209,5 @@ export class PhieuChi_PhieuNhapKho {
         this.thuevat = thuevat;
         this.tongthanhtien = tongthanhtien;
         this.sotienchitruoc = sotienchitruoc;
-
     }
 }

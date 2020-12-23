@@ -127,9 +127,7 @@ export class PhieuThuThemMoiComponent implements OnInit {
         // loaiphieuthu=khogiacong
         // loaiphieuthu=donvigiacong
 
-        let arrLoaiPhieuThu: string [] = [
-            'khac', 'khachhang', 'nhacungcap', 'khogiacong', 'donvigiacong'
-        ];
+        let arrLoaiPhieuThu: string[] = ['khac', 'khachhang', 'nhacungcap', 'khogiacong', 'donvigiacong'];
 
         // kiểm tra queryParams
         this.subscriptions.add(
@@ -158,11 +156,9 @@ export class PhieuThuThemMoiComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.khachHang_LoadNoCu(this.phieuthu.khachhang_id, this.currentChiNhanh.id, this.phieuthu.sort).subscribe((data) => {
                     this.phieuthu.nocu = data;
+                    this.onTinhNoConLai();
                 })
             );
-
-            // tính tiền
-            this.onTinhNoConLai();
 
             // lấy danh sách phiếu xuất kho
             this.subscriptions.add(
@@ -183,11 +179,9 @@ export class PhieuThuThemMoiComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.nhaCungCap_LoadNoCu(this.phieuthu.nhacungcap_id, this.currentChiNhanh.id, this.phieuthu.sort).subscribe((data) => {
                     this.phieuthu.nocu = data;
+                    this.onTinhNoConLai();
                 })
             );
-
-            // tính tiền
-            this.onTinhNoConLai();
 
             // lấy danh sách phiếu xuất kho
             this.subscriptions.add(
@@ -265,12 +259,22 @@ export class PhieuThuThemMoiComponent implements OnInit {
 
     private onTinhNoConLai() {
         this.phieuthu.tongthu = this.phieuthu.sotienthu + this.phieuthu.sotiengiam;
-
-        // ? nếu thu khác còn nợ = 0
-        this.phieuthu.conno = this.loaiphieuthu == "khac" ? 0 : this.phieuthu.nocu - this.phieuthu.tongthu;
+        switch (this.loaiphieuthu) {
+            case 'khac':
+                // ? nếu thu khác còn nợ = 0
+                this.phieuthu.conno = 0;
+                return;
+                break;
+            case 'khachhang':
+                this.phieuthu.conno = this.phieuthu.nocu - this.phieuthu.tongthu;
+                break;
+            case 'nhacungcap':
+                this.phieuthu.conno = this.phieuthu.nocu + this.phieuthu.tongthu;
+                break;
+        }
 
         // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
-        if(this.loaiphieuthu == "khac") return; // thu khác không làm gì nữa
+        // if(this.loaiphieuthu == "khac") return; // thu khác không làm gì nữa
         let sotienthudu: number = 0;
         let tongthu_chitiet: number = 0;
 
