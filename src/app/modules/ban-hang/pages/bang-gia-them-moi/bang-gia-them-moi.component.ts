@@ -9,9 +9,9 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-bang-gia-them-moi',
-  templateUrl: './bang-gia-them-moi.component.html',
-  styleUrls: ['./bang-gia-them-moi.component.css']
+    selector: 'app-bang-gia-them-moi',
+    templateUrl: './bang-gia-them-moi.component.html',
+    styleUrls: ['./bang-gia-them-moi.component.css']
 })
 export class BangGiaThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmPhieuDatHang: DxFormComponent;
@@ -35,7 +35,6 @@ export class BangGiaThemMoiComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: BangGia_ChiTiet[] = [];
-
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -71,8 +70,7 @@ export class BangGiaThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
-
-             })
+            })
         );
 
         this.subscriptions.add(
@@ -117,7 +115,6 @@ export class BangGiaThemMoiComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-
         // xử lý trước khi thoát khỏi trang
         this.subscriptions.unsubscribe();
     }
@@ -133,15 +130,8 @@ export class BangGiaThemMoiComponent implements OnInit {
             this.banggia.tenkhachhang = khachhang.tenkhachhang;
             this.banggia.diachi = khachhang.diachi;
             this.banggia.sodienthoai = khachhang.sodienthoai;
-            
-                
         }
-
-    
-        
     }
-
-    
 
     public onHangHoaAdd() {
         this.hanghoas.push(new BangGia_ChiTiet());
@@ -160,6 +150,7 @@ export class BangGiaThemMoiComponent implements OnInit {
         this.hanghoas[index].dvt_id = selected.dvt_id;
         this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
         this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
+        this.hanghoas[index].dongiacothue = this.hanghoas[index].dongia;
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
@@ -180,11 +171,7 @@ export class BangGiaThemMoiComponent implements OnInit {
                 this.hanghoas[index].dongia = e.value;
                 break;
         }
-
-       
     }
-
-    
 
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
@@ -220,5 +207,4 @@ export class BangGiaThemMoiComponent implements OnInit {
         );
         e.preventDefault();
     }
-
 }

@@ -20,7 +20,6 @@ export class PhieuKhachTraHang {
     public khachhang_diachi: string;
     public khachhang_dienthoai: string;
     public tongtienhang: number;
-    public cuocvanchuyen: number;
     public chietkhau: number;
     public thuevat: number;
     public tongthanhtien: number;
@@ -54,7 +53,6 @@ export class PhieuKhachTraHang {
         khachhang_diachi: string = null,
         khachhang_dienthoai: string = null,
         tongtienhang: number = 0,
-        cuocvanchuyen: number = 0,
         chietkhau: number = 0,
         thuevat: number = 0,
         tongthanhtien: number = 0,
@@ -81,7 +79,6 @@ export class PhieuKhachTraHang {
         this.khachhang_diachi = khachhang_diachi;
         this.khachhang_dienthoai = khachhang_dienthoai;
         this.tongtienhang = tongtienhang;
-        this.cuocvanchuyen = cuocvanchuyen;
         this.chietkhau = chietkhau;
         this.thuevat = thuevat;
         this.tongthanhtien = tongthanhtien;

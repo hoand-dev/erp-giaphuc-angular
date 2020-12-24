@@ -207,7 +207,6 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                             this.phieuxuatkho.tumaphieu = data.maphieutrahangncc;
 
                             this.phieuxuatkho.tongtienhang = data.tongtienhang;
-                            this.phieuxuatkho.cuocvanchuyen = data.cuocvanchuyen;
                             this.phieuxuatkho.chietkhau = data.chietkhau;
                             this.phieuxuatkho.thuevat = data.thuevat;
                             this.phieuxuatkho.tongthanhtien = data.tongthanhtien;
@@ -277,7 +276,6 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                             this.phieuxuatkho.tumaphieu = data.maphieubanhang;
                 
                             this.phieuxuatkho.tongtienhang = data.tongtienhang;
-                            this.phieuxuatkho.cuocvanchuyen = data.cuocvanchuyen;
                             this.phieuxuatkho.chietkhau = data.chietkhau;
                             this.phieuxuatkho.thuevat = data.thuevat;
                             this.phieuxuatkho.tongthanhtien = data.tongthanhtien;

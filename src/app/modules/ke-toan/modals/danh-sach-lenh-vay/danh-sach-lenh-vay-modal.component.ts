@@ -8,13 +8,12 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-danh-sach-lenh-vay-modal',
-  templateUrl: './danh-sach-lenh-vay-modal.component.html',
-  styleUrls: ['./danh-sach-lenh-vay-modal.component.css']
+    selector: 'app-danh-sach-lenh-vay-modal',
+    templateUrl: './danh-sach-lenh-vay-modal.component.html',
+    styleUrls: ['./danh-sach-lenh-vay-modal.component.css']
 })
 export class DanhSachLenhVayModalComponent implements OnInit {
-
-  private subscriptions: Subscription = new Subscription();
+    private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
     public closeBtnName: string;
@@ -22,7 +21,7 @@ export class DanhSachLenhVayModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
@@ -30,11 +29,7 @@ export class DanhSachLenhVayModalComponent implements OnInit {
         storageKey: 'dxGrid_ModalLenhVay'
     };
 
-    constructor(
-        public bsModalRef: BsModalRef, 
-        private objLenhVayService: LenhVayService,
-        private authenticationService: AuthenticationService) 
-        {}
+    constructor(public bsModalRef: BsModalRef, private objLenhVayService: LenhVayService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -43,10 +38,12 @@ export class DanhSachLenhVayModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -61,7 +58,7 @@ export class DanhSachLenhVayModalComponent implements OnInit {
         this.subscriptions.add(
             this.objLenhVayService.findLenhVays(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter(x => x.trangthaichi != ETrangThaiPhieu.danhan);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthaichi != ETrangThaiPhieu.dachi);
                 },
                 (error) => {
                     this.objLenhVayService.handleError(error);

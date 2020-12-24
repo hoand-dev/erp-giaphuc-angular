@@ -186,11 +186,11 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             );
 
             // lấy danh sách phiếu xuất kho
-            this.subscriptions.add(
-                this.phieucantruService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieucantru.khachhang_id, null).subscribe((data) => {
-                    this.phieuxuatkhos = data;
-                })
-            );
+            // this.subscriptions.add(
+            //     this.phieucantruService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieucantru.khachhang_id, null).subscribe((data) => {
+            //         this.phieuxuatkhos = data;
+            //     })
+            // );
         }
 
         if (e.dataField == 'nhacungcap_id' && e.value !== undefined && e.value !== null) {
@@ -202,11 +202,11 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             );
 
             // lấy danh sách phiếu nhập kho
-            this.subscriptions.add(
-                this.phieucantruService.findPhieuNhapKhos(this.currentChiNhanh.id, null, this.phieucantru.nhacungcap_id).subscribe((data) => {
-                    this.phieunhapkhos = data;
-                })
-            );
+            // this.subscriptions.add(
+            //     this.phieucantruService.findPhieuNhapKhos(this.currentChiNhanh.id, null, this.phieucantru.nhacungcap_id).subscribe((data) => {
+            //         this.phieunhapkhos = data;
+            //     })
+            // );
         }
 
         if (e.dataField == 'donvigiacong_id' && e.value !== undefined && e.value !== null) {

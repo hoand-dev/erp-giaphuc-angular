@@ -177,10 +177,9 @@ export class PhieuThuCapNhatComponent implements OnInit {
 
     onFormFieldChanged(e) {
         if (e.dataField == 'khachhang_id' && e.value !== undefined && e.value !== null) {
-            
             // lấy thông tin khách hàng
             // ? kiểm tra load lần dầu
-            if(!this.isLoadLanDau){
+            if (!this.isLoadLanDau) {
                 let khachhang = this.lstKhachHang.find((x) => x.id == this.phieuthu.khachhang_id);
                 this.phieuthu.nguoinop_hoten = khachhang.tenkhachhang;
                 this.phieuthu.nguoinop_diachi = khachhang.diachi;
@@ -191,16 +190,7 @@ export class PhieuThuCapNhatComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.khachHang_LoadNoCu(this.phieuthu.khachhang_id, this.currentChiNhanh.id, this.phieuthu.sort).subscribe((data) => {
                     this.phieuthu.nocu = data;
-                })
-            );
-
-            // tính tiền
-            this.onTinhNoConLai();
-
-            // lấy danh sách phiếu xuất kho
-            this.subscriptions.add(
-                this.phieuthuService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieuthu.khachhang_id, this.phieuthu.nhacungcap_id).subscribe((data) => {
-                    this.phieuxuatkhos = data;
+                    this.onTinhNoConLai();
                 })
             );
         }
@@ -208,27 +198,18 @@ export class PhieuThuCapNhatComponent implements OnInit {
         if (e.dataField == 'nhacungcap_id' && e.value !== undefined && e.value !== null) {
             // lấy thông tin khách hàng
             // ? kiểm tra load lần dầu
-            if(!this.isLoadLanDau){
+            if (!this.isLoadLanDau) {
                 let nhacungcap = this.lstNhaCungCap.find((x) => x.id == this.phieuthu.nhacungcap_id);
                 this.phieuthu.nguoinop_hoten = nhacungcap.tennhacungcap;
                 this.phieuthu.nguoinop_diachi = nhacungcap.diachi;
                 this.phieuthu.nguoinop_dienthoai = nhacungcap.sodienthoai;
             }
-            
+
             // lấy nợ cũ
             this.subscriptions.add(
                 this.commonService.nhaCungCap_LoadNoCu(this.phieuthu.nhacungcap_id, this.currentChiNhanh.id, this.phieuthu.sort).subscribe((data) => {
                     this.phieuthu.nocu = data;
-                })
-            );
-
-            // tính tiền
-            this.onTinhNoConLai();
-
-            // lấy danh sách phiếu xuất kho
-            this.subscriptions.add(
-                this.phieuthuService.findPhieuXuatKhos(this.currentChiNhanh.id, this.phieuthu.khachhang_id, this.phieuthu.nhacungcap_id).subscribe((data) => {
-                    this.phieuxuatkhos = data;
+                    this.onTinhNoConLai();
                 })
             );
         }
@@ -301,12 +282,22 @@ export class PhieuThuCapNhatComponent implements OnInit {
 
     private onTinhNoConLai() {
         this.phieuthu.tongthu = this.phieuthu.sotienthu + this.phieuthu.sotiengiam;
-
-        // ? nếu thu khác còn nợ = 0
-        this.phieuthu.conno = this.loaiphieuthu == "khac" ? 0 : this.phieuthu.nocu - this.phieuthu.tongthu;
+        switch (this.loaiphieuthu) {
+            case 'khac':
+                // ? nếu thu khác còn nợ = 0
+                this.phieuthu.conno = 0;
+                return;
+                break;
+            case 'khachhang':
+                this.phieuthu.conno = this.phieuthu.nocu - this.phieuthu.tongthu;
+                break;
+            case 'nhacungcap':
+                this.phieuthu.conno = this.phieuthu.nocu + this.phieuthu.tongthu;
+                break;
+        }
 
         // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
-        if(this.loaiphieuthu == "khac") return; // thu khác không làm gì nữa
+        // if(this.loaiphieuthu == "khac") return; // thu khác không làm gì nữa
         let sotienthudu: number = 0;
         let tongthu_chitiet: number = 0;
 

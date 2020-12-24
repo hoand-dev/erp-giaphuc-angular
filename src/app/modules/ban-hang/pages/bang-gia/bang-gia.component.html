@@ -52,9 +52,12 @@
                                 </div>
                             </dxi-column>
 
-                            <dxi-column dataField="ngaybanggia" dataType="datetime" caption="ngày bảng giá"></dxi-column>
+                            <dxi-column dataField="ngaybanggia" dataType="datetime" caption="Ngày lập"></dxi-column>
+                            <dxi-column dataField="ngaycohieuluc" dataType="datetime" caption="Ngày có hiệu lực"></dxi-column>
                             <dxi-column dataField="mabanggia" caption="Mã phiếu"></dxi-column>
                             <dxi-column dataField="tenkhachhang" caption="Tên khách hàng"></dxi-column>
+                            <dxi-column dataField="diadiemgiao" caption="Địa điểm giao"></dxi-column>
+                            <dxi-column dataField="dkthanhtoan" caption="ĐK thanh toán"></dxi-column>
                            
                             <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">

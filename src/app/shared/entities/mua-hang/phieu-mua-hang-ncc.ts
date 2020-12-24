@@ -18,7 +18,6 @@ export class PhieuMuaHangNCC {
     public tongtienhang: number;
     public thuevat: number;
     public chietkhau: number;
-    public cuocvanchuyen: number;
     public tongthanhtien: number;
     public trangthainhap: string;
     public phieudathangncc_id: number;
@@ -51,7 +50,6 @@ export class PhieuMuaHangNCC {
         tongtienhang: number = 0,
         thuevat: number = 0,
         chietkhau: number = 0,
-        cuocvanchuyen: number = 0,
         tongthanhtien: number = 0,
         trangthainhap: string = null,
         phieudathangncc_id: number = null
@@ -72,7 +70,6 @@ export class PhieuMuaHangNCC {
         this.tongtienhang = tongtienhang;
         this.thuevat = thuevat;
         this.chietkhau = chietkhau;
-        this.cuocvanchuyen = cuocvanchuyen;
         this.tongthanhtien = tongthanhtien;
         this.trangthainhap = trangthainhap;
         this.phieudathangncc_id = phieudathangncc_id;
