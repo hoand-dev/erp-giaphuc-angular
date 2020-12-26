@@ -35,16 +35,8 @@ export class PhieuChi {
     public quychi_id: number;
     public noidungthuchi_id: number;
     public sotienchi: number;
-    public sotienchi_vat: number;
-    public sotienchi_khongvat: number;
     public sotiengiam: number;
-    public sotiengiam_vat: number;
-    public sotiengiam_khongvat: number;
     public sotienchi_du: number;
-    public sotienchi_duvat: number;
-    public sotienchi_dukhongvat: number;
-    public sotienchi_congnobandau: number;
-    public sotienchi_dagiam: number;
     public lenhvay_id: number;
     public sotienchi_lenhvay: number;
     public sotienchi_laixuat: number;
@@ -76,16 +68,8 @@ export class PhieuChi {
         quychi_id: number = null,
         noidungthuchi_id: number = null,
         sotienchi: number = 0,
-        sotienchi_vat: number = 0,
-        sotienchi_khongvat: number = 0,
         sotiengiam: number = 0,
-        sotiengiam_vat: number = 0,
-        sotiengiam_khongvat: number = 0,
         sotienchi_du: number = null,
-        sotienchi_duvat: number = null,
-        sotienchi_dukhongvat: number = null,
-        sotienchi_congnobandau: number = null,
-        sotienchi_dagiam: number = 0,
         lenhvay_id: number = null,
         sotienchi_lenhvay: number = null,
         sotienchi_laixuat: number = null,
@@ -125,16 +109,8 @@ export class PhieuChi {
         this.quychi_id = quychi_id;
         this.noidungthuchi_id = noidungthuchi_id;
         this.sotienchi = sotienchi;
-        this.sotienchi_vat = sotienchi_vat;
-        this.sotienchi_khongvat = sotienchi_khongvat;
         this.sotiengiam = sotiengiam;
-        this.sotiengiam_vat = sotiengiam_vat;
-        this.sotiengiam_khongvat = sotiengiam_khongvat;
         this.sotienchi_du = sotienchi_du;
-        this.sotienchi_duvat = sotienchi_duvat;
-        this.sotienchi_dukhongvat = sotienchi_dukhongvat;
-        this.sotienchi_congnobandau = sotienchi_congnobandau;
-        this.sotienchi_dagiam = sotienchi_dagiam;
         this.lenhvay_id = lenhvay_id;
         this.sotienchi_lenhvay = sotienchi_lenhvay;
         this.sotienchi_laixuat = sotienchi_laixuat;
@@ -160,12 +136,7 @@ export class PhieuChi_PhieuNhapKho {
     public phieunhapkho_id: number;
     public loaiphieunhapkho: string;
     public sotienchi: number;
-    public sotienchi_vat: number;
-    public sotienchi_khongvat: number;
     public sotiengiam: number;
-    public sotiengiam_vat: number;
-    public sotiengiam_khongvat: number;
-    public sotienchi_dagiam: number;
     public chuthich: string;
 
     public ngaynhapkho: Date;
@@ -181,12 +152,7 @@ export class PhieuChi_PhieuNhapKho {
         phieunhapkho_id: number = null,
         loaiphieunhapkho: string = null,
         sotienchi: number = 0,
-        sotienchi_vat: number = 0,
-        sotienchi_khongvat: number = 0,
         sotiengiam: number = 0,
-        sotiengiam_vat: number = 0,
-        sotiengiam_khongvat: number = 0,
-        sotienchi_dagiam: number = 0,
         chuthich: string = null,
         cothuevat: boolean = null,
         thuevat: number = 0,
@@ -198,12 +164,7 @@ export class PhieuChi_PhieuNhapKho {
         this.phieunhapkho_id = phieunhapkho_id;
         this.loaiphieunhapkho = loaiphieunhapkho;
         this.sotienchi = sotienchi;
-        this.sotienchi_vat = sotienchi_vat;
-        this.sotienchi_khongvat = sotienchi_khongvat;
         this.sotiengiam = sotiengiam;
-        this.sotiengiam_vat = sotiengiam_vat;
-        this.sotiengiam_khongvat = sotiengiam_khongvat;
-        this.sotienchi_dagiam = sotienchi_dagiam;
         this.chuthich = chuthich;
         this.cothuevat = cothuevat;
         this.thuevat = thuevat;

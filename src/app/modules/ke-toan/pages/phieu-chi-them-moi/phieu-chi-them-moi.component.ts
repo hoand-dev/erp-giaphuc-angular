@@ -317,6 +317,9 @@ export class PhieuChiThemMoiComponent implements OnInit {
             case 'nhacungcap':
                 this.phieuchi.conno = this.phieuchi.nocu - this.phieuchi.tongchi;
                 break;
+            case 'donvigiacong':
+                this.phieuchi.conno = this.phieuchi.nocu - this.phieuchi.tongchi;
+                break;
         }
 
         // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
