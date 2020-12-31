@@ -173,6 +173,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         } else {
             // xử lý lại thông tin dựa trên lựa chọn
             this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].loainguyenlieu = selected.loaihanghoa;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien_chiphi = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
