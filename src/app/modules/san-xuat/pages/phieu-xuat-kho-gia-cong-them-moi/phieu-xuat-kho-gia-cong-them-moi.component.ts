@@ -211,7 +211,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
     }
 
     displayExprHangHoa(item) {
-        return item && item.tenhanghoa + ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
+        return item && item.tenhanghoa ; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
     }
 
     public onHangHoaAdd() {
