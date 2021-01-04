@@ -88,6 +88,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
                 this.subscriptions.add(
                     this.khohangService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
@@ -100,20 +101,19 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
                         });
                     })
                 );
-            })
-        );
 
-        this.loadingVisible = true;
-        this.subscriptions.add(
-            this.donvigiacongService.findDonViGiaCongs().subscribe((x) => {
-                this.loadingVisible = false;
-                this.lstDonViGiaCong = x;
-
-                this.dataSource_DonViGiaCong = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
+                this.subscriptions.add(
+                    this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                        this.loadingVisible = false;
+                        this.lstDonViGiaCong = x;
+        
+                        this.dataSource_DonViGiaCong = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
 
@@ -211,7 +211,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
     }
 
     displayExprHangHoa(item) {
-        return item && item.tenhanghoa + ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
+        return item && item.tenhanghoa ; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
     }
 
     public onHangHoaAdd() {

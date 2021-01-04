@@ -1,37 +1,49 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DonViGiaCong } from '@app/shared/entities';
-import { DonViGiaCongService } from '@app/shared/services';
-import { AuthenticationService } from '@app/_services';
+import { PhieuNhapKhoGiaCong } from '@app/shared/entities';
+import { PhieuNhapKhoGiaCongService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
+import * as moment from 'moment';
+import { AuthenticationService } from '@app/_services';
+import Swal from 'sweetalert2';
+
 @Component({
-    selector: 'app-don-vi-gia-cong',
-    templateUrl: './don-vi-gia-cong.component.html',
-    styleUrls: ['./don-vi-gia-cong.component.css']
+    selector: 'app-phieu-nhap-kho-gia-cong',
+    templateUrl: './phieu-nhap-kho-gia-cong.component.html',
+    styleUrls: ['./phieu-nhap-kho-gia-cong.component.css']
 })
-export class DonViGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
+    private subscriptions: Subscription = new Subscription();
+
+    /* khai báo thời gian bắt đầu và thời gian kết thúc */
+    public firstDayTime: Date;
+    public currDayTime: Date = new Date();
 
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
-        storageKey: 'dxGrid_DonViGiaCong'
+        storageKey: 'dxGrid_PhieuNhapKhoGiaCong'
     };
 
-    constructor(private router: Router, private donvigiacongService: DonViGiaCongService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuNhapKhoGiaCongService: PhieuNhapKhoGiaCongService, private authenticationService: AuthenticationService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // khởi tạo thời gian bắt đầu và thời gian kết thúc
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().add(1, 'days').toDate();
+    }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
+
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh /* .pipe(first()) */
                 .subscribe((x) => {
@@ -50,29 +62,49 @@ export class DonViGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe(
+            this.objPhieuNhapKhoGiaCongService.findPhieuNhapKhoGiaCongs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },
                 (error) => {
-                    this.donvigiacongService.handleError(error);
+                    this.objPhieuNhapKhoGiaCongService.handleError(error);
                 }
             )
         );
     }
 
+    addMenuItems(e) { 
+        if (e.row.rowType === "data") {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+            
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+
+            // Add a custom menu item
+            // e.items.push(
+            //     {
+            //         text: "Cập nhật hoá đơn", icon: "edit", visible: true,
+            //         onItemClick: () => {
+            //             let rowData: PhieuNhapKhoGiaCong = e.row.key as PhieuNhapKhoGiaCong;
+            //             this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
+            //         }
+            //     }
+            // );
+        }
+    }
+
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
-        console.log(`donvigiacong_id: ${e.key.id}`);
+        console.log(`objPhieuNhapKhoGiaCong_id: ${e.key.id}`);
     }
 
     onRowDelete(id) {
-        let result = confirm('<i>Bạn có muốn xóa đơn vị gia công này?</i>', 'Xác nhận xóa');
+        let result = confirm('<i>Bạn có muốn xóa phiếu này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
                 this.subscriptions.add(
-                    this.donvigiacongService.deleteDonViGiaCong(id).subscribe(
+                    this.objPhieuNhapKhoGiaCongService.deletePhieuNhapKhoGiaCong(id).subscribe(
                         (data) => {
                             if (data) {
                                 notify(
@@ -89,7 +121,7 @@ export class DonViGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
                             this.onLoadData();
                         },
                         (error) => {
-                            this.donvigiacongService.handleError(error);
+                            this.objPhieuNhapKhoGiaCongService.handleError(error);
                             // load lại dữ liệu
                             this.onLoadData();
                         }

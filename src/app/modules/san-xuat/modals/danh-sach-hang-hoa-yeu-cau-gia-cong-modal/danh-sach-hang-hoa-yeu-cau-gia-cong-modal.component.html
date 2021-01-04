@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+
+            <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid" [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+                <dxi-column dataField="ngaydathang" dataType="datetime" caption="Ngày đặt"></dxi-column>
+                <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
+                <dxi-column dataField="khachhang" caption="Khách hàng"></dxi-column>
+
+                <dxi-column dataField="tenhanghoa" caption="Hàng hoá"></dxi-column>
+                <dxi-column dataField="yeucau" caption="Yêu cầu"></dxi-column>
+                <dxi-column dataField="somat" caption="Số mặt"></dxi-column>
+                <dxi-column dataField="donvitinh" caption="Đvt"></dxi-column>
+                <dxi-column dataField="soluong" caption="SL"></dxi-column>
+                <dxi-column dataField="tenthanhpham" caption="Thành phẩm"></dxi-column>
+                <dxi-column dataField="chuthich" caption="Ghi chú"></dxi-column>
+
+                <dxi-column dataField="trangthaiyeucau" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                    <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                        <span class="text-green" *ngIf="data.value == null">Chưa yêu cầu</span>
+                        <span class="text-red" *ngIf="data.value != null">{{ data.value }}</span>
+                    </div>
+                </dxi-column>
+
+                <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+
+                <!-- dx-data-grid option -->
+                <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'always'" mode="multiple"></dxo-selection>
+
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                <dxo-paging [pageSize]="9"></dxo-paging>
+                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div>
