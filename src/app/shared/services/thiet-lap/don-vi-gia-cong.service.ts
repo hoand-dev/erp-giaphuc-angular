@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DonViGiaCong } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class DonViGiaCongService extends BaseService {
         return this.httpClient.get<DonViGiaCong>(this.apiUrl + `/${id}`);
     }
 
-    findDonViGiaCongs(): Observable<DonViGiaCong[]> {
-        return this.httpClient.get<DonViGiaCong[]>(this.apiUrl);
+    findDonViGiaCongs(chinhanh_id: number = null): Observable<DonViGiaCong[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('chinhanh_id', chinhanh_id ? chinhanh_id.toString():null);
+        return this.httpClient.get<DonViGiaCong[]>(this.apiUrl, {params: query_params});
     }
 
     addDonViGiaCong(donvigiacong: DonViGiaCong): Observable<DonViGiaCong> {

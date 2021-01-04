@@ -65,19 +65,19 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
-            })
-        );
 
-        this.subscriptions.add(
-            this.donvigiacongService.findDonViGiaCongs().subscribe((x) => {
-                this.loadingVisible = false;
-                this.lstDonViGiaCong = x;
-
-                this.dataSource_DonViGiaCong = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
+                this.subscriptions.add(
+                    this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                        this.loadingVisible = false;
+                        this.lstDonViGiaCong = x;
+        
+                        this.dataSource_DonViGiaCong = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
 
