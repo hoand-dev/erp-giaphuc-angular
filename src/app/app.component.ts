@@ -234,6 +234,7 @@ export class AppComponent implements OnInit {
             "/bang-gia-gia-cong",
             "/phieu-xuat-kho-gia-cong",
             "/phieu-yeu-cau-gia-cong",
+            "/phieu-nhap-kho-gia-cong",
             "/phieu-cap-phat-vat-tu",
         ];
         const MUAHANG = [

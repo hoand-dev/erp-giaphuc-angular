@@ -12,10 +12,19 @@ import { BangGiaGiaCongCapNhatComponent } from './pages/bang-gia-gia-cong-cap-nh
 import { PhieuXuatKhoGiaCongComponent } from './pages/phieu-xuat-kho-gia-cong/phieu-xuat-kho-gia-cong.component';
 import { PhieuXuatKhoGiaCongThemMoiComponent } from './pages/phieu-xuat-kho-gia-cong-them-moi/phieu-xuat-kho-gia-cong-them-moi.component';
 import { PhieuXuatKhoGiaCongCapNhatComponent } from './pages/phieu-xuat-kho-gia-cong-cap-nhat/phieu-xuat-kho-gia-cong-cap-nhat.component';
+import { DanhSachHangHoaYeuCauGiaCongModalComponent } from './modals/danh-sach-hang-hoa-yeu-cau-gia-cong-modal/danh-sach-hang-hoa-yeu-cau-gia-cong-modal.component';
+import { PhieuYeuCauGiaCongComponent } from './pages/phieu-yeu-cau-gia-cong/phieu-yeu-cau-gia-cong.component';
+import { PhieuYeuCauGiaCongThemMoiComponent } from './pages/phieu-yeu-cau-gia-cong-them-moi/phieu-yeu-cau-gia-cong-them-moi.component';
+import { PhieuYeuCauGiaCongCapNhatComponent } from './pages/phieu-yeu-cau-gia-cong-cap-nhat/phieu-yeu-cau-gia-cong-cap-nhat.component';
+import { PhieuNhapKhoGiaCongComponent } from './pages/phieu-nhap-kho-gia-cong/phieu-nhap-kho-gia-cong.component';
+import { PhieuNhapKhoGiaCongThemMoiComponent } from './pages/phieu-nhap-kho-gia-cong-them-moi/phieu-nhap-kho-gia-cong-them-moi.component';
+import { PhieuNhapKhoGiaCongCapNhatComponent } from './pages/phieu-nhap-kho-gia-cong-cap-nhat/phieu-nhap-kho-gia-cong-cap-nhat.component';
+import { DanhSachPhieuYeuCauGiaCongModalComponent } from './modals/danh-sach-phieu-yeu-cau-gia-cong-modal/danh-sach-phieu-yeu-cau-gia-cong-modal.component';
+import { DanhSachLoiModalComponent } from './modals/danh-sach-loi-modal/danh-sach-loi-modal.component';
 
 
 @NgModule({
-    declarations: [PhieuCapPhatVatTuComponent, PhieuCapPhatVatTuThemMoiComponent, PhieuCapPhatVatTuCapNhatComponent, BangGiaGiaCongComponent, BangGiaGiaCongThemMoiComponent, BangGiaGiaCongCapNhatComponent, PhieuXuatKhoGiaCongComponent, PhieuXuatKhoGiaCongThemMoiComponent, PhieuXuatKhoGiaCongCapNhatComponent],
+    declarations: [PhieuCapPhatVatTuComponent, PhieuCapPhatVatTuThemMoiComponent, PhieuCapPhatVatTuCapNhatComponent, BangGiaGiaCongComponent, BangGiaGiaCongThemMoiComponent, BangGiaGiaCongCapNhatComponent, PhieuXuatKhoGiaCongComponent, PhieuXuatKhoGiaCongThemMoiComponent, PhieuXuatKhoGiaCongCapNhatComponent, DanhSachHangHoaYeuCauGiaCongModalComponent, PhieuYeuCauGiaCongComponent, PhieuYeuCauGiaCongThemMoiComponent, PhieuYeuCauGiaCongCapNhatComponent, PhieuNhapKhoGiaCongComponent, PhieuNhapKhoGiaCongThemMoiComponent, PhieuNhapKhoGiaCongCapNhatComponent, DanhSachPhieuYeuCauGiaCongModalComponent, DanhSachLoiModalComponent],
     imports: [
         CommonModule,
         SharedModule,
