@@ -14,20 +14,24 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((err) => {
                 // auto logout if 401 response returned from api
-                if (err.status === 401 || (err.status === 400 && request.url.indexOf('auth-token') != -1)) {
-                    
+                if (err.status === 401) {
                     Swal.fire({
                         title: 'Hết phiên làm việc!',
                         html: 'Đăng nhập lại nhé',
                         icon: 'warning',
                         timer: 3000,
                         timerProgressBar: true
-                    }).then(()=>{
+                    }).then(() => {
                         this.authenticationService.logout(true);
                     });
 
                     return throwError('Hết phiên làm việc');
                 }
+
+                if (err.status === 400 && request.url.indexOf('auth-token') != -1) {
+                    return throwError('Thông tin tài khoản chưa đúng');
+                }
+
                 const error = err.error.message || err.statusText;
                 return throwError(error);
             })

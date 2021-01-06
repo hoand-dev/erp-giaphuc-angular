@@ -6,7 +6,7 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg"> <b>ERP - HỒNG NGHI</b> </p>
+                <p class="login-box-msg"><b>ERP - HỒNG NGHI</b></p>
 
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <div class="form-group mb-2">
@@ -20,12 +20,20 @@
                             placeholder="Nhập tài khoản" /> 
                         -->
 
-                        <dx-select-box id="ChiNhanhSelectBox" class="mt-1" placeholder="Chọn chi nhánh"
-                        (onSelectionChanged)="onChangedChiNhanh($event)"
-                        [value]="chinhanhSelected"
-                         [dataSource]="chinhanhs"
-                            displayExpr="tenchinhanh" [searchMode]="'contains'" [searchExpr]="'tenchinhanh'" [searchTimeout]="500"
-                            [minSearchLength]="0" [searchEnabled]="false">
+                        <dx-select-box
+                            id="ChiNhanhSelectBox"
+                            class="mt-1"
+                            placeholder="Chọn chi nhánh"
+                            (onSelectionChanged)="onChangedChiNhanh($event)"
+                            [value]="chinhanhSelected"
+                            [dataSource]="chinhanhs"
+                            displayExpr="tenchinhanh"
+                            [searchMode]="'contains'"
+                            [searchExpr]="'tenchinhanh'"
+                            [searchTimeout]="500"
+                            [minSearchLength]="0"
+                            [searchEnabled]="false"
+                        >
                         </dx-select-box>
 
                         <!-- <div *ngIf="submitted && f.chinhanh.errors" class="invalid-feedback">
@@ -34,16 +42,20 @@
                     </div>
                     <div class="form-group mb-2">
                         <label>Tài khoản:</label>
-                        <input type="text" formControlName="username" class="form-control form-control-sm"
-                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Nhập tài khoản" />
+                        <input type="text" formControlName="username" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Nhập tài khoản" />
                         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                             <div *ngIf="f.username.errors.required">Vui lòng nhập tên tài khoản</div>
                         </div>
                     </div>
                     <div class="form-group mb-2">
                         <label>Mật khẩu:</label>
-                        <input type="password" formControlName="password" class="form-control form-control-sm"
-                            placeholder="Nhập mật khẩu" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <input
+                            type="password"
+                            formControlName="password"
+                            class="form-control form-control-sm"
+                            placeholder="Nhập mật khẩu"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                        />
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Vui lòng nhập mật khẩu</div>
                         </div>
@@ -51,10 +63,8 @@
                     <div class="row">
                         <div class="col-8" hidden>
                             <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
+                                <input type="checkbox" id="remember" />
+                                <label for="remember"> Remember Me </label>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -68,19 +78,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <div *ngIf="error" class="text-red mt-3 mb-0">{{error}}</div>
+                            <div *ngIf="error" class="text-red mt-3 mb-0">{{ error }}</div>
                         </div>
                     </div>
                 </form>
 
                 <div hidden class="social-auth-links text-center mb-3">
                     <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                    </a>
+                    <a href="#" class="btn btn-block btn-primary"> <i class="fab fa-facebook mr-2"></i> Sign in using Facebook </a>
+                    <a href="#" class="btn btn-block btn-danger"> <i class="fab fa-google-plus mr-2"></i> Sign in using Google+ </a>
                 </div>
                 <!-- /.social-auth-links -->
 
@@ -95,6 +101,5 @@
         </div>
     </div>
     <!-- /.login-box -->
-
 </div>
 <!-- /.login-page -->

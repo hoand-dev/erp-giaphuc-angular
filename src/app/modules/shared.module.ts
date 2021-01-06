@@ -18,9 +18,10 @@ import {
     DxFormModule,
     DxNumberBoxModule,
     DxTagBoxModule,
-    DxDropDownBoxModule
- 
-    
+    DxDropDownBoxModule,
+    DxPopupModule,
+    DxScrollViewModule,
+    DxListModule
 } from 'devextreme-angular';
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -44,6 +45,9 @@ import { MatTabsModule } from '@angular/material/tabs';
         DxFormModule,
         DxNumberBoxModule,
         DxDropDownBoxModule,
+        DxPopupModule,
+        DxScrollViewModule,
+        DxListModule,
 
         MatTabsModule
     ],
@@ -65,8 +69,11 @@ import { MatTabsModule } from '@angular/material/tabs';
         DxFormModule,
         DxNumberBoxModule,
         DxDropDownBoxModule,
+        DxPopupModule,
+        DxScrollViewModule,
+        DxListModule,
 
         MatTabsModule
     ]
 })
-export class SharedModule { }
+export class SharedModule {}

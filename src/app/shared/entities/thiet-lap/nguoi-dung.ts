@@ -1,4 +1,6 @@
 export class NguoiDung {
+    public permission_codes: string = null;
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -15,7 +17,7 @@ export class NguoiDung {
     public password: string;
     public hoten: string;
     public ngaysinh: Date;
-    public gioitinh: boolean;
+    public gioitinh: string;
     public cmnd: string;
     public dienthoai: string;
     public email: string;
@@ -37,7 +39,7 @@ export class NguoiDung {
         password: string = null,
         hoten: string = null,
         ngaysinh: Date = null,
-        gioitinh: boolean = null,
+        gioitinh: string = null,
         cmnd: string = null,
         dienthoai: string = null,
         email: string = null,
