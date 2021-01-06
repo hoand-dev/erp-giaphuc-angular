@@ -13,6 +13,8 @@ import { ChiNhanh } from './shared/entities';
 import { ChiNhanhService, NguoiDungService } from './shared/services';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 
 @Component({
     selector: 'app-root',
@@ -25,7 +27,8 @@ export class AppComponent implements OnInit {
     currentUser: User = new User();
 
     chinhanhs: ChiNhanh[] = [];
-
+    
+    bsModalRef: BsModalRef;
     fisrtRefreshToken: boolean = true;
 
     /* themes */
@@ -141,6 +144,7 @@ export class AppComponent implements OnInit {
         public authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService,
         private nguoidungService: NguoiDungService,
+        private modalService: BsModalService
     ) {
 
     }
@@ -195,6 +199,17 @@ export class AppComponent implements OnInit {
             });
     }
 
+    onChangePassword(){
+       /* khởi tạo giá trị cho modal */
+       const initialState = {
+            title: 'THAY ĐỔI MẬT KHẨU'
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(ChangePasswordComponent, { class: 'modal-sm modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+    
     activeGroupClass(groupName: string = null){
         const DULIEUCOSO = [
             "/chi-nhanh", 
@@ -271,6 +286,9 @@ export class AppComponent implements OnInit {
             "/thu-chi-noi-dung",
             "/thu-chi-ton-quy",
         ];
+        const HETHONG = [
+            "/nguoi-dung",
+        ];
         
         /* xử lý chuỗi url */
         function indexOf(string, sub, index) {
@@ -298,6 +316,7 @@ export class AppComponent implements OnInit {
             case 'KETOAN': $return = KETOAN.includes($url);     break;
             case 'THONGKE-CONGNO': $return = THONGKE_CONGNO.includes($url); break;
             case 'THONGKE-THUCHI': $return = THONGKE_THUCHI.includes($url); break;
+            case 'HETHONG': $return = HETHONG.includes($url); break;
             default: $return = false; break;
         }
         return $return;

@@ -98,3 +98,6 @@ export * from './nha-cung-cap/nha-cung-cap.component';
 export * from './nha-cung-cap-cap-nhat/nha-cung-cap-cap-nhat.component';
 export * from './nha-cung-cap-them-moi/nha-cung-cap-them-moi.component';
 
+export * from './nguoi-dung/nguoi-dung.component';
+export * from './nguoi-dung-cap-nhat/nguoi-dung-cap-nhat.component';
+export * from './nguoi-dung-them-moi/nguoi-dung-them-moi.component';

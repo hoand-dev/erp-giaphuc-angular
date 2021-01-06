@@ -1,0 +1,115 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/nguoi-dung']">Người dùng</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>{{ 'Người dùng' | uppercase }} - THÊM MỚI</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group float-right">
+                                        <button type="button" class="btn btn-sm btn-primary" (click)="showPopup()">CẤP QUYỀN</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="form-container">
+                            <form (submit)="onSubmitForm($event)">
+                                <dx-form id="form" [colCount]="3" [formData]="nguoidung" [showValidationSummary]="true" labelLocation="top">
+                                    <dxi-item itemType="group" [colSpan]="2" [colCount]="3">
+                                        <dxi-item [label]="{ text: 'HỌ TÊN' }" dataField="hoten">
+                                            <dxi-validation-rule type="required" message="Nhập họ tên"> </dxi-validation-rule>
+                                        </dxi-item>
+                                        <dxi-item [label]="{ text: 'NGÀY SINH' }" dataField="ngaysinh" editorType="dxDateBox" [editorOptions]="{ type: 'date' }"></dxi-item>
+                                        <dxi-item
+                                            [label]="{ text: 'GIỚI TÍNH' }"
+                                            dataField="gioitinh"
+                                            editorType="dxSelectBox"
+                                            [editorOptions]="{ items: lstGioiTinh, searchEnabled: true }"
+                                        ></dxi-item>
+
+                                        <dxi-item [label]="{ text: 'CMND' }" dataField="cmnd"></dxi-item>
+                                        <dxi-item [label]="{ text: 'EMAIL' }" dataField="email"></dxi-item>
+                                        <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="dienthoai"></dxi-item>
+                                        <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="3"></dxi-item>
+                                    </dxi-item>
+
+                                    <dxi-item itemType="group">
+                                        <dxi-item [label]="{ text: 'TÀI KHOẢN' }" dataField="username">
+                                            <dxi-validation-rule type="required" message="Nhập tài khoản"> </dxi-validation-rule>
+                                            <dxi-validation-rule type="stringLength" [min]="2" message="Tài khoản quá ngắn"></dxi-validation-rule>
+                                            <dxi-validation-rule type="async" message="Tài khoản đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
+                                        </dxi-item>
+                                        <dxi-item [label]="{ text: 'MẬT KHẨU' }" dataField="password" [editorOptions]="{ mode: 'password' }">
+                                            <dxi-validation-rule type="required" message="Vui lòng nhập mật khẩu"> </dxi-validation-rule>
+                                        </dxi-item>
+                                        <dxi-item [label]="{ text: 'NHẬP LẠI MẬT KHẨU' }" dataField="password_re" [editorOptions]="{ mode: 'password' }">
+                                            <dxi-validation-rule type="required" message="Vui lòng nhập lại mật khẩu"> </dxi-validation-rule>
+                                            <dxi-validation-rule type="compare" [comparisonTarget]="passwordComparison" message="Mật khẩu không khớp"> </dxi-validation-rule>
+                                        </dxi-item>
+                                    </dxi-item>
+
+                                    <dxi-item itemType="group" [colSpan]="3" [colCount]="3">
+                                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="3"></dxi-item>
+                                        <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+
+                                        <dxi-item [colSpan]="2" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                        </dxi-item
+                                    ></dxi-item>
+                                </dx-form>
+                            </form>
+                        </div>
+
+                        <dx-popup [width]="550" [visible]="popupVisible" [showTitle]="false" [closeOnOutsideClick]="false">
+                            <dx-scroll-view width="100%" height="100%">
+                                <div class="widget-container">
+                                    <dx-list
+                                        #list
+                                        [dataSource]="dataSource_Permission"
+                                        [grouped]="true"
+                                        [collapsibleGroups]="true"
+                                        [searchEnabled]="true"
+                                        [searchExpr]="['maquyen', 'tenquyen']"
+                                        [searchMode]="'contains'"
+                                        [displayExpr]="'tenquyen'"
+                                        [selectionMode]="'all'"
+                                        [selectAllMode]="'allPages'"
+                                        [showSelectionControls]="true"
+                                        [(selectedItemKeys)]="permissionSelected"
+                                    >
+                                    </dx-list>
+                                    <div class="selected-data">
+                                        <span class="caption">Đã chọn: {{ list.selectedItemKeys.length }}</span>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-success btn-bottom" (click)="hidePopup()">XONG ({{ list.selectedItemKeys.length }})</button>
+                            </dx-scroll-view>
+                        </dx-popup>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
