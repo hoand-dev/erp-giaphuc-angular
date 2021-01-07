@@ -325,6 +325,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
                 this.hanghoas[index].thuevat = e.value;
                 if (e.value != 0) {
                     this.phieubanhang.thuevat = 0;
+                    this.phieubanhang.xuathoadon = true;
                 }
                 break;
         }
