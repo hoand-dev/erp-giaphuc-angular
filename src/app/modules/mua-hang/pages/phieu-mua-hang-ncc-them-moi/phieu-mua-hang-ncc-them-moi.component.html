@@ -106,9 +106,9 @@
                                                                 </div>
                                                             </dx-select-box>
                                                         </td>
-                                                        <td>{{ item.soluong | number: '1.0-3' }} {{ item.tendonvitinh }}</td>
+                                                        <td>{{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ item.soluong / item.tilequydoiphu | number: '1.0-3' }} {{ item.tendonvitinhphu }}</td>
+                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
 
                                                         <td>

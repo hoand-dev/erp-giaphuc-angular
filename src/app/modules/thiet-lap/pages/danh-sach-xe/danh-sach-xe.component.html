@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Danh Sách Xe</li>
+                    <li class="breadcrumb-item active">Xe</li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Xe - DANH SÁCH</h5>
+                        <h5 class="card-title">XE - DANH SÁCH</h5>
                         <p class="card-text"></p>
 
                         <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
@@ -62,7 +62,7 @@
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-paging [pageSize]="9"></dxo-paging>
+                            <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
                             </dxo-pager>
                         </dx-data-grid>
