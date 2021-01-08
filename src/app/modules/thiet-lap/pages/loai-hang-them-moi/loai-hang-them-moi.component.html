@@ -31,8 +31,8 @@
                                         </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2"
                                             message="Mã loại hàng quá ngắn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="custom" message="Mã loại hàng đã tồn tại"
-                                            [validationCallback]="asyncValidation"></dxi-validation-rule>
+                                        <dxi-validation-rule type="async" message="Mã loại hàng đã tồn tại"
+                                            [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{text: 'TÊN LOẠI HÀNG'}" dataField="tenloaihang">
                                         <dxi-validation-rule type="required" message="Nhập tên loại hàng">
