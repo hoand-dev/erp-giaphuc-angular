@@ -185,7 +185,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                             this.phieubanhang.phieudathang_id = data.id;
                             this.phieubanhang.nhanviensale_id = data.nhanviensale_id;
                             this.phieubanhang.khoxuat_id = data.khoxuat_id;
-
+                            this.phieubanhang.maphieudathang = data.maphieudathang;
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieudathang_chitiet.length;
 
