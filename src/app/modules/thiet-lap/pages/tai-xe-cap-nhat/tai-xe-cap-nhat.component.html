@@ -31,7 +31,7 @@
                                         </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã tài xế quá ngắn">
                                         </dxi-validation-rule>
-                                        <dxi-validation-rule type="custom" message="Mã tài xế đã tồn tại"
+                                        <dxi-validation-rule type="async" message="Mã tài xế đã tồn tại"
                                             [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{text: 'TÊN TÀI XẾ'}" dataField="tentaixe">

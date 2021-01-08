@@ -8,82 +8,72 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-loai-hang-them-moi',
-  templateUrl: './loai-hang-them-moi.component.html',
-  styleUrls: ['./loai-hang-them-moi.component.css']
+    selector: 'app-loai-hang-them-moi',
+    templateUrl: './loai-hang-them-moi.component.html',
+    styleUrls: ['./loai-hang-them-moi.component.css']
 })
 export class LoaiHangThemMoiComponent implements OnInit {
+    @ViewChild(DxFormComponent, { static: false }) frmLoaiHang: DxFormComponent;
 
-  @ViewChild(DxFormComponent, { static: false }) frmLoaiHang: DxFormComponent;
+    /*tối ưu subscriptions*/
 
-  /*tối ưu subscriptions*/
+    subscriptions: Subscription = new Subscription();
+    private currentChiNhanh: ChiNhanh;
 
-  subscriptions: Subscription = new Subscription();
-  private currentChiNhanh: ChiNhanh;
+    public loaihang: LoaiHang;
+    public saveProcessing = false;
 
-  public loaihang : LoaiHang;
-  public saveProcessing = false;
+    public buttonSubmitOptions: any = {
+        text: 'Lưu lại',
+        type: 'success',
+        useSubmitBehavior: true
+    };
 
-  public buttonSubmitOptions: any = {
-    text: "Lưu lại",
-    type: "success",
-    useSubmitBehavior: true
-  }
+    constructor(private router: Router, private authenticationService: AuthenticationService, private loaihangService: LoaiHangService) {}
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private loaihangService: LoaiHangService,
+    ngAfterViewInit() {}
 
-  ) { }
-
-  ngAfterViewInit() {
-
-  }
-
-  ngOnInit(): void {
-    this.loaihang = new LoaiHang();
-    this.theCallbackValid = this.theCallbackValid.bind(this);
-    this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-  }
-
-  theCallbackValid(params){	
-    return this.loaihangService.checkLoaiHangExist(params.value);
-}
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  asyncValidation(params) {
-    if(params.value == "ssss"){
-      return false;
+    ngOnInit(): void {
+        this.loaihang = new LoaiHang();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
     }
-    return true;
-  }
 
-  onSubmitForm(e) {
-    let loaihang_req = this.loaihang;
-    loaihang_req.chinhanh_id = this.currentChiNhanh.id;
-
-    this.saveProcessing =true;
-    this.subscriptions.add(this.loaihangService.addLoaiHang(loaihang_req).subscribe(
-      data => {
-        notify({
-          width: 320,
-          message: "Lưu thành công",
-          position: { my: "right top", at: "right top" }
-        }, "success", 475);
-        this.router.navigate(["/loai-hang"]);
-        this.frmLoaiHang.instance.resetValues();
-        this.saveProcessing = false;
-    },
-    error => {
-      this.loaihangService.handleError(error);
-      this.saveProcessing = false;
+    theCallbackValid(params) {
+        return this.loaihangService.checkLoaiHangExist(params.value);
     }
-    ));
-    e.preventDefault();
-  }
 
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
+
+    onSubmitForm(e) {
+        let loaihang_req = this.loaihang;
+        loaihang_req.chinhanh_id = this.currentChiNhanh.id;
+
+        this.saveProcessing = true;
+        this.subscriptions.add(
+            this.loaihangService.addLoaiHang(loaihang_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/loai-hang']);
+                    this.frmLoaiHang.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.loaihangService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
+        e.preventDefault();
+    }
 }
