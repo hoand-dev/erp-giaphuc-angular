@@ -45,7 +45,7 @@
                                     <dxi-item [label]="{ text: 'NỘI DUNG THANH TOÁN' }" dataField="noidungthanhtoan" editorType="dxTextArea" [colSpan]="2"></dxi-item>
                                     <dxi-item [label]="{ text: 'THỜI GIAN CÔNG NỢ' }" dataField="thoigiancongno">
                                         <dxi-validation-rule type="required" message="Vui lòng thời gian công nợ"> </dxi-validation-rule>
-                                        <dxi-validation-rule type="range" min="0" max="99" message="Vui lòng nhập thời gian công nợ"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="range" min="0" max="50" message="Công nợ cho phép từ 0 --> 50 ngày"> </dxi-validation-rule>
                                     </dxi-item>
                                         <dxi-item [label]="{ text: 'NGÀY KÝ' }" dataField="ngayky" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                                         <dxi-validation-rule type="required" message="Vui lòng chọn ngày ký"> </dxi-validation-rule>

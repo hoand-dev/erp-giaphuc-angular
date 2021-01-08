@@ -36,6 +36,8 @@ export class PhieuBanHang {
 
     /* các thông tin hiển thị trên view được lấy từ các bảng khác */
     public nocu: number = 0;
+    public maphieudathang: string;
+  
 
     constructor(
         id: number = null,
@@ -66,6 +68,8 @@ export class PhieuBanHang {
         khoxuat_id: number = null,
         trangthaixuat: string = null,
         phieudathang_id: number = null
+
+        
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
