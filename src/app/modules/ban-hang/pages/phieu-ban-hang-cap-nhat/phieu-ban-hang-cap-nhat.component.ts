@@ -54,6 +54,9 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
     // tất toán
     public isTatToan: boolean = false;
 
+    // duyệt giá
+    public isDuyetGia: boolean = false;
+
     public saveProcessing = false;
     public loadingVisible = true;
 
@@ -142,18 +145,20 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             paginate: true,
             pageSize: 50,
             store: new CustomStore({
-                key: "id",
+                key: 'id',
                 load: (loadOptions) => {
-                    return this.commonService.hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieubanhang.khoxuat_id, null, loadOptions)
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieubanhang.khoxuat_id, null, loadOptions)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 },
                 byKey: (key) => {
-                    return this.hanghoaService.findHangHoa(key)
+                    return this.hanghoaService
+                        .findHangHoa(key)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 }
@@ -189,6 +194,9 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             this.activatedRoute.queryParams.subscribe((params) => {
                 if (this.commonService.isNotEmpty(params.tattoan)) {
                     this.isTatToan = true;
+                }
+                if (this.commonService.isNotEmpty(params.duyetgia)) {
+                    this.isDuyetGia = true;
                 }
             })
         );
@@ -334,12 +342,9 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         this.onTinhTien();
     }
 
-
     // tính tiền sau chiết khấu và tổng
     private onTinhTien() {
-
-    // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
-    
+        // tính tổng tiền hàng và tổng thành tiền sau chiết khấu
 
         let tongtienhang: number = 0;
 
@@ -353,22 +358,44 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         this.phieubanhang.tongthanhtien = tongtienhang - tongtienhang * this.phieubanhang.chietkhau + (tongtienhang - tongtienhang * this.phieubanhang.chietkhau) * this.phieubanhang.thuevat;
     }
 
-    onRowDuyetGia(id: number, duyet: boolean) {
+    onDuyetGia() {
+        // hỏi xác nhận 1 lần trước khi duyệt giá
         Swal.fire({
-            title: duyet ? 'DUYỆT GIÁ BÁN?' : 'HUỶ DUYỆT GIÁ?',
-            text: "Bạn có muốn tiếp tục!",
+            title: !this.phieubanhang.duyetgia ? 'DUYỆT GIÁ BÁN?' : 'HUỶ DUYỆT GIÁ?',
+            text: 'Bạn có muốn tiếp tục!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             cancelButtonText: `Không`,
-            confirmButtonText: `Đồng ý, ${duyet ? 'duyệt' : 'huỷ duyệt'}!`
+            confirmButtonText: `Đồng ý, ${!this.phieubanhang.duyetgia ? 'duyệt' : 'huỷ duyệt'}!`
         }).then((result) => {
             if (result.isConfirmed) {
+                // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
+                let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
+                let phieubanhang_req = this.phieubanhang;
+
+                // gán lại dữ liệu
+                phieubanhang_req.chinhanh_id = this.currentChiNhanh.id;
+                phieubanhang_req.phieubanhang_chitiet = hanghoas;
+
+                this.phieubanhang.duyetgia = !this.phieubanhang.duyetgia;
                 this.subscriptions.add(
-                    this.phieubanhangService.updateDuyetGiaPhieuBanHang(id, duyet).subscribe(
-                        (data) => {},
+                    this.phieubanhangService.updateDuyetGiaPhieuBanHang(phieubanhang_req).subscribe(
+                        (data) => {
+                            notify(
+                                {
+                                    width: 320,
+                                    message: (this.phieubanhang.duyetgia ? 'DUYỆT GIÁ' : 'HUỶ DUYỆT GIÁ') + ' THÀNH CÔNG',
+                                    position: { my: 'right top', at: 'right top' }
+                                },
+                                'success',
+                                475
+                            );
+                            this.router.navigate(['/phieu-ban-hang']);
+                        },
                         (error) => {
+                            this.phieubanhang.duyetgia = !this.phieubanhang.duyetgia;
                             this.phieubanhangService.handleError(error);
                         }
                     )
@@ -376,7 +403,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             }
         });
     }
-    
+
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
@@ -386,9 +413,9 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         phieubanhang_req.chinhanh_id = this.currentChiNhanh.id;
         phieubanhang_req.phieubanhang_chitiet = hanghoas;
 
+        // chỉnh sửa trên function này nhớ kiểm tra func onDuyetGia()
         this.saveProcessing = true;
-
-        if(this.isTatToan)
+        if (this.isTatToan)
             this.subscriptions.add(
                 this.phieubanhangService.updateTatToanPhieuBanHang(phieubanhang_req).subscribe(
                     (data) => {

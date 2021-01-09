@@ -40,12 +40,8 @@ export class PhieuBanHangService extends BaseService {
         return this.httpClient.put<PhieuBanHang>(this.apiUrl + `/tattoan`, phieubanhang);
     }
 
-    updateDuyetGiaPhieuBanHang(phieubanhang_id: number, duyet: boolean): Observable<boolean> {
-        let dataReq = {
-            phieubanhang_id: phieubanhang_id,
-            duyet: duyet
-        };
-        return this.httpClient.put<boolean>(this.apiUrl + `/duyetgia`, dataReq);
+    updateDuyetGiaPhieuBanHang(phieubanhang: PhieuBanHang): Observable<boolean> {
+        return this.httpClient.put<boolean>(this.apiUrl + `/duyetgia`, phieubanhang);
     }
 
     deletePhieuBanHang(id: number): Observable<PhieuBanHang> {

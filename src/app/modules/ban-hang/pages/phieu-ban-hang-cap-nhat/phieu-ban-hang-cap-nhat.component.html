@@ -34,7 +34,7 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="phieubanhang" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY BÁN HÀNG' }" dataField="ngaybanhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan }">
+                                    <dxi-item [label]="{ text: 'NGÀY BÁN HÀNG' }" dataField="ngaybanhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan || isDuyetGia }">
                                         <dxi-validation-rule type="required" message="Chọn ngày ngày bán hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
@@ -42,7 +42,7 @@
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhachhang', readOnly: isTatToan }"
+                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhachhang', readOnly: isTatToan || isDuyetGia }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -50,7 +50,7 @@
 
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan }">
+                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan || isDuyetGia }">
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
 
@@ -60,7 +60,7 @@
                                         [label]="{ text: 'KHO HÀNG' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang', readOnly: isTatToan }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang', readOnly: isTatToan || isDuyetGia }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -70,14 +70,14 @@
                                         [label]="{ text: 'NHÂN VIÊN KINH DOANH' }"
                                         dataField="nhanviensale_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten', readOnly: isTatToan }"
+                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten', readOnly: isTatToan || isDuyetGia }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0.###' }">
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0%', step: '0.01', readOnly: isTatToan }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0%', step: '0.01', readOnly: isTatToan }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0%', step: '0.01', readOnly: isTatToan || isDuyetGia }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0%', step: '0.01', readOnly: isTatToan || isDuyetGia }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0.###' }">
                                     </dxi-item>
 
@@ -86,7 +86,7 @@
                                         [label]="{ text: 'CÓ LẤY THUẾ' }"
                                         dataField="xuathoadon"
                                         editorType="dxCheckBox"
-                                        [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 || isTatToan }"
+                                        [editorOptions]="{ text: 'Có lấy thuế', readOnly: phieubanhang.thuevat != 0 || isTatToan || isDuyetGia }"
                                     >
                                         <dxi-validation-rule type="async" message="Vui lòng nhấn vào ô có lấy VAT" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
@@ -105,18 +105,18 @@
                                                         <th [style.min-width.px]="75">CK</th>
                                                         <th [style.min-width.px]="75">VAT</th>
                                                         <th [style.min-width.px]="120">THÀNH TIỀN</th>
-                                                        <th [style.min-width.px]="100">ĐÃ NHẬN</th>
+                                                        <th [style.min-width.px]="100">ĐÃ XUẤT</th>
                                                         <th [style.min-width.px]="80">CÒN LẠI</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
                                                         <th [style.min-width.px]="250">TÊN IN RA</th>
-                                                        <th *ngIf="!isTatToan" [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                        <th *ngIf="!isTatToan && !isDuyetGia" [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
                                                         <td>
                                                             <dx-select-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || isDuyetGia"
                                                                 id="nguyenlieu_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"
@@ -143,7 +143,7 @@
                                                         <td>
                                                             <dx-number-box
                                                                 format="#,##0.###"
-                                                                [readOnly]="!isTatToan"
+                                                                [readOnly]="!isTatToan || isDuyetGia"
                                                                 [max]="item.soluong - item.soluongdaxuat"
                                                                 [(value)]="item.soluongtattoan"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
@@ -152,7 +152,7 @@
                                                         <td>
                                                             <dx-number-box
                                                                 format="#,##0.###"
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || isDuyetGia"
                                                                 [(value)]="item.soluong"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                             ></dx-number-box>
@@ -167,7 +167,7 @@
                                                         </td>
                                                         <td>
                                                             <dx-number-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || isDuyetGia"
                                                                 format="#0%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.chietkhau"
@@ -176,7 +176,7 @@
                                                         </td>
                                                         <td>
                                                             <dx-number-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || isDuyetGia"
                                                                 format="#0%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.thuevat"
@@ -192,14 +192,18 @@
                                                         <td>
                                                             <dx-text-box [(value)]="item.tenhanghoa_inphieu"></dx-text-box>
                                                         </td>
-                                                        <td *ngIf="!isTatToan"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
+                                                        <td *ngIf="!isTatToan && !isDuyetGia"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
-                                                    <dxi-validation-rule type="required" message="Vui lòng chọn hàng hóa"></dxi-validation-rule>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="6" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    <dxi-item [colSpan]="6" *ngIf="!this.isDuyetGia" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"></dxi-item>
+
+                                    <dxi-item [colSpan]="6" *ngIf="this.isDuyetGia">
+                                        <div *dxTemplate>
+                                            <dx-button [style.float]="'right'" stylingMode="contained" [text]="(this.phieubanhang.duyetgia ? 'Huỷ duyệt' : 'Duyệt')" type="success" [width]="120" (onClick)="onDuyetGia()"> </dx-button>
+                                        </div>
                                     </dxi-item>
                                 </dx-form>
                             </form>

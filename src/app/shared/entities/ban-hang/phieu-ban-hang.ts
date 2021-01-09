@@ -31,6 +31,7 @@ export class PhieuBanHang {
     public trangthaixuat: string;
     public phieudathang_id: number;
     public trangthaitra: string;
+    public duyetgia: boolean;
 
     public phieubanhang_chitiet: PhieuBanHang_ChiTiet[];
 
@@ -67,9 +68,8 @@ export class PhieuBanHang {
         xuathoadon: boolean = null,
         khoxuat_id: number = null,
         trangthaixuat: string = null,
-        phieudathang_id: number = null
-
-        
+        duyetgia: boolean = false,
+        phieudathang_id: number = null        
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -98,6 +98,7 @@ export class PhieuBanHang {
         this.xuathoadon = xuathoadon;
         this.khoxuat_id = khoxuat_id;
         this.trangthaixuat = trangthaixuat;
+        this.duyetgia = duyetgia;
         this.phieudathang_id = phieudathang_id;
     }
 }
