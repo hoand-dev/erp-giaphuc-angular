@@ -23,7 +23,7 @@ export class KhachHangComponent implements OnInit {
     private currentChiNhanh = ChiNhanh;
 
     public stateStoringGrid = {
-        enable: true,
+        enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_KhachHang'
     };

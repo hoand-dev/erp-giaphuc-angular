@@ -28,7 +28,7 @@ export class BangGiaComponent implements OnInit {
     public timeCreateAt: Date = new Date();
 
     public stateStoringGrid = {
-        enable: true,
+        enabled: true,
         type: 'localStorage',
         storageKey: ' dxGrid_BangGia'
     };

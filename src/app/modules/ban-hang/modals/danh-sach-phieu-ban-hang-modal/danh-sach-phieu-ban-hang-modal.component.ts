@@ -27,7 +27,7 @@ export class DanhSachPhieuBanHangModalComponent implements OnInit {
 
     @ViewChild(DxDataGridComponent) dataGrird: DxDataGridComponent;
     public stateStoringGrid = {
-        enable: true,
+        enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_ModalPhieuBanHang'
     };

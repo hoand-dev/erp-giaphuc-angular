@@ -29,7 +29,7 @@ export class PhieuBanHangComponent implements OnInit {
     
 
     public stateStoringGrid = {
-        enable: true,
+        enabled: true,
         type: 'localStorage',
         storageKey: ' dxGrid_PhieuBanHang'
     };

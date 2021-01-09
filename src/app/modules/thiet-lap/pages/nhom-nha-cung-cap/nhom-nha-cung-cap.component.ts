@@ -20,7 +20,7 @@ export class NhomNhaCungCapComponent implements OnInit {
 
   subscriptions: Subscription = new Subscription();
   public stateStoringGrid = {
-    enable: true,
+    enabled: true,
     type: "localStorage",
     storageKey: "dxGrid_NhomNhaCungCap"
   };
