@@ -56,7 +56,7 @@ export class DanhSachPhieuBanHangModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrird.dataSource = data.filter((x) => x.trangthaixuat != this.trangthaixuat);
+                    this.dataGrird.dataSource = data.filter((x) => x.trangthaixuat != this.trangthaixuat && x.duyetgia);
                 },
                 (error) => {
                     this.objPhieuBanHangService.handleError(error);
