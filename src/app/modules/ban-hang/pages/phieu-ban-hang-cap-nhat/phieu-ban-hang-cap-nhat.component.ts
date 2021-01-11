@@ -221,9 +221,9 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             if (!this.firstLoad_KhachHang) {
                 let khachhang = this.lstKhachHang.find((x) => x.id == this.phieubanhang.khachhang_id);
 
-                this.phieubanhang.khachhang_dienthoai = khachhang.sodienthoai;
-                this.phieubanhang.khachhang_diachi = khachhang.diachi;
-                this.phieubanhang.khachhang_hoten = khachhang.tenkhachhang;
+                this.phieubanhang.khachhang_dienthoai = khachhang ? khachhang.sodienthoai : null;
+                this.phieubanhang.khachhang_diachi = khachhang ? khachhang.diachi : null;
+                this.phieubanhang.khachhang_hoten =  khachhang ? khachhang.tenkhachhang : null;
             } else {
                 this.firstLoad_KhachHang = false;
             }
