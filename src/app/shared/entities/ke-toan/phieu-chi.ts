@@ -43,7 +43,6 @@ export class PhieuChi {
     public nguoinhan_diachi: string;
     public nguoinhan_dienthoai: string;
     public donvigiacong_id: number;
-    public khogiacong_id: number;
 
     constructor(
         id: number = null,
@@ -76,7 +75,6 @@ export class PhieuChi {
         nguoinhan_diachi: string = null,
         nguoinhan_dienthoai: string = null,
         donvigiacong_id: number = null,
-        khogiacong_id: number = null,
 
         nocu: number = 0,
         tongchi: number = 0,
@@ -117,7 +115,6 @@ export class PhieuChi {
         this.nguoinhan_diachi = nguoinhan_diachi;
         this.nguoinhan_dienthoai = nguoinhan_dienthoai;
         this.donvigiacong_id = donvigiacong_id;
-        this.khogiacong_id = khogiacong_id;
 
         this.nocu = nocu;
         this.tongchi = tongchi;

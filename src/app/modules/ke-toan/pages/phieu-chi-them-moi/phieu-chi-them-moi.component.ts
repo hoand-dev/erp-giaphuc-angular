@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChiNhanh, KhachHang, LenhVay, NhaCungCap, PhieuChi, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
+import { ChiNhanh, DonViGiaCong, KhachHang, LenhVay, NhaCungCap, PhieuChi, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
 import {
     AppInfoService,
     CommonService,
@@ -10,7 +10,8 @@ import {
     QuyTaiKhoanService,
     NoiDungThuChiService,
     PhieuChiService,
-    LenhVayService
+    LenhVayService,
+    DonViGiaCongService
 } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
@@ -33,18 +34,21 @@ export class PhieuChiThemMoiComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
+
     public phieuchi: PhieuChi;
     public loaiphieuchi: string = null;
 
     public lstKhachHang: KhachHang[] = [];
     public lstNhaCungCap: NhaCungCap[] = [];
-    public lstLenhVay: LenhVay[] = [];
+    public lstDonViGiaCong: DonViGiaCong[] = [];
 
+    public dataSource_LenhVay: DataSource;
     public dataSource_KhachHang: DataSource;
     public dataSource_NhaCungCap: DataSource;
+    public dataSource_DonViGiaCong: DataSource;
+
     public dataSource_QuyTaiKhoan: DataSource;
     public dataSource_NoiDungThuChi: DataSource;
-    public dataSource_LenhVay: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -52,7 +56,6 @@ export class PhieuChiThemMoiComponent implements OnInit {
     public isPhanBoTien: boolean = true;
 
     public phieunhapkhos: PhieuChi_PhieuNhapKho[] = [];
-    public lenhvays: LenhVay[] = [];
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -70,6 +73,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
         private phieuchiService: PhieuChiService,
         private khachhangService: KhachHangService,
         private nhacungcapService: NhaCungCapService,
+        private donvigiacongService: DonViGiaCongService,
         private quytaikhoanService: QuyTaiKhoanService,
         private noidungthuchiService: NoiDungThuChiService,
         private lenhvayService: LenhVayService,
@@ -102,10 +106,22 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 });
             })
         );
+
         this.subscriptions.add(
             this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
                 this.lstNhaCungCap = x;
                 this.dataSource_NhaCungCap = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
+        this.subscriptions.add(
+            this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                this.lstDonViGiaCong = x;
+                this.dataSource_DonViGiaCong = new DataSource({
                     store: x,
                     paginate: true,
                     pageSize: 50
@@ -135,12 +151,12 @@ export class PhieuChiThemMoiComponent implements OnInit {
 
         // kiểm tra có thuộc các loại phiếu thu này hay không?
         // loaiphieuthu=khac
+        // loaiphieuthu=lenhvay
         // loaiphieuthu=khachhang
         // loaiphieuthu=nhacungcap
-        // loaiphieuthu=khogiacong
         // loaiphieuthu=donvigiacong
 
-        let arrLoaiPhieuChi: string[] = ['khac', 'lenhvay', 'khachhang', 'nhacungcap', 'khogiacong', 'donvigiacong'];
+        let arrLoaiPhieuChi: string[] = ['khac', 'lenhvay', 'khachhang', 'nhacungcap', 'donvigiacong'];
 
         // kiểm tra queryParams
         this.subscriptions.add(
@@ -171,6 +187,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
             })
         );
     }
+
     ngOnDestroy(): void {
         this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
@@ -219,6 +236,22 @@ export class PhieuChiThemMoiComponent implements OnInit {
             this.subscriptions.add(
                 this.phieuchiService.findPhieuNhapKhos(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.nhacungcap_id).subscribe((data) => {
                     this.phieunhapkhos = data;
+                })
+            );
+        }
+
+        if (e.dataField == 'donvigiacong_id' && e.value !== undefined && e.value !== null) {
+            // lấy thông tin đơn vị gia công
+            let donvigiacong = this.lstDonViGiaCong.find((x) => (x.id = this.phieuchi.donvigiacong_id));
+            this.phieuchi.nguoinhan_hoten = donvigiacong.tendonvigiacong;
+            this.phieuchi.nguoinhan_diachi = donvigiacong.diachi;
+            this.phieuchi.nguoinhan_dienthoai = donvigiacong.sodienthoai;
+
+            // lấy nợ cũ
+            this.subscriptions.add(
+                this.commonService.donViGiaCong_LoadNoCu(this.phieuchi.donvigiacong_id, this.currentChiNhanh.id, this.phieuchi.sort).subscribe((data) => {
+                    this.phieuchi.nocu = data;
+                    this.onTinhNoConLai();
                 })
             );
         }

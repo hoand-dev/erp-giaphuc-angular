@@ -1,7 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChiNhanh, PhieuChi, KhachHang, NhaCungCap, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
-import { AppInfoService, CommonService, RouteInterceptorService, PhieuChiService, KhachHangService, NhaCungCapService, QuyTaiKhoanService, NoiDungThuChiService } from '@app/shared/services';
+import { ChiNhanh, PhieuChi, KhachHang, NhaCungCap, PhieuChi_PhieuNhapKho, DonViGiaCong } from '@app/shared/entities';
+import {
+    AppInfoService,
+    CommonService,
+    RouteInterceptorService,
+    PhieuChiService,
+    KhachHangService,
+    NhaCungCapService,
+    QuyTaiKhoanService,
+    NoiDungThuChiService,
+    DonViGiaCongService
+} from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
@@ -24,9 +34,11 @@ export class PhieuChiCapNhatComponent implements OnInit {
 
     public lstKhachHang: KhachHang[] = [];
     public lstNhaCungCap: NhaCungCap[] = [];
+    public lstDonViGiaCong: DonViGiaCong[] = [];
 
     public dataSource_KhachHang: DataSource;
     public dataSource_NhaCungCap: DataSource;
+    public dataSource_DonViGiaCong: DataSource;
     public dataSource_QuyTaiKhoan: DataSource;
     public dataSource_NoiDungThuChi: DataSource;
 
@@ -54,6 +66,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
         private phieuchiService: PhieuChiService,
         private khachhangService: KhachHangService,
         private nhacungcapService: NhaCungCapService,
+        private donvigiacongService: DonViGiaCongService,
         private quytaikhoanService: QuyTaiKhoanService,
         private noidungthuchiService: NoiDungThuChiService
     ) {}
@@ -94,7 +107,16 @@ export class PhieuChiCapNhatComponent implements OnInit {
                 });
             })
         );
-
+        this.subscriptions.add(
+            this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                this.lstDonViGiaCong = x;
+                this.dataSource_DonViGiaCong = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
         this.subscriptions.add(
             this.quytaikhoanService.findQuyTaiKhoans().subscribe((x) => {
                 this.dataSource_QuyTaiKhoan = new DataSource({
@@ -176,6 +198,23 @@ export class PhieuChiCapNhatComponent implements OnInit {
             // lấy nợ cũ
             this.subscriptions.add(
                 this.commonService.nhaCungCap_LoadNoCu(this.phieuchi.nhacungcap_id, this.currentChiNhanh.id, this.phieuchi.sort).subscribe((data) => {
+                    this.phieuchi.nocu = data;
+                    this.onTinhNoConLai();
+                })
+            );
+        }
+
+        if (e.dataField == 'donvigiacong_id' && e.value !== undefined && e.value !== null) {
+            // lấy thông tin đơn vị gia công
+            if (!this.isLoadLanDau) {
+                let donvigiacong = this.lstDonViGiaCong.find((x) => (x.id = this.phieuchi.donvigiacong_id));
+                this.phieuchi.nguoinhan_hoten = donvigiacong.tendonvigiacong;
+                this.phieuchi.nguoinhan_diachi = donvigiacong.diachi;
+                this.phieuchi.nguoinhan_dienthoai = donvigiacong.sodienthoai;
+            }
+            // lấy nợ cũ
+            this.subscriptions.add(
+                this.commonService.donViGiaCong_LoadNoCu(this.phieuchi.donvigiacong_id, this.currentChiNhanh.id, this.phieuchi.sort).subscribe((data) => {
                     this.phieuchi.nocu = data;
                     this.onTinhNoConLai();
                 })

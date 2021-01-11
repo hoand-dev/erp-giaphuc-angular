@@ -77,6 +77,23 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"> </dxi-validation-rule>
                                     </dxi-item>
 
+                                    <dxi-item
+                                        *ngIf="loaiphieuchi == 'donvigiacong'"
+                                        [colSpan]="3"
+                                        [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
+                                        dataField="donvigiacong_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_DonViGiaCong,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tendonvigiacong', 'madonvigiacong'],
+                                            displayExpr: 'tendonvigiacong'
+                                        }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"> </dxi-validation-rule>
+                                    </dxi-item>
+
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
                                     <dxi-item
                                         *ngIf="loaiphieuchi != 'lenhvay'"
