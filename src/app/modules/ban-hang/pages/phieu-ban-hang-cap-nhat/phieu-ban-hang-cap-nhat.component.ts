@@ -245,10 +245,12 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
         // nếu thay đổi thuế vat -> set thuế vat hàng hoá = 0
         if (e.dataField == 'thuevat' && e.value != 0) {
+            this.phieubanhang.xuathoadon = true;
             this.hanghoas.forEach((v, i) => {
                 v.thuevat = 0;
             });
         }
+        
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
         if (e.dataField == 'khoxuat_id') {
             this.hanghoas.forEach((v, i) => {
