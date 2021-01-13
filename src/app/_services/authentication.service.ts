@@ -63,11 +63,10 @@ export class AuthenticationService {
             }));
     }
 
-    logout(reload: boolean = true) {
+    logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
-        if(reload) location.reload();
     }
 
     refreshAuthToken(){
