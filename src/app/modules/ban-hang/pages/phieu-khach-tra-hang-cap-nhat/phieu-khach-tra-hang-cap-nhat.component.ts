@@ -240,6 +240,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
         } else {
+            this.hanghoas[index].khonhap_id = this.phieukhachtrahang.khonhap_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tenhanghoabanhang_inphieu = selected.tenhanghoa;
 
