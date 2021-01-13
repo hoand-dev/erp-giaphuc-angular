@@ -245,10 +245,12 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
         // nếu thay đổi thuế vat -> set thuế vat hàng hoá = 0
         if (e.dataField == 'thuevat' && e.value != 0) {
-            this.phieubanhang.xuathoadon = true;
             this.hanghoas.forEach((v, i) => {
                 v.thuevat = 0;
             });
+            this.onCheckVAT();
+        }else if(e.value == 0){
+            this.onCheckVAT();
         }
         
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
@@ -271,6 +273,18 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             return i !== item;
         });
     }
+
+    onCheckVAT(){
+        if (this.hanghoalenght == 0) {
+            this.hanghoas.forEach((v, i) => {
+                if(v.thuevat != 0 || this.phieubanhang.thuevat != 0)
+                    v.xuathoadon = true;
+                else
+                    v.xuathoadon = false;
+            });
+        }
+    }
+
     checkCoLayThue(params) {
         let valid = true;
         if (this.phieubanhang.thuevat != 0 && params.value == false) {
@@ -294,6 +308,8 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             this.hanghoalenght--;
             //return;
         } else {
+            this.onCheckVAT();
+            this.hanghoas[index].khoxuat_id = this.phieubanhang.khoxuat_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
 
@@ -334,8 +350,11 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             case 'thuevat':
                 this.hanghoas[index].thuevat = e.value;
                 if (e.value != 0) {
+                    this.hanghoas[index].xuathoadon = true;
                     this.phieubanhang.thuevat = 0;
-                    this.phieubanhang.xuathoadon = true;
+                }
+                else if(this.phieubanhang.thuevat == 0){
+                    this.hanghoas[index].xuathoadon = false;
                 }
                 break;
         }

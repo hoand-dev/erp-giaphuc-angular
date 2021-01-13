@@ -1,7 +1,7 @@
 export class PhieuBanHang {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
-    
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -20,13 +20,10 @@ export class PhieuBanHang {
     public khachhang_hoten: string;
     public khachhang_diachi: string;
     public khachhang_dienthoai: string;
-    public songayno: number;
     public tongtienhang: number;
     public chietkhau: number;
     public thuevat: number;
     public tongthanhtien: number;
-    public notienmat: boolean;
-    public xuathoadon: boolean;
     public khoxuat_id: number;
     public trangthaixuat: string;
     public phieudathang_id: number;
@@ -38,7 +35,6 @@ export class PhieuBanHang {
     /* các thông tin hiển thị trên view được lấy từ các bảng khác */
     public nocu: number = 0;
     public maphieudathang: string;
-  
 
     constructor(
         id: number = null,
@@ -59,17 +55,14 @@ export class PhieuBanHang {
         khachhang_hoten: string = null,
         khachhang_diachi: string = null,
         khachhang_dienthoai: string = null,
-        songayno: number = null,
         tongtienhang: number = 0,
         chietkhau: number = 0,
         thuevat: number = 0,
         tongthanhtien: number = 0,
-        notienmat: boolean = null,
-        xuathoadon: boolean = null,
         khoxuat_id: number = null,
         trangthaixuat: string = null,
         duyetgia: boolean = false,
-        phieudathang_id: number = null        
+        phieudathang_id: number = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -89,13 +82,10 @@ export class PhieuBanHang {
         this.khachhang_hoten = khachhang_hoten;
         this.khachhang_diachi = khachhang_diachi;
         this.khachhang_dienthoai = khachhang_dienthoai;
-        this.songayno = songayno;
         this.tongtienhang = tongtienhang;
         this.chietkhau = chietkhau;
         this.thuevat = thuevat;
         this.tongthanhtien = tongthanhtien;
-        this.notienmat = notienmat;
-        this.xuathoadon = xuathoadon;
         this.khoxuat_id = khoxuat_id;
         this.trangthaixuat = trangthaixuat;
         this.duyetgia = duyetgia;
@@ -129,6 +119,7 @@ export class PhieuBanHang_ChiTiet {
     public phieudathang_chitiet: number;
     public trangthaitra: string;
     public soluongdatra: number;
+    public xuathoadon: boolean;
 
     public trongluong: number;
     public tendonvitinh: string;
@@ -157,7 +148,8 @@ export class PhieuBanHang_ChiTiet {
         soluong_tudondathang: number = null,
         phieudathang_chitiet_id: number = null,
         soluongtattoan: number = null,
-        trongluong: number = 0
+        trongluong: number = 0,
+        xuathoadon: boolean = false
     ) {
         this.id = id;
         this.phieubanhang_id = phieubanhang_id;
@@ -182,5 +174,6 @@ export class PhieuBanHang_ChiTiet {
         this.phieudathang_chitiet_id = phieudathang_chitiet_id;
         this.soluongtattoan = soluongtattoan;
         this.trongluong = trongluong;
+        this.xuathoadon = xuathoadon;
     }
 }
