@@ -95,8 +95,6 @@
                                                                 <th [style.min-width.px]="120">NGÀY XUẤT</th>
                                                                 <th [style.min-width.px]="120">MÃ PHIẾU</th>
                                                                 <th [style.min-width.px]="120">GIÁ TRỊ PHIẾU</th>
-                                                                <th [style.min-width.px]="120">LOẠI VAT</th>
-                                                                <th [style.min-width.px]="120">VAT</th>
                                                                 <th [style.min-width.px]="120">ĐÃ THU TRƯỚC</th>
                                                                 <th [style.min-width.px]="120">CÒN CẦN THU</th>
                                                                 <th [style.min-width.px]="120">TIỀN THU</th>
@@ -109,8 +107,6 @@
                                                                 <td>{{ item.ngayxuatkho | date:'HH:mm dd/MM/yyyy' }}</td>
                                                                 <td>{{item.maphieuxuatkho}}</td>
                                                                 <td>{{item.tongthanhtien | number: '1.0-3'}}</td>
-                                                                <td>{{item.cothuevat ? 'Có VAT' : 'Không VAT'}}</td>
-                                                                <td>{{item.thuevat * 100}}%</td>
                                                                 <td>{{item.sotienthutruoc | number: '1.0-3'}}</td>
                                                                 <td>{{item.tongthanhtien - item.sotienthutruoc | number: '1.0-3'}}</td>
                                                                 <td>
@@ -129,8 +125,6 @@
                                                             <th [style.min-width.px]="120">NGÀY XUẤT</th>
                                                             <th [style.min-width.px]="120">MÃ PHIẾU</th>
                                                             <th [style.min-width.px]="120">GIÁ TRỊ PHIẾU</th>
-                                                            <th [style.min-width.px]="120">LOẠI VAT</th>
-                                                            <th [style.min-width.px]="120">VAT</th>
                                                             <th [style.min-width.px]="120">ĐÃ CHI TRƯỚC</th>
                                                             <th [style.min-width.px]="120">CÒN CẦN CHI</th>
                                                             <th [style.min-width.px]="120">TIỀN CHI</th>
@@ -143,8 +137,6 @@
                                                             <td>{{ item.ngaynhapkho | date:'HH:mm dd/MM/yyyy' }}</td>
                                                             <td>{{item.maphieunhapkho}}</td>
                                                             <td>{{item.tongthanhtien | number: '1.0-3'}}</td>
-                                                            <td>{{item.cothuevat ? 'Có VAT' : 'Không VAT'}}</td>
-                                                            <td>{{item.thuevat * 100}}%</td>
                                                             <td>{{item.sotienchitruoc | number: '1.0-3'}}</td>
                                                             <td>{{item.tongthanhtien - item.sotienchitruoc | number: '1.0-3'}}</td>
                                                             <td>

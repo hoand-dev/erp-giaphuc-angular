@@ -18,8 +18,6 @@ export class PhieuXuatKho {
     public khoxuat_id: number;
     public phieubanhang_id: number;
     public phieutrahangncc_id: number;
-    public notienmat: boolean;
-    public cothuevat: boolean;
     public chungtu: string;
     public tongtienhang: number;
     public chietkhau: number;
@@ -63,8 +61,6 @@ export class PhieuXuatKho {
         khoxuat_id: number = null,
         phieubanhang_id: number = null,
         phieutrahangncc_id: number = null,
-        notienmat: boolean = null,
-        cothuevat: boolean = null,
         chungtu: string = null,
         tongtienhang: number = 0,
         chietkhau: number = 0,
@@ -102,8 +98,6 @@ export class PhieuXuatKho {
         this.khoxuat_id = khoxuat_id;
         this.phieubanhang_id = phieubanhang_id;
         this.phieutrahangncc_id = phieutrahangncc_id;
-        this.notienmat = notienmat;
-        this.cothuevat = cothuevat;
         this.chungtu = chungtu;
         this.tongtienhang = tongtienhang;
         this.chietkhau = chietkhau;

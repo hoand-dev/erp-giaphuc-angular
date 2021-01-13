@@ -138,8 +138,7 @@ export class PhieuChi_PhieuNhapKho {
 
     public ngaynhapkho: Date;
     public maphieunhapkho: string;
-    public cothuevat: boolean;
-    public thuevat: number;
+
     public tongthanhtien: number;
     public sotienchitruoc: number;
 
@@ -151,8 +150,7 @@ export class PhieuChi_PhieuNhapKho {
         sotienchi: number = 0,
         sotiengiam: number = 0,
         chuthich: string = null,
-        cothuevat: boolean = null,
-        thuevat: number = 0,
+
         tongthanhtien: number = 0,
         sotienchitruoc: number = 0
     ) {
@@ -163,8 +161,7 @@ export class PhieuChi_PhieuNhapKho {
         this.sotienchi = sotienchi;
         this.sotiengiam = sotiengiam;
         this.chuthich = chuthich;
-        this.cothuevat = cothuevat;
-        this.thuevat = thuevat;
+
         this.tongthanhtien = tongthanhtien;
         this.sotienchitruoc = sotienchitruoc;
     }

@@ -109,8 +109,6 @@ export class PhieuThu_PhieuXuatKho {
 
     public ngayxuatkho: Date;
     public maphieuxuatkho: string;
-    public cothuevat: boolean;
-    public thuevat: number;
     public tongthanhtien: number;
     public sotienthutruoc: number;
 
