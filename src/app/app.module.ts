@@ -45,6 +45,7 @@ import { ReportPageComponent } from './report-page/report-page.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { KeToanModule } from './modules/ke-toan/ke-toan.module';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
+import { NotPermissionComponent } from './shared/components/not-permission/not-permission.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { ChangePasswordComponent } from './shared/components/change-password/cha
         NotFoundComponent,
         ReportPageComponent,
         ChangePasswordComponent,
+        NotPermissionComponent,
     ],
     imports: [
         BrowserModule,
