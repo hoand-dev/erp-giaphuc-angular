@@ -5,10 +5,11 @@ import { Injectable } from '@angular/core';
 
 import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) {}
+    constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
@@ -16,13 +17,15 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // auto logout if 401 response returned from api
                 if (err.status === 401) {
                     Swal.fire({
-                        title: 'Hết phiên làm việc!',
+                        title: 'HẾT PHIÊN LÀM VIỆC!',
                         html: 'Đăng nhập lại nhé',
                         icon: 'warning',
-                        timer: 3000,
-                        timerProgressBar: true
+                        timer: 2000,
+                        timerProgressBar: true,
+                        showConfirmButton: false
                     }).then(() => {
-                        this.authenticationService.logout(true);
+                        this.authenticationService.logout();
+                        this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url.replace('/', '') } });
                     });
 
                     return throwError('Hết phiên làm việc');

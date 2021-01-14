@@ -37,7 +37,7 @@
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhachhang', readOnly: isTatToan }"
+                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhachhang', 'makhachhang'], displayExpr: 'tenkhachhang', readOnly: isTatToan }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -164,7 +164,6 @@
                                                         </td>
                                                         <td *ngIf="!isTatToan"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
-                                                    <dxi-validation-rule type="required" message="Vui lòng chọn hàng hóa"></dxi-validation-rule>
                                                 </tbody>
                                             </table>
                                         </div>

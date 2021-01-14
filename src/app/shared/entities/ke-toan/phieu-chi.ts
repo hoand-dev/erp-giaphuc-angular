@@ -43,7 +43,6 @@ export class PhieuChi {
     public nguoinhan_diachi: string;
     public nguoinhan_dienthoai: string;
     public donvigiacong_id: number;
-    public khogiacong_id: number;
 
     constructor(
         id: number = null,
@@ -76,7 +75,6 @@ export class PhieuChi {
         nguoinhan_diachi: string = null,
         nguoinhan_dienthoai: string = null,
         donvigiacong_id: number = null,
-        khogiacong_id: number = null,
 
         nocu: number = 0,
         tongchi: number = 0,
@@ -117,7 +115,6 @@ export class PhieuChi {
         this.nguoinhan_diachi = nguoinhan_diachi;
         this.nguoinhan_dienthoai = nguoinhan_dienthoai;
         this.donvigiacong_id = donvigiacong_id;
-        this.khogiacong_id = khogiacong_id;
 
         this.nocu = nocu;
         this.tongchi = tongchi;
@@ -141,8 +138,7 @@ export class PhieuChi_PhieuNhapKho {
 
     public ngaynhapkho: Date;
     public maphieunhapkho: string;
-    public cothuevat: boolean;
-    public thuevat: number;
+
     public tongthanhtien: number;
     public sotienchitruoc: number;
 
@@ -154,8 +150,7 @@ export class PhieuChi_PhieuNhapKho {
         sotienchi: number = 0,
         sotiengiam: number = 0,
         chuthich: string = null,
-        cothuevat: boolean = null,
-        thuevat: number = 0,
+
         tongthanhtien: number = 0,
         sotienchitruoc: number = 0
     ) {
@@ -166,8 +161,7 @@ export class PhieuChi_PhieuNhapKho {
         this.sotienchi = sotienchi;
         this.sotiengiam = sotiengiam;
         this.chuthich = chuthich;
-        this.cothuevat = cothuevat;
-        this.thuevat = thuevat;
+
         this.tongthanhtien = tongthanhtien;
         this.sotienchitruoc = sotienchitruoc;
     }

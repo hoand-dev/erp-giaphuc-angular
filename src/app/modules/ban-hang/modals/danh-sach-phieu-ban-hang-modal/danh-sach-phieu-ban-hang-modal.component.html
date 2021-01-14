@@ -33,7 +33,11 @@
                         <span *ngIf="data.value != null">{{ data.value }}</span>
                     </div>
                 </dxi-column>
-
+                <dxi-column dataField="duyetgia" caption="Trạng thái duyệt" cellTemplate="cellTemplateTrangThaiDuyet">
+                    <div *dxTemplate="let data of 'cellTemplateTrangThaiDuyet'">
+                        <span>{{ data.value ? 'Đã duyệt' : 'Chưa duyệt' }}</span>
+                    </div>  
+                </dxi-column>
                 <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                     <div *dxTemplate="let data of 'cellTemplateTrangThai'">
                         <span class="text-green" *ngIf="data.value == true">Kích hoạt</span>

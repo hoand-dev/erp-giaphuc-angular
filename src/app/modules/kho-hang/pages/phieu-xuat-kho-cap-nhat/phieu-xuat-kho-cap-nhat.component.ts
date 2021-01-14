@@ -267,6 +267,7 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
             });
         } else {
+            this.hanghoas[index].khoxuat_id = this.phieuxuatkho.khoxuat_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;

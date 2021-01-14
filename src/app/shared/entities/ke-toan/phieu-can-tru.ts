@@ -91,8 +91,6 @@ export class PhieuCanTru {
 export class PhieuCanTru_PhieuNhapKho {
     public ngaynhapkho: Date;
     public maphieunhapkho: string;
-    public cothuevat: boolean;
-    public thuevat: number;
     public tongthanhtien: number;
     public sotienchitruoc: number;
 
@@ -116,8 +114,6 @@ export class PhieuCanTru_PhieuNhapKho {
 export class PhieuCanTru_PhieuXuatKho {
     public ngayxuatkho: Date;
     public maphieuxuatkho: string;
-    public cothuevat: boolean;
-    public thuevat: number;
     public tongthanhtien: number;
     public sotienthutruoc: number;
 
