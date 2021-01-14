@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 import * as AdminLte from 'admin-lte';
 
 import { ChiNhanh } from './shared/entities';
-import { ChiNhanhService, NguoiDungService } from './shared/services';
+import { ChiNhanhService, CommonService, NguoiDungService } from './shared/services';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -22,6 +22,9 @@ import { ChangePasswordComponent } from './shared/components/change-password/cha
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+    /* để dành cho version sau này nha :)) */
+    menuGroups: string[] = [];
+    currentMenu: any[] = [];
 
     currentUserToken: User;
     currentUser: User = new User();
@@ -141,6 +144,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         public router: Router,
+        private commonService: CommonService,
         public authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService,
         private nguoidungService: NguoiDungService,
@@ -179,7 +183,17 @@ export class AppComponent implements OnInit {
                     this.chinhanhService.handleError(error);
                 }
             ));
-
+            /* để dành cho version sau này nha :)) */
+            this.subscriptions.add(this.commonService.timKiem_Menu().subscribe(x =>
+                {
+                    this.currentMenu = x;
+                    x.forEach(e => {
+                        if(!this.menuGroups.includes(e.groupclass) && e.groupclass != null){
+                            this.menuGroups.push(e.groupclass);
+                        }
+                    });
+                }
+            ));
             setInterval(() => {
                 console.log("interval refresh token...");
                 this.refreshAuthToken();
@@ -210,6 +224,11 @@ export class AppComponent implements OnInit {
         this.bsModalRef.content.closeBtnName = 'Đóng';
     }
     
+    /* để dành cho version sau này nha :)) */
+    existGroupMenu(group: string){
+        return this.menuGroups.includes(group);
+    }
+
     activeGroupClass(groupName: string = null){
         const DULIEUCOSO = [
             "/chi-nhanh", 
