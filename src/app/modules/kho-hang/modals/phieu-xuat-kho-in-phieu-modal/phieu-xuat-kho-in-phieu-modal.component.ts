@@ -74,17 +74,13 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     dsThongTin.readJsonFile('assets/reports/json/Info.json');
                     report.regData('Info', null, dsThongTin);
 
-                    /* thông tin phiếu */
                     let dsPhieuXuatKho = new Stimulsoft.System.Data.DataSet();
+                    /* thông tin phiếu */
                     data.ngaylapphieu = moment(data.ngayxuatkho).format('HH:mm DD/MM/YYYY');
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
                     data.tongthanhtien_bangchu = number2vn(data.tongthanhtien);
-                    dsPhieuXuatKho.readJson({ rptPhieuXuatKho: data });
-                    report.regData('rptPhieuXuatKho', null, dsPhieuXuatKho);
-
                     /* thông tin chi tiết phiếu */
-                    let dsHangHoa = new Stimulsoft.System.Data.DataSet();
                     if (data.chietkhau > 0) {
                         data.phieuxuatkho_chitiets.forEach((item) => {
                             item.chietkhau = data.chietkhau;
@@ -99,8 +95,8 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                             item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
                         });
                     }
-                    dsHangHoa.readJson({ rptPhieuXuatKho_HangHoa: data.phieuxuatkho_chitiets });
-                    report.regData('rptPhieuXuatKho_HangHoa', null, dsHangHoa);
+                    dsPhieuXuatKho.readJson({ rptPhieuXuatKho: data, rptPhieuXuatKho_HangHoa: data.phieuxuatkho_chitiets });
+                    report.regData('rptPhieuXuatKho', null, dsPhieuXuatKho);
 
                     /* render report */
                     this.reportViewer.report = report;
