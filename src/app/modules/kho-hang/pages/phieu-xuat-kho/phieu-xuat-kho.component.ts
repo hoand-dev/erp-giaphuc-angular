@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuXuatKhoInPhieuModalComponent } from '../../modals/phieu-xuat-kho-in-phieu-modal/phieu-xuat-kho-in-phieu-modal.component';
 
 @Component({
     selector: 'app-phieu-xuat-kho',
@@ -18,7 +20,8 @@ import Swal from 'sweetalert2';
 })
 export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-
+    public bsModalRef: BsModalRef;
+    
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
@@ -32,7 +35,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_PhieuXuatKho'
     };
 
-    constructor(private router: Router, private objPhieuXuatKhoService: PhieuXuatKhoService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuXuatKhoService: PhieuXuatKhoService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -73,20 +76,70 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
-    addMenuItems(e) { 
-        if (e.row.rowType === "data") {
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
-            
+
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
             e.items.push(
                 {
-                    text: "Cập nhật hoá đơn", icon: "edit", visible: true,
+                    text: 'Cập nhật hoá đơn',
+                    icon: 'edit',
+                    visible: true,
                     onItemClick: () => {
                         let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
                         this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
+                    }
+                },
+                {
+                    text: 'In phiếu (có giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: "XEM IN PHIẾU XUẤT KHO - CÓ GIÁ",
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'cogia'
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In phiếu (không giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: "XEM IN PHIẾU XUẤT KHO -  KHÔNG GIÁ",
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'khonggia'
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
                     }
                 }
             );

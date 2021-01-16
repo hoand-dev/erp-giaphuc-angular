@@ -1,0 +1,28 @@
+{
+	"rptPhieuXuatKho_HangHoa": [
+		{ 
+			  "id": null 
+			, "phieuxuatkho_id": null 
+			, "khoxuat_id": null 
+			, "loaihanghoa": null 
+			, "hanghoa_id": null 
+			, "hanghoa_lohang_id": null 
+			, "dvt_id": null 
+			, "tilequydoi": null 
+			, "soluong": null 
+			, "dongia": null 
+			, "cuocvanchuyen": null 
+			, "chietkhau": null 
+			, "thuevat": null 
+			, "thanhtien": null 
+			, "chuthich": null 
+			, "tenhanghoa_inphieu": null 
+			, "phieubanhang_chitiet_id": null 
+            , "phieutrahangncc_chitiet_id": null  
+            
+            , "mahanghoa": null
+            , "tenhanghoa": null
+            , "tendonvitinh": null
+		}
+	]
+}

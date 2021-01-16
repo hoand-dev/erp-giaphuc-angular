@@ -1,0 +1,45 @@
+{
+    "rptPhieuXuatKho": {
+          "id": null
+        , "chinhanh_id": null
+        , "kichhoat": null
+        , "nguoitao_id": null
+        , "thoigiantao": null
+        , "nguoisua_id": null
+        , "thoigiansua": null
+        , "ghichu": null
+        , "ids": null
+        , "sort": null
+        
+        , "maphieuxuatkho": null
+        , "ngayxuatkho": null
+        , "loaiphieuxuatkho": null
+        , "khoxuat_id": null
+        , "phieubanhang_id": null
+        , "phieutrahangncc_id": null
+        , "chungtu": null
+        , "tongtienhang": null
+        , "chietkhau": null
+        , "thuevat": null
+        , "tongthanhtien": null
+        , "ngaytoihan": null
+        , "songaytoihan": null
+        , "xe_id": null
+        , "taixe_id": null
+        , "taixe_dienthoai": null
+        , "khachhang_id": null
+        , "nhacungcap_id": null
+        , "nguoinhan_hoten": null
+        , "nguoinhan_diachi": null
+        , "nguoinhan_dienthoai": null
+        , "sotiendathu": null
+        , "trangthaithu" : null
+
+        , "nhanviensale_hoten": null
+        , "biensoxe": null
+        , "ngaylapphieu": null
+        , "tongthanhtien_bangchu": null
+        , "inphieu_thoigian": null
+        , "inphieu_hoten": null
+    }
+}
