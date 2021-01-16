@@ -1,4 +1,15 @@
 export class PhieuXuatKho {
+    public tongthanhtien_bangchu: string;
+    public ngaylapphieu: string;
+    public inphieu_hoten: string;
+    public inphieu_thoigian: string;
+
+    public tumaphieu: string;
+    public nhanviensale_hoten: string;
+    public taixe_hoten: string;
+    public biensoxe: string;
+    public tenkhoxuat: string;
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -35,14 +46,10 @@ export class PhieuXuatKho {
     public nguoinhan_dienthoai: string;
     public sotiendathu: number;
     public trangthaithu: string;
+    public nhanviensale_id: number;
 
     public phieuxuatkho_chitiets: PhieuXuatKho_ChiTiet[];
     public phieuxuatkho_chitiets_old: PhieuXuatKho_ChiTiet[];
-
-    public tumaphieu: string;
-    public taixe_hoten: string;
-    public biensoxe: string;
-    public tenkhoxuat: string;
 
     constructor(
         id: number = null,
@@ -78,6 +85,7 @@ export class PhieuXuatKho {
         nguoinhan_dienthoai: string = null,
         sotiendathu: number = 0,
         trangthaithu: string = null,
+        nhanviensale_id: number = null,
 
         phieuxuatkho_chitiets: PhieuXuatKho_ChiTiet[] = [],
         phieuxuatkho_chitiets_old: PhieuXuatKho_ChiTiet[] = []
@@ -115,6 +123,7 @@ export class PhieuXuatKho {
         this.nguoinhan_dienthoai = nguoinhan_dienthoai;
         this.sotiendathu = sotiendathu;
         this.trangthaithu = trangthaithu;
+        this.nhanviensale_id = nhanviensale_id;
 
         this.phieuxuatkho_chitiets = phieuxuatkho_chitiets;
         this.phieuxuatkho_chitiets_old = phieuxuatkho_chitiets_old;
@@ -192,4 +201,11 @@ export class PhieuXuatKho_ChiTiet {
         this.phieutrahangncc_chitiet_id = phieutrahangncc_chitiet_id;
         this.trongluong = trongluong;
     }
+}
+
+export class PhieuXuatKho_InPhieu extends PhieuXuatKho{
+
+}
+export class PhieuXuatKho_ChiTiet_InPhieu extends PhieuXuatKho_ChiTiet{
+
 }

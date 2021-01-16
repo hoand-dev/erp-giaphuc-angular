@@ -15,6 +15,19 @@ export class CommonService {
         return value !== undefined && value !== null && value !== '';
     }
 
+    getEnablePermission(permissions: any[], permission: string){
+        let per = permissions.filter(x => x.maquyen == permission);
+        return per.length == 1 ? true : false;
+    }
+
+    timKiem_QuyenDuocCap(): Observable<any[]>{
+        return this.httpClient.get<any[]>(this.apiUrl + '/nguoidung-quyenduoccap');
+    }
+
+    timKiem_Menu(): Observable<any[]>{
+        return this.httpClient.get<any[]>(this.apiUrl + '/nguoidung-menu');
+    }
+
     donViGiaCong_LoadNoCu(donvigiacong_id: number, chinhanh_id: number = null, sort: string = null): Observable<number> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set('donvigiacong_id', donvigiacong_id ? donvigiacong_id.toString() : null);

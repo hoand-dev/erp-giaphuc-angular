@@ -267,6 +267,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                             this.phieuxuatkho.loaiphieuxuatkho = 'xuatbanhang';
                             this.phieuxuatkho.khachhang_id = data.khachhang_id;
                             this.phieuxuatkho.khoxuat_id = data.khoxuat_id;
+                            this.phieuxuatkho.nhanviensale_id = data.nhanviensale_id;
                 
                             this.phieuxuatkho.nguoinhan_hoten = data.khachhang_hoten;
                             this.phieuxuatkho.nguoinhan_diachi = data.khachhang_diachi;
@@ -424,7 +425,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
             setTimeout(() => {
                 this.hanghoas[index].mahanghoa = selected.mahanghoa;
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
-                if(this.phieuxuatkho.loaiphieuxuatkho = 'xuattrahangncc'){
+                if(this.phieuxuatkho.loaiphieuxuatkho == 'xuattrahangncc'){
                     this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
                 }
             });

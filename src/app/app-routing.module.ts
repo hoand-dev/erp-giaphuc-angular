@@ -7,10 +7,12 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ReportPageComponent } from './report-page/report-page.component';
+import { NotPermissionComponent } from './shared/components/not-permission/not-permission.component';
 
 const routes: Routes = [
     { path: 'trang-chu', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+    { path: 'khong-co-quyen', component: NotPermissionComponent },
     { path: 'report-page', component: ReportPageComponent },
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }, // không tìm thấy trang
