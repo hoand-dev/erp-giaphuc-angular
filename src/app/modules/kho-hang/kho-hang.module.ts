@@ -23,6 +23,7 @@ import {
 } from './pages';
 import { DanhSachPhieuXuatChuyenKhoModalComponent } from './modals/danh-sach-phieu-xuat-chuyen-kho-modal/danh-sach-phieu-xuat-chuyen-kho-modal.component';
 import { PhieuXuatKhoInPhieuModalComponent } from './modals/phieu-xuat-kho-in-phieu-modal/phieu-xuat-kho-in-phieu-modal.component';
+import { PhieuNhapKhoInPhieuModalComponent } from './modals/phieu-nhap-kho-in-phieu-modal/phieu-nhap-kho-in-phieu-modal.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { PhieuXuatKhoInPhieuModalComponent } from './modals/phieu-xuat-kho-in-ph
         PhieuNhapChuyenKhoThemMoiComponent,
         PhieuNhapChuyenKhoCapNhatComponent,
         DanhSachPhieuXuatChuyenKhoModalComponent,
-        PhieuXuatKhoInPhieuModalComponent
+        PhieuXuatKhoInPhieuModalComponent,
+        PhieuNhapKhoInPhieuModalComponent
     ],
     imports: [CommonModule, SharedModule, KhoHangRoutingModule]
 })

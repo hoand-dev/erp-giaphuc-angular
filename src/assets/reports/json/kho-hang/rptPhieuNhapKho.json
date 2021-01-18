@@ -1,0 +1,68 @@
+{
+	"rptThongTinPhieu": 
+		{ 
+			  "id": null 
+			, "chinhanh_id": null 
+			, "kichhoat": null 
+			, "nguoitao_id": null 
+			, "thoigiantao": null 
+			, "nguoisua_id": null 
+			, "thoigiansua": null 
+			, "ghichu": null 
+			, "ids": null 
+            , "sort": null 
+            
+			, "maphieunhapkho": null 
+			, "ngaynhapkho": null 
+			, "loaiphieunhapkho": null 
+			, "khonhap_id": null 
+			, "phieumuahang_id": null 
+			, "phieukhachtrahang_id": null 
+			, "chungtu": null 
+			, "tongtienhang": null 
+			, "chietkhau": null 
+			, "thuevat": null 
+			, "tongthanhtien": null 
+			, "nhacungcap_id": null 
+			, "khachhang_id": null 
+			, "sotiendachi": null 
+			, "trangthaichi": null 
+			, "nguoigiao_hoten": null 
+			, "nguoigiao_diachi": null 
+            , "nguoigiao_dienthoai": null  
+            
+            , "nhanviensale_hoten": null
+            , "tongthanhtien_bangchu": null
+            , "ngaylapphieu": null
+            , "inphieu_hoten": null
+            , "inphieu_thoigian": null
+		}
+    ,
+    
+    "rptThongTinHangHoa": [
+		{ 
+			  "id": null 
+			, "phieunhapkho_id": null 
+			, "khonhap_id": null 
+			, "loaihanghoa": null 
+			, "hanghoa_id": null 
+			, "hanghoa_lohang_id": null 
+			, "dvt_id": null 
+			, "tilequydoi": null 
+			, "soluong": null 
+			, "dongia": null 
+			, "cuocvanchuyen": null 
+			, "chietkhau": null 
+			, "thuevat": null 
+			, "thanhtien": null 
+			, "chuthich": null 
+			, "tenhanghoa_inphieu": null 
+			, "phieumuahangncc_chitiet_id": null 
+			, "phieukhachtrahang_chitiet_id": null 
+			, "soluonghong": null 
+            , "khonhaphong_id": null  
+            
+            , "tendonvitinh": null
+		}
+	]
+}
