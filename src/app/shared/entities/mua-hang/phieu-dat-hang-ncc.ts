@@ -1,4 +1,9 @@
 export class PhieuDatHangNCC {
+    public tongthanhtien_bangchu: string;
+    public ngaylapphieu: string;
+    public inphieu_hoten: string;
+    public inphieu_thoigian: string;
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -27,9 +32,9 @@ export class PhieuDatHangNCC {
     public phieudathangncc_chitiet: PhieuDatHangNCC_ChiTiet[];
 
     /* các thông tin hiển thị trên view */
-    public tennhacungcap: string;
-    public dienthoainhacungcap: string;
-    public diachinhacungcap: string;
+    public nhacungcap_hoten: string;
+    public nhacungcap_diachi: string;
+    public nhacungcap_dienthoai: string;
 
     public nocu: number = 0;
 
@@ -103,6 +108,7 @@ export class PhieuDatHangNCC_ChiTiet {
     public soluongtattoan: number;
     public loaihanghoa: string;
 
+    public tenhanghoa_inphieu: string;
     public trongluong: number;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
