@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { PhieuDatHangNCCInPhieuModalComponent } from '../../modals/phieu-dat-hang-ncc-in-phieu-modal/phieu-dat-hang-ncc-in-phieu-modal.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-phieu-dat-hang-ncc',
@@ -17,7 +19,8 @@ import { AuthenticationService } from '@app/_services';
 })
 export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-
+    public bsModalRef: BsModalRef;
+    
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
@@ -31,7 +34,7 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         storageKey: 'dxGrid_PhieuDatHangNCC'
     };
 
-    constructor(private router: Router, private objPhieuDatHangNCCService: PhieuDatHangNCCService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuDatHangNCCService: PhieuDatHangNCCService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -67,15 +70,36 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
-            // e.items.push(
-            //     {
-            //         text: "Tất toán", icon: "edit", // visible: false,
-            //         onItemClick: () => {
-            //             console.log(e.column.caption);
-            //             this.router.navigate([`/phieu-dat-hang-ncc/${e.row.key.id}/cap-nhat`], {queryParams: {tattoan: "ok"}});
-            //         }
-            //     }
-            // );
+            e.items.push(
+                {
+                    text: "Tất toán", icon: "edit", visible: true,
+                    onItemClick: () => {
+                        this.router.navigate([`/phieu-dat-hang-ncc/${e.row.key.id}/cap-nhat`], {queryParams: {tattoan: "ok"}});
+                    }
+                },
+                {
+                    text: 'In phiếu',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuDatHangNCC = e.row.key as PhieuDatHangNCC;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: "XEM IN PHIẾU ĐẶT HÀNG NCC",
+                            phieudathangncc_id: rowData.id,
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuDatHangNCCInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+            );
         }
     }
 

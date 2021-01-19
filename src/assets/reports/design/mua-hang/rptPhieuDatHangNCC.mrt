@@ -1,792 +1,1213 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="2">
+      <Info Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>Info</Alias>
+        <Key />
+        <Name>Info</Name>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\Info.json</PathData>
+      </Info>
+      <rptPhieuDatHangNCC Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>rptPhieuDatHangNCC</Alias>
+        <Key />
+        <Name>rptPhieuDatHangNCC</Name>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\mua-hang\rptPhieuDatHangNCC.json</PathData>
+      </rptPhieuDatHangNCC>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <Info Ref="4" type="DataTableSource" isKey="true">
+        <Alias>Info</Alias>
+        <Columns isList="true" count="19">
+          <value>TieuDe,System.String</value>
+          <value>NgayLap,System.String</value>
+          <value>Avatar,System.String</value>
+          <value>TenCongTy,System.String</value>
+          <value>DiaChi,System.String</value>
+          <value>DienThoai,System.String</value>
+          <value>Fax,System.String</value>
+          <value>Email,System.String</value>
+          <value>Website,System.String</value>
+          <value>MaSoThue,System.String</value>
+          <value>DiaChiKho1,System.String</value>
+          <value>DiaChiKho2,System.String</value>
+          <value>DiaChiKho3,System.String</value>
+          <value>DienThoai1,System.String</value>
+          <value>DienThoai2,System.String</value>
+          <value>DienThoai3,System.String</value>
+          <value>Fax1,System.String</value>
+          <value>Fax2,System.String</value>
+          <value>Fax3,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>85bb1275b6194b0fb08ff08bcef28d0c</Key>
+        <Name>Info</Name>
+        <NameInSource>Info.Info</NameInSource>
+      </Info>
+      <rptPhieuDatHangNCC Ref="5" type="DataTableSource" isKey="true">
+        <Alias>rptPhieuDatHangNCC</Alias>
+        <Columns isList="true" count="29">
+          <value>id,System.String</value>
+          <value>chinhanh_id,System.String</value>
+          <value>kichhoat,System.String</value>
+          <value>nguoitao_id,System.String</value>
+          <value>thoigiantao,System.String</value>
+          <value>nguoisua_id,System.String</value>
+          <value>thoigiansua,System.String</value>
+          <value>ghichu,System.String</value>
+          <value>ids,System.String</value>
+          <value>sort,System.String</value>
+          <value>ngaydathangncc,System.String</value>
+          <value>ngaynhanhang_dukien,System.String</value>
+          <value>maphieudathangncc,System.String</value>
+          <value>nhacungcap_id,System.String</value>
+          <value>tongtienhang,System.String</value>
+          <value>thuevat,System.String</value>
+          <value>chietkhau,System.String</value>
+          <value>tongthanhtien,System.String</value>
+          <value>trangthainhan,System.String</value>
+          <value>dieukien_thanhtoan,System.String</value>
+          <value>diachi_giaohang,System.String</value>
+          <value>nhacungcap_hoten,System.String</value>
+          <value>nhacungcap_diachi,System.String</value>
+          <value>nhacungcap_dienthoai,System.String</value>
+          <value>tongthanhtien_bangchu,System.String</value>
+          <value>ngaylapphieu,System.String</value>
+          <value>inphieu_hoten,System.String</value>
+          <value>inphieu_thoigian,System.String</value>
+          <value>tongtienthue,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>84dd7d0bdf6044a7b1481d79b20ea762</Key>
+        <Name>rptPhieuDatHangNCC</Name>
+        <NameInSource>rptPhieuDatHangNCC.rptPhieuDatHangNCC</NameInSource>
+      </rptPhieuDatHangNCC>
+      <rptPhieuDatHangNCC_HangHoa Ref="6" type="DataTableSource" isKey="true">
+        <Alias>rptPhieuDatHangNCC_HangHoa</Alias>
+        <Columns isList="true" count="18">
+          <value>id,System.String</value>
+          <value>phieudathangncc_id,System.String</value>
+          <value>hanghoa_id,System.String</value>
+          <value>hanghoa_lohang_id,System.String</value>
+          <value>dvt_id,System.String</value>
+          <value>tilequydoi,System.String</value>
+          <value>soluong,System.String</value>
+          <value>dongia,System.String</value>
+          <value>thuevat,System.String</value>
+          <value>chietkhau,System.String</value>
+          <value>thanhtien,System.String</value>
+          <value>chuthich,System.String</value>
+          <value>soluongdanhan,System.String</value>
+          <value>trangthainhan,System.String</value>
+          <value>soluongtattoan,System.String</value>
+          <value>loaihanghoa,System.String</value>
+          <value>tenhanghoa_inphieu,System.String</value>
+          <value>tendonvitinh,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>f5b4dd17794d4bb7b63822dd54779291</Key>
+        <Name>rptPhieuDatHangNCC_HangHoa</Name>
+        <NameInSource>rptPhieuDatHangNCC.rptPhieuDatHangNCC_HangHoa</NameInSource>
+      </rptPhieuDatHangNCC_HangHoa>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>60c90ae6dc554b5eaed936cac11110f6</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="7" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="6">
+        <PageHeaderBand1 Ref="8" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,20,5.8</ClientRectangle>
+          <Components isList="true" count="14">
+            <Image1 Ref="9" type="Image" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1.78,1.27</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <File>D:\erp-giaphuc-angular\src\assets\reports\img\logo-hongnghi.jpg</File>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Stretch>True</Stretch>
+            </Image1>
+            <Text1 Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,0,18,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>{Info.TenCongTy}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text2 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,0.51,18,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>eba66b7ce36b493691b419b70f1d9d56</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Địa chỉ: {Info.DiaChi}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text2>
+            <Text3 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,1.02,18,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>d2990b3e6d1a4a799c18244ea305ddf7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Kho 1: {Info.DiaChiKho1}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text3>
+            <Text4 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,1.52,18,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>40530b0dcb7a4f9cafbc79d48082eb7b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Kho 2: {Info.DiaChiKho2}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text4>
+            <Text5 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,2.03,18,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>6a77966f402d4a4ca81df8cdcb54024b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Kho 3: {Info.DiaChiKho3}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text5>
+            <Text6 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2,2.54,18,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>6efe209c6c7f439d87a6235e8be4c29d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Điện thoại: {Info.DienThoai}	-	Fax: {Info.Fax}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text6>
+            <Text8 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,4.66,15,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12</Font>
+              <Margins>5,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>{rptPhieuDatHangNCC.nhacungcap_hoten}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text8>
+            <Text9 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,3.05,20,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,14,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>ĐƠN ĐẶT HÀNG</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text9>
+            <Text7 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,4.66,5,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Kính gửi quý nhà cung cấp:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text7>
+            <Text10 Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,5.17,20,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Công ty TNHH DV - TM XNK Hồng Nghi gửi đến Quý Công ty Đơn đặt hàng theo chi tiết như sau:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text10>
+            <Text32 Ref="20" type="Text" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,4,5,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text32</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text32>
+            <Text34 Ref="21" type="Text" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15,4,5,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9</Font>
+              <Guid>f79bdb1a7382474589ec118a70904da8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text34</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Mã phiếu: {rptPhieuDatHangNCC.maphieudathangncc}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text34>
+            <Text37 Ref="22" type="Text" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,4,10,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Italic</Font>
+              <Guid>fec3688f025f45e7af7e60fb675c39f2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text37</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Text>Ngày lập: {rptPhieuDatHangNCC.ngaylapphieu}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text37>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </PageHeaderBand1>
+        <PageFooterBand1 Ref="23" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,27.87,20,0.83</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text29 Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10,-0.05,10,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,8</Font>
+              <Guid>fbb3ae9ad5a947d39f73be159097c777</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="7" />
+              <Parent isRef="23" />
+              <Text>Trang {PageNumber}/{TotalPageCount}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text29>
+            <Text33 Ref="25" type="Text" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,-0.05,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,8,Italic</Font>
+              <Guid>ff76d328823840e5a3182ee581d2f0ac</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text33</Name>
+              <Page isRef="7" />
+              <Parent isRef="23" />
+              <Text>{rptPhieuDatHangNCC.inphieu_hoten} - {rptPhieuDatHangNCC.inphieu_thoigian}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text33>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </PageFooterBand1>
+        <ColumnHeaderBand1 Ref="26" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7,20,0.6</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text24 Ref="27" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1.02,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>9e8b8984b43d42639409953a344b4500</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>STT</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text11 Ref="28" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.02,0,5.08,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>29ab4fc846014b44b58239c2398dfb50</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>TÊN HÀNG HÓA</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="29" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.1,0,4.82,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>8683a5a30774411390455a4010c25cb7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>MÃ MELAMINE</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="30" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.92,0,1.27,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>3b96cae121c84432a32a5eceda320324</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>ĐVT</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="31" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.19,0,1.27,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>8383296a8a784eef8804d546ec05fa26</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>SL</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text15 Ref="32" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.46,0,1.53,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>2df51a4905c94181b5a616ba9cb6fd0a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>ĐƠN GIÁ</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text16 Ref="33" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.99,0,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>955034cb9248412b9ffeefca656df1a4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>THÀNH TIỀN</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="34" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.98,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,9,Bold</Font>
+              <Guid>5882c4a24bcd463b863faed65233252f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="7" />
+              <Parent isRef="26" />
+              <Text>GHI CHÚ</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ColumnHeaderBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </ColumnHeaderBand1>
+        <DataBand1 Ref="35" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,8.4,20,0.6</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text18 Ref="36" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1.02,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>b9333a74045d4e5f80f28e7952a5f855</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="37" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.02,0,5.08,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>8d78e38a182a4ba39cc25899e4bfb5fd</Guid>
+              <Margins>5,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{rptPhieuDatHangNCC_HangHoa.tenhanghoa_inphieu}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text20 Ref="38" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.1,0,4.82,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Times New Roman,10</Font>
+              <Guid>ddbc0acdd90342869adb5219687ceae8</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text21 Ref="39" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.92,0,1.27,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>b5eb2e83ded145d3ae829076b8fb8743</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{rptPhieuDatHangNCC_HangHoa.tendonvitinh}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Text22 Ref="40" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.19,0,1.27,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>e039befb7d2142ab8e8c92f0eb068d02</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{rptPhieuDatHangNCC_HangHoa.soluong}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="41" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
+            <Text23 Ref="42" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.46,0,1.53,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>c880711b01b643daa2b65683f19c62ec</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{rptPhieuDatHangNCC_HangHoa.dongia}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="43" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+            <Text25 Ref="44" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.99,0,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>91537fb672f34770a25286fe3c43c0c6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{rptPhieuDatHangNCC_HangHoa.thanhtien}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="45" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text25>
+            <Text26 Ref="46" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.98,0,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Times New Roman,10</Font>
+              <Guid>dc3aae4a0fe14998b3e1a1750a46d026</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="7" />
+              <Parent isRef="35" />
+              <Text>{rptPhieuDatHangNCC_HangHoa.chuthich}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text26>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>rptPhieuDatHangNCC_HangHoa</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <ColumnFooterBand1 Ref="47" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,9.8,20,1.98</ClientRectangle>
+          <Components isList="true" count="15">
+            <Text35 Ref="48" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.51,12.19,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>f2e5ce19ecd74c7193e8b415c733a7d3</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text35</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>THUẾ VAT:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text35>
+            <Text36 Ref="49" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,1.02,12.19,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>ab3e415679a54fe195d1e0faddcefed2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text36</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>TỔNG CỘNG (VAT):</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text36>
+            <Text63 Ref="50" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.19,0.51,1.27,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>18916abf7fbd40339b1b6764c6632262</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text63</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>{rptPhieuDatHangNCC.thuevat}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="51" type="PercentageFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <PositivePattern>1</PositivePattern>
+                <Symbol />
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text63>
+            <Text64 Ref="52" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.19,1.02,1.27,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>7ecc0eee8f9f40d096b821b8d1a05678</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text64</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text64>
+            <Text66 Ref="53" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.46,0.51,1.53,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>ae680e0360884c168b54808cc27f794a</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text66</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text66>
+            <Text67 Ref="54" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.46,1.02,1.53,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>0aa1d17f162342638907806aab052ae6</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text67</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text67>
+            <Text68 Ref="55" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.99,0.51,3,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>3e5709db83064fba9569446356378a64</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text68</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>{rptPhieuDatHangNCC.tongtienthue}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="56" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text68>
+            <Text69 Ref="57" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.99,1.02,3,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>8ea0ac3622194d1bbdc697035738d291</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text69</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>{rptPhieuDatHangNCC.tongthanhtien}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="58" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text69>
+            <Text70 Ref="59" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.98,0.51,2,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>5f6ec95537184f1d865e9a2c62a03c8e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text70</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text70>
+            <Text71 Ref="60" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.98,1.02,2,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>a6000dd89f0a4eb1af345851452fe580</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text71</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text71>
+            <Text46 Ref="61" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,12.19,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>e215c520b3174117839def319bdf2ae2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text46</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>TỔNG CỘNG:</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text46>
+            <Text47 Ref="62" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.99,0,3,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>4c9fa584520a47f7914d906c1ad889f2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text47</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>{Sum(rptPhieuDatHangNCC_HangHoa.thanhtien)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="63" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text47>
+            <Text48 Ref="64" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.98,0,2,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>1ba88ea455a748058680d20a7bec5926</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text48</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text48>
+            <Text62 Ref="65" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.19,0,1.27,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>3aff6324fe1a4348873ed309d6d87383</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text62</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <Text>{Sum(rptPhieuDatHangNCC_HangHoa.soluong)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="66" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator>.</GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text62>
+            <Text65 Ref="67" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>13.46,0,1.53,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10,Bold</Font>
+              <Guid>670fcb243903417dbc1ce6ded939e1d8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text65</Name>
+              <Page isRef="7" />
+              <Parent isRef="47" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text65>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>cd8fd491e43540b78717a2febfca2b05</Guid>
+          <Name>ColumnFooterBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </ColumnFooterBand1>
+        <FooterBand1 Ref="68" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,12.58,20,6.49</ClientRectangle>
+          <Components isList="true" count="11">
+            <Text42 Ref="69" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.51,2.03,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Guid>45774482669f468fa50fee8699866b87</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text42</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>Ghi chú:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text42>
+            <Text44 Ref="70" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.51,1.22,4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,11</Font>
+              <Guid>51c95662a100448aae34a4621908ab4c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text44</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>1. Thời gian giao hàng:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text44>
+            <Text51 Ref="71" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.51,1.72,4,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,11</Font>
+              <Guid>f90a334c2a3f495d8044d21e5cb5e47f</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text51</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>2. Địa điểm giao hàng:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text51>
+            <Text52 Ref="72" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.51,2.23,4,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,11</Font>
+              <Guid>4aa02251add34bf78b06da1929259f12</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text52</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>3. Điều kiện thanh toán:	</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text52>
+            <Text53 Ref="73" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.48,1.22,15.4,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Times New Roman,11</Font>
+              <Guid>a1ac6e1a805b448493878ad9ab364bd7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text53</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>{rptPhieuDatHangNCC.ngaynhanhang_dukien}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="74" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+            </Text53>
+            <Text54 Ref="75" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.48,1.72,15.4,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Times New Roman,11</Font>
+              <Guid>a44563cb7d9b45ecb221ec8bb1a69203</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text54</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>{rptPhieuDatHangNCC.diachi_giaohang}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text54>
+            <Text55 Ref="76" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.48,2.23,15.4,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Times New Roman,11</Font>
+              <Guid>e339809a9ccb40158f9e7e3b016b8fbe</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text55</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>{rptPhieuDatHangNCC.dieukien_thanhtoan}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text55>
+            <Text56 Ref="77" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.51,3.7,7.62,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Guid>c77a6208e8a649aaad1773479150cb0e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text56</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>Đại diện Nhà cung cấp</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text56>
+            <Text57 Ref="78" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.19,3.7,7.62,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Guid>832822304393402184b05534e9612465</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text57</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>Đại diện công ty Hồng Nghi</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text57>
+            <Text27 Ref="79" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,2.03,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12,Bold</Font>
+              <Guid>f9e55d2d2067491face3b40c81444328</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>Bằng chữ:	</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text27>
+            <Text28 Ref="80" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.03,0,17.8,0.51</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,12</Font>
+              <Guid>1aa7acfb4dd44b4491b3139c71dc5b62</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="7" />
+              <Parent isRef="68" />
+              <Text>{rptPhieuDatHangNCC.tongthanhtien_bangchu} đồng.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text28>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </FooterBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>c864fb646e114665bcc717a394cf4fff</Guid>
+      <Margins>0.5,0.5,0.5,0.5</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>1/19/2021 8:22:27 AM</ReportChanged>
+  <ReportCreated>1/12/2021 10:14:30 AM</ReportCreated>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\mua-hang\rptPhieuDatHangNCC.mrt</ReportFile>
+  <ReportGuid>835eba2c16234c1dbc0f1a40da6d1b26</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2019.3.1.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
 {
-  "ReportVersion": "2019.3.1.0",
-  "ReportGuid": "b62d7bca041d4b3399a65bd669be77a9",
-  "ReportName": "Report",
-  "ReportAlias": "Report",
-  "ReportCreated": "/Date(1605339927000+0700)/",
-  "ReportChanged": "/Date(1608012449260+0700)/",
-  "EngineVersion": "EngineV2",
-  "ReportUnit": "Inches",
-  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
-  "Styles": {
-    "0": {
-      "Ident": "StiStyle",
-      "Name": "Style1",
-      "VertAlignment": "Center",
-      "Font": "Times New Roman;11.25;;",
-      "Border": ";;;;;;;solid:Black",
-      "Brush": "solid:",
-      "TextBrush": "solid:Black",
-      "NegativeTextBrush": "solid:Red"
-    }
-  },
-  "ReferencedAssemblies": {
-    "0": "System.Dll",
-    "1": "System.Drawing.Dll",
-    "2": "System.Windows.Forms.Dll",
-    "3": "System.Data.Dll",
-    "4": "System.Xml.Dll",
-    "5": "Stimulsoft.Controls.Dll",
-    "6": "Stimulsoft.Base.Dll",
-    "7": "Stimulsoft.Report.Dll"
-  },
-  "Pages": {
-    "0": {
-      "Ident": "StiPage",
-      "Name": "Page1",
-      "Guid": "dc13ae2b16b94ec0b676c7b38b6de8d6",
-      "Interaction": {
-        "Ident": "StiInteraction"
-      },
-      "Border": ";;2;;;;;solid:Black",
-      "Brush": "solid:",
-      "Components": {
-        "0": {
-          "Ident": "StiPageHeaderBand",
-          "Name": "PageHeader",
-          "ClientRectangle": "0,0.2,7.87,2.5",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiImage",
-              "Name": "Image1",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0,1,1",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "Stretch": true,
-              "ImageBytes": "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"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text3",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.1,0.2,0.6,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Địa chỉ:"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "2": {
-              "Ident": "StiText",
-              "Name": "Text4",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.1,0.4,0.5,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Kho 1:"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text5",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.1,0.6,0.5,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Kho 2:"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "4": {
-              "Ident": "StiText",
-              "Name": "Text6",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.1,0.8,0.5,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Kho 3:"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "5": {
-              "Ident": "StiText",
-              "Name": "Text7",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.1,1,0.8,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Điện thoại:\t"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "6": {
-              "Ident": "StiText",
-              "Name": "Text8",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,1,0.4,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Fax:"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            },
-            "7": {
-              "Ident": "StiText",
-              "Name": "Text1",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.1,0,6.7,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.TenCongTy}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;14;Bold;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "8": {
-              "Ident": "StiText",
-              "Name": "Text2",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.7,0.2,6.1,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.DiaChi}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "9": {
-              "Ident": "StiText",
-              "Name": "Text9",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.9,1,2,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.DienThoai}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "10": {
-              "Ident": "StiText",
-              "Name": "Text10",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "4.3,1,3.5,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.Fax}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "11": {
-              "Ident": "StiText",
-              "Name": "Text11",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.6,0.4,6.2,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.DiaChiKho1}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "12": {
-              "Ident": "StiText",
-              "Name": "Text12",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.6,0.6,6.2,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.DiaChiKho2}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "13": {
-              "Ident": "StiText",
-              "Name": "Text13",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "1.6,0.8,6.2,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTinCongTy.DiaChiKho3}"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "14": {
-              "Ident": "StiRichText",
-              "Name": "RichText2",
-              "CanGrow": true,
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,1.4,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_B_x005C__x0027_caN_x0020_B_x005C__x0027_c1N:_x0020__x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "15": {
-              "Ident": "StiRichText",
-              "Name": "RichText3",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,1.4,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_B_x005C__x0027_caN_x0020_MUA:_x0020_CTY_x0020_TNHH_x0020_DV_x0020_-_x0020_TM_x0020_XNK_x0020_H_x005C_f1_x005C_lang1066_x005C_u7890_x003F__x005C_f0_x0020_NG_x0020_NGHI_x005C_lang1033_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "16": {
-              "Ident": "StiRichText",
-              "Name": "RichText4",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,1.6,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset238_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x005C__x0027_d0_x005C_f1_x005C_lang1066_x005C_u7883_x003F__x005C_f2_x0020_a_x0020_ch_x005C_f1_x005C_u7881_x003F__x005C_f2_x0020_:_x0020_X_x005C_lang1033_x005C__x0027_e3_x0020_Thu_x005C_f1_x005C_lang1066_x005C_u7853_x003F__x005C_f2_x0020_n_x0020_H_x005C_f1_x005C_u7841_x003F__x005C_f2_x0020_nh_x002C_Huy_x005C_f1_x005C_u7879_x003F__x005C_f2_x0020_n_x0020__x005C_f0_x005C__x0027_d0_x005C_f2_x0020_ak_x0020_Song_x002C_T_x005C_f1_x005C_u7881_x003F__x005C_f2_x0020_nh_x0020__x005C_f0_x005C__x0027_d0_x005C_f2_x0020_ak_x0020_N_x005C_lang1033_x005C__x0027_f4ng_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "17": {
-              "Ident": "StiRichText",
-              "Name": "RichText5",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,1.6,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset238_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f3_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x005C__x0027_d0_x005C_f1_x005C_lang1066_x005C_u7883_x003F__x005C_f2_x0020_a_x0020_ch_x005C_f1_x005C_u7881_x003F__x005C_f2_x0020_:_x0020_1430_x0020_Ho_x005C_lang1033_x005C__x0027_e0ng_x0020_V_x005C_f0_x005C__x0027_e3_x005C_f2_x0020_n_x0020_Th_x005C_f1_x005C_lang1066_x005C_u7909_x003F__x005C_f2_x0020__x002C__x0020_P.4_x002C__x0020_Q.T_x005C_lang1033_x005C__x0027_e2n_x0020_B_x005C__x0027_ecnh_x002C__x0020_TP.HCM_x005C_b0_x005C_f3_x005C_fs17_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "18": {
-              "Ident": "StiRichText",
-              "Name": "RichText6",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,2,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_Email:_x0020_hongnghico_x0040_yahoo.com_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "19": {
-              "Ident": "StiRichText",
-              "Name": "RichText7",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,1.8,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_Li_x005C__x0027_ean_x0020_h_x005C_f1_x005C_lang1066_x005C_u7879_x003F__x005C_f0_x0020_:_x0020_Ms._x0020_Lai_x0020__x0028_0903.735.474_x0029__x0020__x002F__x0020_Ms._x0020_Tr_x005C_lang1033_x005C__x0027_fac_x0020__x0028_028.3620.9175_x0029__x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "20": {
-              "Ident": "StiRichText",
-              "Name": "RichText8",
-              "Guid": "091c2327155a44e29a66c549ebf0e26f",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,1.8,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_Li_x005C__x0027_ean_x0020_h_x005C_f1_x005C_lang1066_x005C_u7879_x003F__x005C_f0_x005C_lang1033_x0020_:_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "21": {
-              "Ident": "StiRichText",
-              "Name": "RichText9",
-              "Guid": "ec17bb7f8db04840929e214ffec2fbb7",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,2,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_Email:_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "22": {
-              "Ident": "StiRichText",
-              "Name": "RichText10",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,2.2,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset238_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x005C__x0027_d0_x005C_f1_x0020_i_x005C_f2_x005C_lang1066_x005C_u7879_x003F__x005C_f1_x0020_n_x0020_Tho_x005C_f2_x005C_u7841_x003F__x005C_f1_x0020_i:_x005C_lang1033_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "23": {
-              "Ident": "StiRichText",
-              "Name": "RichText11",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,2.2,1.5,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_Ng_x005C__x0027_e0y:_x0020_14_x002F_11_x002F_2020_x005C_b0_x005C_f1_x005C_fs17_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "24": {
-              "Ident": "StiRichText",
-              "Name": "RichText12",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "5.4,2.2,2.4,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_qr_x005C_b_x005C_f0_x005C_fs22_x0020_S_x005C_f1_x005C_lang1066_x005C_u7889_x003F__x005C_f0_x005C_lang1033_x0020_:_x0020_DH2011140167328_x005C_b0_x005C_f2_x005C_fs17_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            }
-          }
-        },
-        "1": {
-          "Ident": "StiPageFooterBand",
-          "Name": "PageFooter",
-          "ClientRectangle": "0,11.09,7.87,0.2",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:"
-        },
-        "2": {
-          "Ident": "StiReportTitleBand",
-          "Name": "ReportTitle",
-          "ClientRectangle": "0,3.1,7.87,0.5",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text14",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0,7.8,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{ThongTin.TieuDe}"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;14;Bold;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            },
-            "1": {
-              "Ident": "StiRichText",
-              "Name": "RichText1",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0.2,7.8,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset238_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_qc_x005C_f0_x005C_fs22_x0020_C_x005C__x0027_f4ng_x0020_ty_x0020__x007B_ThongTinCongTy.TenCongTy_x007D__x0020__x005C_lang1066_x0020_g_x005C_f1_x005C_u7917_x003F__x005C_f0_x0020_i_x0020__x005C_f2_x005C__x0027_f0_x005C_f1_x005C_u7871_x003F__x005C_f0_x0020_n_x0020_Qu_x005C_lang1033_x005C__x0027_fd_x0020_C_x005C__x0027_f4ng_x0020_ty_x0020__x005C_f2_x005C__x0027_d0_x005C_u417_x003F__x005C_f0_x0020_n_x0020__x005C_f2_x005C__x0027_f0_x005C_f1_x005C_lang1066_x005C_u7863_x003F__x005C_f0_x0020_t_x0020_h_x005C_lang1033_x005C__x0027_e0ng_x0020_theo_x0020_chi_x0020_ti_x005C_f1_x005C_lang1066_x005C_u7871_x003F__x005C_f0_x0020_t_x0020_nh_x005C_f2_x005C_u432_x003F__x005C_f0_x0020__x0020_sau:_x005C_lang1033_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            }
-          }
-        },
-        "3": {
-          "Ident": "StiColumnHeaderBand",
-          "Name": "ColumnHeader",
-          "ClientRectangle": "0,4,7.87,0.3",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text16",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0,0.6,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "STT"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            }
-          }
-        },
-        "4": {
-          "Ident": "StiDataBand",
-          "Name": "TableData",
-          "ClientRectangle": "0,4.7,7.87,0.3",
-          "Interaction": {
-            "Ident": "StiBandInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiText",
-              "Name": "Text15",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0,0.6,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "{Line}"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;10;;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            }
-          }
-        },
-        "5": {
-          "Ident": "StiFooterBand",
-          "Name": "Footer",
-          "ClientRectangle": "0,5.4,7.87,3",
-          "Interaction": {
-            "Ident": "StiInteraction"
-          },
-          "Border": ";;;;;;;solid:Black",
-          "Brush": "solid:",
-          "Components": {
-            "0": {
-              "Ident": "StiRichText",
-              "Name": "RichText13",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0,7.8,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset238_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_B_x005C_f1_x005C_lang1066_x005C_u7857_x003F__x005C_f0_x0020_ng_x0020_ch_x005C_f1_x005C_u7919_x003F__x005C_f0_x0020_:_x005C_b0_x005C_lang1033_x0020__x0020__x005C_i_x005C_lang1066_x0020_Ba_x0020_tr_x005C_f2_x005C__x0027_e3_x005C_f0_x0020_m_x0020_hai_x0020_m_x005C_f2_x005C_u432_x003F__x005C_u417_x003F__x005C_f0_x0020_i_x0020_b_x005C_f1_x005C_u7889_x003F__x005C_f0_x0020_n_x0020_tri_x005C_f1_x005C_u7879_x003F__x005C_f0_x0020_u_x0020_ba_x0020_tr_x005C_f2_x005C__x0027_e3_x005C_f0_x0020_m_x0020_m_x005C_f2_x005C_u432_x003F__x005C_f1_x005C_u7901_x003F__x005C_f0_x0020_i_x0020_ch_x005C_lang1033_x005C__x0027_edn_x0020_ng_x005C__x0027_e0n_x0020_t_x005C__x0027_e1m_x0020_tr_x005C_f2_x005C__x0027_e3_x005C_f0_x0020_m_x0020__x005C_f2_x005C__x0027_f0_x005C_f1_x005C_lang1066_x005C_u7891_x003F__x005C_f0_x0020_ng._x005C_lang1033_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "1": {
-              "Ident": "StiText",
-              "Name": "Text17",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0.7,0.2,7.1,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Trị giá đơn hàng chưa bao gồm VAT."
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            },
-            "2": {
-              "Ident": "StiRichText",
-              "Name": "RichText14",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0.4,7.8,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Times_x0020_New_x0020_Roman_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Times_x0020_New_x0020_Roman_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_b_x005C_f0_x005C_fs22_x0020_Ti_x005C__x0027_eau_x0020_chu_x005C_f1_x005C_lang1066_x005C_u7849_x003F__x005C_f0_x0020_n:_x005C_b0_x005C_lang1033_x0020__x0020__x005C_lang1066_x0020_HDF_x0020_E2_x002C__x005C_lang1033_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "3": {
-              "Ident": "StiText",
-              "Name": "Text18",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,0.8,0.8,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "GHI CHÚ:"
-              },
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;Dot;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            },
-            "4": {
-              "Ident": "StiRichText",
-              "Name": "RichText15",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0.4,1,7.4,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset238_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_f0_x005C_fs17_x0020_Gi_x005C__x0027_e1_x0020_tr_x005C_f1_x005C_lang1066_x005C_u7883_x003F__x0020__x005C_f2_x005C__x0027_f0_x005C_u417_x003F_n_x0020_h_x005C_f0_x005C_lang1033_x005C__x0027_e0ng:_x005C_tab_x0020_Bao_x0020_g_x005C_f1_x005C_lang1066_x005C_u7891_x003F_m_x0020_thu_x005C_u7871_x003F__x0020_VAT_x0020_10_x0025_:_x005C_f0_x005C_lang1033_x005C_tab_x005C_f1_x005C_lang1066_x0020_356_x002C_751_x002C_780_x005C_f0_x005C_lang1033_x005C_tab_x005C_f1_x005C_lang1066_x0020_Ch_x005C_f2_x005C_u432_x003F_a_x0020_g_x005C_f1_x005C_u7891_x003F_m_x0020_thu_x005C_u7871_x003F__x0020_VAT_x0020_10_x0025_:_x005C_f0_x005C_lang1033_x005C_tab_x005C_f1_x005C_lang1066_x0020_324_x002C_319_x002C_800_x005C_f0_x005C_lang1033_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "5": {
-              "Ident": "StiRichText",
-              "Name": "RichText16",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0.4,1.2,7.4,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset163_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_f0_x005C_fs17_x0020_1._x0020_Th_x005C_f1_x005C_lang1066_x005C_u7901_x003F_i_x0020_gian_x0020_giao_x0020_h_x005C_f0_x005C_lang1033_x005C__x0027_e0ng:_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "6": {
-              "Ident": "StiRichText",
-              "Name": "RichText17",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0.4,1.4,7.4,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset238_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset163_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_f0_x005C_fs17_x0020_2._x0020__x005C_f1_x005C__x0027_d0_x005C_f2_x005C_lang1066_x005C_u7883_x003F_a_x0020__x005C_f1_x005C__x0027_f0i_x005C_f2_x005C_u7875_x003F_m_x0020_giao_x0020_h_x005C_f0_x005C_lang1033_x005C__x0027_e0ng:_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "7": {
-              "Ident": "StiRichText",
-              "Name": "RichText18",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0.4,1.6,7.4,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "__LP___x005C_rtf1_x005C_ansi_x005C_ansicpg1252_x005C_deff0_x005C_nouicompat_x005C_deflang1033__LP___x005C_fonttbl__LP___x005C_f0_x005C_fnil_x005C_fcharset0_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f1_x005C_fnil_x005C_fcharset238_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____LP___x005C_f2_x005C_fnil_x005C_fcharset163_x0020_Microsoft_x0020_Sans_x0020_Serif_x003B___RP____RP___x000D__x000A___LP___x005C__x002A__x005C_generator_x0020_Riched20_x0020_10.0.19041__RP___x005C_viewkind4_x005C_uc1_x0020__x000D__x000A__x005C_pard_x005C_f0_x005C_fs17_x0020_3._x0020__x005C_f1_x005C__x0027_d0i_x005C_f2_x005C_lang1066_x005C_u7873_x003F_u_x0020_ki_x005C_u7879_x003F_n_x0020_thanh_x0020_to_x005C_f0_x005C_lang1033_x005C__x0027_e1n:_x005C_par_x000D__x000A___RP___x000D__x000A_"
-              },
-              "Border": ";;;Dot;;;;solid:Black",
-              "BackColor": "Transparent"
-            },
-            "8": {
-              "Ident": "StiText",
-              "Name": "Text19",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "0,2,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "Đại diện bên bán\t\t\t"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black",
-              "Type": "Expression"
-            },
-            "9": {
-              "Ident": "StiText",
-              "Name": "Text20",
-              "MinSize": "0,0",
-              "MaxSize": "0,0",
-              "ClientRectangle": "3.9,2,3.9,0.2",
-              "Interaction": {
-                "Ident": "StiInteraction"
-              },
-              "Text": {
-                "Value": "\tĐại diện bên mua\t"
-              },
-              "HorAlignment": "Center",
-              "VertAlignment": "Center",
-              "Font": "Times New Roman;11;Bold;",
-              "Border": ";;;;;;;solid:Black",
-              "Brush": "solid:",
-              "TextBrush": "solid:Black"
-            }
-          }
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
         }
-      },
-      "PaperSize": "A4",
-      "PageWidth": 8.27,
-      "PageHeight": 11.69,
-      "Watermark": {
-        "TextBrush": "solid:50,0,0,0"
-      },
-      "Margins": {
-        "Left": 0.2,
-        "Right": 0.2,
-        "Top": 0.2,
-        "Bottom": 0.2
-      },
-      "ReportUnit": {
-        "Ident": "StiInchesUnit"
-      }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
     }
-  }
 }
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

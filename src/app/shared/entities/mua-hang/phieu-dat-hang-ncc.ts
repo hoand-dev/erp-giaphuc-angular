@@ -1,5 +1,6 @@
 export class PhieuDatHangNCC {
     public tongthanhtien_bangchu: string;
+    public tongtienthue: number;
     public ngaylapphieu: string;
     public inphieu_hoten: string;
     public inphieu_thoigian: string;
