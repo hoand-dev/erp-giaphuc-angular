@@ -98,6 +98,10 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     dsPhieuXuatKho.readJson({ rptPhieuXuatKho: data, rptPhieuXuatKho_HangHoa: data.phieuxuatkho_chitiets });
                     report.regData('rptPhieuXuatKho', null, dsPhieuXuatKho);
 
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('Logo').valueObject  = imageLogo;
+                    
                     /* render report */
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
