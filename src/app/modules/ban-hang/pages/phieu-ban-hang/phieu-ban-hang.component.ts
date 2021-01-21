@@ -1,13 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { PhieuBanHang } from '@app/shared/entities';
 import { PhieuBanHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { Subscription, Subject } from 'rxjs';
+import { PhieuBanHangInPhieuComponent } from '../../modals/phieu-ban-hang-in-phieu/phieu-ban-hang-in-phieu.component';
 
 @Component({
   selector: 'app-phieu-ban-hang',
@@ -26,7 +29,7 @@ export class PhieuBanHangComponent implements OnInit {
     public firstDayTime: Date;
     public currDayTime : Date = new Date();
     public timeCreateAt: Date = new Date();
-    
+    public bsModalRef: BsModalRef;
 
     public stateStoringGrid = {
         enabled: true,
@@ -38,7 +41,8 @@ export class PhieuBanHangComponent implements OnInit {
   constructor(
     private router: Router,
     private objPhieuBanHangService: PhieuBanHangService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private modalService: BsModalService
 
   ) { }
 
@@ -73,6 +77,40 @@ export class PhieuBanHangComponent implements OnInit {
           }
         )
     );
+  }
+
+  addMenuItems(e){
+      if(e.row.rowType ==='data'){
+          if(!e.items) e.items =[];
+
+          e.items.push(
+              {
+                  text: 'In phiếu',
+                  icon: 'print',
+                  visible: 'true',
+
+                  onItemClick:() =>{
+                      let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
+
+                      /*Khởi tạo giá trị modal */
+                      const initialState ={
+                          title: "IN PHIẾU YÊU CẦU XUẤT KHO",
+                          phieubanhang_id: rowData.id,
+                          
+                      };
+                      /* Hiển thị modal */
+                      this.bsModalRef = this.modalService.show(PhieuBanHangInPhieuComponent,{
+                          class: 'modal-xl modal-dialog-centered',
+                          ignoreBackdropClick: false,
+                          keyboard: false,
+                          initialState
+                      });
+                      this.bsModalRef.content.closeBtnName =" Đóng"
+                  }
+              }
+          );
+         
+      }
   }
 
   onRowDblClick(e){

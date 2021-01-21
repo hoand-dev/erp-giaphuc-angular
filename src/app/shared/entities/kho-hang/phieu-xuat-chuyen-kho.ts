@@ -1,4 +1,11 @@
 export class PhieuXuatChuyenKho {
+
+
+    public nhanviensale_hoten: string;
+    public phieuin_thoigian: string;
+    public phieuin_nguoiin: string;
+    public ngaylapphieu: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;

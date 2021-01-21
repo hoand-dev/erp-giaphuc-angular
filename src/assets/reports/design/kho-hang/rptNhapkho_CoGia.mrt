@@ -11,7 +11,7 @@
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
-  <Key>98ff221cbcc340edb0c2eb9acb604edf</Key>
+  <Key>e3c19eef9aad4773bc947d3895f8ddde</Key>
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="1">
     <Page1 Ref="2" type="Page" isKey="true">
@@ -27,7 +27,7 @@
               <ClientRectangle>0,1.5,5.1,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>f9d136a97c6e474b8b683298128072eb</Guid>
+              <Guid>0b09ce7c16a24307b73ed09865a74077</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="2" />
@@ -42,7 +42,7 @@
               <ClientRectangle>0,2.1,7.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>3dfdd87271434d1a8a11a82d86d2759e</Guid>
+              <Guid>feea3b9d92cf465daba42cb374dcbb5f</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="2" />
@@ -56,7 +56,7 @@
               <ClientRectangle>5.1,1.5,2.8,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>021926a58719477a98984d7bec357225</Guid>
+              <Guid>332a668d28c9407091e78d08880a272f</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
               <Page isRef="2" />
@@ -70,7 +70,7 @@
               <ClientRectangle>0,1.7,7.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>83eaa88cbefa41ec8a395fe272e779c6</Guid>
+              <Guid>579ce765fef44389ac9595b8c6d4aa55</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="2" />
@@ -85,7 +85,7 @@
               <ClientRectangle>0,1.9,7.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>02d0848c14254f1c9141a42e6573baf8</Guid>
+              <Guid>53e116c8d5414913948794ce31ed3466</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="2" />
@@ -94,95 +94,28 @@
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text9>
-            <Text32 Ref="9" type="Text" isKey="true">
+            <Text2 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>5.1,1.3,2.8,0.2</ClientRectangle>
+              <ClientRectangle>0,0.8,7.9,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,11</Font>
-              <Guid>7ad2729b22474d9bae4e22f645b26273</Guid>
+              <Font>Times New Roman,14,Bold</Font>
+              <Guid>6e523e8fe5bd4dd789767aa5f68f3201</Guid>
+              <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text32</Name>
+              <Name>Text2</Name>
               <Page isRef="2" />
               <Parent isRef="3" />
-              <Text>DDH:phieubanhang.maphieubanhang</Text>
+              <Text>PHIẾU NHẬP KHO</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-            </Text32>
-            <Image2 Ref="10" type="Image" isKey="true">
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text12 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,0.7,0.5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <File>D:\erp-giaphuc-angular\src\assets\reports\img\logo-hongnghi.jpg</File>
-              <Guid>190f8000e3f946f1b62d42dda4475ebb</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Image2</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Stretch>True</Stretch>
-            </Image2>
-            <Text11 Ref="11" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.8,0.4,7.1,0.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10</Font>
-              <Guid>27ad5536fb194378806095309913328e</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>ĐT: (028) 3620 9175 - (028) 3620 9176 - Lai: 0903 735 474</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text11>
-            <Text5 Ref="12" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.8,0.2,7.1,0.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10</Font>
-              <Guid>8ae2827a987149cda83f46d7f7ce2983</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text5</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>Địa chỉ: 1430, Hoàng Văn Thụ, Phường 4, Quận Tân Bình, TPHCM  - MST: 0303612393</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text5>
-            <Text10 Ref="13" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.8,0,7.1,0.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10</Font>
-              <Guid>87991613b14a4ac1b2670354ba2ca248</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text10</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>CÔNG TY TNHH DV-TM XNK HỒNG NGHI
-</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text10>
-            <Text6 Ref="14" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.8,0.6,7.1,0.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10</Font>
-              <Guid>69c51b66aee2417193f247c61bfad206</Guid>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text6</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>Email: hongnghi@yahoo.com - Website: mdfhongnghi.vn</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text6>
-            <Text12 Ref="15" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,1.2,7.9,0.2</ClientRectangle>
+              <ClientRectangle>0,1.1,7.8,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>1bd9cda8e8b845daab1cf8b562534e51</Guid>
+              <Guid>cbd1b6a922ea4a2cb815c20937872208</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
@@ -192,39 +125,106 @@
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text2 Ref="16" type="Text" isKey="true">
+            <Text32 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.9,7.9,0.3</ClientRectangle>
+              <ClientRectangle>5.1,1.3,2.8,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,14,Bold</Font>
-              <Guid>45c55ab283954d5eaa60d33ac633e997</Guid>
-              <HorAlignment>Center</HorAlignment>
+              <Font>Times New Roman,11</Font>
+              <Guid>9be32669483f4d3da4805732dfe32cc1</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text2</Name>
+              <Name>Text32</Name>
               <Page isRef="2" />
               <Parent isRef="3" />
-              <Text>ĐƠN ĐẶT HÀNG</Text>
+              <Text>PXK:phieuxuatkho.maphieuxuatkho</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text2>
+            </Text32>
+            <Image2 Ref="12" type="Image" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,0.7,0.5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <File>D:\erp-giaphuc-angular\src\assets\reports\img\logo-hongnghi.jpg</File>
+              <Guid>55acf691689842f4b169b5ad37527abe</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image2</Name>
+              <Page isRef="2" />
+              <Parent isRef="3" />
+              <Stretch>True</Stretch>
+            </Image2>
+            <Text11 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0.4,7.2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>8ddd3ca6bcba40da9d7b639397d5722d</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="2" />
+              <Parent isRef="3" />
+              <Text>ĐT: (028) 3620 9175 - (028) 3620 9176 - Lai: 0903 735 474</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text11>
+            <Text5 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0.2,7.2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>b70c3d3bd3f048679d6ce3c950529b40</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="2" />
+              <Parent isRef="3" />
+              <Text>Địa chỉ: 1430, Hoàng Văn Thụ, Phường 4, Quận Tân Bình, TPHCM  - MST: 0303612393</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text5>
+            <Text10 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0,7.2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>114d7f319b61414cb8a1f78c039d310b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="2" />
+              <Parent isRef="3" />
+              <Text>CÔNG TY TNHH DV-TM XNK HỒNG NGHI
+</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text10>
+            <Text6 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.7,0.6,7.2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,10</Font>
+              <Guid>da42c446b47a4b2c86645675606115b2</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="2" />
+              <Parent isRef="3" />
+              <Text>Email: hongnghi@yahoo.com - Website: mdfhongnghi.vn</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text6>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>ac2620aba97a4140a3795f783b1e39e9</Guid>
+          <Guid>660f4aa6d90a4fc9bbc5fcb9adb12a23</Guid>
           <Name>PageHeaderBand1</Name>
           <Page isRef="2" />
           <Parent isRef="2" />
         </PageHeaderBand1>
         <PageFooterBand1 Ref="17" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.69,7.87,0.6</ClientRectangle>
+          <ClientRectangle>0,10.49,7.87,0.8</ClientRectangle>
           <Components isList="true" count="2">
             <Text46 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,7.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
-              <Guid>b7049eca07e94f3ea4f2ce81cb951791</Guid>
+              <Guid>2053f85a0e1641e5bb32972576bf7ad0</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text46</Name>
               <Page isRef="2" />
@@ -237,7 +237,7 @@
               <ClientRectangle>0,0.2,7.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
-              <Guid>81e5738c45fe4002a13de24d3320b7e9</Guid>
+              <Guid>67fd565eab4c42738fbef5adab5dfbde</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text47</Name>
               <Page isRef="2" />
@@ -247,17 +247,17 @@
             </Text47>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>56abd223468242aba0dd94751048242e</Guid>
+          <Guid>bb8a91b336ab452cb9692e35c88ec4ae</Guid>
           <Name>PageFooterBand1</Name>
           <Page isRef="2" />
           <Parent isRef="2" />
         </PageFooterBand1>
         <Text34 Ref="20" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0.5,5.3,1.9,0.2</ClientRectangle>
+          <ClientRectangle>0.5,5.4,1.9,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
-          <Guid>f048d916fcc14a93851569a63bb945e0</Guid>
+          <Guid>ded7ebee0ea64f15ae0979391549eaa1</Guid>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text34</Name>
@@ -270,10 +270,10 @@
         </Text34>
         <Text33 Ref="21" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0.5,5.5,1.9,0.2</ClientRectangle>
+          <ClientRectangle>0.5,5.6,1.9,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
-          <Guid>428d3f227f264b3988d917e6f6122907</Guid>
+          <Guid>4ab150e39d2a4cad91589e6cc51fc42b</Guid>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text33</Name>
@@ -286,10 +286,10 @@
         </Text33>
         <Text35 Ref="22" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>3.5,5.3,1.7,0.2</ClientRectangle>
+          <ClientRectangle>3.5,5.4,1.7,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
-          <Guid>deba34ca7c864ba58d1d26eda90c2746</Guid>
+          <Guid>ba49c26224b54ccbbeca0bf214980a04</Guid>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text35</Name>
@@ -302,10 +302,10 @@
         </Text35>
         <Text36 Ref="23" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>3.5,5.5,1.7,0.2</ClientRectangle>
+          <ClientRectangle>3.5,5.6,1.7,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
-          <Guid>de90eec935cc486e89e4f7c14c82c4ed</Guid>
+          <Guid>7ffd5adef06d46a186972ca24b28a81f</Guid>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text36</Name>
@@ -318,10 +318,10 @@
         </Text36>
         <Text37 Ref="24" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>6.2,5.3,1.4,0.2</ClientRectangle>
+          <ClientRectangle>6.2,5.4,1.4,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
-          <Guid>56e7786ec9c94595bac7086b176141ac</Guid>
+          <Guid>0c23c6baf95a4867bd9625302d3eb1cc</Guid>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text37</Name>
@@ -334,10 +334,10 @@
         </Text37>
         <Text38 Ref="25" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>6.2,5.5,1.4,0.2</ClientRectangle>
+          <ClientRectangle>6.2,5.6,1.4,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
-          <Guid>7a6d73d973e94fc7bccf5d0cbee15f28</Guid>
+          <Guid>11494f89e2d24bf1b1d635ec89a84fbb</Guid>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text38</Name>
@@ -350,10 +350,10 @@
         </Text38>
         <Text8 Ref="26" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,4.9,7.9,0.2</ClientRectangle>
+          <ClientRectangle>0,5,7.9,0.2</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,12</Font>
-          <Guid>ca11b5eab26846baa4f194c347824d2c</Guid>
+          <Guid>5fa63b006945438aad1daba5acfef363</Guid>
           <Margins>0,0,0,0</Margins>
           <Name>Text8</Name>
           <Page isRef="2" />
@@ -373,7 +373,7 @@
               <ClientRectangle>0.6,0,2.2,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>a3a0cafcedf54c1ea4a70b5ab914a570</Guid>
+              <Guid>e82e6a8792944d40a250ac525386587c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
@@ -390,7 +390,7 @@
               <ClientRectangle>2.8,0,0.6,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>68f2f523b9b74ef793ef62e442b25c09</Guid>
+              <Guid>6287599b544b446d9babe91ea9977b0e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text18</Name>
@@ -407,7 +407,7 @@
               <ClientRectangle>3.4,0,0.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>41fb61fb1a57449f8ec7fcfdf8638278</Guid>
+              <Guid>4bb3709d1fb24adeb8f0985bb7202e07</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
@@ -424,7 +424,7 @@
               <ClientRectangle>4.3,0,0.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>3e0b49f7a20640a8ab3bf86383f06910</Guid>
+              <Guid>086062c096b64adaa7c795c637ae7dd9</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
@@ -441,7 +441,7 @@
               <ClientRectangle>6,0,1.1,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>831f63d9f1854d7d914038a2c2fbead2</Guid>
+              <Guid>1fd3faaea4b9451cbabadab565b16676</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text23</Name>
@@ -458,7 +458,7 @@
               <ClientRectangle>0,0,0.6,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>8c9cc749cedb490b90bb0a4704bb1c3a</Guid>
+              <Guid>797988efe54046959b5044f2cf497c24</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text24</Name>
@@ -475,7 +475,7 @@
               <ClientRectangle>7.1,0,0.7,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>5cb7975d99d8470ca5b0f41f46504e58</Guid>
+              <Guid>984471daf68a4e009fc9d2d562157508</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text16</Name>
@@ -492,7 +492,7 @@
               <ClientRectangle>5.2,0,0.4,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>df7c0296ae1c44b6a6ee49875a88095d</Guid>
+              <Guid>5ac711a48fd94d6eaa765259feefd405</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text28</Name>
@@ -509,7 +509,7 @@
               <ClientRectangle>5.6,0,0.4,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>e8392d287b784a06bf82ed491bd979ba</Guid>
+              <Guid>aa01fe55ca8b44cba65d3a8273b75cd5</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text29</Name>
@@ -522,7 +522,7 @@
             </Text29>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>a0bd30ada15f423fb5c6cc7225cd6224</Guid>
+          <Guid>aa3658233bf7438fb6b52d72ce69f54c</Guid>
           <Name>ColumnHeaderBand1</Name>
           <Page isRef="2" />
           <Parent isRef="2" />
@@ -537,7 +537,7 @@
               <ClientRectangle>0,0,0.6,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>a3b9e8b215b44ac99f1658866cae1dea</Guid>
+              <Guid>8c44937ebdbe4faf82eb3c60dcfdef96</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
@@ -554,7 +554,7 @@
               <ClientRectangle>0.6,0,2.2,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>988b0dc886de41718b95b0f27aea4405</Guid>
+              <Guid>1be56d38a93e405f8db764c179405278</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="2" />
@@ -570,7 +570,7 @@
               <ClientRectangle>2.8,0,0.6,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>3225aa8667844d0d9e7c47069582bb86</Guid>
+              <Guid>51b5f78eecc24dc0b2e247986913c593</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
@@ -587,7 +587,7 @@
               <ClientRectangle>3.4,0,0.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>49367b2aa38849978061e460adc5e411</Guid>
+              <Guid>8b85db9f7fa24203aef3f4690b7983da</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
@@ -604,7 +604,7 @@
               <ClientRectangle>4.3,0,0.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>dfe78d34a24f46f48bc6048ffb11a776</Guid>
+              <Guid>6569018c486d460abcb355f52c693250</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
@@ -621,7 +621,7 @@
               <ClientRectangle>6,0,1.1,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>08fe95eab8d5495eb20e24df162786bc</Guid>
+              <Guid>a1a423850de748288d7fb99820797dfa</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text25</Name>
@@ -638,7 +638,7 @@
               <ClientRectangle>7.1,0,0.7,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>42d81599dfc54b22b8de9540641515b1</Guid>
+              <Guid>de63f9996fd949759d9d0827bfeecc8d</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
@@ -655,7 +655,7 @@
               <ClientRectangle>5.2,0,0.4,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>565ca65ac04a4166b8dfdae8fa588dc7</Guid>
+              <Guid>89dc83d00d2248ab91f382a9aa1cfa9d</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
@@ -672,7 +672,7 @@
               <ClientRectangle>5.6,0,0.4,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>6c0a1f328fc74a48aa5993f1be29d49a</Guid>
+              <Guid>c20ec4b45f9545a5bda482cf7c46d365</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text31</Name>
@@ -687,7 +687,7 @@
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
           <Filters isList="true" count="0" />
-          <Guid>598150b3efc645d2a287a55249f2ebf2</Guid>
+          <Guid>06d8c0fbe2d845408f971cb12977253c</Guid>
           <Name>DataBand1</Name>
           <Page isRef="2" />
           <Parent isRef="2" />
@@ -702,7 +702,7 @@
               <ClientRectangle>0,0,3.3,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>694b8552ec6642dd84feb41f5218003b</Guid>
+              <Guid>726204644a20445280b2ce69ecf6422f</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
@@ -717,7 +717,7 @@
               <ClientRectangle>3.3,0,1,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>f459ce3b0ecc42a989ffef8c9b4dce5e</Guid>
+              <Guid>08b7b10ca4f947ebbc3300daef21bdc0</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text39</Name>
@@ -732,7 +732,7 @@
               <ClientRectangle>6,0,1.1,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>2a1d6d32687e4ca681f6771203217767</Guid>
+              <Guid>bfa2128a5eb647609a20c2baa5a6e6a6</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text40</Name>
@@ -747,7 +747,7 @@
               <ClientRectangle>4.3,0,0.9,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>ef1e5473f04949d0b3c6192f9a34dda9</Guid>
+              <Guid>338a5372fd954ab78aef06a678f1bb81</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text41</Name>
@@ -762,7 +762,7 @@
               <ClientRectangle>5.2,0,0.4,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>239adfb9c5764a23b30751968f8404ea</Guid>
+              <Guid>f958164fdcbf4bdb91acc1343dabc57e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text42</Name>
@@ -777,7 +777,7 @@
               <ClientRectangle>5.6,0,0.4,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>853b84496a8745b4b03152d0cc108286</Guid>
+              <Guid>2ca21006bd98495f9cbc522afa651e25</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
@@ -792,7 +792,7 @@
               <ClientRectangle>7.1,0,0.8,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>4fce307e897f487f9fc66dc217f1b054</Guid>
+              <Guid>8dc9c18c4bb8430fadd902d181f764af</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text44</Name>
@@ -807,7 +807,7 @@
               <ClientRectangle>0,0,0.8,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>3e10f759e6e341df8d5bf1b6ae25ccce</Guid>
+              <Guid>4ec411dedc424a2980444404a50489ba</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text45</Name>
               <Page isRef="2" />
@@ -818,14 +818,14 @@
             </Text45>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>69f8fc76d6c94a38a39f4b8a084cd9e9</Guid>
+          <Guid>534891f3d9be46ef9ca218e6bb53d99c</Guid>
           <Name>ColumnFooterBand1</Name>
           <Page isRef="2" />
           <Parent isRef="2" />
         </ColumnFooterBand1>
       </Components>
       <Conditions isList="true" count="0" />
-      <Guid>e3115d285ecf448ebf6f00f502e0b25c</Guid>
+      <Guid>15ec98d27c7d48db859dea8b8c267ef0</Guid>
       <Margins>0.2,0.2,0.2,0.2</Margins>
       <Name>Page1</Name>
       <PageHeight>11.69</PageHeight>
@@ -845,10 +845,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/11/2021 2:47:14 PM</ReportChanged>
-  <ReportCreated>1/11/2021 9:47:44 AM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ban-hang\DonDatHang.mrt</ReportFile>
-  <ReportGuid>8b02b1f5b66e4c51990ebd2ef373df31</ReportGuid>
+  <ReportChanged>1/11/2021 2:55:50 PM</ReportChanged>
+  <ReportCreated>1/11/2021 1:24:44 PM</ReportCreated>
+  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\kho-hang\Nhapkho_CoGia.mrt</ReportFile>
+  <ReportGuid>0792207d29224cc49bdcee88f4cbaafe</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

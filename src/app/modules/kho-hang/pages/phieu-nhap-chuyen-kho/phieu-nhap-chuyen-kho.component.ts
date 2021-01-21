@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { PhieuNhapChuyenKhoInPhieuModalComponent } from '../../modals/phieu-nhap-chuyen-kho-in-phieu-modal/phieu-nhap-chuyen-kho-in-phieu-modal.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-phieu-nhap-chuyen-kho',
@@ -21,6 +23,9 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    public bsModalRef: BsModalRef;
+
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -31,7 +36,8 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         storageKey: 'dxGrid_PhieuNhapChuyenKho'
     };
 
-    constructor(private router: Router, private objPhieuNhapChuyenKhoService: PhieuNhapChuyenKhoService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuNhapChuyenKhoService: PhieuNhapChuyenKhoService, private authenticationService: AuthenticationService,
+        private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -70,6 +76,39 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
                 }
             )
         );
+    }
+
+    addMenuItems(e){
+        if(e.row.rowType === 'data'){
+            if(!e.items) e.items=[];
+
+            e.items.push(
+                {
+                    text: 'In Phiếu',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuNhapChuyenKho = e.row.key as PhieuNhapChuyenKho
+
+                        /* Khởi tạo gia trị modal */
+                        const initialState = {
+                            title: " IN PHIẾU NHẬP CHUYỂN KHO",
+                            phieunhapchuyenkho_id: rowData.id,
+                        };
+
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapChuyenKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = " Đóng"
+                    }
+                }
+            )
+        }
     }
 
     onRowDblClick(e) {
