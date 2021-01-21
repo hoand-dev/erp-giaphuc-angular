@@ -120,8 +120,8 @@ export class PhieuDatHangNCCThemMoiComponent implements OnInit {
 
             // gán lại thông tin điện thoại + địa chỉ nhà cung cấp
             let nhacungcap = this.lstNhaCungCap.find((x) => x.id == this.phieudathangncc.nhacungcap_id);
-            this.phieudathangncc.dienthoainhacungcap = nhacungcap ? nhacungcap.sodienthoai : null;
-            this.phieudathangncc.diachinhacungcap = nhacungcap ? nhacungcap.diachi : null;
+            this.phieudathangncc.nhacungcap_dienthoai = nhacungcap ? nhacungcap.sodienthoai : null;
+            this.phieudathangncc.nhacungcap_diachi = nhacungcap ? nhacungcap.diachi : null;
 
             // load nợ cũ ncc
             this.subscriptions.add(

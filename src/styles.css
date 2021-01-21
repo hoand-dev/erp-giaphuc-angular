@@ -178,3 +178,16 @@ h6,
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a8bbbf;
 }
+
+/* ------------------------------------------------------------------------- */
+/* Ẩn thông tin Stimulsoft */
+div#StiViewerToolTip table tbody tr:last-of-type {
+    display: none;
+}
+.stiJsViewerToolBarTable img[src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAT0lEQVR42mL8//8/AyWAiYFCQLEBLNgEKyoqMPzV0dHBSJQLsGnGJ47TCyAbcdmK1wvEaCI6EJGdTXQYkKKZKtHISGlKZBn6Xhj4zAQQYABalyK0fONo5gAAAABJRU5ErkJggg=="] {
+    display: none;
+}
+/* tuỳ chỉnh đổ bóng editable Stimulsoft */
+.stiEditableFieldSelected {
+    box-shadow: none;
+}

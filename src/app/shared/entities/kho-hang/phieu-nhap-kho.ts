@@ -2,6 +2,13 @@ export class PhieuNhapKho {
     public phieunhapkho_chitiets: PhieuNhapKho_ChiTiet[];
     public phieunhapkho_chitiets_old: PhieuNhapKho_ChiTiet[];
 
+    public tongthanhtien_bangchu: string;
+    public ngaylapphieu: string;
+    public inphieu_hoten: string;
+    public inphieu_thoigian: string;
+    
+    public nhanviensale_hoten: string;
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -30,6 +37,7 @@ export class PhieuNhapKho {
     public khachhang_id: number;
     public sotiendachi: number;
     public trangthaichi: string;
+    public nhanviensale_id: number;
 
     /* liên kết vs khoá ngoại và thông tin thêm */
     public tenkhonhap: string;
