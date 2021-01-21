@@ -22,6 +22,10 @@ import { BangGiaComponent } from './pages/bang-gia/bang-gia.component';
 import { BangGiaThemMoiComponent } from './pages/bang-gia-them-moi/bang-gia-them-moi.component';
 import { BangGiaCapNhatComponent } from './pages/bang-gia-cap-nhat/bang-gia-cap-nhat.component';
 
+import { PhieuKhachDatHangInPhieuModalComponent } from './modals/phieu-khach-dat-hang-in-phieu-modal/phieu-khach-dat-hang-in-phieu-modal.component';
+
+import { PhieuBanHangInPhieuComponent } from './modals/phieu-ban-hang-in-phieu/phieu-ban-hang-in-phieu.component';
+
 @NgModule({
     declarations: [
         DanhSachPhieuDatHangModalComponent,
@@ -42,6 +46,8 @@ import { BangGiaCapNhatComponent } from './pages/bang-gia-cap-nhat/bang-gia-cap-
         BangGiaComponent,
         BangGiaThemMoiComponent,
         BangGiaCapNhatComponent,
+        PhieuKhachDatHangInPhieuModalComponent,
+        PhieuBanHangInPhieuComponent,
     ],
     imports: [CommonModule, SharedModule, BanHangRoutingModule]
 })

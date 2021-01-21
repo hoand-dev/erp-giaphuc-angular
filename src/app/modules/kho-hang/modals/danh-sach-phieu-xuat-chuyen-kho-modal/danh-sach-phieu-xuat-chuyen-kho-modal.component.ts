@@ -7,6 +7,8 @@ import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 
+declare var Stimulsoft: any;
+
 @Component({
     selector: 'app-danh-sach-phieu-xuat-chuyen-kho-modal',
     templateUrl: './danh-sach-phieu-xuat-chuyen-kho-modal.component.html',
