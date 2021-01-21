@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./don-vi-gia-cong-cap-nhat.component.css']
 })
 export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
-
     @ViewChild(DxFormComponent, { static: false }) frmDonViGiaCong: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -28,12 +27,12 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
     public madonvigiacong_old: string;
     public saveProcessing = false;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
     constructor(
         private router: Router,
@@ -41,46 +40,40 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
         private khohangService: KhoHangService,
         private donvigiacongService: DonViGiaCongService,
         private authenticationService: AuthenticationService
-    ) { }
+    ) {}
 
     ngOnInit(): void {
         this.donvigiacong = new DonViGiaCong();
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => {
-            this.currentChiNhanh = x;
-            
-            // khi thêm mới thay đổi chi nhánh thì load lại danh sách kho hàng theo chi nhánh đó
-            this.subscriptions.add(
-                this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe(
-                    x => {
-                        this.lstKhoHang = x;
-                        this.dataSource_KhoHang = new DataSource({
-                            store: x,
-                            paginate: true,
-                            pageSize: 50
-                        });
-                    })
-            );
-        }));
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.currentChiNhanh = x;
+                this.onLoadKhoHang();
+            })
+        );
 
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-            let donvigiacong_id = params.id;
-            // lấy thông tin kho hàng
-            if (donvigiacong_id) {
-                this.subscriptions.add(this.donvigiacongService.findDonViGiaCong(donvigiacong_id).subscribe(
-                    data => {
-                        this.donvigiacong = data[0];
-                        this.madonvigiacong_old = this.donvigiacong.madonvigiacong;
-                        this.donvigiacong.loaidonvi = this.donvigiacong.loaigiacong == 2 ? true : false; // 2: gia công ngoài
-                    },
-                    error => {
-                        this.donvigiacongService.handleError(error);
-                    }
-                ));
-            }
-        }));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let donvigiacong_id = params.id;
+                // lấy thông tin kho hàng
+                if (donvigiacong_id) {
+                    this.subscriptions.add(
+                        this.donvigiacongService.findDonViGiaCong(donvigiacong_id).subscribe(
+                            (data) => {
+                                this.donvigiacong = data[0];
+                                this.madonvigiacong_old = this.donvigiacong.madonvigiacong;
+                                this.donvigiacong.loaidonvi = this.donvigiacong.loaigiacong == 2 ? true : false; // 2: gia công ngoài
+                            },
+                            (error) => {
+                                this.donvigiacongService.handleError(error);
+                            }
+                        )
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -91,8 +84,28 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    onLoadKhoHang() {
+        // khi thêm mới thay đổi chi nhánh thì load lại danh sách kho hàng theo chi nhánh đó
+        this.subscriptions.add(
+            this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
+                this.lstKhoHang = x.filter((y) => y.khongoai == this.donvigiacong.loaidonvi);
+                this.dataSource_KhoHang = new DataSource({
+                    store: this.lstKhoHang,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+    }
+
+    theCallbackValid(params) {
         return this.donvigiacongService.checkExistDonViGiaCong(params.value, this.madonvigiacong_old);
+    }
+
+    onFormFieldChanged(e) {
+        if (e.dataField == 'loaidonvi' && e.value !== undefined && e.value !== null) {
+            this.onLoadKhoHang();
+        }
     }
 
     onSubmitForm(e) {
@@ -101,22 +114,28 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
         donvigiacong_req.loaigiacong = this.donvigiacong.loaidonvi ? 2 : 1;
 
         this.saveProcessing = true;
-        this.subscriptions.add(this.donvigiacongService.updateDonViGiaCong(donvigiacong_req).subscribe(
-            data => {
-                notify({
-                    width: 320,
-                    message: "Lưu thành công",
-                    position: { my: "right top", at: "right top" }
-                }, "success", 475);
-                this.router.navigate(['/don-vi-gia-cong']);
-                // this.frmDonViGiaCong.instance.resetValues();
-                this.saveProcessing = false;
-            },
-            error => {
-                this.donvigiacongService.handleError(error);
-                this.saveProcessing = false;
-            }
-        ));
+        this.subscriptions.add(
+            this.donvigiacongService.updateDonViGiaCong(donvigiacong_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/don-vi-gia-cong']);
+                    // this.frmDonViGiaCong.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.donvigiacongService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
         e.preventDefault();
     }
 }
