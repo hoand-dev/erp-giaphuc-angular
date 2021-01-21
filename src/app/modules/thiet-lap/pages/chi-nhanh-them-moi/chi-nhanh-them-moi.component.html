@@ -37,7 +37,13 @@
                                         <dxi-validation-rule type="required" message="Nhập tên chi nhánh"></dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Tên chi nhánh quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'SĐT'}" dataField="dienthoai" [editorOptions]="{ mask: '(+84) X00 000 000', maskRules: rules }"></dxi-item>
+
+                                    <dxi-item [label]="{text: 'TÊN CÔNG TY'}" dataField="tencongty"></dxi-item>
+                                    <dxi-item [label]="{text: 'MÃ SỐ THUẾ'}" dataField="masothue"></dxi-item>
+                                    <dxi-item [label]="{text: 'FAX'}" dataField="fax"></dxi-item>
+                                    <dxi-item [label]="{text: 'LOGO URL'}" dataField="logo_url"></dxi-item>
+                                    
+                                    <dxi-item [label]="{text: 'SĐT'}" dataField="dienthoai"></dxi-item>
                                     <dxi-item [label]="{text: 'EMAIL'}" dataField="email"></dxi-item>
                                     <dxi-item [label]="{text: 'ĐỊA CHỈ'}" dataField="diachi" [colSpan]="2"></dxi-item>
                                     <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
