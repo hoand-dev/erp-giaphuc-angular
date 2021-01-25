@@ -2,6 +2,17 @@ export class PhieuThu {
     public phieuthu_phieuxuatkhos: PhieuThu_PhieuXuatKho[];
     public phieuthu_phieuxuatkhos_old: PhieuThu_PhieuXuatKho[];
 
+    public sotien_bangchu:  string;
+    public phieuin_thoigian:  string;
+    public phieuin_nguoiin:  string;
+    public ngaylapphieu:  string;
+
+        
+    public quy_tencongty: string;
+    public quy_tainganhang: string;
+    public quy_sotaikhoan:  string;
+    public quy_diachi:  string;
+
     public nocu: number;
     public tongthu: number;
     public conno: number;

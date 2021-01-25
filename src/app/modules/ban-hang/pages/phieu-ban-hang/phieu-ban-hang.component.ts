@@ -68,7 +68,7 @@ export class PhieuBanHangComponent implements OnInit {
   }
 
   onLoadData(){
-      this.subscriptions.add(this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime,).subscribe(
+      this.subscriptions.add(this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
           data =>{
               this.dataGrid.dataSource = data; 
           },

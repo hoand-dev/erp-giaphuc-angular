@@ -50,6 +50,7 @@
                             [columnAutoWidth]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
+                            (onContextMenuPreparing)="addMenuItems($event)"
                         >
                             <!-- dx-data-grid column -->
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChiNhanh, PhieuChi, KhachHang, NhaCungCap, PhieuChi_PhieuNhapKho, DonViGiaCong } from '@app/shared/entities';
+import { ChiNhanh, PhieuChi, KhachHang, NhaCungCap, PhieuChi_PhieuNhapKho, DonViGiaCong, NhaCungCap_SoTaiKhoan } from '@app/shared/entities';
 import {
     AppInfoService,
     CommonService,
@@ -41,6 +41,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_QuyTaiKhoan: DataSource;
     public dataSource_NoiDungThuChi: DataSource;
+    public lstSoTaiKhoan: NhaCungCap_SoTaiKhoan[]= [];
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -49,6 +50,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
     public isPhanBoTien: boolean = true;
 
     public phieunhapkhos: PhieuChi_PhieuNhapKho[] = [];
+    public dataSource_SoTaiKhoan: DataSource;
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -137,6 +139,16 @@ export class PhieuChiCapNhatComponent implements OnInit {
             })
         );
         this.subscriptions.add(
+            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) =>{
+                this.dataSource_SoTaiKhoan = new DataSource({
+                    store: x,
+                    paginate:true,
+                    pageSize: 50
+                });
+            })
+        );
+        
+        this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
                 let phieuchi_id = params.id;
                 // lấy thông tin
@@ -200,6 +212,16 @@ export class PhieuChiCapNhatComponent implements OnInit {
                 this.commonService.nhaCungCap_LoadNoCu(this.phieuchi.nhacungcap_id, this.currentChiNhanh.id, this.phieuchi.sort).subscribe((data) => {
                     this.phieuchi.nocu = data;
                     this.onTinhNoConLai();
+                })
+            );
+             // lấy danh sách số tài khoản
+             this.subscriptions.add(
+                this.nhacungcapService.findNhaCungCap_SoTaiKhoans(this.phieuchi.nhacungcap_id).subscribe((data) =>{
+                    this.dataSource_SoTaiKhoan = new DataSource({
+                        store: data,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
             );
         }
