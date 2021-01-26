@@ -537,6 +537,41 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('MUONHANG')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Mượn hàng
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-xuat-muon-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu xuất mượn</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-nhap-tra-muon-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu nhập trả</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-nhap-muon-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu nhập mượn</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-xuat-tra-muon-hang']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu xuất trả</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
                                     <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('KETOAN')}">
                                         <i class="nav-icon fas fa-tree"></i>
                                         <p>

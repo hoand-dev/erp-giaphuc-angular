@@ -2,7 +2,35 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@app/_helpers';
 
-import { PhieuNhapKhoComponent, PhieuNhapKhoCapNhatComponent, PhieuNhapKhoThemMoiComponent, PhieuXuatKhoCapNhatComponent, PhieuXuatKhoComponent, PhieuXuatKhoThemMoiComponent, PhieuDieuChinhKhoComponent, PhieuDieuChinhKhoCapNhatComponent, PhieuDieuChinhKhoThemMoiComponent, PhieuXuatChuyenKhoCapNhatComponent, PhieuXuatChuyenKhoComponent, PhieuXuatChuyenKhoThemMoiComponent, PhieuNhapChuyenKhoCapNhatComponent, PhieuNhapChuyenKhoComponent, PhieuNhapChuyenKhoThemMoiComponent } from './pages';
+import {
+    PhieuNhapKhoComponent,
+    PhieuNhapKhoCapNhatComponent,
+    PhieuNhapKhoThemMoiComponent,
+    PhieuXuatKhoCapNhatComponent,
+    PhieuXuatKhoComponent,
+    PhieuXuatKhoThemMoiComponent,
+    PhieuDieuChinhKhoComponent,
+    PhieuDieuChinhKhoCapNhatComponent,
+    PhieuDieuChinhKhoThemMoiComponent,
+    PhieuXuatChuyenKhoCapNhatComponent,
+    PhieuXuatChuyenKhoComponent,
+    PhieuXuatChuyenKhoThemMoiComponent,
+    PhieuNhapChuyenKhoCapNhatComponent,
+    PhieuNhapChuyenKhoComponent,
+    PhieuNhapChuyenKhoThemMoiComponent,
+    PhieuXuatMuonHangCapNhatComponent,
+    PhieuXuatMuonHangComponent,
+    PhieuXuatMuonHangThemMoiComponent,
+    PhieuNhapTraMuonHangCapNhatComponent,
+    PhieuNhapTraMuonHangThemMoiComponent,
+    PhieuNhapTraMuonHangComponent,
+    PhieuNhapMuonHangComponent,
+    PhieuNhapMuonHangThemMoiComponent,
+    PhieuNhapMuonHangCapNhatComponent,
+    PhieuXuatTraMuonHangCapNhatComponent,
+    PhieuXuatTraMuonHangComponent,
+    PhieuXuatTraMuonHangThemMoiComponent
+} from './pages';
 
 const routes: Routes = [
     {
@@ -50,6 +78,42 @@ const routes: Routes = [
             { path: ':id/cap-nhat', component: PhieuDieuChinhKhoCapNhatComponent }
         ]
     },
+    {
+        path: 'phieu-xuat-muon-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: PhieuXuatMuonHangComponent },
+            { path: 'them-moi', component: PhieuXuatMuonHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: PhieuXuatMuonHangCapNhatComponent }
+        ]
+    },
+    {
+        path: 'phieu-nhap-tra-muon-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: PhieuNhapTraMuonHangComponent },
+            { path: 'them-moi', component: PhieuNhapTraMuonHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: PhieuNhapTraMuonHangCapNhatComponent }
+        ]
+    },
+    {
+        path: 'phieu-nhap-muon-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: PhieuNhapMuonHangComponent },
+            { path: 'them-moi', component: PhieuNhapMuonHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: PhieuNhapMuonHangCapNhatComponent }
+        ]
+    },
+    {
+        path: 'phieu-xuat-tra-muon-hang',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: PhieuXuatTraMuonHangComponent },
+            { path: 'them-moi', component: PhieuXuatTraMuonHangThemMoiComponent },
+            { path: ':id/cap-nhat', component: PhieuXuatTraMuonHangCapNhatComponent }
+        ]
+    }
 ];
 
 @NgModule({
