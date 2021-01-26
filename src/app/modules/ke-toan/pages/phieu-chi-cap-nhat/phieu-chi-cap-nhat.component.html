@@ -56,22 +56,36 @@
                                     </dxi-item>
 
                                     <dxi-item
-                                        *ngIf="loaiphieuchi == 'nhacungcap'"
-                                        [colSpan]="3"
-                                        [label]="{ text: 'NHÀ CUNG CẤP' }"
-                                        dataField="nhacungcap_id"
-                                        editorType="dxSelectBox"
-                                        [editorOptions]="{
-                                            dataSource: dataSource_NhaCungCap,
-                                            valueExpr: 'id',
-                                            searchEnabled: true,
-                                            searchExpr: ['tennhacungcap', 'manhacungcap'],
-                                            displayExpr: 'tennhacungcap',
-                                            readOnly: true
-                                        }"
-                                    >
-                                        <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
-                                    </dxi-item>
+                                    *ngIf="loaiphieuchi == 'nhacungcap'"
+                                    [colSpan]="2"
+                                    [label]="{ text: 'NHÀ CUNG CẤP' }"
+                                    dataField="nhacungcap_id"
+                                    editorType="dxSelectBox"
+                                    [editorOptions]="{
+                                        dataSource: dataSource_NhaCungCap,
+                                        valueExpr: 'id',
+                                        searchEnabled: true,
+                                        searchExpr: ['tennhacungcap', 'manhacungcap'],
+                                        displayExpr: 'tennhacungcap'
+                                    }"
+                                >
+                                    <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"> </dxi-validation-rule>
+                                </dxi-item>
+                                <dxi-item
+                                    *ngIf="loaiphieuchi == 'nhacungcap'"
+                                    [colSpan]="1"
+                                    [label]="{ text: 'SỐ TÀI KHOẢN' }"
+                                    dataField="sotaikhoan_id"
+                                    editorType="dxSelectBox"
+                                    [editorOptions]="{
+                                        dataSource: dataSource_SoTaiKhoan,
+                                        valueExpr: 'id',
+                                        searchEnabled: true,
+                                        searchExpr: ['sotaikhoan'],
+                                        displayExpr: 'sotaikhoan'
+                                    }"
+                                >
+                                </dxi-item>
 
                                     <dxi-item
                                         *ngIf="loaiphieuchi == 'donvigiacong'"

@@ -1,0 +1,44 @@
+{
+    "rptPhieuThu": [
+        {
+            "id": null
+        , "chinhanh_id": null
+        , "kichhoat": null
+        , "nguoitao_id": null
+        , "thoigiantao": null
+        , "nguoisua_id": null
+        , "thoigiansua": null
+        , "ghichu": null
+        , "ids": null
+        , "sort": null
+        , "ngaythu": null
+        , "maphieuthu": null
+        , "chungtu": null
+        , "loaiphieuthu": null
+        , "khachhang_id": null
+        , "nhacungcap_id": null
+        , "quythu_id": null
+        , "noidungthuchi_id": null
+        , "sotienthu": null
+        , "sotiengiam": null
+        , "sotienthu_du": null
+        , "nguoinop_hoten": null
+        , "nguoinop_diachi": null
+        , "nguoinop_dienthoai": null
+
+        , "sotien_bangchu": null
+        , "phieuin_thoigian": null
+        , "phieuin_nguoiin": null
+        , "ngaylapphieu": null
+
+        
+        , "quy_tencongty":null
+        , "quy_tainganhang":null 
+        , "quy_sotaikhoan": null 
+        , "quy_diachi": null
+
+
+
+        }
+    ]
+}

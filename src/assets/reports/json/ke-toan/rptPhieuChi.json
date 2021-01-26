@@ -1,0 +1,53 @@
+{
+    "rptPhieuChi":[
+        {
+            "id" : null
+        , "chinhanh_id" : null
+        , "kichhoat" : null
+        , "nguoitao_id" : null
+        , "thoigiantao" : null
+        , "nguoisua_id" : null
+        , "thoigiansua" : null
+        , "ghichu" : null
+        , "ids" : null
+        , "sort" : null
+        , "ngaychi" : null
+        , "maphieuchi" : null
+        , "loaiphieuchi" : null
+        , "chungtu" : null
+        , "khachhang_id" : null
+        , "nhacungcap_id" : null
+        , "sotaikhoan_id" : null
+        , "sotaikhoan" : null
+        , "nguoinhan_hoten" : null
+        , "quychi_id" : null
+        , "noidungthuchi_id" : null
+        , "sotienchi" : null
+        , "sotiengiam" : null
+        , "sotienchi_du" : null
+        , "lenhvay_id" : null
+        , "sotienchi_lenhvay" : null
+        , "sotienchi_laixuat" : null
+        , "nguoinhan_diachi" : null
+        , "nguoinhan_dienthoai" : null
+        , "donvigiacong_id" : null
+
+        , "sotien_bangchu": null
+        , "phieuin_thoigian": null
+        , "phieuin_nguoiin": null
+        , "ngaylapphieu": null
+
+        , "quy_tencongty":null
+        , "quy_tainganhang":null 
+        , "quy_sotaikhoan": null 
+        , "quy_diachi": null
+        
+        , "nhacungcap_sotaikhoan": null
+        , "nhacungcap_ tenchutaikhoan": null
+        , "nhacungcap_tennganhang": null
+        , "nhacungcap_chinhanhnganhang": null
+
+
+        }
+    ]
+}

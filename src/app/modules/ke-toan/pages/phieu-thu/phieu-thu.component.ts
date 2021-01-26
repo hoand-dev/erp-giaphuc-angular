@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit,  } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuThu } from '@app/shared/entities';
 import { PhieuThuService } from '@app/shared/services';
@@ -10,6 +10,9 @@ import { Subscription } from 'rxjs';
 import * as $ from 'jquery';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuChiInPhieuModalComponent } from '../../modals/phieu-chi-in-phieu-modal/phieu-chi-in-phieu-modal.component';
+import { PhieuThuInPhieuComponent } from '../../modals/phieu-thu-in-phieu/phieu-thu-in-phieu.component';
 
 @Component({
     selector: 'app-phieu-thu',
@@ -22,6 +25,8 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    public bsModalRef: BsModalRef;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -32,7 +37,8 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_PhieuThu'
     };
 
-    constructor(private router: Router, private objPhieuThuService: PhieuThuService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuThuService: PhieuThuService, private authenticationService: AuthenticationService,
+    private bsModalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -76,6 +82,38 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
             )
         );
     }
+
+    addMenuItems(e){
+        if(e.row.rowType === 'data'){
+            if(!e.items) e.items= [];
+
+            //add custom menu item
+            e.items.push(
+                {
+                    text: 'PHIEU THU C31',
+                    icon: 'print',
+                    visible: 'true',
+                    onItemClick: () =>{
+                        let rowData: PhieuThu = e.row.key as PhieuThu;
+                        /* Khởi tạo giá trị trên modal */
+                        const initialState ={
+                            title: "PHIEU THU C31",
+                            phieuthu_id: rowData.id,
+                        };
+                /* Hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuThuInPhieuComponent,{
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                          keyboard: false,
+                          initialState
+                      });
+                      this.bsModalRef.content.closeBtnName =" Đóng"
+                    }
+                },
+            )
+        }
+    }
+
 
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết

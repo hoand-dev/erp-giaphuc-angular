@@ -6,12 +6,30 @@ export class PhieuChi {
     public tongchi: number;
     public conno: number;
 
+    public sotien_bangchu: string;
+    public phieuin_thoigian: string;
+    public phieuin_nguoiin: string;
+    public ngaylapphieu: string;
+
+    public quy_tencongty:string;
+    public quy_tainganhang:string; 
+    public quy_sotaikhoan: string;  
+    public quy_diachi: string;
+
+    public nhacungcap_sotaikhoan: string;
+
+    public nhacungcap_tennganhang: string;
+    public nhacungcap_chinhanhnganhang: string;
+
+
     public tenquychi: string;
     public tennoidungchi: string;
 
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
     public malenhvay: string;
+
+
 
     public id: number;
     public chinhanh_id: number;

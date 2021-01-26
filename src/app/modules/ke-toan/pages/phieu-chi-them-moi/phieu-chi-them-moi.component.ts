@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChiNhanh, DonViGiaCong, KhachHang, LenhVay, NhaCungCap, PhieuChi, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
+import { ChiNhanh, DonViGiaCong, KhachHang, LenhVay, NhaCungCap, NhaCungCap_SoTaiKhoan, PhieuChi, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
 import {
     AppInfoService,
     CommonService,
@@ -41,11 +41,13 @@ export class PhieuChiThemMoiComponent implements OnInit {
     public lstKhachHang: KhachHang[] = [];
     public lstNhaCungCap: NhaCungCap[] = [];
     public lstDonViGiaCong: DonViGiaCong[] = [];
+    public lstSoTaiKhoan: NhaCungCap_SoTaiKhoan[]= [];
 
     public dataSource_LenhVay: DataSource;
     public dataSource_KhachHang: DataSource;
     public dataSource_NhaCungCap: DataSource;
     public dataSource_DonViGiaCong: DataSource;
+    public dataSource_SoTaiKhoan: DataSource;
 
     public dataSource_QuyTaiKhoan: DataSource;
     public dataSource_NoiDungThuChi: DataSource;
@@ -148,6 +150,15 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 });
             })
         );
+        this.subscriptions.add(
+            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) =>{
+                this.dataSource_SoTaiKhoan = new DataSource({
+                    store: x,
+                    paginate:true,
+                    pageSize: 50
+                });
+            })
+        );
 
         // kiểm tra có thuộc các loại phiếu thu này hay không?
         // loaiphieuthu=khac
@@ -236,6 +247,17 @@ export class PhieuChiThemMoiComponent implements OnInit {
             this.subscriptions.add(
                 this.phieuchiService.findPhieuNhapKhos(this.currentChiNhanh.id, this.phieuchi.khachhang_id, this.phieuchi.nhacungcap_id).subscribe((data) => {
                     this.phieunhapkhos = data;
+                })
+            );
+
+           // lấy danh sách số tài khoản
+            this.subscriptions.add(
+                this.nhacungcapService.findNhaCungCap_SoTaiKhoans(this.phieuchi.nhacungcap_id).subscribe((data) =>{
+                    this.dataSource_SoTaiKhoan = new DataSource({
+                        store: data,
+                        paginate: true,
+                        pageSize: 50
+                    });
                 })
             );
         }
@@ -393,6 +415,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
         phieuchi_req.chinhanh_id = this.currentChiNhanh.id;
         phieuchi_req.loaiphieuchi = this.loaiphieuchi;
         phieuchi_req.phieuchi_phieunhapkhos = phieuchi_phieunhapkhos;
+        
 
         if (phieuchi_req.loaiphieuchi == 'lenhvay') {
             phieuchi_req.sotienchi = this.phieuchi.sotienchi_lenhvay + this.phieuchi.sotienchi_laixuat;

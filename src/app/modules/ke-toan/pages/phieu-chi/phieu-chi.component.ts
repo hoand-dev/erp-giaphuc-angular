@@ -7,6 +7,9 @@ import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
 import { Subscription } from 'rxjs';
+import { PhieuChi } from '@app/shared/entities';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuChiInPhieuModalComponent } from '../../modals/phieu-chi-in-phieu-modal/phieu-chi-in-phieu-modal.component';
 
 @Component({
   selector: 'app-phieu-chi',
@@ -19,6 +22,8 @@ export class PhieuChiComponent implements OnInit {
 
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
+
+    public bsModalRef: BsModalRef;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -33,7 +38,8 @@ export class PhieuChiComponent implements OnInit {
     constructor(
         private router: Router, 
         private objPhieuChiService: PhieuChiService, 
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private bsModalService: BsModalService
         ) {}
 
     ngOnInit(): void {
@@ -82,6 +88,110 @@ export class PhieuChiComponent implements OnInit {
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`objPhieuChi_id: ${e.key.id}`);
+    }
+
+    addMenuItems(e){
+        if(e.row.rowType === 'data'){
+            if(!e.items) e.items =[];
+            
+            //add a custom menu item
+            e.items.push(
+                {
+                    text: 'UNC VCB',
+                    icon: 'print',
+                    visible:true,
+                    onItemClick: () =>{
+                        let rowData: PhieuChi = e.row.key as PhieuChi;
+                        /* Khởi tạo giá trị trên modal */
+                        const initialState ={
+                            title: "UNC VCB",
+                            phieuchi_id: rowData.id,
+                            loaiphieuchi: rowData.loaiphieuchi,
+                            loaiphieuin: 'vcb'
+                        };
+                      /* Hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuChiInPhieuModalComponent,{
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick:false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName ="Đóng";
+                    }
+                },
+                {
+                    text: 'UNC SCB',
+                    icon: 'print',
+                    visible:true,
+                    onItemClick: () =>{
+                        let rowData: PhieuChi = e.row.key as PhieuChi;
+                        /* Khởi tạo giá trị trên modal */
+                        const initialState ={
+                            title: "UNC SCB",
+                            phieuchi_id: rowData.id,
+                            loaiphieuchi: rowData.loaiphieuchi,
+                            loaiphieuin: 'scb'
+                        };
+                      /* Hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuChiInPhieuModalComponent,{
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick:false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName ="Đóng";
+                    }
+
+                },
+                {
+                    text: 'UNC ACB',
+                    icon: 'print',
+                    visible:true,
+                    onItemClick: () =>{
+                        let rowData: PhieuChi = e.row.key as PhieuChi;
+                        /* Khởi tạo giá trị trên modal */
+                        const initialState ={
+                            title: "UNC ACB",
+                            phieuchi_id: rowData.id,
+                            loaiphieuchi: rowData.loaiphieuchi,
+                            loaiphieuin: 'acb'
+                        };
+                      /* Hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuChiInPhieuModalComponent,{
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick:false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName ="Đóng";
+                    }
+                },
+                {
+                    text: 'MẪU C31',
+                    icon: 'print',
+                    visible:true,
+                    onItemClick: () =>{
+                        let rowData: PhieuChi = e.row.key as PhieuChi;
+                        /* Khởi tạo giá trị trên modal */
+                        const initialState ={
+                            title: "MẪU C31",
+                            phieuchi_id: rowData.id,
+                            loaiphieuchi: rowData.loaiphieuchi,
+                            loaiphieuin: 'c31'
+                        };
+                      /* Hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuChiInPhieuModalComponent,{
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick:false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName ="Đóng";
+                    }
+                },
+
+            )
+        }
     }
 
     onRowDelete(id) {
