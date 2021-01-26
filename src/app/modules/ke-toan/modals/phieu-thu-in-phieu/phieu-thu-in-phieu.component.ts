@@ -4,15 +4,15 @@ import { User } from '@app/_models';
 import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
-declare var Stimulsoft:any;
+declare var Stimulsoft: any;
 import number2vn from 'number2vn';
 import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-phieu-thu-in-phieu',
-  templateUrl: './phieu-thu-in-phieu.component.html',
-  styleUrls: ['./phieu-thu-in-phieu.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-phieu-thu-in-phieu',
+    templateUrl: './phieu-thu-in-phieu.component.html',
+    styleUrls: ['./phieu-thu-in-phieu.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class PhieuThuInPhieuComponent implements OnInit {
     public reportOptions: any = new Stimulsoft.Viewer.StiViewerOptions();
@@ -26,69 +26,64 @@ export class PhieuThuInPhieuComponent implements OnInit {
     private currentUser: User;
     public phieuthu_id: number;
 
-  constructor(
-      public bsModalRef: BsModalRef,
-      private nguoidungService: NguoiDungService,
-      private objPhieuThuService: PhieuThuService
-  ) { }
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuThuService: PhieuThuService) {}
 
+    ngOnInit(): void {
+        this.onClose = new Subject();
+        this.nguoidungService
+            .getCurrentUser()
+            .toPromise()
+            .then((rs) => {
+                this.currentUser = rs;
+                this.onLoadData();
+            });
+    }
 
-  ngOnInit(): void {
-      this.onClose = new Subject();
-      this.nguoidungService.getCurrentUser().toPromise().then( rs => {
-          this.currentUser = rs;
-          this.onLoadData();
-      });
-  }
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
 
-  ngOnDestroy(): void{
-      this.subscriptions.unsubscribe();
-  }
+    onLoadData() {
+        this.subscriptions.add(
+            this.objPhieuThuService.findPhieuThu(this.phieuthu_id).subscribe(
+                (data) => {
+                    /*Khởi tạo reprot */
+                    let report = new Stimulsoft.Report.StiReport();
 
+                    report.loadFile('assets/reports/design/ke-toan/rptPhieuThuC31.mrt');
+                    /* Xóa dữ liệu trước khi in */
+                    report.dictionary.databases.clear();
 
-    onLoadData(){
-      this.subscriptions.add(
-          this.objPhieuThuService.findPhieuThu(this.phieuthu_id).subscribe(
-              (data) =>{
-                  /*Khởi tạo reprot */
+                    /* thông tin phiếu */
 
-                  let report = new Stimulsoft.Report.Stimulsoft();
-                  report.loadFile('assets/reports/design/ke-toan/rptPhieuThuC31.mrt');
-                  /* Xóa dữ liệu trước khi in */
-                  report.dictionary.databases.clear();
+                    let dsPhieuThu = new Stimulsoft.System.Data.DataSet();
 
-                  /* thông tin phiếu */
+                    data.ngaylapphieu = moment(data.ngaythu).format('HH:mm DD/MM/YYYY');
+                    data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
+                    data.phieuin_nguoiin = this.currentUser.fullName;
+                    data.sotien_bangchu = number2vn(data.sotienthu);
 
-                  let dsPhieuThu = new Stimulsoft.System.Data.DataSet();
+                    dsPhieuThu.readJson({ rptPhieuThu: data });
+                    report.regData('rptPhieuThu', null, dsPhieuThu);
 
-                  data.ngaylapphieu = moment(data.ngaythu).format('HH:mm DD/MM/YYYY');
-                  data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
-                  data.phieuin_nguoiin = this.currentUser.fullName;
-                  data.sotien_bangchu = number2vn(data.sotienthu);
+                    /* render sang report */
+                    this.reportViewer.report = report;
+                    this.reportViewer.renderHtml('viewerContent');
+                },
+                (error) => {
+                    this.objPhieuThuService.handleError(error);
+                }
+            )
+        );
+    }
 
-                  dsPhieuThu.readJson({rptPhieuThu: data});
-                  report.regData("rptPhieuThu", null, dsPhieuThu);
+    public onConfirm(): void {
+        this.onClose.next(false);
+        this.bsModalRef.hide();
+    }
 
-                  /* render sang report */
-                  this.reportViewer.report = report;
-                  this.reportViewer.renderHtml('viewerContent');
-
-              },
-              (error) => {
-                  this.objPhieuThuService.handleError(error);
-              }
-          )
-      )
-  }
-
-  public onConfirm(): void {
-      this.onClose.next(false);
-      this.bsModalRef.hide();
-  }
-
-  public onCancel(): void{
-      this.onClose.next(false);
-      this.bsModalRef.hide();
-  }
-
+    public onCancel(): void {
+        this.onClose.next(false);
+        this.bsModalRef.hide();
+    }
 }

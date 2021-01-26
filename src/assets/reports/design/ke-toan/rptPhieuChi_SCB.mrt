@@ -654,10 +654,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/23/2021 11:03:59 AM</ReportChanged>
+  <ReportChanged>1/26/2021 9:56:02 AM</ReportChanged>
   <ReportCreated>1/21/2021 3:03:04 PM</ReportCreated>
   <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_SCB.mrt</ReportFile>
-  <ReportGuid>6b08eeb82ed340f2857245c136c3b773</ReportGuid>
+  <ReportGuid>a60ae5e6835d4684941ba6e6e69c7e4e</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
