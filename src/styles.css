@@ -35,8 +35,14 @@
 }
 
 /* tô màu cho select box chi nhánh */
+dx-select-box#ChiNhanhSelectBox {
+    border: none;
+}
+
 dx-select-box#ChiNhanhSelectBox div input {
     color: red;
+    text-align: right;
+    text-transform: uppercase;
 }
 
 /* thay đổi font chữ mặc định của devextreme theo admin template */
