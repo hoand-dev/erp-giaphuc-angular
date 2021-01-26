@@ -1,0 +1,54 @@
+{
+    "rptPhieuXuatKhoGiaCong":
+        {
+             "id":null
+            , "chinhanh_id":null
+            , "kichhoat":null
+            , "nguoitao_id":null
+            , "thoigiantao":null
+            , "nguoisua_id":null
+            , "thoigiansua":null
+            , "ghichu":null
+            , "ids":null
+            , "sort":null
+            , "loaiphieuxuat":null
+            , "ngayxuatkhogiacong":null
+            , "maphieuxuatkhogiacong":null
+            , "khoxuat_id":null
+            , "khogiacong_id":null
+            , "donvigiacong_id":null
+            , "xe_id":null
+            , "taixe_id":null
+            , "taixe_dienthoai":null
+            , "nguoinhan_dienthoai":null
+            , "nguoinhan_diachi":null
+            , "nguoinhan_hoten":null 
+
+
+            , "nhanviensale_hoten": null
+            , "biensoxe": null
+            , "ngaylapphieu": null
+            , "inphieu_thoigian": null
+            , "inphieu_hoten": null
+            , "tentaixe": null
+
+        },
+    
+            "rptPhieuXuatKhoGiaCong_ChiTiet":[
+                {
+                "id": null
+                , "phieuxuatkhogiacong_id": null
+                , "khoxuat_id": null
+                , "khogiacong_id": null
+                , "loaihanghoa": null
+                , "hanghoa_id": null
+                , "hanghoa_lohang_id": null
+                , "dvt_id": null
+                , "tilequydoi": null
+                , "soluong": null
+
+                , "tendonvitinh": null
+        }
+   ]
+    
+}

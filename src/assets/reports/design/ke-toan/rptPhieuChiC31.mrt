@@ -13,7 +13,7 @@
     <DataSources isList="true" count="1">
       <rptPhieuChi Ref="3" type="DataTableSource" isKey="true">
         <Alias>rptPhieuChi</Alias>
-        <Columns isList="true" count="42">
+        <Columns isList="true" count="43">
           <value>id,System.String</value>
           <value>chinhanh_id,System.String</value>
           <value>kichhoat,System.String</value>
@@ -56,6 +56,7 @@
           <value>nhacungcap__x0020_tenchutaikhoan,System.String</value>
           <value>nhacungcap_tennganhang,System.String</value>
           <value>nhacungcap_chinhanhnganhang,System.String</value>
+          <value>nguoitao_hoten,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
         <Key>4666812e5164435d91d76732353c1065</Key>
@@ -598,7 +599,7 @@
               <Name>Text28</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>{rptPhieuChi.phieuin_nguoiin}</Text>
+              <Text>{rptPhieuChi.nguoitao_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -904,10 +905,10 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>rptPhieuChi</ReportAlias>
-  <ReportChanged>1/23/2021 1:30:38 PM</ReportChanged>
+  <ReportChanged>1/26/2021 9:01:41 AM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
   <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
-  <ReportGuid>68b26442756c489891678379c2af7aaf</ReportGuid>
+  <ReportGuid>99ee7c567e464a7db5409fa6bcca105f</ReportGuid>
   <ReportName>rptPhieuChi</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

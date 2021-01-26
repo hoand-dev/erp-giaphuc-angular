@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit,  } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuThu } from '@app/shared/entities';
 import { PhieuThuService } from '@app/shared/services';
@@ -30,15 +30,14 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_PhieuThu'
     };
 
-    constructor(private router: Router, private objPhieuThuService: PhieuThuService, private authenticationService: AuthenticationService,
-    private bsModalService: BsModalService) {}
+    constructor(private router: Router, private objPhieuThuService: PhieuThuService, private authenticationService: AuthenticationService, private bsModalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -83,37 +82,34 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
-    addMenuItems(e){
-        if(e.row.rowType === 'data'){
-            if(!e.items) e.items= [];
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            if (!e.items) e.items = [];
 
             //add custom menu item
-            e.items.push(
-                {
-                    text: 'PHIEU THU C31',
-                    icon: 'print',
-                    visible: 'true',
-                    onItemClick: () =>{
-                        let rowData: PhieuThu = e.row.key as PhieuThu;
-                        /* Khởi tạo giá trị trên modal */
-                        const initialState ={
-                            title: "PHIEU THU C31",
-                            phieuthu_id: rowData.id,
-                        };
-                /* Hiển thị modal */
-                        this.bsModalRef = this.bsModalService.show(PhieuThuInPhieuComponent,{
-                            class: 'modal-xl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                          keyboard: false,
-                          initialState
-                      });
-                      this.bsModalRef.content.closeBtnName =" Đóng"
-                    }
-                },
-            )
+            e.items.push({
+                text: 'PHIEU THU C31',
+                icon: 'print',
+                visible: 'true',
+                onItemClick: () => {
+                    let rowData: PhieuThu = e.row.key as PhieuThu;
+                    /* Khởi tạo giá trị trên modal */
+                    const initialState = {
+                        title: 'PHIEU THU C31',
+                        phieuthu_id: rowData.id
+                    };
+                    /* Hiển thị modal */
+                    this.bsModalRef = this.bsModalService.show(PhieuThuInPhieuComponent, {
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = ' Đóng';
+                }
+            });
         }
     }
-
 
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
