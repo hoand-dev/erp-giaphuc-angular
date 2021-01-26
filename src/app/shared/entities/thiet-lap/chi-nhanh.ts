@@ -17,6 +17,11 @@ export class ChiNhanh {
     public mamau: string;
     public chinhanh_trungtam: boolean;
 
+    public tencongty: string;
+    public masothue: string;
+    public fax: string;
+    public logo_url: string;
+
     constructor(
         id: number = null,
         kichhoat: boolean = true,

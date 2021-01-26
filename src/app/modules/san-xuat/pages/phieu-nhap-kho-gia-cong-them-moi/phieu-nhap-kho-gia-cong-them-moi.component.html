@@ -29,16 +29,21 @@
                                     <h5>{{ 'Phiếu nhập kho gia công' + (this.loaiphieu == 'taikho' ? ' TẠI KHO' : ' NGOÀI') | uppercase }} - THÊM MỚI</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group float-right">
-                                        <button type="button" class="btn btn-sm btn-primary" (click)="openModal()">TỪ PHIẾU YÊU CẦU {{this.phieunhapkhogiacong.matuphieu}}</button>
-                                    </div>
+                                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()">TỪ PHIẾU YÊU CẦU {{ this.phieunhapkhogiacong.matuphieu }}</button>
                                 </div>
                             </div>
                         </div>
 
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="12" [formData]="phieunhapkhogiacong" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                                <dx-form
+                                    id="form"
+                                    [colCount]="12"
+                                    [formData]="phieunhapkhogiacong"
+                                    [showValidationSummary]="true"
+                                    labelLocation="top"
+                                    (onFieldDataChanged)="onFormFieldChanged($event)"
+                                >
                                     <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY NHẬP KHO' }" dataField="ngaynhapkhogiacong" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày nhập kho"></dxi-validation-rule>
                                     </dxi-item>
@@ -67,7 +72,13 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'TỔNG CHI PHÍ' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"></dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'TỔNG CHI PHÍ' }"
+                                        editorType="dxNumberBox"
+                                        dataField="tongthanhtien"
+                                        [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
+                                    ></dxi-item>
 
                                     <dxi-item
                                         [colSpan]="2"
@@ -90,13 +101,7 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho nhập"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item
-                                        [colSpan]="2"
-                                        [label]="{ text: 'NGUYÊN LIỆU' }"
-                                        dataField="xuatnguyenlieu"
-                                        editorType="dxCheckBox"
-                                        [editorOptions]="{ text: 'XUẤT', readOnly: true }"
-                                    >
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'NGUYÊN LIỆU' }" dataField="xuatnguyenlieu" editorType="dxCheckBox" [editorOptions]="{ text: 'XUẤT', readOnly: true }">
                                     </dxi-item>
 
                                     <dxi-item [colSpan]="12" *ngIf="hanghoas.length > 0">
@@ -158,9 +163,8 @@
                                                                 [multiline]="false"
                                                                 [searchEnabled]="true"
                                                                 [showSelectionControls]="true"
-                                                                
                                                             >
-                                                            <!-- (onSelectionChanged)="onYeuCauChanged(i, $event)" -->
+                                                                <!-- (onSelectionChanged)="onYeuCauChanged(i, $event)" -->
                                                             </dx-tag-box>
                                                         </td>
 
@@ -177,13 +181,17 @@
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
-                                                                
                                                             >
-                                                            <!-- (onSelectionChanged)="onSoMatYeuCauChanged(i, $event)" -->
+                                                                <!-- (onSelectionChanged)="onSoMatYeuCauChanged(i, $event)" -->
                                                             </dx-select-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box [readOnly]="true" format="#,##0.###" [(value)]="item.heso" (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                [readOnly]="true"
+                                                                format="#,##0.###"
+                                                                [(value)]="item.heso"
+                                                                (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
 
                                                         <td>
@@ -199,13 +207,14 @@
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
-                                                                
                                                             >
-                                                            <!-- (onSelectionChanged)="onSoMatThanhPhamChanged(i, $event)" -->
+                                                                <!-- (onSelectionChanged)="onSoMatThanhPhamChanged(i, $event)" -->
                                                             </dx-select-box>
                                                         </td>
                                                         <td>
-                                                            {{item.tenthanhpham}}
+                                                            {{ item.tenthanhpham }}
+                                                        </td>
+
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
@@ -219,7 +228,13 @@
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box [readOnly]="true" format="#,##0.###" [(value)]="item.soluongloi" (onValueChanged)="onHangHoaChangeRow('soluongloi', i, $event)" (click)="onclickSoLuongLoi(i)"></dx-number-box>
+                                                            <dx-number-box
+                                                                [readOnly]="true"
+                                                                format="#,##0.###"
+                                                                [(value)]="item.soluongloi"
+                                                                (onValueChanged)="onHangHoaChangeRow('soluongloi', i, $event)"
+                                                                (click)="onclickSoLuongLoi(i)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-select-box

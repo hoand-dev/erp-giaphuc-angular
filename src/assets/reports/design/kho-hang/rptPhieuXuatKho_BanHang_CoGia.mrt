@@ -125,7 +125,9 @@
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,Logo,Logo,,System.Drawing.Image,,False,False,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -140,21 +142,7 @@
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,20,2</ClientRectangle>
           <Components isList="true" count="5">
-            <Image1 Ref="9" type="Image" isKey="true">
-              <Border>None;Transparent;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,2.2,1.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <File>D:\repositories\erp-giaphuc-angular\src\assets\reports\img\logo-hongnghi.jpg</File>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Image1</Name>
-              <Page isRef="7" />
-              <Parent isRef="8" />
-              <Stretch>True</Stretch>
-              <VertAlignment>Center</VertAlignment>
-            </Image1>
-            <Text2 Ref="10" type="Text" isKey="true">
+            <Text2 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0,17.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -167,7 +155,7 @@
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text1 Ref="11" type="Text" isKey="true">
+            <Text1 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0.6,17.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -181,7 +169,7 @@
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text1>
-            <Text3 Ref="12" type="Text" isKey="true">
+            <Text3 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,1,17.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -194,7 +182,7 @@
               <TextBrush>Black</TextBrush>
               <VertAlignment>Bottom</VertAlignment>
             </Text3>
-            <Text4 Ref="13" type="Text" isKey="true">
+            <Text4 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,1.4,17.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -208,6 +196,20 @@
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text4>
+            <Image1 Ref="13" type="Image" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,2,1.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <HorAlignment>Center</HorAlignment>
+              <ImageData>{Logo}</ImageData>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="7" />
+              <Parent isRef="8" />
+              <Stretch>True</Stretch>
+              <VertAlignment>Center</VertAlignment>
+            </Image1>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>PageHeader</Name>
@@ -1064,10 +1066,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/16/2021 2:21:58 PM</ReportChanged>
+  <ReportChanged>1/20/2021 4:38:43 PM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_CoGia.mrt</ReportFile>
-  <ReportGuid>888ef1c6a22b4c8da5519ff14c862eb1</ReportGuid>
+  <ReportGuid>65a71468dc324d7dace342a1e64687e3</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

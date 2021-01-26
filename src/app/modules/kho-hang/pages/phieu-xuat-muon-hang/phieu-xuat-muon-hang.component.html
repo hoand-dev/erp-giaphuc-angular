@@ -1,0 +1,94 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Phiếu xuất mượn</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Phiếu xuất mượn' | uppercase }} - DANH SÁCH</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/phieu-xuat-muon-hang/them-moi']">Thêm mới</button>
+                            </div>
+                        </div>
+
+                        <dx-data-grid
+                            id="gridContainer"
+                            [showBorders]="true"
+                            [showRowLines]="true"
+                            [hoverStateEnabled]="true"
+                            [columnAutoWidth]="true"
+                            [stateStoring]="stateStoringGrid"
+                            (onRowDblClick)="onRowDblClick($event)"
+                        >
+                            <!-- dx-data-grid column -->
+                            <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
+                                <div *dxTemplate="let data of 'cellTemplate'">
+                                    <a [routerLink]="['/phieu-xuat-muon-hang/' + data.value + '/cap-nhat']">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="ngayxuatmuonhang" dataType="datetime" caption="Ngày xuất"></dxi-column>
+                            <dxi-column dataField="maphieuxuatmuonhang" caption="Mã phiếu"></dxi-column>
+
+                            <dxi-column dataField="tenkhoxuat" caption="Kho xuất"></dxi-column>
+                            <dxi-column dataField="tenkhonhap" caption="Kho mượn"></dxi-column>
+
+                            <dxi-column dataField="trangthaitra" caption="Trạng thái trả" cellTemplate="cellTemplateTrangThaiTra">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiTra'">
+                                    <span *ngIf="data.value == null">Chưa trả</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="trangthaithu" caption="Trạng thái thu" cellTemplate="cellTemplateTrangThaiThu">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiThu'">
+                                    <span *ngIf="data.value == null">Chưa thu</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+                            <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+                            <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
+
+                            <!-- dx-data-grid option -->
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
+                            </dxo-pager>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -28,7 +28,7 @@
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="2" [formData]="donvigiacong" [showValidationSummary]="true">
+                                <dx-form id="form" [colCount]="2" [formData]="donvigiacong" [showValidationSummary]="true" (onFieldDataChanged)="onFormFieldChanged($event)">
                                     <dxi-item [label]="{ text: 'MÃ ĐƠN VỊ GIA CÔNG' }" dataField="madonvigiacong">
                                         <dxi-validation-rule type="required" message="Nhập mã đơn vị gia công"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã đơn vị gia công quá ngắn"></dxi-validation-rule>
@@ -51,7 +51,7 @@
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"></dxi-item>
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GC NGOÀI' }" dataField="loaidonvi" editorType="dxCheckBox" [editorOptions]="{ text: 'Là đơn vị gia công ngoài' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐƠN VỊ' }" dataField="loaidonvi" editorType="dxCheckBox" [editorOptions]="{ text: 'Gia công ngoài' }"></dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'KHO GIA CÔNG' }"
                                         dataField="khogiacong_id"

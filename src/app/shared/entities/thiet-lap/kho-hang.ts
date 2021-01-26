@@ -12,7 +12,7 @@ export class KhoHang {
     public ghichu: string;
     public makhohang: string;
     public tenkhohang: string;
-    public khobe: boolean;
+    public khongoai: boolean;
     public dienthoai: string;
     public diachi: string;
     public khuvuc_id: number;
@@ -30,7 +30,7 @@ export class KhoHang {
         ghichu: string = null,
         makhohang: string = null,
         tenkhohang: string = null,
-        khobe: boolean = false,
+        khongoai: boolean = false,
         dienthoai: string = null,
         diachi: string = null,
         khuvuc_id: number = null
@@ -45,7 +45,7 @@ export class KhoHang {
         this.ghichu = ghichu;
         this.makhohang = makhohang;
         this.tenkhohang = tenkhohang;
-        this.khobe = khobe;
+        this.khongoai = khongoai;
         this.dienthoai = dienthoai;
         this.diachi = diachi;
         this.khuvuc_id = khuvuc_id;
