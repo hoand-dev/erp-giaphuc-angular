@@ -29,10 +29,8 @@
                                     <h5>{{ 'Phiếu nhập kho' | uppercase }} - THÊM MỚI</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group float-right">
-                                        <button type="button" class="btn btn-sm btn-primary" (click)="openModal('muahang')">TỪ PHIẾU MUA HÀNG</button>
-                                        <button type="button" [style.margin-left.px]="5" class="btn btn-sm btn-primary" (click)="openModal('khachtrahang')">TỪ PHIẾU TRẢ HÀNG</button>
-                                    </div>
+                                    <button type="button" [style.margin-left.px]="5" class="btn btn-sm btn-primary float-right" (click)="openModal('khachtrahang')">TỪ PHIẾU TRẢ HÀNG</button>
+                                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="openModal('muahang')">TỪ PHIẾU MUA HÀNG</button>
                                 </div>
                             </div>
                         </div>

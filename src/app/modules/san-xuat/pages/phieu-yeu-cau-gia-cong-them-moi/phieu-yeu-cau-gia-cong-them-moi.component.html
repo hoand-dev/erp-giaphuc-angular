@@ -29,9 +29,7 @@
                                     <h5>{{ 'Phiếu yêu cầu gia công' + (this.loaiphieu == 'taikho' ? ' TẠI KHO' : ' NGOÀI') | uppercase }} - THÊM MỚI</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group float-right">
-                                        <button type="button" class="btn btn-sm btn-primary" (click)="clickLayGia()">LẤY GIÁ</button>
-                                    </div>
+                                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="clickLayGia()">LẤY GIÁ</button>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +65,13 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'TỔNG CHI PHÍ' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"></dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'TỔNG CHI PHÍ' }"
+                                        editorType="dxNumberBox"
+                                        dataField="tongthanhtien"
+                                        [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
+                                    ></dxi-item>
 
                                     <dxi-item
                                         [colSpan]="2"
@@ -182,7 +186,9 @@
                                                             </dx-select-box>
                                                         </td>
                                                         <td>
-                                                            {{item.tenthanhpham}}
+                                                            {{ item.tenthanhpham }}
+                                                        </td>
+
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
