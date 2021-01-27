@@ -11,9 +11,9 @@ export class PhieuChi {
     public phieuin_nguoiin: string;
     public ngaylapphieu: string;
 
-    public quy_tencongty:string;
-    public quy_tainganhang:string; 
-    public quy_sotaikhoan: string;  
+    public quy_tencongty: string;
+    public quy_tainganhang: string;
+    public quy_sotaikhoan: string;
     public quy_diachi: string;
 
     public nhacungcap_sotaikhoan: string;
@@ -21,15 +21,12 @@ export class PhieuChi {
     public nhacungcap_tennganhang: string;
     public nhacungcap_chinhanhnganhang: string;
 
-
     public tenquychi: string;
     public tennoidungchi: string;
 
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
     public malenhvay: string;
-
-
 
     public id: number;
     public chinhanh_id: number;
@@ -61,6 +58,7 @@ export class PhieuChi {
     public nguoinhan_diachi: string;
     public nguoinhan_dienthoai: string;
     public donvigiacong_id: number;
+    public phieunhapmuonhang_id: number;
 
     constructor(
         id: number = null,
@@ -93,6 +91,7 @@ export class PhieuChi {
         nguoinhan_diachi: string = null,
         nguoinhan_dienthoai: string = null,
         donvigiacong_id: number = null,
+        phieunhapmuonhang_id: number = null,
 
         nocu: number = 0,
         tongchi: number = 0,
@@ -133,6 +132,7 @@ export class PhieuChi {
         this.nguoinhan_diachi = nguoinhan_diachi;
         this.nguoinhan_dienthoai = nguoinhan_dienthoai;
         this.donvigiacong_id = donvigiacong_id;
+        this.phieunhapmuonhang_id = phieunhapmuonhang_id;
 
         this.nocu = nocu;
         this.tongchi = tongchi;

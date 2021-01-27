@@ -341,17 +341,18 @@ export class PhieuChiCapNhatComponent implements OnInit {
                 break;
         }
 
-        // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
-        // if (this.loaiphieuchi == 'khac') return; // thu khác không làm gì nữa
-        let sotienchidu: number = 0;
-        let tongchi_chitiet: number = 0;
+        // ? nhà cung cấp, có phiếu xuất hoặc không -> tính số tiền chi dư
+        if(this.loaiphieuchi == 'nhacungcap'){
+            let sotienchidu: number = 0;
+            let tongchi_chitiet: number = 0;
 
-        sotienchidu = this.phieuchi.tongchi;
-        this.phieunhapkhos.forEach((x) => {
-            tongchi_chitiet += x.sotienchi + x.sotiengiam;
-        });
-        sotienchidu = this.phieuchi.tongchi - tongchi_chitiet;
-        this.phieuchi.sotienchi_du = sotienchidu >= 0 ? sotienchidu : 0;
+            sotienchidu = this.phieuchi.tongchi;
+            this.phieunhapkhos.forEach((x) => {
+                tongchi_chitiet += x.sotienchi + x.sotiengiam;
+            });
+            sotienchidu = this.phieuchi.tongchi - tongchi_chitiet;
+            this.phieuchi.sotienchi_du = sotienchidu >= 0 ? sotienchidu : 0;
+        }
     }
 
     public onSubmitForm(e) {

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DanhSachPhieuNhapMuonHangModalComponent } from '@app/modules/kho-hang/modals/danh-sach-phieu-nhap-muon-hang-modal/danh-sach-phieu-nhap-muon-hang-modal.component';
 import { ChiNhanh, DonViGiaCong, KhachHang, LenhVay, NhaCungCap, NhaCungCap_SoTaiKhoan, PhieuChi, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
 import {
     AppInfoService,
@@ -11,7 +12,8 @@ import {
     NoiDungThuChiService,
     PhieuChiService,
     LenhVayService,
-    DonViGiaCongService
+    DonViGiaCongService,
+    PhieuNhapMuonHangService
 } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
@@ -79,8 +81,8 @@ export class PhieuChiThemMoiComponent implements OnInit {
         private quytaikhoanService: QuyTaiKhoanService,
         private noidungthuchiService: NoiDungThuChiService,
         private lenhvayService: LenhVayService,
-        private modalService: BsModalService,
-        private objLenhVayService: LenhVayService
+        private phieunhapmuonhangService: PhieuNhapMuonHangService,
+        private modalService: BsModalService
     ) {}
 
     ngAfterViewInit() {
@@ -167,7 +169,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
         // loaiphieuthu=nhacungcap
         // loaiphieuthu=donvigiacong
 
-        let arrLoaiPhieuChi: string[] = ['khac', 'lenhvay', 'khachhang', 'nhacungcap', 'donvigiacong'];
+        let arrLoaiPhieuChi: string[] = ['khac', 'lenhvay', 'muonhang', 'khachhang', 'nhacungcap', 'donvigiacong'];
 
         // kiểm tra queryParams
         this.subscriptions.add(
@@ -177,9 +179,9 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 }
 
                 // lay thong tin lenh vay
-                if (this.commonService.isNotEmpty(params.tuphieu)) {
+                if (params.loaiphieuchi == 'lenhvay' && this.commonService.isNotEmpty(params.tuphieu)) {
                     // lấy thông tin từ api
-                    this.objLenhVayService.findLenhVay(params.tuphieu).subscribe(
+                    this.lenhvayService.findLenhVay(params.tuphieu).subscribe(
                         (data) => {
                             /* chọn từ phiếu không cho thay đổi chi nhánh */
                             setTimeout(() => {
@@ -192,6 +194,26 @@ export class PhieuChiThemMoiComponent implements OnInit {
                         },
                         (error) => {
                             this.lenhvayService.handleError(error);
+                        }
+                    );
+                }
+
+                // lay thong tin muon hang
+                if (params.loaiphieuchi == 'muonhang' && this.commonService.isNotEmpty(params.tuphieu)) {
+                    // lấy thông tin từ api
+                    this.phieunhapmuonhangService.findPhieuNhapMuonHang(params.tuphieu).subscribe(
+                        (data) => {
+                            /* chọn từ phiếu không cho thay đổi chi nhánh */
+                            setTimeout(() => {
+                                this.authenticationService.setDisableChiNhanh(true);
+                            });
+
+                            this.phieuchi.phieunhapmuonhang_id = data.id;
+                            this.phieuchi.nguoinhan_hoten = data.tenkhoxuat; // chi tiền kho cho mượn
+                            this.phieuchi.sotienchi = data.tongthanhtien - data.sotiendachi;
+                        },
+                        (error) => {
+                            this.phieunhapmuonhangService.handleError(error);
                         }
                     );
                 }
@@ -377,27 +399,31 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 break;
         }
 
-        // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
-        // if (this.loaiphieuchi == 'khac') return; // thu khác không làm gì nữa
-        let sotienchidu: number = 0;
-        let tongchi_chitiet: number = 0;
+        // ? nhà cung cấp, có phiếu xuất hoặc không -> tính số tiền chi dư
+        if(this.loaiphieuchi == 'nhacungcap'){
+            let sotienchidu: number = 0;
+            let tongchi_chitiet: number = 0;
 
-        sotienchidu = this.phieuchi.tongchi;
-        this.phieunhapkhos.forEach((x) => {
-            tongchi_chitiet += x.sotienchi + x.sotiengiam;
-        });
-        sotienchidu = this.phieuchi.tongchi - tongchi_chitiet;
-        this.phieuchi.sotienchi_du = sotienchidu >= 0 ? sotienchidu : 0;
+            sotienchidu = this.phieuchi.tongchi;
+            this.phieunhapkhos.forEach((x) => {
+                tongchi_chitiet += x.sotienchi + x.sotiengiam;
+            });
+            sotienchidu = this.phieuchi.tongchi - tongchi_chitiet;
+            this.phieuchi.sotienchi_du = sotienchidu >= 0 ? sotienchidu : 0;
+        }
     }
 
-    openModal() {
+    openModal(tuphieu: string) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'DANH SÁCH LỆNH VAY' // và nhiều hơn thế nữa
+            title: tuphieu == 'lenhvay' ? 'DANH SÁCH LỆNH VAY' : 'DANH SÁCH PHIẾU NHẬP MƯỢN' // và nhiều hơn thế nữa
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachLenhVayModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        if(tuphieu == 'lenhvay')
+            this.bsModalRef = this.modalService.show(DanhSachLenhVayModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        else 
+            this.bsModalRef = this.modalService.show(DanhSachPhieuNhapMuonHangModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
@@ -406,7 +432,29 @@ export class PhieuChiThemMoiComponent implements OnInit {
         });
     }
 
+    /* xác thực dữ liệu trước khi gửi đi */
+    onValidate(){
+        let valid = true;
+        if(this.loaiphieuchi == 'lenhvay' && this.phieuchi.lenhvay_id == null)
+            valid = false;
+        if(this.loaiphieuchi == 'muonhang' && this.phieuchi.phieunhapmuonhang_id == null)
+            valid = false;
+        if(!valid)
+            notify(
+                {
+                    width: 320,
+                    message: 'Vui lòng chọn phiếu để chi',
+                    position: { my: 'right top', at: 'right top' }
+                },
+                'warning',
+                475
+            );
+        return valid;
+    }
+
     public onSubmitForm(e) {
+        if(!this.onValidate()) return;
+
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0
         let phieuchi_phieunhapkhos = this.phieunhapkhos.filter((x) => x.sotienchi != 0 || x.sotiengiam != 0);
         let phieuchi_req = this.phieuchi;
