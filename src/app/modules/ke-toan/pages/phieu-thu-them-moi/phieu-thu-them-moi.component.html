@@ -25,8 +25,11 @@
                     <div class="card-body">
                         <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
                                     <h5>{{ 'Phiếu thu' | uppercase }} - THÊM MỚI</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <button *ngIf="loaiphieuthu == 'muonhang'" type="button" class="btn btn-sm btn-primary float-right" (click)="openModal('muonhang')">TỪ PHIẾU XUẤT MƯỢN</button>
                                 </div>
                             </div>
                         </div>
@@ -37,14 +40,14 @@
                                     <dxi-item [label]="{ text: 'NGÀY THU' }" dataField="ngaythu" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày thu"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item *ngIf="loaiphieuthu == 'khachhang' || loaiphieuthu == 'khac'"
+                                    <dxi-item *ngIf="loaiphieuthu == 'khachhang' || loaiphieuthu == 'khac' || loaiphieuthu == 'muonhang'"
                                         [colSpan]="3"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhachhang', 'makhachhang'], displayExpr: 'tenkhachhang', readOnly: loaiphieuthu == 'khac' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhachhang', 'makhachhang'], displayExpr: 'tenkhachhang', readOnly: loaiphieuthu == 'khac' || loaiphieuthu == 'muonhang' }"
                                     >
-                                        <dxi-validation-rule *ngIf="loaiphieuthu != 'khac'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
+                                        <dxi-validation-rule *ngIf="loaiphieuthu == 'khachhang'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
                                     </dxi-item>
 
                                     <dxi-item *ngIf="loaiphieuthu == 'nhacungcap'"
