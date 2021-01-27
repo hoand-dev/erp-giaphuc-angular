@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
+import { PhieuYeuCauGiaCongInPhieuModalComponent } from '../../modals/phieu-yeu-cau-gia-cong-in-phieu-modal/phieu-yeu-cau-gia-cong-in-phieu-modal.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong',
@@ -22,6 +24,8 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    public bsModalRef: BsModalRef;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -32,7 +36,8 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         storageKey: 'dxGrid_PhieuYeuCauGiaCong'
     };
 
-    constructor(private router: Router, private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService, private authenticationService: AuthenticationService,
+        private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -77,6 +82,32 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         if (e.row.rowType === "data") {
             // e.items can be undefined
             if (!e.items) e.items = [];
+            e.items.push({
+                text: 'In Phiếu',
+                icon: 'print',
+                visible: 'true',
+
+                onItemClick: () => {
+                    let rowData: PhieuYeuCauGiaCong = e.row.key as PhieuYeuCauGiaCong;
+
+                    /*Khởi tạo giá trị trên modal */
+                    const initialState = {
+                        title: 'IN PHIẾU YÊU CẦU GIA CÔNG',
+                        phieuyeucaugiacong_id: rowData.id
+                    };
+
+                    /* Hiển thị trên modal */
+                    this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongInPhieuModalComponent, {
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                }
+            });
+     
+
             
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 

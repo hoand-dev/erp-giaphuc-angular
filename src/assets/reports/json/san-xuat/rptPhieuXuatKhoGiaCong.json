@@ -32,6 +32,9 @@
             , "inphieu_hoten": null
             , "tentaixe": null
 
+            , "tenkhoxuat": null
+            , "tendonvigiacong": null
+
         },
     
             "rptPhieuXuatKhoGiaCong_ChiTiet":[
@@ -46,8 +49,10 @@
                 , "dvt_id": null
                 , "tilequydoi": null
                 , "soluong": null
+                , "chuthich": null
 
                 , "tendonvitinh": null
+                , "tenhanghoa": null
         }
    ]
     

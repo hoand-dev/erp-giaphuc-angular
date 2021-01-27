@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuXuatKhoGiaCongInPhieuModalComponent } from '../../modals/phieu-xuat-kho-gia-cong-in-phieu-modal/phieu-xuat-kho-gia-cong-in-phieu-modal.component';
 
 @Component({
     selector: 'app-phieu-xuat-kho-gia-cong',
@@ -22,6 +24,8 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    public bsModalRef: BsModalRef;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -32,7 +36,12 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         storageKey: 'dxGrid_PhieuXuatKhoGiaCong'
     };
 
-    constructor(private router: Router, private objPhieuXuatKhoGiaCongService: PhieuXuatKhoGiaCongService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private router: Router,
+        private objPhieuXuatKhoGiaCongService: PhieuXuatKhoGiaCongService,
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
+    ) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -73,11 +82,36 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         );
     }
 
-    addMenuItems(e) { 
-        if (e.row.rowType === "data") {
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
-            
+            e.items.push({
+                text: 'In Phiếu',
+                icon: 'print',
+                visible: 'true',
+
+                onItemClick: () => {
+                    let rowData: PhieuXuatKhoGiaCong = e.row.key as PhieuXuatKhoGiaCong;
+
+                    /*Khởi tạo giá trị trên modal */
+                    const initialState = {
+                        title: 'IN PHIẾU XUẤT KHO GIA CÔNG',
+                        phieuxuatkhogiacong_id: rowData.id
+                    };
+
+                    /* Hiển thị trên modal */
+                    this.bsModalRef = this.modalService.show(PhieuXuatKhoGiaCongInPhieuModalComponent, {
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                }
+            });
+        }
+    }
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
@@ -90,8 +124,7 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
             //         }
             //     }
             // );
-        }
-    }
+     
 
     // async onCapNhatHoaDon(id: number, maphieu: string, sohoadon?: string) {
     //     const { value: soHoaDon } = await Swal.fire({

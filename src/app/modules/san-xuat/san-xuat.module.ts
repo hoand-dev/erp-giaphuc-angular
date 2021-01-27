@@ -21,10 +21,13 @@ import { PhieuNhapKhoGiaCongThemMoiComponent } from './pages/phieu-nhap-kho-gia-
 import { PhieuNhapKhoGiaCongCapNhatComponent } from './pages/phieu-nhap-kho-gia-cong-cap-nhat/phieu-nhap-kho-gia-cong-cap-nhat.component';
 import { DanhSachPhieuYeuCauGiaCongModalComponent } from './modals/danh-sach-phieu-yeu-cau-gia-cong-modal/danh-sach-phieu-yeu-cau-gia-cong-modal.component';
 import { DanhSachLoiModalComponent } from './modals/danh-sach-loi-modal/danh-sach-loi-modal.component';
+import { PhieuXuatKhoGiaCongInPhieuModalComponent } from './modals/phieu-xuat-kho-gia-cong-in-phieu-modal/phieu-xuat-kho-gia-cong-in-phieu-modal.component';
+import { PhieuYeuCauGiaCongInPhieuModalComponent } from './modals/phieu-yeu-cau-gia-cong-in-phieu-modal/phieu-yeu-cau-gia-cong-in-phieu-modal.component';
+import { PhieuNhapThanhPhamInPhieuModalComponent } from './modals/phieu-nhap-thanh-pham-in-phieu-modal/phieu-nhap-thanh-pham-in-phieu-modal.component';
 
 
 @NgModule({
-    declarations: [PhieuCapPhatVatTuComponent, PhieuCapPhatVatTuThemMoiComponent, PhieuCapPhatVatTuCapNhatComponent, BangGiaGiaCongComponent, BangGiaGiaCongThemMoiComponent, BangGiaGiaCongCapNhatComponent, PhieuXuatKhoGiaCongComponent, PhieuXuatKhoGiaCongThemMoiComponent, PhieuXuatKhoGiaCongCapNhatComponent, DanhSachHangHoaYeuCauGiaCongModalComponent, PhieuYeuCauGiaCongComponent, PhieuYeuCauGiaCongThemMoiComponent, PhieuYeuCauGiaCongCapNhatComponent, PhieuNhapKhoGiaCongComponent, PhieuNhapKhoGiaCongThemMoiComponent, PhieuNhapKhoGiaCongCapNhatComponent, DanhSachPhieuYeuCauGiaCongModalComponent, DanhSachLoiModalComponent],
+    declarations: [PhieuCapPhatVatTuComponent, PhieuCapPhatVatTuThemMoiComponent, PhieuCapPhatVatTuCapNhatComponent, BangGiaGiaCongComponent, BangGiaGiaCongThemMoiComponent, BangGiaGiaCongCapNhatComponent, PhieuXuatKhoGiaCongComponent, PhieuXuatKhoGiaCongThemMoiComponent, PhieuXuatKhoGiaCongCapNhatComponent, DanhSachHangHoaYeuCauGiaCongModalComponent, PhieuYeuCauGiaCongComponent, PhieuYeuCauGiaCongThemMoiComponent, PhieuYeuCauGiaCongCapNhatComponent, PhieuNhapKhoGiaCongComponent, PhieuNhapKhoGiaCongThemMoiComponent, PhieuNhapKhoGiaCongCapNhatComponent, DanhSachPhieuYeuCauGiaCongModalComponent, DanhSachLoiModalComponent, PhieuXuatKhoGiaCongInPhieuModalComponent, PhieuYeuCauGiaCongInPhieuModalComponent, PhieuNhapThanhPhamInPhieuModalComponent],
     imports: [
         CommonModule,
         SharedModule,
