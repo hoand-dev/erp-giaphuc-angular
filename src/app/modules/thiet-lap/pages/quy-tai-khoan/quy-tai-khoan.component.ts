@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./quy-tai-khoan.component.css']
 })
 export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -23,29 +22,25 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_QuyTaiKhoan"
+        type: 'localStorage',
+        storageKey: 'dxGrid_QuyTaiKhoan'
     };
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private quytaikhoanService: QuyTaiKhoanService
-    ) { }
+    constructor(private router: Router, private authenticationService: AuthenticationService, private quytaikhoanService: QuyTaiKhoanService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.currChiNhanh = x;
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.currChiNhanh = x;
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -57,14 +52,16 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onLoadData() {
-        this.subscriptions.add(this.quytaikhoanService.findQuyTaiKhoans(this.currChiNhanh.id).subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.quytaikhoanService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.quytaikhoanService.findQuyTaiKhoans(this.currChiNhanh.id).subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.quytaikhoanService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -73,28 +70,34 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa quỹ này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa quỹ này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.quytaikhoanService.deleteQuyTaiKhoan(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.quytaikhoanService.deleteQuyTaiKhoan(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.quytaikhoanService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.quytaikhoanService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }
