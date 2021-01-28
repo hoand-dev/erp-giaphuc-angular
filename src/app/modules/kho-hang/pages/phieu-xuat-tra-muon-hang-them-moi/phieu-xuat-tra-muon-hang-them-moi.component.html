@@ -47,9 +47,8 @@
                                     <dxi-item [label]="{ text: 'NGÀY XUẤT' }" dataField="ngayxuattramuonhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày xuất"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuxuattramuonhang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item
-                                        [colSpan]="4"
+                                        [colSpan]="2"
                                         [label]="{ text: 'KHO XUẤT' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
@@ -57,7 +56,18 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'KHO TRẢ' }"
+                                        dataField="khonhap_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang', readOnly: true }"
+                                    >
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn kho trả"></dxi-validation-rule>
+                                    </dxi-item>
                                     <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="matuphieu" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
+
+                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuxuattramuonhang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
