@@ -86,6 +86,16 @@ export class PhieuChiCapNhatComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                this.subscriptions.add(
+                    this.quytaikhoanService.findQuyTaiKhoans(x.id).subscribe((x) => {
+                        this.dataSource_QuyTaiKhoan = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
 
@@ -119,16 +129,6 @@ export class PhieuChiCapNhatComponent implements OnInit {
                 });
             })
         );
-        this.subscriptions.add(
-            this.quytaikhoanService.findQuyTaiKhoans().subscribe((x) => {
-                this.dataSource_QuyTaiKhoan = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
-            })
-        );
-
         this.subscriptions.add(
             this.noidungthuchiService.findNoiDungThuChis().subscribe((x) => {
                 this.dataSource_NoiDungThuChi = new DataSource({

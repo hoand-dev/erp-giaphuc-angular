@@ -80,6 +80,16 @@ export class PhieuThuThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                this.subscriptions.add(
+                    this.quytaikhoanService.findQuyTaiKhoans(x.id).subscribe((x) => {
+                        this.dataSource_QuyTaiKhoan = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
 
@@ -98,16 +108,6 @@ export class PhieuThuThemMoiComponent implements OnInit {
             this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
                 this.lstNhaCungCap = x;
                 this.dataSource_NhaCungCap = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
-            })
-        );
-
-        this.subscriptions.add(
-            this.quytaikhoanService.findQuyTaiKhoans().subscribe((x) => {
-                this.dataSource_QuyTaiKhoan = new DataSource({
                     store: x,
                     paginate: true,
                     pageSize: 50
