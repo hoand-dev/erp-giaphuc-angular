@@ -33,6 +33,9 @@ export class PhieuXuatTraMuonHangCapNhatComponent implements OnInit {
     public lstKhoXuat: KhoHang[] = [];
     public dataSource_KhoXuat: DataSource;
 
+    public lstKhoNhap: KhoHang[] = [];
+    public dataSource_KhoNhap: DataSource;
+
     public saveProcessing = false;
     public loadingVisible = true;
 
@@ -87,6 +90,13 @@ export class PhieuXuatTraMuonHangCapNhatComponent implements OnInit {
                         this.lstKhoXuat = x.filter((z) => z.chinhanh_id == this.currentChiNhanh.id && z.khongoai != true);
                         this.dataSource_KhoXuat = new DataSource({
                             store: this.lstKhoXuat,
+                            paginate: true,
+                            pageSize: 50
+                        });
+
+                        this.lstKhoNhap = x.filter(z => z.chinhanh_id != this.currentChiNhanh.id || z.khongoai == true);
+                        this.dataSource_KhoNhap = new DataSource({
+                            store: this.lstKhoNhap,
                             paginate: true,
                             pageSize: 50
                         });

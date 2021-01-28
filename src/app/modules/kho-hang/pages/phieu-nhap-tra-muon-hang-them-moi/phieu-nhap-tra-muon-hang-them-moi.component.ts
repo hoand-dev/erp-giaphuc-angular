@@ -33,6 +33,9 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
     public lstKhoNhap: KhoHang[] = [];
     public dataSource_KhoNhap: DataSource;
 
+    public lstKhoXuat: KhoHang[] = [];
+    public dataSource_KhoXuat: DataSource;
+
     public saveProcessing = false;
     public loadingVisible = true;
 
@@ -90,6 +93,13 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
                             paginate: true,
                             pageSize: 50
                         });
+
+                        this.lstKhoXuat = x.filter(z => z.chinhanh_id != this.currentChiNhanh.id || z.khongoai == true);
+                        this.dataSource_KhoXuat = new DataSource({
+                            store: this.lstKhoXuat,
+                            paginate: true,
+                            pageSize: 50
+                        });
                     })
                 );
             })
@@ -136,6 +146,7 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
                             // xử lý phần thông tin phiếu
                             this.phieunhaptramuonhang.phieuxuatmuonhang_id = data.id;
                             this.phieunhaptramuonhang.khonhap_id = data.khoxuat_id; // xuất kho nào ưu tiên nhập kho đó
+                            this.phieunhaptramuonhang.khoxuat_id = data.khonhap_id;
                             this.phieunhaptramuonhang.matuphieu = data.maphieuxuatmuonhang;
 
                             // gán độ dài danh sách hàng hóa load lần đầu

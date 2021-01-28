@@ -103,6 +103,11 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     report.dictionary.variables.getByName('Logo').valueObject  = imageLogo;
                     
                     /* render report */
+                    this.reportOptions.appearance.showTooltipsHelp = false;
+                    this.reportOptions.toolbar.showOpenButton = false;
+                    this.reportOptions.toolbar.showAboutButton = false;
+                    this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
+                    
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },

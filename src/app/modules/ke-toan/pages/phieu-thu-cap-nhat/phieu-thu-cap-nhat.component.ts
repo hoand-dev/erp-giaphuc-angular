@@ -76,6 +76,16 @@ export class PhieuThuCapNhatComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                this.subscriptions.add(
+                    this.quytaikhoanService.findQuyTaiKhoans(x.id).subscribe((x) => {
+                        this.dataSource_QuyTaiKhoan = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
 
@@ -94,16 +104,6 @@ export class PhieuThuCapNhatComponent implements OnInit {
             this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
                 this.lstNhaCungCap = x;
                 this.dataSource_NhaCungCap = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
-            })
-        );
-
-        this.subscriptions.add(
-            this.quytaikhoanService.findQuyTaiKhoans().subscribe((x) => {
-                this.dataSource_QuyTaiKhoan = new DataSource({
                     store: x,
                     paginate: true,
                     pageSize: 50
@@ -296,17 +296,18 @@ export class PhieuThuCapNhatComponent implements OnInit {
                 break;
         }
 
-        // ? thu khách hàng, nhà cung cấp có phiếu xuất hoặc không -> tính số tiền thu dư
-        // if(this.loaiphieuthu == "khac") return; // thu khác không làm gì nữa
-        let sotienthudu: number = 0;
-        let tongthu_chitiet: number = 0;
+        // ? khách hàng, có phiếu xuất hoặc không -> tính số tiền thu dư
+        if (this.loaiphieuthu == 'khachhang') {
+            let sotienthudu: number = 0;
+            let tongthu_chitiet: number = 0;
 
-        sotienthudu = this.phieuthu.tongthu;
-        this.phieuxuatkhos.forEach((x) => {
-            tongthu_chitiet += x.sotienthu + x.sotiengiam;
-        });
-        sotienthudu = this.phieuthu.tongthu - tongthu_chitiet;
-        this.phieuthu.sotienthu_du = sotienthudu >= 0 ? sotienthudu : 0;
+            sotienthudu = this.phieuthu.tongthu;
+            this.phieuxuatkhos.forEach((x) => {
+                tongthu_chitiet += x.sotienthu + x.sotiengiam;
+            });
+            sotienthudu = this.phieuthu.tongthu - tongthu_chitiet;
+            this.phieuthu.sotienthu_du = sotienthudu >= 0 ? sotienthudu : 0;
+        }
     }
 
     public onSubmitForm(e) {

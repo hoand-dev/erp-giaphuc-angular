@@ -37,14 +37,14 @@
                                     <dxi-item [label]="{ text: 'NGÀY THU' }" dataField="ngaythu" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày thu"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item *ngIf="loaiphieuthu == 'khachhang' || loaiphieuthu == 'khac'"
+                                    <dxi-item *ngIf="loaiphieuthu == 'khachhang' || loaiphieuthu == 'khac' || loaiphieuthu == 'muonhang'"
                                         [colSpan]="3"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
                                         [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhachhang', 'makhachhang'], displayExpr: 'tenkhachhang', readOnly: true }"
                                     >
-                                        <dxi-validation-rule *ngIf="loaiphieuthu != 'khac'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
+                                        <dxi-validation-rule *ngIf="loaiphieuthu == 'khachhang'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
                                     </dxi-item>
 
                                     <dxi-item *ngIf="loaiphieuthu == 'nhacungcap'"

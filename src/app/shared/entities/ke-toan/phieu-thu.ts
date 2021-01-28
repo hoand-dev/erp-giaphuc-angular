@@ -2,16 +2,15 @@ export class PhieuThu {
     public phieuthu_phieuxuatkhos: PhieuThu_PhieuXuatKho[];
     public phieuthu_phieuxuatkhos_old: PhieuThu_PhieuXuatKho[];
 
-    public sotien_bangchu:  string;
-    public phieuin_thoigian:  string;
-    public phieuin_nguoiin:  string;
-    public ngaylapphieu:  string;
+    public sotien_bangchu: string;
+    public phieuin_thoigian: string;
+    public phieuin_nguoiin: string;
+    public ngaylapphieu: string;
 
-        
     public quy_tencongty: string;
     public quy_tainganhang: string;
-    public quy_sotaikhoan:  string;
-    public quy_diachi:  string;
+    public quy_sotaikhoan: string;
+    public quy_diachi: string;
 
     public nocu: number;
     public tongthu: number;
@@ -48,6 +47,8 @@ export class PhieuThu {
     public nguoinop_diachi: string;
     public nguoinop_dienthoai: string;
 
+    public phieuxuatmuonhang_id: number;
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -59,7 +60,7 @@ export class PhieuThu {
         ghichu: string = null,
         ids: number = null,
         sort: string = null,
-        ngaythu: Date = new Date,
+        ngaythu: Date = new Date(),
         maphieuthu: string = null,
         chungtu: string = null,
         loaiphieuthu: string = null,

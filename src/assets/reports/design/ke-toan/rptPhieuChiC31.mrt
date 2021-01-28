@@ -83,12 +83,12 @@
           <ClientRectangle>0,0.4,19.98,12.44</ClientRectangle>
           <Components isList="true" count="54">
             <Text1 Ref="6" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>1.52,0,3.56,1.02</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
+              <Font>Times New Roman,11</Font>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
@@ -147,7 +147,7 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text4>
             <Text5 Ref="10" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.52,1.02,3.56,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -162,9 +162,9 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text5>
             <Text6 Ref="11" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3.05,1.52,2.03,0.51</ClientRectangle>
+              <ClientRectangle>2.85,1.52,2.23,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <HorAlignment>Right</HorAlignment>
@@ -291,11 +291,11 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text14>
             <Text37 Ref="20" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.81,2.79,16.2,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text37</Name>
               <Page isRef="4" />
@@ -303,14 +303,14 @@
               <Text>{rptPhieuChi.nguoinhan_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text37>
             <Text38 Ref="21" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.78,3.3,18.2,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text38</Name>
               <Page isRef="4" />
@@ -318,14 +318,14 @@
               <Text>{rptPhieuChi.nguoinhan_diachi}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text38>
             <Text39 Ref="22" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.78,3.81,18.2,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text39</Name>
               <Page isRef="4" />
@@ -333,14 +333,14 @@
               <Text>{rptPhieuChi.ghichu}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text39>
             <Text40 Ref="23" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.78,4.32,3.55,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text40</Name>
               <Page isRef="4" />
@@ -354,14 +354,14 @@
                 <State>DecimalDigits, DecimalSeparator</State>
               </TextFormat>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text40>
             <Text41 Ref="25" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.78,4.83,3.55,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text41</Name>
               <Page isRef="4" />
@@ -372,11 +372,11 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text41>
             <Text42 Ref="26" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>8.38,4.32,11.6,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>4,0,0,0</Margins>
               <Name>Text42</Name>
               <Page isRef="4" />
@@ -385,14 +385,14 @@
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text42>
             <Text43 Ref="27" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>8.38,4.83,11.63,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
@@ -403,11 +403,11 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text43>
             <Text44 Ref="28" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5.59,5.33,14.4,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text44</Name>
               <Page isRef="4" />
@@ -416,7 +416,7 @@
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text44>
             <Text16 Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -559,7 +559,7 @@
               <VertAlignment>Center</VertAlignment>
             </Text25>
             <Text26 Ref="39" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,9.91,3.3,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -574,7 +574,7 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text26>
             <Text27 Ref="40" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.81,9.91,3.3,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -589,7 +589,7 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text27>
             <Text28 Ref="41" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.87,9.91,3.31,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -602,10 +602,10 @@
               <Text>{rptPhieuChi.nguoitao_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text28>
             <Text29 Ref="42" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.94,9.91,3.05,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -620,7 +620,7 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text29>
             <Text30 Ref="43" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.49,9.91,4.32,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -677,32 +677,32 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text33>
             <Text34 Ref="47" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5.33,10.67,14.48,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text34</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text34>
             <Text35 Ref="48" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.54,11.18,17.27,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10,Italic</Font>
+              <Font>Times New Roman,11,Italic</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text35</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text35>
             <Text45 Ref="49" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -766,6 +766,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Text>Quyển số:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text47>
             <Text48 Ref="54" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -778,6 +779,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Parent isRef="5" />
               <Text>Số:</Text>
               <TextBrush>Black</TextBrush>
+              <VertAlignment>Bottom</VertAlignment>
             </Text48>
             <Text49 Ref="55" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -791,6 +793,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Text>Nợ:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text49>
             <Text50 Ref="56" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -804,9 +807,10 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Text>Có:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text50>
             <Text51 Ref="57" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>10.92,0,2.8,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -819,7 +823,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
             </Text51>
             <Text52 Ref="58" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.91,0.51,3.81,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -832,7 +836,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
             </Text52>
             <Text53 Ref="59" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.91,1.02,3.81,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -845,7 +849,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
             </Text53>
             <Text54 Ref="60" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.91,1.52,3.81,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -858,7 +862,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
             </Text54>
             <Text15 Ref="61" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Dot;False;4;Black</Border>
+              <Border>None;Black;1;Dot;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.24,6.1,4.57,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -904,12 +908,12 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Base.Dll</value>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
-  <ReportAlias>rptPhieuChi</ReportAlias>
-  <ReportChanged>1/26/2021 9:01:41 AM</ReportChanged>
+  <ReportAlias>rptPhieuChiC31</ReportAlias>
+  <ReportChanged>1/27/2021 2:03:45 PM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
-  <ReportGuid>99ee7c567e464a7db5409fa6bcca105f</ReportGuid>
-  <ReportName>rptPhieuChi</ReportName>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
+  <ReportGuid>c3ac0ef5d30c4ea49d961f25dc82560f</ReportGuid>
+  <ReportName>rptPhieuChiC31</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
   <Script>using System;
@@ -924,9 +928,9 @@ using Stimulsoft.Report.Components;
 
 namespace Reports
 {
-    public class rptPhieuChi : Stimulsoft.Report.StiReport
+    public class rptPhieuChiC31 : Stimulsoft.Report.StiReport
     {
-        public rptPhieuChi()        {
+        public rptPhieuChiC31()        {
             this.InitializeComponent();
         }
 

@@ -1,8 +1,13 @@
 export class PhieuXuatTraMuonHang {
     public phieuxuattramuonhang_chitiets: PhieuXuatTraMuonHang_ChiTiet[] = [];
 
+    public ngaylapphieu: string;
+    public inphieu_hoten: string;
+    public inphieu_thoigian: string;
+    
     public matuphieu: string;
     public tenkhoxuat: string;
+    public tenkhonhap: string;
 
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
@@ -20,6 +25,7 @@ export class PhieuXuatTraMuonHang {
     public maphieuxuattramuonhang: string;
     public chinhanh_id: number;
     public khoxuat_id: number;
+    public khonhap_id: number;
     public phieunhapmuonhang_id: number;
 
     constructor(
@@ -36,6 +42,7 @@ export class PhieuXuatTraMuonHang {
         maphieuxuattramuonhang: string = null,
         chinhanh_id: number = null,
         khoxuat_id: number = null,
+        khonhap_id: number = null,
         phieunhapmuonhang_id: number = null
     ) {
         this.id = id;
@@ -51,6 +58,7 @@ export class PhieuXuatTraMuonHang {
         this.maphieuxuattramuonhang = maphieuxuattramuonhang;
         this.chinhanh_id = chinhanh_id;
         this.khoxuat_id = khoxuat_id;
+        this.khonhap_id = khonhap_id;
         this.phieunhapmuonhang_id = phieunhapmuonhang_id;
     }
 }

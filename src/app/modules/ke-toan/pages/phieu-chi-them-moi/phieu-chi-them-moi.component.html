@@ -29,7 +29,8 @@
                                     <h5>{{ 'Phiếu chi' | uppercase }} - THÊM MỚI</h5>
                                 </div>
                                 <div class="col-md-4">
-                                    <button *ngIf="loaiphieuchi == 'lenhvay'" type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()">TỪ LỆNH VAY</button>
+                                    <button *ngIf="loaiphieuchi == 'lenhvay'" type="button" class="btn btn-sm btn-primary float-right" (click)="openModal('lenhvay')">TỪ LỆNH VAY</button>
+                                    <button *ngIf="loaiphieuchi == 'muonhang'" type="button" class="btn btn-sm btn-primary float-right" (click)="openModal('muonhang')">TỪ PHIẾU NHẬP MƯỢN</button>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +42,7 @@
                                         <dxi-validation-rule type="required" message="Chọn ngày chi"> </dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
-                                        *ngIf="loaiphieuchi == 'khachhang' || loaiphieuchi == 'khac' || loaiphieuchi == 'lenhvay'"
+                                        *ngIf="loaiphieuchi == 'khachhang' || loaiphieuchi == 'khac' || loaiphieuchi == 'lenhvay' || loaiphieuchi == 'muonhang'"
                                         [colSpan]="3"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
