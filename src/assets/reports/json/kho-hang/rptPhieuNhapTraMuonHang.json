@@ -1,0 +1,47 @@
+
+{
+	"rptThongTinPhieu": [
+		{ 
+			  "id": null 
+			, "kichhoat": null 
+			, "nguoitao_id": null 
+			, "thoigiantao": null 
+			, "nguoisua_id": null 
+			, "thoigiansua": null 
+			, "ghichu": null 
+			, "ids": null 
+            , "sort": null 
+            
+			, "ngaynhaptramuonhang": null 
+			, "maphieunhaptramuonhang": null 
+			, "chinhanh_id": null 
+			, "khonhap_id": null 
+			, "khoxuat_id": null 
+            , "phieuxuatmuonhang_id": null  
+            
+            , "tenkhoxuat" : null
+            , "tenkhonhap" : null
+
+            , "ngaylapphieu": null
+            , "inphieu_hoten": null
+            , "inphieu_thoigian": null
+		}
+    ],
+	"rptThongTinHangHoa": [
+		{ 
+			  "id": null 
+			, "phieunhaptramuonhang_id": null 
+			, "khonhap_id": null 
+			, "loaihanghoa": null 
+			, "hanghoa_id": null 
+			, "hanghoa_lohang_id": null 
+			, "dvt_id": null 
+			, "tilequydoi": null 
+			, "soluong": null 
+			, "chuthich": null 
+            , "phieuxuatmuonhang_chitiet_id": null  
+            
+            , "tendonvitinh": null
+		}
+	]
+}

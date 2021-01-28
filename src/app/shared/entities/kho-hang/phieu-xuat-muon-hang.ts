@@ -1,6 +1,10 @@
 export class PhieuXuatMuonHang {
     public phieuxuatmuonhang_chitiets: PhieuXuatMuonHang_ChiTiet[] = [];
 
+    public ngaylapphieu: string;
+    public inphieu_hoten: string;
+    public inphieu_thoigian: string;
+    
     public tenkhoxuat: string;
     public tenkhonhap: string;
 
