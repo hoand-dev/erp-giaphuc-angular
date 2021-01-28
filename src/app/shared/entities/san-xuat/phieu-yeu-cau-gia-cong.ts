@@ -1,6 +1,16 @@
 export class PhieuYeuCauGiaCong {
     public phieuyeucaugiacong_chitiets: PhieuYeuCauGiaCongCT[];
 
+    nhanviensale_hoten: string;
+    biensoxe: string;
+    ngaylapphieu: string;
+    inphieu_thoigian: string;
+    inphieu_hoten: string;
+    tentaixe: string;
+
+    tenkhoxuat: string;
+  
+
     public tendonvigiacong: string;
     public tenkhogiacong: string;
 
@@ -45,8 +55,8 @@ export class PhieuYeuCauGiaCong {
         trangthainhap: string = null,
         loaiphieu: string = null,
         xuatnguyenlieu: boolean = true,
-        
-        phieuyeucaugiacong_chitiets: PhieuYeuCauGiaCongCT[] = [],
+
+        phieuyeucaugiacong_chitiets: PhieuYeuCauGiaCongCT[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -74,6 +84,7 @@ export class PhieuYeuCauGiaCong {
 export class PhieuYeuCauGiaCongCT {
     public yeucaus: string;
     public arr_yeucaus: number[];
+    public tenyeucau: string;
 
     public mathanhpham: string;
     public tenthanhpham: string;
@@ -153,7 +164,7 @@ export class PhieuYeuCauGiaCongCT {
         this.dongiavon = dongiavon;
         this.soluongdanhap = soluongdanhap;
         this.trangthainhap = trangthainhap;
-        
+
         this.xuatnguyenlieu = xuatnguyenlieu;
         this.yeucaus = yeucaus;
         this.arr_yeucaus = arr_yeucaus;

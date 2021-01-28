@@ -2,6 +2,12 @@ export class PhieuXuatKhoGiaCong {
     public phieuxuatkhogiacong_chitiets: PhieuXuatKhoGiaCong_ChiTiet[];
     public phieuxuatkhogiacong_chitiets_old: PhieuXuatKhoGiaCong_ChiTiet[];
 
+    public nhanviensale_hoten: string;
+    public ngaylapphieu: string;
+    public inphieu_thoigian: string;
+    public inphieu_hoten: string;
+
+
     public tendonvigiacong: string;
     public tenkhogiacong: string;
     public tenkhoxuat: string;
@@ -89,6 +95,7 @@ export class PhieuXuatKhoGiaCong_ChiTiet {
     public trongluong: number;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
+    public tenhanghoa: string;
 
     public id: number;
     public phieuxuatkhogiacong_id: number;

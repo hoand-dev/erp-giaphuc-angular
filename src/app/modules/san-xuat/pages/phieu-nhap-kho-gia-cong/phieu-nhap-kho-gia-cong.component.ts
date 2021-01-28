@@ -6,10 +6,12 @@ import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
+import { PhieuNhapThanhPhamInPhieuModalComponent } from '../../modals/phieu-nhap-thanh-pham-in-phieu-modal/phieu-nhap-thanh-pham-in-phieu-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-kho-gia-cong',
@@ -19,8 +21,11 @@ import Swal from 'sweetalert2';
 export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
+  
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
+    public bsModalRef: BsModalRef;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -32,7 +37,8 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         storageKey: 'dxGrid_PhieuNhapKhoGiaCong'
     };
 
-    constructor(private router: Router, private objPhieuNhapKhoGiaCongService: PhieuNhapKhoGiaCongService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuNhapKhoGiaCongService: PhieuNhapKhoGiaCongService, private authenticationService: AuthenticationService,
+        private modalService: BsModalService ) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -77,6 +83,31 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         if (e.row.rowType === "data") {
             // e.items can be undefined
             if (!e.items) e.items = [];
+            e.items.push({
+                text: 'In Phiếu',
+                icon: 'print',
+                visible: 'true',
+
+                onItemClick: () => {
+                    let rowData: PhieuNhapKhoGiaCong = e.row.key as PhieuNhapKhoGiaCong;
+
+                    /*Khởi tạo giá trị trên modal */
+                    const initialState = {
+                        title: 'IN PHIẾU NHẬP KHO GIA CÔNG',
+                        phieunhapkhogiacong_id: rowData.id
+                    };
+
+                    /* Hiển thị trên modal */
+                    this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamInPhieuModalComponent, {
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                }
+            });
+     
             
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 

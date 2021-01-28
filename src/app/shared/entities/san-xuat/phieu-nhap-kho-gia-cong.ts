@@ -1,6 +1,17 @@
 export class PhieuNhapKhoGiaCong {
     public phieunhapkhogiacong_chitiets: PhieuNhapKhoGiaCongCT[];
 
+    
+    nhanviensale_hoten: string;
+    biensoxe: string;
+    ngaylapphieu: string;
+    inphieu_thoigian: string;
+    inphieu_hoten: string;
+    tentaixe: string;
+
+    tenkhoxuat: string;
+  
+
     public tendonvigiacong: string;
     public tenkhogiacong: string;
     public tenkhonhap: string;
@@ -80,7 +91,11 @@ export class PhieuNhapKhoGiaCong {
 export class PhieuNhapKhoGiaCongCT {
     lois: string;
     public chitietlois: LoiGiaCong[] = [];
-    
+
+    tenhanghoa: string;
+    tensomat: string;
+    tenyeucau: string;
+
     public yeucaus: string;
     public arr_yeucaus: number[];
 
