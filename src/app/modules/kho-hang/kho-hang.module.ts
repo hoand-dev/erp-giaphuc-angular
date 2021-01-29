@@ -40,6 +40,10 @@ import { PhieuXuatTraMuonHangComponent } from './pages/phieu-xuat-tra-muon-hang/
 import { PhieuXuatTraMuonHangThemMoiComponent } from './pages/phieu-xuat-tra-muon-hang-them-moi/phieu-xuat-tra-muon-hang-them-moi.component';
 import { PhieuXuatTraMuonHangCapNhatComponent } from './pages/phieu-xuat-tra-muon-hang-cap-nhat/phieu-xuat-tra-muon-hang-cap-nhat.component';
 import { DanhSachPhieuNhapMuonHangModalComponent } from './modals/danh-sach-phieu-nhap-muon-hang-modal/danh-sach-phieu-nhap-muon-hang-modal.component';
+import { PhieuNhapMuonHangInPhieuModalComponent } from './modals/phieu-nhap-muon-hang-in-phieu-modal/phieu-nhap-muon-hang-in-phieu-modal.component';
+import { PhieuXuatMuonHangInPhieuModalComponent } from './modals/phieu-xuat-muon-hang-in-phieu-modal/phieu-xuat-muon-hang-in-phieu-modal.component';
+import { PhieuNhapTraMuonHangInPhieuModalComponent } from './modals/phieu-nhap-tra-muon-hang-in-phieu-modal/phieu-nhap-tra-muon-hang-in-phieu-modal.component';
+import { PhieuXuatTraMuonHangInPhieuModalComponent } from './modals/phieu-xuat-tra-muon-hang-in-phieu-modal/phieu-xuat-tra-muon-hang-in-phieu-modal.component';
 
 @NgModule({
     declarations: [
@@ -76,7 +80,11 @@ import { DanhSachPhieuNhapMuonHangModalComponent } from './modals/danh-sach-phie
         PhieuXuatTraMuonHangComponent,
         PhieuXuatTraMuonHangThemMoiComponent,
         PhieuXuatTraMuonHangCapNhatComponent,
-        DanhSachPhieuNhapMuonHangModalComponent
+        DanhSachPhieuNhapMuonHangModalComponent,
+        PhieuNhapMuonHangInPhieuModalComponent,
+        PhieuXuatMuonHangInPhieuModalComponent,
+        PhieuNhapTraMuonHangInPhieuModalComponent,
+        PhieuXuatTraMuonHangInPhieuModalComponent
     ],
     imports: [CommonModule, SharedModule, KhoHangRoutingModule]
 })

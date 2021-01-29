@@ -25,6 +25,7 @@
             , "tenkhoxuat" : null
             , "tenkhonhap" : null
 
+            , "tongthanhtien_bangchu": null
             , "ngaylapphieu": null
             , "inphieu_hoten": null
             , "inphieu_thoigian": null
@@ -47,6 +48,7 @@
 			, "soluongdatra": null 
             , "trangthaitra": null  
             
+            , "tenhanghoa_inphieu": null 
             , "tendonvitinh": null
 		}
 	]

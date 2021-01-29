@@ -65,6 +65,7 @@ export class PhieuXuatTraMuonHang {
 
 export class PhieuXuatTraMuonHang_ChiTiet {
     /* liên kết vs khoá ngoại và thông tin thêm */
+    public tenhanghoa_inphieu: string;
     public mahanghoa: string;
     public tenhanghoa: string;
     public trongluong: number;

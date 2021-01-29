@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuNhapMuonHangInPhieuModalComponent } from '../../modals/phieu-nhap-muon-hang-in-phieu-modal/phieu-nhap-muon-hang-in-phieu-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-muon-hang',
@@ -17,7 +19,8 @@ import { AuthenticationService } from '@app/_services';
 })
 export class PhieuNhapMuonHangComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-
+    public bsModalRef: BsModalRef;
+    
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
@@ -31,7 +34,7 @@ export class PhieuNhapMuonHangComponent implements OnInit, OnDestroy, AfterViewI
         storageKey: 'dxGrid_PhieuNhapMuonHang'
     };
 
-    constructor(private router: Router, private objPhieuNhapMuonHangService: PhieuNhapMuonHangService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuNhapMuonHangService: PhieuNhapMuonHangService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -70,6 +73,41 @@ export class PhieuNhapMuonHangComponent implements OnInit, OnDestroy, AfterViewI
                 }
             )
         );
+    }
+
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+
+            // Add a custom menu item
+            e.items.push(
+                {
+                    text: 'In phiếu',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuNhapMuonHang = e.row.key as PhieuNhapMuonHang;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: "XEM IN PHIẾU NHẬP MƯỢN HÀNG",
+                            phieunhapmuonhang_id: rowData.id
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapMuonHangInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                }
+            );
+        }
     }
 
     onRowDblClick(e) {
