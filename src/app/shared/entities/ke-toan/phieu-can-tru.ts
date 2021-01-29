@@ -6,8 +6,27 @@ export class PhieuCanTru {
     public phieucantru_phieuxuatkhos_old: PhieuCanTru_PhieuXuatKho[];
 
     public tenkhachhang: string;
+    public kh_sodienthoai: string;
+    public kh_diachi: string;
+    public kh_nguoidaidien: string;
+    public kh_chucvu: string;
+
+    
+ 
+    public sotien_bangchu: string;
+    public phieuin_thoigian: string;
+    public phieuin_nguoiin: string;
+    public ngaylapphieu: string;
+
+
     public tennhacungcap: string;
+    public ncc_sodienthoai: string;
+    public ncc_diachi: string;
+    public ncc_tennguoidaidien: string;
+
     public tendonvigiacong: string;
+    public dvgc_sodienthoai: string;
+    public dvgc_diachi: string;
     public noidungcantru: string;
 
     public nocu_khachhang: number = 0;
