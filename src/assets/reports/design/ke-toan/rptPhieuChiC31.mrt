@@ -750,7 +750,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Text>{rptPhieuChi.ngaylapphieu}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="52" type="DateFormat" isKey="true">
-                <StringFormat>dd/MM/yyyy</StringFormat>
+                <StringFormat>D</StringFormat>
               </TextFormat>
               <Type>Expression</Type>
             </Text46>
@@ -862,11 +862,11 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
             </Text54>
             <Text15 Ref="61" type="Text" isKey="true">
-              <Border>None;Black;1;Dot;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.24,6.1,4.57,0.5</ClientRectangle>
+              <ClientRectangle>14.2,6.2,5.66,0.61</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9</Font>
+              <Font>Times New Roman,9,Bold| Italic</Font>
+              <Guid>fc03d676c5004073bd3f894fbf8f6dfd</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
@@ -875,10 +875,9 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Text>{rptPhieuChi.ngaylapphieu}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="62" type="DateFormat" isKey="true">
-                <StringFormat>dd/MM/yyyy</StringFormat>
+                <StringFormat>D</StringFormat>
               </TextFormat>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
             </Text15>
           </Components>
           <Conditions isList="true" count="0" />
@@ -909,10 +908,10 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>rptPhieuChiC31</ReportAlias>
-  <ReportChanged>1/27/2021 2:03:45 PM</ReportChanged>
+  <ReportChanged>1/28/2021 5:19:49 PM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
-  <ReportGuid>c3ac0ef5d30c4ea49d961f25dc82560f</ReportGuid>
+  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
+  <ReportGuid>ecea3774a224415f9a0d13879668835c</ReportGuid>
   <ReportName>rptPhieuChiC31</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

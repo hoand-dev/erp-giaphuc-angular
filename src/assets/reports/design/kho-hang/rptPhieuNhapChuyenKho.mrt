@@ -596,6 +596,7 @@
               <Parent isRef="34" />
               <Text>{rptPhieuNhapChuyenKho_ChiTiet.chuthich}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text27>
@@ -631,24 +632,7 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text45>
-            <Text15 Ref="43" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>5.5,0,2.3,0.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,11</Font>
-              <Guid>66183962eb774e6b968fffbd86bad66c</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text15</Name>
-              <Page isRef="7" />
-              <Parent isRef="41" />
-              <Text>{rptPhieuNhapChuyenKho_ChiTiet.chuthich}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text15>
-            <Text14 Ref="44" type="Text" isKey="true">
+            <Text14 Ref="43" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>4.6,0,0.9,0.2</ClientRectangle>
@@ -662,7 +646,7 @@
               <Parent isRef="41" />
               <Text>{Sum(rptPhieuNhapChuyenKho_ChiTiet.soluong)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="45" type="NumberFormat" isKey="true">
+              <TextFormat Ref="44" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>.</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -671,6 +655,20 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
+            <Text15 Ref="45" type="Text" isKey="true">
+              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.5,0,2.3,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,11,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="7" />
+              <Parent isRef="41" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text15>
           </Components>
           <Conditions isList="true" count="0" />
           <Guid>65d12922961942e585f0ebd268cbf158</Guid>
@@ -801,10 +799,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/23/2021 11:13:27 AM</ReportChanged>
+  <ReportChanged>1/28/2021 3:54:47 PM</ReportChanged>
   <ReportCreated>1/11/2021 1:34:51 PM</ReportCreated>
   <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuNhapChuyenKho.mrt</ReportFile>
-  <ReportGuid>f80fc8f693a04dcca692839718447063</ReportGuid>
+  <ReportGuid>1a146feda0bf43b2ac4248b2ef04b84a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

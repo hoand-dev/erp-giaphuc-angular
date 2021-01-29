@@ -303,7 +303,7 @@
               <Name>Text10</Name>
               <Page isRef="7" />
               <Parent isRef="15" />
-              <Text>{rptPhieuNhapThanhPham.tendonvigiacong}</Text>
+              <Text>{rptPhieuNhapThanhPham.tenkhogiacong}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -871,10 +871,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/27/2021 5:44:19 PM</ReportChanged>
+  <ReportChanged>1/28/2021 9:12:00 AM</ReportChanged>
   <ReportCreated>1/27/2021 4:07:51 PM</ReportCreated>
   <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\san-xuat\rptPhieuNhapThanhPham.mrt</ReportFile>
-  <ReportGuid>d9433832b9b9413ab7dded1a967021a0</ReportGuid>
+  <ReportGuid>7686fde56f984f888020baa128bcd8e8</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
