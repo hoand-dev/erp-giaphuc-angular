@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@app/_helpers';
-import { PhieuChiCapNhatComponent } from './pages/phieu-chi-cap-nhat/phieu-chi-cap-nhat.component';
-import { PhieuChiThemMoiComponent } from './pages/phieu-chi-them-moi/phieu-chi-them-moi.component';
-import { PhieuChiComponent } from './pages/phieu-chi/phieu-chi.component';
-import { PhieuThuCapNhatComponent } from './pages/phieu-thu-cap-nhat/phieu-thu-cap-nhat.component';
-import { PhieuThuThemMoiComponent } from './pages/phieu-thu-them-moi/phieu-thu-them-moi.component';
-import { PhieuThuComponent } from './pages/phieu-thu/phieu-thu.component';
-import { LenhVayComponent } from './pages/lenh-vay/lenh-vay.component';
-import { LenhVayCapNhatComponent } from './pages/lenh-vay-cap-nhat/lenh-vay-cap-nhat.component';
-import { LenhVayThemMoiComponent } from './pages/lenh-vay-them-moi/lenh-vay-them-moi.component';
-import { PhieuCanTruComponent } from './pages/phieu-can-tru/phieu-can-tru.component';
-import { PhieuCanTruCapNhatComponent } from './pages/phieu-can-tru-cap-nhat/phieu-can-tru-cap-nhat.component';
-import { PhieuCanTruThemMoiComponent } from './pages/phieu-can-tru-them-moi/phieu-can-tru-them-moi.component';
+
+import {
+    PhieuChiCapNhatComponent,
+    PhieuChiThemMoiComponent,
+    PhieuChiComponent,
+    PhieuThuCapNhatComponent,
+    PhieuThuThemMoiComponent,
+    PhieuThuComponent,
+    LenhVayComponent,
+    LenhVayCapNhatComponent,
+    LenhVayThemMoiComponent,
+    PhieuCanTruComponent,
+    PhieuCanTruCapNhatComponent,
+    PhieuCanTruThemMoiComponent
+} from './pages';
 
 const routes: Routes = [
     {
