@@ -62,7 +62,13 @@ export class PhieuDatHangNCCThemMoiComponent implements OnInit {
     ngOnInit(): void {
         this.phieudathangncc = new PhieuDatHangNCC();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.currentChiNhanh = x;
+                this.phieudathangncc.diachi_giaohang = x.diachi;
+            })
+        );
+        
         this.subscriptions.add(
             this.nhacungcapService.findNhaCungCaps().subscribe((x) => {
                 this.loadingVisible = false;

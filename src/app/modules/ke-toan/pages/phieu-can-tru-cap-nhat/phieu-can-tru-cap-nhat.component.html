@@ -37,29 +37,61 @@
                                     <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY CẤN TRỪ' }" dataField="ngaycantru" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày cấn trừ"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item *ngIf="loaiphieucantru != 'nhacungcap-donvigiacong'"
+                                    <dxi-item
+                                        *ngIf="loaiphieucantru != 'nhacungcap-donvigiacong'"
                                         [colSpan]="3"
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhachhang', 'makhachhang'], displayExpr: 'tenkhachhang', readOnly: loaiphieucantru == 'khac' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhachHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhachhang', 'makhachhang'],
+                                            displayExpr: 'tenkhachhang',
+                                            readOnly: loaiphieucantru == 'khac'
+                                        }"
                                     >
                                         <dxi-validation-rule *ngIf="loaiphieucantru != 'khac'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" *ngIf="loaiphieucantru != 'nhacungcap-donvigiacong'" [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu_khachhang" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        *ngIf="loaiphieucantru != 'nhacungcap-donvigiacong'"
+                                        [label]="{ text: 'NỢ CŨ' }"
+                                        editorType="dxNumberBox"
+                                        dataField="nocu_khachhang"
+                                        [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
+                                    >
+                                    </dxi-item>
 
-                                    <dxi-item *ngIf="loaiphieucantru != 'khachhang-donvigiacong'"
+                                    <dxi-item
+                                        *ngIf="loaiphieucantru != 'khachhang-donvigiacong'"
                                         [colSpan]="3"
                                         [label]="{ text: 'NHÀ CUNG CẤP' }"
                                         dataField="nhacungcap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NhaCungCap, valueExpr: 'id', searchEnabled: true, searchExpr: ['tennhacungcap', 'manhacungcap'], displayExpr: 'tennhacungcap' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_NhaCungCap,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tennhacungcap', 'manhacungcap'],
+                                            displayExpr: 'tennhacungcap'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" *ngIf="loaiphieucantru != 'khachhang-donvigiacong'" [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu_nhacungcap" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        *ngIf="loaiphieucantru != 'khachhang-donvigiacong'"
+                                        [label]="{ text: 'NỢ CŨ' }"
+                                        editorType="dxNumberBox"
+                                        dataField="nocu_nhacungcap"
+                                        [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
+                                    >
+                                    </dxi-item>
 
-                                    <dxi-item *ngIf="loaiphieucantru != 'khachhang-nhacungcap'"
+                                    <dxi-item
+                                        *ngIf="loaiphieucantru != 'khachhang-nhacungcap'"
                                         [colSpan]="3"
                                         [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                                         dataField="donvigiacong_id"
@@ -68,8 +100,16 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" *ngIf="loaiphieucantru != 'khachhang-nhacungcap'" [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu_donvigiacong" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        *ngIf="loaiphieucantru != 'khachhang-nhacungcap'"
+                                        [label]="{ text: 'NỢ CŨ' }"
+                                        editorType="dxNumberBox"
+                                        dataField="nocu_donvigiacong"
+                                        [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
+                                    >
+                                    </dxi-item>
+
                                     <dxi-item [colSpan]="2" [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieucantru" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item
                                         [colSpan]="8"
@@ -80,42 +120,54 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'CHÊNH LỆCH' }" editorType="dxNumberBox" dataField="nocu_chenhlech" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"></dxi-item>
+                                    <dxi-item
+                                        [colSpan]="2"
+                                        [label]="{ text: 'CHÊNH LỆCH' }"
+                                        editorType="dxNumberBox"
+                                        dataField="nocu_chenhlech"
+                                        [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
+                                    ></dxi-item>
 
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="10"></dxi-item>
-                                    <dxi-item [colSpan]="2" [label]="{ text: 'SỐ TIỀN CẤN TRỪ' }" editorType="dxNumberBox" dataField="sotiencantru" [editorOptions]="{ format: '#,##0.###' }"></dxi-item>
+                                    <dxi-item [colSpan]="2" [label]="{ text: 'SỐ TIỀN CẤN TRỪ' }" editorType="dxNumberBox" dataField="sotiencantru" [editorOptions]="{ format: '#,##0.###' }">
+                                        <dxi-validation-rule type="range" [min]="0" message="Số tiền cấn trừ phải lớn hơn 0"> </dxi-validation-rule>
+                                    </dxi-item>
 
                                     <dxi-item [colSpan]="12" *ngIf="phieuxuatkhos.length > 0 || phieunhapkhos.length > 0">
                                         <mat-tab-group mat-align-tabs="start" [style.margin-top.px]="10">
                                             <mat-tab label="PHIẾU XUẤT KHO - BÁN" *ngIf="phieuxuatkhos.length > 0">
-                                                    <table class="table table-vertical table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th [style.min-width.px]="45">STT</th>
-                                                                <th [style.min-width.px]="120">NGÀY XUẤT</th>
-                                                                <th [style.min-width.px]="120">MÃ PHIẾU</th>
-                                                                <th [style.min-width.px]="120">GIÁ TRỊ PHIẾU</th>
-                                                                <th [style.min-width.px]="120">ĐÃ THU TRƯỚC</th>
-                                                                <th [style.min-width.px]="120">CÒN CẦN THU</th>
-                                                                <th [style.min-width.px]="120">TIỀN THU</th>
-                                                                <th [style.min-width.px]="250">GHI CHÚ</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let item of phieuxuatkhos; index as i">
-                                                                <td>{{i+1}}</td>
-                                                                <td>{{ item.ngayxuatkho | date:'HH:mm dd/MM/yyyy' }}</td>
-                                                                <td>{{item.maphieuxuatkho}}</td>
-                                                                <td>{{item.tongthanhtien | number: '1.0-3'}}</td>
-                                                                <td>{{item.sotienthutruoc | number: '1.0-3'}}</td>
-                                                                <td>{{item.tongthanhtien - item.sotienthutruoc | number: '1.0-3'}}</td>
-                                                                <td>
-                                                                    <dx-number-box format="#,##0.###" [(value)]="item.sotienthu" (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"></dx-number-box>
-                                                                </td>
-                                                                <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                <table class="table table-vertical table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th [style.min-width.px]="45">STT</th>
+                                                            <th [style.min-width.px]="120">NGÀY XUẤT</th>
+                                                            <th [style.min-width.px]="120">MÃ PHIẾU</th>
+                                                            <th [style.min-width.px]="120">GIÁ TRỊ PHIẾU</th>
+                                                            <th [style.min-width.px]="120">ĐÃ THU TRƯỚC</th>
+                                                            <th [style.min-width.px]="120">CÒN CẦN THU</th>
+                                                            <th [style.min-width.px]="120">TIỀN THU</th>
+                                                            <th [style.min-width.px]="250">GHI CHÚ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of phieuxuatkhos; index as i">
+                                                            <td>{{ i + 1 }}</td>
+                                                            <td>{{ item.ngayxuatkho | date: 'HH:mm dd/MM/yyyy' }}</td>
+                                                            <td>{{ item.maphieuxuatkho }}</td>
+                                                            <td>{{ item.tongthanhtien | number: '1.0-3' }}</td>
+                                                            <td>{{ item.sotienthutruoc | number: '1.0-3' }}</td>
+                                                            <td>{{ item.tongthanhtien - item.sotienthutruoc | number: '1.0-3' }}</td>
+                                                            <td>
+                                                                <dx-number-box
+                                                                    format="#,##0.###"
+                                                                    [(value)]="item.sotienthu"
+                                                                    (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"
+                                                                ></dx-number-box>
+                                                            </td>
+                                                            <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </mat-tab>
                                             <mat-tab label="PHIẾU NHẬP KHO - MUA" *ngIf="phieunhapkhos.length > 0">
                                                 <table class="table table-vertical table-hover">
@@ -133,14 +185,18 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let item of phieunhapkhos; index as i">
-                                                            <td>{{i+1}}</td>
-                                                            <td>{{ item.ngaynhapkho | date:'HH:mm dd/MM/yyyy' }}</td>
-                                                            <td>{{item.maphieunhapkho}}</td>
-                                                            <td>{{item.tongthanhtien | number: '1.0-3'}}</td>
-                                                            <td>{{item.sotienchitruoc | number: '1.0-3'}}</td>
-                                                            <td>{{item.tongthanhtien - item.sotienchitruoc | number: '1.0-3'}}</td>
+                                                            <td>{{ i + 1 }}</td>
+                                                            <td>{{ item.ngaynhapkho | date: 'HH:mm dd/MM/yyyy' }}</td>
+                                                            <td>{{ item.maphieunhapkho }}</td>
+                                                            <td>{{ item.tongthanhtien | number: '1.0-3' }}</td>
+                                                            <td>{{ item.sotienchitruoc | number: '1.0-3' }}</td>
+                                                            <td>{{ item.tongthanhtien - item.sotienchitruoc | number: '1.0-3' }}</td>
                                                             <td>
-                                                                <dx-number-box format="#,##0.###" [(value)]="item.sotienchi" (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"></dx-number-box>
+                                                                <dx-number-box
+                                                                    format="#,##0.###"
+                                                                    [(value)]="item.sotienchi"
+                                                                    (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"
+                                                                ></dx-number-box>
                                                             </td>
                                                             <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                         </tr>

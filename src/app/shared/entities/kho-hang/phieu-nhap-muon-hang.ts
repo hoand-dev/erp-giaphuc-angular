@@ -1,6 +1,7 @@
 export class PhieuNhapMuonHang {
     public phieunhapmuonhang_chitiets: PhieuNhapMuonHang_ChiTiet[] = [];
 
+    public tongthanhtien_bangchu: string;
     public ngaylapphieu: string;
     public inphieu_hoten: string;
     public inphieu_thoigian: string;
@@ -73,6 +74,7 @@ export class PhieuNhapMuonHang {
 
 export class PhieuNhapMuonHang_ChiTiet {
     /* liên kết vs khoá ngoại và thông tin thêm */
+    public tenhanghoa_inphieu: string;
     public mahanghoa: string;
     public tenhanghoa: string;
     public trongluong: number;
