@@ -19,31 +19,34 @@ import {
     PhieuDieuChinhKhoThemMoiComponent,
     PhieuNhapChuyenKhoComponent,
     PhieuNhapChuyenKhoThemMoiComponent,
-    PhieuNhapChuyenKhoCapNhatComponent
+    PhieuNhapChuyenKhoCapNhatComponent,
+    PhieuXuatMuonHangComponent,
+    PhieuXuatMuonHangThemMoiComponent,
+    PhieuXuatMuonHangCapNhatComponent,
+    PhieuNhapTraMuonHangComponent,
+    PhieuNhapTraMuonHangCapNhatComponent,
+    PhieuNhapTraMuonHangThemMoiComponent,
+    PhieuNhapMuonHangComponent,
+    PhieuNhapMuonHangThemMoiComponent,
+    PhieuNhapMuonHangCapNhatComponent,
+    PhieuXuatTraMuonHangComponent,
+    PhieuXuatTraMuonHangThemMoiComponent,
+    PhieuXuatTraMuonHangCapNhatComponent,
 } from './pages';
-import { DanhSachPhieuXuatChuyenKhoModalComponent } from './modals/danh-sach-phieu-xuat-chuyen-kho-modal/danh-sach-phieu-xuat-chuyen-kho-modal.component';
-import { PhieuXuatKhoInPhieuModalComponent } from './modals/phieu-xuat-kho-in-phieu-modal/phieu-xuat-kho-in-phieu-modal.component';
-import { PhieuXuatChuyenKhoInPhieuModalComponent } from './modals/phieu-xuat-chuyen-kho-in-phieu-modal/phieu-xuat-chuyen-kho-in-phieu-modal.component';
-import { PhieuNhapChuyenKhoInPhieuModalComponent } from './modals/phieu-nhap-chuyen-kho-in-phieu-modal/phieu-nhap-chuyen-kho-in-phieu-modal.component';
-import { PhieuNhapKhoInPhieuModalComponent } from './modals/phieu-nhap-kho-in-phieu-modal/phieu-nhap-kho-in-phieu-modal.component';
-import { PhieuXuatMuonHangComponent } from './pages/phieu-xuat-muon-hang/phieu-xuat-muon-hang.component';
-import { PhieuXuatMuonHangThemMoiComponent } from './pages/phieu-xuat-muon-hang-them-moi/phieu-xuat-muon-hang-them-moi.component';
-import { PhieuXuatMuonHangCapNhatComponent } from './pages/phieu-xuat-muon-hang-cap-nhat/phieu-xuat-muon-hang-cap-nhat.component';
-import { PhieuNhapTraMuonHangComponent } from './pages/phieu-nhap-tra-muon-hang/phieu-nhap-tra-muon-hang.component';
-import { PhieuNhapTraMuonHangCapNhatComponent } from './pages/phieu-nhap-tra-muon-hang-cap-nhat/phieu-nhap-tra-muon-hang-cap-nhat.component';
-import { PhieuNhapTraMuonHangThemMoiComponent } from './pages/phieu-nhap-tra-muon-hang-them-moi/phieu-nhap-tra-muon-hang-them-moi.component';
-import { DanhSachPhieuXuatMuonHangModalComponent } from './modals/danh-sach-phieu-xuat-muon-hang-modal/danh-sach-phieu-xuat-muon-hang-modal.component';
-import { PhieuNhapMuonHangComponent } from './pages/phieu-nhap-muon-hang/phieu-nhap-muon-hang.component';
-import { PhieuNhapMuonHangThemMoiComponent } from './pages/phieu-nhap-muon-hang-them-moi/phieu-nhap-muon-hang-them-moi.component';
-import { PhieuNhapMuonHangCapNhatComponent } from './pages/phieu-nhap-muon-hang-cap-nhat/phieu-nhap-muon-hang-cap-nhat.component';
-import { PhieuXuatTraMuonHangComponent } from './pages/phieu-xuat-tra-muon-hang/phieu-xuat-tra-muon-hang.component';
-import { PhieuXuatTraMuonHangThemMoiComponent } from './pages/phieu-xuat-tra-muon-hang-them-moi/phieu-xuat-tra-muon-hang-them-moi.component';
-import { PhieuXuatTraMuonHangCapNhatComponent } from './pages/phieu-xuat-tra-muon-hang-cap-nhat/phieu-xuat-tra-muon-hang-cap-nhat.component';
-import { DanhSachPhieuNhapMuonHangModalComponent } from './modals/danh-sach-phieu-nhap-muon-hang-modal/danh-sach-phieu-nhap-muon-hang-modal.component';
-import { PhieuNhapMuonHangInPhieuModalComponent } from './modals/phieu-nhap-muon-hang-in-phieu-modal/phieu-nhap-muon-hang-in-phieu-modal.component';
-import { PhieuXuatMuonHangInPhieuModalComponent } from './modals/phieu-xuat-muon-hang-in-phieu-modal/phieu-xuat-muon-hang-in-phieu-modal.component';
-import { PhieuNhapTraMuonHangInPhieuModalComponent } from './modals/phieu-nhap-tra-muon-hang-in-phieu-modal/phieu-nhap-tra-muon-hang-in-phieu-modal.component';
-import { PhieuXuatTraMuonHangInPhieuModalComponent } from './modals/phieu-xuat-tra-muon-hang-in-phieu-modal/phieu-xuat-tra-muon-hang-in-phieu-modal.component';
+
+import { 
+    DanhSachPhieuXuatChuyenKhoModalComponent,
+    DanhSachPhieuXuatMuonHangModalComponent,
+    DanhSachPhieuNhapMuonHangModalComponent,
+    PhieuXuatKhoInPhieuModalComponent,
+    PhieuXuatChuyenKhoInPhieuModalComponent,
+    PhieuNhapChuyenKhoInPhieuModalComponent,
+    PhieuNhapKhoInPhieuModalComponent,
+    PhieuNhapMuonHangInPhieuModalComponent,
+    PhieuXuatMuonHangInPhieuModalComponent,
+    PhieuNhapTraMuonHangInPhieuModalComponent,
+    PhieuXuatTraMuonHangInPhieuModalComponent,
+ } from './modals';
 
 @NgModule({
     declarations: [
