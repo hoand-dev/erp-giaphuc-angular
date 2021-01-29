@@ -1,0 +1,51 @@
+{
+    "rptPhieuCanTru":[
+        {
+            "id": null
+        , "chinhanh_id": null
+        , "kichhoat": null
+        , "nguoitao_id": null
+        , "thoigiantao": null
+        , "nguoisua_id": null
+        , "thoigiansua": null
+        , "ghichu": null
+        , "ids": null
+        , "sort": null
+        , "ngaycantru": null
+        , "maphieucantru": null
+        , "loaicantru": null
+        , "khachhang_id": null
+        , "nhacungcap_id": null
+        , "donvigiacong_id": null
+        , "sotiencantru": null
+        , "noidungcantru_id": null
+
+        , "tenkhachhang": null
+        , "kh_sodienthoai": null
+        , "kh_diachi": null
+        , "kh_nguoidaidien": null
+        , "kh_chucvu": null
+
+
+        , "tennhacungcap":null
+        , "ncc_sodienthoai": null
+        , "ncc_diachi": null
+        , "ncc_tennguoidaidien": null
+
+        , "tendonvigiacong": null
+        , "dvgc_sodienthoai": null
+        , "dvgc_diachi": null
+
+        , "sotien_bangchu": null
+        , "phieuin_thoigian": null
+        , "phieuin_nguoiin": null
+        , "ngaylapphieu": null
+
+
+
+        
+        
+
+        }
+    ]
+}

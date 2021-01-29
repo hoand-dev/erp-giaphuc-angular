@@ -69,6 +69,10 @@ export class PhieuThuInPhieuComponent implements OnInit {
                     /* render sang report */
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
+
+                    /*Remove the print to Pdf and Print with preview */
+                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintPdf'].style.display = 'none';
+                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintWithPreview'].style.display = 'none';
                 },
                 (error) => {
                     this.objPhieuThuService.handleError(error);

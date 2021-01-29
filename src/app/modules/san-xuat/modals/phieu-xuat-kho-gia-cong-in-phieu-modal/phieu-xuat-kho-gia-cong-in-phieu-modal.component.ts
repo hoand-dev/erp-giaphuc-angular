@@ -14,8 +14,8 @@ declare var Stimulsoft: any;
     encapsulation: ViewEncapsulation.None
 })
 export class PhieuXuatKhoGiaCongInPhieuModalComponent implements OnInit {
-    public reportOptions: any  = new Stimulsoft.Viewer.StiViewerOptions();
-    public reportViewer: any = new Stimulsoft.Viewer.StiViewer(this.reportOptions,'StiViewer', false);
+    public reportOptions: any = new Stimulsoft.Viewer.StiViewerOptions();
+    public reportViewer: any = new Stimulsoft.Viewer.StiViewer(this.reportOptions, 'StiViewer', false);
 
     private subscription: Subscription = new Subscription();
     private onClose: Subject<any>;
@@ -75,6 +75,10 @@ export class PhieuXuatKhoGiaCongInPhieuModalComponent implements OnInit {
 
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
+
+                    /*Remove the print to Pdf and Print with preview */
+                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintPdf'].style.display = 'none';
+                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintWithPreview'].style.display = 'none';
                 },
                 (error) => {
                     this.objPhieuXuatKhoGiaCongService.handleError(error);

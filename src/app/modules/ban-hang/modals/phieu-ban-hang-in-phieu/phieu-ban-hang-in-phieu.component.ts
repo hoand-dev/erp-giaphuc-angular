@@ -12,12 +12,11 @@ declare var Stimulsoft: any;
 import number2vn from 'number2vn';
 
 @Component({
-  selector: 'app-phieu-ban-hang-in-phieu',
-  templateUrl: './phieu-ban-hang-in-phieu.component.html',
-  styleUrls: ['./phieu-ban-hang-in-phieu.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-phieu-ban-hang-in-phieu',
+    templateUrl: './phieu-ban-hang-in-phieu.component.html',
+    styleUrls: ['./phieu-ban-hang-in-phieu.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
-
 export class PhieuBanHangInPhieuComponent implements OnInit {
     public reportOptions: any = new Stimulsoft.Viewer.StiViewerOptions();
     public reportViewer: any = new Stimulsoft.Viewer.StiViewer(this.reportOptions, 'StiViewer', false);
@@ -30,31 +29,28 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
     private currentUser: User;
     public phieubanhang_id: number;
     public loaiphieuxuatkho: string;
-    
 
-  constructor(
-    public bsModalRef: BsModalRef,
-    private nguoidungService: NguoiDungService,
-    private objPhieuBanHangService: PhieuBanHangService,
-    private authenticationService: AuthenticationService,
-  ) { }
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuBanHangService: PhieuBanHangService, private authenticationService: AuthenticationService) {}
 
-  ngOnInit(): void {
-      this.onClose = new Subject();
-      this.nguoidungService.getCurrentUser().toPromise().then( rs => {
-          this.currentUser = rs;
-          this.onLoadData();
-      });
-  }
+    ngOnInit(): void {
+        this.onClose = new Subject();
+        this.nguoidungService
+            .getCurrentUser()
+            .toPromise()
+            .then((rs) => {
+                this.currentUser = rs;
+                this.onLoadData();
+            });
+    }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-}
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
-    onLoadData(){
+    onLoadData() {
         this.subscription.add(
             this.objPhieuBanHangService.findPhieuBanHang(this.phieubanhang_id).subscribe(
-                (data) =>{
+                (data) => {
                     /*khởi tạo report */
                     let report = new Stimulsoft.Report.StiReport();
                     report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKho.mrt');
@@ -77,42 +73,45 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                     data.tongtien_bangchu = number2vn(data.tongthanhtien);
 
                     /*Thông tin chi tiết phiếu */
-                    if(data.chietkhau >0){
-                        data.phieubanhang_chitiet.forEach((item) =>{
+                    if (data.chietkhau > 0) {
+                        data.phieubanhang_chitiet.forEach((item) => {
                             item.chietkhau = data.chietkhau;
-                            item.thanhtien = item.soluong *  item.dongia;
+                            item.thanhtien = item.soluong * item.dongia;
                             item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
                         });
                     }
-                    if(data.thuevat >0){
-                        data.phieubanhang_chitiet.forEach((item) =>{
+                    if (data.thuevat > 0) {
+                        data.phieubanhang_chitiet.forEach((item) => {
                             item.thuevat = data.thuevat;
                             item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien =item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
+                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
                         });
                     }
-                    dsPhieuBanHang.readJson({rptPhieuYeuCauXuatKho: data, rptPhieuYeuCauXuatKho_ChiTiet:data.phieubanhang_chitiet});
+                    dsPhieuBanHang.readJson({ rptPhieuYeuCauXuatKho: data, rptPhieuYeuCauXuatKho_ChiTiet: data.phieubanhang_chitiet });
                     report.regData('rptPhieuYeuCauXuatKho', null, dsPhieuBanHang);
 
                     /* render report */
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
+
+                    /*Remove the print to Pdf and Print with preview */
+                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintPdf'].style.display = 'none';
+                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintWithPreview'].style.display = 'none';
                 },
                 (error) => {
-                    this.objPhieuBanHangService.handleError(error); 
+                    this.objPhieuBanHangService.handleError(error);
                 }
             )
         );
     }
 
-    public onConfirm(): void{
+    public onConfirm(): void {
         this.onClose.next(true);
         this.bsModalRef.hide();
     }
 
-    public onCancel(): void{
+    public onCancel(): void {
         this.onClose.next(false);
         this.bsModalRef.hide();
     }
-
 }

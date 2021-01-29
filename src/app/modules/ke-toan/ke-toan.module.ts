@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/modules/shared.module';
 
 import { KeToanRoutingModule } from './ke-toan-routing.module';
-
 import {
     PhieuChiCapNhatComponent,
     PhieuChiThemMoiComponent,
@@ -19,7 +18,7 @@ import {
     PhieuCanTruThemMoiComponent
 } from './pages';
 
-import { DanhSachLenhVayModalComponent, PhieuChiInPhieuModalComponent, PhieuThuInPhieuComponent } from './modals';
+import { DanhSachLenhVayModalComponent, PhieuChiInPhieuModalComponent, PhieuThuInPhieuComponent, PhieuCanTruInPhieuModalComponent } from './modals';
 
 @NgModule({
     declarations: [
@@ -37,7 +36,8 @@ import { DanhSachLenhVayModalComponent, PhieuChiInPhieuModalComponent, PhieuThuI
         PhieuCanTruCapNhatComponent,
         DanhSachLenhVayModalComponent,
         PhieuChiInPhieuModalComponent,
-        PhieuThuInPhieuComponent
+        PhieuThuInPhieuComponent,
+        PhieuCanTruInPhieuModalComponent
     ],
     imports: [CommonModule, SharedModule, KeToanRoutingModule]
 })
