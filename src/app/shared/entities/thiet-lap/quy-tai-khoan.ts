@@ -12,7 +12,6 @@ export class QuyTaiKhoan {
     public ghichu: string;
     public maquy: string;
     public tenquy: string;
-    public tienquybandau: number;
     public tencongty: string;
     public dienthoai: string;
     public fax: string;
@@ -22,8 +21,6 @@ export class QuyTaiKhoan {
     public chucvu: string;
     public sotaikhoan: string;
     public tainganhang: string;
-    public sotaikhoan2: string;
-    public tainganhang2: string;
 
     constructor(
         id: number = null,
@@ -36,7 +33,6 @@ export class QuyTaiKhoan {
         ghichu: string = null,
         maquy: string = null,
         tenquy: string = null,
-        tienquybandau: number = 0,
         tencongty: string = null,
         dienthoai: string = null,
         fax: string = null,
@@ -46,8 +42,6 @@ export class QuyTaiKhoan {
         chucvu: string = null,
         sotaikhoan: string = null,
         tainganhang: string = null,
-        sotaikhoan2: string = null,
-        tainganhang2: string = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -59,7 +53,6 @@ export class QuyTaiKhoan {
         this.ghichu = ghichu;
         this.maquy = maquy;
         this.tenquy = tenquy;
-        this.tienquybandau = tienquybandau;
         this.tencongty = tencongty;
         this.dienthoai = dienthoai;
         this.fax = fax;
@@ -69,7 +62,5 @@ export class QuyTaiKhoan {
         this.chucvu = chucvu;
         this.sotaikhoan = sotaikhoan;
         this.tainganhang = tainganhang;
-        this.sotaikhoan2 = sotaikhoan2;
-        this.tainganhang2 = tainganhang2;
     }
 }

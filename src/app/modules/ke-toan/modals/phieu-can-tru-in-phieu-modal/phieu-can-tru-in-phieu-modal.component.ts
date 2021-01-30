@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NguoiDungService, PhieuCanTruService } from '@app/shared/services';
 import { User } from '@app/_models';
+import { AuthenticationService } from '@app/_services';
 import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -27,7 +28,7 @@ export class PhieuCanTruInPhieuModalComponent implements OnInit {
     public loaicantru: string;
     public loaiphieuin: string = 'khncc';
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuCanTruService: PhieuCanTruService) {}
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuCanTruService: PhieuCanTruService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -78,13 +79,18 @@ export class PhieuCanTruInPhieuModalComponent implements OnInit {
                     dsPhieuCanTru.readJson({ rptPhieuCanTru: data });
                     report.regData('rptPhieuCanTru', null, dsPhieuCanTru);
 
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+
                     /* render report */
+                    this.reportOptions.appearance.showTooltipsHelp = false;
+                    this.reportOptions.toolbar.showOpenButton = false;
+                    this.reportOptions.toolbar.showAboutButton = false;
+                    this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
+                    
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
-
-                    /*Remove the print to Pdf and Print with preview */
-                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintPdf'].style.display = 'none';
-                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintWithPreview'].style.display = 'none';
                 },
                 (error) => {
                     this.objPhieuCanTruService.handleError(error);

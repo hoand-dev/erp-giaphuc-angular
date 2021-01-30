@@ -15,7 +15,6 @@ export class KhachHang {
     public sodienthoai: string;
     public diachi: string;
     public masothue: string;
-    public congnobandau: number;
     public nhomkhachhang_id: number;
     public khuvuc_id: number;
     public sotaikhoan: string;
@@ -25,7 +24,6 @@ export class KhachHang {
     public songayno: number;
     public nguoidaidien: string;
     public chucvu: string;
-    public dathucongno: number;
     public email: string;
     public tennganhang: string;
 
@@ -46,7 +44,6 @@ export class KhachHang {
         sodienthoai: string = null,
         diachi: string = null,
         masothue: string = null,
-        congnobandau: number = null,
         nhomkhachhang_id: number = null,
         khuvuc_id: number = null,
         sotaikhoan: string = null,
@@ -56,7 +53,6 @@ export class KhachHang {
         songayno: number = null,
         nguoidaidien: string = null,
         chucvu: string = null,
-        dathucongno: number = null,
         email: string = null,
         tennganhang: string = null
     ) {
@@ -73,7 +69,6 @@ export class KhachHang {
         this.sodienthoai = sodienthoai;
         this.diachi = diachi;
         this.masothue = masothue;
-        this.congnobandau = congnobandau;
         this.nhomkhachhang_id = nhomkhachhang_id;
         this.khuvuc_id = khuvuc_id;
         this.sotaikhoan = sotaikhoan;
@@ -83,7 +78,6 @@ export class KhachHang {
         this.songayno = songayno;
         this.nguoidaidien = nguoidaidien;
         this.chucvu = chucvu;
-        this.dathucongno = dathucongno;
         this.email = email;
         this.tennganhang = tennganhang;
     }

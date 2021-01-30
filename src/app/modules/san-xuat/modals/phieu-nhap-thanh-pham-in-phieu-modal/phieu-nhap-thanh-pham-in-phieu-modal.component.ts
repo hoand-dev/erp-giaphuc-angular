@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NguoiDungService, PhieuNhapKhoGiaCongService } from '@app/shared/services';
 import { User } from '@app/_models';
+import { AuthenticationService } from '@app/_services';
 import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription, Subject } from 'rxjs';
@@ -25,7 +26,7 @@ export class PhieuNhapThanhPhamInPhieuModalComponent implements OnInit {
     private currentUser: User;
     public phieunhapkhogiacong_id: number;
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuNhapKhoGiaCong: PhieuNhapKhoGiaCongService) {}
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuNhapKhoGiaCong: PhieuNhapKhoGiaCongService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -68,12 +69,18 @@ export class PhieuNhapThanhPhamInPhieuModalComponent implements OnInit {
                     dsPhieuNhapThanhPham.readJson({ rptPhieuNhapThanhPham: data, rptPhieuNhapThanhPham_ChiTiet: data.phieunhapkhogiacong_chitiets });
                     report.regData('rptPhieuNhapThanhPham', null, dsPhieuNhapThanhPham);
 
-                    /*Render sang html */
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+
+                    /* render report */
+                    this.reportOptions.appearance.showTooltipsHelp = false;
+                    this.reportOptions.toolbar.showOpenButton = false;
+                    this.reportOptions.toolbar.showAboutButton = false;
+                    this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
+                    
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
-                    /*Remove the print to Pdf and Print with preview */
-                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintPdf'].style.display = 'none';
-                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintWithPreview'].style.display = 'none';
                 },
                 (error) => {
                     this.objPhieuNhapKhoGiaCong.handleError(error);
