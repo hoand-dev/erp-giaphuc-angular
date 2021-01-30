@@ -67,7 +67,9 @@
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,LogoComapny,LogoComapny,,System.Drawing.Image,,False,False,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -908,10 +910,9 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>rptPhieuChiC31</ReportAlias>
-  <ReportChanged>1/28/2021 5:19:49 PM</ReportChanged>
+  <ReportChanged>1/30/2021 10:51:46 AM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
-  <ReportGuid>ecea3774a224415f9a0d13879668835c</ReportGuid>
+  <ReportGuid>296d157890eb466982fe4f2f1606e050</ReportGuid>
   <ReportName>rptPhieuChiC31</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

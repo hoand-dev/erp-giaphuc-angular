@@ -7,7 +7,9 @@
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,LogoComapny,LogoComapny,,System.Drawing.Image,,False,False,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -1019,10 +1021,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/12/2021 9:55:52 AM</ReportChanged>
+  <ReportChanged>1/30/2021 10:50:15 AM</ReportChanged>
   <ReportCreated>1/12/2021 8:40:10 AM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\cong-no\DoiChieuCongNo_Mau_5.mrt</ReportFile>
-  <ReportGuid>c86f1792acf44a9c997c9805ff0512ea</ReportGuid>
+  <ReportGuid>38cc0ae7f59848979e92739d32a378b8</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

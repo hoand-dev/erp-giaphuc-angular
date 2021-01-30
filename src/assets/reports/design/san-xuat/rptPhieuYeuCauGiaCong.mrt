@@ -3,49 +3,21 @@
   <Dictionary Ref="1" type="Dictionary" isKey="true">
     <BusinessObjects isList="true" count="0" />
     <Databases isList="true" count="2">
-      <Info Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
-        <Alias>Info</Alias>
-        <Key />
-        <Name>Info</Name>
-        <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\Info.json</PathData>
-      </Info>
-      <rptPhieuYeuCauGiaCong Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+      <rptPhieuYeuCauGiaCong Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
         <Alias>rptPhieuYeuCauGiaCong</Alias>
         <Key />
         <Name>rptPhieuYeuCauGiaCong</Name>
         <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\san-xuat\rptPhieuYeuCauGiaCong.json</PathData>
       </rptPhieuYeuCauGiaCong>
+      <Info Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>Info</Alias>
+        <Key />
+        <Name>Info</Name>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\Info.json</PathData>
+      </Info>
     </Databases>
     <DataSources isList="true" count="3">
-      <Info Ref="4" type="DataTableSource" isKey="true">
-        <Alias>Info</Alias>
-        <Columns isList="true" count="19">
-          <value>TieuDe,System.String</value>
-          <value>NgayLap,System.String</value>
-          <value>Avatar,System.String</value>
-          <value>TenCongTy,System.String</value>
-          <value>DiaChi,System.String</value>
-          <value>DienThoai,System.String</value>
-          <value>Fax,System.String</value>
-          <value>Email,System.String</value>
-          <value>Website,System.String</value>
-          <value>MaSoThue,System.String</value>
-          <value>DiaChiKho1,System.String</value>
-          <value>DiaChiKho2,System.String</value>
-          <value>DiaChiKho3,System.String</value>
-          <value>DienThoai1,System.String</value>
-          <value>DienThoai2,System.String</value>
-          <value>DienThoai3,System.String</value>
-          <value>Fax1,System.String</value>
-          <value>Fax2,System.String</value>
-          <value>Fax3,System.String</value>
-        </Columns>
-        <Dictionary isRef="1" />
-        <Key>1c44f2a9f95a4aabb2e08d1eae503148</Key>
-        <Name>Info</Name>
-        <NameInSource>Info.Info</NameInSource>
-      </Info>
-      <rptPhieuYeuCauGiaCong Ref="5" type="DataTableSource" isKey="true">
+      <rptPhieuYeuCauGiaCong Ref="4" type="DataTableSource" isKey="true">
         <Alias>rptPhieuYeuCauGiaCong</Alias>
         <Columns isList="true" count="45">
           <value>id,System.String</value>
@@ -99,7 +71,7 @@
         <Name>rptPhieuYeuCauGiaCong</Name>
         <NameInSource>rptPhieuYeuCauGiaCong.rptPhieuYeuCauGiaCong</NameInSource>
       </rptPhieuYeuCauGiaCong>
-      <rptPhieuYeuCauGiaCong_ChiTiet Ref="6" type="DataTableSource" isKey="true">
+      <rptPhieuYeuCauGiaCong_ChiTiet Ref="5" type="DataTableSource" isKey="true">
         <Alias>rptPhieuYeuCauGiaCong_ChiTiet</Alias>
         <Columns isList="true" count="28">
           <value>id,System.String</value>
@@ -136,11 +108,41 @@
         <Name>rptPhieuYeuCauGiaCong_ChiTiet</Name>
         <NameInSource>rptPhieuYeuCauGiaCong.rptPhieuYeuCauGiaCong_ChiTiet</NameInSource>
       </rptPhieuYeuCauGiaCong_ChiTiet>
+      <Info Ref="6" type="DataTableSource" isKey="true">
+        <Alias>Info</Alias>
+        <Columns isList="true" count="19">
+          <value>id,System.String</value>
+          <value>kichhoat,System.String</value>
+          <value>nguoitao_id,System.String</value>
+          <value>thoigiantao,System.String</value>
+          <value>nguoisua_id,System.String</value>
+          <value>thoigiansua,System.String</value>
+          <value>ghichu,System.String</value>
+          <value>machinhanh,System.String</value>
+          <value>tenchinhanh,System.String</value>
+          <value>diachi,System.String</value>
+          <value>email,System.String</value>
+          <value>dienthoai,System.String</value>
+          <value>mamau,System.String</value>
+          <value>chinhanh_trungtam,System.String</value>
+          <value>tencongty,System.String</value>
+          <value>masothue,System.String</value>
+          <value>fax,System.String</value>
+          <value>website,System.String</value>
+          <value>logo_url,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>678b91646a1e4ee1a931ebc82db79c36</Key>
+        <Name>Info</Name>
+        <NameInSource>Info.Info</NameInSource>
+      </Info>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,LogoComapny,LogoComapny,,System.Drawing.Image,,False,False,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -163,7 +165,7 @@
         </PageHeaderBand1>
         <PageFooterBand1 Ref="9" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,18.71,19.98,0.6</ClientRectangle>
+          <ClientRectangle>0,21.47,19.98,0.6</ClientRectangle>
           <Components isList="true" count="4">
             <Text37 Ref="10" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
@@ -966,10 +968,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/27/2021 2:34:06 PM</ReportChanged>
+  <ReportChanged>1/30/2021 1:55:27 PM</ReportChanged>
   <ReportCreated>1/27/2021 11:04:34 AM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\san-xuat\rptPhieuYeuCauGiaCong.mrt</ReportFile>
-  <ReportGuid>b7738832de524bfc95e2c59be5a2d668</ReportGuid>
+  <ReportGuid>7b20a277d9c340bcbdec1a54b1ce2322</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

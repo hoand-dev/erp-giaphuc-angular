@@ -61,7 +61,7 @@ export class PhieuXuatChuyenKhoInPhieuModalComponent implements OnInit {
 
                     /*Thông tin in phiếu */
                     let dsThongTin = new Stimulsoft.System.Data.DataSet();
-                    dsThongTin.readJsonFile('assets/reports/json/Info.json');
+                    dsThongTin.readJson({ Info: this.authenticationService.currentChiNhanhValue });
                     report.regData('Info', null, dsThongTin);
 
                     let dsPhieuXuatChuyenkho = new Stimulsoft.System.Data.DataSet();
