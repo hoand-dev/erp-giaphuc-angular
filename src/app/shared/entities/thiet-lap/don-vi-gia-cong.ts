@@ -22,7 +22,6 @@ export class DonViGiaCong {
     public tenchutaikhoan: string;
     public khogiacong_id: number;
     public loaigiacong: number;
-    public congnobandau: number;
 
     public loaidonvi: boolean;
     public khogiacong_tenkho: string = null;
@@ -46,7 +45,6 @@ export class DonViGiaCong {
         tenchutaikhoan: string = null,
         khogiacong_id: number = null,
         loaigiacong: number = null,
-        congnobandau: number = 0,
         loaidonvi: boolean = false
     ) {
         this.id = id;
@@ -67,7 +65,6 @@ export class DonViGiaCong {
         this.tenchutaikhoan = tenchutaikhoan;
         this.khogiacong_id = khogiacong_id;
         this.loaigiacong = loaigiacong;
-        this.congnobandau = congnobandau;
 
         this.loaidonvi = loaidonvi;
     }
