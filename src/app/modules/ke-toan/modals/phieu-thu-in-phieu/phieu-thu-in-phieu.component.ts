@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NguoiDungService, PhieuThuService } from '@app/shared/services';
 import { User } from '@app/_models';
+import { AuthenticationService } from '@app/_services';
 import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -26,7 +27,7 @@ export class PhieuThuInPhieuComponent implements OnInit {
     private currentUser: User;
     public phieuthu_id: number;
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuThuService: PhieuThuService) {}
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuThuService: PhieuThuService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -65,6 +66,10 @@ export class PhieuThuInPhieuComponent implements OnInit {
 
                     dsPhieuThu.readJson({ rptPhieuThu: data });
                     report.regData('rptPhieuThu', null, dsPhieuThu);
+
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;

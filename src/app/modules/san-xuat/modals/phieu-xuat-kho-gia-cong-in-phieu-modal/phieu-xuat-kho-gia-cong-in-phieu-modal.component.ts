@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NguoiDungService, PhieuXuatKhoGiaCongService } from '@app/shared/services';
 import { User } from '@app/_models';
+import { AuthenticationService } from '@app/_services';
 import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
@@ -25,7 +26,7 @@ export class PhieuXuatKhoGiaCongInPhieuModalComponent implements OnInit {
     private currentUser: User;
     public phieuxuatkhogiacong_id: number;
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuXuatKhoGiaCongService: PhieuXuatKhoGiaCongService) {}
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuXuatKhoGiaCongService: PhieuXuatKhoGiaCongService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -70,6 +71,10 @@ export class PhieuXuatKhoGiaCongInPhieuModalComponent implements OnInit {
                     /*Thông tin chi tiết */
                     dsPhieuXuatKhoGiaCong.readJson({ rptPhieuXuatKhoGiaCong: data, rptPhieuXuatKhoGiaCong_ChiTiet: data.phieuxuatkhogiacong_chitiets });
                     report.regData('rptPhieuXuatKhoGiaCong', null, dsPhieuXuatKhoGiaCong);
+
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;

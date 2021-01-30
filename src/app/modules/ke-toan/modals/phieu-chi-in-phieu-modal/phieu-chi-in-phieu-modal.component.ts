@@ -8,6 +8,7 @@ import { Subscription, Subject } from 'rxjs';
 
 declare var Stimulsoft: any;
 import number2vn from 'number2vn';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
     selector: 'app-phieu-chi-in-phieu-modal',
@@ -29,7 +30,7 @@ export class PhieuChiInPhieuModalComponent implements OnInit {
     public loaiphieuchi: string;
     public loaiphieuin: string = 'vcb';
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuChiService: PhieuChiService) {}
+    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuChiService: PhieuChiService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -85,6 +86,10 @@ export class PhieuChiInPhieuModalComponent implements OnInit {
 
                     dsPhieuChi.readJson({ rptPhieuChi: data });
                     report.regData('rptPhieuChi', null, dsPhieuChi);
+
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;

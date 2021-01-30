@@ -70,6 +70,10 @@ import { User } from '@app/_models';
                     dsPhieuXuatMuonHang.readJson({ rptThongTinPhieu: data, rptThongTinHangHoa: data.phieuxuatmuonhang_chitiets });
                     report.regData('rptPhieuXuatMuonHang', null, dsPhieuXuatMuonHang);
 
+                    /* đổi logo phiếu in */
+                    var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
+                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;
                     this.reportOptions.toolbar.showOpenButton = false;

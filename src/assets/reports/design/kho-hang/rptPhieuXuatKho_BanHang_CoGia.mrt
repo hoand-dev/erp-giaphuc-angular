@@ -126,7 +126,7 @@
     <Report isRef="0" />
     <Resources isList="true" count="0" />
     <Variables isList="true" count="1">
-      <value>,Logo,Logo,,System.Drawing.Image,,False,False,False,False</value>
+      <value>,LogoComapny,LogoComapny,,System.Drawing.Image,,False,False,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -202,7 +202,7 @@
               <ClientRectangle>0,0,2,1.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <HorAlignment>Center</HorAlignment>
-              <ImageData>{Logo}</ImageData>
+              <ImageData>{LogoComapny}</ImageData>
               <Margins>0,0,0,0</Margins>
               <Name>Image1</Name>
               <Page isRef="7" />
@@ -1066,10 +1066,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/20/2021 4:38:43 PM</ReportChanged>
+  <ReportChanged>1/30/2021 10:20:14 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_CoGia.mrt</ReportFile>
-  <ReportGuid>65a71468dc324d7dace342a1e64687e3</ReportGuid>
+  <ReportGuid>a5039f7648d944fcbb6029666b6cb003</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
