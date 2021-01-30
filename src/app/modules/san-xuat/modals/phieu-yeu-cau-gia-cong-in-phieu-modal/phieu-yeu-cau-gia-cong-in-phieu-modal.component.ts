@@ -67,13 +67,14 @@ export class PhieuYeuCauGiaCongInPhieuModalComponent implements OnInit {
                     dsPhieuYeuCauGiaCong.readJson({ rptPhieuYeuCauGiaCong: data, rptPhieuYeuCauGiaCong_ChiTiet: data.phieuyeucaugiacong_chitiets });
                     report.regData('rptPhieuYeuCauGiaCong', null, dsPhieuYeuCauGiaCong);
 
-                    /*Render sang html */
+                    /* render report */
+                    this.reportOptions.appearance.showTooltipsHelp = false;
+                    this.reportOptions.toolbar.showOpenButton = false;
+                    this.reportOptions.toolbar.showAboutButton = false;
+                    this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
+                    
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
-
-                    /*Remove the print to Pdf and Print with preview */
-                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintPdf'].style.display = 'none';
-                    this.reportViewer.jsObject.controls.menus.printMenu.items['PrintWithPreview'].style.display = 'none';
                 },
                 (error) => {
                     this.objPhieuYeuCauGiaCongService.handleError(error);

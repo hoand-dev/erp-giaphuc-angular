@@ -71,6 +71,11 @@ import { User } from '@app/_models';
                     report.regData('rptPhieuNhapTraMuonHang', null, dsPhieuNhapTraMuonHang);
 
                     /* render report */
+                    this.reportOptions.appearance.showTooltipsHelp = false;
+                    this.reportOptions.toolbar.showOpenButton = false;
+                    this.reportOptions.toolbar.showAboutButton = false;
+                    this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
+                    
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },
