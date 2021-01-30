@@ -20,25 +20,25 @@
       <Info Ref="4" type="DataTableSource" isKey="true">
         <Alias>Info</Alias>
         <Columns isList="true" count="19">
-          <value>TieuDe,System.String</value>
-          <value>NgayLap,System.String</value>
-          <value>Avatar,System.String</value>
-          <value>TenCongTy,System.String</value>
-          <value>DiaChi,System.String</value>
-          <value>DienThoai,System.String</value>
-          <value>Fax,System.String</value>
-          <value>Email,System.String</value>
-          <value>Website,System.String</value>
-          <value>MaSoThue,System.String</value>
-          <value>DiaChiKho1,System.String</value>
-          <value>DiaChiKho2,System.String</value>
-          <value>DiaChiKho3,System.String</value>
-          <value>DienThoai1,System.String</value>
-          <value>DienThoai2,System.String</value>
-          <value>DienThoai3,System.String</value>
-          <value>Fax1,System.String</value>
-          <value>Fax2,System.String</value>
-          <value>Fax3,System.String</value>
+          <value>id,System.String</value>
+          <value>kichhoat,System.String</value>
+          <value>nguoitao_id,System.String</value>
+          <value>thoigiantao,System.String</value>
+          <value>nguoisua_id,System.String</value>
+          <value>thoigiansua,System.String</value>
+          <value>ghichu,System.String</value>
+          <value>machinhanh,System.String</value>
+          <value>tenchinhanh,System.String</value>
+          <value>diachi,System.String</value>
+          <value>email,System.String</value>
+          <value>dienthoai,System.String</value>
+          <value>mamau,System.String</value>
+          <value>chinhanh_trungtam,System.String</value>
+          <value>tencongty,System.String</value>
+          <value>masothue,System.String</value>
+          <value>fax,System.String</value>
+          <value>website,System.String</value>
+          <value>logo_url,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
         <Key>217ad609711f4f3e8ea31990bdb535da</Key>
@@ -151,8 +151,9 @@
               <Name>Text2</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.TenCongTy}</Text>
+              <Text>{Info.tencongty}</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
             <Text1 Ref="10" type="Text" isKey="true">
@@ -164,7 +165,7 @@
               <Name>Text1</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.DiaChi} - {Info.MaSoThue}</Text>
+              <Text>Địa chỉ: {Info.diachi} - MST: {Info.masothue}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -178,8 +179,9 @@
               <Name>Text3</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.DienThoai}</Text>
+              <Text>Điện thoại: {Info.dienthoai}</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text3>
             <Text4 Ref="12" type="Text" isKey="true">
@@ -191,7 +193,7 @@
               <Name>Text4</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.Email} - {Info.Website}</Text>
+              <Text>Email: {Info.email} - Website: {Info.website}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -1066,10 +1068,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 10:20:14 AM</ReportChanged>
+  <ReportChanged>1/30/2021 10:37:14 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_CoGia.mrt</ReportFile>
-  <ReportGuid>a5039f7648d944fcbb6029666b6cb003</ReportGuid>
+  <ReportGuid>988314b0c5b749e9a3cba07fe4fdaa07</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

@@ -65,7 +65,7 @@ export class PhieuCanTruInPhieuModalComponent implements OnInit {
 
                     /* thông tin chung phiếu in */
                     let dsThongTin = new Stimulsoft.System.Data.DataSet();
-                    dsThongTin.readJsonFile('assets/reports/json/Info.json');
+                    dsThongTin.readJson({ Info: this.authenticationService.currentChiNhanhValue });
                     report.regData('Info', null, dsThongTin);
 
                     let dsPhieuCanTru = new Stimulsoft.System.Data.DataSet();

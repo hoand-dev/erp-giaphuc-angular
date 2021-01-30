@@ -3,49 +3,21 @@
   <Dictionary Ref="1" type="Dictionary" isKey="true">
     <BusinessObjects isList="true" count="0" />
     <Databases isList="true" count="2">
-      <Info Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
-        <Alias>Info</Alias>
-        <Key />
-        <Name>Info</Name>
-        <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\Info.json</PathData>
-      </Info>
-      <rptPhieuYeuCauXuatKho Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+      <rptPhieuYeuCauXuatKho Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
         <Alias>rptPhieuYeuCauXuatKho</Alias>
         <Key />
         <Name>rptPhieuYeuCauXuatKho</Name>
         <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\ban-hang\rptPhieuYeuCauXuatKho.json</PathData>
       </rptPhieuYeuCauXuatKho>
+      <Info Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>Info</Alias>
+        <Key />
+        <Name>Info</Name>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\Info.json</PathData>
+      </Info>
     </Databases>
     <DataSources isList="true" count="3">
-      <Info Ref="4" type="DataTableSource" isKey="true">
-        <Alias>Info</Alias>
-        <Columns isList="true" count="19">
-          <value>TieuDe,System.String</value>
-          <value>NgayLap,System.String</value>
-          <value>Avatar,System.String</value>
-          <value>TenCongTy,System.String</value>
-          <value>DiaChi,System.String</value>
-          <value>DienThoai,System.String</value>
-          <value>Fax,System.String</value>
-          <value>Email,System.String</value>
-          <value>Website,System.String</value>
-          <value>MaSoThue,System.String</value>
-          <value>DiaChiKho1,System.String</value>
-          <value>DiaChiKho2,System.String</value>
-          <value>DiaChiKho3,System.String</value>
-          <value>DienThoai1,System.String</value>
-          <value>DienThoai2,System.String</value>
-          <value>DienThoai3,System.String</value>
-          <value>Fax1,System.String</value>
-          <value>Fax2,System.String</value>
-          <value>Fax3,System.String</value>
-        </Columns>
-        <Dictionary isRef="1" />
-        <Key>b987dd94703f46c88c75b3cb4b5395a3</Key>
-        <Name>Info</Name>
-        <NameInSource>Info.Info</NameInSource>
-      </Info>
-      <rptPhieuYeuCauXuatKho Ref="5" type="DataTableSource" isKey="true">
+      <rptPhieuYeuCauXuatKho Ref="4" type="DataTableSource" isKey="true">
         <Alias>rptPhieuYeuCauXuatKho</Alias>
         <Columns isList="true" count="32">
           <value>id,System.String</value>
@@ -86,7 +58,7 @@
         <Name>rptPhieuYeuCauXuatKho</Name>
         <NameInSource>rptPhieuYeuCauXuatKho.rptPhieuYeuCauXuatKho</NameInSource>
       </rptPhieuYeuCauXuatKho>
-      <rptPhieuYeuCauXuatKho_ChiTiet Ref="6" type="DataTableSource" isKey="true">
+      <rptPhieuYeuCauXuatKho_ChiTiet Ref="5" type="DataTableSource" isKey="true">
         <Alias>rptPhieuYeuCauXuatKho_ChiTiet</Alias>
         <Columns isList="true" count="25">
           <value>id,System.String</value>
@@ -120,11 +92,41 @@
         <Name>rptPhieuYeuCauXuatKho_ChiTiet</Name>
         <NameInSource>rptPhieuYeuCauXuatKho.rptPhieuYeuCauXuatKho_ChiTiet</NameInSource>
       </rptPhieuYeuCauXuatKho_ChiTiet>
+      <Info Ref="6" type="DataTableSource" isKey="true">
+        <Alias>Info</Alias>
+        <Columns isList="true" count="19">
+          <value>id,System.String</value>
+          <value>kichhoat,System.String</value>
+          <value>nguoitao_id,System.String</value>
+          <value>thoigiantao,System.String</value>
+          <value>nguoisua_id,System.String</value>
+          <value>thoigiansua,System.String</value>
+          <value>ghichu,System.String</value>
+          <value>machinhanh,System.String</value>
+          <value>tenchinhanh,System.String</value>
+          <value>diachi,System.String</value>
+          <value>email,System.String</value>
+          <value>dienthoai,System.String</value>
+          <value>mamau,System.String</value>
+          <value>chinhanh_trungtam,System.String</value>
+          <value>tencongty,System.String</value>
+          <value>masothue,System.String</value>
+          <value>fax,System.String</value>
+          <value>website,System.String</value>
+          <value>logo_url,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>6dce111d67734428a0748eca6673047c</Key>
+        <Name>Info</Name>
+        <NameInSource>Info.Info</NameInSource>
+      </Info>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,LogoComapny,LogoComapny,,System.Drawing.Image,,False,False,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -135,90 +137,92 @@
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <Components isList="true" count="7">
-        <PageHeaderBand1 Ref="8" type="PageHeaderBand" isKey="true">
+        <PageHeader Ref="8" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,20,1.9</ClientRectangle>
+          <ClientRectangle>0,0.4,20,2</ClientRectangle>
           <Components isList="true" count="5">
             <Text11 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0,17.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>2871276a42de44a29539cd03b75fb45f</Guid>
+              <Guid>fe992284aa6348f78679c3dae9a9e87d</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.TenCongTy}</Text>
+              <Text>{Info.tencongty}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text54 Ref="10" type="Text" isKey="true">
+            <Text41 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0.6,17.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>1121e4a780ee486aa6ccc3f7af7ca6a9</Guid>
+              <Guid>a09c384ea07542b1900d66cc3d9a3d51</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text54</Name>
+              <Name>Text41</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.DiaChi} - {Info.MaSoThue}</Text>
+              <Text>Địa chỉ: {Info.diachi} - MST: {Info.masothue}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text54>
-            <Text55 Ref="11" type="Text" isKey="true">
+            </Text41>
+            <Text50 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,1,17.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>d3ef84a54a4e4385b03d25fa121c587e</Guid>
+              <Guid>d9ee4ddfcdf0489fbdb2b1c25af0d2dc</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text55</Name>
+              <Name>Text50</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.DienThoai}</Text>
+              <Text>Điện thoại: {Info.dienthoai}</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text55>
-            <Text56 Ref="12" type="Text" isKey="true">
+            </Text50>
+            <Text51 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,1.4,17.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>a009a76638084752bfc6e93648c98b44</Guid>
+              <Guid>a451df5595d446838b1906d88347cead</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text56</Name>
+              <Name>Text51</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>{Info.Email} - {Info.Website}</Text>
+              <Text>Email: {Info.email} - Website: {Info.website}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text56>
-            <Image2 Ref="13" type="Image" isKey="true">
-              <Border>None;Transparent;1;Solid;False;4;Black</Border>
+            </Text51>
+            <Image1 Ref="13" type="Image" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,2.2,1.8</ClientRectangle>
+              <ClientRectangle>0,0,2,1.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <File>D:\repositories\erp-giaphuc-angular\src\assets\reports\img\logo-hongnghi.jpg</File>
-              <Guid>2629ee693dba490689c24296475c1083</Guid>
+              <Guid>325b8531a5574a72a21df8226755249b</Guid>
               <HorAlignment>Center</HorAlignment>
+              <ImageData>{LogoComapny}</ImageData>
               <Margins>0,0,0,0</Margins>
-              <Name>Image2</Name>
+              <Name>Image1</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
               <Stretch>True</Stretch>
               <VertAlignment>Center</VertAlignment>
-            </Image2>
+            </Image1>
           </Components>
           <Conditions isList="true" count="0" />
-          <Name>PageHeaderBand1</Name>
+          <Guid>25abed4d26b8478a808cf1f0ba2bb7c4</Guid>
+          <Name>PageHeader</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
-        </PageHeaderBand1>
+        </PageHeader>
         <PageFooter Ref="14" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,28.1,20,0.6</ClientRectangle>
@@ -287,7 +291,7 @@
         </PageFooter>
         <ReportTitleBand1 Ref="19" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,3.1,20,4</ClientRectangle>
+          <ClientRectangle>0,3.2,20,4</ClientRectangle>
           <Components isList="true" count="12">
             <Text1 Ref="20" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -483,7 +487,7 @@
         </ReportTitleBand1>
         <ColumnHeaderBand1 Ref="32" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,7.9,20,0.6</ClientRectangle>
+          <ClientRectangle>0,8,20,0.6</ClientRectangle>
           <Components isList="true" count="9">
             <Text19 Ref="33" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -638,7 +642,7 @@
         <Data Ref="42" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,9.3,20,0.6</ClientRectangle>
+          <ClientRectangle>0,9.4,20,0.6</ClientRectangle>
           <Components isList="true" count="9">
             <Text28 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -849,7 +853,7 @@
         </Data>
         <ColumnFooterBand1 Ref="57" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.7,20,0.6</ClientRectangle>
+          <ClientRectangle>0,10.8,20,0.6</ClientRectangle>
           <Components isList="true" count="5">
             <Text45 Ref="58" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -957,7 +961,7 @@
         </ColumnFooterBand1>
         <Footer Ref="65" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.1,20,4.6</ClientRectangle>
+          <ClientRectangle>0,12.2,20,4.6</ClientRectangle>
           <Components isList="true" count="8">
             <Text8 Ref="66" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1110,10 +1114,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/28/2021 3:51:21 PM</ReportChanged>
+  <ReportChanged>1/30/2021 2:54:00 PM</ReportChanged>
   <ReportCreated>1/9/2021 3:49:12 PM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ban-hang\rptPhieuYeuCauXuatKho.mrt</ReportFile>
-  <ReportGuid>6ecc32226ace43bdb142afd26a8af95d</ReportGuid>
+  <ReportGuid>1cd51aa4f80d41339f0df1bc6d0fb417</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

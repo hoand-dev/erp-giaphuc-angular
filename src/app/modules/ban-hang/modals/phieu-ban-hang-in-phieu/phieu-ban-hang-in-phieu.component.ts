@@ -60,13 +60,12 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
 
                     /*Thông tin chung in phiếu */
                     let dsThongTin = new Stimulsoft.System.Data.DataSet();
-                    dsThongTin.readJsonFile('assets/reports/json/Info.json');
+                    dsThongTin.readJson({ Info: this.authenticationService.currentChiNhanhValue });
                     report.regData('Info', null, dsThongTin);
 
                     let dsPhieuBanHang = new Stimulsoft.System.Data.DataSet();
 
                     /*Thông tin phiếu */
-
                     data.ngaylapphieu = moment(data.ngaybanhang).format('HH:mm DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;

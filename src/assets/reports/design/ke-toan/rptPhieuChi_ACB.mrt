@@ -65,7 +65,9 @@
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,LogoComapny,LogoComapny,,System.Drawing.Image,,False,False,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -964,10 +966,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/28/2021 4:08:07 PM</ReportChanged>
+  <ReportChanged>1/30/2021 10:51:11 AM</ReportChanged>
   <ReportCreated>1/21/2021 4:14:33 PM</ReportCreated>
-  <ReportFile>D:\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_ACB.mrt</ReportFile>
-  <ReportGuid>6992197bdaf54e0c8085f798fb884056</ReportGuid>
+  <ReportGuid>f89d02e45cec4575a1b103e8ef538559</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
