@@ -113,6 +113,7 @@ export class PhieuDatHangNCC_ChiTiet {
     public trongluong: number;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
+    public m3: number;
 
     constructor(
         id: number = null,

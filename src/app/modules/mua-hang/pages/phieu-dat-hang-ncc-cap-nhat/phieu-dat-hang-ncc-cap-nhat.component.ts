@@ -229,7 +229,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
-        this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 

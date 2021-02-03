@@ -85,7 +85,7 @@ export class HangHoa {
         m3: number = 0,
         dvt_id: number = null,
         dvt1_id: number = null,
-        quydoi1: number = 1,
+        quydoi1: number = 0,
         gianhap: number = 0,
         giabanle: number = null,
         giabansi: number = null,
