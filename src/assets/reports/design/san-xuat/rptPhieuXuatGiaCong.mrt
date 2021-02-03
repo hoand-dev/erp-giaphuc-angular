@@ -605,8 +605,7 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>646a89f26dd34d53a3b1bf954302d236</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>4,0,0,0</Margins>
               <Name>Text24</Name>
               <Page isRef="7" />
               <Parent isRef="38" />
@@ -871,9 +870,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 2:09:32 PM</ReportChanged>
+  <ReportChanged>2/2/2021 3:08:44 PM</ReportChanged>
   <ReportCreated>1/26/2021 5:23:02 PM</ReportCreated>
-  <ReportGuid>32966b3dbc1c485ea4962948fdb7da83</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\san-xuat\rptPhieuXuatGiaCong.mrt</ReportFile>
+  <ReportGuid>57a828d7e2554013872abcfff3fbf935</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

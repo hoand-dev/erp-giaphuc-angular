@@ -104,8 +104,8 @@
                                                         </td>
                                                         <td>{{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
-                                                        <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
+                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} </td>
+                                                        <td>{{ item.soluong * item.m3 | number: '1.0-3' }}</td>
 
                                                         <td>
                                                             <dx-number-box
