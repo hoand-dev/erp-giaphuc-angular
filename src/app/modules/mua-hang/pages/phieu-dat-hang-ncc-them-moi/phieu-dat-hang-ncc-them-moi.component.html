@@ -65,8 +65,8 @@
                                                     <tr>
                                                         <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
-                                                        <th [style.min-width.px]="75">ĐVT1</th>
-                                                        <th [style.min-width.px]="75">KL</th>
+                                                        <th [style.min-width.px]="75">KIỆN</th>
+                                                        <th [style.min-width.px]="75">M3</th>
                                                         <th [style.min-width.px]="80">SL</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="75">CK</th>
@@ -102,8 +102,8 @@
                                                         </td>
                                                         <td>{{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
-                                                        <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
+                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} </td>
+                                                        <td>{{ item.soluong * item.m3 | number: '1.0-3' }}</td>
 
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>

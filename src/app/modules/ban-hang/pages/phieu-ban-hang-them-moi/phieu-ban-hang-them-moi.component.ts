@@ -206,6 +206,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                                 item.chuthich = value.chuthich;
                                 item.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
                                 item.phieudathang_chitiet_id = value.id;
+                                item.xuathoadon = value.thuevat > 0 ? true : false;
 
                                 this.hanghoas.push(item);
                             });
