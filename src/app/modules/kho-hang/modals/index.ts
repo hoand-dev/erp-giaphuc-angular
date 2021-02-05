@@ -9,3 +9,4 @@ export * from './phieu-xuat-chuyen-kho-in-phieu-modal/phieu-xuat-chuyen-kho-in-p
 export * from './phieu-xuat-kho-in-phieu-modal/phieu-xuat-kho-in-phieu-modal.component';
 export * from './phieu-xuat-muon-hang-in-phieu-modal/phieu-xuat-muon-hang-in-phieu-modal.component';
 export * from './phieu-xuat-tra-muon-hang-in-phieu-modal/phieu-xuat-tra-muon-hang-in-phieu-modal.component';
+export * from './phieu-dieu-chinh-kho-in-phieu-modal/phieu-dieu-chinh-kho-in-phieu-modal.component';

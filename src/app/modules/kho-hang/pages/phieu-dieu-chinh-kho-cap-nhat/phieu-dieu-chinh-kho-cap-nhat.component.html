@@ -47,7 +47,9 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho điều chỉnh"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="2">
+                                        <dxi-validation-rule type="required" message="Vui lòng ghi nội dung điều chỉnh kho"></dxi-validation-rule>
+                                    </dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">

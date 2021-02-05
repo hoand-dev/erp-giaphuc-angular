@@ -47,6 +47,7 @@ import {
     PhieuNhapTraMuonHangInPhieuModalComponent,
     PhieuXuatTraMuonHangInPhieuModalComponent,
  } from './modals';
+import { PhieuDieuChinhKhoInPhieuModalComponent } from './modals/phieu-dieu-chinh-kho-in-phieu-modal/phieu-dieu-chinh-kho-in-phieu-modal.component';
 
 @NgModule({
     declarations: [
@@ -87,7 +88,8 @@ import {
         PhieuNhapMuonHangInPhieuModalComponent,
         PhieuXuatMuonHangInPhieuModalComponent,
         PhieuNhapTraMuonHangInPhieuModalComponent,
-        PhieuXuatTraMuonHangInPhieuModalComponent
+        PhieuXuatTraMuonHangInPhieuModalComponent,
+        PhieuDieuChinhKhoInPhieuModalComponent
     ],
     imports: [CommonModule, SharedModule, KhoHangRoutingModule]
 })

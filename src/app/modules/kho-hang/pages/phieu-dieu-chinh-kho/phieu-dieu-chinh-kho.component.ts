@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { PhieuDieuChinhKhoInPhieuModalComponent } from '../../modals';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-phieu-dieu-chinh-kho',
@@ -21,6 +23,9 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    
+    public bsModalRef: BsModalRef;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -31,13 +36,46 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
         storageKey: 'dxGrid_PhieuDieuChinhKho'
     };
 
-    constructor(private router: Router, private objPhieuDieuChinhKhoService: PhieuDieuChinhKhoService, private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuDieuChinhKhoService: PhieuDieuChinhKhoService, private authenticationService: AuthenticationService,private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
     }
+    addMenuItems(e){
+        if(e.row.rowType === 'data'){
+            if(!e.items) e.items=[];
+
+            e.items.push(
+                {
+                    text: 'In Phiếu',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuDieuChinhKho = e.row.key as PhieuDieuChinhKho
+
+                        /* Khởi tạo gia trị modal */
+                        const initialState = {
+                            title: " IN PHIẾU ĐIỀU CHỈNH KHO",
+                            phieudieuchinhkho_id: rowData.id,
+                        };
+
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuDieuChinhKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = " Đóng"
+                    }
+                }
+            )
+        }
+    }
+
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
