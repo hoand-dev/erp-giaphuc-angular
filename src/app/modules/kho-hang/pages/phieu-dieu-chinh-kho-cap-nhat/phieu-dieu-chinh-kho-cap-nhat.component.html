@@ -43,7 +43,7 @@
                                         [label]="{ text: 'KHO ĐIỀU CHỈNH' }"
                                         dataField="khodieuchinh_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoDieuChinh, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoDieuChinh, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho điều chỉnh"></dxi-validation-rule>
                                     </dxi-item>

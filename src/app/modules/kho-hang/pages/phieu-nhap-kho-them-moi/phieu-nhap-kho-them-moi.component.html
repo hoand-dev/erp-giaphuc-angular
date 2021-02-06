@@ -46,7 +46,7 @@
                                         [label]="{ text: 'KHO NHẬP' }"
                                         dataField="khonhap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho nhập"></dxi-validation-rule>
                                     </dxi-item>

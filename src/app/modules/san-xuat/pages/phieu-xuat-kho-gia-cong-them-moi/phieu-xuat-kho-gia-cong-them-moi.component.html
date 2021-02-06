@@ -42,7 +42,7 @@
                                         [label]="{ text: 'TÀI XẾ' }"
                                         dataField="taixe_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_TaiXe, valueExpr: 'id', searchEnabled: true, displayExpr: 'tentaixe' }"
+                                        [editorOptions]="{ dataSource: dataSource_TaiXe, valueExpr: 'id', searchEnabled: true, searchExpr: ['tentaixe', 'mataixe'], displayExpr: 'tentaixe' }"
                                     >
                                     </dxi-item>
                                     <dxi-item
@@ -85,7 +85,7 @@
                                         [label]="{ text: 'KHO XUẤT' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>

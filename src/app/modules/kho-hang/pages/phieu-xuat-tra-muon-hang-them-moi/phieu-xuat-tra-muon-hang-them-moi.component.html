@@ -52,7 +52,7 @@
                                         [label]="{ text: 'KHO XUẤT' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang',searchExpr: ['tenkhohang', 'makhohang']  }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>
@@ -61,7 +61,7 @@
                                         [label]="{ text: 'KHO TRẢ' }"
                                         dataField="khonhap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang', readOnly: true }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang', readOnly: true }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho trả"></dxi-validation-rule>
                                     </dxi-item>

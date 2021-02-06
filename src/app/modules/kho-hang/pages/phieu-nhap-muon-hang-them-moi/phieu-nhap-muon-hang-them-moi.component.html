@@ -42,7 +42,7 @@
                                         [label]="{ text: 'KHO MƯỢN' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhohang', 'makhohang'] , displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho mượn"></dxi-validation-rule>
                                     </dxi-item>
@@ -51,7 +51,7 @@
                                         [label]="{ text: 'KHO NHẬP' }"
                                         dataField="khonhap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoNhap, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhohang' ,searchExpr: ['tenkhohang', 'makhohang'] }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho nhập"></dxi-validation-rule>
                                         <dxi-validation-rule type="compare" [comparisonTarget]="khohangComparison" message="Kho nhập phải khác kho mượn"></dxi-validation-rule>
