@@ -2,7 +2,7 @@ import { BaseService } from './../base-service';
 import { DanhSachXe } from './../../entities/thiet-lap/danh-sach-xe';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../../environments/environment.prod';
+import { environment } from '@environments/environment';
 
 import { Injectable } from '@angular/core';
 
