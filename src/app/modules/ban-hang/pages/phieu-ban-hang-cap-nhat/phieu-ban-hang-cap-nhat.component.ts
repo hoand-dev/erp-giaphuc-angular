@@ -179,6 +179,8 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
                                 this.phieubanhang = data;
                                 this.hanghoas = this.phieubanhang.phieubanhang_chitiet;
+                                
+                                this.saveProcessing = this.phieubanhang.duyetgia; // duyệt giá rồi không cho lưu nữa
                             },
                             (error) => {
                                 this.phieubanhangService.handleError(error);
@@ -425,7 +427,23 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         });
     }
 
+    onValid(){
+        if(this.phieubanhang.duyetgia == true){
+            Swal.fire({
+                title: 'Phiếu đã duyệt giá không sửa được',
+                html: 'Vui lòng kiểm tra lại',
+                icon: 'warning',
+                timer: 3000,
+                timerProgressBar: true
+            });
+            return false;
+        }
+        return true;
+    }
+
     public onSubmitForm(e) {
+        if(!this.onValid()) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieubanhang_req = this.phieubanhang;

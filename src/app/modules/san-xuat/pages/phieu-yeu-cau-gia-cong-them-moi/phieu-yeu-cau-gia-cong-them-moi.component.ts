@@ -20,6 +20,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong-them-moi',
@@ -318,17 +319,26 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
             let tensomat: string = somat != null ? somat.tensomat.toString().trim() : '';
 
             let _: string = ' ';
-            let hanghoa: HangHoa = this.dataSource_HangHoa.items().find((x) => x.id == this.hanghoas[index].hanghoa_id);
 
-            let mahanghoa: string = magiacong + masomat + hanghoa.matieuchuan + '(' + hanghoa.day + 'x' + hanghoa.rong + 'x' + hanghoa.dai + ')' + hanghoa.ncc + hanghoa.maloaihang;
-            let tenhanghoa: string =
-                tengiacong + _ + tensomat + _ + hanghoa.tentieuchuan + _ + '(' + hanghoa.day + 'x' + hanghoa.rong + 'x' + hanghoa.dai + ')' + _ + hanghoa.ncc + _ + hanghoa.tenloaihang;
+            this.subscriptions.add(
+                this.hanghoaService.findHangHoa(this.hanghoas[index].hanghoa_id).subscribe((x) => {
+                    let hanghoa: HangHoa = x;
+                    if (hanghoa != undefined) {
+                        if (hanghoa.loaihanghoa == 'thanhpham') {
+                            magiacong = magiacong + hanghoa.magiacong;
+                            tengiacong = tengiacong + _ + hanghoa.tengiacong;
+                        }
+                        let mahanghoa: string = magiacong + masomat + hanghoa.matieuchuan + '(' + hanghoa.day + 'x' + hanghoa.rong + 'x' + hanghoa.dai + ')' + hanghoa.ncc + hanghoa.maloaihang;
+                        let tenhanghoa: string =
+                            tengiacong + _ + tensomat + _ + hanghoa.tentieuchuan + _ + '(' + hanghoa.day + 'x' + hanghoa.rong + 'x' + hanghoa.dai + ')' + _ + hanghoa.ncc + _ + hanghoa.tenloaihang;
 
-            this.hanghoas[index].mathanhpham = mahanghoa.split('null').join('').trim();
-            this.hanghoas[index].tenthanhpham = tenhanghoa.split('null').join('').trim();
+                        this.hanghoas[index].mathanhpham = mahanghoa.split('null').join('').trim();
+                        this.hanghoas[index].tenthanhpham = tenhanghoa.split('null').join('').trim();
 
-            if(this.hanghoas[index].arr_yeucaus.length > 0)
-                this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
+                        if (this.hanghoas[index].arr_yeucaus.length > 0) this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
+                    }
+                })
+            );
         }
     }
 
@@ -344,8 +354,24 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         });
         this.phieuyeucaugiacong.tongthanhtien = tongtienhang;
     }
+    
+    onValid(){
+        if (this.hanghoas.filter((x) => x.heso <= 0).length > 0) {
+            Swal.fire({
+                title: 'Hệ số phải lớn hơn 0',
+                html: 'Vui lòng kiểm tra lại',
+                icon: 'warning',
+                timer: 3000,
+                timerProgressBar: true
+            });
+            return false;
+        }
+        return true;
+    }
 
     public onSubmitForm(e) {
+        if(!this.onValid()) return;
+
         // bỏ qua các dòng dữ liệu số lượng = 0
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && x.soluong != 0);
         let phieuyeucaugiacong_req = this.phieuyeucaugiacong;

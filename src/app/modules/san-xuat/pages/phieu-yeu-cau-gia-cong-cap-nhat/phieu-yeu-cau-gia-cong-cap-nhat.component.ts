@@ -20,6 +20,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong-cap-nhat',
@@ -396,7 +397,22 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         this.phieuyeucaugiacong.tongthanhtien = tongtienhang;
     }
 
+    onValid(){
+        if (this.hanghoas.filter((x) => x.hanghoa_id != null && x.heso <= 0).length > 0) {
+            Swal.fire({
+                title: 'Hệ số phải lớn hơn 0',
+                html: 'Vui lòng kiểm tra lại',
+                icon: 'warning',
+                timer: 3000,
+                timerProgressBar: true
+            });
+            return false;
+        }
+        return true;
+    }
+
     public onSubmitForm(e) {
+        if(!this.onValid()) return;
         // bỏ qua các dòng dữ liệu số lượng = 0
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && x.soluong != 0);
         let phieuyeucaugiacong_req = this.phieuyeucaugiacong;
