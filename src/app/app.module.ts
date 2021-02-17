@@ -39,9 +39,6 @@ import { ThietLapModule, MuaHangModule, BanHangModule, KhoHangModule, SanXuatMod
 import './shared/localization';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-/* test report */
-import { ReportPageComponent } from './report-page/report-page.component';
-
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { KeToanModule } from './modules/ke-toan/ke-toan.module';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
@@ -53,7 +50,6 @@ import { NotPermissionComponent } from './shared/components/not-permission/not-p
         LoginComponent,
         HomeComponent,
         NotFoundComponent,
-        ReportPageComponent,
         ChangePasswordComponent,
         NotPermissionComponent,
     ],
