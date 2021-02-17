@@ -54,7 +54,7 @@
                                         [label]="{ text: 'KHO HÀNG' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, readOnly: !phieudathang.giuhang || isTatToan, displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, readOnly: !phieudathang.giuhang || isTatToan,searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="async" message="Vui lòng chọn kho hàng" [validationCallback]="asyncValidation"></dxi-validation-rule>
                                     </dxi-item>
