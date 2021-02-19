@@ -144,7 +144,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
         );
 
         this.subscriptions.add(
-            this.noidungthuchiService.findNoiDungThuChis().subscribe((x) => {
+            this.noidungthuchiService.findNoiDungThuChis('chi').subscribe((x) => {
                 this.dataSource_NoiDungThuChi = new DataSource({
                     store: x,
                     paginate: true,

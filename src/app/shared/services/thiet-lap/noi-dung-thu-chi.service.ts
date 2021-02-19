@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NoiDungThuChi } from '@app/shared/entities';
 
@@ -19,8 +19,12 @@ export class NoiDungThuChiService extends BaseService {
         return this.httpClient.get<NoiDungThuChi>(this.apiUrl + `/${id}`);
     }
 
-    findNoiDungThuChis(): Observable<NoiDungThuChi[]> {
-        return this.httpClient.get<NoiDungThuChi[]>(this.apiUrl);
+    findNoiDungThuChis(loaithuchi: string = null): Observable<NoiDungThuChi[]> {
+        let query_params: HttpParams = new HttpParams();
+        if(loaithuchi)
+            query_params = query_params.set('loaithuchi', loaithuchi);
+
+        return this.httpClient.get<NoiDungThuChi[]>(this.apiUrl, { params: query_params });
     }
 
     addNoiDungThuChi(noidungthuchi: NoiDungThuChi): Observable<NoiDungThuChi> {

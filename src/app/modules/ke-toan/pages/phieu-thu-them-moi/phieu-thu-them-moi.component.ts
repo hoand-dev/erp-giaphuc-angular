@@ -116,7 +116,7 @@ export class PhieuThuThemMoiComponent implements OnInit {
         );
 
         this.subscriptions.add(
-            this.noidungthuchiService.findNoiDungThuChis().subscribe((x) => {
+            this.noidungthuchiService.findNoiDungThuChis('thu').subscribe((x) => {
                 this.dataSource_NoiDungThuChi = new DataSource({
                     store: x,
                     paginate: true,

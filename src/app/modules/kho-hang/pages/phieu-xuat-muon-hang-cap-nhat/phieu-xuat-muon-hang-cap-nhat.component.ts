@@ -107,7 +107,7 @@ export class PhieuXuatMuonHangCapNhatComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, null, loadOptions)
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieuxuatmuonhang.khoxuat_id, null, loadOptions)
                         .toPromise()
                         .then((result) => {
                             return result;
@@ -179,6 +179,7 @@ export class PhieuXuatMuonHangCapNhatComponent implements OnInit {
         this.hanghoas = this.hanghoas.filter(function (i) {
             return i !== item;
         });
+        this.onTinhTien();
     }
 
     public onHangHoaChanged(index, e) {
