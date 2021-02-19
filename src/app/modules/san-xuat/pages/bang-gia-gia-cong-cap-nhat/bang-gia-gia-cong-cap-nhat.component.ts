@@ -147,7 +147,6 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
         this.chitiets = this.chitiets.filter(function (i) {
             return i !== item;
         });
-        this.onTinhTien();
     }
 
     public onHangHoaChanged(index, e) {
