@@ -223,6 +223,8 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                             this.phieunhapkho.chietkhau = data.chietkhau;
                             this.phieunhapkho.thuevat = data.thuevat;
                             this.phieunhapkho.tongthanhtien = data.tongthanhtien;
+
+                            this.phieunhapkho.khonhap_id = data.khonhap_id;
                 
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieukhachtrahang_chitiet.length;

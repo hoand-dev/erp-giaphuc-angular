@@ -1,4 +1,4 @@
-import { ChiNhanh, DinhMuc, DonViTinh, HangHoa, SoMat } from '@app/shared/entities';
+import { ChiNhanh, DanhMucLoi, DinhMuc, DonViTinh, HangHoa, SoMat } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 
@@ -6,7 +6,7 @@ import {
     DxFormComponent
 } from 'devextreme-angular';
 
-import { AppInfoService, DinhMucService, DonViTinhService, HangHoaService, SoMatService } from '@app/shared/services';
+import { AppInfoService, DanhMucLoiService, DinhMucService, DonViTinhService, HangHoaService, SoMatService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -32,6 +32,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
 
     public lstTieuChuan: DanhMucTieuChuan[] = [];
     public lstLoaiHang: LoaiHang[] = [];
+    public lstLoi: DanhMucLoi[] = [];
     public lstGiaCong: DinhMuc[] = [];
     public lstSoMat: SoMat[] = [];
     public lstDonViTinh: DonViTinh[] = [];
@@ -40,6 +41,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
     public dataSource_SoMat: DataSource;
     public dataSource_TieuChuan: DataSource;
     public dataSource_LoaiHang: DataSource;
+    public dataSource_Loi: DataSource;
     public dataSource_DonViTinh: DataSource;
 
     public saveProcessing = false;
@@ -56,6 +58,7 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private tieuchuanService: DanhMucTieuChuanService,
         private loaihangService: LoaiHangService,
+        private loiService: DanhMucLoiService,
         private giacongService: DinhMucService,
         private somatService: SoMatService,
         private donvitinhService: DonViTinhService,
@@ -121,6 +124,18 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
                 })
         );
         this.subscriptions.add(
+            this.loiService.findDanhMucLois().subscribe(
+                x => {
+                    this.lstLoi = x;
+
+                    this.dataSource_Loi = new DataSource({
+                        store: x,
+                        paginate: true,
+                        pageSize: 50
+                    });
+                })
+        );
+        this.subscriptions.add(
             this.donvitinhService.findDonViTinhs().subscribe(
                 x => {
                     this.lstDonViTinh = x;
@@ -157,17 +172,19 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
         /* tạo mã + tên hàng hóa */
         if (
             e.dataField == "dinhmuc_giacong" ||
-            e.dataField == "somat" ||
+            e.dataField == "somat_id" ||
             e.dataField == "tieuchuan_id" ||
             e.dataField == "day" ||
             e.dataField == "rong"||
             e.dataField == "dai" ||
             e.dataField == "ncc" ||
-            e.dataField == "loaihang_id"
+            e.dataField == "loaihang_id" ||
+            e.dataField == "loi_id"
         ){
             let somat: SoMat = this.lstSoMat.find(x => x.id == this.hanghoa.somat_id);
             let tieuchuan: DanhMucTieuChuan = this.lstTieuChuan.find((x) => x.id == this.hanghoa.tieuchuan_id);
             let loaihang: LoaiHang = this.lstLoaiHang.find((x) => x.id == this.hanghoa.loaihang_id);
+            let loi: DanhMucLoi = this.lstLoi.find((x) => x.id == this.hanghoa.loi_id);
 
             let magiacong: string = "";
             let tengiacong: string = "";
@@ -192,10 +209,14 @@ export class HangHoaThanhPhamThemMoiComponent implements OnInit {
             let ncc: string = this.hanghoa.ncc != null ? this.hanghoa.ncc.toString().trim() : '';
             let maloaihang: string = loaihang != null ? loaihang.maloaihang.toString().trim() : '';
             let tenloaihang: string = loaihang != null ? loaihang.tenloaihang.toString().trim() : '';
+            
             let _: string = ' ';
 
-            let mahanghoa: string = magiacong + masomat + matieuchuan + "(" + day + rong + dai + ")" + ncc + maloaihang;
-            let tenhanghoa: string = tengiacong + _ + tensomat + _ + tentieuchuan + _ + "(" + day + rong + dai + ")" + _ + ncc + _ + tenloaihang;
+            let maloi: string = loi != null ? loi.madanhmucloi.toString().trim() : '';
+            let tenloi: string = loi != null ? loi.tendanhmucloi.toString().trim() + _ : '';
+
+            let mahanghoa: string = maloi + magiacong + masomat + matieuchuan + "(" + day + rong + dai + ")" + ncc + maloaihang;
+            let tenhanghoa: string = tenloi + tengiacong + _ + tensomat + _ + tentieuchuan + _ + "(" + day + rong + dai + ")" + _ + ncc + _ + tenloaihang;
             
             this.hanghoa.mahanghoa = mahanghoa.split("null").join("").trim();
             this.hanghoa.tenhanghoa = tenhanghoa.split("null").join("").trim();
