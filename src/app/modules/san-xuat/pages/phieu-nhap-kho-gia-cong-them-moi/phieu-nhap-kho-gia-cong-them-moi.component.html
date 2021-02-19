@@ -53,7 +53,7 @@
                                         [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                                         dataField="donvigiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_DonViGiaCong, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendonvigiacong', readOnly: true }"
+                                        [editorOptions]="{ dataSource: dataSource_DonViGiaCong, valueExpr: 'id', searchEnabled: true, searchExpr: ['tendonvigiacong', 'madonvigiacong'] , displayExpr: 'tendonvigiacong' , readOnly: true }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                                     </dxi-item>
@@ -66,6 +66,7 @@
                                             dataSource: dataSource_KhoHang,
                                             valueExpr: 'id',
                                             searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
                                             displayExpr: 'tenkhohang',
                                             readOnly: true
                                         }"
@@ -96,6 +97,7 @@
                                             dataSource: dataSource_KhoHang,
                                             valueExpr: 'id',
                                             searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
                                             displayExpr: 'tenkhohang'
                                         }"
                                     >

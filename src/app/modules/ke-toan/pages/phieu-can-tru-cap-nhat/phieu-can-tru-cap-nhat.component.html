@@ -96,7 +96,7 @@
                                         [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                                         dataField="donvigiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_DonViGiaCong, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendonvigiacong' }"
+                                        [editorOptions]="{ dataSource: dataSource_DonViGiaCong, valueExpr: 'id', searchEnabled: true,searchExpr: ['tendonvigiacong', 'madonvigiacong'], displayExpr: 'tendonvigiacong' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                                     </dxi-item>
@@ -116,7 +116,7 @@
                                         [label]="{ text: 'NỘI DUNG' }"
                                         dataField="noidungcantru_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NoiDungThuChi, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennoidungthuchi' }"
+                                        [editorOptions]="{ dataSource: dataSource_NoiDungThuChi, valueExpr: 'id', searchEnabled: true,searchExpr: ['tennoidungthuchi', 'manoidungthuchi'], displayExpr: 'tennoidungthuchi' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
                                     </dxi-item>

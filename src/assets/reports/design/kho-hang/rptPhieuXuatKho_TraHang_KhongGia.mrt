@@ -523,12 +523,14 @@
         <Data Ref="35" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,9.4,20,0.6</ClientRectangle>
+          <CanGrow>False</CanGrow>
+          <CanShrink>True</CanShrink>
+          <ClientRectangle>0,9.4,20,0.8</ClientRectangle>
           <Components isList="true" count="5">
             <Text28 Ref="36" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <HorAlignment>Center</HorAlignment>
@@ -545,7 +547,7 @@
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>1.6,0,12,0.6</ClientRectangle>
+              <ClientRectangle>1.6,0,12,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Margins>0,0,0,0</Margins>
@@ -561,7 +563,7 @@
             <Text30 Ref="38" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.6,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>13.6,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>a397e82e6ff045259ffbd8855fddaf51</Guid>
@@ -578,7 +580,7 @@
             <Text35 Ref="39" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.2,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>15.2,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>2b2b94c4cd9c4adaa8fe0dc5a5fb4869</Guid>
@@ -602,7 +604,7 @@
             <Text36 Ref="41" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.8,0,3.2,0.6</ClientRectangle>
+              <ClientRectangle>16.8,0,3.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>b41d0446bc524c97b4b5f477f2ec14e8</Guid>
@@ -628,7 +630,7 @@
         </Data>
         <ColumnFooterBand1 Ref="42" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.8,20,0.6</ClientRectangle>
+          <ClientRectangle>0,11,20,0.6</ClientRectangle>
           <Components isList="true" count="3">
             <Text45 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -695,7 +697,7 @@
         </ColumnFooterBand1>
         <Footer Ref="47" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.2,20,4.2</ClientRectangle>
+          <ClientRectangle>0,12.4,20,4.2</ClientRectangle>
           <Components isList="true" count="8">
             <Text12 Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -841,9 +843,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 1:48:06 PM</ReportChanged>
+  <ReportChanged>2/19/2021 8:57:28 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
-  <ReportGuid>21e5d6e23c784f5185a28330b0684d02</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_TraHang_KhongGia.mrt</ReportFile>
+  <ReportGuid>36ba919d4a9543f7b388e70d9d7aaada</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

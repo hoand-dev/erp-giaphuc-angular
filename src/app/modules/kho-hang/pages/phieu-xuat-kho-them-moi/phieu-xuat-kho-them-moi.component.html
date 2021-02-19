@@ -46,7 +46,7 @@
                                         [label]="{ text: 'TÀI XẾ' }"
                                         dataField="taixe_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_TaiXe, valueExpr: 'id', searchEnabled: true, displayExpr: 'tentaixe' }"
+                                        [editorOptions]="{ dataSource: dataSource_TaiXe, valueExpr: 'id', searchEnabled: true,searchExpr: ['tentaixe', 'mataixe'], displayExpr: 'tentaixe' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn tài xế"></dxi-validation-rule>
                                     </dxi-item>

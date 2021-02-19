@@ -608,12 +608,14 @@
         <Data Ref="41" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,9.4,20,0.6</ClientRectangle>
+          <CanGrow>False</CanGrow>
+          <CanShrink>True</CanShrink>
+          <ClientRectangle>0,9.4,20,0.8</ClientRectangle>
           <Components isList="true" count="9">
             <Text28 Ref="42" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <HorAlignment>Center</HorAlignment>
@@ -630,7 +632,7 @@
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>1.6,0,7.6,0.6</ClientRectangle>
+              <ClientRectangle>1.6,0,7.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Times New Roman,12</Font>
@@ -647,7 +649,7 @@
             <Text30 Ref="44" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>9.2,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>9.2,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>a397e82e6ff045259ffbd8855fddaf51</Guid>
@@ -664,7 +666,7 @@
             <Text31 Ref="45" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.4,0,2,0.6</ClientRectangle>
+              <ClientRectangle>16.4,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>a628e36e2f8443a4a64b953d2e70a6dd</Guid>
@@ -688,7 +690,7 @@
             <Text32 Ref="47" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>12.4,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>ae7069b7cf3b4760be4487294eeb447a</Guid>
@@ -712,7 +714,7 @@
             <Text33 Ref="49" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>14,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>8f120d875ad5430287fd1df8c6313a49</Guid>
@@ -738,7 +740,7 @@
             <Text34 Ref="51" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.2,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>15.2,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>4ef66af8b3464edbbec2b8ee5c3434b4</Guid>
@@ -764,7 +766,7 @@
             <Text35 Ref="53" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.8,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>10.8,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>2b2b94c4cd9c4adaa8fe0dc5a5fb4869</Guid>
@@ -788,7 +790,7 @@
             <Text36 Ref="55" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>18.4,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Times New Roman,12</Font>
@@ -816,7 +818,7 @@
         </Data>
         <ColumnFooterBand1 Ref="56" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.8,20,0.6</ClientRectangle>
+          <ClientRectangle>0,11,20,0.6</ClientRectangle>
           <Components isList="true" count="5">
             <Text45 Ref="57" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -923,7 +925,7 @@
         </ColumnFooterBand1>
         <Footer Ref="64" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.2,20,4.2</ClientRectangle>
+          <ClientRectangle>0,12.4,20,4.2</ClientRectangle>
           <Components isList="true" count="8">
             <Text12 Ref="65" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1069,10 +1071,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/2/2021 3:09:13 PM</ReportChanged>
+  <ReportChanged>2/19/2021 8:51:49 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_CoGia.mrt</ReportFile>
-  <ReportGuid>5b8347ffbe42431ea017dcd58ba203f7</ReportGuid>
+  <ReportGuid>a8bb4e041d414cf3b343bd2dd3196684</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

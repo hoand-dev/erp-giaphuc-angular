@@ -554,6 +554,8 @@
         <Data Ref="36" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
+          <CanGrow>False</CanGrow>
+          <CanShrink>True</CanShrink>
           <ClientRectangle>0,9.4,20,0.6</ClientRectangle>
           <Components isList="true" count="5">
             <Text28 Ref="37" type="Text" isKey="true">
@@ -883,9 +885,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 1:46:42 PM</ReportChanged>
+  <ReportChanged>2/19/2021 8:47:19 AM</ReportChanged>
   <ReportCreated>1/16/2021 11:34:26 AM</ReportCreated>
-  <ReportGuid>224c2161af364a83b949f7e503121fd2</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuNhapKho_TraHang_KhongGia.mrt</ReportFile>
+  <ReportGuid>1818f6879ea34681b89bf435ea567465</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
