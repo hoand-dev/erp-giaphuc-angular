@@ -201,6 +201,7 @@ export class PhieuXuatTraMuonHangCapNhatComponent implements OnInit {
         this.hanghoas = this.hanghoas.filter(function (i) {
             return i !== item;
         });
+        this.onTinhTien();
     }
 
     public onHangHoaChanged(index, e) {
