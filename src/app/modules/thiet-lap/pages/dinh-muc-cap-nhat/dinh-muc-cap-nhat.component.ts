@@ -103,7 +103,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
 
         this.saveProcessing = true;
         this.subscriptions.add(
-            this.noidungchiService.findNoiDungThuChis().subscribe((x) => {
+            this.noidungchiService.findNoiDungThuChis('chi').subscribe((x) => {
                 this.saveProcessing = false;
                 this.dataSource_ChiPhiKhac = new DataSource({
                     store: x,

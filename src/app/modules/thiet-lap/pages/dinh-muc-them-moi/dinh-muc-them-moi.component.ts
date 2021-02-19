@@ -104,7 +104,7 @@ export class DinhMucThemMoiComponent implements OnInit {
         );
         this.loadingVisible = true;
         this.subscriptions.add(
-            this.noidungchiService.findNoiDungThuChis().subscribe((x) => {
+            this.noidungchiService.findNoiDungThuChis('chi').subscribe((x) => {
                 this.loadingVisible = false;
                 this.dataSource_ChiPhiKhac = new DataSource({
                     store: x,
