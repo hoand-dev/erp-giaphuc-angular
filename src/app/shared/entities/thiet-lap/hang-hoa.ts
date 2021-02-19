@@ -64,6 +64,8 @@ export class HangHoa {
     public soluong_tonhientai: number;
     public soluong_tonduocxuat: number;
 
+    public loi_id: number;
+
     constructor(
         id: number = null,
         chinhanh_id: number = null,
@@ -104,7 +106,8 @@ export class HangHoa {
         gianhap1: number = null,
         giabanle1: number = null,
         giabansi1: number = null,
-        dinhmuc_id: number = null
+        dinhmuc_id: number = null,
+        loi_id: number = null,
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -146,5 +149,6 @@ export class HangHoa {
         this.giabanle1 = giabanle1;
         this.giabansi1 = giabansi1;
         this.dinhmuc_id = dinhmuc_id;
+        this.loi_id = loi_id;
     }
 }
