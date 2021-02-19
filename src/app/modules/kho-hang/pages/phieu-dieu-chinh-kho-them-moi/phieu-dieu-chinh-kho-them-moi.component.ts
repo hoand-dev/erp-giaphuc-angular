@@ -93,7 +93,7 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, null, loadOptions)
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieudieuchinhkho.khodieuchinh_id, null, loadOptions)
                         .toPromise()
                         .then((result) => {
                             return result;
