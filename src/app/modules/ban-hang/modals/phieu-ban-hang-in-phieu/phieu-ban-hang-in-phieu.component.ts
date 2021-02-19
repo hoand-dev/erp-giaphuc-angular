@@ -98,6 +98,8 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
+
+                   
                     
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');

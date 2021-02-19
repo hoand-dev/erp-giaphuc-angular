@@ -508,7 +508,7 @@
             <Text20 Ref="34" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>1,0,7.6,0.6</ClientRectangle>
+              <ClientRectangle>1,0,7.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>99eadaf506d148c79bd126c1d4ad328c</Guid>
@@ -524,7 +524,7 @@
             <Text21 Ref="35" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.6,0,1.4,0.6</ClientRectangle>
+              <ClientRectangle>8.4,0,1.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>a94466ae36974794bfe0613c035a09b2</Guid>
@@ -540,7 +540,7 @@
             <Text22 Ref="36" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>9.6,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>237c274e8fbe45e1a5483a4a36446caf</Guid>
@@ -556,7 +556,7 @@
             <Text23 Ref="37" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.6,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>11,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>56e88a1754a74040b655140bdaa7ad2a</Guid>
@@ -572,7 +572,7 @@
             <Text24 Ref="38" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.2,0,1,0.6</ClientRectangle>
+              <ClientRectangle>12.8,0,1.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>9b68d06d64064d46b349e76d40f5d0d7</Guid>
@@ -588,7 +588,7 @@
             <Text25 Ref="39" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>14,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>5d32ad533b874a9e8e4be42b39996b9a</Guid>
@@ -642,12 +642,14 @@
         <Data Ref="42" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,9.2,20,0.6</ClientRectangle>
+          <CanGrow>False</CanGrow>
+          <CanShrink>True</CanShrink>
+          <ClientRectangle>0,9.2,20,0.8</ClientRectangle>
           <Components isList="true" count="9">
             <Text28 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>5103851f363f4ad8a88bce687d476dc4</Guid>
@@ -665,7 +667,7 @@
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>1,0,7.6,0.6</ClientRectangle>
+              <ClientRectangle>1,0,7.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Times New Roman,12</Font>
@@ -683,7 +685,7 @@
             <Text30 Ref="45" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.6,0,1.4,0.6</ClientRectangle>
+              <ClientRectangle>8.4,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>f397fc6e948741cd83f0f90159e11e0e</Guid>
@@ -700,7 +702,7 @@
             <Text31 Ref="46" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.4,0,2.6,0.6</ClientRectangle>
+              <ClientRectangle>15.4,0,2.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>abb2b34fa2b543ea93875932cfde1609</Guid>
@@ -724,7 +726,7 @@
             <Text3 Ref="48" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.6,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>11,0,1.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>13568a6762ff46a391ea08971bbb6957</Guid>
@@ -748,7 +750,7 @@
             <Text33 Ref="50" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.2,0,1,0.6</ClientRectangle>
+              <ClientRectangle>12.8,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>ca344ce5cdab4bc4b8976c5ba69e219e</Guid>
@@ -774,7 +776,7 @@
             <Text34 Ref="52" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>14,0,1.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>ddd0b3cc66be447f978408052b34202e</Guid>
@@ -800,7 +802,7 @@
             <Text35 Ref="54" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>9.6,0,1.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>8ea45c5f385a47f2992418e6a3918cec</Guid>
@@ -824,7 +826,7 @@
             <Text36 Ref="56" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18,0,2,0.6</ClientRectangle>
+              <ClientRectangle>18,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
               <Font>Times New Roman,12</Font>
@@ -853,12 +855,12 @@
         </Data>
         <ColumnFooterBand1 Ref="57" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.6,20,0.6</ClientRectangle>
+          <ClientRectangle>0,10.8,20,0.6</ClientRectangle>
           <Components isList="true" count="5">
             <Text45 Ref="58" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,10,0.6</ClientRectangle>
+              <ClientRectangle>0,0,9.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>d06a08df47174f68a8b2743b9b677536</Guid>
@@ -875,7 +877,7 @@
             <Text4 Ref="59" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>9.6,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>c8483554a366451da5f8cd3ea6223d32</Guid>
@@ -899,7 +901,7 @@
             <Text5 Ref="61" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.6,0,3.8,0.6</ClientRectangle>
+              <ClientRectangle>11,0,4.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>c2d341fc1c2d4b2d8607715fa2c247da</Guid>
@@ -961,7 +963,7 @@
         </ColumnFooterBand1>
         <Footer Ref="65" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12,20,4.6</ClientRectangle>
+          <ClientRectangle>0,12.2,20,4.6</ClientRectangle>
           <Components isList="true" count="8">
             <Text8 Ref="66" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1114,10 +1116,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/4/2021 11:06:33 AM</ReportChanged>
+  <ReportChanged>2/19/2021 8:09:59 AM</ReportChanged>
   <ReportCreated>1/9/2021 3:49:12 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ban-hang\rptPhieuYeuCauXuatKho.mrt</ReportFile>
-  <ReportGuid>f143c335727448d09df4034c7fe5ec0c</ReportGuid>
+  <ReportGuid>14cfeea6210b4e5aab50ed18ef731c59</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

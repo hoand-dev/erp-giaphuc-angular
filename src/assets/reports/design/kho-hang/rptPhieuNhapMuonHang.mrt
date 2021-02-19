@@ -445,12 +445,14 @@
         <Data Ref="30" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,7.6,20,0.6</ClientRectangle>
+          <CanGrow>False</CanGrow>
+          <CanShrink>True</CanShrink>
+          <ClientRectangle>0,7.6,20,0.8</ClientRectangle>
           <Components isList="true" count="5">
             <Text28 Ref="31" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>1bbb11e531204ab0a79fd1176ff749bc</Guid>
@@ -468,7 +470,7 @@
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>1.6,0,11.2,0.6</ClientRectangle>
+              <ClientRectangle>1.6,0,11.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>8164f1edb2954593b1c41350ff06cfb3</Guid>
@@ -485,7 +487,7 @@
             <Text30 Ref="33" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.8,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>12.8,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>118066b2459d42558fb18fefe011eceb</Guid>
@@ -502,7 +504,7 @@
             <Text35 Ref="34" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>14.4,0,1.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>cc450ca16cca4d19be61c9cfcc8418f0</Guid>
@@ -526,7 +528,7 @@
             <Text36 Ref="36" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16,0,4,0.6</ClientRectangle>
+              <ClientRectangle>16,0,4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Guid>a3aa48308f244870ace9a7342e09c39d</Guid>
@@ -553,7 +555,7 @@
         </Data>
         <ColumnFooterBand1 Ref="37" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,9,20,0.6</ClientRectangle>
+          <ClientRectangle>0,9.2,20,0.6</ClientRectangle>
           <Components isList="true" count="3">
             <Text45 Ref="38" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -621,7 +623,7 @@
         </ColumnFooterBand1>
         <Footer Ref="42" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.4,20,4.2</ClientRectangle>
+          <ClientRectangle>0,10.6,20,4.2</ClientRectangle>
           <Components isList="true" count="8">
             <Text12 Ref="43" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -774,9 +776,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 1:46:52 PM</ReportChanged>
+  <ReportChanged>2/19/2021 9:57:06 AM</ReportChanged>
   <ReportCreated>1/27/2021 4:48:30 PM</ReportCreated>
-  <ReportGuid>2c39942736684357bcb4706d9984bd86</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuNhapMuonHang.mrt</ReportFile>
+  <ReportGuid>5a521c2071d34e15a6c845918bc5d647</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
