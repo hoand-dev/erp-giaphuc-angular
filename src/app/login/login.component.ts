@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
                         if (element.id == this.authenticationService.currentChiNhanhValue.id) {
                             this.chinhanhSelected = element;
                         }
+                        else this.chinhanhSelected = data[0];
                     }
                 }
                 else this.chinhanhSelected = data[0];
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
     onChangedChiNhanh(e) {
         // thay đổi giá trị chi nhánh hiện tại
         this.authenticationService.setChiNhanhValue(e.selectedItem);
+        this.chinhanhSelected = e.selectedItem;
     }
     
     onSubmit() {
@@ -81,6 +83,11 @@ export class LoginComponent implements OnInit {
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
+            return;
+        }
+
+        if(!this.chinhanhSelected){
+            this.error = 'Vui lòng chọn chi nhánh làm việc.';
             return;
         }
 
