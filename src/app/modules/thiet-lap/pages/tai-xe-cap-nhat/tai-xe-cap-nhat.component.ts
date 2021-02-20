@@ -50,6 +50,7 @@ export class TaiXeCapNhatComponent implements OnInit {
                         this.taixeService.findTaiXe(taixe_id).subscribe(
                             (data) => {
                                 this.taixe = data[0];
+                                this.taixe_old = this.taixe.mataixe; // gán lại dữ liệu đã tồn tại
                             },
                             (error) => {
                                 this.taixeService.handleError(error);

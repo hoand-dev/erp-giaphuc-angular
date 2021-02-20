@@ -225,7 +225,7 @@
         </PageHeader>
         <PageFooter Ref="14" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,28.1,20,0.6</ClientRectangle>
+          <ClientRectangle>0,27.9,20,0.8</ClientRectangle>
           <Components isList="true" count="4">
             <Text46 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1116,10 +1116,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/19/2021 8:09:59 AM</ReportChanged>
+  <ReportChanged>2/20/2021 4:13:37 PM</ReportChanged>
   <ReportCreated>1/9/2021 3:49:12 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ban-hang\rptPhieuYeuCauXuatKho.mrt</ReportFile>
-  <ReportGuid>14cfeea6210b4e5aab50ed18ef731c59</ReportGuid>
+  <ReportGuid>b0d28281334a46798c885354d9cb3b7f</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
