@@ -49,6 +49,9 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.donvigiacong = new DonViGiaCong();
         this.theCallbackValid = this.theCallbackValid.bind(this);
 
@@ -65,6 +68,7 @@ export class DonViGiaCongThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

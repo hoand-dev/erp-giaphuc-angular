@@ -69,6 +69,10 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
 
     asyncValidation: Function;
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
+        
         this.phieudathang = new PhieuDatHang();
         this.asyncValidation = this.checkGiuHang.bind(this);
 
@@ -150,6 +154,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

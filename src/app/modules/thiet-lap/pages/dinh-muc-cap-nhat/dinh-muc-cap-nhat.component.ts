@@ -60,6 +60,9 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.dinhmuc = new DinhMuc();
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
@@ -146,6 +149,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

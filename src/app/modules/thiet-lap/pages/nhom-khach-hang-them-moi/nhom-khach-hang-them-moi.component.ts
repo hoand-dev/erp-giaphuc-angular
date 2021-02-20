@@ -36,7 +36,7 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private  activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private nhomkhachhangService: NhomKhachHangService,
     private authenticationService: AuthenticationService
   ) { }
@@ -46,11 +46,16 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.authenticationService.setDisableChiNhanh(true);
+    });
     this.nhomkhachhang = new NhomKhachHang();
     this.theCallbackValid = this.theCallbackValid.bind(this);
     this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
   }
+
   ngOnDestroy(): void {
+    this.authenticationService.setDisableChiNhanh(false);
     if(this.subscriptions){
       this.subscriptions.unsubscribe();
     }

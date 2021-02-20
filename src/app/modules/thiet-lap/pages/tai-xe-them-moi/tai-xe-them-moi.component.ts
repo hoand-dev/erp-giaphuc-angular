@@ -49,12 +49,16 @@ export class TaiXeThemMoiComponent implements OnInit {
 
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.authenticationService.setDisableChiNhanh(true);
+    });
     this.taixe = new TaiXe();
     this.theCallbackValid = this.theCallbackValid.bind(this); // binding function sang html sau compile
     this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x =>this.currentChiNhanh =x))
   }
 
   ngOnDestroy(): void {
+    this.authenticationService.setDisableChiNhanh(false);
     this.subscriptions.unsubscribe();
   }
 

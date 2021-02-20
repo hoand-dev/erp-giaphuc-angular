@@ -73,6 +73,9 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.phieumuahangncc = new PhieuMuaHangNCC();
 
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));

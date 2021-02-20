@@ -34,6 +34,9 @@ export class TaiXeCapNhatComponent implements OnInit {
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private taixeService: TaiXeService) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.taixe = new TaiXe();
         this.theCallbackValid = this.theCallbackValid.bind(this); // lấy thông tin củ
 
@@ -60,6 +63,7 @@ export class TaiXeCapNhatComponent implements OnInit {
 
     ngOnDestroy(): void {
         //xử lý trước khi thoát khỏi trang ng
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

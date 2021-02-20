@@ -81,6 +81,9 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.phieuyeucaugiacong = new PhieuYeuCauGiaCong();
 
         this.subscriptions.add(

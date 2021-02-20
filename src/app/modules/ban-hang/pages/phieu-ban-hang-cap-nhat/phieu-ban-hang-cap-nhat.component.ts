@@ -94,10 +94,11 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         // cập nhật thông tin phiếu không cho thay đổi chi nhánh
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
-            this.asyncValidation = this.checkCoLayThue.bind(this);
         });
 
         this.phieubanhang = new PhieuBanHang();
+        this.asyncValidation = this.checkCoLayThue.bind(this);
+
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;

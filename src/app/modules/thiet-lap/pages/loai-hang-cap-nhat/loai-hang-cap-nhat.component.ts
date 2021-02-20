@@ -41,6 +41,9 @@ export class LoaiHangCapNhatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.authenticationService.setDisableChiNhanh(true);
+    });
     this.loaihang = new LoaiHang();
     this.theCallbackValid = this.theCallbackValid.bind(this);
 
@@ -63,6 +66,7 @@ export class LoaiHangCapNhatComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this.authenticationService.setDisableChiNhanh(false);
     this.subscriptions.unsubscribe();
   }
   

@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-root',
@@ -140,6 +141,7 @@ export class AppComponent implements OnInit {
     subscriptions: Subscription = new Subscription();
 
     private refreshInterval: any;
+    public notifyChiNhanh: boolean;
     public chinhanhSelected: ChiNhanh;
 
     constructor(
@@ -155,6 +157,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.subscriptions.add(this.authenticationService.currentUser.subscribe(x => this.currentUserToken = x));
+        this.notifyChiNhanh = false;
 
         if (this.isAutorized()) {
             // phải refresh token trước khi lấy thông tin người dùng
@@ -517,6 +520,20 @@ export class AppComponent implements OnInit {
     onChangedChiNhanh(e) {
         // thay đổi giá trị chi nhánh hiện tại
         this.authenticationService.setChiNhanhValue(e.selectedItem);
+
+        // thông báo cho người dùng biết
+        if (this.notifyChiNhanh) {
+            Swal.fire({
+                title: 'ĐANG CHUYỂN CHI NHÁNH',
+                html: 'Vui lòng chờ một lát ..',
+                icon: 'warning',
+                timer: 3000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+        }
+        else this.notifyChiNhanh = true;
     }
 
     onValueChanged(e){

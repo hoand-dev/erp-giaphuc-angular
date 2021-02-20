@@ -50,6 +50,9 @@ export class KhachHangThemMoiComponent implements OnInit {
     ngAfterViewInit(): void {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.khachhang = new KhachHang();
         this.theCallBackValid = this.theCallBackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
@@ -79,6 +82,7 @@ export class KhachHangThemMoiComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

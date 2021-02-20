@@ -54,6 +54,9 @@ export class LenhVayThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.lenhvay = new LenhVay();
 
         this.subscriptions.add(

@@ -35,6 +35,9 @@ export class KhuVucCapNhatComponent implements OnInit {
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private khuvucService: KhuVucService) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.khuvuc = new KhuVuc();
         this.theCallbackValid = this.theCallbackValid.bind(this); // binding function sang html sau compile
 
@@ -64,6 +67,7 @@ export class KhuVucCapNhatComponent implements OnInit {
     ngOnDestroy() {
         // called once before the instance is destroyed
         //xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

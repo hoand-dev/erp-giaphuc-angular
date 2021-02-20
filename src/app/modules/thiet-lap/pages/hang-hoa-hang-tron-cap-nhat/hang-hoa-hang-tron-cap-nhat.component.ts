@@ -51,6 +51,9 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.hanghoa = new HangHoa();
         this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_hangtron;
 
@@ -114,6 +117,7 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

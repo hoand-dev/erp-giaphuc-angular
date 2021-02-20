@@ -43,6 +43,9 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.khohang = new KhoHang();
         this.theCallbackValid = this.theCallbackValid.bind(this);
 
@@ -90,6 +93,7 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

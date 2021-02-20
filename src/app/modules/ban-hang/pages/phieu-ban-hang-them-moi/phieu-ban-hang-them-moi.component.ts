@@ -88,6 +88,10 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     asyncValidation: Function;
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
+        
         this.phieubanhang = new PhieuBanHang();
         this.asyncValidation = this.checkCoLayThue.bind(this);
 
