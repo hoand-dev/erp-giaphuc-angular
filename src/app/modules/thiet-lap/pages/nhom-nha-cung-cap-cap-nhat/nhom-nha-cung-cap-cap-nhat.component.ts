@@ -44,6 +44,9 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.authenticationService.setDisableChiNhanh(true);
+    });
     this.nhomnhacungcap = new NhomNhaCungCap();
     this.theCallBackValid = this.theCallBackValid.bind(this);
 
@@ -70,6 +73,7 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
 }
      
   ngOnDestroy(): void {
+    this.authenticationService.setDisableChiNhanh(false);
     this.subscriptions.unsubscribe();
   }
 

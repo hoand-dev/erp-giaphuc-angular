@@ -6,6 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
+import { AuthenticationService } from '@app/_services';
 
 @Component({
   selector: 'app-nhom-khach-hang-cap-nhat',
@@ -35,10 +36,14 @@ export class NhomKhachHangCapNhatComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRouter: ActivatedRoute,
+    private authenticationService: AuthenticationService,
     private nhomkhachhangService: NhomKhachHangService
   ) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.authenticationService.setDisableChiNhanh(true);
+    });
     this.nhomkhachhang = new NhomKhachHang();
     this.theCallbackValid = this.theCallbackValid.bind(this);//biding sang html
     this.subscriptions.add(this.activatedRouter.params.subscribe(params => {
@@ -60,6 +65,7 @@ export class NhomKhachHangCapNhatComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.authenticationService.setDisableChiNhanh(false);
     this.subscriptions.unsubscribe();
   }
 

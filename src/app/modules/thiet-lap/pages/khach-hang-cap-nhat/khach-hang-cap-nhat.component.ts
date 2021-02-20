@@ -54,6 +54,9 @@ export class KhachHangCapNhatComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.khachhang = new KhachHang();
 
         this.theCallBackValid = this.theCallBackValid.bind(this);
@@ -100,6 +103,7 @@ export class KhachHangCapNhatComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

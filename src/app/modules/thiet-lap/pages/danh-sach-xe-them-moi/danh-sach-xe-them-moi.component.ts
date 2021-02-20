@@ -49,6 +49,9 @@ export class DanhSachXeThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.danhsachxe = new DanhSachXe();
         this.theCallbackValid = this.theCallbackValid.bind(this); // binding function sang html sau compile
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
@@ -59,6 +62,7 @@ export class DanhSachXeThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

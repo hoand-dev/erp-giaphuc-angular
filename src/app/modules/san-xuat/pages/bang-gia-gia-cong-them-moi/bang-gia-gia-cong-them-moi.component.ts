@@ -60,6 +60,9 @@ export class BangGiaGiaCongThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.banggiagiacong = new BangGiaGiaCong();
 
         this.subscriptions.add(

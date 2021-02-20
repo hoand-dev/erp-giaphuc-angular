@@ -34,6 +34,9 @@ export class LoaiHangThemMoiComponent implements OnInit {
     ngAfterViewInit() {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.loaihang = new LoaiHang();
         this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
@@ -44,6 +47,7 @@ export class LoaiHangThemMoiComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

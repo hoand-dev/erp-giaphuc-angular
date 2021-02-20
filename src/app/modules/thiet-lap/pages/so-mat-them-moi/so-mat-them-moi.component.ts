@@ -45,6 +45,9 @@ export class SoMatThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.somat = new SoMat();
         this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
@@ -55,6 +58,7 @@ export class SoMatThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

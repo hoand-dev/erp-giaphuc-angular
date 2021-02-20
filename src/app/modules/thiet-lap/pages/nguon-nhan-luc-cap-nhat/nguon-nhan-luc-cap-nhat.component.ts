@@ -40,6 +40,9 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.nguonnhanluc = new NguonNhanLuc();
         this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
@@ -65,6 +68,7 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

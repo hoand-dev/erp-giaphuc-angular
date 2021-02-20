@@ -65,6 +65,10 @@ export class BangGiaThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
+        
         this.banggia = new BangGia();
 
         this.subscriptions.add(
@@ -116,6 +120,7 @@ export class BangGiaThemMoiComponent implements OnInit {
 
     ngOnDestroy(): void {
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

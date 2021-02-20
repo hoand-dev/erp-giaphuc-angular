@@ -60,6 +60,9 @@ export class PhieuDatHangNCCThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.phieudathangncc = new PhieuDatHangNCC();
 
         this.subscriptions.add(
@@ -115,6 +118,7 @@ export class PhieuDatHangNCCThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

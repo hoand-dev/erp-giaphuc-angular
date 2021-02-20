@@ -79,10 +79,12 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
     ngAfterViewInit() {
         // this.frmphieubanhang.instance.validate(); // showValidationSummary sau khi focus out
     }
+    
     ngOnInit(): void {
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
         });
+
         this.phieukhachtrahang = new PhieuKhachTraHang();
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {

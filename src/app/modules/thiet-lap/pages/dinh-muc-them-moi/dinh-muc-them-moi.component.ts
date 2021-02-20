@@ -64,6 +64,9 @@ export class DinhMucThemMoiComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.dinhmuc = new DinhMuc();
         this.theCallbackValid = this.theCallbackValid.bind(this);
         
@@ -124,6 +127,7 @@ export class DinhMucThemMoiComponent implements OnInit {
         //Add 'implements OnDestroy' to the class.
 
         // xử lý trước khi thoát khỏi trang
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

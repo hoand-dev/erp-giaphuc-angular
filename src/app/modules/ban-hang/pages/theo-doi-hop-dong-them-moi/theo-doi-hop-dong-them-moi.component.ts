@@ -61,6 +61,10 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     ngAfterViewInit(): void {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
+        
         this.hopdong = new TheoDoiHopDong();
         this.theCallBackValid = this.theCallBackValid.bind(this);
 
@@ -107,6 +111,7 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

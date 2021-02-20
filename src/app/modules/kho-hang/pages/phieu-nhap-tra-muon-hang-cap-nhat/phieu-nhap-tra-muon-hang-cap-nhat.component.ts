@@ -75,6 +75,9 @@ export class PhieuNhapTraMuonHangCapNhatComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.phieunhaptramuonhang = new PhieuNhapTraMuonHang();
 
         this.subscriptions.add(

@@ -92,6 +92,9 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.phieunhapkhogiacong = new PhieuNhapKhoGiaCong();
 
         this.subscriptions.add(

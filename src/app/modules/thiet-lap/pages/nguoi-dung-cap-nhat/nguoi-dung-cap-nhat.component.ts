@@ -43,6 +43,9 @@ export class NguoiDungCapNhatComponent implements OnInit {
     ngAfterViewInit() {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.authenticationService.setDisableChiNhanh(true);
+        });
         this.nguoidung = new NguoiDung();
         this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
@@ -84,6 +87,7 @@ export class NguoiDungCapNhatComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
+        this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
     }
 

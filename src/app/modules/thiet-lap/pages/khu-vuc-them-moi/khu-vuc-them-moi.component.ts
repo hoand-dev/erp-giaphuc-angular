@@ -44,6 +44,9 @@ export class KhuVucThemMoiComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.authenticationService.setDisableChiNhanh(true);
+    });
     this.khuvuc = new KhuVuc();
     this.theCallbackValid = this.theCallbackValid.bind(this);
     this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh =x));
@@ -53,7 +56,7 @@ export class KhuVucThemMoiComponent implements OnInit {
   ngOnDestroy(): void {
     
     // xử lý trước khi thoát khỏi trang
- 
+    this.authenticationService.setDisableChiNhanh(false);
       this.subscriptions.unsubscribe();
     
   }
