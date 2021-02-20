@@ -15,6 +15,7 @@ import { HangHoaService } from '@app/shared/services';
 import CustomStore from 'devextreme/data/custom_store';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DanhSachPhieuXuatMuonHangModalComponent } from '../../modals/danh-sach-phieu-xuat-muon-hang-modal/danh-sach-phieu-xuat-muon-hang-modal.component';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 
 @Component({
     selector: 'app-phieu-nhap-tra-muon-hang-them-moi',
@@ -157,20 +158,22 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieuxuatmuonhang_chitiets.forEach((value, index) => {
-                                let item = new PhieuNhapTraMuonHang_ChiTiet();
+                                if (value.trangthaitra != ETrangThaiPhieu.datra) {
+                                    let item = new PhieuNhapTraMuonHang_ChiTiet();
 
-                                item.khonhap_id = this.phieunhaptramuonhang.khonhap_id;
-                                item.loaihanghoa = value.loaihanghoa;
-                                item.hanghoa_id = value.hanghoa_id;
-                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                item.dvt_id = value.dvt_id;
-                                item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong  - value.soluongdatra / value.tilequydoi;
-                                
-                                item.chuthich = value.chuthich;
-                                item.phieuxuatmuonhang_chitiet_id = value.id;
+                                    item.khonhap_id = this.phieunhaptramuonhang.khonhap_id;
+                                    item.loaihanghoa = value.loaihanghoa;
+                                    item.hanghoa_id = value.hanghoa_id;
+                                    item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                    item.dvt_id = value.dvt_id;
+                                    item.tilequydoi = value.tilequydoi;
+                                    item.soluong = value.soluong - value.soluongdatra / value.tilequydoi;
 
-                                this.hanghoas.push(item);
+                                    item.chuthich = value.chuthich;
+                                    item.phieuxuatmuonhang_chitiet_id = value.id;
+
+                                    this.hanghoas.push(item);
+                                }
                             });
                         },
                         (error) => {

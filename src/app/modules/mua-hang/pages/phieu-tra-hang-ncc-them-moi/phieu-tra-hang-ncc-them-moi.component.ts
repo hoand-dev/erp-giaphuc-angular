@@ -173,22 +173,24 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieumuahangncc_chitiet.forEach((value, index) => {
-                                let item = new PhieuTraHangNCC_ChiTiet();
+                                if (value.trangthaitra != ETrangThaiPhieu.datra) {
+                                    let item = new PhieuTraHangNCC_ChiTiet();
 
-                                item.loaihanghoa = value.loaihanghoa;
-                                item.hanghoa_id = value.hanghoa_id;
-                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                item.dvt_id = value.dvt_id;
-                                item.tilequydoi = value.tilequydoi;
-                                item.soluong = (value.soluongdanhap - value.soluongdatra) / value.tilequydoi;
-                                item.dongia = value.dongia;
-                                item.thuevat = value.thuevat;
-                                item.chietkhau = value.chietkhau;
-                                item.thanhtien = value.thanhtien;
-                                item.chuthich = value.chuthich;
-                                item.phieumuahang_chitiet_id = value.id;
+                                    item.loaihanghoa = value.loaihanghoa;
+                                    item.hanghoa_id = value.hanghoa_id;
+                                    item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                    item.dvt_id = value.dvt_id;
+                                    item.tilequydoi = value.tilequydoi;
+                                    item.soluong = (value.soluongdanhap - value.soluongdatra) / value.tilequydoi;
+                                    item.dongia = value.dongia;
+                                    item.thuevat = value.thuevat;
+                                    item.chietkhau = value.chietkhau;
+                                    item.thanhtien = value.thanhtien;
+                                    item.chuthich = value.chuthich;
+                                    item.phieumuahang_chitiet_id = value.id;
 
-                                this.hanghoas.push(item);
+                                    this.hanghoas.push(item);
+                                }
                             });
                         },
                         (error) => {
