@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DinhMuc, DonViGiaCong, HangHoa, KhachHang, KhoHang, PhieuNhapKhoGiaCong, PhieuNhapKhoGiaCongCT, PhieuYeuCauGiaCongCT, SoMat } from '@app/shared/entities';
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import {
     AppInfoService,
     CommonService,
@@ -209,30 +210,32 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieuyeucaugiacong_chitiets.forEach((value, index) => {
-                                let item = new PhieuNhapKhoGiaCongCT();
+                                if (value.trangthainhap != ETrangThaiPhieu.danhap) {
+                                    let item = new PhieuNhapKhoGiaCongCT();
 
-                                item.khogiacong_id = value.khogiacong_id;
-                                item.loaihanghoa = value.loaihanghoa;
-                                item.thanhpham_id = value.thanhpham_id;
-                                item.mathanhpham = value.mathanhpham;
-                                item.tenthanhpham = value.tenthanhpham;
-                                item.hanghoa_id = value.hanghoa_id;
-                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                item.dvt_id = value.dvt_id;
-                                item.tilequydoi = value.tilequydoi;
-                                item.somat_id = value.somat_id;
-                                item.heso = value.heso;
-                                item.soluong = (value.soluong - value.soluongtattoan - value.soluongdanhap) / value.tilequydoi;
-                                item.dongia = value.dongia;
-                                item.dongiavon = value.dongiavon;
-                                item.thanhtien = value.thanhtien;
-                                item.chuthich = value.chuthich;
-                                item.somat_thanhpham_id = value.somat_thanhpham_id;
-                                item.xuatnguyenlieu = value.xuatnguyenlieu;
-                                item.yeucaus = value.yeucaus;
-                                item.phieuyeucaugiacongct_id = value.id;
+                                    item.khogiacong_id = value.khogiacong_id;
+                                    item.loaihanghoa = value.loaihanghoa;
+                                    item.thanhpham_id = value.thanhpham_id;
+                                    item.mathanhpham = value.mathanhpham;
+                                    item.tenthanhpham = value.tenthanhpham;
+                                    item.hanghoa_id = value.hanghoa_id;
+                                    item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                    item.dvt_id = value.dvt_id;
+                                    item.tilequydoi = value.tilequydoi;
+                                    item.somat_id = value.somat_id;
+                                    item.heso = value.heso;
+                                    item.soluong = (value.soluong - value.soluongtattoan - value.soluongdanhap) / value.tilequydoi;
+                                    item.dongia = value.dongia;
+                                    item.dongiavon = value.dongiavon;
+                                    item.thanhtien = value.thanhtien;
+                                    item.chuthich = value.chuthich;
+                                    item.somat_thanhpham_id = value.somat_thanhpham_id;
+                                    item.xuatnguyenlieu = value.xuatnguyenlieu;
+                                    item.yeucaus = value.yeucaus;
+                                    item.phieuyeucaugiacongct_id = value.id;
 
-                                this.hanghoas.push(item);
+                                    this.hanghoas.push(item);
+                                }
                             });
                         },
                         (error) => {

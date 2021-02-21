@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, KhachHang, KhoHang, NguoiDung, PhieuBanHang, PhieuBanHang_ChiTiet, PhieuDatHang, PhieuDatHang_ChiTiet } from '@app/shared/entities';
+import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import {
     AppInfoService,
     CommonService,
@@ -195,24 +196,26 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieudathang_chitiet.forEach((value, index) => {
-                                let item = new PhieuBanHang_ChiTiet();
+                                if (value.trangthaigiao != ETrangThaiPhieu.dagiao) {
+                                    let item = new PhieuBanHang_ChiTiet();
 
-                                item.loaihanghoa = value.loaihanghoa;
-                                item.hanghoa_id = value.hanghoa_id;
-                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                item.dvt_id = value.dvt_id;
-                                item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong - value.soluongtattoan - (value.soluongdagiao / value.tilequydoi);
-                                item.dongia = value.dongia;
-                                item.thuevat = value.thuevat;
-                                item.chietkhau = value.chietkhau;
-                                item.thanhtien = value.thanhtien;
-                                item.chuthich = value.chuthich;
-                                item.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
-                                item.phieudathang_chitiet_id = value.id;
-                                item.xuathoadon = value.thuevat > 0 ? true : false;
+                                    item.loaihanghoa = value.loaihanghoa;
+                                    item.hanghoa_id = value.hanghoa_id;
+                                    item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                    item.dvt_id = value.dvt_id;
+                                    item.tilequydoi = value.tilequydoi;
+                                    item.soluong = value.soluong - value.soluongtattoan - value.soluongdagiao / value.tilequydoi;
+                                    item.dongia = value.dongia;
+                                    item.thuevat = value.thuevat;
+                                    item.chietkhau = value.chietkhau;
+                                    item.thanhtien = value.thanhtien;
+                                    item.chuthich = value.chuthich;
+                                    item.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
+                                    item.phieudathang_chitiet_id = value.id;
+                                    item.xuathoadon = value.thuevat > 0 ? true : false;
 
-                                this.hanghoas.push(item);
+                                    this.hanghoas.push(item);
+                                }
                             });
                         },
                         (error) => {
