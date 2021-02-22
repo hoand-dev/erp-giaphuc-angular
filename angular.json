@@ -15,7 +15,7 @@
                     "options": {
                         "allowedCommonJsDependencies": ["lodash", "jquery", "globalize", "devextreme", "devextreme-angular"],
                         "showCircularDependencies": false,
-                        "outputPath": "dist/myadmin-lte",
+                        "outputPath": "D:/publish/angular",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
