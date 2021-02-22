@@ -15,13 +15,13 @@
                     "options": {
                         "allowedCommonJsDependencies": ["lodash", "jquery", "globalize", "devextreme", "devextreme-angular"],
                         "showCircularDependencies": false,
-                        "outputPath": "dist/myadmin-lte",
+                        "outputPath": "D:/publish/angular",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "aot": true,
-                        "assets": ["src/favicon.ico", "src/assets", "src/license", "src/localization", "src/reports"],
+                        "assets": ["src/favicon.ico", "src/assets", "src/web.config"],
                         "styles": [
                             "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "node_modules/sweetalert2/src/sweetalert2.scss",

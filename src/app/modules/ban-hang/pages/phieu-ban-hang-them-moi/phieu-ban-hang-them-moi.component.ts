@@ -130,6 +130,12 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
             this.nguoidungService.findNguoiDungs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstNguoiDung = x;
+
+                // gán nhân viên sale mặc định
+                this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe(y =>
+                    this.phieubanhang.nhanviensale_id = y.id
+                ));
+                
                 this.dataSource_NguoiDung = new DataSource({
                     store: x,
                     paginate: true,

@@ -172,15 +172,13 @@ export class AppComponent implements OnInit {
             this.subscriptions.add(this.chinhanhService.findChiNhanhs().subscribe(
                 data => {
                     this.chinhanhs = data;
-                    if (this.authenticationService.currentChiNhanhValue) {
-                        for (let index = 0; index < data.length; index++) {
-                            const element = data[index];
-                            if (element.id == this.authenticationService.currentChiNhanhValue.id) {
-                                this.chinhanhSelected = element;
+                    this.subscriptions.add(
+                        this.authenticationService.currentChiNhanh.subscribe((x) => {
+                            if(x.id){
+                                this.chinhanhSelected = data.find(c => c.id == x.id);
                             }
-                        }
-                    }
-                    else this.chinhanhSelected = data[0];
+                        })
+                    );
                 },
                 error => {
                     this.chinhanhService.handleError(error);
@@ -527,7 +525,7 @@ export class AppComponent implements OnInit {
                 title: 'ĐANG CHUYỂN CHI NHÁNH',
                 html: 'Vui lòng chờ một lát ..',
                 icon: 'warning',
-                timer: 3000,
+                timer: 2000,
                 timerProgressBar: true,
                 showConfirmButton: false,
                 allowOutsideClick: false
