@@ -47,12 +47,16 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
     public lstSoMat: SoMat[];
+
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
 
     // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu mua hàng
     private hanghoalenght: number = 0;
+
+    // kiểm tra nhấn lấy giá chưa
+    private isClicked_LayGia: boolean = false;
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -187,6 +191,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     clickLayGia() {
+        this.isClicked_LayGia = true;
         if(this.loaiphieu != 'taikho' && this.phieuyeucaugiacong.donvigiacong_id === null){
             notify(
                 {
@@ -250,6 +255,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     public onHangHoaChanged(index, e) {
+        this.isClicked_LayGia = false;
         let selected = e.selectedItem;
 
         // xử lý lại thông tin dựa trên lựa chọn
@@ -277,6 +283,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     onYeuCauChanged(index, e) {
+        this.isClicked_LayGia = false;
         this.onTaoThanhPham(index);
     }
 
@@ -358,7 +365,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         });
         this.phieuyeucaugiacong.tongthanhtien = tongtienhang;
     }
-    
+
     onValid(){
         if (this.hanghoas.filter((x) => x.heso <= 0).length > 0) {
             Swal.fire({
@@ -373,7 +380,19 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         return true;
     }
 
-    public onSubmitForm(e) {
+    public async onSubmitForm(e) {
+        // kiểm tra nhấn nút lấy giá chưa
+        if(!this.isClicked_LayGia){
+            const { isConfirmed: confirm } = await Swal.fire({
+                title: 'CHƯA LẤY GIÁ',
+                html: 'Vui lòng lấy giá!',
+                icon: 'warning',
+                showConfirmButton: true,
+                confirmButtonText: "Đồng ý"
+            });
+            //if(!confirm) return;
+            return;
+        }
         if(!this.onValid()) return;
 
         // bỏ qua các dòng dữ liệu số lượng = 0
