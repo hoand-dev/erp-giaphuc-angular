@@ -74,8 +74,8 @@ export class LoginComponent implements OnInit {
 
     onChangedChiNhanh(e) {
         // thay đổi giá trị chi nhánh hiện tại
-        this.authenticationService.setChiNhanhValue(e.selectedItem);
         this.chinhanhSelected = e.selectedItem;
+        this.authenticationService.setChiNhanhValue(e.selectedItem);
     }
     
     onSubmit() {
