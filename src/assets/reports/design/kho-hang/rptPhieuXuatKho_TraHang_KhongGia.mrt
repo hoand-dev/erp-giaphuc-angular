@@ -697,11 +697,11 @@
         </ColumnFooterBand1>
         <Footer Ref="47" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.4,20,4.2</ClientRectangle>
-          <Components isList="true" count="8">
+          <ClientRectangle>0,12.4,20,2.8</ClientRectangle>
+          <Components isList="true" count="6">
             <Text12 Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,1,7,0.6</ClientRectangle>
+              <ClientRectangle>0,0.4,7,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <HorAlignment>Center</HorAlignment>
@@ -715,7 +715,7 @@
             </Text12>
             <Text13 Ref="49" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>7,1,6,0.6</ClientRectangle>
+              <ClientRectangle>7,0.4,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <HorAlignment>Center</HorAlignment>
@@ -729,7 +729,7 @@
             </Text13>
             <Text14 Ref="50" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>13,1,7,0.6</ClientRectangle>
+              <ClientRectangle>13,0.4,7,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <HorAlignment>Center</HorAlignment>
@@ -743,7 +743,7 @@
             </Text14>
             <Text15 Ref="51" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,1.6,7,0.6</ClientRectangle>
+              <ClientRectangle>0,1,7,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
               <HorAlignment>Center</HorAlignment>
@@ -757,7 +757,7 @@
             </Text15>
             <Text17 Ref="52" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>13,1.6,7,0.6</ClientRectangle>
+              <ClientRectangle>13,1,7,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
               <Guid>ecf7d493e69c4ba58b7f8539a6d6f9a5</Guid>
@@ -772,7 +772,7 @@
             </Text17>
             <Text16 Ref="53" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>7,1.6,6,0.6</ClientRectangle>
+              <ClientRectangle>7,1,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
               <Guid>2f89a1154fd843fab2fdeddb0b2a1d9d</Guid>
@@ -785,36 +785,6 @@
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text16>
-            <Text43 Ref="54" type="Text" isKey="true">
-              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.2,2,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12,Bold</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text43</Name>
-              <Page isRef="7" />
-              <Parent isRef="47" />
-              <Text>Bằng chữ: </Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text43>
-            <Text44 Ref="55" type="Text" isKey="true">
-              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>2,0.2,18,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text44</Name>
-              <Page isRef="7" />
-              <Parent isRef="47" />
-              <Text>{rptPhieuXuatKho.tongthanhtien_bangchu} đồng.</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text44>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>Footer</Name>
@@ -843,10 +813,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/19/2021 8:57:28 AM</ReportChanged>
+  <ReportChanged>2/19/2021 3:35:51 PM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_TraHang_KhongGia.mrt</ReportFile>
-  <ReportGuid>36ba919d4a9543f7b388e70d9d7aaada</ReportGuid>
+  <ReportGuid>acff2c57843b40ab95a9d50465998dd8</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

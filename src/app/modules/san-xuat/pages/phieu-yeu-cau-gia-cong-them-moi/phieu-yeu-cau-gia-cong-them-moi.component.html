@@ -25,11 +25,11 @@
                     <div class="card-body">
                         <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                     <h5>{{ 'Phiếu yêu cầu gia công' + (this.loaiphieu == 'taikho' ? ' TẠI KHO' : ' NGOÀI') | uppercase }} - THÊM MỚI</h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="clickLayGia()">LẤY GIÁ</button>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block float-right" (click)="clickLayGia()">LẤY GIÁ</button>
                                 </div>
                             </div>
                         </div>

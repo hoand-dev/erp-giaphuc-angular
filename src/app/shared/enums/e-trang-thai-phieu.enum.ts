@@ -1,4 +1,5 @@
 export enum ETrangThaiPhieu {
+
     chuanhan   = "Chưa nhận"  ,
     dangnhan   = "Đang nhận"  ,
     danhan     = "Đã nhận"    ,
