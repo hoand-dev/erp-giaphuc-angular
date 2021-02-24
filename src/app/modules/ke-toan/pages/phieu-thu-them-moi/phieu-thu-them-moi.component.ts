@@ -176,7 +176,7 @@ export class PhieuThuThemMoiComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachPhieuXuatMuonHangModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef = this.modalService.show(DanhSachPhieuXuatMuonHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */

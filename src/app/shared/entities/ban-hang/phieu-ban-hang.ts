@@ -2,6 +2,8 @@ export class PhieuBanHang {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
+    public makhachhang: string;
+
     public nhanviensale_hoten: string;
     public tongtien_bangchu: string;
     public phieuin_thoigian: string;

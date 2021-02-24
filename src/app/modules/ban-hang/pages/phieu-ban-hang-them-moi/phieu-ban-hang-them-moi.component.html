@@ -78,7 +78,7 @@
                                         [label]="{ text: 'N/V KINH DOANH' }"
                                         dataField="nhanviensale_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten' }"
+                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true,searchExpr: ['hoten', 'username'], displayExpr: 'hoten' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
