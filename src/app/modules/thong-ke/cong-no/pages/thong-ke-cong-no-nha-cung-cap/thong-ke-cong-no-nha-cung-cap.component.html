@@ -35,9 +35,9 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [columnAutoWidth]="true" [stateStoring]="stateStoringGrid">
+                                <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [columnAutoWidth]="true" [stateStoring]="stateStoringGrid" (onContextMenuPreparing)="addMenuItems($event)">
                                     <dxo-selection mode="single"></dxo-selection>
-                                    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                                    <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
                                     <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
                                     
                                     <!-- dx-data-grid option -->
@@ -55,7 +55,7 @@
                                     </dxo-pager>
 
                                     <dxi-column dataField="tennhomnhacungcap" caption="Nhóm nhà cung cấp"></dxi-column>
-                                    <dxi-column dataField="tennhacungcap" caption="Khách hàng" [groupIndex]="0"></dxi-column>
+                                    <dxi-column dataField="tennhacungcap" caption="Nhà cung cấp" [groupIndex]="0"></dxi-column>
                                     <dxi-column dataField="manhacungcap" caption="Mã nhà cung cấp"></dxi-column>
                                     <dxi-column dataField="diachi" caption="Địa chỉ"></dxi-column>
                                     <dxi-column dataField="sodienthoai" caption="Điện thoại"></dxi-column>

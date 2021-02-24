@@ -4,7 +4,9 @@ import { ThongKeCongNoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { DoiChieuCongNoNhaCungCapModalComponent } from '../../modals/doi-chieu-cong-no-nha-cung-cap-modal/doi-chieu-cong-no-nha-cung-cap-modal.component';
 
 @Component({
     selector: 'app-thong-ke-cong-no-nha-cung-cap',
@@ -13,6 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+    public bsModalRef: BsModalRef;
 
     private subscriptions: Subscription = new Subscription();
 
@@ -31,7 +34,8 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
 
     constructor(
         private authenticationService: AuthenticationService, 
-        private objThongKeCongNoService: ThongKeCongNoService
+        private objThongKeCongNoService: ThongKeCongNoService,
+        private modalService: BsModalService
     ) {}
 
     ngOnInit(): void {
@@ -76,6 +80,48 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
                 }
             )
         );
+    }
+
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+
+            // Add a custom menu item
+            e.items.push(
+                {
+                    text: 'Đối chiếu công nợ',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoNhaCungCap = e.row.key as ThongKeCongNoNhaCungCap;
+                        this.openModal(rowData, 1);
+                    }
+                }
+            );
+        }
+    }
+
+    openModal(congnonhacungcap: ThongKeCongNoNhaCungCap, mauin: number){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: "XEM IN ĐỐI CHIẾU CÔNG NỢ - MẪU " + mauin,
+            tungay: this.firstDayTime,
+            denngay: this.currDayTime,
+            congnonhacungcap: congnonhacungcap,
+            mauin: mauin
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(DoiChieuCongNoNhaCungCapModalComponent, {
+            class: 'modal-xl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     customizeText(rowData) {
