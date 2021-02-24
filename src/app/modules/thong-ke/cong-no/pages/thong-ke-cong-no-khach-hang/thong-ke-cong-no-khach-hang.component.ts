@@ -4,7 +4,9 @@ import { ThongKeCongNoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { DoiChieuCongNoKhachHangModalComponent } from '../../modals/doi-chieu-cong-no-khach-hang-modal/doi-chieu-cong-no-khach-hang-modal.component';
 
 @Component({
     selector: 'app-thong-ke-cong-no-khach-hang',
@@ -13,7 +15,8 @@ import { Subscription } from 'rxjs';
 })
 export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-
+    public bsModalRef: BsModalRef;
+    
     private subscriptions: Subscription = new Subscription();
 
     public dataSource_CongNoKhachHang: ThongKeCongNoKhachHang[];
@@ -31,7 +34,8 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
 
     constructor(
         private authenticationService: AuthenticationService, 
-        private objThongKeCongNoService: ThongKeCongNoService
+        private objThongKeCongNoService: ThongKeCongNoService,
+        private modalService: BsModalService
     ) {}
 
     ngOnInit(): void {
@@ -76,6 +80,75 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
                 }
             )
         );
+    }
+
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+
+            // Add a custom menu item
+            e.items.push(
+                {
+                    text: 'Đối chiếu công nợ - Mẫu 1',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoKhachHang = e.row.key as ThongKeCongNoKhachHang;
+                        this.openModal(rowData, 1);
+                    }
+                },
+                {
+                    text: 'Đối chiếu công nợ - Mẫu 2',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoKhachHang = e.row.key as ThongKeCongNoKhachHang;
+                        this.openModal(rowData, 2);
+                    }
+                },
+                {
+                    text: 'Đối chiếu công nợ - Mẫu 3',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoKhachHang = e.row.key as ThongKeCongNoKhachHang;
+                        this.openModal(rowData, 3);
+                    }
+                },
+                {
+                    text: 'Đối chiếu công nợ - Mẫu 4',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoKhachHang = e.row.key as ThongKeCongNoKhachHang;
+                        this.openModal(rowData, 4);
+                    }
+                }
+            );
+        }
+    }
+
+    openModal(congnokhachhang: ThongKeCongNoKhachHang, mauin: number){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: "XEM IN ĐỐI CHIẾU CÔNG NỢ - MẪU " + mauin,
+            tungay: this.firstDayTime,
+            denngay: this.currDayTime,
+            congnokhachhang: congnokhachhang,
+            mauin: mauin
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(DoiChieuCongNoKhachHangModalComponent, {
+            class: 'modal-xl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     customizeText(rowData) {
