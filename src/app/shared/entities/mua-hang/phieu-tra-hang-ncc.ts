@@ -4,6 +4,8 @@ export class PhieuTraHangNCC {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
+    public manhacungcap: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;

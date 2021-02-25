@@ -2,6 +2,8 @@ export class PhieuDatHang {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
+    public makhachhang: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;

@@ -4,6 +4,9 @@ export class PhieuXuatKho {
     public inphieu_hoten: string;
     public inphieu_thoigian: string;
 
+    public makhachhang: string;
+    public manhacungcap: string;
+
     public tumaphieu: string;
     public nhanviensale_hoten: string;
     public taixe_hoten: string;

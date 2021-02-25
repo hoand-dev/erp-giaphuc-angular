@@ -7,6 +7,9 @@ export class PhieuThu {
     public phieuin_nguoiin: string;
     public ngaylapphieu: string;
 
+    public makhachhang: string;
+    public manhacungcap: string;
+
     public quy_tencongty: string;
     public quy_tainganhang: string;
     public quy_sotaikhoan: string;
