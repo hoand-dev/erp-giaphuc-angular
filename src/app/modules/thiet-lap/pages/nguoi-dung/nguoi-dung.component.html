@@ -35,6 +35,8 @@
                             [hoverStateEnabled]="true"
                             [stateStoring]="stateStoringGrid"
                             [columnAutoWidth]="true"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
                         >
@@ -66,6 +68,13 @@
                             <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
+
+                            <dxo-summary>
+                                <dxi-total-item column="hoten" summaryType="count"> </dxi-total-item>
+                            </dxo-summary>
+
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>

@@ -31,7 +31,9 @@
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false"> Thêm Y/C </button>
+                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
+                                    Thêm Y/C
+                                </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" [routerLink]="['/phieu-yeu-cau-gia-cong/them-moi']" [queryParams]="{ loaiphieu: 'taikho' }">Tại kho</a>
                                     <a class="dropdown-item" [routerLink]="['/phieu-yeu-cau-gia-cong/them-moi']" [queryParams]="{ loaiphieu: 'ngoai' }">Ngoài</a>
@@ -45,6 +47,8 @@
                             [showRowLines]="true"
                             [hoverStateEnabled]="true"
                             [columnAutoWidth]="true"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
@@ -69,11 +73,11 @@
 
                             <dxi-column dataField="tendonvigiacong" caption="Đơn vị gia công"></dxi-column>
                             <dxi-column dataField="tenkhogiacong" caption="Kho gia công"></dxi-column>
-                            
+
                             <dxi-column dataField="trangthainhap" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThai'">
                                     <span class="text-red" *ngIf="data.value == null">Chưa nhập</span>
-                                    <span class="text-green" *ngIf="data.value != null">{{data.value}}</span>
+                                    <span class="text-green" *ngIf="data.value != null">{{ data.value }}</span>
                                 </div>
                             </dxi-column>
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
@@ -83,10 +87,17 @@
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
+                            <dxo-summary>
+                                <dxi-total-item column="maphieuyeucaugiacong" summaryType="count"> </dxi-total-item>
+                            </dxo-summary>
+
                             <!-- dx-data-grid option -->
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
                             </dxo-pager>
