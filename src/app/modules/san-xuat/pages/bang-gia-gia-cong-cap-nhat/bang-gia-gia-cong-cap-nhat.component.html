@@ -54,6 +54,7 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
+                                                        <th [style.min-width.px]="25">STT</th>
                                                         <th [style.min-width.px]="200">GIA CÔNG</th>
                                                         <th [style.min-width.px]="200">TIÊU CHUẨN</th>
                                                         <th [style.min-width.px]="100">ĐƠN GIÁ</th>
@@ -65,6 +66,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of chitiets; index as i">
+                                                        <td>{{i+1}}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="danhmucgiacong_row_{{ i }}"

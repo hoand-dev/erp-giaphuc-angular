@@ -1074,10 +1074,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/25/2021 8:13:33 AM</ReportChanged>
+  <ReportChanged>2/25/2021 9:41:33 AM</ReportChanged>
   <ReportCreated>1/9/2021 3:49:12 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ban-hang\rptPhieuYeuCauXuatKhoMKS.mrt</ReportFile>
-  <ReportGuid>1a98695e3fa4455bbe4087c8184a5b37</ReportGuid>
+  <ReportGuid>4b56eb84db854a3aa9e231928b6641a9</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
