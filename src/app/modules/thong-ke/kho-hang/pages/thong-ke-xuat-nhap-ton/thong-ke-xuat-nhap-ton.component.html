@@ -1,0 +1,128 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thống kê xuất nhập tồn</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Thống kê xuất nhập tồn' | uppercase }}</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-data-grid
+                                    id="gridContainer"
+                                    [showBorders]="true"
+                                    [showRowLines]="true"
+                                    [hoverStateEnabled]="true"
+                                    [columnAutoWidth]="true"
+                                    [allowColumnResizing]="true"
+                                    [columnResizingMode]="'widget'"
+                                    [stateStoring]="stateStoringGrid"
+                                    (onContextMenuPreparing)="addMenuItems($event)"
+                                >
+                                    <dxo-selection mode="single"></dxo-selection>
+                                    <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+
+                                    <!-- dx-data-grid option -->
+                                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                                    <dxo-paging [pageSize]="50"></dxo-paging>
+                                    <dxo-pager
+                                        [showInfo]="true"
+                                        infoText="Page #{0}. Total: {1} ({2} items)"
+                                        [showPageSizeSelector]="true"
+                                        [allowedPageSizes]="[10, 20]"
+                                        [showNavigationButtons]="true"
+                                    >
+                                    </dxo-pager>
+
+                                    <dxi-column dataField="matieuchuan" caption="Tiêu chuẩn"></dxi-column>
+                                    <dxi-column dataField="maloaihang" caption="Loại hàng"></dxi-column>
+                                    <dxi-column dataField="magiacong" caption="Gia công"></dxi-column>
+                                    <dxi-column dataField="masomat" caption="Số mặt"></dxi-column>
+                                    <dxi-column dataField="ncc" caption="Nhà cung cấp"></dxi-column>
+
+                                    <dxi-column dataField="mahanghoa" caption="Mã hàng hoá"></dxi-column>
+                                    <dxi-column dataField="tenhanghoa" caption="Tên hàng hoá"></dxi-column>
+
+                                    <dxi-column dataField="day" caption="Dày"></dxi-column>
+                                    <dxi-column dataField="rong" caption="Rộng"></dxi-column>
+                                    <dxi-column dataField="dai" caption="Dài"></dxi-column>
+                                    <dxi-column dataField="m3" caption="m³"></dxi-column>
+
+                                    <dxi-column dataField="tendonvitinh" caption="Đvt"></dxi-column>
+                                    <dxi-column dataField="quydoi1" caption="Tấm/Kiện"></dxi-column>
+
+                                    <dxi-column dataField="tondauky" caption="Đầu kỳ" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="soluongnhap" caption="Tổng nhập" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluongxuat" caption="Tổng xuất" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="soluong_dieuchinh" caption="Điều chỉnh" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_nhapkho" caption="Nhập kho" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_xuatkho" caption="Xuất kho" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_xuatchuyen" caption="Xuất chuyển" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_nhapchuyen" caption="Nhập chuyển" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="soluong_xuatgiacong_khoxuat" caption="Xuất gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <!-- <dxi-column dataField="soluong_xuatgiacong_khogiacong" caption="" alignment="right" format="#,##0.#######"></dxi-column> -->
+                                    <dxi-column dataField="soluong_nhapgiacong_thanhpham" caption="Nhập gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_nhapgiacong_thanhphamloi" caption="Nhập gia công lỗi" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <!-- <dxi-column dataField="soluong_nhapgiacong_hangtron" caption="" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_nhapgiacong_nguyenlieu" caption="" alignment="right" format="#,##0.#######"></dxi-column> -->
+
+                                    <dxi-column dataField="soluong_xuatmuon" caption="Xuất cho mượn" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_nhaptramuon" caption="Nhập trả mượn" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_nhapmuon" caption="Nhập mượn" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_xuattramuon" caption="Xuất trả mượn" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="toncuoiky" caption="Cuối kỳ" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="soluong_tonhientai" caption="Tồn cuối" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_khachdat" caption="Giữ đặt hàng" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_banchuaxuat" caption="Bán chưa xuất" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_giuchuyenkho" caption="Giữ chuyển kho" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_giugiacong" caption="Giữ gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_toncuoiduocxuat" caption="Tồn cuối được xuất" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="makhohang" caption="Mã kho"></dxi-column>
+                                    <dxi-column dataField="tenkhohang" caption="Tên kho"></dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
