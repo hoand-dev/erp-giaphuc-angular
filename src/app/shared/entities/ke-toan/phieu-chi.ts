@@ -6,6 +6,9 @@ export class PhieuChi {
     public tongchi: number;
     public conno: number;
 
+    public makhachhang: string;
+    public manhacungcap: string;
+
     public sotien_bangchu: string;
     public phieuin_thoigian: string;
     public phieuin_nguoiin: string;

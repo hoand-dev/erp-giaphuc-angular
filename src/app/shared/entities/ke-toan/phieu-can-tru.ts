@@ -11,6 +11,10 @@ export class PhieuCanTru {
     public kh_nguoidaidien: string;
     public kh_chucvu: string;
 
+    public makhachhang: string;
+    public manhacungcap: string;
+    public madonvigiacong: string;
+
     
  
     public sotien_bangchu: string;
