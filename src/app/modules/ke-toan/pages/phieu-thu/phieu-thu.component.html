@@ -31,7 +31,9 @@
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false"> Thu tiền </button>
+                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
+                                    Thu tiền
+                                </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" [routerLink]="['/phieu-thu/them-moi']" [queryParams]="{ loaiphieuthu: 'khac' }">Khác</a>
                                     <a class="dropdown-item" [routerLink]="['/phieu-thu/them-moi']" [queryParams]="{ loaiphieuthu: 'muonhang' }">Mượn hàng</a>
@@ -47,6 +49,8 @@
                             [showRowLines]="true"
                             [hoverStateEnabled]="true"
                             [columnAutoWidth]="true"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
@@ -84,9 +88,18 @@
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
                             <dxi-column dataField="manhacungcap" caption="Mã nhà cung cấp"></dxi-column>
-                            <dxi-column dataField="makhachhang"  caption="Mã khách hàng"></dxi-column>
+                            <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>
 
+                            <dxo-summary>
+                                <dxi-total-item column="maphieuthu" summaryType="count"> </dxi-total-item>
 
+                                <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+
+                                <dxi-total-item column="sotiengiam" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                            </dxo-summary>
+
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 
                             <!-- dx-data-grid option -->
                             <dxo-search-panel [visible]="true"></dxo-search-panel>

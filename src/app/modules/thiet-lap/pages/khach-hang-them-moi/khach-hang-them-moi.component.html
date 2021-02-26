@@ -62,7 +62,7 @@
                                         [label]="{ text: 'KHU VỰC' }"
                                         dataField="khuvuc_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{  dataSource: dataSource_KhuVuc, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenkhuvuc' }"
+                                        [editorOptions]="{  dataSource: dataSource_KhuVuc, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhuvuc', 'makhuvuc'], displayExpr: 'tenkhuvuc' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn khu vực"> </dxi-validation-rule>
                                     </dxi-item>

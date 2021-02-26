@@ -85,7 +85,7 @@ export class PhieuBanHangComponent implements OnInit {
 
           e.items.push(
               {
-                  text: 'In phiếu',
+                  text: 'In phiếu Mới',
                   icon: 'print',
                   visible: 'true',
 
@@ -94,8 +94,9 @@ export class PhieuBanHangComponent implements OnInit {
 
                       /*Khởi tạo giá trị modal */
                       const initialState ={
-                          title: "IN PHIẾU YÊU CẦU XUẤT KHO",
+                          title: "IN PHIẾU YÊU CẦU XUẤT KHO 1",
                           phieubanhang_id: rowData.id,
+                          loaiphieuin: 'moi'
                           
                       };
                       /* Hiển thị modal */
@@ -107,8 +108,34 @@ export class PhieuBanHangComponent implements OnInit {
                       });
                       this.bsModalRef.content.closeBtnName =" Đóng"
                   }
-              }
+              },
+              {
+                text: 'In phiếu Giống MKS',
+                icon: 'print',
+                visible: 'true',
+
+                onItemClick:() =>{
+                    let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
+
+                    /*Khởi tạo giá trị modal */
+                    const initialState ={
+                        title: "IN PHIẾU YÊU CẦU XUẤT KHO 2",
+                        phieubanhang_id: rowData.id,
+                        loaiphieuin: 'mks'
+                        
+                    };
+                    /* Hiển thị modal */
+                    this.bsModalRef = this.modalService.show(PhieuBanHangInPhieuComponent,{
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName =" Đóng"
+                }
+            }
           );
+          
          
       }
   }

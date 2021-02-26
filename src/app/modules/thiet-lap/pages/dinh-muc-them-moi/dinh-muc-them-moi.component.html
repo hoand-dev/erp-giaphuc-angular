@@ -56,6 +56,7 @@
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
+                                                            <th [style.min-width.px]="25">STT</th>
                                                             <th [style.min-width.px]="120">NGUYÊN LIỆU</th>
                                                             <th [style.min-width.px]="120">ĐVT</th>
                                                             <th [style.min-width.px]="120">SL</th>
@@ -67,6 +68,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let item of hanghoas; index as i">
+                                                            <td>{{i+1}}</td>
                                                             <td [style.min-width.px]="120">
                                                                 <dx-select-box
                                                                     id="nguyenlieu_row_{{ i }}"
@@ -101,6 +103,7 @@
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
+                                                            <th [style.min-width.px]="25">STT</th>
                                                             <th [style.min-width.px]="120">NGUỒN LỰC</th>
                                                             <th [style.min-width.px]="120">CHI PHÍ</th>
                                                             <th [style.min-width.px]="120">GHI CHÚ</th>
@@ -109,6 +112,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let item of nguonlucs; index as i">
+                                                            <td>{{i+1}}</td>
                                                             <td [style.min-width.px]="120">
                                                                 <dx-select-box
                                                                     id="nguonluc_row_{{ i }}"
@@ -140,6 +144,7 @@
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
+                                                            <th [style.min-width.px]="25">STT</th>
                                                             <th [style.min-width.px]="120">CHI PHÍ KHÁC</th>
                                                             <th [style.min-width.px]="120">CHI PHÍ</th>
                                                             <th [style.min-width.px]="120">TÍNH CÔNG NỢ</th>
@@ -149,6 +154,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let item of chiphikhacs; index as i">
+                                                            <td>{{i+1}}</td>
                                                             <td [style.min-width.px]="120">
                                                                 <dx-select-box
                                                                     id="chiphikhac_row_{{ i }}"

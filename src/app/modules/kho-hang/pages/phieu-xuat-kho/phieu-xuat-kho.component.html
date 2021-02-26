@@ -42,6 +42,8 @@
                             [hoverStateEnabled]="true"
                             [columnAutoWidth]="true"
                             [stateStoring]="stateStoringGrid"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
                         >
@@ -63,7 +65,6 @@
                             <dxi-column dataField="makhachhang" caption="mã khách hàng" format="#,##0"></dxi-column>
                             <dxi-column dataField="manhacungcap" caption="Mã nhà cung cấp" format="#,##0"></dxi-column>
 
-
                             <dxi-column dataField="trangthaithu" caption="Trạng thái thu" cellTemplate="cellTemplateTrangThaiThu">
                                 <div *dxTemplate="let data of 'cellTemplateTrangThaiThu'">
                                     <span *ngIf="data.value == null">Chưa thu</span>
@@ -84,10 +85,21 @@
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
+                            <dxo-summary>
+                                <dxi-total-item column="maphieuxuatkho" summaryType="count"> </dxi-total-item>
+
+                                <dxi-total-item column="tongtienhang" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+
+                                <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                            </dxo-summary>
+
                             <!-- dx-data-grid option -->
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
                             </dxo-pager>

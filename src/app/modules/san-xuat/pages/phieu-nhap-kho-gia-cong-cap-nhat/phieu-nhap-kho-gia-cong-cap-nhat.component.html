@@ -103,6 +103,7 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
+                                                        <th [style.min-width.px]="25">STT</th>
                                                         <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="250">Y/C</th>
                                                         <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
@@ -123,6 +124,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
+                                                        <td>{{i+1}}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 [readOnly]="true"

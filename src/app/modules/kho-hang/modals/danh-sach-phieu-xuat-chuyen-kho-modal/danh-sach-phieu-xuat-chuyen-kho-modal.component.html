@@ -51,6 +51,9 @@
                 <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
                 <!-- dx-data-grid option -->
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
                 <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 

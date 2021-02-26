@@ -29,6 +29,7 @@ import {
     PhieuBanHangInPhieuComponent
 } from './modals';
 
+
 @NgModule({
     declarations: [
         DanhSachPhieuDatHangModalComponent,
@@ -50,7 +51,8 @@ import {
         BangGiaThemMoiComponent,
         BangGiaCapNhatComponent,
         PhieuKhachDatHangInPhieuModalComponent,
-        PhieuBanHangInPhieuComponent
+        PhieuBanHangInPhieuComponent,
+ 
     ],
     imports: [CommonModule, SharedModule, BanHangRoutingModule]
 })

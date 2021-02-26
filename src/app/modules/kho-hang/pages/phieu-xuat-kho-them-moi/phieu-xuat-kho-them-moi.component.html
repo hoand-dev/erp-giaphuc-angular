@@ -87,13 +87,14 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
-                                                        <th [style.min-width.px]="250">TÊN HÀNG</th>
+                                                        <th [style.min-width.px]="25">STT</th>
+                                                        <th [style.min-width.px]="350">TÊN HÀNG</th>
                                                         <th [style.min-width.px]="250">MÃ HÀNG</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
                                                         <th [style.min-width.px]="75">ĐVT1</th>
                                                         <th [style.min-width.px]="75">KL</th>
                                                         <th [style.min-width.px]="80">SL</th>
-                                                        <th [style.min-width.px]="250">GHI CHÚ</th>
+                                                        <th [style.min-width.px]="150">GHI CHÚ</th>
                                                         <th [style.min-width.px]="250">TÊN IN</th>
                                                         <th [style.max-width.px]="20">
                                                             <i class="gg-btn gg-add btn-primary"> <!-- (click)="onHangHoaAdd()" --> </i>
@@ -102,6 +103,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
+                                                        <td>{{i+1}}</td>
                                                         <td hidden>
                                                             <dx-select-box
                                                                 id="hanghoa_row_{{ i }}"
