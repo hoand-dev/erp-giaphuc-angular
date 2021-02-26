@@ -31,7 +31,9 @@
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false"> Thêm mới </button>
+                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
+                                    Thêm mới
+                                </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" [routerLink]="['/phieu-nhap-kho-gia-cong/them-moi']" [queryParams]="{ loaiphieu: 'taikho' }">Tại kho</a>
                                     <a class="dropdown-item" [routerLink]="['/phieu-nhap-kho-gia-cong/them-moi']" [queryParams]="{ loaiphieu: 'ngoai' }">Ngoài</a>
@@ -45,6 +47,8 @@
                             [showRowLines]="true"
                             [hoverStateEnabled]="true"
                             [columnAutoWidth]="true"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
@@ -77,10 +81,17 @@
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
+                            <dxo-summary>
+                                <dxi-total-item column="maphieunhapkhogiacong" summaryType="count"> </dxi-total-item>
+                            </dxo-summary>
+
                             <!-- dx-data-grid option -->
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
                             <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
                             </dxo-pager>

@@ -35,11 +35,20 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [columnAutoWidth]="true" [stateStoring]="stateStoringGrid" (onContextMenuPreparing)="addMenuItems($event)">
+                                <dx-data-grid
+                                    id="gridContainer"
+                                    [showBorders]="true"
+                                    [showRowLines]="true"
+                                    [hoverStateEnabled]="true"
+                                    [columnAutoWidth]="true"
+                                    [columnResizingMode]="'widget'"
+                                    [allowColumnResizing]="true"
+                                    [stateStoring]="stateStoringGrid"
+                                >
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
                                     <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
-                                    
+
                                     <!-- dx-data-grid option -->
                                     <dxo-search-panel [visible]="true"></dxo-search-panel>
                                     <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
@@ -78,17 +87,48 @@
 
                                     <dxo-summary [calculateCustomSummary]="calculateSummary">
                                         <dxi-group-item showInColumn="makhachhang" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>
-                                        
-                                        <dxi-group-item name="RowsSummaryNoDauKy" summaryType="custom" showInColumn="nodauky" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="false" [alignByColumn]="true"> </dxi-group-item>
+
+                                        <dxi-group-item
+                                            name="RowsSummaryNoDauKy"
+                                            summaryType="custom"
+                                            showInColumn="nodauky"
+                                            valueFormat="#,##0.###"
+                                            displayFormat="{0}"
+                                            [showInGroupFooter]="false"
+                                            [alignByColumn]="true"
+                                        >
+                                        </dxi-group-item>
                                         <dxi-group-item column="tongtienthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="tongtienchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="tongtienban" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="tongtientra" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item name="RowsSummaryNoCuoiKy" summaryType="custom" showInColumn="nocuoiky" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item name="RowsSummaryCongNoHienTai" summaryType="custom" showInColumn="congnohientai" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item name="RowsSummaryNoCuoiKy" summaryType="custom" showInColumn="nocuoiky" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true">
+                                        </dxi-group-item>
+                                        <dxi-group-item
+                                            name="RowsSummaryCongNoHienTai"
+                                            summaryType="custom"
+                                            showInColumn="congnohientai"
+                                            valueFormat="#,##0.###"
+                                            displayFormat="{0}"
+                                            [showInGroupFooter]="true"
+                                        >
+                                        </dxi-group-item>
                                     </dxo-summary>
 
-                                    <dxi-sort-by-group-summary-info summaryItem="count"></dxi-sort-by-group-summary-info>
+                                       <!-- Thêm trang tổng cộng cuối form -->
+                                    <dxo-summary>
+                                        <dxi-total-item column="tenkhachhang" summaryType="count"> </dxi-total-item>
+                                        <dxi-total-item column="maphieu" summaryType="count"> </dxi-total-item>
+                                        <dxi-total-item column="nodauky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="tongtienban" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="tongtienthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="tongtientra" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="nocuoiky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="congnohientai" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                    </dxo-summary>
+
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                                 </dx-data-grid>
                             </div>
                         </div>

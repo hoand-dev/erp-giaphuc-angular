@@ -30,6 +30,8 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
     public phieubanhang_id: number;
     public loaiphieuxuatkho: string;
 
+    public loaiphieuin: string = 'mks';
+
     constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuBanHangService: PhieuBanHangService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
@@ -53,7 +55,14 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                 (data) => {
                     /*khởi tạo report */
                     let report = new Stimulsoft.Report.StiReport();
-                    report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKho.mrt');
+
+                    if(this.loaiphieuin == 'mks'){
+                        report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKhoMKS.mrt');
+                    }
+                    if(this.loaiphieuin == "moi"){
+                        report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKho.mrt');
+                    }
+                  
 
                     /*xóa dữ liệu trên cache trước khi in */
                     report.dictionary.databases.clear();
@@ -86,6 +95,7 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                             item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
                         });
                     }
+                    
                     dsPhieuBanHang.readJson({ rptPhieuYeuCauXuatKho: data, rptPhieuYeuCauXuatKho_ChiTiet: data.phieubanhang_chitiet });
                     report.regData('rptPhieuYeuCauXuatKho', null, dsPhieuBanHang);
 
