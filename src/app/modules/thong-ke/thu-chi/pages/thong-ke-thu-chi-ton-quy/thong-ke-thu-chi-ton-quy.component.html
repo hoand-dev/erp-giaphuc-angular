@@ -35,11 +35,20 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [columnAutoWidth]="true" [stateStoring]="stateStoringGrid">
+                                <dx-data-grid
+                                    id="gridContainer"
+                                    [showBorders]="true"
+                                    [showRowLines]="true"
+                                    [hoverStateEnabled]="true"
+                                    [columnResizingMode]="'widget'"
+                                    [allowColumnResizing]="true"
+                                    [columnAutoWidth]="true"
+                                    [stateStoring]="stateStoringGrid"
+                                >
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                                     <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
-                                    
+
                                     <!-- dx-data-grid option -->
                                     <dxo-search-panel [visible]="true"></dxo-search-panel>
                                     <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
@@ -65,28 +74,73 @@
                                     <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
                                     <dxi-column dataField="nguoinopnhan" caption="Người nộp/nhận"></dxi-column>
                                     <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
-                                    
+
                                     <dxi-column dataField="ghichu" caption="Diễn giải"></dxi-column>
 
-                                    <dxi-column dataField="tondauky" caption="Tồn đầu" alignment="right" format="#,##0.###"[customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="tondauky" caption="Tồn đầu" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
                                     <dxi-column dataField="sotienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotiengiamthu" caption="Tiền giảm thu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotiengiamchi" caption="Tiền giảm chi" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="toncuoiky" caption="Tồn cuối" alignment="right" format="#,##0.###"[customizeText]="customizeText"></dxi-column>
-                                    <dxi-column dataField="tonquyhientai" caption="Số dư cuối" alignment="right" format="#,##0.###"[customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="toncuoiky" caption="Tồn cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="tonquyhientai" caption="Số dư cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
 
                                     <dxo-summary [calculateCustomSummary]="calculateSummary">
                                         <dxi-group-item showInColumn="ghichu" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>
-                                        
-                                        <dxi-group-item name="RowsSummaryTonDauKy" summaryType="custom" showInColumn="tondauky" summaryType="custom" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="false" [alignByColumn]="true"> </dxi-group-item>
+
+                                        <dxi-group-item
+                                            name="RowsSummaryTonDauKy"
+                                            summaryType="custom"
+                                            showInColumn="tondauky"
+                                            summaryType="custom"
+                                            valueFormat="#,##0.###"
+                                            displayFormat="{0}"
+                                            [showInGroupFooter]="false"
+                                            [alignByColumn]="true"
+                                        >
+                                        </dxi-group-item>
                                         <dxi-group-item column="sotienthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="sotienchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item name="RowsSummaryTonCuoiKy" summaryType="custom" showInColumn="toncuoiky" summaryType="custom" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item name="RowsSummaryTonHienTai" summaryType="custom" showInColumn="tonquyhientai" summaryType="custom" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item
+                                            name="RowsSummaryTonCuoiKy"
+                                            summaryType="custom"
+                                            showInColumn="toncuoiky"
+                                            summaryType="custom"
+                                            valueFormat="#,##0.###"
+                                            displayFormat="{0}"
+                                            [showInGroupFooter]="true"
+                                        >
+                                        </dxi-group-item>
+                                        <dxi-group-item
+                                            name="RowsSummaryTonHienTai"
+                                            summaryType="custom"
+                                            showInColumn="tonquyhientai"
+                                            summaryType="custom"
+                                            valueFormat="#,##0.###"
+                                            displayFormat="{0}"
+                                            [showInGroupFooter]="true"
+                                        >
+                                        </dxi-group-item>
                                     </dxo-summary>
+
+                                    <!-- Thêm trang tổng cộng cuối form -->
+                                    <dxo-summary>
+                                        <dxi-total-item column="tenquy" summaryType="count"> </dxi-total-item>
+                                        <dxi-total-item column="maphieu" summaryType="count"> </dxi-total-item>
+                                        <dxi-total-item column="sotaikhoan" summaryType="count"> </dxi-total-item>
+                                        <dxi-total-item column="tondauky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="toncuoiky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="tonquyhientai" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                    </dxo-summary>
+
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 
                                     <dxi-sort-by-group-summary-info summaryItem="count"></dxi-sort-by-group-summary-info>
                                 </dx-data-grid>
