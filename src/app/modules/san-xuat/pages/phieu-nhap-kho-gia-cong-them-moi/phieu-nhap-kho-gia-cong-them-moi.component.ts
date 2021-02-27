@@ -385,7 +385,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu số lượng = 0
-        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && x.soluong != 0);
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieunhapkhogiacong_req = this.phieunhapkhogiacong;
 
         // gán lại dữ liệu

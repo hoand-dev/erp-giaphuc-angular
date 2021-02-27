@@ -296,7 +296,7 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
 
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
-        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && x.soluong != 0);
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieunhaptramuonhang_req = this.phieunhaptramuonhang;
 
         // gán lại dữ liệu
