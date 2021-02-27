@@ -430,7 +430,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
     }
 
     onValid(){
-        if(this.phieubanhang.duyetgia == true){
+        if(this.phieubanhang.duyetgia == true && !this.isTatToan){
             Swal.fire({
                 title: 'Phiếu đã duyệt giá không sửa được',
                 html: 'Vui lòng kiểm tra lại',
