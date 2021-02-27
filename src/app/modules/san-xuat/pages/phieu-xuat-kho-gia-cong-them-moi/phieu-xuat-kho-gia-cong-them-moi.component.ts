@@ -261,7 +261,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
 
     public onSubmitForm(e) {
         // bỏ qua các dòng dữ liệu số lượng = 0
-        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null && x.soluong != 0);
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuxuatkhogiacong_req = this.phieuxuatkhogiacong;
 
         // gán lại dữ liệu
