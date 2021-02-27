@@ -303,6 +303,9 @@ export class AppComponent implements OnInit {
             "/phieu-chi", 
             "/phieu-can-tru", 
         ];
+        const THONGKE_KHOHANG =[
+            "/xuat-nhap-ton"
+        ];
         const THONGKE_CONGNO = [
             "/cong-no-qua-han",
             "/cong-no-khach-hang",
@@ -341,6 +344,7 @@ export class AppComponent implements OnInit {
             case 'KHOHANG': $return = KHOHANG.includes($url);   break;
             case 'MUONHANG': $return = MUONHANG.includes($url); break;
             case 'KETOAN': $return = KETOAN.includes($url);     break;
+            case 'THONGKE-KHOHANG': $return = THONGKE_KHOHANG.includes($url); break;
             case 'THONGKE-CONGNO': $return = THONGKE_CONGNO.includes($url); break;
             case 'THONGKE-THUCHI': $return = THONGKE_THUCHI.includes($url); break;
             case 'HETHONG': $return = HETHONG.includes($url); break;
