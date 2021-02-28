@@ -74,6 +74,8 @@ export class NhomKhachHangCapNhatComponent implements OnInit {
   }
 
   onSubmitForm(e){
+    if(!this.frmNhomKhachHangCapNhatComponent.instance.validate().isValid) return;
+        
     let nhomkhachhang_req = this.nhomkhachhang;
 
     this.saveProcessing = true;

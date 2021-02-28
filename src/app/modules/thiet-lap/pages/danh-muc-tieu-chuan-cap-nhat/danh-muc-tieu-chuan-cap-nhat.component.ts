@@ -78,6 +78,8 @@ export class DanhMucTieuChuanCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
+        if(!this.frmDanhMucTieuChuan.instance.validate().isValid) return;
+        
         let danhmuctieuchuan_req = this.danhmuctieuchuan;
         danhmuctieuchuan_req.chinhanh_id = this.currentChiNhanh.id;
         

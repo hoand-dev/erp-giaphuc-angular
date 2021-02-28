@@ -286,6 +286,8 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuDatHangNCC.instance.validate().isValid) return;
+        
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieudathangncc_req = this.phieudathangncc;

@@ -427,6 +427,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuBanHang.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieubanhang_req = this.phieubanhang;

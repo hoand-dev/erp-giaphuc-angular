@@ -68,6 +68,8 @@ export class NoiDungThuChiThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmNoiDungThuChi.instance.validate().isValid) return;
+        
         let noidungthuchi_req = this.noidungthuchi;
         noidungthuchi_req.chinhanh_id = this.currentChiNhanh.id;
         

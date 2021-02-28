@@ -65,6 +65,8 @@ export class ChiNhanhCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
+        if(!this.frmChiNhanh.instance.validate().isValid) return;
+        
         let chinhanh_req = this.chinhanh;
 
         this.saveProcessing = true;

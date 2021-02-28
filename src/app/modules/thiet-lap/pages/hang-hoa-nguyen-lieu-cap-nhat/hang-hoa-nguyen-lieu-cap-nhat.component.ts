@@ -95,6 +95,8 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
+        if(!this.frmHangHoa.instance.validate().isValid) return;
+        
         let hanghoa_req = this.hanghoa;
         hanghoa_req.chinhanh_id = this.currentChiNhanh.id;
 

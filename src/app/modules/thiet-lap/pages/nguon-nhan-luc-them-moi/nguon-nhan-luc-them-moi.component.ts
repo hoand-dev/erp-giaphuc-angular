@@ -67,6 +67,8 @@ export class NguonNhanLucThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmNguonNhanLuc.instance.validate().isValid) return;
+        
         let nguonnhanluc_req = this.nguonnhanluc;
         nguonnhanluc_req.chinhanh_id = this.currentChiNhanh.id;
 

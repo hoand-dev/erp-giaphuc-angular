@@ -115,6 +115,8 @@ export class NhaCungCapCapNhatComponent implements OnInit {
     }
 
     onSubmitForm(e){
+        if(!this.frmNhaCungCap.instance.validate().isValid) return;
+        
         let nhacungcap_sotaikhoan = this.sotaikhoans.filter((x) => x.nhacungcap_id != null);
       let nhacungcap_req = this.nhacungcap;
       

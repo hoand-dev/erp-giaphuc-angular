@@ -124,12 +124,12 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmTheoDoiHopDong.instance.validate().isValid) return;
+
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
-
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
  
-
         this.saveProcessing = true;
         this.subscriptions.add(
             this.theodoihopdongService.addHopDong(hopdong_req).subscribe(

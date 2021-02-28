@@ -194,6 +194,7 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmBangGiaGiaCong.instance.validate().isValid) return;
         if(!this.onValidation()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác

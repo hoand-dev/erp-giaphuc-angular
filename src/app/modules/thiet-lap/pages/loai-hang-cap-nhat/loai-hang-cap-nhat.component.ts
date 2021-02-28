@@ -75,6 +75,8 @@ export class LoaiHangCapNhatComponent implements OnInit {
   }
 
   onSubmitForm(e) {
+    if(!this.frmLoaiHang.instance.validate().isValid) return;
+        
     let loaihang_req = this.loaihang;
     loaihang_req.chinhanh_id = this.currentChiNhanh.id;
 

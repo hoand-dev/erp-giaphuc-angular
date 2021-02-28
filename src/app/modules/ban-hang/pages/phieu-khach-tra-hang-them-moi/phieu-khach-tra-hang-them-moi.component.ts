@@ -371,6 +371,8 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
             tongtienhang - tongtienhang * this.phieukhachtrahang.chietkhau + (tongtienhang - tongtienhang * this.phieukhachtrahang.chietkhau) * this.phieukhachtrahang.thuevat;
     }
     public onSubmitForm(e) {
+        if(!this.frmPhieuKhachTraHang.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieukhachtrahang_req = this.phieukhachtrahang;

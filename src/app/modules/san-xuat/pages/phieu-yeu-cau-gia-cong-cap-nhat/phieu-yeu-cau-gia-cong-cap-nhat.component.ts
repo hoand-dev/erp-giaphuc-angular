@@ -416,7 +416,9 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuYeuCauGiaCong.instance.validate().isValid) return;
         if(!this.onValid()) return;
+
         // bỏ qua các dòng dữ liệu số lượng = 0
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuyeucaugiacong_req = this.phieuyeucaugiacong;

@@ -113,6 +113,8 @@ export class DonViGiaCongCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
+        if(!this.frmDonViGiaCong.instance.validate().isValid) return;
+        
         let donvigiacong_req = this.donvigiacong;
         donvigiacong_req.chinhanh_id = this.currentChiNhanh.id;
         donvigiacong_req.loaigiacong = this.donvigiacong.loaidonvi ? 2 : 1;

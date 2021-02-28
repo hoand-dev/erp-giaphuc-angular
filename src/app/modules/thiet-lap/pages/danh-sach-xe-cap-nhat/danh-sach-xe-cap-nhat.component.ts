@@ -82,6 +82,8 @@ export class DanhSachXeCapNhatComponent implements OnInit {
  
 
     onSubmitForm(e) {
+        if(!this.frmSoMat.instance.validate().isValid) return;
+        
         let danhsachxe_req = this.danhsachxe;
         danhsachxe_req.chinhanh_id = this.currentChiNhanh.id;
         

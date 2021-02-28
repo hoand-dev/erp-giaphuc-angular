@@ -66,6 +66,8 @@ export class KhuVucThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmKhuVuc.instance.validate().isValid) return;
+        
       let khuvuc_req = this.khuvuc;
       khuvuc_req.chinhanh_id = this.currentChiNhanh.id;
 

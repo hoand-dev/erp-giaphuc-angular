@@ -86,6 +86,8 @@ export class KhoHangThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmKhoHang.instance.validate().isValid) return;
+        
         let khohang_req = this.khohang;
         khohang_req.chinhanh_id = this.currentChiNhanh.id;
 

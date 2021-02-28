@@ -73,6 +73,8 @@ export class TaiXeCapNhatComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmTaiXe.instance.validate().isValid) return;
+        
         let taixe_req = this.taixe;
         taixe_req.chinhanh_id = this.currentChiNhanh.id;
 

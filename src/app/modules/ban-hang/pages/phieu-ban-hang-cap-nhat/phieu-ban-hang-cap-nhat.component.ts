@@ -444,6 +444,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuBangHang.instance.validate().isValid) return;
         if(!this.onValid()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác

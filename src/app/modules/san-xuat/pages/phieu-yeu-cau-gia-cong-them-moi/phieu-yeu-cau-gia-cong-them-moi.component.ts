@@ -381,6 +381,8 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     public async onSubmitForm(e) {
+        if(!this.frmPhieuYeuCauGiaCong.instance.validate().isValid) return;
+        
         // kiểm tra nhấn nút lấy giá chưa
         if(!this.isClicked_LayGia){
             const { isConfirmed: confirm } = await Swal.fire({

@@ -213,6 +213,8 @@ export class DinhMucThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmDinhMuc.instance.validate().isValid) return;
+        
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.nguyenlieu_id != null);
         let nguonlucs = this.nguonlucs.filter((x) => x.nguonnhanluc_id != null);

@@ -67,6 +67,8 @@ export class SoMatThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmSoMat.instance.validate().isValid) return;
+        
         let somat_req = this.somat;
         somat_req.chinhanh_id = this.currentChiNhanh.id;
         

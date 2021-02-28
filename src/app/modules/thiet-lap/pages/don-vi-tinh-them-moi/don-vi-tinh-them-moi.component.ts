@@ -67,6 +67,8 @@ export class DonViTinhThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmDonViTinh.instance.validate().isValid) return;
+        
         let donvitinh_req = this.donvitinh;
         donvitinh_req.chinhanh_id = this.currentChiNhanh.id;
         

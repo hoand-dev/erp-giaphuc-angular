@@ -435,6 +435,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuNhapKho.instance.validate().isValid) return;
         if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác

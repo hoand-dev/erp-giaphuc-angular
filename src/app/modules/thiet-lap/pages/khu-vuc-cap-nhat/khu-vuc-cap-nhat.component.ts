@@ -77,6 +77,8 @@ export class KhuVucCapNhatComponent implements OnInit {
     // KHÔNG GIẬN KHÔNG HỜN KHÔNG OÁN TRÁCH
 
     onSubmitForm(e) {
+        if(!this.frmKhuVucCapNhat.instance.validate().isValid) return;
+        
         let khuvuc_req = this.khuvuc; //
         khuvuc_req.chinhanh_id = this.currentChiNhanh.id; //
 

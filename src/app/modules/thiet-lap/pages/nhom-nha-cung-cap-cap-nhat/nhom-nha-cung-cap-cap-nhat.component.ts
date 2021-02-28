@@ -82,6 +82,8 @@ export class NhomNhaCungCapCapNhatComponent implements OnInit {
   }
 
   onSubmitForm(e){
+    if(!this.frmNhomNhaCungCapCapNhatComponent.instance.validate().isValid) return;
+        
     let nhomnhacungcap_req = this.nhomnhacungcap;
     nhomnhacungcap_req.chinhanh_id = this.currentChiNhanh.id;
     this.saveProcessing = true;

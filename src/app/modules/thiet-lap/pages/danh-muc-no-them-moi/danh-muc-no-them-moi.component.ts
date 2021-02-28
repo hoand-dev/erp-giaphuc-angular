@@ -67,6 +67,8 @@ export class DanhMucNoThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmDanhMucNo.instance.validate().isValid) return;
+        
         let danhmucno_req = this.danhmucno;
         danhmucno_req.chinhanh_id = this.currentChiNhanh.id;
 

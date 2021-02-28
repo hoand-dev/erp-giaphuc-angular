@@ -110,6 +110,8 @@ export class LenhVayCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmLenhVay.instance.validate().isValid) return;
+
         let lenhvay_req = this.lenhvay;
         lenhvay_req.chinhanh_id = this.currentChiNhanh.id;
 

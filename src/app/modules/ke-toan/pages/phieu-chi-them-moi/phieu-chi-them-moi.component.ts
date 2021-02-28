@@ -454,6 +454,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuChi.instance.validate().isValid) return;
         if(!this.onValidate()) return;
 
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0

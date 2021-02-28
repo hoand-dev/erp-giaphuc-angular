@@ -329,6 +329,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if(!this.frmPhieuNhapKhoGiaCong.instance.validate().isValid) return;
         if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu số lượng = 0

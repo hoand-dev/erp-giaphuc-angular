@@ -129,14 +129,15 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmTheoDoiHopDong.instance.validate().isValid) return;
+
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
-
-        
 
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
         hopdong_req.nhomkhachhang_id = hopdong_req.nhomkhachhang_id;
         hopdong_req.user_id = hopdong_req.user_id;
+        
         //khachhang_req.loaikhachhang = this.khachhang_req.loaikhachhang_id ? 2 : 1
         //nếu muốn chi ra khách sỉ hay lẻ thì xử lý thêm chỗ này
 

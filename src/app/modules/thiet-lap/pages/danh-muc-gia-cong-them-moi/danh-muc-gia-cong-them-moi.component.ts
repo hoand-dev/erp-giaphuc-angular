@@ -68,6 +68,8 @@ export class DanhMucGiaCongThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmDanhMucGiaCong.instance.validate().isValid) return;
+        
         let danhmucgiacong_req = this.danhmucgiacong;
         danhmucgiacong_req.chinhanh_id = this.currentChiNhanh.id;
         

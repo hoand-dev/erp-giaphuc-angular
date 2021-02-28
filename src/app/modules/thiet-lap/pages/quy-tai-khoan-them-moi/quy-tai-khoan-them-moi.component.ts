@@ -67,6 +67,8 @@ export class QuyTaiKhoanThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(!this.frmQuyTaiKhoan.instance.validate().isValid) return;
+        
         let quytaikhoan_req = this.quytaikhoan;
         quytaikhoan_req.chinhanh_id = this.currentChiNhanh.id;
 
