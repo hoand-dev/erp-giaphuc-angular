@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh } from '@app/shared/entities';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
 import { AuthenticationService } from '@app/_services/authentication.service';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { TaiXeService } from '@app/shared/services';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./tai-xe-cap-nhat.component.css']
 })
 export class TaiXeCapNhatComponent implements OnInit {
-    @ViewChild(DxDataGridComponent, { static: false }) frmTaiXe: DxDataGridComponent;
+    @ViewChild(DxFormComponent, { static: false }) frmTaiXe: DxFormComponent;
     /* Tối ưu subsriptions  */
 
     subscriptions: Subscription = new Subscription();
