@@ -213,26 +213,12 @@
                                             </table>
                                         </div>
                                     </dxi-item>
-                                    <dxi-item
-                                        [colSpan]="6"
-                                        *ngIf="!this.isDuyetGia"
-                                        [editorOptions]="{ disabled: saveProcessing }"
-                                        itemType="button"
-                                        horizontalAlignment="right"
-                                        [buttonOptions]="buttonSubmitOptions"
-                                    ></dxi-item>
 
-                                    <dxi-item [colSpan]="6" *ngIf="this.isDuyetGia">
+                                    <dxi-item [colSpan]="6">
                                         <div *dxTemplate>
-                                            <dx-button
-                                                [style.float]="'right'"
-                                                stylingMode="contained"
-                                                [text]="this.phieubanhang.duyetgia ? 'Huỷ duyệt' : 'Duyệt'"
-                                                type="success"
-                                                [width]="120"
-                                                (onClick)="onDuyetGia()"
-                                            >
-                                            </dx-button>
+                                            <dx-button icon="back" [routerLink]="['/phieu-ban-hang']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button *ngIf="!this.isDuyetGia" icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                            <dx-button *ngIf="!this.isDuyetGia" stylingMode="contained" [ngClass]="'float-right'" [text]="this.phieubanhang.duyetgia ? 'Huỷ duyệt' : 'Duyệt'" type="success" [width]="120" (onClick)="onDuyetGia()" > </dx-button>
                                         </div>
                                     </dxi-item>
                                 </dx-form>
