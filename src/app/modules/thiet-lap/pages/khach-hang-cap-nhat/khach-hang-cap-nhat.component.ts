@@ -17,7 +17,6 @@ import { Subscription } from 'rxjs';
 export class KhachHangCapNhatComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmKhachHang: DxFormComponent;
 
-   
     /*tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
@@ -35,14 +34,12 @@ export class KhachHangCapNhatComponent implements OnInit {
 
     public makhachhang_old: string;
 
-
-
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
     constructor(
         private router: Router,
@@ -60,12 +57,14 @@ export class KhachHangCapNhatComponent implements OnInit {
         this.khachhang = new KhachHang();
 
         this.theCallBackValid = this.theCallBackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
                 let khachhang_id = params.id;
                 //lấy thông tin khách hàng
                 if (khachhang_id) {
-                    this.subscriptions.add(this.khachhangService.findKhachHang(khachhang_id).subscribe(
+                    this.subscriptions.add(
+                        this.khachhangService.findKhachHang(khachhang_id).subscribe(
                             (data) => {
                                 this.khachhang = data[0];
                                 this.makhachhang_old = this.khachhang.makhachhang;
@@ -74,32 +73,34 @@ export class KhachHangCapNhatComponent implements OnInit {
                             (error) => {
                                 this.khachhangService.handleError(error);
                             }
-                        ));
-                        this.subscriptions.add(
-                            this.khuvucService.findKhuVucs().subscribe((x) => {
-                                this.loadingVisible = false;
-                                this.lstKhuVuc = x;
-                                this.dataSource_KhuVuc = new DataSource({
-                                    store: x,
-                                    paginate: true,
-                                    pageSize: 50
-                                });
-                            })
-                        );
-                
-                        this.subscriptions.add(
-                            this.nhomkhachhangService.findNhomKhachHangs().subscribe((x) => {
-                                this.loadingVisible = false;
-                                this.lstNhomKhachHang = x;
-                                this.dataSource_NhomKhachHang = new DataSource({
-                                    store: x,
-                                    paginate: true,
-                                    pageSize: 50
-                                });
-                            })
-                        );
+                        )
+                    );
+                    this.subscriptions.add(
+                        this.khuvucService.findKhuVucs().subscribe((x) => {
+                            this.loadingVisible = false;
+                            this.lstKhuVuc = x;
+                            this.dataSource_KhuVuc = new DataSource({
+                                store: x,
+                                paginate: true,
+                                pageSize: 50
+                            });
+                        })
+                    );
+
+                    this.subscriptions.add(
+                        this.nhomkhachhangService.findNhomKhachHangs().subscribe((x) => {
+                            this.loadingVisible = false;
+                            this.lstNhomKhachHang = x;
+                            this.dataSource_NhomKhachHang = new DataSource({
+                                store: x,
+                                paginate: true,
+                                pageSize: 50
+                            });
+                        })
+                    );
                 }
-            }));
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -112,8 +113,8 @@ export class KhachHangCapNhatComponent implements OnInit {
     }
 
     onSubmitForm(e) {
-        if(!this.frmKhachHang.instance.validate().isValid) return;
-        
+        if (!this.frmKhachHang.instance.validate().isValid) return;
+
         let khachhang_req = this.khachhang;
         khachhang_req.chinhanh_id = this.currentChiNhanh.id;
         khachhang_req.nhomkhachhang_id = khachhang_req.nhomkhachhang_id;
@@ -122,7 +123,8 @@ export class KhachHangCapNhatComponent implements OnInit {
         //nếu muốn chi ra khách sỉ hay lẻ thì xử lý thêm chỗ này
 
         this.saveProcessing = true;
-        this.subscriptions.add(this.khachhangService.updateKhachHang(khachhang_req).subscribe(
+        this.subscriptions.add(
+            this.khachhangService.updateKhachHang(khachhang_req).subscribe(
                 (data) => {
                     notify(
                         {
@@ -134,14 +136,15 @@ export class KhachHangCapNhatComponent implements OnInit {
                         475
                     );
                     this.router.navigate(['/khach-hang']);
-                   // this.frmKhachHang.instance.resetValues();
+                    // this.frmKhachHang.instance.resetValues();
                     this.saveProcessing = false;
                 },
                 (error) => {
                     this.khachhangService.handleError(error);
                     this.saveProcessing = false;
                 }
-            ));
+            )
+        );
         e.preventDefault();
     }
 }

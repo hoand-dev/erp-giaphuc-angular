@@ -7,17 +7,12 @@ import { Subscription, Subject } from 'rxjs';
 import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import { AuthenticationService } from '@app/_services';
 
-
-
-
-
 @Component({
-  selector: 'app-danh-sach-phieu-dat-hang-modal',
-  templateUrl: './danh-sach-phieu-dat-hang-modal.component.html',
-  styleUrls: ['./danh-sach-phieu-dat-hang-modal.component.css']
+    selector: 'app-danh-sach-phieu-dat-hang-modal',
+    templateUrl: './danh-sach-phieu-dat-hang-modal.component.html',
+    styleUrls: ['./danh-sach-phieu-dat-hang-modal.component.css']
 })
 export class DanhSachPhieuDatHangModalComponent implements OnInit {
-
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -26,7 +21,7 @@ export class DanhSachPhieuDatHangModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
@@ -34,11 +29,7 @@ export class DanhSachPhieuDatHangModalComponent implements OnInit {
         storageKey: 'dxGrid_ModalPhieuDatHang'
     };
 
-    constructor(
-        public bsModalRef: BsModalRef, 
-        private objPhieuDatHangService: PhieuDatHangService,
-        private authenticationService: AuthenticationService) 
-        {}
+    constructor(public bsModalRef: BsModalRef, private objPhieuDatHangService: PhieuDatHangService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -47,10 +38,12 @@ export class DanhSachPhieuDatHangModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -65,7 +58,7 @@ export class DanhSachPhieuDatHangModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuDatHangService.findPhieuDatHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter(x => x.trangthaigiao != ETrangThaiPhieu.dagiao);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthaigiao != ETrangThaiPhieu.dagiao);
                 },
                 (error) => {
                     this.objPhieuDatHangService.handleError(error);

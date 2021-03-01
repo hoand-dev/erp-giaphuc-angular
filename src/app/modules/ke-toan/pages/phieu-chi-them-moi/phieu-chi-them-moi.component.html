@@ -150,7 +150,7 @@
                                         [label]="{ text: 'QUỸ CHI' }"
                                         dataField="quychi_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenquy', 'maquy'], displayExpr: 'tenquy' }"
+                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenquy', 'maquy'], displayExpr: 'tenquy' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn quỹ chi"> </dxi-validation-rule>
                                     </dxi-item>
@@ -159,7 +159,13 @@
                                         [label]="{ text: 'NỘI DUNG' }"
                                         dataField="noidungthuchi_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NoiDungThuChi, valueExpr: 'id', searchEnabled: true,searchExpr: ['tennoidungthuchi', 'manoidungthuchi'],  displayExpr: 'tennoidungthuchi' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_NoiDungThuChi,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tennoidungthuchi', 'manoidungthuchi'],
+                                            displayExpr: 'tennoidungthuchi'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"> </dxi-validation-rule>
                                     </dxi-item>

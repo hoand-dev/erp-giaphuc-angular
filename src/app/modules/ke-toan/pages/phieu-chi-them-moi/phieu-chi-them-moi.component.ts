@@ -43,7 +43,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
     public lstKhachHang: KhachHang[] = [];
     public lstNhaCungCap: NhaCungCap[] = [];
     public lstDonViGiaCong: DonViGiaCong[] = [];
-    public lstSoTaiKhoan: NhaCungCap_SoTaiKhoan[]= [];
+    public lstSoTaiKhoan: NhaCungCap_SoTaiKhoan[] = [];
 
     public dataSource_LenhVay: DataSource;
     public dataSource_KhachHang: DataSource;
@@ -152,12 +152,12 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 });
             })
         );
-        
+
         this.subscriptions.add(
-            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) =>{
+            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) => {
                 this.dataSource_SoTaiKhoan = new DataSource({
                     store: x,
-                    paginate:true,
+                    paginate: true,
                     pageSize: 50
                 });
             })
@@ -273,9 +273,9 @@ export class PhieuChiThemMoiComponent implements OnInit {
                 })
             );
 
-           // lấy danh sách số tài khoản
+            // lấy danh sách số tài khoản
             this.subscriptions.add(
-                this.nhacungcapService.findNhaCungCap_SoTaiKhoans(this.phieuchi.nhacungcap_id).subscribe((data) =>{
+                this.nhacungcapService.findNhaCungCap_SoTaiKhoans(this.phieuchi.nhacungcap_id).subscribe((data) => {
                     this.dataSource_SoTaiKhoan = new DataSource({
                         store: data,
                         paginate: true,
@@ -401,7 +401,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
         }
 
         // ? nhà cung cấp, có phiếu xuất hoặc không -> tính số tiền chi dư
-        if(this.loaiphieuchi == 'nhacungcap'){
+        if (this.loaiphieuchi == 'nhacungcap') {
             let sotienchidu: number = 0;
             let tongchi_chitiet: number = 0;
 
@@ -421,10 +421,9 @@ export class PhieuChiThemMoiComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        if(tuphieu == 'lenhvay')
+        if (tuphieu == 'lenhvay')
             this.bsModalRef = this.modalService.show(DanhSachLenhVayModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
-        else 
-            this.bsModalRef = this.modalService.show(DanhSachPhieuNhapMuonHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        else this.bsModalRef = this.modalService.show(DanhSachPhieuNhapMuonHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
@@ -434,13 +433,11 @@ export class PhieuChiThemMoiComponent implements OnInit {
     }
 
     /* xác thực dữ liệu trước khi gửi đi */
-    onValidate(){
+    onValidate() {
         let valid = true;
-        if(this.loaiphieuchi == 'lenhvay' && this.phieuchi.lenhvay_id == null)
-            valid = false;
-        if(this.loaiphieuchi == 'muonhang' && this.phieuchi.phieunhapmuonhang_id == null)
-            valid = false;
-        if(!valid)
+        if (this.loaiphieuchi == 'lenhvay' && this.phieuchi.lenhvay_id == null) valid = false;
+        if (this.loaiphieuchi == 'muonhang' && this.phieuchi.phieunhapmuonhang_id == null) valid = false;
+        if (!valid)
             notify(
                 {
                     width: 320,
@@ -454,8 +451,8 @@ export class PhieuChiThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuChi.instance.validate().isValid) return;
-        if(!this.onValidate()) return;
+        if (!this.frmPhieuChi.instance.validate().isValid) return;
+        if (!this.onValidate()) return;
 
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0
         let phieuchi_phieunhapkhos = this.phieunhapkhos.filter((x) => x.sotienchi != 0 || x.sotiengiam != 0);
@@ -465,7 +462,6 @@ export class PhieuChiThemMoiComponent implements OnInit {
         phieuchi_req.chinhanh_id = this.currentChiNhanh.id;
         phieuchi_req.loaiphieuchi = this.loaiphieuchi;
         phieuchi_req.phieuchi_phieunhapkhos = phieuchi_phieunhapkhos;
-        
 
         if (phieuchi_req.loaiphieuchi == 'lenhvay') {
             phieuchi_req.sotienchi = this.phieuchi.sotienchi_lenhvay + this.phieuchi.sotienchi_laixuat;

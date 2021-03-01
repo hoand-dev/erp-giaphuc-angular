@@ -92,7 +92,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
         });
-        
+
         this.phieubanhang = new PhieuBanHang();
         this.asyncValidation = this.checkCoLayThue.bind(this);
 
@@ -132,10 +132,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                 this.lstNguoiDung = x;
 
                 // gán nhân viên sale mặc định
-                this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe(y =>
-                    this.phieubanhang.nhanviensale_id = y.id
-                ));
-                
+                this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe((y) => (this.phieubanhang.nhanviensale_id = y.id)));
+
                 this.dataSource_NguoiDung = new DataSource({
                     store: x,
                     paginate: true,
@@ -149,18 +147,20 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
             paginate: true,
             pageSize: 50,
             store: new CustomStore({
-                key: "id",
+                key: 'id',
                 load: (loadOptions) => {
-                    return this.commonService.hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieubanhang.khoxuat_id, null, loadOptions)
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieubanhang.khoxuat_id, null, loadOptions)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 },
                 byKey: (key) => {
-                    return this.hanghoaService.findHangHoa(key)
+                    return this.hanghoaService
+                        .findHangHoa(key)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 }
@@ -274,7 +274,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
                 this.phieubanhang.khachhang_dienthoai = khachhang ? khachhang.sodienthoai : null;
                 this.phieubanhang.khachhang_diachi = khachhang ? khachhang.diachi : null;
-                this.phieubanhang.khachhang_hoten =  khachhang ? khachhang.tenkhachhang : null;
+                this.phieubanhang.khachhang_hoten = khachhang ? khachhang.tenkhachhang : null;
             } else {
                 this.firstLoad_KhachHang = false; //chọn từ phiếu
             }
@@ -300,7 +300,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                 v.thuevat = 0;
             });
             this.onCheckVAT();
-        }else if(e.value == 0){
+        } else if (e.value == 0) {
             this.onCheckVAT();
         }
 
@@ -326,12 +326,10 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         this.onTinhTien();
     }
 
-    onCheckVAT(){
+    onCheckVAT() {
         this.hanghoas.forEach((v, i) => {
-            if(v.thuevat != 0 || this.phieubanhang.thuevat != 0)
-                v.xuathoadon = true;
-            else
-                v.xuathoadon = false;
+            if (v.thuevat != 0 || this.phieubanhang.thuevat != 0) v.xuathoadon = true;
+            else v.xuathoadon = false;
         });
     }
 
@@ -339,10 +337,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         let valid = true;
         if (this.phieubanhang.thuevat != 0 && params.value == false) {
             valid = false;
-
         } else {
             //nếu nguoi dung check vat va khong nhập % bao nhiêu thì sao?
-              
         }
 
         return new Promise((resolve) => {
@@ -401,8 +397,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                 if (e.value != 0) {
                     this.hanghoas[index].xuathoadon = true;
                     this.phieubanhang.thuevat = 0;
-                }
-                else if(this.phieubanhang.thuevat == 0){
+                } else if (this.phieubanhang.thuevat == 0) {
                     this.hanghoas[index].xuathoadon = false;
                 }
                 break;
@@ -427,7 +422,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuBanHang.instance.validate().isValid) return;
+        if (!this.frmPhieuBanHang.instance.validate().isValid) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

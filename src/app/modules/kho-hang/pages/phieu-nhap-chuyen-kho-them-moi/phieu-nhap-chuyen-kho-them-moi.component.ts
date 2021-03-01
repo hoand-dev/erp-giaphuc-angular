@@ -147,7 +147,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
                             this.phieunhapchuyenkho.khonhap_id = data.khonhap_id;
                             this.phieunhapchuyenkho.phieuxuatchuyenkho_id = data.id;
                             this.phieunhapchuyenkho.tumaphieu = data.maphieuxuatchuyenkho;
-                            
+
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieuxuatchuyenkho_chitiets.length;
 
@@ -162,7 +162,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
                                     chitiet.dvt_id = value.dvt_id;
                                     chitiet.tilequydoi = value.tilequydoi;
 
-                                    chitiet.soluong = value.soluong - (value.soluongdanhap / value.tilequydoi);
+                                    chitiet.soluong = value.soluong - value.soluongdanhap / value.tilequydoi;
                                     chitiet.dongia = value.dongia;
                                     chitiet.thanhtien = value.thanhtien;
                                     chitiet.chuthich = value.chuthich;
@@ -218,7 +218,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
         if (e.dataField == 'khonhap_id' && e.value !== undefined && e.value !== null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             // this.isValidForm = true;
-            
+
             this.hanghoas.forEach((v, i) => {
                 v.khonhap_id = this.phieunhapchuyenkho.khonhap_id;
             });
@@ -239,7 +239,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
         // }
 
         // tính tổng tiền
-         this.onTinhTien();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -279,7 +279,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
         this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-        
+
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
         if (rowsNull.length == 0) {
@@ -326,8 +326,8 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuNhapChuyenKho.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuNhapChuyenKho.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieunhapchuyenkho_req = this.phieunhapchuyenkho;

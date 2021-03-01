@@ -109,7 +109,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
                     this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstDonViGiaCong = x;
-        
+
                         this.dataSource_DonViGiaCong = new DataSource({
                             store: x,
                             paginate: true,
@@ -214,7 +214,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
     }
 
     displayExprHangHoa(item) {
-        return item && item.tenhanghoa ; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
+        return item && item.tenhanghoa; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
     }
 
     public onHangHoaAdd() {
@@ -260,8 +260,8 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuXuatKhoGiaCong.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuXuatKhoGiaCong.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu số lượng = 0
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuxuatkhogiacong_req = this.phieuxuatkhogiacong;

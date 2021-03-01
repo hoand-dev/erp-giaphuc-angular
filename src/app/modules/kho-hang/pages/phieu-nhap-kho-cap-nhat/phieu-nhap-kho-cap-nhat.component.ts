@@ -85,12 +85,12 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
             this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstKhoNhap = x;
-                
+
                 this.dataSource_KhoNhap = new DataSource({
                     store: x,
                     paginate: true,
                     pageSize: 50
-                    });
+                });
             })
         );
 
@@ -221,7 +221,6 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
 
-
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
@@ -275,8 +274,8 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
         this.phieunhapkho.tongthanhtien = tongtienhang - tongtienhang * this.phieunhapkho.chietkhau + (tongtienhang - tongtienhang * this.phieunhapkho.chietkhau) * this.phieunhapkho.thuevat;
     }
 
-    public valid_khonhaphong(): boolean{
-        if(this.hanghoas.filter((x) => x.soluonghong != 0 && x.khonhaphong_id == null).length > 0){
+    public valid_khonhaphong(): boolean {
+        if (this.hanghoas.filter((x) => x.soluonghong != 0 && x.khonhaphong_id == null).length > 0) {
             Swal.fire({
                 title: 'Chọn kho nhập hỏng',
                 html: 'Vui lòng chọn kho nhập cho số lượng hỏng đã nhập',
@@ -290,8 +289,8 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuNhapKho.instance.validate().isValid) return;
-        if(!this.valid_khonhaphong()) return;
+        if (!this.frmPhieuNhapKho.instance.validate().isValid) return;
+        if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./danh-muc-gia-cong.component.css']
 })
 export class DanhMucGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,18 +20,13 @@ export class DanhMucGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_DanhMucGiaCong"
+        type: 'localStorage',
+        storageKey: 'dxGrid_DanhMucGiaCong'
     };
 
-    constructor(
-        private router: Router,
-        private danhMucGiaCongService: DanhMucGiaCongService
-    ) { }
+    constructor(private router: Router, private danhMucGiaCongService: DanhMucGiaCongService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -50,14 +44,16 @@ export class DanhMucGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
     }
 
     onLoadData() {
-        this.subscriptions.add(this.danhMucGiaCongService.findDanhMucGiaCongs().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.danhMucGiaCongService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.danhMucGiaCongService.findDanhMucGiaCongs().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.danhMucGiaCongService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -66,28 +62,34 @@ export class DanhMucGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa danh mục gia công này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa danh mục gia công này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.danhMucGiaCongService.deleteDanhMucGiaCong(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.danhMucGiaCongService.deleteDanhMucGiaCong(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.danhMucGiaCongService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.danhMucGiaCongService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

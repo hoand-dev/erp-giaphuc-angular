@@ -15,8 +15,8 @@ import { User } from '@app/_models';
     selector: 'app-phieu-nhap-muon-hang-in-phieu-modal',
     templateUrl: './phieu-nhap-muon-hang-in-phieu-modal.component.html',
     styleUrls: ['./phieu-nhap-muon-hang-in-phieu-modal.component.css']
-  })
-  export class PhieuNhapMuonHangInPhieuModalComponent implements OnInit {
+})
+export class PhieuNhapMuonHangInPhieuModalComponent implements OnInit {
     public reportOptions: any = new Stimulsoft.Viewer.StiViewerOptions();
     public reportViewer: any = new Stimulsoft.Viewer.StiViewer(this.reportOptions, 'StiViewer', false);
 
@@ -28,14 +28,22 @@ import { User } from '@app/_models';
     private currentUser: User;
     public phieunhapmuonhang_id: number;
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuNhapMuonHangService: PhieuNhapMuonHangService, private authenticationService: AuthenticationService) {}
+    constructor(
+        public bsModalRef: BsModalRef,
+        private nguoidungService: NguoiDungService,
+        private objPhieuNhapMuonHangService: PhieuNhapMuonHangService,
+        private authenticationService: AuthenticationService
+    ) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
-        this.nguoidungService.getCurrentUser().toPromise().then(rs => {
-            this.currentUser = rs;
-            this.onLoadData();
-        });
+        this.nguoidungService
+            .getCurrentUser()
+            .toPromise()
+            .then((rs) => {
+                this.currentUser = rs;
+                this.onLoadData();
+            });
     }
 
     ngOnDestroy(): void {
@@ -66,20 +74,20 @@ import { User } from '@app/_models';
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
                     data.tongthanhtien_bangchu = number2vn(data.tongthanhtien);
-                    
+
                     dsPhieuNhapMuonHang.readJson({ rptThongTinPhieu: data, rptThongTinHangHoa: data.phieunhapmuonhang_chitiets });
                     report.regData('rptPhieuNhapMuonHang', null, dsPhieuNhapMuonHang);
 
                     /* đổi logo phiếu in */
                     var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
-                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+                    report.dictionary.variables.getByName('LogoComapny').valueObject = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
-                    
+
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },

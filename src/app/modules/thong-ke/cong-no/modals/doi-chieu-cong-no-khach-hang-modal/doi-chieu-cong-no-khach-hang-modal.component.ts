@@ -12,10 +12,10 @@ import { User } from '@app/_models';
 import { ThongKeCongNoKhachHang } from '@app/shared/entities';
 
 @Component({
-  selector: 'app-doi-chieu-cong-no-khach-hang-modal',
-  templateUrl: './doi-chieu-cong-no-khach-hang-modal.component.html',
-  styleUrls: ['./doi-chieu-cong-no-khach-hang-modal.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-doi-chieu-cong-no-khach-hang-modal',
+    templateUrl: './doi-chieu-cong-no-khach-hang-modal.component.html',
+    styleUrls: ['./doi-chieu-cong-no-khach-hang-modal.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class DoiChieuCongNoKhachHangModalComponent implements OnInit {
     public reportOptions: any = new Stimulsoft.Viewer.StiViewerOptions();
@@ -33,14 +33,22 @@ export class DoiChieuCongNoKhachHangModalComponent implements OnInit {
     public denngay: Date;
     public congnokhachhang: ThongKeCongNoKhachHang;
 
-    constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objThongKeCongNoService: ThongKeCongNoService, private authenticationService: AuthenticationService) {}
+    constructor(
+        public bsModalRef: BsModalRef,
+        private nguoidungService: NguoiDungService,
+        private objThongKeCongNoService: ThongKeCongNoService,
+        private authenticationService: AuthenticationService
+    ) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
-        this.nguoidungService.getCurrentUser().toPromise().then(rs => {
-            this.currentUser = rs;
-            this.onLoadData();
-        });
+        this.nguoidungService
+            .getCurrentUser()
+            .toPromise()
+            .then((rs) => {
+                this.currentUser = rs;
+                this.onLoadData();
+            });
     }
 
     ngOnDestroy(): void {
@@ -78,27 +86,27 @@ export class DoiChieuCongNoKhachHangModalComponent implements OnInit {
 
                     /* thông tin công nợ */
                     let dsThongKeCongNo = new Stimulsoft.System.Data.DataSet();
-                    this.congnokhachhang.truoctungay = moment(this.tungay).subtract(1, "days").format('DD/MM/YYYY');
+                    this.congnokhachhang.truoctungay = moment(this.tungay).subtract(1, 'days').format('DD/MM/YYYY');
                     this.congnokhachhang.tungay = moment(this.tungay).format('DD/MM/YYYY');
                     this.congnokhachhang.denngay = moment(this.denngay).format('DD/MM/YYYY');
 
                     this.congnokhachhang.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     this.congnokhachhang.inphieu_hoten = this.currentUser.fullName;
                     this.congnokhachhang.nocuoiky_bangchu = number2vn(this.congnokhachhang.nocuoiky);
-                    
+
                     dsThongKeCongNo.readJson({ rptThongKeCongNo: this.congnokhachhang, rptThongKeCongNo_ChiTiet: data });
                     report.regData('rptThongKeCongNo', null, dsThongKeCongNo);
 
                     /* đổi logo phiếu in */
                     var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
-                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
-                    
+                    report.dictionary.variables.getByName('LogoComapny').valueObject = imageLogo;
+
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
-                    
+
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },

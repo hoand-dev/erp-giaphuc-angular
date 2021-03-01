@@ -306,7 +306,7 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
         this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-        
+
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
         if (rowsNull.length == 0) {
@@ -356,8 +356,8 @@ export class PhieuTraHangNCCThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuTraHangNCC.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuTraHangNCC.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieutrahangncc_req = this.phieutrahangncc;

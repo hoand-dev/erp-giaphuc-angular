@@ -55,7 +55,7 @@ export class KhachHangThemMoiComponent implements OnInit {
         });
         this.khachhang = new KhachHang();
         this.theCallBackValid = this.theCallBackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
         this.subscriptions.add(
             this.khuvucService.findKhuVucs().subscribe((x) => {
                 this.loadingVisible = false;
@@ -91,15 +91,15 @@ export class KhachHangThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
-        if(!this.frmKhachHang.instance.validate().isValid) return;
-        
+        if (!this.frmKhachHang.instance.validate().isValid) return;
+
         let khachhang_req = this.khachhang;
         khachhang_req.chinhanh_id = this.currentChiNhanh.id;
 
         //khachhang_req.loaikhachhang = this.khachhang_req.loaikhachhang_id ? 2 : 1
         //nếu muốn chi ra khách sỉ hay lẻ thì xử lý thêm chỗ này
         // gán lại dữ liệu
-        
+
         khachhang_req.nhomkhachhang_id = khachhang_req.nhomkhachhang_id;
         khachhang_req.khuvuc_id = khachhang_req.khuvuc_id;
 

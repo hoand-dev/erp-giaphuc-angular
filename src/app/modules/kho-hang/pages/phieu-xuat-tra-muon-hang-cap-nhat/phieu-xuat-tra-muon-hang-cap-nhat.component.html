@@ -33,7 +33,14 @@
 
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="6" [formData]="phieuxuattramuonhang" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                                <dx-form
+                                    id="form"
+                                    [colCount]="6"
+                                    [formData]="phieuxuattramuonhang"
+                                    [showValidationSummary]="true"
+                                    labelLocation="top"
+                                    (onFieldDataChanged)="onFormFieldChanged($event)"
+                                >
                                     <dxi-item [label]="{ text: 'NGÀY XUẤT' }" dataField="ngayxuattramuonhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: true }">
                                         <dxi-validation-rule type="required" message="Chọn ngày xuất"></dxi-validation-rule>
                                     </dxi-item>
@@ -79,7 +86,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 [readOnly]="true"
@@ -105,7 +112,7 @@
 
                                                         <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
-                                                        
+
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>

@@ -50,10 +50,10 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuNhapKhoGiaCongCT[] = [];
-    
+
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
-    public lstSoMat: SoMat[]; 
+    public lstSoMat: SoMat[];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
@@ -200,7 +200,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
 
-        console.log("claw")
+        console.log('claw');
     }
 
     clickLayGia() {
@@ -257,7 +257,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
             this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
 
             this.hanghoas[index].chitietlois = JSON.parse(this.hanghoas[index].lois);
-        } 
+        }
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
@@ -292,7 +292,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
-            if(result !== false){
+            if (result !== false) {
                 this.hanghoas[index].chitietlois = result;
                 let soluongloi: number = 0;
                 result.forEach((e) => {
@@ -302,7 +302,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
             }
         });
     }
-    
+
     public valid_khonhaphong(): boolean {
         if (this.hanghoas.filter((x) => x.soluongloi != 0 && x.khonhaploi_id == null).length > 0) {
             Swal.fire({
@@ -329,7 +329,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuNhapKhoGiaCong.instance.validate().isValid) return;
+        if (!this.frmPhieuNhapKhoGiaCong.instance.validate().isValid) return;
         if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu số lượng = 0
@@ -352,7 +352,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
                             position: { my: 'right top', at: 'right top' }
                         },
                         'success',
-                         475
+                        475
                     );
                     this.router.navigate(['/phieu-nhap-kho-gia-cong']);
                     this.frmPhieuNhapKhoGiaCong.instance.resetValues();

@@ -83,7 +83,7 @@ export class PhieuXuatChuyenKhoThemMoiComponent implements OnInit {
                             store: x,
                             paginate: true,
                             pageSize: 50
-                            });
+                        });
                     })
                 );
             })
@@ -157,7 +157,7 @@ export class PhieuXuatChuyenKhoThemMoiComponent implements OnInit {
         // }
 
         // tính tổng tiền
-         this.onTinhTien();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -235,8 +235,8 @@ export class PhieuXuatChuyenKhoThemMoiComponent implements OnInit {
     };
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuXuatChuyenKho.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuXuatChuyenKho.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuxuatchuyenkho_req = this.phieuxuatchuyenkho;

@@ -33,7 +33,14 @@
 
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="6" [formData]="phieunhaptramuonhang" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                                <dx-form
+                                    id="form"
+                                    [colCount]="6"
+                                    [formData]="phieunhaptramuonhang"
+                                    [showValidationSummary]="true"
+                                    labelLocation="top"
+                                    (onFieldDataChanged)="onFormFieldChanged($event)"
+                                >
                                     <dxi-item [label]="{ text: 'NGÀY NHẬP' }" dataField="ngaynhaptramuonhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: true }">
                                         <dxi-validation-rule type="required" message="Chọn ngày nhập"></dxi-validation-rule>
                                     </dxi-item>
@@ -56,7 +63,7 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho trả"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="matuphieu" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
-                                    
+
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieunhaptramuonhang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
 
@@ -79,7 +86,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 [readOnly]="true"
@@ -105,7 +112,7 @@
 
                                                         <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
-                                                        
+
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>

@@ -9,18 +9,17 @@ import moment from 'moment';
 import { Subscription, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-phieu-dat-hang',
-  templateUrl: './phieu-dat-hang.component.html',
-  styleUrls: ['./phieu-dat-hang.component.css']
+    selector: 'app-phieu-dat-hang',
+    templateUrl: './phieu-dat-hang.component.html',
+    styleUrls: ['./phieu-dat-hang.component.css']
 })
 export class PhieuDatHangComponent implements OnInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
-    private 
+    private;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -110,5 +109,4 @@ export class PhieuDatHangComponent implements OnInit {
             }
         });
     }
-
 }

@@ -7,12 +7,11 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import moment from 'moment';
 @Component({
-  selector: 'app-danh-sach-xe',
-  templateUrl: './danh-sach-xe.component.html',
-  styleUrls: ['./danh-sach-xe.component.css']
+    selector: 'app-danh-sach-xe',
+    templateUrl: './danh-sach-xe.component.html',
+    styleUrls: ['./danh-sach-xe.component.css']
 })
 export class DanhSachXeComponent implements OnInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public timeCreateAt: Date = new Date();
 
@@ -21,18 +20,14 @@ export class DanhSachXeComponent implements OnInit {
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_DanhSachXe"
+        type: 'localStorage',
+        storageKey: 'dxGrid_DanhSachXe'
     };
 
-    constructor(
-        private router: Router,
-        private danhsachxeService: DanhSachXeService
-    ) { }
+    constructor(private router: Router, private danhsachxeService: DanhSachXeService) {}
 
     ngOnInit(): void {
         this.timeCreateAt = moment().add(1, 'days').toDate();
-
     }
 
     ngAfterViewInit(): void {
@@ -51,14 +46,16 @@ export class DanhSachXeComponent implements OnInit {
     }
 
     onLoadData() {
-        this.subscriptions.add(this.danhsachxeService.findDanhSachXes().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.danhsachxeService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.danhsachxeService.findDanhSachXes().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.danhsachxeService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -67,30 +64,35 @@ export class DanhSachXeComponent implements OnInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa số xe này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa số xe này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.danhsachxeService.deleteDanhSachXe(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.danhsachxeService.deleteDanhSachXe(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.danhsachxeService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.danhsachxeService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }
 }
-

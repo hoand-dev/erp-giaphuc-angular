@@ -4,13 +4,16 @@
         <div class="row mb-2">
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a [routerLink]="[ '/nhom-nha-cung-cap']">Nhóm nhà cung cấp</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/nhom-nha-cung-cap']">Nhóm nhà cung cấp</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
 
@@ -26,25 +29,25 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="2" [formData]="nhomnhacungcap" [showValidationSummary]="true">
-                                    <dxi-item [label]="{text: 'MÃ NHÓM NHÀ CUNG CẤP'}" dataField="manhomnhacungcap">
+                                    <dxi-item [label]="{ text: 'MÃ NHÓM NHÀ CUNG CẤP' }" dataField="manhomnhacungcap">
                                         <dxi-validation-rule type="required" message="Nhập mã nhóm nhà cung cấp"></dxi-validation-rule>
-                                       
+
                                         <dxi-validation-rule type="async" message="Mã nhóm nhà cung cấp đã tồn tại" [validationCallback]="theCallBackValid">
                                             <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
                                         </dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'TÊN NHÓM NHÀ CUNG CẤP'}" dataField="tennhomnhacungcap">
+                                    <dxi-item [label]="{ text: 'TÊN NHÓM NHÀ CUNG CẤP' }" dataField="tennhomnhacungcap">
                                         <dxi-validation-rule type="required" message="Nhập tên nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{text: 'GHI CHÚ'}" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
-                                    <dxi-item [label]="{text: 'TRẠNG THÁI'}" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
                                     <dxi-item>
                                         <div *dxTemplate>
                                             <dx-button icon="back" [routerLink]="['/nhom-nha-cung-cap']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
                                             <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
                                         </div>
                                     </dxi-item>
-                                 </dx-form>
+                                </dx-form>
                             </form>
                         </div>
                     </div>
@@ -52,3 +55,4 @@
             </div>
         </div>
     </div>
+</section>

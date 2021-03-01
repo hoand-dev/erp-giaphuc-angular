@@ -18,58 +18,56 @@
     <div class="row">
         <div class="col-md-12">
             <dx-data-grid
-                            id="gridContainer"
-                            [showBorders]="true"
-                            [showRowLines]="true"
-                            [hoverStateEnabled]="true"
-                            [columnAutoWidth]="true"
-                            [columnResizingMode]="'widget'"
-                            [allowColumnResizing]="true"
+                id="gridContainer"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
                 [allowColumnReordering]="true"
-                            [stateStoring]="stateStoringGrid"
-                            (onRowDblClick)="onRowDblClick($event)"
-                        >
-                            <dxi-column dataField="ngayyeucaugiacong" dataType="datetime" caption="Ngày yêu cầu"></dxi-column>
-                            <dxi-column dataField="maphieuyeucaugiacong" caption="Mã phiếu"></dxi-column>
-                            <dxi-column dataField="loaiphieu" caption="Yêu cầu G/C" cellTemplate="cellTemplateLoaiPhieu">
-                                <div *dxTemplate="let data of 'cellTemplateLoaiPhieu'">
-                                    <span *ngIf="data.value == 'taikho'">Tại kho</span>
-                                    <span *ngIf="data.value == 'ngoai'">Ngoài</span>
-                                </div>
-                            </dxi-column>
-                            <dxi-column dataField="xuatnguyenlieu" caption="Xuất nguyên liệu"></dxi-column>
+                [stateStoring]="stateStoringGrid"
+                (onRowDblClick)="onRowDblClick($event)"
+            >
+                <dxi-column dataField="ngayyeucaugiacong" dataType="datetime" caption="Ngày yêu cầu"></dxi-column>
+                <dxi-column dataField="maphieuyeucaugiacong" caption="Mã phiếu"></dxi-column>
+                <dxi-column dataField="loaiphieu" caption="Yêu cầu G/C" cellTemplate="cellTemplateLoaiPhieu">
+                    <div *dxTemplate="let data of 'cellTemplateLoaiPhieu'">
+                        <span *ngIf="data.value == 'taikho'">Tại kho</span>
+                        <span *ngIf="data.value == 'ngoai'">Ngoài</span>
+                    </div>
+                </dxi-column>
+                <dxi-column dataField="xuatnguyenlieu" caption="Xuất nguyên liệu"></dxi-column>
 
-                            <dxi-column dataField="tendonvigiacong" caption="Đơn vị gia công"></dxi-column>
-                            <dxi-column dataField="tenkhogiacong" caption="Kho gia công"></dxi-column>
-                            
-                            <dxi-column dataField="trangthainhap" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
-                                <div *dxTemplate="let data of 'cellTemplateTrangThai'">
-                                    <span class="text-red" *ngIf="data.value == null">Chưa nhập</span>
-                                    <span class="text-green" *ngIf="data.value != null">{{data.value}}</span>
-                                </div>
-                            </dxi-column>
-                            <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+                <dxi-column dataField="tendonvigiacong" caption="Đơn vị gia công"></dxi-column>
+                <dxi-column dataField="tenkhogiacong" caption="Kho gia công"></dxi-column>
 
-                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
-                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
-                            <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
-                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
+                <dxi-column dataField="trangthainhap" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                    <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                        <span class="text-red" *ngIf="data.value == null">Chưa nhập</span>
+                        <span class="text-green" *ngIf="data.value != null">{{ data.value }}</span>
+                    </div>
+                </dxi-column>
+                <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
 
-                            <!-- dx-data-grid option -->
-                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
-                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+                <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
-                            <dxo-search-panel [visible]="true"></dxo-search-panel>
-                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
-                            <dxo-paging [pageSize]="10"></dxo-paging>
-                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
-                            </dxo-pager>
-                        </dx-data-grid>
+                <!-- dx-data-grid option -->
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
+            </dx-data-grid>
         </div>
     </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
 </div>
-

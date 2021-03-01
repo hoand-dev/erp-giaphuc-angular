@@ -79,7 +79,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
     ngAfterViewInit() {
         // this.frmphieubanhang.instance.validate(); // showValidationSummary sau khi focus out
     }
-    
+
     ngOnInit(): void {
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
@@ -127,7 +127,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
                 });
             })
         );
-         this.loadingVisible = true;
+        this.loadingVisible = true;
         this.subscriptions.add(
             this.hanghoaService.findHangHoas().subscribe((x) => {
                 this.loadingVisible = false;
@@ -153,7 +153,6 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
 
                                 this.phieukhachtrahang = data;
                                 this.hanghoas = this.phieukhachtrahang.phieukhachtrahang_chitiet;
-                            
                             },
                             (error) => {
                                 this.phieukhachtrahangService.handleError(error);
@@ -189,7 +188,6 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
                 this.phieukhachtrahang.khachhang_dienthoai = khachhang.sodienthoai;
                 this.phieukhachtrahang.khachhang_diachi = khachhang.diachi;
                 this.phieukhachtrahang.khachhang_hoten = khachhang.tenkhachhang;
-                
             } else {
                 this.firstLoad_KhachHang = false;
             }
@@ -306,7 +304,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuKhachTraHang.instance.validate().isValid) return;
+        if (!this.frmPhieuKhachTraHang.instance.validate().isValid) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

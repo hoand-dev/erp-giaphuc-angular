@@ -17,4 +17,3 @@ export * from './phieu-xuat-kho-gia-cong-them-moi/phieu-xuat-kho-gia-cong-them-m
 export * from './phieu-yeu-cau-gia-cong/phieu-yeu-cau-gia-cong.component';
 export * from './phieu-yeu-cau-gia-cong-cap-nhat/phieu-yeu-cau-gia-cong-cap-nhat.component';
 export * from './phieu-yeu-cau-gia-cong-them-moi/phieu-yeu-cau-gia-cong-them-moi.component';
-

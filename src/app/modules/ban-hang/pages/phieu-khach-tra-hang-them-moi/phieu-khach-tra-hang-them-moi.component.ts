@@ -91,7 +91,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
         });
-        
+
         this.phieukhachtrahang = new PhieuKhachTraHang();
 
         this.subscriptions.add(
@@ -178,7 +178,6 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
                             this.phieukhachtrahang.khonhap_id = data.khoxuat_id;
                             this.phieukhachtrahang.maphieubanhang = data.maphieubanhang;
 
-
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieubanhang_chitiet.length;
 
@@ -254,7 +253,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
 
                 this.phieukhachtrahang.khachhang_dienthoai = khachhang ? khachhang.sodienthoai : null;
                 this.phieukhachtrahang.khachhang_diachi = khachhang ? khachhang.diachi : null;
-                this.phieukhachtrahang.khachhang_hoten =  khachhang ? khachhang.tenkhachhang : null;
+                this.phieukhachtrahang.khachhang_hoten = khachhang ? khachhang.tenkhachhang : null;
             } else {
                 this.firstLoad_KhachHang = false;
             }
@@ -301,7 +300,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
         });
         this.onTinhTien();
     }
-    
+
     public onHangHoaChanged(index, e) {
         let selected = e.selectedItem;
 
@@ -371,7 +370,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
             tongtienhang - tongtienhang * this.phieukhachtrahang.chietkhau + (tongtienhang - tongtienhang * this.phieukhachtrahang.chietkhau) * this.phieukhachtrahang.thuevat;
     }
     public onSubmitForm(e) {
-        if(!this.frmPhieuKhachTraHang.instance.validate().isValid) return;
+        if (!this.frmPhieuKhachTraHang.instance.validate().isValid) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

@@ -43,7 +43,13 @@
                                         [label]="{ text: 'KHO ĐIỀU CHỈNH' }"
                                         dataField="khodieuchinh_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoDieuChinh, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhoDieuChinh,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho điều chỉnh"></dxi-validation-rule>
                                     </dxi-item>
@@ -71,7 +77,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="hanghoa_row_{{ i }}"

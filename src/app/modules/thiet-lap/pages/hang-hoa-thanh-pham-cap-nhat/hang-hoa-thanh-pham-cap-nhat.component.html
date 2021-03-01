@@ -34,7 +34,7 @@
                                         [label]="{ text: 'GIA CÔNG' }"
                                         dataField="dinhmuc_giacong"
                                         editorType="dxTagBox"
-                                        [editorOptions]="{ dataSource: dataSource_GiaCong, searchEnabled: true,searchExpr: ['tendinhmuc', 'madinhmuc'], displayExpr: 'tendinhmuc' }"
+                                        [editorOptions]="{ dataSource: dataSource_GiaCong, searchEnabled: true, searchExpr: ['tendinhmuc', 'madinhmuc'], displayExpr: 'tendinhmuc' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn gia công"></dxi-validation-rule>
                                     </dxi-item>
@@ -42,7 +42,7 @@
                                         [label]="{ text: 'SỐ MẶT' }"
                                         dataField="somat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_SoMat, valueExpr: 'id', searchEnabled: true,searchExpr: ['tensomat', 'masomat'], displayExpr: 'tensomat' }"
+                                        [editorOptions]="{ dataSource: dataSource_SoMat, valueExpr: 'id', searchEnabled: true, searchExpr: ['tensomat', 'masomat'], displayExpr: 'tensomat' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn số mặt"></dxi-validation-rule>
                                     </dxi-item>
@@ -51,7 +51,13 @@
                                         [label]="{ text: 'TIÊU CHUẨN' }"
                                         dataField="tieuchuan_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_TieuChuan, valueExpr: 'id', searchEnabled: true,searchExpr: ['tendanhmuctieuchuan', 'madanhmuctieuchuan'], displayExpr: 'tendanhmuctieuchuan' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_TieuChuan,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tendanhmuctieuchuan', 'madanhmuctieuchuan'],
+                                            displayExpr: 'tendanhmuctieuchuan'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn tiêu chuẩn"></dxi-validation-rule>
                                     </dxi-item>
@@ -59,7 +65,14 @@
                                         [label]="{ text: 'LOẠI HÀNG' }"
                                         dataField="loaihang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ showClearButton: true, dataSource: dataSource_LoaiHang, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenloaihang', 'maloaihang'],  displayExpr: 'tenloaihang' }"
+                                        [editorOptions]="{
+                                            showClearButton: true,
+                                            dataSource: dataSource_LoaiHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenloaihang', 'maloaihang'],
+                                            displayExpr: 'tenloaihang'
+                                        }"
                                     >
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'NCC' }" dataField="ncc">
@@ -80,7 +93,13 @@
                                         [label]="{ text: 'ĐƠN VỊ TÍNH' }"
                                         dataField="dvt_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_DonViTinh, valueExpr: 'id', searchEnabled: true,searchExpr: ['tendonvitinh', 'madonvitinh'], displayExpr: 'tendonvitinh' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_DonViTinh,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tendonvitinh', 'madonvitinh'],
+                                            displayExpr: 'tendonvitinh'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị tính"></dxi-validation-rule>
                                     </dxi-item>
@@ -109,7 +128,15 @@
                                         [label]="{ text: 'LỖI' }"
                                         dataField="loi_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ showClearButton: true, dataSource: dataSource_Loi, valueExpr: 'id', searchEnabled: true,searchExpr: ['madanhmucloi', 'tendanhmucloi'], displayExpr: 'tendanhmucloi', readOnly: true }"
+                                        [editorOptions]="{
+                                            showClearButton: true,
+                                            dataSource: dataSource_Loi,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['madanhmucloi', 'tendanhmucloi'],
+                                            displayExpr: 'tendanhmucloi',
+                                            readOnly: true
+                                        }"
                                     >
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'M³/TẤM' }" dataField="m3" editorType="dxNumberBox" [editorOptions]="{ readOnly: true }"></dxi-item>

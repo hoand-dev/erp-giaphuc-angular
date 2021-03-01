@@ -109,8 +109,8 @@ export class NguoiDungCapNhatComponent implements OnInit {
     };
 
     onSubmitForm(e) {
-        if(!this.frmNguoiDung.instance.validate().isValid) return;
-        
+        if (!this.frmNguoiDung.instance.validate().isValid) return;
+
         let nguoidung_req = this.nguoidung;
         nguoidung_req.chinhanh_id = this.currentChiNhanh.id;
 

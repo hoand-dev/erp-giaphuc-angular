@@ -25,7 +25,7 @@ import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmPhieuNhapTraMuonHang: DxFormComponent;
     bsModalRef: BsModalRef;
-    
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
@@ -90,15 +90,15 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
                 this.subscriptions.add(
                     this.khohangService.findKhoHangs().subscribe((x) => {
                         this.loadingVisible = false;
-                        
-                        this.lstKhoNhap = x.filter(z => z.chinhanh_id == this.currentChiNhanh.id && z.khongoai != true);
+
+                        this.lstKhoNhap = x.filter((z) => z.chinhanh_id == this.currentChiNhanh.id && z.khongoai != true);
                         this.dataSource_KhoNhap = new DataSource({
                             store: this.lstKhoNhap,
                             paginate: true,
                             pageSize: 50
                         });
 
-                        this.lstKhoXuat = x.filter(z => z.chinhanh_id != this.currentChiNhanh.id || z.khongoai == true);
+                        this.lstKhoXuat = x.filter((z) => z.chinhanh_id != this.currentChiNhanh.id || z.khongoai == true);
                         this.dataSource_KhoXuat = new DataSource({
                             store: this.lstKhoXuat,
                             paginate: true,
@@ -208,7 +208,7 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
             this.router.navigate([`/phieu-nhap-tra-muon-hang/them-moi`], { queryParams: { tuphieu: result.id } });
         });
     }
-    
+
     onFormFieldChanged(e) {
         if (e.dataField == 'khonhap_id' && e.value !== undefined && e.value !== null) {
             this.hanghoas.forEach((v, i) => {
@@ -295,8 +295,8 @@ export class PhieuNhapTraMuonHangThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuNhapTraMuonHang.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuNhapTraMuonHang.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieunhaptramuonhang_req = this.phieunhaptramuonhang;

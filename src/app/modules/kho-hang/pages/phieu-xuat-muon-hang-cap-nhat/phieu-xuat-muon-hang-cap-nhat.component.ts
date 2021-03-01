@@ -137,7 +137,7 @@ export class PhieuXuatMuonHangCapNhatComponent implements OnInit {
                             (data) => {
                                 // gán độ dài danh sách hàng hóa load lần đầu
                                 this.hanghoalenght = data.phieuxuatmuonhang_chitiets.length;
-                                
+
                                 this.phieuxuatmuonhang = data;
                                 this.hanghoas = this.phieuxuatmuonhang.phieuxuatmuonhang_chitiets;
                             },
@@ -250,8 +250,8 @@ export class PhieuXuatMuonHangCapNhatComponent implements OnInit {
     };
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuXuatMuonHang.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuXuatMuonHang.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuxuatmuonhang_req = this.phieuxuatmuonhang;

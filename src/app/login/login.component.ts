@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
@@ -44,40 +43,40 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.submitText = "Đợi một lát...";
+        this.submitText = 'Đợi một lát...';
         this.subscription = this.chinhanhService.findChiNhanhs(true).subscribe(
-            data => {
+            (data) => {
                 this.loading = false;
                 this.chinhanhs = data;
-                this.submitText = "Đăng nhập";
+                this.submitText = 'Đăng nhập';
                 if (this.authenticationService.currentChiNhanhValue) {
                     for (let index = 0; index < data.length; index++) {
                         const element = data[index];
                         if (element.id == this.authenticationService.currentChiNhanhValue.id) {
                             this.chinhanhSelected = element;
-                        }
-                        else this.chinhanhSelected = data[0];
+                        } else this.chinhanhSelected = data[0];
                     }
-                }
-                else this.chinhanhSelected = data[0];
+                } else this.chinhanhSelected = data[0];
             },
-            error => {
+            (error) => {
                 this.loading = false;
                 this.chinhanhService.handleError(error);
-                this.submitText = "Lỗi tải dữ liệu chi nhánh!";
+                this.submitText = 'Lỗi tải dữ liệu chi nhánh!';
             }
         );
     }
 
     // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+    get f() {
+        return this.loginForm.controls;
+    }
 
     onChangedChiNhanh(e) {
         // thay đổi giá trị chi nhánh hiện tại
         this.chinhanhSelected = e.selectedItem;
         this.authenticationService.setChiNhanhValue(e.selectedItem);
     }
-    
+
     onSubmit() {
         this.submitted = true;
 
@@ -86,13 +85,14 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        if(!this.chinhanhSelected){
+        if (!this.chinhanhSelected) {
             this.error = 'Vui lòng chọn chi nhánh làm việc.';
             return;
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService
+            .login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe({
                 next: () => {
@@ -101,11 +101,10 @@ export class LoginComponent implements OnInit {
                     // this.router.navigate(['/' + returnUrl]); // not use navigate
                     location.href = '/' + returnUrl;
                 },
-                error: error => {
-                    this.error = error == "Bad Request" ? "Thông tin tài khoản chưa đúng" : error;
+                error: (error) => {
+                    this.error = error == 'Bad Request' ? 'Thông tin tài khoản chưa đúng' : error;
                     this.loading = false;
                 }
             });
     }
-
 }

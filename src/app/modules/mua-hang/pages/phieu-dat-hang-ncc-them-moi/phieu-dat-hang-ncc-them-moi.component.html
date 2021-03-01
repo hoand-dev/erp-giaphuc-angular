@@ -37,7 +37,13 @@
                                         [label]="{ text: 'NHÀ CUNG CẤP' }"
                                         dataField="nhacungcap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NhaCungCap, valueExpr: 'id', searchEnabled: true, searchExpr: ['tennhacungcap', 'manhacungcap'], displayExpr: 'tennhacungcap' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_NhaCungCap,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tennhacungcap', 'manhacungcap'],
+                                            displayExpr: 'tennhacungcap'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
@@ -81,7 +87,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="nguyenlieu_row_{{ i }}"
@@ -104,7 +110,7 @@
                                                         </td>
                                                         <td>{{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} </td>
+                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }}</td>
                                                         <td>{{ item.soluong * item.m3 | number: '1.0-3' }}</td>
 
                                                         <td>

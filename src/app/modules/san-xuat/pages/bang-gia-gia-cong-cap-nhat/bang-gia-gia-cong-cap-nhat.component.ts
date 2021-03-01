@@ -52,7 +52,7 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
         private banggiagiacongService: BangGiaGiaCongService,
         private donvigiacongService: DonViGiaCongService,
         private danhmucgiacongService: DanhMucGiaCongService,
-        private tieuchuanService: DanhMucTieuChuanService,
+        private tieuchuanService: DanhMucTieuChuanService
     ) {}
 
     ngAfterViewInit() {
@@ -73,7 +73,7 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
                     this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
                         this.loadingVisible = false;
                         this.lstDonViGiaCong = x;
-        
+
                         this.dataSource_DonViGiaCong = new DataSource({
                             store: x,
                             paginate: true,
@@ -160,11 +160,11 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
         }
     }
 
-    public onValidation(){
+    public onValidation() {
         let checkgiacong = this.chitiets.filter((x) => x.danhmucgiacong_id != null && x.tieuchuan_id == null).length;
         let checktieuchuan = this.chitiets.filter((x) => x.danhmucgiacong_id == null && x.tieuchuan_id != null).length;
 
-        if(checkgiacong > 0){
+        if (checkgiacong > 0) {
             notify(
                 {
                     width: 320,
@@ -177,7 +177,7 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
             return false;
         }
 
-        if(checktieuchuan > 0){
+        if (checktieuchuan > 0) {
             notify(
                 {
                     width: 320,
@@ -194,8 +194,8 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmBangGiaGiaCong.instance.validate().isValid) return;
-        if(!this.onValidation()) return;
+        if (!this.frmBangGiaGiaCong.instance.validate().isValid) return;
+        if (!this.onValidation()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let chitiets = this.chitiets.filter((x) => x.danhmucgiacong_id != null && x.tieuchuan_id != null);

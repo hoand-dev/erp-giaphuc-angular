@@ -172,7 +172,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                                     chitiet.dvt_id = value.dvt_id;
                                     chitiet.tilequydoi = value.tilequydoi;
 
-                                    chitiet.soluong = value.soluong - value.soluongtattoan - (value.soluongdanhap / value.tilequydoi);;
+                                    chitiet.soluong = value.soluong - value.soluongtattoan - value.soluongdanhap / value.tilequydoi;
                                     chitiet.soluonghong = 0;
                                     chitiet.khonhaphong_id = null;
 
@@ -203,12 +203,12 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                     // cho hiển thị danh sách hàng hoá
                     this.isValidForm = true;
                     this.hanghoas = [];
-                
+
                     /* chọn từ phiếu không cho thay đổi chi nhánh */
                     setTimeout(() => {
                         this.authenticationService.setDisableChiNhanh(true);
                     });
-                
+
                     // lấy thông tin phiếu mua hàng từ api
                     this.objPhieuKhachTraHangService.findPhieuKhachTraHang(params.tuphieukhachtrahang).subscribe(
                         (data) => {
@@ -217,21 +217,21 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                             this.phieunhapkho.loaiphieunhapkho = 'nhapkhachtrahang';
                             this.phieunhapkho.khachhang_id = data.khachhang_id;
                             this.phieunhapkho.nguoigiao_hoten = data.khachhang_hoten;
-                
+
                             this.phieunhapkho.phieukhachtrahang_id = data.id;
                             this.phieunhapkho.tumaphieu = data.maphieukhachtrahang;
                             this.phieunhapkho.nhanviensale_id = data.nhanviensale_id;
-                
+
                             this.phieunhapkho.tongtienhang = data.tongtienhang;
                             this.phieunhapkho.chietkhau = data.chietkhau;
                             this.phieunhapkho.thuevat = data.thuevat;
                             this.phieunhapkho.tongthanhtien = data.tongthanhtien;
 
                             this.phieunhapkho.khonhap_id = data.khonhap_id;
-                
+
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieukhachtrahang_chitiet.length;
-                
+
                             // xử lý phần thông tin chi tiết phiếu
                             data.phieukhachtrahang_chitiet.forEach((value, index) => {
                                 if (value.trangthainhap != ETrangThaiPhieu.danhap) {
@@ -242,23 +242,23 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
                                     chitiet.hanghoa_lohang_id = value.hanghoa_lohang_id;
                                     chitiet.dvt_id = value.dvt_id;
                                     chitiet.tilequydoi = value.tilequydoi;
-                
-                                    chitiet.soluong = value.soluong - (value.soluongdanhap / value.tilequydoi);
+
+                                    chitiet.soluong = value.soluong - value.soluongdanhap / value.tilequydoi;
                                     chitiet.soluonghong = 0;
                                     chitiet.khonhaphong_id = null;
-                
+
                                     chitiet.dongia = value.dongia;
                                     chitiet.cuocvanchuyen = value.cuocvanchuyen;
                                     chitiet.chietkhau = value.chietkhau;
                                     chitiet.thuevat = value.thuevat;
                                     chitiet.thanhtien = value.thanhtien;
                                     chitiet.chuthich = value.chuthich;
-                
+
                                     // mua hàng không quản lý tên hàng hoá in phiếu
                                     // chitiet.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
-                
+
                                     chitiet.phieukhachtrahang_chitiet_id = value.id;
-                
+
                                     this.hanghoas.push(chitiet);
                                 }
                             });
@@ -291,16 +291,14 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        if(tuphieu == 'muahang'){
+        if (tuphieu == 'muahang') {
             this.bsModalRef = this.modalService.show(DanhSachPhieuMuaHangNCCModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
-        }
-        else this.bsModalRef = this.modalService.show(DanhSachPhieuKhachTraHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        } else this.bsModalRef = this.modalService.show(DanhSachPhieuKhachTraHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
-            if(tuphieu == 'muahang')
-                this.router.navigate([`/phieu-nhap-kho/them-moi`], { queryParams: { tuphieumuahang: result.id } });
+            if (tuphieu == 'muahang') this.router.navigate([`/phieu-nhap-kho/them-moi`], { queryParams: { tuphieumuahang: result.id } });
             else this.router.navigate([`/phieu-nhap-kho/them-moi`], { queryParams: { tuphieukhachtrahang: result.id } });
         });
     }
@@ -310,7 +308,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
         if (e.dataField == 'khonhap_id' && e.value !== undefined && e.value !== null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             // this.isValidForm = true;
-            
+
             this.hanghoas.forEach((v, i) => {
                 v.khonhap_id = this.phieunhapkho.khonhap_id;
             });
@@ -331,7 +329,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
         // }
 
         // tính tổng tiền
-         this.onTinhTien();
+        this.onTinhTien();
     }
 
     public onHangHoaAdd() {
@@ -355,7 +353,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
             setTimeout(() => {
                 this.hanghoas[index].mahanghoa = selected.mahanghoa;
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;
-                if(this.phieunhapkho.loaiphieunhapkho == 'nhapmuahang'){
+                if (this.phieunhapkho.loaiphieunhapkho == 'nhapmuahang') {
                     this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
                 }
             });
@@ -435,7 +433,7 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuNhapKho.instance.validate().isValid) return;
+        if (!this.frmPhieuNhapKho.instance.validate().isValid) return;
         if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác

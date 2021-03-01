@@ -36,8 +36,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         storageKey: 'dxGrid_PhieuYeuCauGiaCong'
     };
 
-    constructor(private router: Router, private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService, private authenticationService: AuthenticationService,
-        private modalService: BsModalService) {}
+    constructor(private router: Router, private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -78,8 +77,8 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         );
     }
 
-    addMenuItems(e) { 
-        if (e.row.rowType === "data") {
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
             e.items.push({
@@ -106,9 +105,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
                     this.bsModalRef.content.closeBtnName = 'Đóng';
                 }
             });
-     
 
-            
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item

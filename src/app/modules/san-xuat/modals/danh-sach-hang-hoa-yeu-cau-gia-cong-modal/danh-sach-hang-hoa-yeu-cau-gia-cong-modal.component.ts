@@ -13,7 +13,6 @@ import { Subject, Subscription } from 'rxjs';
     styleUrls: ['./danh-sach-hang-hoa-yeu-cau-gia-cong-modal.component.css']
 })
 export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
-  
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -24,7 +23,7 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
@@ -32,10 +31,7 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
         storageKey: 'dxGrid_ModalHangHoaYeuCauGiaCong'
     };
 
-    constructor(
-        public bsModalRef: BsModalRef,
-        private authenticationService: AuthenticationService
-    ) {}
+    constructor(public bsModalRef: BsModalRef, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -44,19 +40,18 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh
-            .subscribe(x => {
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.onLoadData();
-            }))
+            })
+        );
     }
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
 
-    onLoadData() {
-        
-    }
+    onLoadData() {}
 
     public selectionChanged(data: any) {
         this.selectedItemKeys = data.selectedRowKeys;

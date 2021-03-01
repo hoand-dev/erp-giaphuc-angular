@@ -121,7 +121,7 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
             this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstKhoXuat = x;
-                
+
                 this.dataSource_KhoXuat = new DataSource({
                     store: x,
                     paginate: true,
@@ -220,24 +220,23 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
         if (e.dataField == 'khoxuat_id' && e.value !== undefined && e.value !== null) {
             // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn ncc
             this.isValidForm = true;
-            
+
             this.hanghoas.forEach((v, i) => {
                 v.khoxuat_id = this.phieuxuatkho.khoxuat_id;
             });
         }
 
         if (e.dataField == 'taixe_id') {
-            let taixe = this.lstTaiXe.find(x => x.id == this.phieuxuatkho.taixe_id);
+            let taixe = this.lstTaiXe.find((x) => x.id == this.phieuxuatkho.taixe_id);
             this.phieuxuatkho.taixe_dienthoai = taixe ? taixe.dienthoai : null;
         }
 
         // thay đổi ngày tới hạn
-        if(e.dataField == 'songaytoihan'){
+        if (e.dataField == 'songaytoihan') {
             // trường hợp số ngày tới hạn bằng 0 và ngược lại
-            if(e.value == 0 || e.value == null){
+            if (e.value == 0 || e.value == null) {
                 this.phieuxuatkho.ngaytoihan = null;
-            }
-            else{
+            } else {
                 this.phieuxuatkho.ngaytoihan = moment(this.phieuxuatkho.ngayxuatkho).add(e.value, 'days').toDate();
             }
         }
@@ -329,8 +328,8 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuXuatKho.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuXuatKho.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuxuatkho_req = this.phieuxuatkho;

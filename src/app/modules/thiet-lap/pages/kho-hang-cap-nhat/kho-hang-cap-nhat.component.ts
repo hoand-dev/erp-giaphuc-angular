@@ -23,7 +23,7 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
 
     public lstKhuVuc: KhuVuc[] = [];
     public dataSource_KhuVuc: DataSource;
-    
+
     public makhohang_old: string;
     public saveProcessing = false;
 
@@ -102,8 +102,8 @@ export class KhoHangCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
-        if(!this.frmKhoHang.instance.validate().isValid) return;
-        
+        if (!this.frmKhoHang.instance.validate().isValid) return;
+
         let khohang_req = this.khohang;
         khohang_req.chinhanh_id = this.currentChiNhanh.id;
 

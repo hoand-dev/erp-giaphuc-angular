@@ -69,7 +69,7 @@ export class DinhMucThemMoiComponent implements OnInit {
         });
         this.dinhmuc = new DinhMuc();
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        
+
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
         this.subscriptions.add(
             this.giacongService.findDanhMucGiaCongs().subscribe((x) => {
@@ -80,7 +80,7 @@ export class DinhMucThemMoiComponent implements OnInit {
                     store: x,
                     paginate: true,
                     pageSize: 50
-                    });
+                });
             })
         );
         this.loadingVisible = true;
@@ -131,7 +131,7 @@ export class DinhMucThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){	
+    theCallbackValid(params) {
         return this.dinhmucService.checkExistDinhMuc(params.value);
     }
 
@@ -147,7 +147,7 @@ export class DinhMucThemMoiComponent implements OnInit {
 
     onHangHoaChanged(index, e) {
         let selected = e.selectedItem;
-        
+
         // xử lý lại thông tin dựa trên lựa chọn
         this.hanghoas[index].dvt_id = selected.dvt_id;
         this.hanghoas[index].loainguyenlieu = selected.loaihanghoa;
@@ -213,8 +213,8 @@ export class DinhMucThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
-        if(!this.frmDinhMuc.instance.validate().isValid) return;
-        
+        if (!this.frmDinhMuc.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.nguyenlieu_id != null);
         let nguonlucs = this.nguonlucs.filter((x) => x.nguonnhanluc_id != null);

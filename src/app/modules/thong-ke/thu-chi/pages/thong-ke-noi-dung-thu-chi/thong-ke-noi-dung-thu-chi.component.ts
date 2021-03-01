@@ -29,10 +29,7 @@ export class ThongKeNoiDungThuChiComponent implements OnInit, OnDestroy {
         storageKey: 'dxGrid_ThongKeThuChi_NoiDung'
     };
 
-    constructor(
-        private authenticationService: AuthenticationService,
-        private objThongKeThuChiService: ThongKeThuChiService
-    ) {}
+    constructor(private authenticationService: AuthenticationService, private objThongKeThuChiService: ThongKeThuChiService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -65,7 +62,5 @@ export class ThongKeNoiDungThuChiComponent implements OnInit, OnDestroy {
         );
     }
 
-    calculateSummary(options) {
-        
-    }
+    calculateSummary(options) {}
 }

@@ -56,7 +56,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         private dinhmucService: DinhMucService,
         private hanghoaService: HangHoaService,
         private noidungchiService: NoiDungThuChiService,
-        private nguonnhanlucService: NguonNhanLucService,
+        private nguonnhanlucService: NguonNhanLucService
     ) {}
 
     ngOnInit(): void {
@@ -71,12 +71,12 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.add(
             this.giacongService.findDanhMucGiaCongs().subscribe((data) => {
                 this.lstGiaCong = data;
-                
+
                 this.dataSource_GiaCong = new DataSource({
                     store: data,
                     paginate: true,
                     pageSize: 50
-                    });
+                });
             })
         );
 
@@ -129,7 +129,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
 
                                 this.dinhmuc = data;
                                 this.madinhmuc_old = this.dinhmuc.madinhmuc;
-                                
+
                                 this.hanghoas = this.dinhmuc.dinhmuc_nguyenlieu;
                                 this.nguonlucs = this.dinhmuc.dinhmuc_nguonluc;
                                 this.chiphikhacs = this.dinhmuc.dinhmuc_chiphikhac;
@@ -153,7 +153,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    theCallbackValid(params) {
         return this.dinhmucService.checkExistDinhMuc(params.value, this.madinhmuc_old);
     }
 
@@ -241,8 +241,8 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
-        if(!this.frmDinhMuc.instance.validate().isValid) return;
-        
+        if (!this.frmDinhMuc.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.nguyenlieu_id != null);
         let nguonlucs = this.nguonlucs.filter((x) => x.nguonnhanluc_id != null);

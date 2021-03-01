@@ -9,12 +9,11 @@ import { Subject, Subscription } from 'rxjs';
 declare var Stimulsoft: any;
 
 @Component({
-  selector: 'app-phieu-khach-dat-hang-in-phieu-modal',
-  templateUrl: './phieu-khach-dat-hang-in-phieu-modal.component.html',
-  styleUrls: ['./phieu-khach-dat-hang-in-phieu-modal.component.css']
+    selector: 'app-phieu-khach-dat-hang-in-phieu-modal',
+    templateUrl: './phieu-khach-dat-hang-in-phieu-modal.component.html',
+    styleUrls: ['./phieu-khach-dat-hang-in-phieu-modal.component.css']
 })
 export class PhieuKhachDatHangInPhieuModalComponent implements OnInit {
-
     options: any = new Stimulsoft.Viewer.StiViewerOptions();
     viewer: any = new Stimulsoft.Viewer.StiViewer(this.options, 'StiViewer', false);
 
@@ -25,7 +24,6 @@ export class PhieuKhachDatHangInPhieuModalComponent implements OnInit {
 
     public phieuDatHang: PhieuDatHang;
 
-    
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
@@ -33,17 +31,15 @@ export class PhieuKhachDatHangInPhieuModalComponent implements OnInit {
         storageKey: 'dxGrid_ModalPhieuKhachDatHangInPhieu'
     };
 
-    constructor(
-        public bsModalRef: BsModalRef, 
-        private objPhieuKhachDatHangService: PhieuDatHangService,
-        private authenticationService: AuthenticationService) 
-        {}
+    constructor(public bsModalRef: BsModalRef, private objPhieuKhachDatHangService: PhieuDatHangService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -52,10 +48,8 @@ export class PhieuKhachDatHangInPhieuModalComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.objPhieuKhachDatHangService.findPhieuDatHang(this.phieuDatHang.id ).subscribe(
-                (data) => {
-                   
-                },
+            this.objPhieuKhachDatHangService.findPhieuDatHang(this.phieuDatHang.id).subscribe(
+                (data) => {},
                 (error) => {
                     this.objPhieuKhachDatHangService.handleError(error);
                 }

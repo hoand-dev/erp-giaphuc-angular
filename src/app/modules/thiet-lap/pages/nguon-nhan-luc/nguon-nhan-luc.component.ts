@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./nguon-nhan-luc.component.css']
 })
 export class NguonNhanLucComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,18 +20,13 @@ export class NguonNhanLucComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_NguonNhanLuc"
+        type: 'localStorage',
+        storageKey: 'dxGrid_NguonNhanLuc'
     };
 
-    constructor(
-        private router: Router,
-        private nguonnhanlucService: NguonNhanLucService
-    ) { }
+    constructor(private router: Router, private nguonnhanlucService: NguonNhanLucService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -50,14 +44,16 @@ export class NguonNhanLucComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onLoadData() {
-        this.subscriptions.add(this.nguonnhanlucService.findNguonNhanLucs().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.nguonnhanlucService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.nguonnhanlucService.findNguonNhanLucs().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.nguonnhanlucService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -66,28 +62,34 @@ export class NguonNhanLucComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa nhân lực này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa nhân lực này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.nguonnhanlucService.deleteNguonNhanLuc(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.nguonnhanlucService.deleteNguonNhanLuc(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.nguonnhanlucService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.nguonnhanlucService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

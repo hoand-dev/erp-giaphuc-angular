@@ -93,7 +93,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
-                
+
                 this.subscriptions.add(
                     this.khohangService.findKhoHangs(x.id).subscribe((x) => {
                         this.loadingVisible = false;
@@ -192,7 +192,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     clickLayGia() {
         this.isClicked_LayGia = true;
-        if(this.loaiphieu != 'taikho' && this.phieuyeucaugiacong.donvigiacong_id === null){
+        if (this.loaiphieu != 'taikho' && this.phieuyeucaugiacong.donvigiacong_id === null) {
             notify(
                 {
                     width: 320,
@@ -205,15 +205,10 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
             return;
         }
 
-        this.hanghoas.forEach(e => {
-            if(e.hanghoa_id != null)
+        this.hanghoas.forEach((e) => {
+            if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(
-                        e.hanghoa_id, 
-                        e.yeucaus, 
-                        this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id
-                    )
-                    .subscribe((x) => {
+                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
                         e.dongia = x;
                     })
                 );
@@ -240,7 +235,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     displayExprHangHoa(item) {
-        return item && item.tenhanghoa ; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
+        return item && item.tenhanghoa; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
     }
 
     public onHangHoaAdd() {
@@ -366,7 +361,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.phieuyeucaugiacong.tongthanhtien = tongtienhang;
     }
 
-    onValid(){
+    onValid() {
         if (this.hanghoas.filter((x) => x.heso <= 0).length > 0) {
             Swal.fire({
                 title: 'Hệ số phải lớn hơn 0',
@@ -381,21 +376,21 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     public async onSubmitForm(e) {
-        if(!this.frmPhieuYeuCauGiaCong.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuYeuCauGiaCong.instance.validate().isValid) return;
+
         // kiểm tra nhấn nút lấy giá chưa
-        if(!this.isClicked_LayGia){
+        if (!this.isClicked_LayGia) {
             const { isConfirmed: confirm } = await Swal.fire({
                 title: 'CHƯA LẤY GIÁ',
                 html: 'Vui lòng lấy giá!',
                 icon: 'warning',
                 showConfirmButton: true,
-                confirmButtonText: "Đồng ý"
+                confirmButtonText: 'Đồng ý'
             });
             //if(!confirm) return;
             return;
         }
-        if(!this.onValid()) return;
+        if (!this.onValid()) return;
 
         // bỏ qua các dòng dữ liệu số lượng = 0
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

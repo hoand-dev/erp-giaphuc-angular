@@ -84,15 +84,15 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
             this.khohangService.findKhoHangs(this.currentChiNhanh.id).subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstKhoHang = x;
-                
+
                 this.dataSource_KhoHang = new DataSource({
                     store: x,
                     paginate: true,
                     pageSize: 50
-                    });
+                });
             })
         );
-        
+
         this.dataSource_HangHoa = new DataSource({
             paginate: true,
             pageSize: 50,
@@ -273,7 +273,7 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
         });
         //this.phieuxuatchuyenkho.tongtienhang = tongtienhang;
         //this.phieuxuatchuyenkho.tongthanhtien = tongtienhang - tongtienhang * this.phieuxuatchuyenkho.chietkhau + (tongtienhang - tongtienhang * this.phieuxuatchuyenkho.chietkhau) * this.phieuxuatchuyenkho.thuevat;
-    }    
+    }
 
     // kiểm tra xem 2 kho chọn có khác nhau hay không? nếu chọn khác trả về id kho nhập compare trả về true và ngược lại luôn false -> show warning
     khoxuatComparison = () => {
@@ -281,8 +281,8 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
     };
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuXuatChuyenKho.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuXuatChuyenKho.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuxuatchuyenkho_req = this.phieuxuatchuyenkho;

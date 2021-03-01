@@ -92,7 +92,7 @@ export class PhieuNhapKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         let rowData: PhieuNhapKho = e.row.key as PhieuNhapKho;
                         /* khởi tạo giá trị cho modal */
                         const initialState = {
-                            title: "XEM IN PHIẾU NHẬP KHO - CÓ GIÁ",
+                            title: 'XEM IN PHIẾU NHẬP KHO - CÓ GIÁ',
                             phieunhapkho_id: rowData.id,
                             loaiphieunhap: rowData.loaiphieunhapkho,
                             loaiphieuin: 'cogia'
@@ -116,7 +116,7 @@ export class PhieuNhapKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         let rowData: PhieuNhapKho = e.row.key as PhieuNhapKho;
                         /* khởi tạo giá trị cho modal */
                         const initialState = {
-                            title: "XEM IN PHIẾU NHẬP KHO -  KHÔNG GIÁ",
+                            title: 'XEM IN PHIẾU NHẬP KHO -  KHÔNG GIÁ',
                             phieunhapkho_id: rowData.id,
                             loaiphieunhap: rowData.loaiphieunhapkho,
                             loaiphieuin: 'khonggia'

@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./noi-dung-thu-chi.component.css']
 })
 export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,18 +20,13 @@ export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit 
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_NoiDungThuChi"
+        type: 'localStorage',
+        storageKey: 'dxGrid_NoiDungThuChi'
     };
 
-    constructor(
-        private router: Router,
-        private noidungthuchiService: NoiDungThuChiService
-    ) { }
+    constructor(private router: Router, private noidungthuchiService: NoiDungThuChiService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -50,14 +44,16 @@ export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     onLoadData() {
-        this.subscriptions.add(this.noidungthuchiService.findNoiDungThuChis().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.noidungthuchiService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.noidungthuchiService.findNoiDungThuChis().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.noidungthuchiService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -66,28 +62,34 @@ export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa nội dung thu chi này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa nội dung thu chi này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.noidungthuchiService.deleteNoiDungThuChi(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.noidungthuchiService.deleteNoiDungThuChi(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.noidungthuchiService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.noidungthuchiService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

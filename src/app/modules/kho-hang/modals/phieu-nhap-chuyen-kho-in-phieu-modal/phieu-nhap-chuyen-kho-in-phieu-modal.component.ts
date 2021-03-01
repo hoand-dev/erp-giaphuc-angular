@@ -79,14 +79,14 @@ export class PhieuNhapChuyenKhoInPhieuModalComponent implements OnInit {
 
                     /* đổi logo phiếu in */
                     var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
-                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+                    report.dictionary.variables.getByName('LogoComapny').valueObject = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
-                    
+
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },

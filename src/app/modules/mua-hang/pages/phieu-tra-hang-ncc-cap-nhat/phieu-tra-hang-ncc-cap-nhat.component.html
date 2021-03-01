@@ -42,7 +42,14 @@
                                         [label]="{ text: 'NHÀ CUNG CẤP' }"
                                         dataField="nhacungcap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NhaCungCap, valueExpr: 'id', searchEnabled: true, searchExpr: ['tennhacungcap', 'manhacungcap'], displayExpr: 'tennhacungcap', readOnly: true }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_NhaCungCap,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tennhacungcap', 'manhacungcap'],
+                                            displayExpr: 'tennhacungcap',
+                                            readOnly: true
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
@@ -61,7 +68,14 @@
                                         [label]="{ text: 'KHO XUẤT' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoXuat, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang', readOnly: true }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhoXuat,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang',
+                                            readOnly: true
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>
@@ -91,7 +105,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="nguyenlieu_row_{{ i }}"

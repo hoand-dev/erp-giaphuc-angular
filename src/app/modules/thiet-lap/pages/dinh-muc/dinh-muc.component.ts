@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./dinh-muc.component.css']
 })
 export class DinhMucComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,18 +20,13 @@ export class DinhMucComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_DinhMuc"
+        type: 'localStorage',
+        storageKey: 'dxGrid_DinhMuc'
     };
 
-    constructor(
-        private router: Router,
-        private dinhmucService: DinhMucService
-    ) { }
+    constructor(private router: Router, private dinhmucService: DinhMucService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -50,14 +44,16 @@ export class DinhMucComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onLoadData() {
-        this.subscriptions.add(this.dinhmucService.findDinhMucs().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.dinhmucService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.dinhmucService.findDinhMucs().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.dinhmucService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -66,28 +62,34 @@ export class DinhMucComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa định mức này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa định mức này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.dinhmucService.deleteDinhMuc(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.dinhmucService.deleteDinhMuc(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.dinhmucService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.dinhmucService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

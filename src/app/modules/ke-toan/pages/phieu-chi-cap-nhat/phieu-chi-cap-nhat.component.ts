@@ -41,7 +41,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_QuyTaiKhoan: DataSource;
     public dataSource_NoiDungThuChi: DataSource;
-    public lstSoTaiKhoan: NhaCungCap_SoTaiKhoan[]= [];
+    public lstSoTaiKhoan: NhaCungCap_SoTaiKhoan[] = [];
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -139,15 +139,15 @@ export class PhieuChiCapNhatComponent implements OnInit {
             })
         );
         this.subscriptions.add(
-            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) =>{
+            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) => {
                 this.dataSource_SoTaiKhoan = new DataSource({
                     store: x,
-                    paginate:true,
+                    paginate: true,
                     pageSize: 50
                 });
             })
         );
-        
+
         this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
                 let phieuchi_id = params.id;
@@ -214,9 +214,9 @@ export class PhieuChiCapNhatComponent implements OnInit {
                     this.onTinhNoConLai();
                 })
             );
-             // lấy danh sách số tài khoản
-             this.subscriptions.add(
-                this.nhacungcapService.findNhaCungCap_SoTaiKhoans(this.phieuchi.nhacungcap_id).subscribe((data) =>{
+            // lấy danh sách số tài khoản
+            this.subscriptions.add(
+                this.nhacungcapService.findNhaCungCap_SoTaiKhoans(this.phieuchi.nhacungcap_id).subscribe((data) => {
                     this.dataSource_SoTaiKhoan = new DataSource({
                         store: data,
                         paginate: true,
@@ -342,7 +342,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
         }
 
         // ? nhà cung cấp, có phiếu xuất hoặc không -> tính số tiền chi dư
-        if(this.loaiphieuchi == 'nhacungcap'){
+        if (this.loaiphieuchi == 'nhacungcap') {
             let sotienchidu: number = 0;
             let tongchi_chitiet: number = 0;
 
@@ -356,8 +356,8 @@ export class PhieuChiCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuChi.instance.validate().isValid) return;
-        
+        if (!this.frmPhieuChi.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0
         let phieuchi_phieunhapkhos = this.phieunhapkhos.filter((x) => x.sotienchi != 0 || x.sotiengiam != 0);
         let phieuchi_req = this.phieuchi;

@@ -77,7 +77,14 @@
                                         [label]="{ text: 'KHO HÀNG' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang', readOnly: isTatToan || isDuyetGia }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhoHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang',
+                                            readOnly: isTatToan || isDuyetGia
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -91,8 +98,7 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'TỔNG TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0' }">
-                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'TỔNG TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0%', step: '0.01', readOnly: isTatToan || isDuyetGia }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0%', step: '0.01', readOnly: isTatToan || isDuyetGia }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
@@ -126,7 +132,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 [readOnly]="isTatToan || isDuyetGia"
@@ -217,8 +223,26 @@
                                     <dxi-item [colSpan]="6">
                                         <div *dxTemplate>
                                             <dx-button icon="back" [routerLink]="['/phieu-ban-hang']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
-                                            <dx-button *ngIf="!this.isDuyetGia" icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
-                                            <dx-button *ngIf="!this.isDuyetGia" stylingMode="contained" [ngClass]="'float-right'" [text]="this.phieubanhang.duyetgia ? 'Huỷ duyệt' : 'Duyệt'" type="success" [width]="120" (onClick)="onDuyetGia()" > </dx-button>
+                                            <dx-button
+                                                *ngIf="!this.isDuyetGia"
+                                                icon="save"
+                                                text="Lưu lại"
+                                                [ngClass]="'float-right'"
+                                                type="success"
+                                                [useSubmitBehavior]="true"
+                                                [disabled]="saveProcessing"
+                                            >
+                                            </dx-button>
+                                            <dx-button
+                                                *ngIf="!this.isDuyetGia"
+                                                stylingMode="contained"
+                                                [ngClass]="'float-right'"
+                                                [text]="this.phieubanhang.duyetgia ? 'Huỷ duyệt' : 'Duyệt'"
+                                                type="success"
+                                                [width]="120"
+                                                (onClick)="onDuyetGia()"
+                                            >
+                                            </dx-button>
                                         </div>
                                     </dxi-item>
                                 </dx-form>

@@ -15,7 +15,6 @@ declare var Stimulsoft: any;
     styleUrls: ['./danh-sach-phieu-xuat-chuyen-kho-modal.component.css']
 })
 export class DanhSachPhieuXuatChuyenKhoModalComponent implements OnInit {
-  
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -24,14 +23,14 @@ export class DanhSachPhieuXuatChuyenKhoModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_ModalPhieuXuatChuyenKho'
     };
-    
+
     constructor(public bsModalRef: BsModalRef, private objPhieuXuatChuyenKhoService: PhieuXuatChuyenKhoService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
@@ -41,10 +40,12 @@ export class DanhSachPhieuXuatChuyenKhoModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -59,7 +60,7 @@ export class DanhSachPhieuXuatChuyenKhoModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuXuatChuyenKhoService.findPhieuXuatChuyenKhos(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter(x => x.trangthainhap != ETrangThaiPhieu.danhap);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthainhap != ETrangThaiPhieu.danhap);
                 },
                 (error) => {
                     this.objPhieuXuatChuyenKhoService.handleError(error);

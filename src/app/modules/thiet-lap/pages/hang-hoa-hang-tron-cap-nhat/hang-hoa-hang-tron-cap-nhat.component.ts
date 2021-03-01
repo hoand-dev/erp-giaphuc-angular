@@ -59,7 +59,7 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
-        
+
         this.subscriptions.add(
             this.tieuchuanService.findDanhMucTieuChuans().subscribe((x) => {
                 this.lstTieuChuan = x;
@@ -166,8 +166,8 @@ export class HangHoaHangTronCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
-        if(!this.frmHangHoa.instance.validate().isValid) return;
-        
+        if (!this.frmHangHoa.instance.validate().isValid) return;
+
         let hanghoa_req = this.hanghoa;
         hanghoa_req.chinhanh_id = this.currentChiNhanh.id;
 

@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./hang-hoa-nguyen-lieu.component.css']
 })
 export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,19 +20,13 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_HangHoaNguyenLieu"
+        type: 'localStorage',
+        storageKey: 'dxGrid_HangHoaNguyenLieu'
     };
 
-    constructor(
-        public appInfoService: AppInfoService,
-        private router: Router,
-        private hanghoaService: HangHoaService
-    ) { }
+    constructor(public appInfoService: AppInfoService, private router: Router, private hanghoaService: HangHoaService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -51,14 +44,16 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
     }
 
     onLoadData() {
-        this.subscriptions.add(this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.hanghoaService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_nguyenlieu).subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.hanghoaService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -67,28 +62,34 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa nguyên liệu này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa nguyên liệu này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.hanghoaService.deleteHangHoa(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.hanghoaService.deleteHangHoa(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.hanghoaService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.hanghoaService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

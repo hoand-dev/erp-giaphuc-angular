@@ -20,7 +20,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public bsModalRef: BsModalRef;
-    
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
@@ -62,19 +62,21 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         this.subscriptions.unsubscribe();
     }
 
-    addMenuItems(e) { 
-        if (e.row.rowType === "data") {
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
-            
+
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
             e.items.push(
                 {
-                    text: "Tất toán", icon: "edit", visible: true,
+                    text: 'Tất toán',
+                    icon: 'edit',
+                    visible: true,
                     onItemClick: () => {
-                        this.router.navigate([`/phieu-dat-hang-ncc/${e.row.key.id}/cap-nhat`], {queryParams: {tattoan: "ok"}});
+                        this.router.navigate([`/phieu-dat-hang-ncc/${e.row.key.id}/cap-nhat`], { queryParams: { tattoan: 'ok' } });
                     }
                 },
                 {
@@ -85,8 +87,8 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
                         let rowData: PhieuDatHangNCC = e.row.key as PhieuDatHangNCC;
                         /* khởi tạo giá trị cho modal */
                         const initialState = {
-                            title: "XEM IN PHIẾU ĐẶT HÀNG NCC",
-                            phieudathangncc_id: rowData.id,
+                            title: 'XEM IN PHIẾU ĐẶT HÀNG NCC',
+                            phieudathangncc_id: rowData.id
                         };
 
                         /* hiển thị modal */
@@ -98,7 +100,7 @@ export class PhieuDatHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
                         });
                         this.bsModalRef.content.closeBtnName = 'Đóng';
                     }
-                },
+                }
             );
         }
     }

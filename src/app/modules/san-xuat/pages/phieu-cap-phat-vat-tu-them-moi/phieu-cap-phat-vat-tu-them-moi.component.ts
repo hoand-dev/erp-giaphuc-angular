@@ -6,30 +6,24 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./phieu-cap-phat-vat-tu-them-moi.component.css']
 })
 export class PhieuCapPhatVatTuThemMoiComponent implements OnInit {
-
     public phieucapphatvattu: any = {
         ngaycapphatvattu: new Date()
     };
-    
-    public rules: Object = { 'X': /[02-9]/ };
+
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
-    onExit() {
+    onExit() {}
 
-    }
-
-    onFormSubmit(e){
+    onFormSubmit(e) {
         console.log(e);
-        
     }
-
 }

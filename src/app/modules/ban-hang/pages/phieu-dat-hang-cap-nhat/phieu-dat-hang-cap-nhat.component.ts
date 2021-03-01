@@ -69,7 +69,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
         private hanghoaService: HangHoaService,
         private commonService: CommonService
-    ) { }
+    ) {}
 
     ngAfterViewInit() {
         // this.frmPhieuDatHangNCC.instance.validate(); // showValidationSummary sau khi focus out
@@ -137,18 +137,20 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             paginate: true,
             pageSize: 50,
             store: new CustomStore({
-                key: "id",
+                key: 'id',
                 load: (loadOptions) => {
-                    return this.commonService.hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieudathang.khoxuat_id, null, loadOptions)
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieudathang.khoxuat_id, null, loadOptions)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 },
                 byKey: (key) => {
-                    return this.hanghoaService.findHangHoa(key)
+                    return this.hanghoaService
+                        .findHangHoa(key)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 }
@@ -204,7 +206,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             // gán lại thông tin điện thoại + địa chỉ
             if (!this.fisrtLoad_KhachHang) {
                 let khachhang = this.lstKhachHang.find((o) => o.id == this.phieudathang.khachhang_id);
-                
+
                 this.phieudathang.khachhang_hoten = khachhang.tenkhachhang;
                 this.phieudathang.khachhang_dienthoai = khachhang.sodienthoai;
                 this.phieudathang.khachhang_diachi = khachhang.diachi;
@@ -272,17 +274,17 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
             this.hanghoas[index].khoxuat_id = this.phieudathang.khoxuat_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
             this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
-            
+
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
         }
-        
+
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-        
+
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
         if (rowsNull.length == 0) {
@@ -346,7 +348,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.frmPhieuDatHang.instance.validate().isValid) return;
+        if (!this.frmPhieuDatHang.instance.validate().isValid) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
@@ -358,7 +360,7 @@ export class PhieuDatHangCapNhatComponent implements OnInit {
 
         this.saveProcessing = true;
 
-        if(this.isTatToan)
+        if (this.isTatToan)
             this.subscriptions.add(
                 this.phieudathangService.updateTatToanPhieuDatHang(phieudathang_req).subscribe(
                     (data) => {
