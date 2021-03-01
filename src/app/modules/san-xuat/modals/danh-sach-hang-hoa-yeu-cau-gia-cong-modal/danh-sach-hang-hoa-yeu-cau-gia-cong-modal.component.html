@@ -17,7 +17,18 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid" [columnAutoWidth]="true" (onSelectionChanged)="selectionChanged($event)">
+            <dx-data-grid
+                id="gridContainer"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [stateStoring]="stateStoringGrid"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
+                (onSelectionChanged)="selectionChanged($event)"
+            >
                 <dxi-column dataField="ngaydathang" dataType="datetime" caption="Ngày đặt"></dxi-column>
                 <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
                 <dxi-column dataField="khachhang" caption="Khách hàng"></dxi-column>
@@ -44,6 +55,8 @@
                 <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'always'" mode="multiple"></dxo-selection>
 
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
                 <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                 <dxo-paging [pageSize]="10"></dxo-paging>

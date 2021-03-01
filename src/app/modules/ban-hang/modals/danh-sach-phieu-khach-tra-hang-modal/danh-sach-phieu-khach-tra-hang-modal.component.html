@@ -24,6 +24,9 @@
                 [hoverStateEnabled]="true"
                 [stateStoring]="stateStoringGrid"
                 [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
                 (onRowDblClick)="onRowDblClick($event)"
             >
                 <!-- <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
@@ -60,6 +63,8 @@
 
                 <!-- dx-data-grid option -->
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
                 <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                 <dxo-paging [pageSize]="10"></dxo-paging>

@@ -1,5 +1,7 @@
 <div class="modal-header">
-    <h6 class="modal-title pull-left"><b>{{ title }}</b></h6>
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -22,6 +24,9 @@
                 [hoverStateEnabled]="true"
                 [stateStoring]="stateStoringGrid"
                 [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
                 (onRowDblClick)="onRowDblClick($event)"
             >
                 <dxi-column dataField="ngaydathang" dataType="datetime" caption="Ngày đặt hàng"></dxi-column>
@@ -33,14 +38,12 @@
                 <dxi-column dataField="tongthanhtien" caption="Tổng tiền" format="#,##0"></dxi-column>
                 <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>
 
-
                 <dxi-column dataField="trangthaigiao" caption="Trạng thái giao" cellTemplate="cellTemplateTrangThaiGiao">
                     <div *dxTemplate="let data of 'cellTemplateTrangThaiGiao'">
                         <span *ngIf="data.value == null">Chưa xuất</span>
-                        <span *ngIf="data.value != null">{{data.value}}</span>
+                        <span *ngIf="data.value != null">{{ data.value }}</span>
                     </div>
                 </dxi-column>
-              
 
                 <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                     <div *dxTemplate="let data of 'cellTemplateTrangThai'">
@@ -51,13 +54,13 @@
                 <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
 
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                 <dxo-paging [pageSize]="10"></dxo-paging>
-                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
-                </dxo-pager>
+                <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
             </dx-data-grid>
-            
         </div>
     </div>
 </div>

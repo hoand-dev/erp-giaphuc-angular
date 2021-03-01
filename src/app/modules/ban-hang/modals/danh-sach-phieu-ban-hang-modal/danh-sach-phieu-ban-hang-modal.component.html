@@ -17,17 +17,27 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid" [columnAutoWidth]="true" (onRowDblClick)="onRowDblClick($event)">
-
+            <dx-data-grid
+                id="gridContainer"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [stateStoring]="stateStoringGrid"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
+                (onRowDblClick)="onRowDblClick($event)"
+            >
                 <dxi-column dataField="ngaybanhang" dataType="datetime" caption="Ngày bán hàng"></dxi-column>
                 <dxi-column dataField="maphieubanhang" caption="Mã phiếu"></dxi-column>
                 <dxi-column dataField="maphieudathang" caption="Từ phiếu"></dxi-column>
-                <dxi-column dataField="khachhang_hoten" caption="Tên khách hàng"></dxi-column>               
+                <dxi-column dataField="khachhang_hoten" caption="Tên khách hàng"></dxi-column>
                 <dxi-column dataField="tongtienhang" caption="Tiền hàng" format="#,##0.###"></dxi-column>
                 <dxi-column dataField="chietkhau" caption="Chiết khấu" format="#0%"></dxi-column>
                 <dxi-column dataField="thuevat" caption="Thuế VAT" format="#0%"></dxi-column>
                 <dxi-column dataField="tongthanhtien" caption="Tổng tiền" format="#,##0.###"></dxi-column>
-                <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>    
+                <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>
                 <dxi-column dataField="trangthaixuat" caption="Trạng thái xuất" cellTemplate="cellTemplateTrangThaiXuat">
                     <div *dxTemplate="let data of 'cellTemplateTrangThaiXuat'">
                         <span *ngIf="data.value == null">Chưa xuất</span>
@@ -37,7 +47,7 @@
                 <dxi-column dataField="duyetgia" caption="Trạng thái duyệt" cellTemplate="cellTemplateTrangThaiDuyet">
                     <div *dxTemplate="let data of 'cellTemplateTrangThaiDuyet'">
                         <span>{{ data.value ? 'Đã duyệt' : 'Chưa duyệt' }}</span>
-                    </div>  
+                    </div>
                 </dxi-column>
                 <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                     <div *dxTemplate="let data of 'cellTemplateTrangThai'">
@@ -49,8 +59,10 @@
 
                 <!-- dx-data-grid option -->
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                 <dxo-paging [pageSize]="10"></dxo-paging>
                 <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
             </dx-data-grid>
