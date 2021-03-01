@@ -9,12 +9,11 @@ import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-phieu-khach-tra-hang',
-  templateUrl: './phieu-khach-tra-hang.component.html',
-  styleUrls: ['./phieu-khach-tra-hang.component.css']
+    selector: 'app-phieu-khach-tra-hang',
+    templateUrl: './phieu-khach-tra-hang.component.html',
+    styleUrls: ['./phieu-khach-tra-hang.component.css']
 })
 export class PhieuKhachTraHangComponent implements OnInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -25,18 +24,13 @@ export class PhieuKhachTraHangComponent implements OnInit {
     public currDayTime: Date = new Date();
     public timeCreateAt: Date = new Date();
 
-    
-
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_PhieuKhachTraHang'
     };
 
-    constructor(
-        private router: Router, 
-        private objPhieuKhachTraHangService: PhieuKhachTraHangService, 
-        private authenticationService: AuthenticationService) {}
+    constructor(private router: Router, private objPhieuKhachTraHangService: PhieuKhachTraHangService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -49,10 +43,12 @@ export class PhieuKhachTraHangComponent implements OnInit {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -113,5 +109,4 @@ export class PhieuKhachTraHangComponent implements OnInit {
             }
         });
     }
-
 }

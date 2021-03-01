@@ -45,20 +45,13 @@ import { ChangePasswordComponent } from './shared/components/change-password/cha
 import { NotPermissionComponent } from './shared/components/not-permission/not-permission.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        HomeComponent,
-        NotFoundComponent,
-        ChangePasswordComponent,
-        NotPermissionComponent,
-    ],
+    declarations: [AppComponent, LoginComponent, HomeComponent, NotFoundComponent, ChangePasswordComponent, NotPermissionComponent],
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
         FormsModule,
-        
+
         DxTagBoxModule,
         DxDataGridModule,
         DxTemplateModule,
@@ -79,9 +72,15 @@ import { NotPermissionComponent } from './shared/components/not-permission/not-p
         ModalModule.forRoot(),
         BrowserAnimationsModule,
 
-        ThietLapModule, MuaHangModule, SanXuatModule, BanHangModule, KhoHangModule, KeToanModule, ThongKeModule,
+        ThietLapModule,
+        MuaHangModule,
+        SanXuatModule,
+        BanHangModule,
+        KhoHangModule,
+        KeToanModule,
+        ThongKeModule,
 
-        AppRoutingModule, // root route phải đặt ở cuối nếu có module con sử dụng route
+        AppRoutingModule // root route phải đặt ở cuối nếu có module con sử dụng route
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -94,4 +93,4 @@ import { NotPermissionComponent } from './shared/components/not-permission/not-p
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

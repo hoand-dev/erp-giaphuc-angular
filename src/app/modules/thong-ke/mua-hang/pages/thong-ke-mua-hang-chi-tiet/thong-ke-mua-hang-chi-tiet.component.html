@@ -31,7 +31,6 @@
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                               
                             </div>
                         </div>
 
@@ -41,55 +40,57 @@
                             [showRowLines]="true"
                             [hoverStateEnabled]="true"
                             [columnAutoWidth]="true"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
+                            [allowColumnReordering]="true"
                             [stateStoring]="stateStoringGrid"
-                           
                         >
-                         
-
                             <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
-                                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
-            
-                                            <dxi-column dataField="ngaymuahangncc" dataType="datetime" caption="Ngày mua hàng"></dxi-column>
-                                            <dxi-column dataField="maphieumuahangncc" caption="Mã phiếu mua hàng"></dxi-column>
-                                            <dxi-column dataField="maphieudathang" caption="Mã phiếu đặt hàng"></dxi-column>
-                                            <dxi-column dataField="tennhacungcap" caption="Tên nhà cung cấp"></dxi-column>
-                                            <dxi-column dataField="maphieunhap" caption="Mã phiếu nhập kho"></dxi-column>
-                                            <dxi-column dataField="tenkho" caption="Tên kho nhập"></dxi-column>
-            
-                                            <dxi-column dataField="trangthainhap" caption="Trạng thái nhập" cellTemplate="cellTemplateTrangThaiNhap">
-                                                <div *dxTemplate="let data of 'cellTemplateTrangThaiNhap'">
-                                                    <span *ngIf="data.value == null">Chưa Nhập</span>
-                                                    <span *ngIf="data.value != null">{{ data.value }}</span>
-                                                </div>
-                                            </dxi-column>
-                                            <dxi-column dataField="trangthaitra" caption="Trạng thái trả" cellTemplate="cellTemplateTrangThaiTra">
-                                                <div *dxTemplate="let data of 'cellTemplateTrangThaiTra'">
-                                                    <span *ngIf="data.value == null">Chưa Trả</span>
-                                                    <span *ngIf="data.value != null">{{ data.value }}</span>
-                                                </div>
-                                            </dxi-column>
-                                            <dxi-column dataField="chuthich" caption="Ghi chú"></dxi-column>
-            
-                                            <dxi-column dataField="mahanghoa" caption="Mã hàng hóa"></dxi-column>
-                                            <dxi-column dataField="tenhanghoa" caption="Tên hàng hóa"></dxi-column>
-                                            <dxi-column dataField="dvt" caption="Đơn vị tính"></dxi-column>
-                                            <dxi-column dataField="m3" caption="Số m3"></dxi-column>
-                                            <dxi-column dataField="quydoi1" caption="Số kiện"></dxi-column>
-            
-                                            <dxi-column dataField="soluong" caption="Số lượng mua" format="#,##0.###"></dxi-column>
-                                            <dxi-column dataField="soluongnhap" caption="Số lượng đã nhập" format="#,##0.###"></dxi-column>
-                                            <dxi-column dataField="soluongconlai" caption="Số còn lại" format="#,##0.###"></dxi-column>
-                                            <dxi-column dataField="dongia" caption="Đơn giá" format="#,##0.###"></dxi-column>
-                                            <dxi-column dataField="thuevat" caption="Thuế VAT" format="#0%"></dxi-column>
-                                            <dxi-column dataField="chietkhau" caption="Chiết khấu" format="#,##0.###"></dxi-column>
-                                            <dxi-column dataField="thanhtien" caption="Thành tiền" format="#,##0.###"></dxi-column>
-            
-                                            <dxo-search-panel [visible]="true"></dxo-search-panel>
-                                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
-                                            <dxo-paging [pageSize]="9"></dxo-paging>
-                                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
-                                            </dxo-pager>
+                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+
+                            <dxi-column dataField="ngaymuahangncc" dataType="datetime" caption="Ngày mua hàng"></dxi-column>
+                            <dxi-column dataField="maphieumuahangncc" caption="Mã phiếu mua hàng"></dxi-column>
+                            <dxi-column dataField="maphieudathang" caption="Mã phiếu đặt hàng"></dxi-column>
+                            <dxi-column dataField="tennhacungcap" caption="Tên nhà cung cấp"></dxi-column>
+                            <dxi-column dataField="maphieunhap" caption="Mã phiếu nhập kho"></dxi-column>
+                            <dxi-column dataField="tenkho" caption="Tên kho nhập"></dxi-column>
+
+                            <dxi-column dataField="trangthainhap" caption="Trạng thái nhập" cellTemplate="cellTemplateTrangThaiNhap">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiNhap'">
+                                    <span *ngIf="data.value == null">Chưa Nhập</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+                            <dxi-column dataField="trangthaitra" caption="Trạng thái trả" cellTemplate="cellTemplateTrangThaiTra">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiTra'">
+                                    <span *ngIf="data.value == null">Chưa Trả</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+                            <dxi-column dataField="chuthich" caption="Ghi chú"></dxi-column>
+
+                            <dxi-column dataField="mahanghoa" caption="Mã hàng hóa"></dxi-column>
+                            <dxi-column dataField="tenhanghoa" caption="Tên hàng hóa"></dxi-column>
+                            <dxi-column dataField="dvt" caption="Đơn vị tính"></dxi-column>
+                            <dxi-column dataField="m3" caption="Số m3"></dxi-column>
+                            <dxi-column dataField="quydoi1" caption="Số kiện"></dxi-column>
+
+                            <dxi-column dataField="soluong" caption="Số lượng mua" format="#,##0.###"></dxi-column>
+                            <dxi-column dataField="soluongnhap" caption="Số lượng đã nhập" format="#,##0.###"></dxi-column>
+                            <dxi-column dataField="soluongconlai" caption="Số còn lại" format="#,##0.###"></dxi-column>
+                            <dxi-column dataField="dongia" caption="Đơn giá" format="#,##0.###"></dxi-column>
+                            <dxi-column dataField="thuevat" caption="Thuế VAT" format="#0%"></dxi-column>
+                            <dxi-column dataField="chietkhau" caption="Chiết khấu" format="#,##0.###"></dxi-column>
+                            <dxi-column dataField="thanhtien" caption="Thành tiền" format="#,##0.###"></dxi-column>
+
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                            <dxo-paging [pageSize]="9"></dxo-paging>
+                            <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
+                            </dxo-pager>
                         </dx-data-grid>
                     </div>
                 </div>

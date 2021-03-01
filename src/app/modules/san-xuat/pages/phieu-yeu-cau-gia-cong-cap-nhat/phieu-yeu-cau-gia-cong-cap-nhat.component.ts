@@ -117,7 +117,6 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
                 );
             })
         );
-        
 
         this.subscriptions.add(
             this.giacongService.findDinhMucs().subscribe((x) => {
@@ -198,7 +197,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
                                 this.hanghoalenght_yeucau = data.phieuyeucaugiacong_chitiets.length;
                                 this.hanghoalenght_somat = data.phieuyeucaugiacong_chitiets.length;
                                 this.hanghoalenght_somat_thanhpham = data.phieuyeucaugiacong_chitiets.length;
-                                
+
                                 this.loaiphieu = data.loaiphieu;
 
                                 this.phieuyeucaugiacong = data;
@@ -227,7 +226,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     }
 
     clickLayGia() {
-        if(this.loaiphieu != 'taikho' && this.phieuyeucaugiacong.donvigiacong_id === null){
+        if (this.loaiphieu != 'taikho' && this.phieuyeucaugiacong.donvigiacong_id === null) {
             notify(
                 {
                     width: 320,
@@ -240,15 +239,10 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
             return;
         }
 
-        this.hanghoas.forEach(e => {
-            if(e.hanghoa_id != null)
+        this.hanghoas.forEach((e) => {
+            if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(
-                        e.hanghoa_id, 
-                        e.yeucaus, 
-                        this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id
-                    )
-                    .subscribe((x) => {
+                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
                         e.dongia = x;
                     })
                 );
@@ -276,8 +270,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     }
 
     public onHangHoaAdd() {
-        if(!this.isTatToan)
-            this.hanghoas.push(new PhieuYeuCauGiaCongCT());
+        if (!this.isTatToan) this.hanghoas.push(new PhieuYeuCauGiaCongCT());
     }
 
     public onHangHoaDelete(item) {
@@ -401,7 +394,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         this.phieuyeucaugiacong.tongthanhtien = tongtienhang;
     }
 
-    onValid(){
+    onValid() {
         if (this.hanghoas.filter((x) => x.hanghoa_id != null && x.heso <= 0).length > 0) {
             Swal.fire({
                 title: 'Hệ số phải lớn hơn 0',
@@ -416,7 +409,9 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.onValid()) return;
+        if (!this.frmPhieuYeuCauGiaCong.instance.validate().isValid) return;
+        if (!this.onValid()) return;
+
         // bỏ qua các dòng dữ liệu số lượng = 0
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieuyeucaugiacong_req = this.phieuyeucaugiacong;

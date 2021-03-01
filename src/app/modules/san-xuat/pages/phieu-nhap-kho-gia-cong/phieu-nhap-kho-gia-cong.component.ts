@@ -21,8 +21,6 @@ import { PhieuNhapThanhPhamInPhieuModalComponent } from '../../modals/phieu-nhap
 export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-  
-
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     public bsModalRef: BsModalRef;
@@ -37,8 +35,12 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         storageKey: 'dxGrid_PhieuNhapKhoGiaCong'
     };
 
-    constructor(private router: Router, private objPhieuNhapKhoGiaCongService: PhieuNhapKhoGiaCongService, private authenticationService: AuthenticationService,
-        private modalService: BsModalService ) {}
+    constructor(
+        private router: Router,
+        private objPhieuNhapKhoGiaCongService: PhieuNhapKhoGiaCongService,
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
+    ) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -79,8 +81,8 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         );
     }
 
-    addMenuItems(e) { 
-        if (e.row.rowType === "data") {
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
             e.items.push({
@@ -107,8 +109,7 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
                     this.bsModalRef.content.closeBtnName = 'Đóng';
                 }
             });
-     
-            
+
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item

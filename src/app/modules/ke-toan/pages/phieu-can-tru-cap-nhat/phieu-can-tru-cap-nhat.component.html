@@ -96,7 +96,13 @@
                                         [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                                         dataField="donvigiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_DonViGiaCong, valueExpr: 'id', searchEnabled: true,searchExpr: ['tendonvigiacong', 'madonvigiacong'], displayExpr: 'tendonvigiacong' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_DonViGiaCong,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tendonvigiacong', 'madonvigiacong'],
+                                            displayExpr: 'tendonvigiacong'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                                     </dxi-item>
@@ -116,7 +122,13 @@
                                         [label]="{ text: 'NỘI DUNG' }"
                                         dataField="noidungcantru_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NoiDungThuChi, valueExpr: 'id', searchEnabled: true,searchExpr: ['tennoidungthuchi', 'manoidungthuchi'], displayExpr: 'tennoidungthuchi' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_NoiDungThuChi,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tennoidungthuchi', 'manoidungthuchi'],
+                                            displayExpr: 'tennoidungthuchi'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
                                     </dxi-item>
@@ -206,7 +218,11 @@
                                         </mat-tab-group>
                                     </dxi-item>
 
-                                    <dxi-item [colSpan]="12" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    <dxi-item [colSpan]="12">
+                                        <div *dxTemplate>
+                                            <dx-button icon="back" [routerLink]="['/phieu-can-tru']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                        </div>
                                     </dxi-item>
                                 </dx-form>
                             </form>

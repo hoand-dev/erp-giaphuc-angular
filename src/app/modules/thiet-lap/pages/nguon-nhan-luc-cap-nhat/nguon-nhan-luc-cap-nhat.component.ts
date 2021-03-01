@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./nguon-nhan-luc-cap-nhat.component.css']
 })
 export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
-
     @ViewChild(DxFormComponent, { static: false }) frmNguonNhanLuc: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -25,19 +24,14 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
     public manguonnhanluc_old: string;
     public saveProcessing = false;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
-    constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private authenticationService: AuthenticationService,
-        private nguonnhanlucService: NguonNhanLucService
-    ) { }
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private nguonnhanlucService: NguonNhanLucService) {}
 
     ngOnInit(): void {
         setTimeout(() => {
@@ -45,22 +39,26 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
         });
         this.nguonnhanluc = new NguonNhanLuc();
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-            let nguonnhanluc_id = params.id;
-            // lấy thông tin nguồn nhân lực
-            if (nguonnhanluc_id) {
-                this.subscriptions.add(this.nguonnhanlucService.findNguonNhanLuc(nguonnhanluc_id).subscribe(
-                    data => {
-                        this.nguonnhanluc = data[0];
-                        this.manguonnhanluc_old = this.nguonnhanluc.manguonnhanluc;
-                    },
-                    error => {
-                        this.nguonnhanlucService.handleError(error);
-                    }
-                ));
-            }
-        }));
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let nguonnhanluc_id = params.id;
+                // lấy thông tin nguồn nhân lực
+                if (nguonnhanluc_id) {
+                    this.subscriptions.add(
+                        this.nguonnhanlucService.findNguonNhanLuc(nguonnhanluc_id).subscribe(
+                            (data) => {
+                                this.nguonnhanluc = data[0];
+                                this.manguonnhanluc_old = this.nguonnhanluc.manguonnhanluc;
+                            },
+                            (error) => {
+                                this.nguonnhanlucService.handleError(error);
+                            }
+                        )
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -72,31 +70,39 @@ export class NguonNhanLucCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    theCallbackValid(params) {
         return this.nguonnhanlucService.checkExistNguonNhanLuc(params.value, this.manguonnhanluc_old);
     }
 
     onSubmitForm(e) {
+        if (!this.frmNguonNhanLuc.instance.validate().isValid) return;
+
         let nguonnhanluc_req = this.nguonnhanluc;
         nguonnhanluc_req.chinhanh_id = this.currentChiNhanh.id;
 
         this.saveProcessing = true;
-        this.subscriptions.add(this.nguonnhanlucService.updateNguonNhanLuc(nguonnhanluc_req).subscribe(
-            data => {
-                notify({
-                    width: 320,
-                    message: "Lưu thành công",
-                    position: { my: "right top", at: "right top" }
-                }, "success", 475);
-                this.router.navigate(['/nguon-nhan-luc']);
-                // this.frmNguonNhanLuc.instance.resetValues();
-                this.saveProcessing = false;
-            },
-            error => {
-                this.nguonnhanlucService.handleError(error);
-                this.saveProcessing = false;
-            }
-        ));
+        this.subscriptions.add(
+            this.nguonnhanlucService.updateNguonNhanLuc(nguonnhanluc_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/nguon-nhan-luc']);
+                    // this.frmNguonNhanLuc.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.nguonnhanlucService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
         e.preventDefault();
     }
 }

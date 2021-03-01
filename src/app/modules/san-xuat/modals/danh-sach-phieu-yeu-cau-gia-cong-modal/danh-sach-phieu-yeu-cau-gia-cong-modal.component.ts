@@ -9,12 +9,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-danh-sach-phieu-yeu-cau-gia-cong-modal',
-  templateUrl: './danh-sach-phieu-yeu-cau-gia-cong-modal.component.html',
-  styleUrls: ['./danh-sach-phieu-yeu-cau-gia-cong-modal.component.css']
+    selector: 'app-danh-sach-phieu-yeu-cau-gia-cong-modal',
+    templateUrl: './danh-sach-phieu-yeu-cau-gia-cong-modal.component.html',
+    styleUrls: ['./danh-sach-phieu-yeu-cau-gia-cong-modal.component.css']
 })
 export class DanhSachPhieuYeuCauGiaCongModalComponent implements OnInit {
-
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -26,14 +25,14 @@ export class DanhSachPhieuYeuCauGiaCongModalComponent implements OnInit {
 
     public trangthainhap: string = ETrangThaiPhieu.danhap;
     public loaiphieu: string = 'taikho';
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_ModalPhieuYeuCauGiaCong'
     };
-    
+
     constructor(public bsModalRef: BsModalRef, private phieuyeucaugiacongService: PhieuYeuCauGiaCongService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
@@ -43,10 +42,12 @@ export class DanhSachPhieuYeuCauGiaCongModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -61,7 +62,7 @@ export class DanhSachPhieuYeuCauGiaCongModalComponent implements OnInit {
         this.subscriptions.add(
             this.phieuyeucaugiacongService.findPhieuYeuCauGiaCongs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter(x => x.trangthainhap != this.trangthainhap && x.loaiphieu == this.loaiphieu);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthainhap != this.trangthainhap && x.loaiphieu == this.loaiphieu);
                 },
                 (error) => {
                     this.phieuyeucaugiacongService.handleError(error);

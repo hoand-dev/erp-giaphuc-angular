@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./kho-hang.component.css']
 })
 export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -24,30 +23,26 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_KhoHang"
+        type: 'localStorage',
+        storageKey: 'dxGrid_KhoHang'
     };
 
-    constructor(
-        private router: Router,
-        private khohangService: KhoHangService,
-        private authenticationService: AuthenticationService
-    ) { }
+    constructor(private router: Router, private khohangService: KhoHangService, private authenticationService: AuthenticationService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                console.log("kho hàng page: " + x.id);
-                this.currChiNhanh = x;
-                this.onLoadData(x.id);
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    console.log('kho hàng page: ' + x.id);
+                    this.currChiNhanh = x;
+                    this.onLoadData(x.id);
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -60,14 +55,16 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData(chinhanh_id: number = null) {
         chinhanh_id = chinhanh_id == null ? this.currChiNhanh.id : chinhanh_id;
-        this.subscriptions.add(this.khohangService.findKhoHangs(chinhanh_id).subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.khohangService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.khohangService.findKhoHangs(chinhanh_id).subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.khohangService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -76,28 +73,34 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa kho hàng này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa kho hàng này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.khohangService.deleteKhoHang(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.khohangService.deleteKhoHang(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData(this.currChiNhanh.id);
+                        },
+                        (error) => {
+                            this.khohangService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData(this.currChiNhanh.id);
                         }
-                        // load lại dữ liệu
-                        this.onLoadData(this.currChiNhanh.id);
-                    },
-                    error => {
-                        this.khohangService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData(this.currChiNhanh.id);
-                    }
-                ));
+                    )
+                );
             }
         });
     }

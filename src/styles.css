@@ -95,6 +95,10 @@ h6,
     font-weight: 400;
 }
 
+.btn-back{
+    margin-left: 5px;
+}
+
 /* ------------------------------------------------------------------------- */
 /* ng material custom */
 .tab-label-letf .mat-tab-label {

@@ -49,8 +49,8 @@ export class PhieuCanTruInPhieuModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuCanTruService.findPhieuCanTru(this.phieucantru_id).subscribe(
                 (data) => {
-                      /*Khởi tạo report */
-                      let report = new Stimulsoft.Report.StiReport();
+                    /*Khởi tạo report */
+                    let report = new Stimulsoft.Report.StiReport();
 
                     /* Kiểm tra loại phiếu để lấy đúng report */
                     if (this.loaiphieuin == 'khncc') {
@@ -81,14 +81,14 @@ export class PhieuCanTruInPhieuModalComponent implements OnInit {
 
                     /* đổi logo phiếu in */
                     var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
-                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+                    report.dictionary.variables.getByName('LogoComapny').valueObject = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
-                    
+
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },

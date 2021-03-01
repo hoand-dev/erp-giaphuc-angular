@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./don-vi-tinh-cap-nhat.component.css']
 })
 export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
-
     @ViewChild(DxFormComponent, { static: false }) frmDonViTinh: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -25,19 +24,14 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
     public madonvitinh_old: string;
     public saveProcessing = false;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
-    constructor(
-        private router: Router, 
-        private activatedRoute: ActivatedRoute, 
-        private authenticationService: AuthenticationService,
-        private donvitinhService: DonViTinhService
-    ) { }
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private donvitinhService: DonViTinhService) {}
 
     ngOnInit(): void {
         setTimeout(() => {
@@ -46,22 +40,26 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
         this.donvitinh = new DonViTinh();
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-            let donvitinh_id = params.id;
-            // lấy thông tin đơn vị tính
-            if (donvitinh_id) {
-                this.subscriptions.add(this.donvitinhService.findDonViTinh(donvitinh_id).subscribe(
-                    data => {
-                        this.donvitinh = data[0];
-                        this.madonvitinh_old = this.donvitinh.madonvitinh;
-                    },
-                    error => {
-                        this.donvitinhService.handleError(error);
-                    }
-                ));
-            }
-        }));
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let donvitinh_id = params.id;
+                // lấy thông tin đơn vị tính
+                if (donvitinh_id) {
+                    this.subscriptions.add(
+                        this.donvitinhService.findDonViTinh(donvitinh_id).subscribe(
+                            (data) => {
+                                this.donvitinh = data[0];
+                                this.madonvitinh_old = this.donvitinh.madonvitinh;
+                            },
+                            (error) => {
+                                this.donvitinhService.handleError(error);
+                            }
+                        )
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -73,31 +71,39 @@ export class DonViTinhCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    theCallbackValid(params) {
         return this.donvitinhService.checkExistDonViTinh(params.value, this.madonvitinh_old);
     }
 
     onSubmitForm(e) {
+        if (!this.frmDonViTinh.instance.validate().isValid) return;
+
         let donvitinh_req = this.donvitinh;
         donvitinh_req.chinhanh_id = this.currentChiNhanh.id;
 
         this.saveProcessing = true;
-        this.subscriptions.add(this.donvitinhService.updateDonViTinh(donvitinh_req).subscribe(
-            data => {
-                notify({
-                    width: 320,
-                    message: "Lưu thành công",
-                    position: { my: "right top", at: "right top" }
-                }, "success", 475);
-                this.router.navigate(['/don-vi-tinh']);
-                // this.frmDonViTinh.instance.resetValues();
-                this.saveProcessing = false;
-            },
-            error => {
-                this.donvitinhService.handleError(error);
-                this.saveProcessing = false;
-            }
-        ));
+        this.subscriptions.add(
+            this.donvitinhService.updateDonViTinh(donvitinh_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/don-vi-tinh']);
+                    // this.frmDonViTinh.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.donvitinhService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
         e.preventDefault();
     }
 }

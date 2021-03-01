@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./hang-hoa-nguyen-lieu-cap-nhat.component.css']
 })
 export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
-
     @ViewChild(DxFormComponent, { static: false }) frmHangHoa: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -28,12 +27,12 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
     public mahanghoa_old: string;
     public saveProcessing = false;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
     constructor(
         public appInfoService: AppInfoService,
@@ -42,7 +41,7 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
         private authenticationService: AuthenticationService,
         private hanghoaService: HangHoaService,
         private donvitinhService: DonViTinhService
-    ) { }
+    ) {}
 
     ngOnInit(): void {
         setTimeout(() => {
@@ -52,33 +51,36 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
         this.hanghoa.loaihanghoa = this.appInfoService.loaihanghoa_nguyenlieu;
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-            let hanghoa_id = params.id;
-            // lấy thông tin nguyên liệu
-            if (hanghoa_id) {
-                this.subscriptions.add(this.hanghoaService.findHangHoa(hanghoa_id).subscribe(
-                    data => {
-                        this.hanghoa = data;
-                        this.mahanghoa_old = this.hanghoa.mahanghoa;
-                    },
-                    error => {
-                        this.hanghoaService.handleError(error);
-                    }
-                ));
-                this.subscriptions.add(
-                    this.donvitinhService.findDonViTinhs().subscribe(
-                        x => {
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let hanghoa_id = params.id;
+                // lấy thông tin nguyên liệu
+                if (hanghoa_id) {
+                    this.subscriptions.add(
+                        this.hanghoaService.findHangHoa(hanghoa_id).subscribe(
+                            (data) => {
+                                this.hanghoa = data;
+                                this.mahanghoa_old = this.hanghoa.mahanghoa;
+                            },
+                            (error) => {
+                                this.hanghoaService.handleError(error);
+                            }
+                        )
+                    );
+                    this.subscriptions.add(
+                        this.donvitinhService.findDonViTinhs().subscribe((x) => {
                             this.lstDonViTinh = x;
                             this.dataSource_DonViTinh = new DataSource({
                                 store: x,
                                 paginate: true,
                                 pageSize: 50
-                                });
+                            });
                         })
-                );
-            }
-        }));
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -90,31 +92,39 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    theCallbackValid(params) {
         return this.hanghoaService.checkExistHangHoa(params.value, this.mahanghoa_old);
     }
 
     onSubmitForm(e) {
+        if (!this.frmHangHoa.instance.validate().isValid) return;
+
         let hanghoa_req = this.hanghoa;
         hanghoa_req.chinhanh_id = this.currentChiNhanh.id;
 
         this.saveProcessing = true;
-        this.subscriptions.add(this.hanghoaService.updateHangHoa(hanghoa_req).subscribe(
-            data => {
-                notify({
-                    width: 320,
-                    message: "Lưu thành công",
-                    position: { my: "right top", at: "right top" }
-                }, "success", 475);
-                this.router.navigate(['/hang-hoa-nguyen-lieu']);
-                // this.frmHangHoa.instance.resetValues();
-                this.saveProcessing = false;
-            },
-            error => {
-                this.hanghoaService.handleError(error);
-                this.saveProcessing = false;
-            }
-        ));
+        this.subscriptions.add(
+            this.hanghoaService.updateHangHoa(hanghoa_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/hang-hoa-nguyen-lieu']);
+                    // this.frmHangHoa.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.hanghoaService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
         e.preventDefault();
     }
 }

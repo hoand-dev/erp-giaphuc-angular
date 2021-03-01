@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./danh-muc-tieu-chuan-cap-nhat.component.css']
 })
 export class DanhMucTieuChuanCapNhatComponent implements OnInit, OnDestroy {
-
     @ViewChild(DxFormComponent, { static: false }) frmDanhMucTieuChuan: DxFormComponent;
 
     /* tối ưu subscriptions */
@@ -25,19 +24,14 @@ export class DanhMucTieuChuanCapNhatComponent implements OnInit, OnDestroy {
     public madanhmuctieuchuan_old: string;
     public saveProcessing = false;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
-    constructor(
-        private router: Router, 
-        private activatedRoute: ActivatedRoute, 
-        private authenticationService: AuthenticationService,
-        private danhmuctieuchuanService: DanhMucTieuChuanService
-        ) { }
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private danhmuctieuchuanService: DanhMucTieuChuanService) {}
 
     ngOnInit(): void {
         setTimeout(() => {
@@ -46,22 +40,26 @@ export class DanhMucTieuChuanCapNhatComponent implements OnInit, OnDestroy {
         this.danhmuctieuchuan = new DanhMucTieuChuan();
 
         this.theCallbackValid = this.theCallbackValid.bind(this);
-        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe(x => this.currentChiNhanh = x));
-        this.subscriptions.add(this.activatedRoute.params.subscribe(params => {
-            let danhmuctieuchuan_id = params.id;
-            // lấy thông tin danh mục tiêu chuẩn
-            if (danhmuctieuchuan_id) {
-                this.subscriptions.add(this.danhmuctieuchuanService.findDanhMucTieuChuan(danhmuctieuchuan_id).subscribe(
-                    data => {
-                        this.danhmuctieuchuan = data[0];
-                        this.madanhmuctieuchuan_old = this.danhmuctieuchuan.madanhmuctieuchuan;
-                    },
-                    error => {
-                        this.danhmuctieuchuanService.handleError(error);
-                    }
-                ));
-            }
-        }));
+        this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+        this.subscriptions.add(
+            this.activatedRoute.params.subscribe((params) => {
+                let danhmuctieuchuan_id = params.id;
+                // lấy thông tin danh mục tiêu chuẩn
+                if (danhmuctieuchuan_id) {
+                    this.subscriptions.add(
+                        this.danhmuctieuchuanService.findDanhMucTieuChuan(danhmuctieuchuan_id).subscribe(
+                            (data) => {
+                                this.danhmuctieuchuan = data[0];
+                                this.madanhmuctieuchuan_old = this.danhmuctieuchuan.madanhmuctieuchuan;
+                            },
+                            (error) => {
+                                this.danhmuctieuchuanService.handleError(error);
+                            }
+                        )
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {
@@ -73,31 +71,39 @@ export class DanhMucTieuChuanCapNhatComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params){
+    theCallbackValid(params) {
         return this.danhmuctieuchuanService.checkExistDanhMucTieuChuan(params.value, this.madanhmuctieuchuan_old);
     }
 
     onSubmitForm(e) {
+        if (!this.frmDanhMucTieuChuan.instance.validate().isValid) return;
+
         let danhmuctieuchuan_req = this.danhmuctieuchuan;
         danhmuctieuchuan_req.chinhanh_id = this.currentChiNhanh.id;
-        
+
         this.saveProcessing = true;
-        this.subscriptions.add(this.danhmuctieuchuanService.updateDanhMucTieuChuan(danhmuctieuchuan_req).subscribe(
-            data => {
-                notify({
-                    width: 320,
-                    message: "Lưu thành công",
-                    position: { my: "right top", at: "right top" }
-                }, "success", 475);
-                this.router.navigate(['/danh-muc-tieu-chuan']);
-                // this.frmDanhMucTieuChuan.instance.resetValues();
-                this.saveProcessing = false;
-            },
-            error => {
-                this.danhmuctieuchuanService.handleError(error);
-                this.saveProcessing = false;
-            }
-        ));
+        this.subscriptions.add(
+            this.danhmuctieuchuanService.updateDanhMucTieuChuan(danhmuctieuchuan_req).subscribe(
+                (data) => {
+                    notify(
+                        {
+                            width: 320,
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
+                        },
+                        'success',
+                        475
+                    );
+                    this.router.navigate(['/danh-muc-tieu-chuan']);
+                    // this.frmDanhMucTieuChuan.instance.resetValues();
+                    this.saveProcessing = false;
+                },
+                (error) => {
+                    this.danhmuctieuchuanService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
         e.preventDefault();
     }
 }

@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./danh-muc-tieu-chuan.component.css']
 })
 export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,18 +20,13 @@ export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewIn
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_DanhMucTieuChuan"
+        type: 'localStorage',
+        storageKey: 'dxGrid_DanhMucTieuChuan'
     };
 
-    constructor(
-        private router: Router,
-        private danhmuctieuchuanService: DanhMucTieuChuanService
-    ) { }
+    constructor(private router: Router, private danhmuctieuchuanService: DanhMucTieuChuanService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -50,14 +44,16 @@ export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     onLoadData() {
-        this.subscriptions.add(this.danhmuctieuchuanService.findDanhMucTieuChuans().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.danhmuctieuchuanService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.danhmuctieuchuanService.findDanhMucTieuChuans().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.danhmuctieuchuanService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -66,28 +62,34 @@ export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa danh mục này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa danh mục này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.danhmuctieuchuanService.deleteDanhMucTieuChuan(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.danhmuctieuchuanService.deleteDanhMucTieuChuan(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.danhmuctieuchuanService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.danhmuctieuchuanService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

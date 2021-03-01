@@ -112,19 +112,18 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
             });
         }
     }
-            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+    // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
-            // Add a custom menu item
-            // e.items.push(
-            //     {
-            //         text: "Cập nhật hoá đơn", icon: "edit", visible: true,
-            //         onItemClick: () => {
-            //             let rowData: PhieuXuatKhoGiaCong = e.row.key as PhieuXuatKhoGiaCong;
-            //             this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
-            //         }
-            //     }
-            // );
-     
+    // Add a custom menu item
+    // e.items.push(
+    //     {
+    //         text: "Cập nhật hoá đơn", icon: "edit", visible: true,
+    //         onItemClick: () => {
+    //             let rowData: PhieuXuatKhoGiaCong = e.row.key as PhieuXuatKhoGiaCong;
+    //             this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
+    //         }
+    //     }
+    // );
 
     // async onCapNhatHoaDon(id: number, maphieu: string, sohoadon?: string) {
     //     const { value: soHoaDon } = await Swal.fire({

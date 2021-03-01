@@ -72,7 +72,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
         });
-        
+
         this.phieudathang = new PhieuDatHang();
         this.asyncValidation = this.checkGiuHang.bind(this);
 
@@ -128,18 +128,20 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
             paginate: true,
             pageSize: 50,
             store: new CustomStore({
-                key: "id",
+                key: 'id',
                 load: (loadOptions) => {
-                    return this.commonService.hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieudathang.khoxuat_id, null, loadOptions)
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieudathang.khoxuat_id, null, loadOptions)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 },
                 byKey: (key) => {
-                    return this.hanghoaService.findHangHoa(key)
+                    return this.hanghoaService
+                        .findHangHoa(key)
                         .toPromise()
-                        .then(result => {
+                        .then((result) => {
                             return result;
                         });
                 }
@@ -300,6 +302,8 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if (!this.frmPhieuDatHang.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
         let phieudathang_req = this.phieudathang;

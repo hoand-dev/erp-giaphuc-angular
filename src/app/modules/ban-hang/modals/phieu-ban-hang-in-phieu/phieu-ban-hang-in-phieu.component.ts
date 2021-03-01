@@ -56,13 +56,12 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                     /*khởi tạo report */
                     let report = new Stimulsoft.Report.StiReport();
 
-                    if(this.loaiphieuin == 'mks'){
-                        report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKhoMKS.mrt');
+                    if (this.loaiphieuin == 'dongiavat') {
+                        report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKho_DonGiaVAT.mrt');
                     }
-                    if(this.loaiphieuin == "moi"){
-                        report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKho.mrt');
+                    if (this.loaiphieuin == 'dongiachuavat') {
+                        report.loadFile('assets/reports/design/ban-hang/rptPhieuYeuCauXuatKho_DonGiaChuaVAT.mrt');
                     }
-                  
 
                     /*xóa dữ liệu trên cache trước khi in */
                     report.dictionary.databases.clear();
@@ -95,13 +94,18 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                             item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
                         });
                     }
-                    
+
+                    /* tính đơn giá vat */
+                    data.phieubanhang_chitiet.forEach((item) => {
+                        item.dongiavat = item.dongia - item.dongia * item.chietkhau + (item.dongia - item.dongia * item.chietkhau) * item.thuevat;
+                    });
+
                     dsPhieuBanHang.readJson({ rptPhieuYeuCauXuatKho: data, rptPhieuYeuCauXuatKho_ChiTiet: data.phieubanhang_chitiet });
                     report.regData('rptPhieuYeuCauXuatKho', null, dsPhieuBanHang);
 
                     /* đổi logo phiếu in */
                     var imageLogo = Stimulsoft.System.Drawing.Image.fromFile(this.authenticationService.currentChiNhanhValue.logo_url);
-                    report.dictionary.variables.getByName('LogoComapny').valueObject  = imageLogo;
+                    report.dictionary.variables.getByName('LogoComapny').valueObject = imageLogo;
 
                     /* render report */
                     this.reportOptions.appearance.showTooltipsHelp = false;
@@ -109,8 +113,6 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                     this.reportOptions.toolbar.showAboutButton = false;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
 
-                   
-                    
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
                 },

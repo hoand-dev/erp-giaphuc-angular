@@ -73,9 +73,14 @@
                                         <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="3"></dxi-item>
                                         <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
 
-                                        <dxi-item [colSpan]="2" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
-                                        </dxi-item
-                                    ></dxi-item>
+                                        <dxi-item [colSpan]="2">
+                                            <div *dxTemplate>
+                                                <dx-button icon="back" [routerLink]="['/nguoi-dung']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                            </div>
+                                        </dxi-item>
+                                        ></dxi-item
+                                    >
                                 </dx-form>
                             </form>
                         </div>

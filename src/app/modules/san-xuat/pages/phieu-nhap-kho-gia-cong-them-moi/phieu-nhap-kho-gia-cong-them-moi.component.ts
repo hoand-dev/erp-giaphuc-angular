@@ -51,10 +51,10 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuNhapKhoGiaCongCT[] = [];
-    
+
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
-    public lstSoMat: SoMat[]; 
+    public lstSoMat: SoMat[];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
@@ -284,7 +284,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachPhieuYeuCauGiaCongModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef = this.modalService.show(DanhSachPhieuYeuCauGiaCongModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
@@ -321,7 +321,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
             this.hanghoas[index].arr_yeucaus = JSON.parse(this.hanghoas[index].yeucaus);
             this.hanghoalenght_yeucau = this.hanghoas[index].arr_yeucaus.length;
             this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
-        } 
+        }
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
@@ -351,12 +351,12 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachLoiModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef = this.modalService.show(DanhSachLoiModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
-            if(result !== false){
+            if (result !== false) {
                 this.hanghoas[index].chitietlois = result;
                 let soluongloi: number = 0;
                 result.forEach((e) => {
@@ -382,6 +382,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if (!this.frmPhieuNhapKhoGiaCong.instance.validate().isValid) return;
         if (!this.valid_khonhaphong()) return;
 
         // bỏ qua các dòng dữ liệu số lượng = 0

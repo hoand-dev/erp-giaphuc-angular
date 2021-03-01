@@ -9,12 +9,10 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import DataSource from 'devextreme/data/data_source';
 
-
-
 @Component({
-  selector: 'app-theo-doi-hop-dong-them-moi',
-  templateUrl: './theo-doi-hop-dong-them-moi.component.html',
-  styleUrls: ['./theo-doi-hop-dong-them-moi.component.css']
+    selector: 'app-theo-doi-hop-dong-them-moi',
+    templateUrl: './theo-doi-hop-dong-them-moi.component.html',
+    styleUrls: ['./theo-doi-hop-dong-them-moi.component.css']
 })
 export class TheoDoiHopDongThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmTheoDoiHopDong: DxFormComponent;
@@ -27,26 +25,25 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     public lstNhomKhachHang: NhomKhachHang[] = [];
     public lstNguoiDung: NguoiDung[] = [];
 
-   public dataSource_KhachHang: DataSource;
+    public dataSource_KhachHang: DataSource;
     public dataSource_NhomKhachHang: DataSource;
     public dataSource_NguoiDung: DataSource;
 
     public hopdong: TheoDoiHopDong;
-    
+
     public ngayky: Date;
     public ngayhethan: Date;
     public thoigianconlai: Date;
 
-
     public saveProcessing = false;
     public loadingVisible = true;
 
-    public rules: Object = { 'X': /[02-9]/ };
+    public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
-        text: "Lưu lại",
-        type: "success",
+        text: 'Lưu lại',
+        type: 'success',
         useSubmitBehavior: true
-    }
+    };
 
     constructor(
         private router: Router,
@@ -64,7 +61,7 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
         setTimeout(() => {
             this.authenticationService.setDisableChiNhanh(true);
         });
-        
+
         this.hopdong = new TheoDoiHopDong();
         this.theCallBackValid = this.theCallBackValid.bind(this);
 
@@ -119,16 +116,16 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
         return this.theodoihopdongService.checkExistHopDong(params.value);
     }
 
-    public hieuluc(params){
+    public hieuluc(params) {
         //formatDate(value: string | number | Date, format: string, locale: string): string
     }
 
     onSubmitForm(e) {
+        if (!this.frmTheoDoiHopDong.instance.validate().isValid) return;
+
         let hopdong_req = this.hopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
-
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
- 
 
         this.saveProcessing = true;
         this.subscriptions.add(
@@ -155,5 +152,4 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
         );
         e.preventDefault();
     }
-
 }

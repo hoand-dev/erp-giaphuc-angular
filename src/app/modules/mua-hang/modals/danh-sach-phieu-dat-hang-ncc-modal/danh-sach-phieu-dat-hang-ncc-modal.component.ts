@@ -22,7 +22,7 @@ export class DanhSachPhieuDatHangNCCModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
@@ -30,8 +30,7 @@ export class DanhSachPhieuDatHangNCCModalComponent implements OnInit {
         storageKey: 'dxGrid_ModalPhieuDatHangNCC'
     };
 
-    constructor(public bsModalRef: BsModalRef, private objPhieuDatHangNCCService: PhieuDatHangNCCService,
-        private authenticationService: AuthenticationService) {}
+    constructor(public bsModalRef: BsModalRef, private objPhieuDatHangNCCService: PhieuDatHangNCCService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -40,10 +39,12 @@ export class DanhSachPhieuDatHangNCCModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -58,7 +59,7 @@ export class DanhSachPhieuDatHangNCCModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuDatHangNCCService.findPhieuDatHangNCCs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter(x => x.trangthainhan != ETrangThaiPhieu.danhan);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthainhan != ETrangThaiPhieu.danhan);
                 },
                 (error) => {
                     this.objPhieuDatHangNCCService.handleError(error);

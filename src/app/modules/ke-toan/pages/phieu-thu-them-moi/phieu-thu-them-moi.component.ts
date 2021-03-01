@@ -5,7 +5,17 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import { AppInfoService, CommonService, KhachHangService, NhaCungCapService, NoiDungThuChiService, PhieuThuService, PhieuXuatMuonHangService, QuyTaiKhoanService, RouteInterceptorService } from '@app/shared/services';
+import {
+    AppInfoService,
+    CommonService,
+    KhachHangService,
+    NhaCungCapService,
+    NoiDungThuChiService,
+    PhieuThuService,
+    PhieuXuatMuonHangService,
+    QuyTaiKhoanService,
+    RouteInterceptorService
+} from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -22,7 +32,7 @@ import { DanhSachPhieuXuatMuonHangModalComponent } from '@app/modules/kho-hang/m
 export class PhieuThuThemMoiComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmPhieuThu: DxFormComponent;
     bsModalRef: BsModalRef;
-    
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
@@ -329,11 +339,10 @@ export class PhieuThuThemMoiComponent implements OnInit {
     }
 
     /* xác thực dữ liệu trước khi gửi đi */
-    onValidate(){
+    onValidate() {
         let valid = true;
-        if(this.loaiphieuthu == 'muonhang' && this.phieuthu.phieuxuatmuonhang_id == null)
-            valid = false;
-        if(!valid)
+        if (this.loaiphieuthu == 'muonhang' && this.phieuthu.phieuxuatmuonhang_id == null) valid = false;
+        if (!valid)
             notify(
                 {
                     width: 320,
@@ -347,7 +356,8 @@ export class PhieuThuThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.onValidate()) return;
+        if (!this.frmPhieuThu.instance.validate().isValid) return;
+        if (!this.onValidate()) return;
 
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0
         let phieuthu_phieuxuatkhos = this.phieuxuatkhos.filter((x) => x.sotienthu != 0 || x.sotiengiam != 0);

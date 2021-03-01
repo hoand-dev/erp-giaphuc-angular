@@ -55,21 +55,24 @@
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÀI XẾ - ĐIỆN THOẠI' }" dataField="taixe_dienthoai"> </dxi-item>
 
-                                    <dxi-item
-                                        [label]="{ text: 'MÃ PHIẾU' }"
-                                        dataField="maphieuxuatkhogiacong"
-                                        [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"
-                                    ></dxi-item>
+                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuxuatkhogiacong" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'NGƯỜI NHẬN' }" [colSpan]="2" dataField="nguoinhan_hoten"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" [colSpan]="2" dataField="nguoinhan_diachi"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinhan_dienthoai"> </dxi-item>
-                                    
+
                                     <dxi-item [label]="{ text: 'LÝ DO XUẤT' }" dataField="ghichu" [colSpan]="3"></dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                                         dataField="donvigiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ showClearButton: true, dataSource: dataSource_DonViGiaCong, valueExpr: 'id',searchExpr: ['tendonvigiacong', 'madonvigiacong'], searchEnabled: true, displayExpr: 'tendonvigiacong' }"
+                                        [editorOptions]="{
+                                            showClearButton: true,
+                                            dataSource: dataSource_DonViGiaCong,
+                                            valueExpr: 'id',
+                                            searchExpr: ['tendonvigiacong', 'madonvigiacong'],
+                                            searchEnabled: true,
+                                            displayExpr: 'tendonvigiacong'
+                                        }"
                                     >
                                     </dxi-item>
 
@@ -77,7 +80,14 @@
                                         [label]="{ text: 'KHO GIA CÔNG' }"
                                         dataField="khogiacong_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true,searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang', readOnly: phieuxuatkhogiacong.donvigiacong_id }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhoHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang',
+                                            readOnly: phieuxuatkhogiacong.donvigiacong_id
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
                                     </dxi-item>
@@ -109,7 +119,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="hanghoa_row_{{ i }}"
@@ -130,7 +140,7 @@
                                                                 </div>
                                                             </dx-select-box>
                                                         </td>
-                                                        
+
                                                         <td>{{ item.tendonvitinh }}</td>
                                                         <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
@@ -153,7 +163,11 @@
                                         editorType="dxCheckBox"
                                         [editorOptions]="{ text: 'Kích hoạt', readOnly: true }"
                                     ></dxi-item>
-                                    <dxi-item [colSpan]="2" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    <dxi-item [colSpan]="2">
+                                        <div *dxTemplate>
+                                            <dx-button icon="back" [routerLink]="['/phieu-xuat-kho-gia-cong']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                        </div>
                                     </dxi-item>
                                 </dx-form>
                             </form>

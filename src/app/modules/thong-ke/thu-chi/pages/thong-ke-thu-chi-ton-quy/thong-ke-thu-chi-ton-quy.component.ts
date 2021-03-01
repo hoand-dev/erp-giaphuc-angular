@@ -29,10 +29,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         storageKey: 'dxGrid_ThongKeThuChi_TonQuy'
     };
 
-    constructor(
-        private authenticationService: AuthenticationService,
-        private objThongKeThuChiService: ThongKeThuChiService
-    ) {}
+    constructor(private authenticationService: AuthenticationService, private objThongKeThuChiService: ThongKeThuChiService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -40,10 +37,9 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         this.currDayTime = moment().add(1, 'days').toDate();
 
         this.subscriptions.add(
-            this.authenticationService.currentChiNhanh
-                .subscribe((x) => {
-                    this.onLoadData();
-                })
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
         );
     }
 
@@ -66,9 +62,9 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
     }
 
     customizeText(rowData) {
-        return "-";
+        return '-';
     }
-    
+
     calculateSummary(options) {
         if (options.name === 'RowsSummaryTonDauKy') {
             if (options.summaryProcess === 'start') {

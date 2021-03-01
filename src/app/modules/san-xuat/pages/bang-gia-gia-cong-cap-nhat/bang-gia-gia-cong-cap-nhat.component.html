@@ -66,7 +66,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of chitiets; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="danhmucgiacong_row_{{ i }}"
@@ -108,7 +108,11 @@
                                         </div>
                                     </dxi-item>
 
-                                    <dxi-item [colSpan]="6" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    <dxi-item [colSpan]="6">
+                                        <div *dxTemplate>
+                                            <dx-button icon="back" [routerLink]="['/bang-gia-gia-cong']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                        </div>
                                     </dxi-item>
                                 </dx-form>
                             </form>

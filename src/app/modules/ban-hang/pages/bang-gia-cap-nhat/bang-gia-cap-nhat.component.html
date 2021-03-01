@@ -37,15 +37,21 @@
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhachHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhachhang', 'makhachhang'], displayExpr: 'tenkhachhang' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhachHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhachhang', 'makhachhang'],
+                                            displayExpr: 'tenkhachhang'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai" > </dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'NGÀY CÓ HIỆU LỰC' }" dataField="ngaycohieuluc" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
-                                    
+
                                     <dxi-item [label]="{ text: 'ĐỊA ĐIỂM GIAO' }" dataField="diadiemgiao" [colSpan]="4"></dxi-item>
                                     <dxi-item
                                         [colSpan]="1"
@@ -77,7 +83,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="nguyenlieu_row_{{ i }}"
@@ -99,7 +105,11 @@
                                                             <dx-number-box format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiacothue" (onValueChanged)="onHangHoaChangeRow('dongiacothue', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [(value)]="item.dongiacothue"
+                                                                (onValueChanged)="onHangHoaChangeRow('dongiacothue', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
 
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
@@ -112,7 +122,11 @@
                                             </table>
                                         </div>
                                     </dxi-item>
-                                    <dxi-item [colSpan]="6" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    <dxi-item [colSpan]="6">
+                                        <div *dxTemplate>
+                                            <dx-button icon="back" [routerLink]="['/bang-gia']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                        </div>
                                     </dxi-item>
                                 </dx-form>
                             </form>

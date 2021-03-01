@@ -12,7 +12,6 @@ import { Subject, Subscription } from 'rxjs';
     styleUrls: ['./danh-sach-phieu-tra-hang-ncc-modal.component.css']
 })
 export class DanhSachPhieuTraHangNCCModalComponent implements OnInit {
-  
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -21,14 +20,14 @@ export class DanhSachPhieuTraHangNCCModalComponent implements OnInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_ModalPhieuTraHangNCC'
     };
-    
+
     constructor(public bsModalRef: BsModalRef, private objPhieuTraHangNCCService: PhieuTraHangNCCService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
@@ -38,10 +37,12 @@ export class DanhSachPhieuTraHangNCCModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {

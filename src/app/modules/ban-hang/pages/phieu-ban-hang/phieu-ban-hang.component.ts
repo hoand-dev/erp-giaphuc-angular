@@ -13,9 +13,9 @@ import { Subscription, Subject } from 'rxjs';
 import { PhieuBanHangInPhieuComponent } from '../../modals/phieu-ban-hang-in-phieu/phieu-ban-hang-in-phieu.component';
 
 @Component({
-  selector: 'app-phieu-ban-hang',
-  templateUrl: './phieu-ban-hang.component.html',
-  styleUrls: ['./phieu-ban-hang.component.css']
+    selector: 'app-phieu-ban-hang',
+    templateUrl: './phieu-ban-hang.component.html',
+    styleUrls: ['./phieu-ban-hang.component.css']
 })
 export class PhieuBanHangComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
@@ -27,7 +27,7 @@ export class PhieuBanHangComponent implements OnInit {
     /* Khai báo thời gian bắt đầu và kết thúc */
 
     public firstDayTime: Date;
-    public currDayTime : Date = new Date();
+    public currDayTime: Date = new Date();
     public timeCreateAt: Date = new Date();
     public bsModalRef: BsModalRef;
 
@@ -37,143 +37,128 @@ export class PhieuBanHangComponent implements OnInit {
         storageKey: ' dxGrid_PhieuBanHang'
     };
 
+    constructor(private router: Router, private objPhieuBanHangService: PhieuBanHangService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
 
-  constructor(
-    private router: Router,
-    private objPhieuBanHangService: PhieuBanHangService,
-    private authenticationService: AuthenticationService,
-    private modalService: BsModalService
+    ngOnInit(): void {
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().add(1, 'days').toDate();
+        this.timeCreateAt = moment().add(1, 'days').toDate();
+    }
 
-  ) { }
-
-  ngOnInit(): void {
-      this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
-      this.currDayTime = moment().add(1, 'days').toDate();
-      this.timeCreateAt = moment().add(1, 'days').toDate();
-  }
-
-  ngAfterViewInit(): void{
-
-    this.subscriptions.add(
-        this.authenticationService.currentChiNhanh.subscribe(
-            (x) =>{
-                this.onLoadData();
-            }
-        )
-        );
-  }
-
-  ngOnDestroy(): void{
-      this.subscriptions.unsubscribe();
-  }
-
-  onLoadData(){
-      this.subscriptions.add(this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
-          data =>{
-              this.dataGrid.dataSource = data; 
-          },
-          error => {
-              this.objPhieuBanHangService.handleError(error);
-          }
-        )
-    );
-  }
-
-  addMenuItems(e){
-      if(e.row.rowType ==='data'){
-          if(!e.items) e.items =[];
-
-          e.items.push(
-              {
-                  text: 'In phiếu Mới',
-                  icon: 'print',
-                  visible: 'true',
-
-                  onItemClick:() =>{
-                      let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
-
-                      /*Khởi tạo giá trị modal */
-                      const initialState ={
-                          title: "IN PHIẾU YÊU CẦU XUẤT KHO 1",
-                          phieubanhang_id: rowData.id,
-                          loaiphieuin: 'moi'
-                          
-                      };
-                      /* Hiển thị modal */
-                      this.bsModalRef = this.modalService.show(PhieuBanHangInPhieuComponent,{
-                          class: 'modal-xl modal-dialog-centered',
-                          ignoreBackdropClick: false,
-                          keyboard: false,
-                          initialState
-                      });
-                      this.bsModalRef.content.closeBtnName =" Đóng"
-                  }
-              },
-              {
-                text: 'In phiếu Giống MKS',
-                icon: 'print',
-                visible: 'true',
-
-                onItemClick:() =>{
-                    let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
-
-                    /*Khởi tạo giá trị modal */
-                    const initialState ={
-                        title: "IN PHIẾU YÊU CẦU XUẤT KHO 2",
-                        phieubanhang_id: rowData.id,
-                        loaiphieuin: 'mks'
-                        
-                    };
-                    /* Hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuBanHangInPhieuComponent,{
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName =" Đóng"
-                }
-            }
-          );
-          
-         
-      }
-  }
-
-  onRowDblClick(e){
-      console.log(`objPhieuBanHang_id: ${e.key.id}`);
-  }
-
-  onRowDelete(id){
-      let result = confirm('<i>Bạn có muốn xóa phiếu này ? </i>', 'xác nhận xóa');
-      result.then((dialogResult) =>{
-        // gọi service xóa
+    ngAfterViewInit(): void {
         this.subscriptions.add(
-            this.objPhieuBanHangService.deletePhieuBanHang(id).subscribe(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
+
+    onLoadData() {
+        this.subscriptions.add(
+            this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    if (data) {
-                        notify(
-                            {
-                                width: 320,
-                                message: 'Xóa thành công',
-                                position: { my: 'right top', at: 'right top' }
-                            },
-                            'success',
-                            475
-                        );
-                    }
-                    // load lại dữ liệu
-                    this.onLoadData();
+                    this.dataGrid.dataSource = data;
                 },
                 (error) => {
                     this.objPhieuBanHangService.handleError(error);
-                    // load lại dữ liệu
-                    this.onLoadData();
                 }
             )
         );
     }
-      )
-  }
 
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            if (!e.items) e.items = [];
+
+            e.items.push(
+                {
+                    text: 'In phiếu - Đơn giá chưa VAT',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
+
+                        /*Khởi tạo giá trị modal */
+                        const initialState = {
+                            title: 'IN PHIẾU YÊU CẦU XUẤT KHO',
+                            phieubanhang_id: rowData.id,
+                            loaiphieuin: 'dongiachuavat'
+                        };
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuBanHangInPhieuComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = ' Đóng';
+                    }
+                },
+                {
+                    text: 'In phiếu - Đơn giá có VAT',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
+
+                        /*Khởi tạo giá trị modal */
+                        const initialState = {
+                            title: 'IN PHIẾU YÊU CẦU XUẤT KHO',
+                            phieubanhang_id: rowData.id,
+                            loaiphieuin: 'dongiavat'
+                        };
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuBanHangInPhieuComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = ' Đóng';
+                    }
+                }
+            );
+        }
+    }
+
+    onRowDblClick(e) {
+        console.log(`objPhieuBanHang_id: ${e.key.id}`);
+    }
+
+    onRowDelete(id) {
+        let result = confirm('<i>Bạn có muốn xóa phiếu này ? </i>', 'xác nhận xóa');
+        result.then((dialogResult) => {
+            // gọi service xóa
+            this.subscriptions.add(
+                this.objPhieuBanHangService.deletePhieuBanHang(id).subscribe(
+                    (data) => {
+                        if (data) {
+                            notify(
+                                {
+                                    width: 320,
+                                    message: 'Xóa thành công',
+                                    position: { my: 'right top', at: 'right top' }
+                                },
+                                'success',
+                                475
+                            );
+                        }
+                        // load lại dữ liệu
+                        this.onLoadData();
+                    },
+                    (error) => {
+                        this.objPhieuBanHangService.handleError(error);
+                        // load lại dữ liệu
+                        this.onLoadData();
+                    }
+                )
+            );
+        });
+    }
 }

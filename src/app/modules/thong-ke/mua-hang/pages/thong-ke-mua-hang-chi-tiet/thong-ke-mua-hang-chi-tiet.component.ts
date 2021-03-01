@@ -8,9 +8,9 @@ import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-thong-ke-mua-hang-chi-tiet',
-  templateUrl: './thong-ke-mua-hang-chi-tiet.component.html',
-  styleUrls: ['./thong-ke-mua-hang-chi-tiet.component.css']
+    selector: 'app-thong-ke-mua-hang-chi-tiet',
+    templateUrl: './thong-ke-mua-hang-chi-tiet.component.html',
+    styleUrls: ['./thong-ke-mua-hang-chi-tiet.component.css']
 })
 export class ThongKeMuaHangChiTietComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
@@ -30,10 +30,7 @@ export class ThongKeMuaHangChiTietComponent implements OnInit {
         storageKey: 'dxGrid_ThongKeMuaHang_ChiTiet'
     };
 
-    constructor(
-        private authenticationService: AuthenticationService,
-        private objThongKeMuahangService: ThongKeMuaHangChiTietService
-    ) {}
+    constructor(private authenticationService: AuthenticationService, private objThongKeMuahangService: ThongKeMuaHangChiTietService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -41,10 +38,9 @@ export class ThongKeMuaHangChiTietComponent implements OnInit {
         this.currDayTime = moment().add(1, 'days').toDate();
 
         this.subscriptions.add(
-            this.authenticationService.currentChiNhanh
-                .subscribe((x) => {
-                    this.onLoadData();
-                })
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
         );
     }
 
@@ -67,6 +63,6 @@ export class ThongKeMuaHangChiTietComponent implements OnInit {
     }
 
     customizeText(rowData) {
-        return "-";
+        return '-';
     }
 }

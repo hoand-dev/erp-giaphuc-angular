@@ -17,7 +17,18 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <dx-data-grid id="gridContainer" [showBorders]="true" [showRowLines]="true" [hoverStateEnabled]="true" [stateStoring]="stateStoringGrid" [columnAutoWidth]="true" (onRowDblClick)="onRowDblClick($event)">
+            <dx-data-grid
+                id="gridContainer"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [stateStoring]="stateStoringGrid"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
+                (onRowDblClick)="onRowDblClick($event)"
+            >
                 <!-- dx-data-grid column -->
                 <!-- <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                     <div *dxTemplate="let data of 'cellTemplate'">
@@ -53,10 +64,10 @@
                 <!-- dx-data-grid option -->
                 <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                 <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
-                
+
                 <dxo-search-panel [visible]="true"></dxo-search-panel>
                 <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
-                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling> 
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                 <dxo-paging [pageSize]="10"></dxo-paging>
                 <dxo-pager [showInfo]="true" infoText="Page #{0}. Total: {1} ({2} items)" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
             </dx-data-grid>

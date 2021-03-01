@@ -1,4 +1,3 @@
-
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuXuatMuonHang } from '@app/shared/entities';
@@ -21,7 +20,7 @@ import { PhieuXuatMuonHangInPhieuModalComponent } from '../../modals/phieu-xuat-
 export class PhieuXuatMuonHangComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public bsModalRef: BsModalRef;
-    
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
@@ -84,30 +83,28 @@ export class PhieuXuatMuonHangComponent implements OnInit, OnDestroy, AfterViewI
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
-            e.items.push(
-                {
-                    text: 'In phiếu',
-                    icon: 'print',
-                    visible: true,
-                    onItemClick: () => {
-                        let rowData: PhieuXuatMuonHang = e.row.key as PhieuXuatMuonHang;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: "XEM IN PHIẾU XUẤT MƯỢN HÀNG",
-                            phieuxuatmuonhang_id: rowData.id
-                        };
+            e.items.push({
+                text: 'In phiếu',
+                icon: 'print',
+                visible: true,
+                onItemClick: () => {
+                    let rowData: PhieuXuatMuonHang = e.row.key as PhieuXuatMuonHang;
+                    /* khởi tạo giá trị cho modal */
+                    const initialState = {
+                        title: 'XEM IN PHIẾU XUẤT MƯỢN HÀNG',
+                        phieuxuatmuonhang_id: rowData.id
+                    };
 
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuXuatMuonHangInPhieuModalComponent, {
-                            class: 'modal-xl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
-                    }
+                    /* hiển thị modal */
+                    this.bsModalRef = this.modalService.show(PhieuXuatMuonHangInPhieuModalComponent, {
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
                 }
-            );
+            });
         }
     }
 

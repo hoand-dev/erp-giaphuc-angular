@@ -5,16 +5,7 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import {
-    AppInfoService,
-    CommonService,
-    DonViGiaCongService,
-    KhachHangService,
-    NhaCungCapService,
-    NoiDungThuChiService,
-    PhieuCanTruService,
-    RouteInterceptorService
-} from '@app/shared/services';
+import { AppInfoService, CommonService, DonViGiaCongService, KhachHangService, NhaCungCapService, NoiDungThuChiService, PhieuCanTruService, RouteInterceptorService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -234,13 +225,11 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
         // this.isPhanBoTien = false;
-
         // let tongcantru = 0;
         // this.phieuxuatkhos.forEach((v, i) => {
         //     tongcantru += v.sotienthu;
         // });
         // this.phieucantru.sotiencantru = tongcantru;
-
         // // đặt time out 1s tránh được nó tự phân bổ, js bất đồng bộ
         // setTimeout(() => {
         //     this.isPhanBoTien = true;
@@ -248,6 +237,8 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if (!this.frmPhieuCanTru.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu số tiền cantru = 0 và số tiền giảm = 0
         let phieucantru_phieuxuatkhos = this.phieuxuatkhos.filter((x) => x.sotienthu != 0);
         let phieucantru_phieunhapkhos = this.phieunhapkhos.filter((x) => x.sotienchi != 0);

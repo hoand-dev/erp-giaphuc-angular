@@ -180,7 +180,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
                                 this.phieubanhang = data;
                                 this.hanghoas = this.phieubanhang.phieubanhang_chitiet;
-                                
+
                                 this.saveProcessing = this.phieubanhang.duyetgia; // duyệt giá rồi không cho lưu nữa
                             },
                             (error) => {
@@ -226,7 +226,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
                 this.phieubanhang.khachhang_dienthoai = khachhang ? khachhang.sodienthoai : null;
                 this.phieubanhang.khachhang_diachi = khachhang ? khachhang.diachi : null;
-                this.phieubanhang.khachhang_hoten =  khachhang ? khachhang.tenkhachhang : null;
+                this.phieubanhang.khachhang_hoten = khachhang ? khachhang.tenkhachhang : null;
             } else {
                 this.firstLoad_KhachHang = false;
             }
@@ -252,10 +252,10 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
                 v.thuevat = 0;
             });
             this.onCheckVAT();
-        }else if(e.value == 0){
+        } else if (e.value == 0) {
             this.onCheckVAT();
         }
-        
+
         // nếu thay đổi kho xuất -> set khoxuat_id cho hàng hoá
         if (e.dataField == 'khoxuat_id') {
             this.hanghoas.forEach((v, i) => {
@@ -278,13 +278,11 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         this.onTinhTien();
     }
 
-    onCheckVAT(){
+    onCheckVAT() {
         if (this.hanghoalenght == 0) {
             this.hanghoas.forEach((v, i) => {
-                if(v.thuevat != 0 || this.phieubanhang.thuevat != 0)
-                    v.xuathoadon = true;
-                else
-                    v.xuathoadon = false;
+                if (v.thuevat != 0 || this.phieubanhang.thuevat != 0) v.xuathoadon = true;
+                else v.xuathoadon = false;
             });
         }
     }
@@ -356,8 +354,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
                 if (e.value != 0) {
                     this.hanghoas[index].xuathoadon = true;
                     this.phieubanhang.thuevat = 0;
-                }
-                else if(this.phieubanhang.thuevat == 0){
+                } else if (this.phieubanhang.thuevat == 0) {
                     this.hanghoas[index].xuathoadon = false;
                 }
                 break;
@@ -429,8 +426,8 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         });
     }
 
-    onValid(){
-        if(this.phieubanhang.duyetgia == true && !this.isTatToan){
+    onValid() {
+        if (this.phieubanhang.duyetgia == true && !this.isTatToan) {
             Swal.fire({
                 title: 'Phiếu đã duyệt giá không sửa được',
                 html: 'Vui lòng kiểm tra lại',
@@ -444,7 +441,8 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
-        if(!this.onValid()) return;
+        if (!this.frmPhieuBangHang.instance.validate().isValid) return;
+        if (!this.onValid()) return;
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

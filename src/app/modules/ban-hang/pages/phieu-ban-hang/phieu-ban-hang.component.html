@@ -43,6 +43,7 @@
                             [hoverStateEnabled]="true"
                             [columnResizingMode]="'widget'"
                             [allowColumnResizing]="true"
+                            [allowColumnReordering]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
@@ -92,15 +93,14 @@
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
                             <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
-                            <dxo-search-panel [visible]="true"></dxo-search-panel>
-
-                               <!-- Thêm trang tổng cộng cuối form -->
+                            <!-- Thêm trang tổng cộng cuối form -->
                             <dxo-summary>
                                 <dxi-total-item column="maphieubanhang" summaryType="count"> </dxi-total-item>
                                 <dxi-total-item column="tongtienhang" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
                                 <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
                             </dxo-summary>
 
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
                             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                             <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 

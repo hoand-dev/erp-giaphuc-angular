@@ -111,16 +111,15 @@ export class HangHoaThanhPhamCapNhatComponent implements OnInit, OnDestroy {
             })
         );
         this.subscriptions.add(
-            this.loiService.findDanhMucLois().subscribe(
-                x => {
-                    this.lstLoi = x;
+            this.loiService.findDanhMucLois().subscribe((x) => {
+                this.lstLoi = x;
 
-                    this.dataSource_Loi = new DataSource({
-                        store: x,
-                        paginate: true,
-                        pageSize: 50
-                    });
-                })
+                this.dataSource_Loi = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
         );
         this.subscriptions.add(
             this.donvitinhService.findDonViTinhs().subscribe((x) => {
@@ -190,7 +189,7 @@ export class HangHoaThanhPhamCapNhatComponent implements OnInit, OnDestroy {
             e.dataField == 'dai' ||
             e.dataField == 'ncc' ||
             e.dataField == 'loaihang_id' ||
-            e.dataField == "loi_id"
+            e.dataField == 'loi_id'
         ) {
             let somat: SoMat = this.lstSoMat.find((x) => x.id == this.hanghoa.somat_id);
             let tieuchuan: DanhMucTieuChuan = this.lstTieuChuan.find((x) => x.id == this.hanghoa.tieuchuan_id);
@@ -226,8 +225,8 @@ export class HangHoaThanhPhamCapNhatComponent implements OnInit, OnDestroy {
             let maloi: string = loi != null ? loi.madanhmucloi.toString().trim() : '';
             let tenloi: string = loi != null ? loi.tendanhmucloi.toString().trim() + _ : '';
 
-            let mahanghoa: string = maloi + magiacong + masomat + matieuchuan + "(" + day + rong + dai + ")" + ncc + maloaihang;
-            let tenhanghoa: string = tenloi + tengiacong + _ + tensomat + _ + tentieuchuan + _ + "(" + day + rong + dai + ")" + _ + ncc + _ + tenloaihang;
+            let mahanghoa: string = maloi + magiacong + masomat + matieuchuan + '(' + day + rong + dai + ')' + ncc + maloaihang;
+            let tenhanghoa: string = tenloi + tengiacong + _ + tensomat + _ + tentieuchuan + _ + '(' + day + rong + dai + ')' + _ + ncc + _ + tenloaihang;
 
             this.hanghoa.mahanghoa = mahanghoa.split('null').join('').trim();
             this.hanghoa.tenhanghoa = tenhanghoa.split('null').join('').trim();
@@ -244,6 +243,8 @@ export class HangHoaThanhPhamCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
+        if (!this.frmHangHoa.instance.validate().isValid) return;
+
         let hanghoa_req = this.hanghoa;
         hanghoa_req.chinhanh_id = this.currentChiNhanh.id;
 

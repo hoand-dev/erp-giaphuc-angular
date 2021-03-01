@@ -311,6 +311,8 @@ export class PhieuThuCapNhatComponent implements OnInit {
     }
 
     public onSubmitForm(e) {
+        if (!this.frmPhieuThu.instance.validate().isValid) return;
+
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0
         let phieuthu_phieuxuatkhos = this.phieuxuatkhos.filter((x) => x.sotienthu != 0 || x.sotiengiam != 0);
         let phieuthu_req = this.phieuthu;

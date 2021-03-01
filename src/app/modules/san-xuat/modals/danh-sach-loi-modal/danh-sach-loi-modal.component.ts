@@ -55,8 +55,7 @@ export class DanhSachLoiModalComponent implements OnInit {
             if (rowsNull.length == 0) {
                 this.chitietlois.push(new LoiGiaCong());
             }
-        }
-        else {
+        } else {
             this.chitietlois = [];
             this.chitietlois.push(new LoiGiaCong());
         }

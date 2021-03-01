@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./don-vi-tinh.component.css']
 })
 export class DonViTinhComponent implements OnInit, OnDestroy, AfterViewInit {
-
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -21,18 +20,13 @@ export class DonViTinhComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public stateStoringGrid = {
         enabled: true,
-        type: "localStorage",
-        storageKey: "dxGrid_DonViTinh"
+        type: 'localStorage',
+        storageKey: 'dxGrid_DonViTinh'
     };
 
-    constructor(
-        private router: Router,
-        private donvitinhService: DonViTinhService
-    ) { }
+    constructor(private router: Router, private donvitinhService: DonViTinhService) {}
 
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -50,14 +44,16 @@ export class DonViTinhComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onLoadData() {
-        this.subscriptions.add(this.donvitinhService.findDonViTinhs().subscribe(
-            data => {
-                this.dataGrid.dataSource = data;
-            },
-            error => {
-                this.donvitinhService.handleError(error);
-            }
-        ));
+        this.subscriptions.add(
+            this.donvitinhService.findDonViTinhs().subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.donvitinhService.handleError(error);
+                }
+            )
+        );
     }
 
     onRowDblClick(e) {
@@ -66,28 +62,34 @@ export class DonViTinhComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDelete(id) {
-        let result = confirm("<i>Bạn có muốn xóa đơn vị tính này?</i>", "Xác nhận xóa");
+        let result = confirm('<i>Bạn có muốn xóa đơn vị tính này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
-                this.subscriptions.add(this.donvitinhService.deleteDonViTinh(id).subscribe(
-                    data => {
-                        if (data) {
-                            notify({
-                                width: 320,
-                                message: "Xóa thành công",
-                                position: { my: "right top", at: "right top" }
-                            }, "success", 475);
+                this.subscriptions.add(
+                    this.donvitinhService.deleteDonViTinh(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.donvitinhService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    error => {
-                        this.donvitinhService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                ));
+                    )
+                );
             }
         });
     }

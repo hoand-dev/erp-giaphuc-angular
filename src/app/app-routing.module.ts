@@ -13,11 +13,11 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
     { path: 'khong-co-quyen', component: NotPermissionComponent },
     { path: '', redirectTo: '/trang-chu', pathMatch: 'full' },
-    { path: '**', component: NotFoundComponent }, // không tìm thấy trang
+    { path: '**', component: NotFoundComponent } // không tìm thấy trang
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

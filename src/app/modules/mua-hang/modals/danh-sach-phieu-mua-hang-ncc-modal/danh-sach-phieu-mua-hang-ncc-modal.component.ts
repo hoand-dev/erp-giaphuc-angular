@@ -13,7 +13,6 @@ import { Subject, Subscription } from 'rxjs';
     styleUrls: ['./danh-sach-phieu-mua-hang-ncc-modal.component.css']
 })
 export class DanhSachPhieuMuaHangNCCModalComponent implements OnInit {
-  
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -24,14 +23,14 @@ export class DanhSachPhieuMuaHangNCCModalComponent implements OnInit {
     public currDayTime: Date = new Date();
 
     public trangthainhap: string = ETrangThaiPhieu.danhap;
-    
+
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
         storageKey: 'dxGrid_ModalPhieuMuaHangNCC'
     };
-    
+
     constructor(public bsModalRef: BsModalRef, private objPhieuMuaHangNCCService: PhieuMuaHangNCCService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
@@ -41,10 +40,12 @@ export class DanhSachPhieuMuaHangNCCModalComponent implements OnInit {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate();
 
-        this.subscriptions.add(this.authenticationService.currentChiNhanh/* .pipe(first()) */
-            .subscribe(x => {
-                this.onLoadData();
-            }))
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh /* .pipe(first()) */
+                .subscribe((x) => {
+                    this.onLoadData();
+                })
+        );
     }
 
     ngOnDestroy(): void {
@@ -59,7 +60,7 @@ export class DanhSachPhieuMuaHangNCCModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuMuaHangNCCService.findPhieuMuaHangNCCs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter(x => x.trangthainhap != this.trangthainhap);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthainhap != this.trangthainhap);
                 },
                 (error) => {
                     this.objPhieuMuaHangNCCService.handleError(error);

@@ -21,7 +21,7 @@ import { PhieuXuatKhoInPhieuModalComponent } from '../../modals/phieu-xuat-kho-i
 export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public bsModalRef: BsModalRef;
-    
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
@@ -102,7 +102,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
                         /* khởi tạo giá trị cho modal */
                         const initialState = {
-                            title: "XEM IN PHIẾU XUẤT KHO - CÓ GIÁ",
+                            title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
                             phieuxuatkho_id: rowData.id,
                             loaiphieuxuat: rowData.loaiphieuxuatkho,
                             loaiphieuin: 'cogia'
@@ -126,7 +126,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
                         /* khởi tạo giá trị cho modal */
                         const initialState = {
-                            title: "XEM IN PHIẾU XUẤT KHO -  KHÔNG GIÁ",
+                            title: 'XEM IN PHIẾU XUẤT KHO -  KHÔNG GIÁ',
                             phieuxuatkho_id: rowData.id,
                             loaiphieuxuat: rowData.loaiphieuxuatkho,
                             loaiphieuin: 'khonggia'

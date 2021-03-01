@@ -34,9 +34,7 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         storageKey: 'dxGrid_PhieuXuatChuyenKho'
     };
 
-    constructor(private router: Router, private objPhieuXuatChuyenKhoService: PhieuXuatChuyenKhoService, 
-        private authenticationService: AuthenticationService,
-        private modalService: BsModalService) {}
+    constructor(private router: Router, private objPhieuXuatChuyenKhoService: PhieuXuatChuyenKhoService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -82,37 +80,34 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         console.log(`objPhieuXuatChuyenKho_id: ${e.key.id}`);
     }
 
-    addMenuItems(e){
-        if(e.row.rowType === 'data'){
-            if(!e.items) e.items = [];
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            if (!e.items) e.items = [];
 
-            e.items.push(
-                {
-                    text: 'In Phiếu',
-                    icon: 'print',
-                    visible: 'true',
+            e.items.push({
+                text: 'In Phiếu',
+                icon: 'print',
+                visible: 'true',
 
-                    onItemClick:() =>{
-                        let rowData: PhieuXuatChuyenKho = e.row.key as PhieuXuatChuyenKho;
+                onItemClick: () => {
+                    let rowData: PhieuXuatChuyenKho = e.row.key as PhieuXuatChuyenKho;
 
-                        /*Khởi tạo giá trị trên modal */
-                        const initialState ={
-                            title: "IN PHIẾU XUẤT CHUYỂN KHO",
-                            phieuxuatchuyenkho_id: rowData.id,
-                        };
+                    /*Khởi tạo giá trị trên modal */
+                    const initialState = {
+                        title: 'IN PHIẾU XUẤT CHUYỂN KHO',
+                        phieuxuatchuyenkho_id: rowData.id
+                    };
 
-                        /* Hiển thị trên modal */
-                        this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoInPhieuModalComponent,{
-                            class: 'modal-xl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = "Đóng" 
-                    }
+                    /* Hiển thị trên modal */
+                    this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoInPhieuModalComponent, {
+                        class: 'modal-xl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
                 }
-                
-            );
+            });
         }
     }
 

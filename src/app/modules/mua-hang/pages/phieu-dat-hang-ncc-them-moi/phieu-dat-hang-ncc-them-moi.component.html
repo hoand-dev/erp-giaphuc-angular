@@ -37,7 +37,13 @@
                                         [label]="{ text: 'NHÀ CUNG CẤP' }"
                                         dataField="nhacungcap_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NhaCungCap, valueExpr: 'id', searchEnabled: true, searchExpr: ['tennhacungcap', 'manhacungcap'], displayExpr: 'tennhacungcap' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_NhaCungCap,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tennhacungcap', 'manhacungcap'],
+                                            displayExpr: 'tennhacungcap'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
@@ -81,7 +87,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{i+1}}</td>
+                                                        <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="nguyenlieu_row_{{ i }}"
@@ -104,7 +110,7 @@
                                                         </td>
                                                         <td>{{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} </td>
+                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }}</td>
                                                         <td>{{ item.soluong * item.m3 | number: '1.0-3' }}</td>
 
                                                         <td>
@@ -149,7 +155,11 @@
                                         editorType="dxCheckBox"
                                         [editorOptions]="{ text: 'Kích hoạt', readOnly: true }"
                                     ></dxi-item>
-                                    <dxi-item [colSpan]="2" [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions">
+                                    <dxi-item [colSpan]="2">
+                                        <div *dxTemplate>
+                                            <dx-button icon="back" [routerLink]="['/phieu-dat-hang-ncc']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                        </div>
                                     </dxi-item>
                                 </dx-form>
                             </form>

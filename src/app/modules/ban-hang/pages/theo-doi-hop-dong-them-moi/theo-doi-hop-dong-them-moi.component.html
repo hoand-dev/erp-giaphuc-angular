@@ -30,7 +30,7 @@
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="2" [formData]="hopdong" [showValidationSummary]="true">
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieubanhang" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
-                                        <!-- <dxi-validation-rule type="required" message="Nhập số hợp đồng"> </dxi-validation-rule>
+                                    <!-- <dxi-validation-rule type="required" message="Nhập số hợp đồng"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã hợp đồng quá ngắn"></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallBackValid"></dxi-validation-rule>
                                     </dxi-item> -->
@@ -38,7 +38,13 @@
                                         [label]="{ text: 'KHÁCH HÀNG' }"
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{  dataSource: dataSource_KhachHang, valueExpr: 'id', searchExpr: ['makhachhang','tenkhachhang'], searchEnabled: true, displayExpr: 'tenkhachhang' }"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhachHang,
+                                            valueExpr: 'id',
+                                            searchExpr: ['makhachhang', 'tenkhachhang'],
+                                            searchEnabled: true,
+                                            displayExpr: 'tenkhachhang'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn khách hàng"> </dxi-validation-rule>
                                     </dxi-item>
@@ -47,7 +53,7 @@
                                         <dxi-validation-rule type="required" message="Vui lòng thời gian công nợ"> </dxi-validation-rule>
                                         <dxi-validation-rule type="range" min="0" max="50" message="Công nợ cho phép từ 0 --> 50 ngày"> </dxi-validation-rule>
                                     </dxi-item>
-                                        <dxi-item [label]="{ text: 'NGÀY KÝ' }" dataField="ngayky" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
+                                    <dxi-item [label]="{ text: 'NGÀY KÝ' }" dataField="ngayky" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                                         <dxi-validation-rule type="required" message="Vui lòng chọn ngày ký"> </dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'NGÀY HẾT HẠN' }" dataField="ngayhethan" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
@@ -58,24 +64,29 @@
                                     <dxi-item [label]="{ text: 'NGƯỜI KÝ BÊN B' }" dataField="nguoikybenb"></dxi-item>
                                     <dxi-item [label]="{ text: 'THÔNG TIN LIÊN HỆ' }" dataField="thongtinlienhe"></dxi-item>
                                     <dxi-item
-                                    [label]="{ text: 'NHÂN VIÊN KD' }"
-                                    dataField="user_id"
-                                    editorType="dxSelectBox"
-                                    [editorOptions]="{  dataSource: dataSource_NguoiDung, valueExpr: 'id', displayExpr: 'hoten' }"
+                                        [label]="{ text: 'NHÂN VIÊN KD' }"
+                                        dataField="user_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', displayExpr: 'hoten' }"
                                     >
-                                    <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh"> </dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'LOẠI HỢP ĐỒNG' }"
                                         dataField="nhomkhachhang_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{  dataSource: dataSource_NhomKhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennhomkhachhang' }"
+                                        [editorOptions]="{ dataSource: dataSource_NhomKhachHang, valueExpr: 'id', searchEnabled: true, displayExpr: 'tennhomkhachhang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn loại hợp đồng"> </dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
 
-                                    <dxi-item [editorOptions]="{ disabled: saveProcessing }" itemType="button" horizontalAlignment="right" [buttonOptions]="buttonSubmitOptions"> </dxi-item>
+                                    <dxi-item>
+                                        <div *dxTemplate>
+                                            <dx-button icon="back" [routerLink]="['/theo-doi-hop-dong']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                            <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                                        </div>
+                                    </dxi-item>
                                 </dx-form>
                             </form>
                         </div>

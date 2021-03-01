@@ -131,6 +131,8 @@ export class PhieuBanHang_ChiTiet {
     public soluongdatra: number;
     public xuathoadon: boolean;
 
+    public dongiavat: number;
+
     public trongluong: number;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
