@@ -339,7 +339,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     }
 
     onTaoThanhPham(index) {
-        if (this.hanghoas[index].hanghoa_id != null) {
+        if (this.hanghoas[index].hanghoa_id != null && this.hanghoalenght == 0) {
             let magiacong: string = '';
             let tengiacong: string = '';
             if (this.hanghoas[index].arr_yeucaus != null) {
