@@ -15,7 +15,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((err) => {
                 // auto logout if 401 response returned from api
-                if (err.status === 401) {
+                if (err.status === 401 || (err.status === 400 && request.body.indexOf('refresh_token') != -1)) {
                     Swal.fire({
                         title: 'HẾT PHIÊN LÀM VIỆC!',
                         html: 'Đăng nhập lại nhé',
