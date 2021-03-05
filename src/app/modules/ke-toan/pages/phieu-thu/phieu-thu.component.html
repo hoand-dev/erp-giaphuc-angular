@@ -56,6 +56,9 @@
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
                         >
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                            
                             <!-- dx-data-grid column -->
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">

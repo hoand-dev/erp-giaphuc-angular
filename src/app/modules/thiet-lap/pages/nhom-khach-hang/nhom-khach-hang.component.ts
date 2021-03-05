@@ -6,6 +6,7 @@ import notify from 'devextreme/ui/notify';
 import { NhomKhachHangService } from '@app/shared/services';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
+import moment from 'moment';
 
 @Component({
     selector: 'app-nhom-khach-hang',
@@ -18,6 +19,9 @@ export class NhomKhachHangComponent implements OnInit {
     /*tối ưu subscriptions*/
 
     subscriptions: Subscription = new Subscription();
+
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - NHÓM KHÁCH HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,

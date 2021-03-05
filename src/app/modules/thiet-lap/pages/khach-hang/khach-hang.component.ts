@@ -7,6 +7,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
+import moment from 'moment';
 
 @Component({
     selector: 'app-khach-hang',
@@ -19,6 +20,9 @@ export class KhachHangComponent implements OnInit {
     /*tối ưu subscriptions */
 
     subscriptions: Subscription = new Subscription();
+
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - KHÁCH HÀNG - ' + moment().format('DD_MM_YYYY');
 
     private currentChiNhanh = ChiNhanh;
 

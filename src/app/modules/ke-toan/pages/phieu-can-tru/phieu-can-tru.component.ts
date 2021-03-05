@@ -30,6 +30,9 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU CẤN TRỪ - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

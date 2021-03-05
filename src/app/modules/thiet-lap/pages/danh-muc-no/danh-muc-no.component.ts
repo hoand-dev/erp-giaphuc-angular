@@ -5,6 +5,7 @@ import { DanhMucNoService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
+import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,6 +18,9 @@ export class DanhMucNoComponent implements OnInit, OnDestroy, AfterViewInit {
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
+
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - DANH MỤC NỢ - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,

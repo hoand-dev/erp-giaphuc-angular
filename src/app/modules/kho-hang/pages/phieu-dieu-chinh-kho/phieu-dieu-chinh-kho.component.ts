@@ -23,6 +23,9 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU ĐIỀU CHỈNH - ' + moment().format('DD_MM_YYYY');
+
     public bsModalRef: BsModalRef;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */

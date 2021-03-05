@@ -31,6 +31,9 @@ export class PhieuBanHangComponent implements OnInit {
     public timeCreateAt: Date = new Date();
     public bsModalRef: BsModalRef;
 
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - PHIẾU BÁN HÀNG - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

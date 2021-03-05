@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import { NguoiDung } from '@app/shared/entities';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 @Component({
     selector: 'app-nguoi-dung',
@@ -18,6 +19,9 @@ export class NguoiDungComponent implements OnInit {
 
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
+
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - NGƯỜI DÙNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,

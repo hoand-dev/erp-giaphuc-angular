@@ -48,6 +48,9 @@
                             (onRowDblClick)="onRowDblClick($event)"
                             (onContextMenuPreparing)="addMenuItems($event)"
                         >
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+
                             <dxi-column width="220" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
                                     <a [routerLink]="['/phieu-ban-hang/' + data.value + '/cap-nhat']" [queryParams]="{ duyetgia: 'ok' }">Xem duyệt</a> |

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import moment from 'moment';
 
 @Component({
     selector: 'app-tai-xe',
@@ -16,6 +17,10 @@ export class TaiXeComponent implements OnInit {
 
     /*Tối ưu hóa subcriptions */
     subcriptions: Subscription = new Subscription();
+
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - TÀI XẾ - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         anable: true,
         type: 'localStorage',

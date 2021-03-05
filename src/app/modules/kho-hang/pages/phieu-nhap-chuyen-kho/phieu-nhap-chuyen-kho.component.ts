@@ -29,6 +29,9 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU NHẬP CHUYỂN KHO - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

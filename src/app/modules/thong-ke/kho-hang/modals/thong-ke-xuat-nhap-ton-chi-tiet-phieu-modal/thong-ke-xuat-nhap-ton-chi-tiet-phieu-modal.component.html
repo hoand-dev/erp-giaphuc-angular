@@ -25,6 +25,9 @@
                 [allowColumnReordering]="true"
                 [stateStoring]="stateStoringGrid"
             >
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+            
                 <dxi-column dataField="ngayphatsinh" dataType="datetime" caption="Ngày phát sinh"></dxi-column>
                 <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
                 <dxi-column dataField="diendai" caption="Diễn giãi"></dxi-column>

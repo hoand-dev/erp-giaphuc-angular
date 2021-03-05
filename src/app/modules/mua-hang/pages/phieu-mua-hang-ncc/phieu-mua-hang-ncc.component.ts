@@ -25,6 +25,9 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - PHIẾU MUA HÀNG NCC - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
