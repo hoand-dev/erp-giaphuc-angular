@@ -150,7 +150,9 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
             denngay: this.currDayTime,
             chinhanh_id: this.authenticationService.currentChiNhanhValue.id,
             khohang_id: rowData.khohang_id,
-            hanghoa_id: rowData.hanghoa_id
+            hanghoa_id: rowData.hanghoa_id,
+            tondauky: rowData.tondauky,
+            toncuoiky: rowData.toncuoiky
         };
 
         /* hiển thị modal */

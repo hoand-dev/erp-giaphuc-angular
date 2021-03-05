@@ -24,6 +24,7 @@
                 [allowColumnResizing]="true"
                 [allowColumnReordering]="true"
                 [stateStoring]="stateStoringGrid"
+                [sorting]="false"
             >
                 <dxi-column dataField="ngayphatsinh" dataType="datetime" caption="Ngày phát sinh"></dxi-column>
                 <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
@@ -36,10 +37,12 @@
                 <dxi-column dataField="chuthich" caption="Chú thích"></dxi-column>
                 <dxi-column dataField="ghichu" caption="Lý do nhập/xuất"></dxi-column>
 
-                <dxo-summary>
-                    <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0.#######"> </dxi-total-item>
-                    <dxi-total-item column="soluongxuat" summaryType="sum" valueFormat="#,##0.#######"> </dxi-total-item>
-                    <dxi-total-item name="RowsSummaryLuyTien" summaryType="custom" showInColumn="luytien" valueFormat="#,##0.#######"> </dxi-total-item>
+                <dxo-summary [calculateCustomSummary]="calculateSummary">
+                    <dxi-total-item summaryType="custom" alignment="right" showInColumn="ngayphatsinh" displayFormat="TỔNG CỘNG:"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonDauKy" summaryType="custom" alignment="right" showInColumn="tennhanvien" valueFormat="#,##0.#######" displayFormat="Đầu kỳ: {0}"> </dxi-total-item>
+                    <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0.#######" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item column="soluongxuat" summaryType="sum" valueFormat="#,##0.#######" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonCuoiKy" summaryType="custom" showInColumn="luytien" valueFormat="#,##0.#######" displayFormat="Cuối kỳ: {0}"> </dxi-total-item>
                 </dxo-summary>
 
                 <!-- dx-data-grid option -->
