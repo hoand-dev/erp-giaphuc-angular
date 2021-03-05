@@ -148,6 +148,7 @@ export class PhieuXuatKho_ChiTiet {
     public cuocvanchuyen: number;
     public chietkhau: number;
     public thuevat: number;
+    public xuathoadon: boolean;
     public thanhtien: number;
     public chuthich: string;
     public tenhanghoa_inphieu: string;

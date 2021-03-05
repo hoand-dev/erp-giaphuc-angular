@@ -220,9 +220,8 @@ export class PhieuXuatKhoGiaCongCapNhatComponent implements OnInit {
                 this.phieuxuatkhogiacong.nguoinhan_hoten = donvigiacong ? donvigiacong.tendonvigiacong : null;
                 this.phieuxuatkhogiacong.nguoinhan_diachi = donvigiacong ? donvigiacong.diachi : null;
                 this.phieuxuatkhogiacong.nguoinhan_dienthoai = donvigiacong ? donvigiacong.sodienthoai : null;
-
-                this.loadCapNhat = false;
             }
+            else this.loadCapNhat = false;
         }
 
         if (e.dataField == 'khogiacong_id' && e.value !== undefined) {

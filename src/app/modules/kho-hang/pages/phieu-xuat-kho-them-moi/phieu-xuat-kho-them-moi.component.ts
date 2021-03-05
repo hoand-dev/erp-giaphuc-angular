@@ -315,6 +315,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
                                     chitiet.cuocvanchuyen = value.cuocvanchuyen;
                                     chitiet.chietkhau = value.chietkhau;
                                     chitiet.thuevat = value.thuevat;
+                                    chitiet.xuathoadon = value.xuathoadon;
                                     chitiet.thanhtien = value.thanhtien;
                                     chitiet.chuthich = value.chuthich;
 
