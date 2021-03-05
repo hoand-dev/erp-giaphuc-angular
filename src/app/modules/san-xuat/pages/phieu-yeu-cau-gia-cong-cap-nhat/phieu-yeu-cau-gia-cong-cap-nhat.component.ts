@@ -339,20 +339,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     }
 
     onTaoThanhPham(index) {
-        if (this.hanghoas[index].hanghoa_id != null) {
-            let magiacong: string = '';
-            let tengiacong: string = '';
-            if (this.hanghoas[index].arr_yeucaus != null) {
-                this.hanghoas[index].arr_yeucaus.forEach((value, index) => {
-                    let giacong = this.lstGiaCong.find((x) => x.id == value);
-                    if (typeof giacong === 'object') {
-                        magiacong += giacong.madinhmuc;
-                        tengiacong += giacong.tendinhmuc + ' ';
-                    }
-                });
-
-                tengiacong = tengiacong.trim();
-            }
+        if (this.hanghoas[index].hanghoa_id != null && this.hanghoalenght == 0) {
             let somat = this.lstSoMat.find((x) => x.id == this.hanghoas[index].somat_thanhpham_id);
             let masomat: string = somat != null ? somat.masomat.toString().trim() : '';
             let tensomat: string = somat != null ? somat.tensomat.toString().trim() : '';
@@ -363,10 +350,32 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
                 this.hanghoaService.findHangHoa(this.hanghoas[index].hanghoa_id).subscribe((x) => {
                     let hanghoa: HangHoa = x;
                     if (hanghoa != undefined) {
+                        let idgiacongs_thanhpham: number[] = JSON.parse(hanghoa.idgiacongs);
+
+                        let magiacong: string = '';
+                        let tengiacong: string = '';
+                        if (this.hanghoas[index].arr_yeucaus != null) {
+                            this.hanghoas[index].arr_yeucaus.forEach((value, index) => {
+                                let giacong = this.lstGiaCong.find((x) => x.id == value);
+                                if (typeof giacong === 'object') {
+                                    if (hanghoa.loaihanghoa == 'thanhpham' && idgiacongs_thanhpham !== null && !idgiacongs_thanhpham.includes(value)) {
+                                        magiacong += giacong.madinhmuc;
+                                        tengiacong += giacong.tendinhmuc + ' ';
+                                    }
+                                    if (hanghoa.loaihanghoa != 'thanhpham') {
+                                        magiacong += giacong.madinhmuc;
+                                        tengiacong += giacong.tendinhmuc + ' ';
+                                    }
+                                }
+                            });
+                            tengiacong = tengiacong.trim();
+                        }
+
                         if (hanghoa.loaihanghoa == 'thanhpham') {
                             magiacong = magiacong + hanghoa.magiacong;
                             tengiacong = tengiacong + _ + hanghoa.tengiacong;
                         }
+
                         let mahanghoa: string = magiacong + masomat + hanghoa.matieuchuan + '(' + hanghoa.day + 'x' + hanghoa.rong + 'x' + hanghoa.dai + ')' + hanghoa.ncc + hanghoa.maloaihang;
                         let tenhanghoa: string =
                             tengiacong + _ + tensomat + _ + hanghoa.tentieuchuan + _ + '(' + hanghoa.day + 'x' + hanghoa.rong + 'x' + hanghoa.dai + ')' + _ + hanghoa.ncc + _ + hanghoa.tenloaihang;

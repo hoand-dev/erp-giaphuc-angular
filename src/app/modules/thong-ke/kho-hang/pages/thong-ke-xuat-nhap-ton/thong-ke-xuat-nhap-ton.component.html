@@ -16,7 +16,18 @@
 </div>
 <!-- /.content-header -->
 
-<section class="content">
+<dx-load-panel
+    [shadingColor]="'rgba(0,0,0,0.4)'"
+    [position]="{ of: '#content-wrapper' }"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+>
+</dx-load-panel>
+
+<section class="content" id="container">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -37,6 +48,7 @@
                             <div class="col-md-12">
                                 <dx-data-grid
                                     id="gridContainer"
+                                    [loadPanel]="'{ enable: false }'"
                                     [showBorders]="true"
                                     [showRowLines]="true"
                                     [hoverStateEnabled]="true"
@@ -115,6 +127,9 @@
                                     <dxi-column dataField="soluong_giuchuyenkho" caption="Giữ chuyển kho" alignment="right" format="#,##0.#######"></dxi-column>
                                     <dxi-column dataField="soluong_giugiacong" caption="Giữ gia công" alignment="right" format="#,##0.#######"></dxi-column>
                                     <dxi-column dataField="soluong_toncuoiduocxuat" caption="Tồn cuối được xuất" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                    <dxi-column dataField="soluong_muachuanhap" caption="Đang về" alignment="right" format="#,##0.#######"></dxi-column>
+                                    <dxi-column dataField="soluong_thanhphamchuanhap" caption="Đang gia công" alignment="right" format="#,##0.#######"></dxi-column>
 
                                     <dxi-column dataField="makhohang" caption="Mã kho"></dxi-column>
                                     <dxi-column dataField="tenkhohang" caption="Tên kho"></dxi-column>

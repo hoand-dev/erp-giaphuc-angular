@@ -159,10 +159,10 @@
                                                                 [dataSource]="dataSource_GiaCong"
                                                                 valueExpr="id"
                                                                 displayExpr="tendinhmuc"
-                                                                applyValueMode="useButtons"
+                                                                applyValueMode="instantly"
+                                                                [searchExpr]="['madinhmuc', 'tendinhmuc']"
                                                                 [multiline]="false"
                                                                 [searchEnabled]="true"
-                                                                [showSelectionControls]="true"
                                                                 (onSelectionChanged)="onYeuCauChanged(i, $event)"
                                                             >
                                                             </dx-tag-box>

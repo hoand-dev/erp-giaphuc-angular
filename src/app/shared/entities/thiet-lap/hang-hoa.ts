@@ -46,6 +46,7 @@ export class HangHoa {
     public dinhmuc_id: number;
 
     public dinhmuc_giacong: DinhMuc[];
+    public idgiacongs: string;
     public magiacong: string;
     public tengiacong: string;
 

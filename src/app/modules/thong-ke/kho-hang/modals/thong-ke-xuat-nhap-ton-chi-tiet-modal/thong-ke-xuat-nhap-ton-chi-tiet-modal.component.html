@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <dx-data-grid
+                id="gridContainer"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
+                [stateStoring]="stateStoringGrid"
+                [sorting]="false"
+            >
+                <dxi-column dataField="ngayphatsinh" dataType="datetime" caption="Ngày phát sinh"></dxi-column>
+                <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
+                <dxi-column dataField="noidung" caption="Nội dung"></dxi-column>
+                <dxi-column dataField="khohang" caption="Kho hàng"></dxi-column>
+                <dxi-column dataField="tennhanvien" caption="Nhân viên"></dxi-column>
+                <dxi-column dataField="soluongnhap" caption="Số lượng nhập" format="#,##0.#######"></dxi-column>
+                <dxi-column dataField="soluongxuat" caption="Số lượng xuất" format="#,##0.#######"></dxi-column>
+                <dxi-column dataField="luytien" caption="Còn lại" format="#,##0.#######"></dxi-column>
+                <dxi-column dataField="chuthich" caption="Chú thích"></dxi-column>
+                <dxi-column dataField="ghichu" caption="Lý do nhập/xuất"></dxi-column>
+
+                <dxo-summary [calculateCustomSummary]="calculateSummary">
+                    <dxi-total-item summaryType="custom" alignment="right" showInColumn="ngayphatsinh" displayFormat="TỔNG CỘNG:"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonDauKy" summaryType="custom" alignment="right" showInColumn="tennhanvien" valueFormat="#,##0.#######" displayFormat="Đầu kỳ: {0}"> </dxi-total-item>
+                    <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0.#######" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item column="soluongxuat" summaryType="sum" valueFormat="#,##0.#######" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonCuoiKy" summaryType="custom" showInColumn="luytien" valueFormat="#,##0.#######" displayFormat="Cuối kỳ: {0}"> </dxi-total-item>
+                </dxo-summary>
+
+                <!-- dx-data-grid option -->
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showInfo]="true" infoText="Trang {0}/{1}. Tổng cộng: {2} dòng." [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div>

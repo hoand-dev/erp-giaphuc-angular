@@ -41,6 +41,8 @@ export class ThongKeXuatNhapTon{
     public soluong_nhapmuon                : number;
     public soluong_xuattramuon             : number;
     public soluong_nhaptramuon             : number;
+    public soluong_muachuanhap             : number;
+    public soluong_thanhphamchuanhap       : number;
     public toncuoiky                       : number;
     public hanghoa_id                      : number;
     public khohang_id                      : number;
@@ -49,7 +51,21 @@ export class ThongKeXuatNhapTon{
 }
 
 export class ThongKeXuatNhapTon_ChiTiet{
+    public idphieu        : number;
+    public ngayphatsinh   : Date  ;
+    public maphieu        : string;
+    public noidung        : string;
+    public khohang        : string;
+    public tennhanvien    : string;
+    public soluongnhap    : number;
+    public soluongxuat    : number;
+    public soluongnhapxuat: number;
+    public chuthich       : string;
+    public ghichu         : string;
+    public sort           : string;
+    public phieuquery     : string;
 
+    public luytien        : number;
 }
 
 // -- chi tiết khách đặt giữ hàng
@@ -59,6 +75,7 @@ export class ThongKeXuatNhapTon_ChiTiet{
 // -- chi tiết mua chưa nhập
 // -- chi tiết gia công chưa nhập
 export class ThongKeXuatNhapTon_ChiTietPhieu{
+    public idphieu     : number;
     public ngayphatsinh: Date  ;
     public maphieu     : string;
     public diendai     : string;

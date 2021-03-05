@@ -21,7 +21,8 @@ import {
     DxDropDownBoxModule,
     DxPopupModule,
     DxScrollViewModule,
-    DxListModule
+    DxListModule,
+    DxLoadPanelModule
 } from 'devextreme-angular';
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -48,7 +49,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         DxPopupModule,
         DxScrollViewModule,
         DxListModule,
-
+        DxLoadPanelModule,
         MatTabsModule
     ],
     exports: [
@@ -72,7 +73,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         DxPopupModule,
         DxScrollViewModule,
         DxListModule,
-
+        DxLoadPanelModule,
         MatTabsModule
     ]
 })
