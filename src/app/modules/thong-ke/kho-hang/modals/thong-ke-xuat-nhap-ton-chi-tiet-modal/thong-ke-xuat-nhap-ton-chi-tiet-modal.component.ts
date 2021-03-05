@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
+import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 
@@ -28,6 +29,10 @@ export class ThongKeXuatNhapTonChiTietModalComponent implements OnInit {
     public toncuoiky: number = 0;
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+
+      /* dataGrid */
+      public exportFileName: string = '[THỐNG KÊ] - XUẤT NHẬP TỒN CHI TIẾT - ' + moment().format('DD_MM_YYYY');
+  
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

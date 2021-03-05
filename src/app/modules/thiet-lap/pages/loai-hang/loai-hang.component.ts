@@ -5,6 +5,7 @@ import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
+import moment from 'moment';
 
 @Component({
     selector: 'app-loai-hang',
@@ -17,6 +18,9 @@ export class LoaiHangComponent implements OnInit {
     /* tối ưu subscriptions */
 
     subscriptions: Subscription = new Subscription();
+
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - LOẠI HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,

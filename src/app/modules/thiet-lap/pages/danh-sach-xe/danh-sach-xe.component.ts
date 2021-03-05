@@ -18,6 +18,9 @@ export class DanhSachXeComponent implements OnInit {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - XE - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

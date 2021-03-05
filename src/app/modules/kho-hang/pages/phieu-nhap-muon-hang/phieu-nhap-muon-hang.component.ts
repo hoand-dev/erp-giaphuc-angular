@@ -28,6 +28,9 @@ export class PhieuNhapMuonHangComponent implements OnInit, OnDestroy, AfterViewI
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - PHIẾU NHẬP MƯỢN HÀNG - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

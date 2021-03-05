@@ -4,6 +4,7 @@ import { NhaCungCapService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
+import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,6 +18,9 @@ export class NhaCungCapComponent implements OnInit {
     /* */
 
     subscriptions: Subscription = new Subscription();
+
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - NHÀ CUNG CẤP - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,

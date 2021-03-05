@@ -6,6 +6,7 @@ import { NhomKhachHangService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
+import moment from 'moment';
 
 @Component({
     selector: 'app-nhom-nha-cung-cap',
@@ -18,6 +19,10 @@ export class NhomNhaCungCapComponent implements OnInit {
     /* tối ưu subcriptions */
 
     subscriptions: Subscription = new Subscription();
+
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - NHÓM NHÀ CUNG CẤP - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

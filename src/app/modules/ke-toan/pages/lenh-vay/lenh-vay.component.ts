@@ -24,6 +24,9 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
+    
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - LỆNH VAY - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,

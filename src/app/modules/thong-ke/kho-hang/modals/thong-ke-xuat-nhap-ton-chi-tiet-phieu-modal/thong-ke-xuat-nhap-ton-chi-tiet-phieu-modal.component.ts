@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
+import moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 
@@ -13,10 +14,10 @@ import { Subject, Subscription } from 'rxjs';
 export class ThongKeXuatNhapTonChiTietPhieuModalComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
-    
+
     public title: string;
     public closeBtnName: string;
-    
+
     public chinhanh_id: number;
     public khohang_id: number;
     public hanghoa_id: number;
@@ -24,6 +25,10 @@ export class ThongKeXuatNhapTonChiTietPhieuModalComponent implements OnInit {
     public view: string;
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+
+    /* dataGrid */
+    public exportFileName: string = '[THỐNG KÊ] - XUẤT NHẬP TỒN CHI TIẾT PHIẾU - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
@@ -35,23 +40,23 @@ export class ThongKeXuatNhapTonChiTietPhieuModalComponent implements OnInit {
     ngOnInit(): void {
         this.onClose = new Subject();
         switch (this.view) {
-            case "giugiacong":
-                this.title += " - GIỮ GIA CÔNG";
+            case 'giugiacong':
+                this.title += ' - GIỮ GIA CÔNG';
                 break;
-            case "giubanhang":
-                this.title += " - GIỮ BÁN HÀNG";
+            case 'giubanhang':
+                this.title += ' - GIỮ BÁN HÀNG';
                 break;
-            case "giuchuyenkho":
-                this.title += " - GIỮ CHUYỂN KHO";
+            case 'giuchuyenkho':
+                this.title += ' - GIỮ CHUYỂN KHO';
                 break;
-            case "datgiuhang":
-                this.title += " - ĐẶT GIỮ HÀNG";
+            case 'datgiuhang':
+                this.title += ' - ĐẶT GIỮ HÀNG';
                 break;
-            case "muachuanhap":
-                this.title += " - ĐANG VỀ";
+            case 'muachuanhap':
+                this.title += ' - ĐANG VỀ';
                 break;
-            case "yeucauchuanhap":
-                this.title += " - ĐANG GIA CÔNG";
+            case 'yeucauchuanhap':
+                this.title += ' - ĐANG GIA CÔNG';
                 break;
         }
         this.onLoadData();

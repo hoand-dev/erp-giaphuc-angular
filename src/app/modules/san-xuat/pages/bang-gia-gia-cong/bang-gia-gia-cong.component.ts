@@ -23,6 +23,9 @@ export class BangGiaGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - BẢNG GIÁ GIA CÔNG - ' + moment().format('DD_MM_YYYY');
+
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',

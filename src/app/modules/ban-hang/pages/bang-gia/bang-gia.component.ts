@@ -31,6 +31,9 @@ export class BangGiaComponent implements OnInit {
     public enableUpdate: boolean = false;
     public enableDelete: boolean = false;
     public enableExport: boolean = false;
+     /* dataGrid */
+     public exportFileName: string = '[DANH SÁCH] - BẢNG GIÁ - ' + moment().format('DD_MM_YYYY');
+
 
     public stateStoringGrid = {
         enabled: true,

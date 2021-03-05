@@ -3,6 +3,7 @@ import { AppInfoService, HangHoaService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
+import moment from 'moment';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,6 +16,9 @@ export class HangHoaThanhPhamComponent implements OnInit, OnDestroy, AfterViewIn
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
+
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - THÀNH PHẨM - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
