@@ -236,7 +236,7 @@
             </Text9>
             <Text11 Ref="17" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,3.4,1.8,0.4</ClientRectangle>
+              <ClientRectangle>0,3.4,1.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
               <Guid>245b81f48c2645fcbeb5daaf5506d680</Guid>
@@ -251,9 +251,9 @@
             </Text11>
             <Text13 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>1.8,3.4,18.2,0.4</ClientRectangle>
+              <ClientRectangle>1.4,3.4,18.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,13</Font>
+              <Font>Times New Roman,12</Font>
               <Guid>51e4d31dc07040ebb8c90dab0f624235</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
@@ -487,6 +487,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>6.6,0,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>92b7b64970dc487e8e7c45b17336664d</Guid>
               <HorAlignment>Center</HorAlignment>
@@ -496,6 +497,7 @@
               <Parent isRef="33" />
               <Text>{rptThongKeCongNo_ChiTiet.noidung}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text16>
@@ -541,6 +543,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>4.06,0,2.54,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>34408ba0bfd54dd584307f1fb6bd0d0e</Guid>
               <HorAlignment>Center</HorAlignment>
@@ -604,6 +607,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>18.2,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>1a4c8f3c8391490a8644b5d449ec0c55</Guid>
               <HorAlignment>Center</HorAlignment>
@@ -613,6 +617,7 @@
               <Parent isRef="33" />
               <Text>{rptThongKeCongNo_ChiTiet.ghichu}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text27>
@@ -811,7 +816,6 @@
               <Text>{rptThongKeCongNo.nocuoiky_bangchu} đồng.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
             </Text55>
             <Text56 Ref="59" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -845,25 +849,28 @@
             </Text57>
             <Text58 Ref="61" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.4,2.8,10.4,0.6</ClientRectangle>
+              <ClientRectangle>0,2.8,10.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>6eb23d86d9a848e8be5e17e318c4b7c7</Guid>
+              <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text58</Name>
               <Page isRef="7" />
               <Parent isRef="52" />
               <Text>{rptThongKeCongNo.tenkhachhang}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text58>
             <Text59 Ref="62" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>11,2.8,8.6,0.6</ClientRectangle>
+              <ClientRectangle>11.4,2.8,8.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>bdc5f268726c46e389ffe29a80a2d883</Guid>
-              <HorAlignment>Right</HorAlignment>
+              <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text59</Name>
               <Page isRef="7" />
@@ -871,7 +878,6 @@
               <Text>{Info.tencongty}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
             </Text59>
           </Components>
           <Conditions isList="true" count="0" />
@@ -902,10 +908,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/24/2021 10:25:22 AM</ReportChanged>
+  <ReportChanged>3/6/2021 11:31:19 AM</ReportChanged>
   <ReportCreated>2/23/2021 1:32:41 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_2.mrt</ReportFile>
-  <ReportGuid>25931eae34154457b9ce39d68baba5f6</ReportGuid>
+  <ReportGuid>6f64713d887d4c2081202c11693eae32</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

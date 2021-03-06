@@ -254,7 +254,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>1.8,3.4,18.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,13</Font>
+              <Font>Times New Roman,12</Font>
               <Guid>a6762ba724584a0eb402d8cadb6393a2</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
@@ -267,7 +267,7 @@
             </Text13>
             <Text14 Ref="19" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,3.8,14.6,0.6</ClientRectangle>
+              <ClientRectangle>0,3.8,14.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
               <Guid>229d6fb4e8a44554b76e3b8bd4907f34</Guid>
@@ -543,13 +543,13 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>9d478376717a4c0da32cb89141648a6d</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>4,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="7" />
               <Parent isRef="36" />
               <Text>{rptThongKeCongNo_ChiTiet.diengiai}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
@@ -903,8 +903,8 @@ PHÁT SINH</Text>
               <Parent isRef="59" />
               <Text>{rptThongKeCongNo.nocuoiky_bangchu} đồng.</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
             </Text55>
             <Text56 Ref="66" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -948,6 +948,7 @@ PHÁT SINH</Text>
               <Parent isRef="59" />
               <Text>{rptThongKeCongNo.tennhacungcap}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
             </Text58>
             <Text59 Ref="69" type="Text" isKey="true">
@@ -994,10 +995,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/24/2021 1:34:48 PM</ReportChanged>
+  <ReportChanged>3/6/2021 4:28:40 PM</ReportChanged>
   <ReportCreated>2/24/2021 10:10:25 AM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Ncc.mrt</ReportFile>
-  <ReportGuid>6a9ba1d91ca6400d924e0e96943a543d</ReportGuid>
+  <ReportGuid>d9a923d27fc14cfaabb62d7fba15e657</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
