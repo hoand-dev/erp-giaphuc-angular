@@ -236,7 +236,7 @@
             </Text9>
             <Text11 Ref="17" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,3.4,1.8,0.4</ClientRectangle>
+              <ClientRectangle>0,3.4,1.6,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,13</Font>
               <Guid>a280b19472bf428c8bc73a17c3d1d3e3</Guid>
@@ -251,9 +251,9 @@
             </Text11>
             <Text13 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>1.8,3.4,18.2,0.4</ClientRectangle>
+              <ClientRectangle>1.6,3.4,18.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,13</Font>
+              <Font>Times New Roman,12</Font>
               <Guid>ae082411f8ba41589268323e3143772e</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
@@ -353,7 +353,7 @@
             <Text4 Ref="26" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.8,0,4.4,0.6</ClientRectangle>
+              <ClientRectangle>2.6,0,4.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>174e64147c3f47d6ab7f8f4c8e4bc8bc</Guid>
@@ -371,7 +371,7 @@
             <Text18 Ref="27" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7.2,0,1,0.6</ClientRectangle>
+              <ClientRectangle>7.2,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>a14b7d733bbc431e924caa6343ea25f3</Guid>
@@ -388,7 +388,7 @@
             <Text19 Ref="28" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.6,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>10,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>98535a3a1c3240e58d4e9113762fdce4</Guid>
@@ -405,7 +405,7 @@
             <Text24 Ref="29" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1,0.6</ClientRectangle>
+              <ClientRectangle>0,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>b1f4164ea8f54ff4999533ab52915dd9</Guid>
@@ -422,7 +422,7 @@
             <Text16 Ref="30" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.2,0,2.2,0.6</ClientRectangle>
+              <ClientRectangle>15.4,0,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>4dcbef6a919a4b53bf99bd33889f4902</Guid>
@@ -439,7 +439,7 @@
             <Text32 Ref="31" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>1,0,1.8,0.6</ClientRectangle>
+              <ClientRectangle>0.8,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>1054197a3ad74b72890b3c058d170033</Guid>
@@ -458,7 +458,7 @@ PHÁT SINH</Text>
             <Text33 Ref="32" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>8,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>471eaa3bf4364500a521f2b261b519f6</Guid>
@@ -475,7 +475,7 @@ PHÁT SINH</Text>
             <Text35 Ref="33" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>9.4,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>9,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>1566b782181741a3a1d5e0d70db64ccb</Guid>
@@ -492,7 +492,7 @@ PHÁT SINH</Text>
             <Text36 Ref="34" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.8,0,1,0.6</ClientRectangle>
+              <ClientRectangle>10.8,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>2499848a41db43d1a17019717fa2d4a1</Guid>
@@ -509,7 +509,7 @@ PHÁT SINH</Text>
             <Text37 Ref="35" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.8,0,1.4,0.6</ClientRectangle>
+              <ClientRectangle>11.8,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>904b7a01a66a4c41be04b19b87137e78</Guid>
@@ -526,7 +526,7 @@ PHÁT SINH</Text>
             <Text38 Ref="36" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,2,0.6</ClientRectangle>
+              <ClientRectangle>13.2,0,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>8b4da98ada914185aaa9f821c0d5b748</Guid>
@@ -543,7 +543,7 @@ PHÁT SINH</Text>
             <Text39 Ref="37" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>17.8,0,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>e318739446f644c7bddc7d4930f7ce22</Guid>
@@ -571,12 +571,12 @@ PHÁT SINH</Text>
             <Text3 Ref="39" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.8,0,4.4,0.6</ClientRectangle>
+              <ClientRectangle>2.6,0,4.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>744e5243181547c39cba04ff814ecd7b</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>4,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="7" />
               <Parent isRef="38" />
@@ -589,7 +589,7 @@ PHÁT SINH</Text>
             <Text17 Ref="40" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7.2,0,1,0.6</ClientRectangle>
+              <ClientRectangle>7.2,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>7538d5830a29465daebb23b409e5b7e8</Guid>
@@ -606,7 +606,7 @@ PHÁT SINH</Text>
             <Text21 Ref="41" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.6,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>10,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>b639a8a9b01e4cada08f311031835e7f</Guid>
@@ -623,7 +623,7 @@ PHÁT SINH</Text>
             <Text26 Ref="42" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1,0.6</ClientRectangle>
+              <ClientRectangle>0,0,0.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>71cbe312b6644511ac81e31d42f6d6ad</Guid>
@@ -640,7 +640,7 @@ PHÁT SINH</Text>
             <Text27 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.2,0,2.2,0.6</ClientRectangle>
+              <ClientRectangle>15.4,0,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>ce026963538648e6a66e72e60793bb01</Guid>
@@ -663,7 +663,7 @@ PHÁT SINH</Text>
             <Text40 Ref="45" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.2,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>8,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>57f4ca2f7fae4450a75ccef30f35f66b</Guid>
@@ -680,7 +680,7 @@ PHÁT SINH</Text>
             <Text41 Ref="46" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>9.4,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>9,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>d49892a4e2d949cda328a2a203de1e15</Guid>
@@ -697,7 +697,7 @@ PHÁT SINH</Text>
             <Text42 Ref="47" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.8,0,1,0.6</ClientRectangle>
+              <ClientRectangle>10.8,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>64f3d2a8e59e40a0b079f38c59bc2c12</Guid>
@@ -720,7 +720,7 @@ PHÁT SINH</Text>
             <Text43 Ref="49" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12.8,0,1.4,0.6</ClientRectangle>
+              <ClientRectangle>11.8,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>47d496ba4a99456cb7785f61a300a3f8</Guid>
@@ -743,7 +743,7 @@ PHÁT SINH</Text>
             <Text44 Ref="51" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,2,0.6</ClientRectangle>
+              <ClientRectangle>13.2,0,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>2257808a9eb7493ba0365d782e7e1b06</Guid>
@@ -766,8 +766,9 @@ PHÁT SINH</Text>
             <Text45 Ref="53" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>17.8,0,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>2fe7899f807e4b498921ffceb892a3b8</Guid>
               <HorAlignment>Center</HorAlignment>
@@ -777,13 +778,14 @@ PHÁT SINH</Text>
               <Parent isRef="38" />
               <Text>{rptThongKeCongNo_ChiTiet.ghichu}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text45>
             <Text34 Ref="54" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>1,0,1.8,0.6</ClientRectangle>
+              <ClientRectangle>0.8,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>f3be962fce0648a49760d235210586c1</Guid>
@@ -833,7 +835,7 @@ PHÁT SINH</Text>
             <Text47 Ref="58" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.2,0,2,0.6</ClientRectangle>
+              <ClientRectangle>13.2,0,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>bfe6656c91f74f5cb2e4fb486c6ec812</Guid>
@@ -856,7 +858,7 @@ PHÁT SINH</Text>
             <Text48 Ref="60" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.2,0,2.2,0.6</ClientRectangle>
+              <ClientRectangle>15.4,0,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>522e20534f7540ff9f7249ff0855e468</Guid>
@@ -879,7 +881,7 @@ PHÁT SINH</Text>
             <Text49 Ref="62" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>18.4,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>17.8,0,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>5cc96a0458bd4c7baff74dbc2203381e</Guid>
@@ -894,7 +896,7 @@ PHÁT SINH</Text>
             <Text50 Ref="63" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7.2,0,7,0.6</ClientRectangle>
+              <ClientRectangle>7.2,0,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>b03c1dd774134601a0bb3a3afdc766bf</Guid>
@@ -980,6 +982,7 @@ PHÁT SINH</Text>
               <Text>Bằng chữ:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text54>
             <Text55 Ref="70" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1032,13 +1035,16 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>c35545830538433e86eb7ebdf64dc1ee</Guid>
+              <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text58</Name>
               <Page isRef="7" />
               <Parent isRef="64" />
               <Text>{rptThongKeCongNo.tenkhachhang}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text58>
             <Text59 Ref="74" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1046,7 +1052,7 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>18180754a84f4e93aa012dece6787df9</Guid>
-              <HorAlignment>Right</HorAlignment>
+              <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text59</Name>
               <Page isRef="7" />
@@ -1054,7 +1060,6 @@ PHÁT SINH</Text>
               <Text>{Info.tencongty}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
             </Text59>
           </Components>
           <Conditions isList="true" count="0" />
@@ -1084,9 +1089,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/24/2021 10:25:34 AM</ReportChanged>
+  <ReportChanged>3/6/2021 11:32:10 AM</ReportChanged>
   <ReportCreated>2/23/2021 1:19:53 PM</ReportCreated>
-  <ReportGuid>97d21ade28714fe5a31eb4f9da209146</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_1.mrt</ReportFile>
+  <ReportGuid>bf00bd1c26914c948f3f9f5beae17051</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
