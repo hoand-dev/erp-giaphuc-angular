@@ -159,6 +159,13 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
     }
 
     calculateSummary(options) {
+        if (options.name === 'RowsSummaryMaKhachHang') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                options.totalValue = options.value.makhachhang;
+            }
+        }
         if (options.name === 'RowsSummaryNoDauKy') {
             if (options.summaryProcess === 'start') {
                 options.totalValue = 0;
