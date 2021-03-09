@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThongKeThuChiTonQuy } from '@app/shared/entities';
-import { ThongKeThuChiService } from '@app/shared/services';
+import { AppInfoService, ThongKeThuChiService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -17,7 +18,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription = new Subscription();
 
     public dataSource_ThuChiTonQuy: ThongKeThuChiTonQuy[];
-    public exportFileName: string = '[THỐNG KÊ] - Thu chi tồn quỹ - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[THỐNG KÊ] - THU CHI TỒN QUỸ - ' + moment().format('DD_MM_YYYY');
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -29,7 +30,9 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         storageKey: 'dxGrid_ThongKeThuChi_TonQuy'
     };
 
-    constructor(private authenticationService: AuthenticationService, private objThongKeThuChiService: ThongKeThuChiService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private authenticationService: AuthenticationService, private objThongKeThuChiService: ThongKeThuChiService) {
+        this.titleService.setTitle("THỐNG KÊ - THU CHI TỒN QUỸ | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DonViGiaCong } from '@app/shared/entities';
-import { DonViGiaCongService } from '@app/shared/services';
+import { AppInfoService, DonViGiaCongService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -29,7 +30,15 @@ export class DonViGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_DonViGiaCong'
     };
 
-    constructor(private router: Router, private donvigiacongService: DonViGiaCongService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private donvigiacongService: DonViGiaCongService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle("ĐƠN VỊ GIA CÔNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThongKeXuatNhapTonTrongNgay } from '@app/shared/entities';
-import { ThongKeKhoHangService } from '@app/shared/services';
+import { AppInfoService, ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -8,9 +9,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-thong-ke-xuat-nhap-ton-trong-ngay',
-  templateUrl: './thong-ke-xuat-nhap-ton-trong-ngay.component.html',
-  styleUrls: ['./thong-ke-xuat-nhap-ton-trong-ngay.component.css']
+    selector: 'app-thong-ke-xuat-nhap-ton-trong-ngay',
+    templateUrl: './thong-ke-xuat-nhap-ton-trong-ngay.component.html',
+    styleUrls: ['./thong-ke-xuat-nhap-ton-trong-ngay.component.css']
 })
 export class ThongKeXuatNhapTonTrongNgayComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
@@ -33,11 +34,19 @@ export class ThongKeXuatNhapTonTrongNgayComponent implements OnInit, OnDestroy {
         storageKey: 'dxGrid_ThongKe_XuatNhapTon_TrongNgay'
     };
 
-    constructor(private authenticationService: AuthenticationService, private objThongKeKhoHangService: ThongKeKhoHangService, private modalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private authenticationService: AuthenticationService,
+        private objThongKeKhoHangService: ThongKeKhoHangService,
+        private modalService: BsModalService
+    ) {
+        this.titleService.setTitle("THỐNG KÊ - XUẤT NHẬP TỒN TRONG NGÀY | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
-        this.currDayTime = moment().toDate();//.add(1, 'days')
+        this.currDayTime = moment().toDate(); //.add(1, 'days')
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {

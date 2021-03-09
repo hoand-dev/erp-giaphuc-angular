@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuThu } from '@app/shared/entities';
-import { PhieuThuService } from '@app/shared/services';
+import { AppInfoService, PhieuThuService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -13,6 +13,7 @@ import { AuthenticationService } from '@app/_services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuChiInPhieuModalComponent } from '../../modals/phieu-chi-in-phieu-modal/phieu-chi-in-phieu-modal.component';
 import { PhieuThuInPhieuComponent } from '../../modals/phieu-thu-in-phieu/phieu-thu-in-phieu.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-thu',
@@ -40,7 +41,16 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_PhieuThu'
     };
 
-    constructor(private router: Router, private objPhieuThuService: PhieuThuService, private authenticationService: AuthenticationService, private bsModalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuThuService: PhieuThuService,
+        private authenticationService: AuthenticationService,
+        private bsModalService: BsModalService
+    ) {
+        this.titleService.setTitle("PHIẾU THU | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

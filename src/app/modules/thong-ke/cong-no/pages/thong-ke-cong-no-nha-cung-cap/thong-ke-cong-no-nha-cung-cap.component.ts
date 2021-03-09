@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThongKeCongNoNhaCungCap } from '@app/shared/entities';
-import { ThongKeCongNoService } from '@app/shared/services';
+import { AppInfoService, ThongKeCongNoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -20,7 +21,7 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription = new Subscription();
 
     public dataSource_CongNoNhaCungCap: ThongKeCongNoNhaCungCap[];
-    public exportFileName: string = '[THỐNG KÊ] - Công nợ khách hàng - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[THỐNG KÊ] - CÔNG NỢ NHÀ CUNG CẤP - ' + moment().format('DD_MM_YYYY');
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -33,10 +34,14 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
     };
 
     constructor(
-        private authenticationService: AuthenticationService, 
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private authenticationService: AuthenticationService,
         private objThongKeCongNoService: ThongKeCongNoService,
         private modalService: BsModalService
-    ) {}
+    ) {
+        this.titleService.setTitle('THỐNG KÊ - CÔNG NỢ NHÀ CUNG CẤP | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
@@ -44,10 +49,9 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
         this.currDayTime = moment().add(1, 'days').toDate();
 
         this.subscriptions.add(
-            this.authenticationService.currentChiNhanh
-                .subscribe((x) => {
-                    this.onLoadData();
-                })
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
         );
     }
 
@@ -64,10 +68,9 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
                     let luytien: number = 0;
                     let manhacungcap: string = null;
                     data.forEach((value) => {
-                        if(manhacungcap == value.manhacungcap){
+                        if (manhacungcap == value.manhacungcap) {
                             luytien += value.tongtienmua - value.tongtientra - value.tongtienchi + value.tongtienthu;
-                        }
-                        else{
+                        } else {
                             manhacungcap = value.manhacungcap;
                             luytien = value.nodauky + value.tongtienmua - value.tongtientra - value.tongtienchi + value.tongtienthu;
                         }
@@ -90,24 +93,22 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
-            e.items.push(
-                {
-                    text: 'Đối chiếu công nợ',
-                    icon: 'print',
-                    visible: true,
-                    onItemClick: () => {
-                        let rowData: ThongKeCongNoNhaCungCap = e.row.key as ThongKeCongNoNhaCungCap;
-                        this.openModal(rowData, 1);
-                    }
+            e.items.push({
+                text: 'Đối chiếu công nợ',
+                icon: 'print',
+                visible: true,
+                onItemClick: () => {
+                    let rowData: ThongKeCongNoNhaCungCap = e.row.key as ThongKeCongNoNhaCungCap;
+                    this.openModal(rowData, 1);
                 }
-            );
+            });
         }
     }
 
-    openModal(congnonhacungcap: ThongKeCongNoNhaCungCap, mauin: number){
+    openModal(congnonhacungcap: ThongKeCongNoNhaCungCap, mauin: number) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: "XEM IN ĐỐI CHIẾU CÔNG NỢ - MẪU " + mauin,
+            title: 'XEM IN ĐỐI CHIẾU CÔNG NỢ - MẪU ' + mauin,
             tungay: this.firstDayTime,
             denngay: this.currDayTime,
             congnonhacungcap: congnonhacungcap,
@@ -125,7 +126,7 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
     }
 
     customizeText(rowData) {
-        return "-";
+        return '-';
     }
 
     calculateSummary(options) {

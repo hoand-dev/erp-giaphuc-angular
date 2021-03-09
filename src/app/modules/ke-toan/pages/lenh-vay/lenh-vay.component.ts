@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LenhVay } from '@app/shared/entities';
-import { LenhVayService } from '@app/shared/services';
+import { AppInfoService, LenhVayService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-lenh-vay',
@@ -24,7 +25,7 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - LỆNH VAY - ' + moment().format('DD_MM_YYYY');
 
@@ -34,7 +35,15 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_LenhVay'
     };
 
-    constructor(private router: Router, private objLenhVayService: LenhVayService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objLenhVayService: LenhVayService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle('LỆNH VAY | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

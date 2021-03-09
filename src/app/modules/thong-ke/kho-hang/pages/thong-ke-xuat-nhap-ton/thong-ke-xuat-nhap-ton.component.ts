@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThongKeXuatNhapTon } from '@app/shared/entities';
-import { ThongKeKhoHangService } from '@app/shared/services';
+import { AppInfoService, ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -35,7 +36,15 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
         storageKey: 'dxGrid_ThongKe_XuatNhapTon'
     };
 
-    constructor(private authenticationService: AuthenticationService, private objThongKeKhoHangService: ThongKeKhoHangService, private modalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private authenticationService: AuthenticationService,
+        private objThongKeKhoHangService: ThongKeKhoHangService,
+        private modalService: BsModalService
+    ) {
+        this.titleService.setTitle("THỐNG KÊ - XUẤT NHẬP TỒN | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);

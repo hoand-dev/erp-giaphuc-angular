@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HangHoa } from '@app/shared/entities';
 import { AppInfoService, HangHoaService } from '@app/shared/services';
@@ -28,7 +29,9 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
         storageKey: 'dxGrid_HangHoaHangTron'
     };
 
-    constructor(public appInfoService: AppInfoService, private router: Router, private hanghoaService: HangHoaService) {}
+    constructor(private titleService: Title, public appInfoService: AppInfoService, private router: Router, private hanghoaService: HangHoaService) {
+        this.titleService.setTitle("HÀNG TRƠN | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

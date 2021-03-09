@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NhaCungCapService } from '@app/shared/services';
+import { AppInfoService, NhaCungCapService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -19,8 +20,8 @@ export class NhaCungCapComponent implements OnInit {
 
     subscriptions: Subscription = new Subscription();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - NHÀ CUNG CẤP - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - NHÀ CUNG CẤP - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -28,7 +29,9 @@ export class NhaCungCapComponent implements OnInit {
         storageKey: 'dxGrid_NhaCungCap'
     };
 
-    constructor(private router: Router, private nhacungcapService: NhaCungCapService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private nhacungcapService: NhaCungCapService) {
+        this.titleService.setTitle("NHÀ CUNG CẤP | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

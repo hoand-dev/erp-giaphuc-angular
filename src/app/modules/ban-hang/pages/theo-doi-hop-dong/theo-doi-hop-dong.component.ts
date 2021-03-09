@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChiNhanh } from '@app/shared/entities';
-import { TheoDoiHopDongService } from '@app/shared/services';
+import { AppInfoService, TheoDoiHopDongService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-theo-doi-hop-dong',
@@ -29,7 +30,7 @@ export class TheoDoiHopDongComponent implements OnInit {
     public timeCreateAt: Date = new Date();
 
     /* dataGrid */
-    public exportFileName: string = '[DANH SÁCH] - HỢP ĐỒNG - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[DANH SÁCH] - THEO DÕI HỢP ĐỒNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -37,7 +38,15 @@ export class TheoDoiHopDongComponent implements OnInit {
         storageKey: 'dxGrid_TheoDoiHopDong'
     };
 
-    constructor(private router: Router, private theodoihopdongService: TheoDoiHopDongService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private theodoihopdongService: TheoDoiHopDongService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle("THEO DÕI HỢP ĐỒNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

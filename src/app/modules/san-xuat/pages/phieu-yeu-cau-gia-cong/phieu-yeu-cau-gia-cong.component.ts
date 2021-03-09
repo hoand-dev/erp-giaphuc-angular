@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuYeuCauGiaCong } from '@app/shared/entities';
-import { PhieuYeuCauGiaCongService } from '@app/shared/services';
+import { AppInfoService, PhieuYeuCauGiaCongService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
 import { PhieuYeuCauGiaCongInPhieuModalComponent } from '../../modals/phieu-yeu-cau-gia-cong-in-phieu-modal/phieu-yeu-cau-gia-cong-in-phieu-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong',
@@ -39,7 +40,16 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         storageKey: 'dxGrid_PhieuYeuCauGiaCong'
     };
 
-    constructor(private router: Router, private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService,
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
+    ) {
+        this.titleService.setTitle("PHIẾU YÊU CẦU GIA CÔNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

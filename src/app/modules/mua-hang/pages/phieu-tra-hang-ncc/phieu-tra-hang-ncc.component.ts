@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuTraHangNCC } from '@app/shared/entities';
-import { PhieuTraHangNCCService } from '@app/shared/services';
+import { AppInfoService, PhieuTraHangNCCService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-tra-hang-ncc',
@@ -25,8 +26,8 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - PHIẾU KHÁCH TRẢ HÀNG - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU KHÁCH TRẢ HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -34,7 +35,15 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         storageKey: 'dxGrid_PhieuTraHangNCC'
     };
 
-    constructor(private router: Router, private objPhieuTraHangNCCService: PhieuTraHangNCCService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuTraHangNCCService: PhieuTraHangNCCService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle("PHIẾU TRẢ HÀNG NCC | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

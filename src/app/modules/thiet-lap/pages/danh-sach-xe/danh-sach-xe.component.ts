@@ -6,6 +6,8 @@ import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
+import { AppInfoService } from '@app/shared/services';
 @Component({
     selector: 'app-danh-sach-xe',
     templateUrl: './danh-sach-xe.component.html',
@@ -18,8 +20,8 @@ export class DanhSachXeComponent implements OnInit {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - XE - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - XE - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -27,7 +29,9 @@ export class DanhSachXeComponent implements OnInit {
         storageKey: 'dxGrid_DanhSachXe'
     };
 
-    constructor(private router: Router, private danhsachxeService: DanhSachXeService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private danhsachxeService: DanhSachXeService) {
+        this.titleService.setTitle('XE | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         this.timeCreateAt = moment().add(1, 'days').toDate();

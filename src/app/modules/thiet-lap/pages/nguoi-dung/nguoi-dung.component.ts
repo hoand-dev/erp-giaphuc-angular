@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NguoiDungService } from '@app/shared/services';
+import { AppInfoService, NguoiDungService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { confirm } from 'devextreme/ui/dialog';
 import { NguoiDung } from '@app/shared/entities';
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-nguoi-dung',
@@ -29,7 +30,9 @@ export class NguoiDungComponent implements OnInit {
         storageKey: 'dxGrid_NguoiDung'
     };
 
-    constructor(private router: Router, private nguoidungService: NguoiDungService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private nguoidungService: NguoiDungService) {
+        this.titleService.setTitle("NGƯỜI DÙNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

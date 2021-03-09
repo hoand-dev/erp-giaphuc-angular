@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuNhapKhoGiaCong } from '@app/shared/entities';
-import { PhieuNhapKhoGiaCongService } from '@app/shared/services';
+import { AppInfoService, PhieuNhapKhoGiaCongService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
 import { PhieuNhapThanhPhamInPhieuModalComponent } from '../../modals/phieu-nhap-thanh-pham-in-phieu-modal/phieu-nhap-thanh-pham-in-phieu-modal.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-nhap-kho-gia-cong',
@@ -29,8 +30,8 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - PHIẾU NHẬP KHO GC - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU NHẬP KHO GIA CÔNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -39,11 +40,15 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
     };
 
     constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
         private router: Router,
         private objPhieuNhapKhoGiaCongService: PhieuNhapKhoGiaCongService,
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
-    ) {}
+    ) {
+        this.titleService.setTitle("PHIẾU NHẬP KHO GIA CÔNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

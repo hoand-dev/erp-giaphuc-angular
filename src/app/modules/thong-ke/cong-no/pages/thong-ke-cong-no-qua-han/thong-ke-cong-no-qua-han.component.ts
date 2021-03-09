@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThongKeCongNoQuaHan } from '@app/shared/entities';
-import { ThongKeCongNoService } from '@app/shared/services';
+import { AppInfoService, ThongKeCongNoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -17,7 +18,7 @@ export class ThongKeCongNoQuaHanComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription = new Subscription();
     
     public dataSource_CongNoQuaHan: ThongKeCongNoQuaHan[];
-    public exportFileName: string = "[THỐNG KÊ] - Công nợ quá hạn - " + moment().format("DD_MM_YYYY");
+    public exportFileName: string = "[THỐNG KÊ] - CÔNG NỢ QUÁ HẠN - " + moment().format("DD_MM_YYYY");
 
     public stateStoringGrid = {
         enabled: true,
@@ -26,9 +27,13 @@ export class ThongKeCongNoQuaHanComponent implements OnInit, OnDestroy {
     };
 
     constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
         private authenticationService: AuthenticationService,
         private objThongKeCongNoService: ThongKeCongNoService
-    ) {}
+    ) {
+        this.titleService.setTitle("THỐNG KÊ - CÔNG NỢ QUÁ HẠN | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         this.subscriptions.add(

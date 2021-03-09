@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DanhMucLoi } from '@app/shared/entities';
-import { DanhMucLoiService } from '@app/shared/services';
+import { AppInfoService, DanhMucLoiService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -19,8 +20,8 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - DANH MỤC LỖI - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - DANH MỤC LỖI - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -28,7 +29,9 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_DanhMucLoi'
     };
 
-    constructor(private router: Router, private danhmucloiService: DanhMucLoiService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private danhmucloiService: DanhMucLoiService) {
+        this.titleService.setTitle('DANH MỤC LỖI | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

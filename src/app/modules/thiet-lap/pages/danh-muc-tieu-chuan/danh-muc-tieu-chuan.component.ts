@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DanhMucTieuChuan } from '@app/shared/entities';
-import { DanhMucTieuChuanService } from '@app/shared/services';
+import { AppInfoService, DanhMucTieuChuanService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -19,8 +20,8 @@ export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewIn
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - DANH MỤC TIÊU CHUẨN - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - DANH MỤC TIÊU CHUẨN - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -28,7 +29,9 @@ export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewIn
         storageKey: 'dxGrid_DanhMucTieuChuan'
     };
 
-    constructor(private router: Router, private danhmuctieuchuanService: DanhMucTieuChuanService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private danhmuctieuchuanService: DanhMucTieuChuanService) {
+        this.titleService.setTitle('TIÊU CHUẨN | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

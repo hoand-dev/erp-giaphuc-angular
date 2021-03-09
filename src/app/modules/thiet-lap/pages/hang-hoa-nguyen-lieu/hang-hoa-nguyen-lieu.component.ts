@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HangHoa } from '@app/shared/entities';
 import { AppInfoService, HangHoaService } from '@app/shared/services';
@@ -19,8 +20,8 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - NGUYÊN LIỆU - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - NGUYÊN LIỆU - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -28,7 +29,9 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
         storageKey: 'dxGrid_HangHoaNguyenLieu'
     };
 
-    constructor(public appInfoService: AppInfoService, private router: Router, private hanghoaService: HangHoaService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private hanghoaService: HangHoaService) {
+        this.titleService.setTitle("NGUYÊN LIỆU | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuXuatMuonHang } from '@app/shared/entities';
-import { PhieuXuatMuonHangService } from '@app/shared/services';
+import { AppInfoService, PhieuXuatMuonHangService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuXuatMuonHangInPhieuModalComponent } from '../../modals/phieu-xuat-muon-hang-in-phieu-modal/phieu-xuat-muon-hang-in-phieu-modal.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-xuat-muon-hang',
@@ -28,8 +29,8 @@ export class PhieuXuatMuonHangComponent implements OnInit, OnDestroy, AfterViewI
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT MƯỢN HÀNG - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT MƯỢN HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -37,7 +38,16 @@ export class PhieuXuatMuonHangComponent implements OnInit, OnDestroy, AfterViewI
         storageKey: 'dxGrid_PhieuXuatMuonHang'
     };
 
-    constructor(private router: Router, private objPhieuXuatMuonHangService: PhieuXuatMuonHangService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuXuatMuonHangService: PhieuXuatMuonHangService,
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
+    ) {
+        this.titleService.setTitle("PHIẾU XUẤT MƯỢN HÀNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

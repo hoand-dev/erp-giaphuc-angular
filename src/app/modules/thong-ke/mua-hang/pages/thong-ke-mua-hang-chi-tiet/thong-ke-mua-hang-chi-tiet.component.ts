@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ThongKeMuaHangChiTiet } from '@app/shared/entities';
-import { ThongKeMuaHangChiTietService } from '@app/shared/services';
+import { AppInfoService, ThongKeMuaHangChiTietService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
@@ -18,7 +19,7 @@ export class ThongKeMuaHangChiTietComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
 
     public dataSource_ThuChiTonQuy: ThongKeMuaHangChiTiet[];
-    public exportFileName: string = '[THỐNG KÊ] - mua hàng chi tiết - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[THỐNG KÊ] - MUA HÀNG CHI TIẾT - ' + moment().format('DD_MM_YYYY');
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -30,7 +31,14 @@ export class ThongKeMuaHangChiTietComponent implements OnInit {
         storageKey: 'dxGrid_ThongKeMuaHang_ChiTiet'
     };
 
-    constructor(private authenticationService: AuthenticationService, private objThongKeMuahangService: ThongKeMuaHangChiTietService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private authenticationService: AuthenticationService,
+        private objThongKeMuahangService: ThongKeMuaHangChiTietService
+    ) {
+        this.titleService.setTitle("THỐNG KÊ - MUA HÀNG CHI TIẾT | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
