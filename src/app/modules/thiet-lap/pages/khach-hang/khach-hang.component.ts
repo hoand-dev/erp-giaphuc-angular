@@ -91,6 +91,7 @@ export class KhachHangComponent implements OnInit {
                             this.onLoadData();
                         },
                         (error) => {
+                            this.khachhangService.handleError(error);
                             this.onLoadData();
                         }
                     )

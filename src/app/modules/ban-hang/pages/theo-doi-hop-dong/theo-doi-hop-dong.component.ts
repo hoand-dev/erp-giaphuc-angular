@@ -101,6 +101,7 @@ export class TheoDoiHopDongComponent implements OnInit {
                             this.onLoadData();
                         },
                         (error) => {
+                            this.theodoihopdongService.handleError(error);
                             this.onLoadData();
                         }
                     )
