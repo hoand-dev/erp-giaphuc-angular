@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { KhuVucService } from '@app/shared/services';
+import { AppInfoService, KhuVucService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { data } from 'jquery';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-khu-vuc',
@@ -29,7 +30,9 @@ export class KhuVucComponent implements OnInit {
         storageKey: 'dxGrid_KhuVuc'
     };
 
-    constructor(private router: Router, private khuvucService: KhuVucService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private khuvucService: KhuVucService) {
+        this.titleService.setTitle("KHU VỰC | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

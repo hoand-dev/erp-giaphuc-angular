@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppInfoService {
-    constructor() { }
+    constructor() {}
+
+    public appName: string = 'ERP HỒNG NGHI';
 
     public get title() {
-        return 'ERP Hồng Nghi';
+        return this.appName;
     }
 
     public get currentYear() {
@@ -13,15 +15,15 @@ export class AppInfoService {
     }
 
     /* danh sách loại hàng hóa cho bảng hàng hóa */
-    public get loaihanghoa_nguyenlieu(){
+    public get loaihanghoa_nguyenlieu() {
         return 'nguyenlieu';
     }
 
-    public get loaihanghoa_hangtron(){
+    public get loaihanghoa_hangtron() {
         return 'hangtron';
     }
 
-    public get loaihanghoa_thanhpham(){
+    public get loaihanghoa_thanhpham() {
         return 'thanhpham';
     }
 }

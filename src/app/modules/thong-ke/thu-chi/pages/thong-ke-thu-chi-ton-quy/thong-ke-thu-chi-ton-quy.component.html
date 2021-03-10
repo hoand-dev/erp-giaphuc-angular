@@ -83,8 +83,8 @@
                                     <dxi-column dataField="sotiengiamthu" caption="Tiền giảm thu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotiengiamchi" caption="Tiền giảm chi" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="toncuoiky" caption="Tồn cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
-                                    <dxi-column dataField="tonquyhientai" caption="Số dư cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="toncuoiky" caption="Tồn cuối kỳ" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="tonquyhientai" caption="Tồn cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
 
                                     <dxo-summary [calculateCustomSummary]="calculateSummary">
                                         <dxi-group-item showInColumn="ghichu" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>
@@ -128,16 +128,14 @@
 
                                     <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
-                                        <dxi-total-item column="tenquy" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="maphieu" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="sotaikhoan" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="tondauky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="toncuoiky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="tonquyhientai" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="maphieu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="tondauky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="toncuoiky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="tonquyhientai" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
 
                                     <dxo-filter-panel [visible]="true"></dxo-filter-panel>

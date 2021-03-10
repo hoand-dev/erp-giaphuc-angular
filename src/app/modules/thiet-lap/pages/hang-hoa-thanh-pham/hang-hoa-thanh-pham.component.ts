@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AppInfoService, HangHoaService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -26,7 +27,9 @@ export class HangHoaThanhPhamComponent implements OnInit, OnDestroy, AfterViewIn
         storageKey: 'dxGrid_HangHoaThanhPham'
     };
 
-    constructor(public appInfoService: AppInfoService, private hanghoaService: HangHoaService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private hanghoaService: HangHoaService) {
+        this.titleService.setTitle('THÀNH PHẨM | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

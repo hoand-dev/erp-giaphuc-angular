@@ -1,5 +1,15 @@
 /* ------------------------------------------------------------------------- */
 /* You can add global styles to this file, and also import other style files */
+*
+{
+    outline: none;
+}
+
+/* thay đổi kích thước modal */
+.modal-xxl {
+    max-width: 90%;
+}
+
 .loading-center {
     display: flex;
     justify-content: center;

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { PhieuBanHang } from '@app/shared/entities';
-import { PhieuBanHangService } from '@app/shared/services';
+import { AppInfoService, PhieuBanHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { confirm } from 'devextreme/ui/dialog';
@@ -31,8 +32,8 @@ export class PhieuBanHangComponent implements OnInit {
     public timeCreateAt: Date = new Date();
     public bsModalRef: BsModalRef;
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - PHIẾU BÁN HÀNG - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU BÁN HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -40,7 +41,16 @@ export class PhieuBanHangComponent implements OnInit {
         storageKey: ' dxGrid_PhieuBanHang'
     };
 
-    constructor(private router: Router, private objPhieuBanHangService: PhieuBanHangService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuBanHangService: PhieuBanHangService,
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
+    ) {
+        this.titleService.setTitle('PHIẾU BÁN HÀNG | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);

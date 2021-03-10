@@ -3,10 +3,11 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
-import { NhomKhachHangService } from '@app/shared/services';
+import { AppInfoService, NhomKhachHangService } from '@app/shared/services';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-nhom-khach-hang',
@@ -29,7 +30,9 @@ export class NhomKhachHangComponent implements OnInit {
         storageKey: 'dxGrid_NhomKhachHang'
     };
 
-    constructor(private router: Router, private nhomkhachhangService: NhomKhachHangService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private nhomkhachhangService: NhomKhachHangService) {
+        this.titleService.setTitle('NHÓM KHÁCH HÀNG | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

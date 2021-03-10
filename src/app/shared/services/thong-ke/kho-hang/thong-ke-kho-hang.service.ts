@@ -6,7 +6,7 @@ import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 
 import moment from 'moment';
-import { ThongKeXuatNhapTon, ThongKeXuatNhapTon_ChiTiet, ThongKeXuatNhapTon_ChiTietPhieu } from '@app/shared/entities';
+import { ThongKeXuatNhapTon, ThongKeXuatNhapTonTrongNgay, ThongKeXuatNhapTon_ChiTiet, ThongKeXuatNhapTon_ChiTietPhieu } from '@app/shared/entities';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +16,15 @@ export class ThongKeKhoHangService extends BaseService {
 
     constructor(private httpClient: HttpClient) {
         super();
+    }
+    
+    findsXuatNhapTon_TrongNgay(ngayphatsinh:Date, chinhanh_id: number = null, khohang_id: number = null): Observable<ThongKeXuatNhapTonTrongNgay[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set("ngayphatsinh", moment(ngayphatsinh).format("YYYY-MM-DD HH:mm:ss"));
+        query_params = query_params.set("chinhanh_id", chinhanh_id ? chinhanh_id.toString() : null);
+        query_params = query_params.set("khohang_id", khohang_id ? khohang_id.toString() : null);
+        
+        return this.httpClient.get<ThongKeXuatNhapTonTrongNgay[]>(this.apiUrl + "/xuat-nhap-ton-trong-ngay", { params: query_params });
     }
 
     findsXuatNhapTon(fromDay:Date, toDay: Date, chinhanh_id: number = null, khohang_id: number = null): Observable<ThongKeXuatNhapTon[]> {

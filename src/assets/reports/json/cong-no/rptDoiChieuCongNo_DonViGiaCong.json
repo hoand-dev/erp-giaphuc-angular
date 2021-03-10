@@ -1,0 +1,30 @@
+{
+    "rptThongKeCongNo":{
+        "truoctungay"      : null,
+        "tungay"           : null,
+        "denngay"          : null,
+        "tendonvigiacong"  : null,
+        "diachi"           : null,
+        "nodauky"          : null,
+        "nocuoiky"         : null,
+        "nocuoiky_bangchu" : null,
+        "inphieu_hoten"    : null,
+        "inphieu_thoigian" : null
+    },
+    "rptThongKeCongNo_ChiTiet":[{
+        "ngayphatsinh": null,
+        "maphieu"     : null,
+        "chungtu"     : null,
+        "diengiai"    : null,
+        "noidung"     : null,
+        "yeucau"      : null,
+        "somat"       : null,
+        "dvt"         : null,
+        "soluong"     : null,
+        "dongia"      : null,
+        "thanhtien"   : null,
+        "dathanhtoan" : null,
+        "ghichu"      : null,
+        "sort"        : null
+    }]
+}

@@ -77,13 +77,13 @@
                                     <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
                                     <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
 
-                                    <dxi-column dataField="nodauky" caption="Nợ đầu" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="nodauky" caption="Nợ đầu kỳ" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
                                     <dxi-column dataField="tongtienmua" caption="Tiền mua" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtientra" caption="Tiền trả" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="nocuoiky" caption="Nợ cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
-                                    <dxi-column dataField="congnohientai" caption="Số dư cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="nocuoiky" caption="Nợ cuối kỳ" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="congnohientai" caption="Nợ cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
 
                                     <dxi-column dataField="luytien" caption="Luỹ tiến" alignment="right" format="#,##0.###"></dxi-column>
 
@@ -119,14 +119,14 @@
 
                                        <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
-                                        <dxi-total-item column="tennhacungcap" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="maphieu" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="nodauky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="tongtienmua" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="tongtienchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="tongtientra" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="nocuoiky" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="congnohientai" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="maphieu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="nodauky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="tongtienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="tongtienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="tongtienmua" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="tongtientra" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="nocuoiky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="congnohientai" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
 
                                     <dxi-sort-by-group-summary-info summaryItem="count"></dxi-sort-by-group-summary-info>

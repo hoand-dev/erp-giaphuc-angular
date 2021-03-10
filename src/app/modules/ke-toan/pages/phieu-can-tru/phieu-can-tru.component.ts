@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuCanTru } from '@app/shared/entities';
-import { PhieuCanTruService } from '@app/shared/services';
+import { AppInfoService, PhieuCanTruService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import { PhieuCanTruInPhieuModalComponent } from '../../modals/phieu-can-tru-in-phieu-modal/phieu-can-tru-in-phieu-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-can-tru',
@@ -39,7 +40,16 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_PhieuCanTru'
     };
 
-    constructor(private router: Router, private objPhieuCanTruService: PhieuCanTruService, private authenticationService: AuthenticationService, private bsModalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuCanTruService: PhieuCanTruService,
+        private authenticationService: AuthenticationService,
+        private bsModalService: BsModalService
+    ) {
+        this.titleService.setTitle("PHIẾU CẤN TRỪ | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

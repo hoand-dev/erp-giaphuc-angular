@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { BangGiaService, CommonService } from '@app/shared/services';
+import { AppInfoService, BangGiaService, CommonService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import moment from 'moment';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-bang-gia',
@@ -31,9 +32,9 @@ export class BangGiaComponent implements OnInit {
     public enableUpdate: boolean = false;
     public enableDelete: boolean = false;
     public enableExport: boolean = false;
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - BẢNG GIÁ - ' + moment().format('DD_MM_YYYY');
 
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - BẢNG GIÁ BÁN HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -41,7 +42,16 @@ export class BangGiaComponent implements OnInit {
         storageKey: ' dxGrid_BangGia'
     };
 
-    constructor(private router: Router, private commonService: CommonService, private objBangGiaService: BangGiaService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private commonService: CommonService,
+        private objBangGiaService: BangGiaService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle("BẢNG GIÁ BÁN HÀNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);

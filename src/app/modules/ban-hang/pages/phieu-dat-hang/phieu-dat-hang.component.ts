@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { PhieuDatHangService } from '@app/shared/services';
+import { AppInfoService, PhieuDatHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { confirm } from 'devextreme/ui/dialog';
@@ -26,7 +27,7 @@ export class PhieuDatHangComponent implements OnInit {
     public currDayTime: Date = new Date();
 
     /* dataGrid */
-    public exportFileName: string = '[DANH SÁCH] - PHIẾU ĐẶT HÀNG - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU KHÁCH ĐẶT HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -34,7 +35,15 @@ export class PhieuDatHangComponent implements OnInit {
         storageKey: 'dxGrid_PhieuDatHang'
     };
 
-    constructor(private router: Router, private objPhieuDatHangService: PhieuDatHangService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuDatHangService: PhieuDatHangService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle('PHIẾU KHÁCH ĐẶT HÀNG | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

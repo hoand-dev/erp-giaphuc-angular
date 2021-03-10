@@ -198,6 +198,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
                                     item.thanhtien = value.thanhtien;
                                     item.chuthich = value.chuthich;
                                     item.tenhanghoabanhang_inphieu = value.tenhanghoa_inphieu;
+                                    item.xuathoadon = value.xuathoadon;
                                     item.phieubanhang_chitiet_id = value.id;
 
                                     this.hanghoas.push(item);
@@ -213,7 +214,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
         );
 
         // thêm sẵn 1 dòng cho user
-        this.onHangHoaAdd();
+        // this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
@@ -291,7 +292,7 @@ export class PhieuKhachTraHangThemMoiComponent implements OnInit {
     }
 
     public onHangHoaAdd() {
-        this.hanghoas.push(new PhieuKhachTraHang_ChiTiet());
+        //this.hanghoas.push(new PhieuKhachTraHang_ChiTiet());
     }
 
     public onHangHoaDelete(item) {

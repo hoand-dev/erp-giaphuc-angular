@@ -91,12 +91,11 @@
 
                                     <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
-                                        <dxi-total-item column="manoidung" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="maphieu" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="maphieu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
 
                                     <dxo-filter-panel [visible]="true"></dxo-filter-panel>

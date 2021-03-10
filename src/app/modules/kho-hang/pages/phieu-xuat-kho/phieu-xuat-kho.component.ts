@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuXuatKho } from '@app/shared/entities';
-import { PhieuXuatKhoService } from '@app/shared/services';
+import { AppInfoService, PhieuXuatKhoService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuXuatKhoInPhieuModalComponent } from '../../modals/phieu-xuat-kho-in-phieu-modal/phieu-xuat-kho-in-phieu-modal.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-xuat-kho',
@@ -29,8 +30,8 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT KHO - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT KHO - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -38,7 +39,16 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_PhieuXuatKho'
     };
 
-    constructor(private router: Router, private objPhieuXuatKhoService: PhieuXuatKhoService, private authenticationService: AuthenticationService, private modalService: BsModalService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objPhieuXuatKhoService: PhieuXuatKhoService,
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
+    ) {
+        this.titleService.setTitle("PHIẾU XUẤT KHO | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

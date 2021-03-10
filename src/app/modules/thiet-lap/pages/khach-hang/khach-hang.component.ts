@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChiNhanh } from '@app/shared/entities';
-import { KhachHangService } from '@app/shared/services';
+import { AppInfoService, KhachHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-khach-hang',
@@ -21,8 +22,8 @@ export class KhachHangComponent implements OnInit {
 
     subscriptions: Subscription = new Subscription();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - KHÁCH HÀNG - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - KHÁCH HÀNG - ' + moment().format('DD_MM_YYYY');
 
     private currentChiNhanh = ChiNhanh;
 
@@ -32,7 +33,15 @@ export class KhachHangComponent implements OnInit {
         storageKey: 'dxGrid_KhachHang'
     };
 
-    constructor(private router: Router, private khachhangService: KhachHangService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private khachhangService: KhachHangService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle("KHÁCH HÀNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 
@@ -82,6 +91,7 @@ export class KhachHangComponent implements OnInit {
                             this.onLoadData();
                         },
                         (error) => {
+                            this.khachhangService.handleError(error);
                             this.onLoadData();
                         }
                     )

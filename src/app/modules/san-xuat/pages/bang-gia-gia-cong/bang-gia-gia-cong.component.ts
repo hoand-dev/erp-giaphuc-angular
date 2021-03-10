@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { BangGiaGiaCongService } from '@app/shared/services';
+import { AppInfoService, BangGiaGiaCongService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -23,8 +24,8 @@ export class BangGiaGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - BẢNG GIÁ GIA CÔNG - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - BẢNG GIÁ GIA CÔNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -32,7 +33,15 @@ export class BangGiaGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
         storageKey: 'dxGrid_BangGiaGiaCong'
     };
 
-    constructor(private router: Router, private objBangGiaGiaCongService: BangGiaGiaCongService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private objBangGiaGiaCongService: BangGiaGiaCongService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle("BẢNG GIÁ GIA CÔNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

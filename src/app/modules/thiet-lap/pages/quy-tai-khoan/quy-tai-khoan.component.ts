@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ChiNhanh, QuyTaiKhoan } from '@app/shared/entities';
-import { QuyTaiKhoanService } from '@app/shared/services';
+import { AppInfoService, QuyTaiKhoanService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -21,8 +22,8 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
     subscriptions: Subscription = new Subscription();
     currChiNhanh: ChiNhanh;
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - QUỸ TÀI KHOẢN - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - QUỸ TÀI KHOẢN - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -30,7 +31,15 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_QuyTaiKhoan'
     };
 
-    constructor(private router: Router, private authenticationService: AuthenticationService, private quytaikhoanService: QuyTaiKhoanService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        private quytaikhoanService: QuyTaiKhoanService
+    ) {
+        this.titleService.setTitle("QUỸ TÀI KHOẢN | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

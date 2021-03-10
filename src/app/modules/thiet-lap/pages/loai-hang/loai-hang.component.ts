@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaiHangService } from '@app/shared/services';
+import { AppInfoService, LoaiHangService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-loai-hang',
@@ -28,7 +29,9 @@ export class LoaiHangComponent implements OnInit {
         storageKey: 'dxGrid_LoaiHang'
     };
 
-    constructor(private router: Router, private loaihangService: LoaiHangService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private loaihangService: LoaiHangService) {
+        this.titleService.setTitle("LOẠI HÀNG | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

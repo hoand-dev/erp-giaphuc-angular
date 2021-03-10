@@ -1,0 +1,105 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thống kê xuất nhập tồn trong ngày</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<dx-load-panel
+    [shadingColor]="'rgba(0,0,0,0.4)'"
+    [position]="{ of: '#content-wrapper' }"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+>
+</dx-load-panel>
+
+<section class="content" id="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Thống kê xuất nhập tồn trong ngày' | uppercase }}</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box> -->
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-data-grid
+                                    id="gridContainer"
+                                    [loadPanel]="'{ enable: false }'"
+                                    [showBorders]="true"
+                                    [showRowLines]="true"
+                                    [hoverStateEnabled]="true"
+                                    [columnAutoWidth]="true"
+                                    [allowColumnResizing]="true"
+                                    [allowColumnReordering]="true"
+                                    [columnResizingMode]="'widget'"
+                                    [stateStoring]="stateStoringGrid"
+                                >
+                                    <!-- dx-data-grid option -->
+                                    <dxo-selection mode="single"></dxo-selection>
+                                    <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                                    <dxo-paging [pageSize]="50"></dxo-paging>
+                                    <dxo-pager
+                                        [showInfo]="true"
+                                        infoText="Trang {0}/{1}. Tổng cộng: {2} dòng."
+                                        [showPageSizeSelector]="true"
+                                        [allowedPageSizes]="[10, 20]"
+                                        [showNavigationButtons]="true"
+                                    >
+                                    </dxo-pager>
+
+                                    <dxi-column dataField="chungtu" caption="HĐ"></dxi-column>
+                                    <dxi-column dataField="ngayphatsinh" caption="Thực tế" dataType="date"></dxi-column>
+                                    <dxi-column dataField="tenhanghoa" caption="Tên hàng hoá"></dxi-column>
+                                    <dxi-column dataField="tenhanghoa_inphieu" caption="Tên in phiếu"></dxi-column>
+
+                                    <dxi-column dataField="soluongnhap" caption="SL nhập"></dxi-column>
+                                    <dxi-column dataField="soluongxuat" caption="SL xuất"></dxi-column>
+
+                                    <dxi-column dataField="dongia" caption="Đơn giá"></dxi-column>
+                                    <dxi-column dataField="dongiavat" caption="Đơn giá VAT"></dxi-column>
+                                    <dxi-column dataField="thanhtien" caption="Thành tiền"></dxi-column>
+                                    <dxi-column dataField="thanhtienvat" caption="Thành tiền VAT"></dxi-column>
+
+                                    <dxi-column dataField="khohang" caption="Kho nhập/xuất"></dxi-column>
+                                    <dxi-column dataField="nguoigiaonhan" caption="Tên mua/bán"></dxi-column>
+                                    <dxi-column dataField="biensoxe" caption="Biển số xe"></dxi-column>
+                                    
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

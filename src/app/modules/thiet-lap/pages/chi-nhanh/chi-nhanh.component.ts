@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ChiNhanh } from '@app/shared/entities';
-import { ChiNhanhService } from '@app/shared/services';
+import { AppInfoService, ChiNhanhService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -28,7 +29,9 @@ export class ChiNhanhComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_ChiNhanh'
     };
 
-    constructor(private router: Router, private chinhanhService: ChiNhanhService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private chinhanhService: ChiNhanhService) {
+        this.titleService.setTitle("CHI NHÁNH | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

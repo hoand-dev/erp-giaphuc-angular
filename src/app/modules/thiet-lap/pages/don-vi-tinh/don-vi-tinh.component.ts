@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DonViTinh } from '@app/shared/entities';
-import { DonViTinhService } from '@app/shared/services';
+import { AppInfoService, DonViTinhService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -28,7 +29,9 @@ export class DonViTinhComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_DonViTinh'
     };
 
-    constructor(private router: Router, private donvitinhService: DonViTinhService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private donvitinhService: DonViTinhService) {
+        this.titleService.setTitle("ĐƠN VỊ TÍNH | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

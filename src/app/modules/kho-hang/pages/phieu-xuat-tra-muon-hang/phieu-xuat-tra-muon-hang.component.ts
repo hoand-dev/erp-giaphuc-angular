@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuXuatTraMuonHang } from '@app/shared/entities';
-import { PhieuXuatTraMuonHangService } from '@app/shared/services';
+import { AppInfoService, PhieuXuatTraMuonHangService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuXuatTraMuonHangInPhieuModalComponent } from '../../modals/phieu-xuat-tra-muon-hang-in-phieu-modal/phieu-xuat-tra-muon-hang-in-phieu-modal.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-phieu-xuat-tra-muon-hang',
@@ -38,11 +39,15 @@ export class PhieuXuatTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
     };
 
     constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
         private router: Router,
         private objPhieuXuatTraMuonHangService: PhieuXuatTraMuonHangService,
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
-    ) {}
+    ) {
+        this.titleService.setTitle("PHIẾU XUẤT TRẢ HÀNG MƯỢN | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc

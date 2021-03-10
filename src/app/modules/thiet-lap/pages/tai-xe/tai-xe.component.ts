@@ -6,6 +6,8 @@ import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import moment from 'moment';
+import { Title } from '@angular/platform-browser';
+import { AppInfoService } from '@app/shared/services';
 
 @Component({
     selector: 'app-tai-xe',
@@ -27,7 +29,9 @@ export class TaiXeComponent implements OnInit {
         storageKey: 'dxGrid_Taixe'
     };
 
-    constructor(private router: Router, private taixeService: TaiXeService) {}
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private taixeService: TaiXeService) {
+        this.titleService.setTitle("TÀI XẾ | " + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 

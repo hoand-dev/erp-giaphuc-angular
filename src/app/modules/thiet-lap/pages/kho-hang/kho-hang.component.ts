@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ChiNhanh, KhoHang } from '@app/shared/entities';
-import { KhoHangService } from '@app/shared/services';
+import { AppInfoService, KhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -31,7 +32,15 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_KhoHang'
     };
 
-    constructor(private router: Router, private khohangService: KhoHangService, private authenticationService: AuthenticationService) {}
+    constructor(
+        private titleService: Title,
+        private appInfoService: AppInfoService,
+        private router: Router,
+        private khohangService: KhoHangService,
+        private authenticationService: AuthenticationService
+    ) {
+        this.titleService.setTitle('KHO HÀNG | ' + this.appInfoService.appName);
+    }
 
     ngOnInit(): void {}
 
