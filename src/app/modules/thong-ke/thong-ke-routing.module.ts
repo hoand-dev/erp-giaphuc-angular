@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@app/_helpers';
+import { ThongKeCongNoDonViGiaCongComponent } from './cong-no/pages/thong-ke-cong-no-don-vi-gia-cong/thong-ke-cong-no-don-vi-gia-cong.component';
 import { ThongKeCongNoKhachHangComponent } from './cong-no/pages/thong-ke-cong-no-khach-hang/thong-ke-cong-no-khach-hang.component';
 import { ThongKeCongNoNhaCungCapComponent } from './cong-no/pages/thong-ke-cong-no-nha-cung-cap/thong-ke-cong-no-nha-cung-cap.component';
 import { ThongKeCongNoQuaHanComponent } from './cong-no/pages/thong-ke-cong-no-qua-han/thong-ke-cong-no-qua-han.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
             { path: 'cong-no-qua-han', component: ThongKeCongNoQuaHanComponent },
             { path: 'cong-no-khach-hang', component: ThongKeCongNoKhachHangComponent },
             { path: 'cong-no-nha-cung-cap', component: ThongKeCongNoNhaCungCapComponent },
+            { path: 'cong-no-don-vi-gia-cong', component: ThongKeCongNoDonViGiaCongComponent },
             
             /* nhóm thống kê thu chi */
             { path: 'thu-chi-noi-dung', component: ThongKeNoiDungThuChiComponent },
