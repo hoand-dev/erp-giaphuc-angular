@@ -163,7 +163,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
             })
         );
         // thêm sẵn 1 dòng cho user
-        this.onHangHoaAdd();
+        // this.onHangHoaAdd();
     }
 
     ngOnDestroy(): void {
@@ -225,7 +225,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
     }
 
     public onHangHoaAdd() {
-        this.hanghoas.push(new PhieuKhachTraHang_ChiTiet());
+        //this.hanghoas.push(new PhieuKhachTraHang_ChiTiet());
     }
 
     public onHangHoaDelete(item) {

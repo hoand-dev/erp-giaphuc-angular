@@ -47,7 +47,8 @@
                                             valueExpr: 'id',
                                             searchEnabled: true,
                                             searchExpr: ['tenkhachhang', 'makhachhang'],
-                                            displayExpr: 'tenkhachhang'
+                                            displayExpr: 'tenkhachhang',
+                                            readOnly: true
                                         }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
@@ -56,9 +57,9 @@
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2" [editorOptions]="{ readOnly: true }"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="khachhang_diachi" [colSpan]="2"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="khachhang_diachi" [colSpan]="2" [editorOptions]="{ readOnly: true }"> </dxi-item>
                                     <dxi-item
                                         [colSpan]="1"
                                         [label]="{ text: 'KHO HÀNG' }"
@@ -74,13 +75,13 @@
                                         [label]="{ text: 'NHÂN VIÊN KINH DOANH' }"
                                         dataField="nhanviensale_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten' }"
+                                        [editorOptions]="{ dataSource: dataSource_NguoiDung, valueExpr: 'id', searchEnabled: true, displayExpr: 'hoten', readOnly: true }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: true }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: true }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
                                     </dxi-item>
 
@@ -99,6 +100,7 @@
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="75">CK</th>
                                                         <th [style.min-width.px]="75">VAT</th>
+                                                        <th [style.min-width.px]="80">LẤY VAT</th>
                                                         <th [style.min-width.px]="120">THÀNH TIỀN</th>
                                                         <th [style.min-width.px]="100">ĐÃ NHẬN</th>
                                                         <th [style.min-width.px]="80">CÒN LẠI</th>
@@ -112,6 +114,7 @@
                                                         <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
+                                                                [readOnly]="true"
                                                                 id="nguyenlieu_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"
@@ -139,11 +142,12 @@
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box [readOnly]="true" format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box
-                                                                format="#0%"
+                                                                [readOnly]="true"
+                                                                format="#0.##%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.chietkhau"
                                                                 (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
@@ -151,11 +155,15 @@
                                                         </td>
                                                         <td>
                                                             <dx-number-box
-                                                                format="#0%"
+                                                                [readOnly]="true"
+                                                                format="#0.##%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.thuevat"
                                                                 (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"
                                                             ></dx-number-box>
+                                                        </td>
+                                                        <td>
+                                                            <dx-check-box [readOnly]="phieukhachtrahang.thuevat != 0 || item.thuevat != 0" [(value)]="item.xuathoadon"></dx-check-box>
                                                         </td>
 
                                                         <td>{{ item.thanhtien | number: '1.0-3' }}</td>
@@ -164,7 +172,7 @@
 
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td>
-                                                            <dx-text-box [(value)]="item.tenhanghoabanhang_inphieu"></dx-text-box>
+                                                            <dx-text-box [readOnly]="true" [(value)]="item.tenhanghoabanhang_inphieu"></dx-text-box>
                                                         </td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
