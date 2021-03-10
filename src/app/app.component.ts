@@ -304,12 +304,14 @@ export class AppComponent implements OnInit {
             "/phieu-can-tru", 
         ];
         const THONGKE_KHOHANG =[
+            "/xuat-nhap-ton-trong-ngay",
             "/xuat-nhap-ton"
         ];
         const THONGKE_CONGNO = [
             "/cong-no-qua-han",
             "/cong-no-khach-hang",
             "/cong-no-nha-cung-cap",
+            "/cong-no-don-vi-gia-cong",
         ];
         const THONGKE_THUCHI = [
             "/thu-chi-noi-dung",
