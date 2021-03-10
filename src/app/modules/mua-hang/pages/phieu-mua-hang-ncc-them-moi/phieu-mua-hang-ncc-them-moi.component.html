@@ -61,8 +61,8 @@
 
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieumuahangncc" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" [colSpan]="3" dataField="diachinhacungcap" [editorOptions]="{ readOnly: true }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0%', step: '0.01' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01' }"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="maphieudathangncc" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
@@ -126,7 +126,7 @@
                                                             </td>
                                                             <td>
                                                                 <dx-number-box
-                                                                    format="#0%"
+                                                                    format="#0.##%"
                                                                     [step]="0.01"
                                                                     [(value)]="item.chietkhau"
                                                                     (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
@@ -134,7 +134,7 @@
                                                             </td>
                                                             <td>
                                                                 <dx-number-box
-                                                                    format="#0%"
+                                                                    format="#0.##%"
                                                                     [step]="0.01"
                                                                     [(value)]="item.thuevat"
                                                                     (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"
