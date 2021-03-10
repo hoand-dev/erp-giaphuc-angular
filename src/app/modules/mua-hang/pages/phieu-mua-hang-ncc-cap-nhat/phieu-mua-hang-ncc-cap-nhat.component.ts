@@ -218,8 +218,11 @@ export class PhieuMuaHangNCCCapNhatComponent implements OnInit {
         } else {
             this.hanghoas[index].dvt_id = selected.dvt_id;
 
-            this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
-            this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
+            this.hanghoas[index].dongia = 0;
+            this.commonService.hangHoa_LayGia_NhapKho(this.phieumuahangncc.nhacungcap_id, selected.id).toPromise().then((data) => {
+                this.hanghoas[index].dongia = data ? data : 0;
+                this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
+            });
         }
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
