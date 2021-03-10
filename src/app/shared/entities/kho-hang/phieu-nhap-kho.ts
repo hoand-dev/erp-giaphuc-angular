@@ -136,6 +136,7 @@ export class PhieuNhapKho_ChiTiet {
     public phieukhachtrahang_chitiet_id: number;
     public soluonghong: number;
     public khonhaphong_id: number;
+    public xuathoadon: boolean;
 
     /* liên kết vs khoá ngoại và thông tin thêm */
     public mahanghoa: string;

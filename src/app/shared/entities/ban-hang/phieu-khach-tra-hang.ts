@@ -110,6 +110,7 @@ export class PhieuKhachTraHang_ChiTiet {
     public trangthainhap: string;
     public phieubanhang_chitiet_id: number;
     public tenhanghoabanhang_inphieu: string;
+    public xuathoadon: boolean;
 
     public trongluong: number;
     public tendonvitinh: string;
