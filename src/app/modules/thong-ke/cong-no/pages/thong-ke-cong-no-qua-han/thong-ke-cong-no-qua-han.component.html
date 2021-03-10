@@ -64,7 +64,7 @@
                                     <dxi-column dataField="tenkhachhang" caption="Khách hàng" [groupIndex]="0"></dxi-column>
                                     <dxi-column dataField="ngaylap" caption="Ngày phát sinh" dataType="date"></dxi-column>
                                     <dxi-column dataField="chungtu" caption="Số hoá đơn"></dxi-column>
-                                    <dxi-column dataField="tongthanhtien" caption="Số tiền"></dxi-column>
+                                    <dxi-column dataField="tongthanhtien" caption="Số tiền" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="ngaydenhan" caption="Ngày đến hạn" dataType="date"></dxi-column>
 
                                     <dxi-column dataField="quahan0115" caption="Quá hạn 01-15 ngày" alignment="right" format="#,##0.###"></dxi-column>
@@ -91,14 +91,14 @@
 
                                      <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
-                                        <dxi-total-item column="tenkhachhang" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="chungtu" summaryType="count"> </dxi-total-item>
-                                        <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="quahan0115" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="quahan1630" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="quahan3145" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="quahan4660" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
-                                        <dxi-total-item column="quahan61" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                        <dxi-total-item column="chungtu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="quahan0115" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="quahan1630" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="quahan3145" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="quahan4660" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="quahan61" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryTongTien" showInColumn="tongtien" summaryType="custom" valueFormat="#,##0.###" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
 
                                     <dxi-sort-by-group-summary-info summaryItem="count"></dxi-sort-by-group-summary-info>
