@@ -72,7 +72,6 @@
                                     <dxo-paging [pageSize]="50"></dxo-paging>
                                     <dxo-pager
                                         [showInfo]="true"
-                                        infoText="Trang {0}/{1}. Tổng cộng: {2} dòng."
                                         [showPageSizeSelector]="true"
                                         [allowedPageSizes]="[10, 20]"
                                         [showNavigationButtons]="true"
@@ -133,6 +132,35 @@
 
                                     <dxi-column dataField="makhohang" caption="Mã kho"></dxi-column>
                                     <dxi-column dataField="tenkhohang" caption="Tên kho"></dxi-column>
+
+                                    <!-- Thêm trang tổng cộng cuối form -->
+                                    <dxo-summary>
+                                        <dxi-total-item column="mahanghoa" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="tondauky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_dieuchinh" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapkho" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatkho" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatchuyen" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapchuyen" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatgiacong_khoxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapgiacong_thanhpham" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapgiacong_thanhphamloi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatmuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhaptramuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapmuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuattramuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="toncuoiky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_tonhientai" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_khachdat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_banchuaxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_giuchuyenkho" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_giugiacong" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_toncuoiduocxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_muachuanhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_thanhphamchuanhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                    </dxo-summary>
                                 </dx-data-grid>
                             </div>
                         </div>

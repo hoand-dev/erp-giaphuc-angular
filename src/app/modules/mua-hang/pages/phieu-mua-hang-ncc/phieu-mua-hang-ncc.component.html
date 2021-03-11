@@ -91,9 +91,9 @@
                             <dxo-summary>
                                 <dxi-total-item column="maphieumuahangncc" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
 
-                                <dxi-total-item column="tongtienhang" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                <dxi-total-item column="tongtienhang" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
 
-                                <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0"> </dxi-total-item>
+                                <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                             </dxo-summary>
 
                             <!-- dx-data-grid option -->
@@ -104,7 +104,7 @@
                             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10"></dxo-paging>
-                            <dxo-pager [showInfo]="true" infoText="Trang {0}/{1}. Tổng cộng: {2} dòng." [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
+                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
                             </dxo-pager>
                         </dx-data-grid>
                     </div>

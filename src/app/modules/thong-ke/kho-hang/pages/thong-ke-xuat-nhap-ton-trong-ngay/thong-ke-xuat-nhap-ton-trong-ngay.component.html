@@ -70,7 +70,7 @@
                                     <dxo-paging [pageSize]="50"></dxo-paging>
                                     <dxo-pager
                                         [showInfo]="true"
-                                        infoText="Trang {0}/{1}. Tổng cộng: {2} dòng."
+                                       
                                         [showPageSizeSelector]="true"
                                         [allowedPageSizes]="[10, 20]"
                                         [showNavigationButtons]="true"
@@ -94,6 +94,12 @@
                                     <dxi-column dataField="nguoigiaonhan" caption="Tên mua/bán"></dxi-column>
                                     <dxi-column dataField="biensoxe" caption="Biển số xe"></dxi-column>
                                     
+                                    <!-- Thêm trang tổng cộng cuối form -->
+                                    <dxo-summary>
+                                        <dxi-total-item column="ngayphatsinh" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                    </dxo-summary>
                                 </dx-data-grid>
                             </div>
                         </div>
