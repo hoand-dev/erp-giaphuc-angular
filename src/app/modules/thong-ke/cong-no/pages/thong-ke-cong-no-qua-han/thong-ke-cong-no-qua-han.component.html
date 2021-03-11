@@ -54,7 +54,7 @@
                                     <dxo-paging [pageSize]="10"></dxo-paging>
                                     <dxo-pager
                                         [showInfo]="true"
-                                        infoText="Trang {0}/{1}. Tổng cộng: {2} dòng."
+                                       
                                         [showPageSizeSelector]="true"
                                         [allowedPageSizes]="[10, 20]"
                                         [showNavigationButtons]="true"
@@ -64,7 +64,7 @@
                                     <dxi-column dataField="tenkhachhang" caption="Khách hàng" [groupIndex]="0"></dxi-column>
                                     <dxi-column dataField="ngaylap" caption="Ngày phát sinh" dataType="date"></dxi-column>
                                     <dxi-column dataField="chungtu" caption="Số hoá đơn"></dxi-column>
-                                    <dxi-column dataField="tongthanhtien" caption="Số tiền" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="tongthanhtien" caption="Số tiền/phiếu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="ngaydenhan" caption="Ngày đến hạn" dataType="date"></dxi-column>
 
                                     <dxi-column dataField="quahan0115" caption="Quá hạn 01-15 ngày" alignment="right" format="#,##0.###"></dxi-column>
@@ -76,8 +76,7 @@
                                     <dxi-column dataField="tongtien" caption="Tổng tiền" alignment="right" format="#,##0.###"></dxi-column>
 
                                     <dxo-summary [calculateCustomSummary]="calculateTongTien">
-                                        <dxi-group-item column="ngaylap" summaryType="count" displayFormat="{0} phiếu"> </dxi-group-item>
-                                        <dxi-group-item showInColumn="ngaylap" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item column="ngaylap" summaryType="count" displayFormat="TỔNG CỘNG: {0}" [showInGroupFooter]="true"> </dxi-group-item>
 
                                         <dxi-group-item column="quahan0115" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
                                         <dxi-group-item column="quahan1630" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
@@ -91,7 +90,7 @@
 
                                      <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
-                                        <dxi-total-item column="chungtu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="chungtu" showInColumn="ngaylap" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
                                         <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="quahan0115" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="quahan1630" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
