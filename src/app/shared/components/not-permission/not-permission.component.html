@@ -1,10 +1,39 @@
-<section class="content" [style.margin-top.px]="10">
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Không có quyền truy cập</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text text-red text-center">Chưa được cấp quyền! Vui lòng liên hệ với quản trị để được hỗ trợ!</p>
+                        <!-- 
+                            <p class="card-text text-red text-center">Chưa được cấp quyền! Vui lòng liên hệ với quản trị để được hỗ trợ!</p>
+                            Your client does not have permission to get the requested url from this server 
+                        -->
+                        <div class="body">
+                            <!-- <a [routerLink]="['/']"><span id="logo" aria-label="ERP HỒNG NGHI"></span></a> -->
+                            <b>SORRY, YOU NOT AUTHORIZED</b>
+                            <p><b>401.</b> <ins>That’s an error.</ins></p>
+                            <p>
+                                The requested URL <code>{{ url }}</code> was not authorized on this server. <ins>That’s all we know.</ins>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
