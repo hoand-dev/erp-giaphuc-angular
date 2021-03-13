@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@app/_helpers';
+import { ThongKeBanHangChiTietComponent } from './ban-hang/pages/thong-ke-ban-hang-chi-tiet/thong-ke-ban-hang-chi-tiet.component';
 import { ThongKeCongNoDonViGiaCongComponent } from './cong-no/pages/thong-ke-cong-no-don-vi-gia-cong/thong-ke-cong-no-don-vi-gia-cong.component';
 import { ThongKeCongNoKhachHangComponent } from './cong-no/pages/thong-ke-cong-no-khach-hang/thong-ke-cong-no-khach-hang.component';
 import { ThongKeCongNoNhaCungCapComponent } from './cong-no/pages/thong-ke-cong-no-nha-cung-cap/thong-ke-cong-no-nha-cung-cap.component';
@@ -30,8 +31,11 @@ const routes: Routes = [
             { path: 'xuat-nhap-ton-trong-ngay', component: ThongKeXuatNhapTonTrongNgayComponent },
             { path: 'xuat-nhap-ton', component: ThongKeXuatNhapTonComponent },
 
-            /* nhóm thống kê mua hành*/
+            /* nhóm thống kê mua hàng */
             { path: 'mua-hang-chi-tiet', component: ThongKeMuaHangChiTietComponent },
+
+            /* nhóm thống kê bán hàng */
+            { path: 'ban-hang-chi-tiet', component: ThongKeBanHangChiTietComponent },
 
         ]
     }
