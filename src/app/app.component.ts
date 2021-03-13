@@ -317,6 +317,12 @@ export class AppComponent implements OnInit {
             "/thu-chi-noi-dung",
             "/thu-chi-ton-quy",
         ];
+        const THONGKE_MUAHANG = [
+            "/mua-hang-chi-tiet"
+        ];
+        const THONGKE_BANHANG = [
+            "/ban-hang-chi-tiet"
+        ];
         const HETHONG = [
             "/nguoi-dung",
         ];
@@ -336,20 +342,22 @@ export class AppComponent implements OnInit {
 
         /* kiểm tra chuỗi đã xử lý */
         switch (groupName) {
-            case 'DULIEUCOSO': $return = DULIEUCOSO.includes($url); break;
-            case 'KHACHHANG': $return = KHACHHANG.includes($url);   break;
-            case 'NHACUNGCAP': $return = NHACUNGCAP.includes($url); break;
-            case 'HANGHOA': $return = HANGHOA.includes($url);   break;
-            case 'SANXUAT': $return = SANXUAT.includes($url);   break;
-            case 'MUAHANG': $return = MUAHANG.includes($url);   break;
-            case 'BANHANG': $return = BANHANG.includes($url);   break;
-            case 'KHOHANG': $return = KHOHANG.includes($url);   break;
-            case 'MUONHANG': $return = MUONHANG.includes($url); break;
-            case 'KETOAN': $return = KETOAN.includes($url);     break;
+            case 'DULIEUCOSO'     : $return = DULIEUCOSO     .includes($url); break;
+            case 'KHACHHANG'      : $return = KHACHHANG      .includes($url); break;
+            case 'NHACUNGCAP'     : $return = NHACUNGCAP     .includes($url); break;
+            case 'HANGHOA'        : $return = HANGHOA        .includes($url); break;
+            case 'SANXUAT'        : $return = SANXUAT        .includes($url); break;
+            case 'MUAHANG'        : $return = MUAHANG        .includes($url); break;
+            case 'BANHANG'        : $return = BANHANG        .includes($url); break;
+            case 'KHOHANG'        : $return = KHOHANG        .includes($url); break;
+            case 'MUONHANG'       : $return = MUONHANG       .includes($url); break;
+            case 'KETOAN'         : $return = KETOAN         .includes($url); break;
             case 'THONGKE-KHOHANG': $return = THONGKE_KHOHANG.includes($url); break;
-            case 'THONGKE-CONGNO': $return = THONGKE_CONGNO.includes($url); break;
-            case 'THONGKE-THUCHI': $return = THONGKE_THUCHI.includes($url); break;
-            case 'HETHONG': $return = HETHONG.includes($url); break;
+            case 'THONGKE-CONGNO' : $return = THONGKE_CONGNO .includes($url); break;
+            case 'THONGKE-THUCHI' : $return = THONGKE_THUCHI .includes($url); break;
+            case 'THONGKE-MUAHANG': $return = THONGKE_MUAHANG.includes($url); break;
+            case 'THONGKE-BANHANG': $return = THONGKE_BANHANG.includes($url); break;
+            case 'HETHONG'        : $return = HETHONG        .includes($url); break;
             default: $return = false; break;
         }
         return $return;
