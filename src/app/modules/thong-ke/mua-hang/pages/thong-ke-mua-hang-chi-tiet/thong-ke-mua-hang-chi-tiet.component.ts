@@ -37,7 +37,7 @@ export class ThongKeMuaHangChiTietComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private objThongKeMuahangService: ThongKeMuaHangChiTietService
     ) {
-        this.titleService.setTitle("THỐNG KÊ - MUA HÀNG CHI TIẾT | " + this.appInfoService.appName);
+        this.titleService.setTitle("THỐNG KÊ - CHI TIẾT MUA HÀNG | " + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
