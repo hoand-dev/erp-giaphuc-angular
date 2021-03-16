@@ -138,15 +138,15 @@ export class PhieuChiCapNhatComponent implements OnInit {
                 });
             })
         );
-        this.subscriptions.add(
-            this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) => {
-                this.dataSource_SoTaiKhoan = new DataSource({
-                    store: x,
-                    paginate: true,
-                    pageSize: 50
-                });
-            })
-        );
+        // this.subscriptions.add(
+        //     this.nhacungcapService.findNhaCungCap_SoTaiKhoans().subscribe((x) => {
+        //         this.dataSource_SoTaiKhoan = new DataSource({
+        //             store: x,
+        //             paginate: true,
+        //             pageSize: 50
+        //         });
+        //     })
+        // );
 
         this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
