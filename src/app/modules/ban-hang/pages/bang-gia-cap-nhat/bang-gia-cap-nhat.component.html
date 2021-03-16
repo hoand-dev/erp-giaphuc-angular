@@ -38,6 +38,7 @@
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
                                         [editorOptions]="{
+                                            showClearButton: true,
                                             dataSource: dataSource_KhachHang,
                                             valueExpr: 'id',
                                             searchEnabled: true,
@@ -45,7 +46,6 @@
                                             displayExpr: 'tenkhachhang'
                                         }"
                                     >
-                                        <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai"> </dxi-item>
