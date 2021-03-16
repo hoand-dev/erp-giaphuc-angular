@@ -147,7 +147,7 @@
                                         [label]="{ text: 'QUỸ CHI' }"
                                         dataField="quychi_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy' }"
+                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy', dropDownOptions: { width: 320 } }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn quỹ chi"></dxi-validation-rule>
                                     </dxi-item>
