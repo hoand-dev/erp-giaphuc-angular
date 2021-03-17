@@ -36,9 +36,6 @@ export class BangGiaThemMoiComponent implements OnInit {
 
     public hanghoas: BangGia_ChiTiet[] = [];
 
-    // điều kiện để hiển thị danh sách hàng hoá
-    public isValidForm: boolean = false;
-
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
         type: 'success',
@@ -62,6 +59,23 @@ export class BangGiaThemMoiComponent implements OnInit {
 
     ngAfterViewInit() {
         // this.frmPhieuDatHangNCC.instance.validate(); // showValidationSummary sau khi focus out
+    }
+
+    onChangeFile(event) {
+        let file = event.srcElement.files;
+        this.subscriptions.add(
+            this.banggiaService.uploadExcel(file).subscribe(
+                (x) => {
+                    this.loadingVisible = false;
+                    this.hanghoas = [];
+                    this.hanghoas = x.filter((v) => v.hanghoa_id != null);
+                },
+                (error) => {
+                    this.banggiaService.handleError(error);
+                    this.saveProcessing = false;
+                }
+            )
+        );
     }
 
     ngOnInit(): void {
@@ -127,10 +141,6 @@ export class BangGiaThemMoiComponent implements OnInit {
     onFormFieldChanged(e) {
         // nếu thay đổi khách hàng
         if (e.dataField == 'khachhang_id' && e.value !== undefined && e.value != null) {
-            // hiển thị danh sách hàng hoá đã thoả điều kiện là chọn khách hàng
-
-            this.isValidForm = true;
-            // gán lại thông tin điện thoại + địa chỉ
             let khachhang = this.lstKhachHang.find((o) => o.id == this.banggia.khachhang_id);
             this.banggia.tenkhachhang = khachhang.tenkhachhang;
             this.banggia.diachi = khachhang.diachi;
@@ -153,9 +163,11 @@ export class BangGiaThemMoiComponent implements OnInit {
 
         // xử lý lại thông tin dựa trên lựa chọn
         this.hanghoas[index].dvt_id = selected.dvt_id;
+        /*
         this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
         this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
         this.hanghoas[index].dongiacothue = this.hanghoas[index].dongia;
+        */
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
