@@ -190,6 +190,7 @@
                                                                 format="#,##0.###"
                                                                 [readOnly]="isTatToan"
                                                                 [(value)]="item.heso"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -220,6 +221,7 @@
                                                                 format="#,##0.###"
                                                                 [readOnly]="isTatToan"
                                                                 [(value)]="item.soluong"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -228,6 +230,7 @@
                                                                 format="#,##0.###"
                                                                 [readOnly]="!isTatToan"
                                                                 [(value)]="item.soluongtattoan"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -236,6 +239,7 @@
                                                                 format="#,##0.###"
                                                                 [readOnly]="isTatToan"
                                                                 [(value)]="item.dongia"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -244,6 +248,7 @@
                                                                 format="#,##0.###"
                                                                 [readOnly]="isTatToan"
                                                                 [(value)]="item.dongiavon"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"
                                                             ></dx-number-box>
                                                         </td>

@@ -225,13 +225,13 @@
                                                         </td>
 
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiavon" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiavon" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
