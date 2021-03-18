@@ -53,7 +53,7 @@
                             <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"></dxo-pager>
 
-                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
                                 <div *dxTemplate="let data of 'cellTemplateSTT'">
                                     {{ rowNumber(data.rowIndex) }}
                                 </div>

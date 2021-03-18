@@ -52,7 +52,7 @@
                             <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
 
                             <!-- dx-data-grid column -->
-                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
                                 <div *dxTemplate="let data of 'cellTemplateSTT'">
                                     {{ rowNumber(data.rowIndex) }}
                                 </div>
