@@ -139,6 +139,7 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.khachHang_LoadNoCu(this.phieucantru.khachhang_id, this.currentChiNhanh.id, this.phieucantru.sort).subscribe((data) => {
                     this.phieucantru.nocu_khachhang = data;
+                    this.calculateChenhLech();
                 })
             );
 
@@ -155,6 +156,7 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.nhaCungCap_LoadNoCu(this.phieucantru.nhacungcap_id, this.currentChiNhanh.id, this.phieucantru.sort).subscribe((data) => {
                     this.phieucantru.nocu_nhacungcap = data;
+                    this.calculateChenhLech();
                 })
             );
 
@@ -168,6 +170,7 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
 
         if (e.dataField == 'donvigiacong_id' && e.value !== undefined && e.value !== null) {
             // load nợ củ
+            this.calculateChenhLech();
         }
 
         if (e.dataField == 'sotiencantru' && e.value !== undefined && e.value !== null) {
@@ -201,8 +204,11 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
                     } else v.sotienchi = 0;
                 });
             }
+            this.calculateChenhLech();
         }
+    }
 
+    calculateChenhLech(){
         if (this.loaiphieucantru == 'khachhang-nhacungcap') {
             this.phieucantru.nocu_chenhlech = this.phieucantru.nocu_khachhang - this.phieucantru.nocu_nhacungcap;
             if (this.phieucantru.nocu_khachhang < this.phieucantru.nocu_nhacungcap) {
