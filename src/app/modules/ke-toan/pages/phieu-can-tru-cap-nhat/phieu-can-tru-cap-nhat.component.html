@@ -141,7 +141,10 @@
                                     ></dxi-item>
 
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="9"></dxi-item>
-                                    <dxi-item [colSpan]="3" [label]="{ text: 'SỐ TIỀN CẤN TRỪ' }" editorType="dxNumberBox" dataField="sotiencantru" [editorOptions]="{ format: '#,##0.###' }">
+                                    <dxi-item [colSpan]="3" [label]="{ text: 'SỐ TIỀN CẤN TRỪ' }">
+                                        <div *dxTemplate>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieucantru.sotiencantru" valueChangeEvent="keyup" (onValueChanged)="onChangeTienCanTru($event)"></dx-number-box>
+                                        </div>
                                         <dxi-validation-rule type="range" [min]="0" message="Số tiền cấn trừ phải lớn hơn 0"> </dxi-validation-rule>
                                     </dxi-item>
 

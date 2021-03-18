@@ -206,40 +206,6 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             // load nợ củ
             this.calculateChenhLech();
         }
-
-        if (e.dataField == 'sotiencantru' && e.value !== undefined && e.value !== null) {
-            // phân bổ tiền
-            if (this.isPhanBoTien) {
-                let sotienphanbo_xuatkho = this.phieucantru.sotiencantru;
-                this.phieuxuatkhos.forEach((v, i) => {
-                    if (sotienphanbo_xuatkho > 0) {
-                        let tiencancantru = v.tongthanhtien - v.sotienthutruoc;
-                        if (sotienphanbo_xuatkho > tiencancantru) {
-                            v.sotienthu = tiencancantru;
-                        }
-                        if (sotienphanbo_xuatkho <= tiencancantru) {
-                            v.sotienthu = sotienphanbo_xuatkho;
-                        }
-                        sotienphanbo_xuatkho -= v.sotienthu;
-                    } else v.sotienthu = 0;
-                });
-
-                let sotienphanbo_nhapkho = this.phieucantru.sotiencantru;
-                this.phieunhapkhos.forEach((v, i) => {
-                    if (sotienphanbo_nhapkho > 0) {
-                        let tiencancantru = v.tongthanhtien - v.sotienchitruoc;
-                        if (sotienphanbo_nhapkho > tiencancantru) {
-                            v.sotienchi = tiencancantru;
-                        }
-                        if (sotienphanbo_nhapkho <= tiencancantru) {
-                            v.sotienchi = sotienphanbo_nhapkho;
-                        }
-                        sotienphanbo_nhapkho -= v.sotienchi;
-                    } else v.sotienchi = 0;
-                });
-            }
-            this.calculateChenhLech();
-        }
     }
 
     calculateChenhLech(){
@@ -260,6 +226,38 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             if (this.phieucantru.nocu_nhacungcap < this.phieucantru.nocu_donvigiacong) {
                 this.phieucantru.nocu_chenhlech *= -1;
             }
+        }
+    }
+
+    onChangeTienCanTru(e) {
+        if (e.event) {
+            let sotienphanbo_xuatkho = this.phieucantru.sotiencantru;
+            this.phieuxuatkhos.forEach((v, i) => {
+                if (sotienphanbo_xuatkho > 0) {
+                    let tiencancantru = v.tongthanhtien - v.sotienthutruoc;
+                    if (sotienphanbo_xuatkho > tiencancantru) {
+                        v.sotienthu = tiencancantru;
+                    }
+                    if (sotienphanbo_xuatkho <= tiencancantru) {
+                        v.sotienthu = sotienphanbo_xuatkho;
+                    }
+                    sotienphanbo_xuatkho -= v.sotienthu;
+                } else v.sotienthu = 0;
+            });
+
+            let sotienphanbo_nhapkho = this.phieucantru.sotiencantru;
+            this.phieunhapkhos.forEach((v, i) => {
+                if (sotienphanbo_nhapkho > 0) {
+                    let tiencancantru = v.tongthanhtien - v.sotienchitruoc;
+                    if (sotienphanbo_nhapkho > tiencancantru) {
+                        v.sotienchi = tiencancantru;
+                    }
+                    if (sotienphanbo_nhapkho <= tiencancantru) {
+                        v.sotienchi = sotienphanbo_nhapkho;
+                    }
+                    sotienphanbo_nhapkho -= v.sotienchi;
+                } else v.sotienchi = 0;
+            });
         }
     }
 
