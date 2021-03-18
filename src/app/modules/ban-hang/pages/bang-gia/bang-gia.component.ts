@@ -50,7 +50,7 @@ export class BangGiaComponent implements OnInit {
         private objBangGiaService: BangGiaService,
         private authenticationService: AuthenticationService
     ) {
-        this.titleService.setTitle("BẢNG GIÁ BÁN HÀNG | " + this.appInfoService.appName);
+        this.titleService.setTitle('BẢNG GIÁ BÁN HÀNG | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -108,31 +108,33 @@ export class BangGiaComponent implements OnInit {
     onRowDelete(id) {
         let result = confirm('<i>Bạn có muốn xóa phiếu này ? </i>', 'xác nhận xóa');
         result.then((dialogResult) => {
-            // gọi service xóa
-            this.subscriptions.add(
-                this.objBangGiaService.deleteBangGia(id).subscribe(
-                    (data) => {
-                        if (data) {
-                            notify(
-                                {
-                                    width: 320,
-                                    message: 'Xóa thành công',
-                                    position: { my: 'right top', at: 'right top' }
-                                },
-                                'success',
-                                475
-                            );
+            if (dialogResult) {
+                // gọi service xóa
+                this.subscriptions.add(
+                    this.objBangGiaService.deleteBangGia(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.objBangGiaService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    (error) => {
-                        this.objBangGiaService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                )
-            );
+                    )
+                );
+            }
         });
     }
 }
