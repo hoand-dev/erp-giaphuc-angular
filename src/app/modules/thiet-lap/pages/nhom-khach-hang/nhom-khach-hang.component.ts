@@ -57,6 +57,10 @@ export class NhomKhachHangComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e): void {
         console.log(`nhomkhachhang_id: ${e.key.id}`);
     }

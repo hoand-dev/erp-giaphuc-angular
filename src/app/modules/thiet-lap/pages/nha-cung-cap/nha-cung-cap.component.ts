@@ -52,6 +52,10 @@ export class NhaCungCapComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         console.log(`nhacungcap_id: ${e.key.id}`);
     }

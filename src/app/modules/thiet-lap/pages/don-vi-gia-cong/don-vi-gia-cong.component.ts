@@ -74,6 +74,10 @@ export class DonViGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`donvigiacong_id: ${e.key.id}`);

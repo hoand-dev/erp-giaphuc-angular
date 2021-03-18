@@ -29,12 +29,11 @@
                 [allowColumnReordering]="true"
                 (onRowDblClick)="onRowDblClick($event)"
             >
-                <!-- <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
-                                <div *dxTemplate="let data of 'cellTemplate'">
-                                    <a [routerLink]="['/phieu-khach-tra-hang/' + data.value + '/cap-nhat']">Sửa</a> |
-                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
-                                </div>
-                            </dxi-column> -->
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
 
                 <dxi-column dataField="ngaykhachtrahang" dataType="datetime" caption="Ngày trả hàng"></dxi-column>
                 <dxi-column dataField="maphieukhachtrahang" caption="Mã phiếu"></dxi-column>

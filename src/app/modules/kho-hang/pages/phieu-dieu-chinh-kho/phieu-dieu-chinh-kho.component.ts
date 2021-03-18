@@ -55,6 +55,7 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
     }
+
     addMenuItems(e) {
         if (e.row.rowType === 'data') {
             if (!e.items) e.items = [];
@@ -117,6 +118,10 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
                 }
             )
         );
+    }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {

@@ -92,6 +92,10 @@ export class PhieuChiComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`objPhieuChi_id: ${e.key.id}`);

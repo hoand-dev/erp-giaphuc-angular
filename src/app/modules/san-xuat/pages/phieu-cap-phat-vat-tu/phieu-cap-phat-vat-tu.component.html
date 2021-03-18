@@ -23,6 +23,11 @@
                             [showBorders]="true"
                             (onToolbarPreparing)="onToolbarPreparing($event)"
                         >
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
                             <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                             <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>

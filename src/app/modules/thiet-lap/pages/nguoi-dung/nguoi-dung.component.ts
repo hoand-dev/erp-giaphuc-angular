@@ -57,6 +57,10 @@ export class NguoiDungComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     addMenuItems(e) {
         if (e.row.rowType === 'data') {
             // e.items can be undefined

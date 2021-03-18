@@ -52,6 +52,11 @@
                             <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
                             
                             <!-- dx-data-grid column -->
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
                                     <a [routerLink]="['/phieu-nhap-chuyen-kho/' + data.value + '/cap-nhat']">Sửa</a> |

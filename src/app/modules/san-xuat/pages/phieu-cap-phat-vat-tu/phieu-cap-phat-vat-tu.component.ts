@@ -21,6 +21,10 @@ export class PhieuCapPhatVatTuComponent implements OnInit {
         this.router.navigate(['/phieu-cap-phat-vat-tu/them-moi']);
     }
 
+    rowNumber(rowIndex){
+        //return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onToolbarPreparing(e) {
         console.log(2);
 

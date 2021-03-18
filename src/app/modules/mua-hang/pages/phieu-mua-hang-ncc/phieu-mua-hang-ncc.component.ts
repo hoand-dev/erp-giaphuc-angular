@@ -84,6 +84,10 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`objPhieuMuaHangNCC_id: ${e.key.id}`);

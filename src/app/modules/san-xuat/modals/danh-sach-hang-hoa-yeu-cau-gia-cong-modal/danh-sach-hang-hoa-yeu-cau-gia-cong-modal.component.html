@@ -29,6 +29,11 @@
                 [allowColumnReordering]="true"
                 (onSelectionChanged)="selectionChanged($event)"
             >
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
                 <dxi-column dataField="ngaydathang" dataType="datetime" caption="Ngày đặt"></dxi-column>
                 <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
                 <dxi-column dataField="khachhang" caption="Khách hàng"></dxi-column>

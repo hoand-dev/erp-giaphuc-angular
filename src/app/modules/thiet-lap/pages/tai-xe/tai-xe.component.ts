@@ -60,6 +60,10 @@ export class TaiXeComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         //chuyển sang view xem chi tiết
         console.log(`taixe_id: ${e.key.id}`);

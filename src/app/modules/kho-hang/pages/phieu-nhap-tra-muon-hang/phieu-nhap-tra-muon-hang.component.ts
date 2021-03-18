@@ -88,6 +88,10 @@ export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     addMenuItems(e) {
         if (e.row.rowType === 'data') {
             // e.items can be undefined

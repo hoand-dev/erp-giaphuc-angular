@@ -63,6 +63,10 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`hanghoa_id: ${e.key.id}`);

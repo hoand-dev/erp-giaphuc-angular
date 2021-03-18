@@ -43,6 +43,11 @@
                             <dxo-selection mode="single"></dxo-selection>
                             <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
 
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
                                     <a [routerLink]="['/hang-hoa-nguyen-lieu/' + data.value + '/cap-nhat']">Sửa</a> |

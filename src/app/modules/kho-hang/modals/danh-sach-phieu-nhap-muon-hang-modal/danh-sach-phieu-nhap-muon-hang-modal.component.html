@@ -29,6 +29,11 @@
                 [stateStoring]="stateStoringGrid"
                 (onRowDblClick)="onRowDblClick($event)"
             >
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
                 <dxi-column dataField="ngaynhapmuonhang" dataType="datetime" caption="Ngày nhập"></dxi-column>
                 <dxi-column dataField="maphieunhapmuonhang" caption="Mã phiếu"></dxi-column>
 

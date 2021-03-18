@@ -29,6 +29,11 @@
                 [allowColumnReordering]="true"
                 (onRowDblClick)="onRowDblClick($event)"
             >
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
                 <dxi-column dataField="ngaydathangncc" dataType="datetime" caption="Ngày đặt hàng"></dxi-column>
                 <dxi-column dataField="ngaynhanhang_dukien" dataType="datetime" caption="Ngày nhận dự kiến"></dxi-column>
                 <dxi-column dataField="maphieudathangncc" caption="Mã phiếu"></dxi-column>
