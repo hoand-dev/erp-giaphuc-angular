@@ -47,7 +47,6 @@ export class PhieuChiCapNhatComponent implements OnInit {
     public loadingVisible = true;
 
     public isLoadLanDau: boolean = false;
-    public isPhanBoTien: boolean = true;
 
     public phieunhapkhos: PhieuChi_PhieuNhapKho[] = [];
     public dataSource_SoTaiKhoan: DataSource;
@@ -156,16 +155,15 @@ export class PhieuChiCapNhatComponent implements OnInit {
                     this.subscriptions.add(
                         this.phieuchiService.findPhieuChi(phieuchi_id).subscribe(
                             (data) => {
-                                // this.isPhanBoTien = false;
                                 this.isLoadLanDau = true;
                                 this.loaiphieuchi = data.loaiphieuchi;
                                 this.phieuchi = data;
+                                if(this.phieuchi.loaiphieuchi == 'lenhvay'){
+                                    // trước khi lưu sẽ tính lại
+                                    this.phieuchi.sotienchi = 0;
+                                }
                                 this.phieuchi.phieuchi_phieunhapkhos_old = this.phieuchi.phieuchi_phieunhapkhos;
                                 this.phieunhapkhos = this.phieuchi.phieuchi_phieunhapkhos;
-
-                                // setTimeout(() => {
-                                //     this.isPhanBoTien = true;
-                                // }, 1000);
                             },
                             (error) => {
                                 this.phieuchiService.handleError(error);
@@ -243,49 +241,6 @@ export class PhieuChiCapNhatComponent implements OnInit {
             );
         }
 
-        if (e.dataField == 'sotienchi' && e.value !== undefined && e.value !== null) {
-            this.onTinhNoConLai();
-
-            // phân bổ tiền
-            if (this.isPhanBoTien) {
-                let sotienchiphieu = this.phieuchi.sotienchi;
-
-                this.phieunhapkhos.forEach((v, i) => {
-                    if (sotienchiphieu > 0) {
-                        let tiencanchi = v.tongthanhtien - v.sotienchitruoc;
-                        if (sotienchiphieu > tiencanchi) {
-                            v.sotienchi = tiencanchi;
-                        }
-                        if (sotienchiphieu <= tiencanchi) {
-                            v.sotienchi = sotienchiphieu;
-                        }
-                        sotienchiphieu -= v.sotienchi;
-                    } else v.sotienchi = 0;
-                });
-            }
-        }
-
-        if (e.dataField == 'sotiengiam' && e.value !== undefined && e.value !== null) {
-            this.onTinhNoConLai();
-
-            // phân bổ tiền
-            if (this.isPhanBoTien) {
-                let sotiengiamphieu = this.phieuchi.sotiengiam;
-
-                this.phieunhapkhos.forEach((v, i) => {
-                    if (sotiengiamphieu > 0) {
-                        let sotiencanchi = v.tongthanhtien - v.sotienchitruoc - v.sotienchi;
-                        if (sotiengiamphieu > sotiencanchi) {
-                            v.sotiengiam = sotiencanchi;
-                        }
-                        if (sotiengiamphieu > 0 && sotiengiamphieu <= sotiencanchi) {
-                            v.sotiengiam = sotiengiamphieu;
-                        }
-                        sotiengiamphieu -= v.sotiengiam;
-                    } else v.sotiengiam = 0;
-                });
-            }
-        }
         if (e.dataField == 'sotienchi_lenhvay' && e.value !== undefined && e.value !== null) {
             this.onTinhNoConLai();
         }
@@ -294,53 +249,91 @@ export class PhieuChiCapNhatComponent implements OnInit {
         }
     }
 
-    public onHangHoaChangeRow(col: string, index: number, e: any) {
-        this.isPhanBoTien = false;
+    onChangeTienChi(e) {
+        if (e.event) {
+            let sotienchiphieu = this.phieuchi.sotienchi;
 
-        let tongchi = 0;
-        let tonggiam = 0;
-        this.phieunhapkhos.forEach((v, i) => {
-            tongchi += v.sotienchi;
-            tonggiam += v.sotiengiam;
-        });
-        this.phieuchi.sotienchi = tongchi;
-        this.phieuchi.sotiengiam = tonggiam;
+            this.phieunhapkhos.forEach((v, i) => {
+                if (sotienchiphieu > 0) {
+                    let tiencanchi = v.tongthanhtien - v.sotienchitruoc;
+                    if (sotienchiphieu > tiencanchi) {
+                        v.sotienchi = tiencanchi;
+                    }
+                    if (sotienchiphieu <= tiencanchi) {
+                        v.sotienchi = sotienchiphieu;
+                    }
+                    sotienchiphieu -= v.sotienchi;
+                } else v.sotienchi = 0;
+            });
+        }
+        this.onTinhNoConLai();
+    }
+
+    onChangeTienGiam(e) {
+        if (e.event) {
+            let sotiengiamphieu = this.phieuchi.sotiengiam;
+
+            this.phieunhapkhos.forEach((v, i) => {
+                if (sotiengiamphieu > 0) {
+                    let sotiencanchi = v.tongthanhtien - v.sotienchitruoc - v.sotienchi;
+                    if (sotiengiamphieu > sotiencanchi) {
+                        v.sotiengiam = sotiencanchi;
+                    }
+                    if (sotiengiamphieu > 0 && sotiengiamphieu <= sotiencanchi) {
+                        v.sotiengiam = sotiengiamphieu;
+                    }
+                    sotiengiamphieu -= v.sotiengiam;
+                } else v.sotiengiam = 0;
+            });
+        }
+        this.onTinhNoConLai();
+    }
+
+    public onHangHoaChangeRow(col: string, index: number, e: any) {
+        if (e.event) {
+            let tongchi = 0;
+            let tonggiam = 0;
+            this.phieunhapkhos.forEach((v, i) => {
+                tongchi += v.sotienchi;
+                tonggiam += v.sotiengiam;
+            });
+            this.phieuchi.sotienchi = tongchi;
+            this.phieuchi.sotiengiam = tonggiam;
+        }
 
         // tính tiền
         this.onTinhNoConLai();
-
-        // đặt time out 1s tránh được nó tự phân bổ, js bất đồng bộ -> mệt mỏi
-        setTimeout(() => {
-            this.isPhanBoTien = true;
-        }, 1000);
     }
 
-    private onTinhNoConLai() {
-        this.phieuchi.tongchi = this.phieuchi.sotienchi + this.phieuchi.sotiengiam;
-
+    calculateNoConLai() {
         switch (this.loaiphieuchi) {
             case 'khac':
                 this.phieuchi.nocu = null;
-                this.phieuchi.conno = null;
-                return;
+                return null;
                 break;
             case 'lenhvay':
-                this.phieuchi.tongchi = this.phieuchi.sotienchi_lenhvay + this.phieuchi.sotienchi_laixuat;
                 this.phieuchi.nocu = null;
-                this.phieuchi.conno = null;
-                return;
+                return null;
+                break;
+            case 'muonhang':
+                this.phieuchi.nocu = null;
+                return null;
                 break;
             case 'khachhang':
-                this.phieuchi.conno = this.phieuchi.nocu + this.phieuchi.tongchi;
+                return this.phieuchi.nocu + this.phieuchi.tongchi;
                 break;
             case 'nhacungcap':
-                this.phieuchi.conno = this.phieuchi.nocu - this.phieuchi.tongchi;
+                return this.phieuchi.nocu - this.phieuchi.tongchi;
                 break;
             case 'donvigiacong':
-                this.phieuchi.conno = this.phieuchi.nocu - this.phieuchi.tongchi;
+                return this.phieuchi.nocu - this.phieuchi.tongchi;
                 break;
+            default:
+                return null;
         }
+    }
 
+    private onTinhNoConLai() {
         // ? nhà cung cấp, có phiếu xuất hoặc không -> tính số tiền chi dư
         if (this.loaiphieuchi == 'nhacungcap') {
             let sotienchidu: number = 0;
@@ -366,7 +359,10 @@ export class PhieuChiCapNhatComponent implements OnInit {
         phieuchi_req.chinhanh_id = this.currentChiNhanh.id;
         phieuchi_req.loaiphieuchi = this.loaiphieuchi;
         phieuchi_req.phieuchi_phieunhapkhos = phieuchi_phieunhapkhos;
-
+        
+        if (phieuchi_req.loaiphieuchi == 'lenhvay') {
+            phieuchi_req.sotienchi = this.phieuchi.sotienchi_lenhvay + this.phieuchi.sotienchi_laixuat;
+        }
         this.saveProcessing = true;
         this.subscriptions.add(
             this.phieuchiService.updatePhieuChi(phieuchi_req).subscribe(

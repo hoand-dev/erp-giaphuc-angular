@@ -73,18 +73,21 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
                                     </dxi-item>
 
+                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinop_dienthoai"></dxi-item>
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'TIỀN THU' }" editorType="dxNumberBox" dataField="sotienthu" [editorOptions]="{ format: '#,##0.###' }"></dxi-item>
-
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuthu" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
-                                    <dxi-item [label]="{ text: 'NGƯỜI NỘP TIỀN' }" dataField="nguoinop_hoten"></dxi-item>
+                                    <dxi-item [label]="{ text: 'NGƯỜI NỘP' }" dataField="nguoinop_hoten" [colSpan]="2"></dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="nguoinop_diachi" [colSpan]="2"></dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinop_dienthoai"></dxi-item>
 
-                                    <dxi-item [label]="{ text: 'TIỀN GIẢM' }" editorType="dxNumberBox" dataField="sotiengiam" [editorOptions]="{ format: '#,##0.###' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TIỀN THU' }">
+                                        <div *dxTemplate>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuthu.sotienthu" valueChangeEvent="keyup" (onValueChanged)="onChangeTienThu($event)"></dx-number-box>
+                                        </div>
+                                    </dxi-item>
                                     <dxi-item [label]="{ text: 'CHỨNG TỪ' }" dataField="chungtu"></dxi-item>
                                     <dxi-item
+                                        [colSpan]="2"
                                         [label]="{ text: 'QUỸ THU' }"
                                         dataField="quythu_id"
                                         editorType="dxSelectBox"
@@ -107,10 +110,15 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'CÒN NỢ' }" editorType="dxNumberBox" dataField="conno" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'TỔNG THU' }" editorType="dxNumberBox" dataField="tongthu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'TIỀN GIẢM' }">
+                                        <div *dxTemplate>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuthu.sotiengiam" valueChangeEvent="keyup" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
+                                        </div>
+                                    </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TỔNG THU' }" editorType="dxNumberBox" dataField="tongthu" [editorOptions]="{ value: phieuthu.sotienthu + phieuthu.sotiengiam, readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
+                                    <dxi-item [label]="{ text: 'CÒN NỢ' }" editorType="dxNumberBox" dataField="conno" [editorOptions]="{ value: calculateNoConLai(), readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="phieuxuatkhos.length > 0">
                                         <div class="table-responsive">
@@ -137,12 +145,18 @@
                                                         <td>{{ item.sotienthutruoc | number: '1.0-3' }}</td>
                                                         <td>{{ item.tongthanhtien - item.sotienthutruoc | number: '1.0-3' }}</td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.sotienthu" (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [(value)]="item.sotienthu"
+                                                                valueChangeEvent="keyup"
+                                                                (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box
                                                                 format="#,##0.###"
                                                                 [(value)]="item.sotiengiam"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
