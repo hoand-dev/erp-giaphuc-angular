@@ -170,7 +170,12 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
 
         if (e.dataField == 'donvigiacong_id' && e.value !== undefined && e.value !== null) {
             // load nợ củ
-            this.calculateChenhLech();
+            this.subscriptions.add(
+                this.commonService.donViGiaCong_LoadNoCu(this.phieucantru.donvigiacong_id, this.currentChiNhanh.id, this.phieucantru.sort).subscribe((data) => {
+                    this.phieucantru.nocu_donvigiacong = data;
+                    this.calculateChenhLech();
+                })
+            );
         }
     }
 
