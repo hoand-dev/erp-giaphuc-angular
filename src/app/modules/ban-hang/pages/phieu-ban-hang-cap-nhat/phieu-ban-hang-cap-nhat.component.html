@@ -230,7 +230,7 @@
                                                 [ngClass]="'float-right'"
                                                 type="success"
                                                 [useSubmitBehavior]="true"
-                                                [disabled]="saveProcessing"
+                                                [disabled]="saveProcessing || (this.phieubanhang.duyetgia && !isTatToan)"
                                             >
                                             </dx-button>
                                             <dx-button

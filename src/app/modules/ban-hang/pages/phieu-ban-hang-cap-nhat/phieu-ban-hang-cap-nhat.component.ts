@@ -180,8 +180,6 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
 
                                 this.phieubanhang = data;
                                 this.hanghoas = this.phieubanhang.phieubanhang_chitiet;
-
-                                this.saveProcessing = this.phieubanhang.duyetgia; // duyệt giá rồi không cho lưu nữa
                             },
                             (error) => {
                                 this.phieubanhangService.handleError(error);
