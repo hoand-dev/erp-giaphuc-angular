@@ -76,7 +76,12 @@
                                         [showNavigationButtons]="true"
                                     >
                                     </dxo-pager>
-
+                                    
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
                                     <dxi-column dataField="chungtu" caption="HĐ"></dxi-column>
                                     <dxi-column dataField="ngayphatsinh" caption="Thực tế" dataType="date"></dxi-column>
                                     <dxi-column dataField="tenhanghoa" caption="Tên hàng hoá"></dxi-column>

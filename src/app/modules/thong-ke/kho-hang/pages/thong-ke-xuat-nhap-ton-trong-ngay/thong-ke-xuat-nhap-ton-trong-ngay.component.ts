@@ -74,4 +74,8 @@ export class ThongKeXuatNhapTonTrongNgayComponent implements OnInit, OnDestroy {
             )
         );
     }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
 }

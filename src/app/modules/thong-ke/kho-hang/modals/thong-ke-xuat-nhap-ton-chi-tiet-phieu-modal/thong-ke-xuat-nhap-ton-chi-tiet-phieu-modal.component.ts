@@ -75,6 +75,10 @@ export class ThongKeXuatNhapTonChiTietPhieuModalComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }

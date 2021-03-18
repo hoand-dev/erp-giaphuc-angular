@@ -53,6 +53,11 @@
                             <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"></dxo-pager>
 
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
                             <!-- <dxi-column dataField="chinhanh" caption="Chi nhánh"></dxi-column> -->
                             <dxi-column dataField="manhacungcap" caption="Mã nhà cung cấp"></dxi-column>
                             <dxi-column dataField="tennhacungcap" caption="Tên nhà cung cấp"></dxi-column>
