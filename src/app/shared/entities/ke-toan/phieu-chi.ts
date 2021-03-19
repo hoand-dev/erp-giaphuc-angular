@@ -159,9 +159,9 @@ export class PhieuChi_PhieuNhapKho {
 
     public ngaynhapkho: Date;
     public maphieunhapkho: string;
-
     public tongthanhtien: number;
     public sotienchitruoc: number;
+    public sotienconlai: number;
 
     constructor(
         id: number = null,
@@ -171,7 +171,6 @@ export class PhieuChi_PhieuNhapKho {
         sotienchi: number = 0,
         sotiengiam: number = 0,
         chuthich: string = null,
-
         tongthanhtien: number = 0,
         sotienchitruoc: number = 0
     ) {

@@ -101,10 +101,15 @@ export class PhieuMuaHangNCC_ChiTiet {
     public trangthaitra: string;
     public soluongdatra: number;
     
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
-    public m3: number;
+    
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 
     constructor(
         id: number = null,

@@ -1,7 +1,6 @@
 export class PhieuNhapKhoGiaCong {
     public phieunhapkhogiacong_chitiets: PhieuNhapKhoGiaCongCT[];
 
-    
     nhanviensale_hoten: string;
     biensoxe: string;
     ngaylapphieu: string;
@@ -10,7 +9,6 @@ export class PhieuNhapKhoGiaCong {
     tentaixe: string;
 
     tenkhoxuat: string;
-  
 
     public tendonvigiacong: string;
     public tenkhogiacong: string;
@@ -102,7 +100,7 @@ export class PhieuNhapKhoGiaCongCT {
     public mathanhpham: string;
     public tenthanhpham: string;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 
@@ -129,6 +127,12 @@ export class PhieuNhapKhoGiaCongCT {
     public khonhaploi_id: number;
     public somat_thanhpham_id: number;
     public xuatnguyenlieu: boolean;
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 
     constructor(
         id: number = null,
@@ -190,7 +194,7 @@ export class LoiGiaCong {
     danhmucloi_id: number;
     soluong: number;
 
-    constructor(phieunhapkhogiacongct_id: number = null, danhmucloi_id: number = null, soluong: number = 1) {
+    constructor(phieunhapkhogiacongct_id: number = null, danhmucloi_id: number = null, soluong: number = 0) {
         this.phieunhapkhogiacongct_id = phieunhapkhogiacongct_id;
         this.danhmucloi_id = danhmucloi_id;
         this.soluong = soluong;

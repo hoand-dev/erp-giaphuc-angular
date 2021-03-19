@@ -88,6 +88,12 @@ export class PhieuKiemKho_ChiTiet {
     public thanhtien: number;
     public hangbeluckiem: number;
 
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
+
     constructor(
         id: number = null,
         phieukiemkho_id: number = null,

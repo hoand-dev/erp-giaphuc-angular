@@ -259,6 +259,26 @@
                                                         <td *ngIf="!isTatToan"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="25"></th>
+                                                        <th [style.min-width.px]="500">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.min-width.px]="110"></th>
+                                                        <th [style.min-width.px]="80"></th>
+                                                        <th [style.min-width.px]="110"></th>
+                                                        <th [style.min-width.px]="300"></th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluongtattoan') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.max-width.px]="20">
+                                                            <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

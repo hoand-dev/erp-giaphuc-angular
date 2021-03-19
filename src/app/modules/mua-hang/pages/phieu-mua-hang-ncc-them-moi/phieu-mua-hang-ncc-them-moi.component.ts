@@ -17,6 +17,7 @@ import { HangHoaService } from '@app/shared/services';
 import { DanhSachPhieuDatHangNCCModalComponent } from '../../modals/danh-sach-phieu-dat-hang-ncc-modal/danh-sach-phieu-dat-hang-ncc-modal.component';
 import CustomStore from 'devextreme/data/custom_store';
 import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-mua-hang-ncc-them-moi',
@@ -55,6 +56,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -272,6 +274,7 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
+        this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
@@ -314,6 +317,11 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            v.soluongconlai  = v.soluong - v.soluongdanhap;
+
             v.thanhtien = v.soluong * v.dongia;
             v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
 

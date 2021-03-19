@@ -9,6 +9,7 @@ import { AppInfoService, CommonService, DonViGiaCongService, KhachHangService, N
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-can-tru-cap-nhat',
@@ -45,6 +46,7 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -115,10 +117,10 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             })
         );
 
-        // // kiểm tra có cantruộc các loại phiếu cantru này hay không?
+        // kiểm tra có cantruộc các loại phiếu cantru này hay không?
         // let arrLoaiPhieuCanTru: string[] = ['khachhang-nhacungcap', 'khachhang-donvigiacong', 'nhacungcap-donvigiacong'];
 
-        // // kiểm tra queryParams
+        // kiểm tra queryParams
         // this.subscriptions.add(
         //     this.activatedRoute.queryParams.subscribe((params) => {
         //         if (this.commonService.isNotEmpty(params.loaiphieucantru) && arrLoaiPhieuCanTru.includes(params.loaiphieucantru)) {
@@ -267,16 +269,12 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
     }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
-        // this.isPhanBoTien = false;
-        // let tongcantru = 0;
-        // this.phieuxuatkhos.forEach((v, i) => {
-        //     tongcantru += v.sotienthu;
-        // });
-        // this.phieucantru.sotiencantru = tongcantru;
-        // // đặt time out 1s tránh được nó tự phân bổ, js bất đồng bộ
-        // setTimeout(() => {
-        //     this.isPhanBoTien = true;
-        // }, 1000);
+        this.phieuxuatkhos.forEach((x, i) => {
+            x.sotienconlai = x.tongthanhtien - x.sotienthutruoc;
+        });
+        this.phieunhapkhos.forEach((x, i) => {
+            x.sotienconlai = x.tongthanhtien - x.sotienchitruoc;
+        });
     }
 
     public onSubmitForm(e) {

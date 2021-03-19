@@ -13,6 +13,7 @@ import { AuthenticationService } from '@app/_services';
 import { NhaCungCap } from '@app/shared/entities';
 import { HangHoaService } from '@app/shared/services';
 import CustomStore from 'devextreme/data/custom_store';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-dat-hang-ncc-cap-nhat',
@@ -52,6 +53,7 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
@@ -230,9 +232,14 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
+        this.hanghoas[index].trongluong = selected.trongluong;
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        setTimeout(() => {
+            this.onTinhTien();
+        });
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
@@ -275,6 +282,11 @@ export class PhieuDatHangNCCCapNhatComponent implements OnInit {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            v.soluongconlai  = v.soluong - v.soluongdanhan - v.soluongtattoan;
+
             v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia;
             v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
 

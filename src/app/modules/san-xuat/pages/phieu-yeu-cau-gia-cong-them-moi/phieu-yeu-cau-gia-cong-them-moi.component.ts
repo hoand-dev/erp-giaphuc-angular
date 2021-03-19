@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DinhMuc, DonViGiaCong, HangHoa, KhachHang, KhoHang, PhieuYeuCauGiaCong, PhieuYeuCauGiaCongCT, SoMat } from '@app/shared/entities';
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import {
     AppInfoService,
     CommonService,
@@ -65,6 +66,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -265,6 +267,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
@@ -364,6 +367,11 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     private onTinhTien() {
         let tongtienhang: number = 0;
         this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            v.soluongconlai  = v.soluong - v.soluongdanhap - v.soluongtattoan;
+
             v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia * v.heso;
             tongtienhang += v.thanhtien;
         });

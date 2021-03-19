@@ -126,6 +126,7 @@ export class PhieuThu_PhieuXuatKho {
     public maphieuxuatkho: string;
     public tongthanhtien: number;
     public sotienthutruoc: number;
+    public sotienconlai: number;
 
     constructor(
         id: number = null,

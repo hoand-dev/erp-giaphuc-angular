@@ -9,6 +9,7 @@ import { AppInfoService, CommonService, DonViGiaCongService, KhachHangService, N
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-can-tru-them-moi',
@@ -45,6 +46,7 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -233,16 +235,12 @@ export class PhieuCanTruThemMoiComponent implements OnInit {
     }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
-        // this.isPhanBoTien = false;
-        // let tongcantru = 0;
-        // this.phieuxuatkhos.forEach((v, i) => {
-        //     tongcantru += v.sotienthu;
-        // });
-        // this.phieucantru.sotiencantru = tongcantru;
-        // // đặt time out 1s tránh được nó tự phân bổ, js bất đồng bộ
-        // setTimeout(() => {
-        //     this.isPhanBoTien = true;
-        // }, 1000);
+        this.phieuxuatkhos.forEach((x, i) => {
+            x.sotienconlai = x.tongthanhtien - x.sotienthutruoc;
+        });
+        this.phieunhapkhos.forEach((x, i) => {
+            x.sotienconlai = x.tongthanhtien - x.sotienchitruoc;
+        });
     }
 
     public onSubmitForm(e) {

@@ -77,7 +77,7 @@
                                                             <th [style.min-width.px]="25">STT</th>
                                                             <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                             <th [style.min-width.px]="75">ĐVT</th>
-                                                            <th [style.min-width.px]="75">ĐVT1</th>
+                                                            <th [style.min-width.px]="75">KIỆN</th>
                                                             <th [style.min-width.px]="75">KL</th>
                                                             <th [style.min-width.px]="80">SL</th>
                                                             <th [style.min-width.px]="120">ĐƠN GIÁ</th>
@@ -151,6 +151,24 @@
                                                             <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                         </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th [style.min-width.px]="25"></th>
+                                                            <th [style.min-width.px]="550">TỔNG CỘNG:</th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongm3') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120"></th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="100">{{this.sumTotal.transform(this.hanghoas, 'soluongdanhap') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluongconlai') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="250"></th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </div>
                                         </div>

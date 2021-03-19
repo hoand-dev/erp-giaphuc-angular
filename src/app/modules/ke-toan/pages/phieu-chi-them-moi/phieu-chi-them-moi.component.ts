@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DanhSachPhieuNhapMuonHangModalComponent } from '@app/modules/kho-hang/modals/danh-sach-phieu-nhap-muon-hang-modal/danh-sach-phieu-nhap-muon-hang-modal.component';
 import { ChiNhanh, DonViGiaCong, KhachHang, LenhVay, NhaCungCap, NhaCungCap_SoTaiKhoan, PhieuChi, PhieuChi_PhieuNhapKho } from '@app/shared/entities';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import {
     AppInfoService,
     CommonService,
@@ -65,6 +66,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
         useSubmitBehavior: true
     };
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -399,6 +401,7 @@ export class PhieuChiThemMoiComponent implements OnInit {
 
             sotienchidu = this.phieuchi.tongchi;
             this.phieunhapkhos.forEach((x) => {
+                x.sotienconlai = x.tongthanhtien - x.sotienchitruoc;
                 tongchi_chitiet += x.sotienchi + x.sotiengiam;
             });
             sotienchidu = this.phieuchi.tongchi - tongchi_chitiet;

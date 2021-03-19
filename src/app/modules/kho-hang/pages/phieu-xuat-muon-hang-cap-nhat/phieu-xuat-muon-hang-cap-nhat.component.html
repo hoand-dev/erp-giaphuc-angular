@@ -83,7 +83,7 @@
                                                         <th [style.min-width.px]="25">STT</th>
                                                         <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
-                                                        <th [style.min-width.px]="75">ĐVT1</th>
+                                                        <th [style.min-width.px]="75">KIỆN</th>
                                                         <th [style.min-width.px]="75">KL</th>
                                                         <th [style.min-width.px]="80">SL</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
@@ -119,8 +119,8 @@
                                                         </td>
                                                         <td>{{ item.tendonvitinh }}</td>
 
-                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }} {{ item.tendonvitinhphu }}</td>
-                                                        <td>{{ item.soluong * item.trongluong | number: '1.0-3' }} kg</td>
+                                                        <td>{{ item.tendonvitinhphu ? (item.soluong / item.tilequydoiphu | number: '1.0-3') : '' }}</td>
+                                                        <td>{{ item.soluong * item.trongluong | number: '1.0-3' }}</td>
 
                                                         <td>
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
@@ -133,6 +133,22 @@
                                                         <td (click)="onHangHoaDelete(item)"><i class="gg-btn gg-remove"></i></td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="25"></th>
+                                                        <th [style.min-width.px]="550">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="75"></th>
+                                                        <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongtrongluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.max-width.px]="20" (click)="onHangHoaAdd()">
+                                                            <i class="gg-btn gg-add btn-primary"></i>
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

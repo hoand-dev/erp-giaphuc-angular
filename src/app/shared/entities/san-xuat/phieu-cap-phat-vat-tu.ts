@@ -22,7 +22,6 @@ export class PhieuCapPhatVatTu {
 }
 
 export class PhieuCapPhatVatTuChiTiet {
-
     public id: number;
     public phieuxuatkho_id: number;
     public loaihanghoa: string;
@@ -34,5 +33,10 @@ export class PhieuCapPhatVatTuChiTiet {
     public soluong: number;
     public dinhmuc_quydoi: number;
     public chuthich: string;
-    
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 }

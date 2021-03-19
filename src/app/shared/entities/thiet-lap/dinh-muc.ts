@@ -66,7 +66,7 @@ export class DinhMuc_NguyenLieu {
     public tylequydoibandau: number;
     public dinhmuc_id: number;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 
@@ -74,7 +74,7 @@ export class DinhMuc_NguyenLieu {
         id: number = null,
         nguyenlieu_id: number = null,
         dvt_id: number = null,
-        soluong: number = 1,
+        soluong: number = 0,
         dongia: number = 0,
         thanhtien_chiphi: number = 0,
         loainguyenlieu: string = null,

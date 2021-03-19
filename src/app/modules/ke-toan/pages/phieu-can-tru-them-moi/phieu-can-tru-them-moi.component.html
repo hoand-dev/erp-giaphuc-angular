@@ -175,6 +175,18 @@
                                                             <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                         </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th [style.min-width.px]="45"></th>
+                                                            <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                                            <th [style.min-width.px]="120"></th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'tongthanhtien') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienthutruoc') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienconlai') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienthu') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="250"></th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </mat-tab>
                                             <mat-tab label="PHIẾU NHẬP KHO - MUA" *ngIf="phieunhapkhos.length > 0">
@@ -209,6 +221,18 @@
                                                             <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                         </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th [style.min-width.px]="45"></th>
+                                                            <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                                            <th [style.min-width.px]="120"></th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'tongthanhtien') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchitruoc') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienconlai') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchi') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="250"></th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </mat-tab>
                                         </mat-tab-group>

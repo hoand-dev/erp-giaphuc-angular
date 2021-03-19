@@ -9,7 +9,6 @@ export class PhieuYeuCauGiaCong {
     tentaixe: string;
 
     tenkhoxuat: string;
-  
 
     public tendonvigiacong: string;
     public tenkhogiacong: string;
@@ -89,7 +88,7 @@ export class PhieuYeuCauGiaCongCT {
     public mathanhpham: string;
     public tenthanhpham: string;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 
@@ -117,6 +116,12 @@ export class PhieuYeuCauGiaCongCT {
     public phieudathang_chitiet_id: number;
     public xuatnguyenlieu: boolean;
 
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
+
     constructor(
         id: number = null,
         phieuyeucaugiacong_id: number = null,
@@ -131,7 +136,7 @@ export class PhieuYeuCauGiaCongCT {
         somat_thanhpham_id: number = null,
         heso: number = 1,
         soluongtattoan: number = 0,
-        soluong: number = 1,
+        soluong: number = 0,
         dongia: number = 0,
         thanhtien: number = 0,
         chuthich: string = null,

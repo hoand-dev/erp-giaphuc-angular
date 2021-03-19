@@ -163,6 +163,19 @@
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="45"></th>
+                                                        <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'tongthanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienthutruoc') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienconlai') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienthu') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotiengiam') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

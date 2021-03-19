@@ -15,13 +15,10 @@ export class PhieuCanTru {
     public manhacungcap: string;
     public madonvigiacong: string;
 
-    
- 
     public sotien_bangchu: string;
     public phieuin_thoigian: string;
     public phieuin_nguoiin: string;
     public ngaylapphieu: string;
-
 
     public tennhacungcap: string;
     public ncc_sodienthoai: string;
@@ -116,6 +113,7 @@ export class PhieuCanTru_PhieuNhapKho {
     public maphieunhapkho: string;
     public tongthanhtien: number;
     public sotienchitruoc: number;
+    public sotienconlai: number;
 
     public id: number;
     public phieucantru_id: number;
@@ -139,6 +137,7 @@ export class PhieuCanTru_PhieuXuatKho {
     public maphieuxuatkho: string;
     public tongthanhtien: number;
     public sotienthutruoc: number;
+    public sotienconlai: number;
 
     public id: number;
     public phieucantru_id: number;

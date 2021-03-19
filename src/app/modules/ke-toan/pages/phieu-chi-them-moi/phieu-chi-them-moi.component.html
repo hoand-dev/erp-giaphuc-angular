@@ -240,6 +240,19 @@
                                                         </td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="45"></th>
+                                                        <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'tongthanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchitruoc') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienconlai') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchi') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotiengiam') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

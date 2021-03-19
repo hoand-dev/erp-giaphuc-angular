@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChiNhanh, PhieuChi, KhachHang, NhaCungCap, PhieuChi_PhieuNhapKho, DonViGiaCong, NhaCungCap_SoTaiKhoan } from '@app/shared/entities';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import {
     AppInfoService,
     CommonService,
@@ -57,6 +58,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
         useSubmitBehavior: true
     };
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -341,6 +343,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
 
             sotienchidu = this.phieuchi.tongchi;
             this.phieunhapkhos.forEach((x) => {
+                x.sotienconlai = x.tongthanhtien - x.sotienchitruoc;
                 tongchi_chitiet += x.sotienchi + x.sotiengiam;
             });
             sotienchidu = this.phieuchi.tongchi - tongchi_chitiet;

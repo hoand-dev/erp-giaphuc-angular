@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
 
 import { KhachHang } from '@app/shared/entities';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-thu-cap-nhat',
@@ -48,6 +49,7 @@ export class PhieuThuCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -293,6 +295,7 @@ export class PhieuThuCapNhatComponent implements OnInit {
 
             sotienthudu = this.phieuthu.tongthu;
             this.phieuxuatkhos.forEach((x) => {
+                x.sotienconlai = x.tongthanhtien - x.sotienthutruoc;
                 tongthu_chitiet += x.sotienthu + x.sotiengiam;
             });
             sotienthudu = this.phieuthu.tongthu - tongthu_chitiet;
@@ -311,7 +314,7 @@ export class PhieuThuCapNhatComponent implements OnInit {
         phieuthu_req.chinhanh_id = this.currentChiNhanh.id;
         phieuthu_req.loaiphieuthu = this.loaiphieuthu;
         phieuthu_req.phieuthu_phieuxuatkhos = phieuthu_phieuxuatkhos;
-        return;
+        
         this.saveProcessing = true;
         this.subscriptions.add(
             this.phieuthuService.updatePhieuThu(phieuthu_req).subscribe(

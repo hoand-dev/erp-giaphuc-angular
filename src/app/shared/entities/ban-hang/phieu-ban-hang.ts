@@ -10,8 +10,6 @@ export class PhieuBanHang {
     public phieuin_nguoiin: string;
     public ngaylapphieu: string;
 
-
-
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
@@ -133,9 +131,15 @@ export class PhieuBanHang_ChiTiet {
 
     public dongiavat: number;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 
     constructor(
         id: number = null,
