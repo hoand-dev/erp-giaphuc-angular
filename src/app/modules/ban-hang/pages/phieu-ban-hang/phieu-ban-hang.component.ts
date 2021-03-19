@@ -151,31 +151,33 @@ export class PhieuBanHangComponent implements OnInit {
     onRowDelete(id) {
         let result = confirm('<i>Bạn có muốn xóa phiếu này ? </i>', 'xác nhận xóa');
         result.then((dialogResult) => {
-            // gọi service xóa
-            this.subscriptions.add(
-                this.objPhieuBanHangService.deletePhieuBanHang(id).subscribe(
-                    (data) => {
-                        if (data) {
-                            notify(
-                                {
-                                    width: 320,
-                                    message: 'Xóa thành công',
-                                    position: { my: 'right top', at: 'right top' }
-                                },
-                                'success',
-                                475
-                            );
+            if (dialogResult) {
+                // gọi service xóa
+                this.subscriptions.add(
+                    this.objPhieuBanHangService.deletePhieuBanHang(id).subscribe(
+                        (data) => {
+                            if (data) {
+                                notify(
+                                    {
+                                        width: 320,
+                                        message: 'Xóa thành công',
+                                        position: { my: 'right top', at: 'right top' }
+                                    },
+                                    'success',
+                                    475
+                                );
+                            }
+                            // load lại dữ liệu
+                            this.onLoadData();
+                        },
+                        (error) => {
+                            this.objPhieuBanHangService.handleError(error);
+                            // load lại dữ liệu
+                            this.onLoadData();
                         }
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    },
-                    (error) => {
-                        this.objPhieuBanHangService.handleError(error);
-                        // load lại dữ liệu
-                        this.onLoadData();
-                    }
-                )
-            );
+                    )
+                );
+            }
         });
     }
 }
