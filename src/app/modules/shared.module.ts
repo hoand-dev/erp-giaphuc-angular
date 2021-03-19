@@ -25,9 +25,10 @@ import {
     DxLoadPanelModule
 } from 'devextreme-angular';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @NgModule({
-    declarations: [],
+    declarations: [SumTotalPipe],
     imports: [
         CommonModule,
         FormsModule,
@@ -53,6 +54,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatTabsModule
     ],
     exports: [
+        SumTotalPipe,
         CommonModule,
         FormsModule,
 
