@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NoiDungThuChi } from '@app/shared/entities';
-import { AppInfoService, NoiDungThuChiService } from '@app/shared/services';
+import { AppInfoService, CommonService, NoiDungThuChiService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -20,6 +20,15 @@ export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - NỘI DUNG THU CHI - ' + moment().format('DD_MM_YYYY');
 
@@ -29,11 +38,29 @@ export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit 
         storageKey: 'dxGrid_NoiDungThuChi'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private noidungthuchiService: NoiDungThuChiService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private noidungthuchiService: NoiDungThuChiService) {
         this.titleService.setTitle("NỘI DUNG THU CHI | " + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'noidungthuchi-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'noidungthuchi-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'noidungthuchi-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'noidungthuchi-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'noidungthuchi-xuatdulieu');
+                },
+                (error) => {
+                    this.noidungthuchiService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.

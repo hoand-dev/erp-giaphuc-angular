@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppInfoService, KhuVucService } from '@app/shared/services';
+import { AppInfoService, CommonService, KhuVucService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
 import { data } from 'jquery';
@@ -18,8 +18,16 @@ export class KhuVucComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
-
     subscriptions: Subscription = new Subscription();
+
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - KHU VỰC - ' + moment().format('DD_MM_YYYY');
@@ -30,11 +38,29 @@ export class KhuVucComponent implements OnInit {
         storageKey: 'dxGrid_KhuVuc'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private khuvucService: KhuVucService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private khuvucService: KhuVucService) {
         this.titleService.setTitle("KHU VỰC | " + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'khuvuc-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'khuvuc-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'khuvuc-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'khuvuc-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'khuvuc-xuatdulieu');
+                },
+                (error) => {
+                    this.khuvucService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         this.onLoadData();

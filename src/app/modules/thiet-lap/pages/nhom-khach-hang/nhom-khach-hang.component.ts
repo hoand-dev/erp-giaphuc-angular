@@ -3,7 +3,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
-import { AppInfoService, NhomKhachHangService } from '@app/shared/services';
+import { AppInfoService, CommonService, NhomKhachHangService } from '@app/shared/services';
 import { Subscription } from 'rxjs';
 import { confirm } from 'devextreme/ui/dialog';
 import moment from 'moment';
@@ -18,8 +18,16 @@ export class NhomKhachHangComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /*tối ưu subscriptions*/
-
     subscriptions: Subscription = new Subscription();
+
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - NHÓM KHÁCH HÀNG - ' + moment().format('DD_MM_YYYY');
@@ -30,11 +38,29 @@ export class NhomKhachHangComponent implements OnInit {
         storageKey: 'dxGrid_NhomKhachHang'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private nhomkhachhangService: NhomKhachHangService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private nhomkhachhangService: NhomKhachHangService) {
         this.titleService.setTitle('NHÓM KHÁCH HÀNG | ' + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'nhomkhachhang-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'nhomkhachhang-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'nhomkhachhang-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'nhomkhachhang-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'nhomkhachhang-xuatdulieu');
+                },
+                (error) => {
+                    this.nhomkhachhangService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         this.onLoadData();

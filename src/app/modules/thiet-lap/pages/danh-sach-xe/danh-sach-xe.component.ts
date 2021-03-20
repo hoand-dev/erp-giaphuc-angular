@@ -7,7 +7,7 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import moment from 'moment';
 import { Title } from '@angular/platform-browser';
-import { AppInfoService } from '@app/shared/services';
+import { AppInfoService, CommonService } from '@app/shared/services';
 @Component({
     selector: 'app-danh-sach-xe',
     templateUrl: './danh-sach-xe.component.html',
@@ -15,10 +15,18 @@ import { AppInfoService } from '@app/shared/services';
 })
 export class DanhSachXeComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-    public timeCreateAt: Date = new Date();
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
+
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - XE - ' + moment().format('DD_MM_YYYY');
@@ -29,12 +37,28 @@ export class DanhSachXeComponent implements OnInit {
         storageKey: 'dxGrid_DanhSachXe'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private danhsachxeService: DanhSachXeService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private danhsachxeService: DanhSachXeService) {
         this.titleService.setTitle('XE | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
-        this.timeCreateAt = moment().add(1, 'days').toDate();
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'danhsachxe-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'danhsachxe-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'danhsachxe-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'danhsachxe-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'danhsachxe-xuatdulieu');
+                },
+                (error) => {
+                    this.danhsachxeService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {

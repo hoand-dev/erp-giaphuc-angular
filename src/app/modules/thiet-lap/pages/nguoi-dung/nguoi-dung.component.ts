@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppInfoService, NguoiDungService } from '@app/shared/services';
+import { AppInfoService, CommonService, NguoiDungService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
@@ -21,6 +21,15 @@ export class NguoiDungComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - NGƯỜI DÙNG - ' + moment().format('DD_MM_YYYY');
 
@@ -30,11 +39,29 @@ export class NguoiDungComponent implements OnInit {
         storageKey: 'dxGrid_NguoiDung'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private nguoidungService: NguoiDungService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private nguoidungService: NguoiDungService) {
         this.titleService.setTitle("NGƯỜI DÙNG | " + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'nguoidung-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'nguoidung-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'nguoidung-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'nguoidung-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'nguoidung-xuatdulieu');
+                },
+                (error) => {
+                    this.nguoidungService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         this.onLoadData();

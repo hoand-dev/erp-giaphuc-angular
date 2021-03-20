@@ -7,7 +7,7 @@ import { confirm } from 'devextreme/ui/dialog';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import moment from 'moment';
 import { Title } from '@angular/platform-browser';
-import { AppInfoService } from '@app/shared/services';
+import { AppInfoService, CommonService } from '@app/shared/services';
 
 @Component({
     selector: 'app-tai-xe',
@@ -17,8 +17,17 @@ import { AppInfoService } from '@app/shared/services';
 export class TaiXeComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
-    /*Tối ưu hóa subcriptions */
-    subcriptions: Subscription = new Subscription();
+    /*Tối ưu hóa subscriptions */
+    subscriptions: Subscription = new Subscription();
+
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - TÀI XẾ - ' + moment().format('DD_MM_YYYY');
@@ -29,11 +38,29 @@ export class TaiXeComponent implements OnInit {
         storageKey: 'dxGrid_Taixe'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private taixeService: TaiXeService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private taixeService: TaiXeService) {
         this.titleService.setTitle("TÀI XẾ | " + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'taixe-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'taixe-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'taixe-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'taixe-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'taixe-xuatdulieu');
+                },
+                (error) => {
+                    this.taixeService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         //called once before the instance is destroyed
@@ -44,11 +71,11 @@ export class TaiXeComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        this.subcriptions.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 
     onLoadData() {
-        this.subcriptions.add(
+        this.subscriptions.add(
             this.taixeService.findTaiXes().subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
@@ -74,7 +101,7 @@ export class TaiXeComponent implements OnInit {
         result.then((dialogResult) => {
             if (dialogResult) {
                 //gọi service xóa
-                this.subcriptions.add(
+                this.subscriptions.add(
                     this.taixeService.deleteTaiXe(id).subscribe(
                         (data) => {
                             if (data) {

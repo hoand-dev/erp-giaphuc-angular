@@ -25,7 +25,7 @@
                         <p class="card-text"></p>
 
                         <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/khach-hang/them-moi']">Thêm mới</button>
+                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/khach-hang/them-moi']" *ngIf="enableAddNew">Thêm mới</button>
 
                         <dx-data-grid
                             id="gridContainer_KhachHang"
@@ -49,8 +49,8 @@
                             </dxi-column>
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
-                                    <a [routerLink]="['/khach-hang/' + data.value + '/cap-nhat']">Sửa</a> |
-                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                    <a [routerLink]="['/khach-hang/' + data.value + '/cap-nhat']" *ngIf="enableUpdate">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)" *ngIf="enableDelete">Xóa</a>
                                 </div>
                             </dxi-column>
 
