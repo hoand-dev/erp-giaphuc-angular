@@ -31,7 +31,7 @@
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                                <button [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
+                                <button *ngIf="enableAddNew" [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
                                     Thêm mới
                                 </button>
                                 <div class="dropdown-menu">
@@ -55,7 +55,7 @@
                             (onContextMenuPreparing)="addMenuItems($event)"
                         >
                             <dxo-selection mode="single"></dxo-selection>
-                            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
 
                             <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
                                 <div *dxTemplate="let data of 'cellTemplateSTT'">
@@ -64,8 +64,8 @@
                             </dxi-column>
                             <dxi-column width="140" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
-                                    <a [routerLink]="['/phieu-nhap-kho-gia-cong/' + data.value + '/cap-nhat']">Sửa</a> |
-                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                    <a [routerLink]="['/phieu-nhap-kho-gia-cong/' + data.value + '/cap-nhat']" *ngIf="enableUpdate">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)" *ngIf="enableDelete">Xóa</a>
                                 </div>
                             </dxi-column>
 

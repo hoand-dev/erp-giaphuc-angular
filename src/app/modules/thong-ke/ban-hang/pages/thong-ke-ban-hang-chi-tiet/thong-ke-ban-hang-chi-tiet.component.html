@@ -45,6 +45,9 @@
                             [allowColumnReordering]="true"
                             [stateStoring]="stateStoringGrid"
                         >
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
+
                             <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                             <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>

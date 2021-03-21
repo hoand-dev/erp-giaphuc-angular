@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ThongKeCongNoNhaCungCap } from '@app/shared/entities';
-import { AppInfoService, ThongKeCongNoService } from '@app/shared/services';
+import { AppInfoService, CommonService, ThongKeCongNoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -20,6 +21,15 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
 
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     public dataSource_CongNoNhaCungCap: ThongKeCongNoNhaCungCap[];
     public exportFileName: string = '[THỐNG KÊ] - CÔNG NỢ NHÀ CUNG CẤP - ' + moment().format('DD_MM_YYYY');
 
@@ -36,6 +46,8 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
     constructor(
         private titleService: Title,
         private appInfoService: AppInfoService,
+        private router: Router,
+        private commonService: CommonService,
         private authenticationService: AuthenticationService,
         private objThongKeCongNoService: ThongKeCongNoService,
         private modalService: BsModalService
@@ -47,6 +59,22 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'thongkecongno-nhacungcap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                },
+                (error) => {
+                    this.objThongKeCongNoService.handleError(error);
+                }
+            )
+        );
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {

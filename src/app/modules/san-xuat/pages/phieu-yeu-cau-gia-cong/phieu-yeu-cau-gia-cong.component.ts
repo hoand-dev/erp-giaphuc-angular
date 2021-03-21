@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuYeuCauGiaCong } from '@app/shared/entities';
-import { AppInfoService, PhieuYeuCauGiaCongService } from '@app/shared/services';
+import { AppInfoService, CommonService, PhieuYeuCauGiaCongService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -25,6 +25,15 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     public bsModalRef: BsModalRef;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
@@ -44,6 +53,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private objPhieuYeuCauGiaCongService: PhieuYeuCauGiaCongService,
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
@@ -55,6 +65,24 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-xuatdulieu');
+                },
+                (error) => {
+                    this.objPhieuYeuCauGiaCongService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {

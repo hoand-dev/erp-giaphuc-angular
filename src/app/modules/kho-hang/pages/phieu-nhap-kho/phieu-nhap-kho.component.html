@@ -31,7 +31,7 @@
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/phieu-nhap-kho/them-moi']">Thêm mới</button>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/phieu-nhap-kho/them-moi']" *ngIf="enableAddNew">Thêm mới</button>
                             </div>
                         </div>
 
@@ -55,8 +55,8 @@
                             </dxi-column>
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
-                                    <a [routerLink]="['/phieu-nhap-kho/' + data.value + '/cap-nhat']">Sửa</a> |
-                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)">Xóa</a>
+                                    <a [routerLink]="['/phieu-nhap-kho/' + data.value + '/cap-nhat']" *ngIf="enableUpdate">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)" *ngIf="enableDelete">Xóa</a>
                                 </div>
                             </dxi-column>
 
@@ -101,7 +101,7 @@
 
                             <!-- dx-data-grid option -->
                             <dxo-selection mode="single"></dxo-selection>
-                            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
                             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                             <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 

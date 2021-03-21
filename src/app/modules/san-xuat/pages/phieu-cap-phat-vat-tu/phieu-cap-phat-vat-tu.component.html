@@ -12,7 +12,7 @@
                                 <dx-date-box [style.width.px]="200" type="date"></dx-date-box>
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date"></dx-date-box>
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" [routerLink]="['/phieu-cap-phat-vat-tu/1/cap-nhat']">Tải lại</button>
-                                <button [style.margin-left.px]="5" (click)="onThemMoi()" class="btn btn-sm btn-primary" [routerLink]="['/phieu-cap-phat-vat-tu/them-moi']">Thêm mới</button>
+                                <button [style.margin-left.px]="5" (click)="onThemMoi()" class="btn btn-sm btn-primary" [routerLink]="['/phieu-cap-phat-vat-tu/them-moi']" *ngIf="enableAddNew">Thêm mới</button>
                             </div>
                         </div>
 

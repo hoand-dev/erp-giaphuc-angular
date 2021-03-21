@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuNhapTraMuonHang } from '@app/shared/entities';
-import { AppInfoService, PhieuNhapTraMuonHangService } from '@app/shared/services';
+import { AppInfoService, CommonService, PhieuNhapTraMuonHangService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -20,10 +20,19 @@ import { Title } from '@angular/platform-browser';
 })
 export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-    public bsModalRef: BsModalRef;
-
+    
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
+    public bsModalRef: BsModalRef;
+
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -42,6 +51,7 @@ export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private objPhieuNhapTraMuonHangService: PhieuNhapTraMuonHangService,
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
@@ -53,6 +63,24 @@ export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieunhaptramuon-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieunhaptramuon-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieunhaptramuon-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieunhaptramuon-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieunhaptramuon-xuatdulieu');
+                },
+                (error) => {
+                    this.objPhieuNhapTraMuonHangService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {

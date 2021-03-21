@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ThongKeXuatNhapTonTrongNgay } from '@app/shared/entities';
-import { AppInfoService, ThongKeKhoHangService } from '@app/shared/services';
+import { AppInfoService, CommonService, ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -20,6 +21,15 @@ export class ThongKeXuatNhapTonTrongNgayComponent implements OnInit, OnDestroy {
 
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -37,6 +47,8 @@ export class ThongKeXuatNhapTonTrongNgayComponent implements OnInit, OnDestroy {
     constructor(
         private titleService: Title,
         private appInfoService: AppInfoService,
+        private router: Router,
+        private commonService: CommonService,
         private authenticationService: AuthenticationService,
         private objThongKeKhoHangService: ThongKeKhoHangService,
         private modalService: BsModalService
@@ -47,6 +59,22 @@ export class ThongKeXuatNhapTonTrongNgayComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate(); //.add(1, 'days')
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'thongkekho-trongngay')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                },
+                (error) => {
+                    this.objThongKeKhoHangService.handleError(error);
+                }
+            )
+        );
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {

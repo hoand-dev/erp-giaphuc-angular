@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppInfoService, BangGiaGiaCongService } from '@app/shared/services';
+import { AppInfoService, BangGiaGiaCongService, CommonService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -20,6 +20,15 @@ export class BangGiaGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -37,16 +46,35 @@ export class BangGiaGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private objBangGiaGiaCongService: BangGiaGiaCongService,
         private authenticationService: AuthenticationService
     ) {
-        this.titleService.setTitle("BẢNG GIÁ GIA CÔNG | " + this.appInfoService.appName);
+        this.titleService.setTitle('BẢNG GIÁ GIA CÔNG | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'banggiagiacong-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'banggiagiacong-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'banggiagiacong-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'banggiagiacong-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'banggiagiacong-xuatdulieu');
+                },
+                (error) => {
+                    this.objBangGiaGiaCongService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {
@@ -79,7 +107,7 @@ export class BangGiaGiaCongComponent implements OnInit, OnDestroy, AfterViewInit
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
