@@ -48,8 +48,13 @@
                             (onRowDblClick)="onRowDblClick($event)"
                         >
                             <dxo-selection mode="single"></dxo-selection>
-                            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
                             
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
                             <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate" [fixed]="true" fixedPosition="left">
                                 <div *dxTemplate="let data of 'cellTemplate'">
                                     <a [routerLink]="['/bang-gia/' + data.value + '/cap-nhat']" *ngIf="enableUpdate">Sửa |</a>
@@ -84,7 +89,7 @@
                             <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 
                             <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
-                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10"></dxo-paging>
                             <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">

@@ -66,6 +66,10 @@ export class DanhSachPhieuTraHangNCCModalComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         this.onConfirm(e.key);
     }

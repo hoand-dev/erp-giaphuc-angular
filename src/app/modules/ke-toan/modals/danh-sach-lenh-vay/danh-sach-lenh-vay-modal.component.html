@@ -29,6 +29,11 @@
                 [allowColumnReordering]="true"
                 (onRowDblClick)="onRowDblClick($event)"
             >
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
                 <dxi-column dataField="ngayvay" dataType="datetime" caption="Ngày vay"></dxi-column>
                 <dxi-column dataField="malenhvay" caption="Mã lệnh vay"></dxi-column>
                 <dxi-column dataField="sotienvay" caption="Số tiền vay" format="#,##0.###"></dxi-column>
@@ -52,7 +57,7 @@
                 <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                 <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                 <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
-                <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                 <dxo-paging [pageSize]="10"></dxo-paging>
                 <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
             </dx-data-grid>

@@ -45,11 +45,11 @@
                                     [stateStoring]="stateStoringGrid"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
-                                    <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
 
                                     <!-- dx-data-grid option -->
                                     <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
-                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                                     <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                                     <dxo-paging [pageSize]="10"></dxo-paging>
                                     <dxo-pager

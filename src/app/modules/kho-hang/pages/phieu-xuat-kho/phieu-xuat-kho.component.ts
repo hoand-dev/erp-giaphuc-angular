@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhieuXuatKho } from '@app/shared/entities';
-import { AppInfoService, PhieuXuatKhoService } from '@app/shared/services';
+import { AppInfoService, CommonService, PhieuXuatKhoService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -26,6 +26,15 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -43,6 +52,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private objPhieuXuatKhoService: PhieuXuatKhoService,
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
@@ -54,6 +64,24 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieuxuatkho-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieuxuatkho-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieuxuatkho-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieuxuatkho-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieuxuatkho-xuatdulieu');
+                },
+                (error) => {
+                    this.objPhieuXuatKhoService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {
@@ -87,6 +115,10 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
             )
         );
+    }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     addMenuItems(e) {

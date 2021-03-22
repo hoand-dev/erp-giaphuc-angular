@@ -37,7 +37,7 @@ export class BangGiaGiaCong {
         donvigiacong_id: number = null,
 
         banggiagiacong_chitiets: BangGiaGiaCong_ChiTiet[] = [],
-        banggiagiacong_chitiets_old: BangGiaGiaCong_ChiTiet[] = [],
+        banggiagiacong_chitiets_old: BangGiaGiaCong_ChiTiet[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -66,14 +66,7 @@ export class BangGiaGiaCong_ChiTiet {
     public dongia: number;
     public chuthich: string;
 
-    constructor(
-        id: number = null,
-        bangiagiacong_id: number = null,
-        danhmucgiacong_id: number = null,
-        tieuchuan_id: number = null,
-        dongia: number = 0,
-        chuthich: string = null
-    ) {
+    constructor(id: number = null, bangiagiacong_id: number = null, danhmucgiacong_id: number = null, tieuchuan_id: number = null, dongia: number = 0, chuthich: string = null) {
         this.id = id;
         this.bangiagiacong_id = bangiagiacong_id;
         this.danhmucgiacong_id = danhmucgiacong_id;

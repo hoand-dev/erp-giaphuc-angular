@@ -101,6 +101,10 @@ export class BangGiaComponent implements OnInit {
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         console.log(`objBangGia_id: ${e.key.id}`);
     }

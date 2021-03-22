@@ -43,6 +43,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { KeToanModule } from './modules/ke-toan/ke-toan.module';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import { NotPermissionComponent } from './shared/components/not-permission/not-permission.component';
+import { SumTotalPipe } from './shared/pipes/sum-total.pipe';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, HomeComponent, NotFoundComponent, ChangePasswordComponent, NotPermissionComponent],
@@ -89,7 +90,7 @@ import { NotPermissionComponent } from './shared/components/not-permission/not-p
         // provider used to create fake backend
         // fakeBackendProvider,
 
-        AppInfoService
+        AppInfoService, SumTotalPipe
     ],
     bootstrap: [AppComponent]
 })

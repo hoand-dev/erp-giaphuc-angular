@@ -12,7 +12,7 @@
                                 <dx-date-box [style.width.px]="200" type="date"></dx-date-box>
                                 <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date"></dx-date-box>
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" [routerLink]="['/phieu-cap-phat-vat-tu/1/cap-nhat']">Tải lại</button>
-                                <button [style.margin-left.px]="5" (click)="onThemMoi()" class="btn btn-sm btn-primary" [routerLink]="['/phieu-cap-phat-vat-tu/them-moi']">Thêm mới</button>
+                                <button [style.margin-left.px]="5" (click)="onThemMoi()" class="btn btn-sm btn-primary" [routerLink]="['/phieu-cap-phat-vat-tu/them-moi']" *ngIf="enableAddNew">Thêm mới</button>
                             </div>
                         </div>
 
@@ -23,10 +23,15 @@
                             [showBorders]="true"
                             (onToolbarPreparing)="onToolbarPreparing($event)"
                         >
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
                             <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                             <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                             <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
-                            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                            <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10" [pageIndex]="1"></dxo-paging>
                             <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">

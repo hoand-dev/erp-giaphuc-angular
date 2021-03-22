@@ -32,7 +32,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
 
                 if (err.status === 400 && request.url.indexOf('auth-token') != -1) {
-                    return throwError('Thông tin tài khoản chưa đúng');
+                    const error = err.error.error_description || 'Thông tin tài khoản chưa đúng';
+                    return throwError(error);
                 }
 
                 const error = err.error.message || err.statusText;

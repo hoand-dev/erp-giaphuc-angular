@@ -59,8 +59,8 @@
 
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieumuahangncc" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" [colSpan]="3" dataField="diachinhacungcap" [editorOptions]="{ readOnly: true }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: isTatToan }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: isTatToan }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: isTatToan, valueChangeEvent: 'keyup' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: isTatToan, valueChangeEvent: 'keyup' }"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="maphieudathangncc" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
@@ -74,7 +74,7 @@
                                                         <th [style.min-width.px]="25">STT</th>
                                                         <th [style.min-width.px]="550">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="75">ĐVT</th>
-                                                        <th [style.min-width.px]="75">ĐVT1</th>
+                                                        <th [style.min-width.px]="75">KIỆN</th>
                                                         <th [style.min-width.px]="75">M³</th>
                                                         <th [style.min-width.px]="80">TẤT TOÁN</th>
                                                         <th [style.min-width.px]="80">SL</th>
@@ -122,6 +122,7 @@
                                                                 [readOnly]="!isTatToan"
                                                                 [max]="item.soluong - item.soluongdanhap"
                                                                 [(value)]="item.soluongtattoan"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -130,6 +131,7 @@
                                                                 [readOnly]="isTatToan"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.soluong"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -138,6 +140,7 @@
                                                                 [readOnly]="isTatToan"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.dongia"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -147,6 +150,7 @@
                                                                 format="#0.##%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.chietkhau"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -156,6 +160,7 @@
                                                                 format="#0.##%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.thuevat"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -168,6 +173,25 @@
                                                         <td *ngIf="!isTatToan"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="25"></th>
+                                                        <th [style.min-width.px]="550">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="75"></th>
+                                                        <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongm3') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluongtattoan') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="75"></th>
+                                                        <th [style.min-width.px]="75"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="100">{{this.sumTotal.transform(this.hanghoas, 'soluongdanhap') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluongconlai') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

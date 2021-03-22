@@ -112,9 +112,15 @@ export class PhieuKhachTraHang_ChiTiet {
     public tenhanghoabanhang_inphieu: string;
     public xuathoadon: boolean;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 
     constructor(
         id: number = null,

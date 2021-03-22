@@ -7,7 +7,6 @@ export class PhieuXuatKhoGiaCong {
     public inphieu_thoigian: string;
     public inphieu_hoten: string;
 
-
     public tendonvigiacong: string;
     public tenkhogiacong: string;
     public tenkhoxuat: string;
@@ -92,7 +91,7 @@ export class PhieuXuatKhoGiaCong {
 }
 
 export class PhieuXuatKhoGiaCong_ChiTiet {
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
     public tenhanghoa: string;
@@ -109,6 +108,12 @@ export class PhieuXuatKhoGiaCong_ChiTiet {
     public tilequydoiphu: number;
     public soluong: number;
     public chuthich: string;
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 
     constructor(
         id: number = null,

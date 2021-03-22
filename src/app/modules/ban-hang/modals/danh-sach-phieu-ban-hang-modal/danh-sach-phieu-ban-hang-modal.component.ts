@@ -25,7 +25,7 @@ export class DanhSachPhieuBanHangModalComponent implements OnInit {
 
     public trangthaixuat: string = ETrangThaiPhieu.daxuat;
 
-    @ViewChild(DxDataGridComponent) dataGrird: DxDataGridComponent;
+    @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
@@ -56,7 +56,7 @@ export class DanhSachPhieuBanHangModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuBanHangService.findPhieuBanHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrird.dataSource = data.filter((x) => x.trangthaixuat != this.trangthaixuat && x.duyetgia);
+                    this.dataGrid.dataSource = data.filter((x) => x.trangthaixuat != this.trangthaixuat && x.duyetgia);
                 },
                 (error) => {
                     this.objPhieuBanHangService.handleError(error);
@@ -64,6 +64,11 @@ export class DanhSachPhieuBanHangModalComponent implements OnInit {
             )
         );
     }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onRowDblClick(e) {
         this.onConFirm(e.key);
     }

@@ -60,12 +60,12 @@
                                 >
                                     <!-- dx-data-grid option -->
                                     <dxo-selection mode="single"></dxo-selection>
-                                    <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
                                     <dxo-search-panel [visible]="true"></dxo-search-panel>
                                     <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                                     <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 
-                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                                     <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                                     <dxo-paging [pageSize]="50"></dxo-paging>
                                     <dxo-pager
@@ -76,7 +76,12 @@
                                         [showNavigationButtons]="true"
                                     >
                                     </dxo-pager>
-
+                                    
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
                                     <dxi-column dataField="chungtu" caption="HĐ"></dxi-column>
                                     <dxi-column dataField="ngayphatsinh" caption="Thực tế" dataType="date"></dxi-column>
                                     <dxi-column dataField="tenhanghoa" caption="Tên hàng hoá"></dxi-column>

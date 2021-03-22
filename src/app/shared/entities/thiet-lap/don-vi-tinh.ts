@@ -11,7 +11,7 @@ export class DonViTinh {
     public thoigiansua: Date;
     public ghichu: string;
     public madonvitinh: string;
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 

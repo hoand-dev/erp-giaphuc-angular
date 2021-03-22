@@ -68,7 +68,7 @@ export class PhieuNhapTraMuonHang_ChiTiet {
     public tenhanghoa_inphieu: string;
     public mahanghoa: string;
     public tenhanghoa: string;
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 
@@ -85,6 +85,12 @@ export class PhieuNhapTraMuonHang_ChiTiet {
     public chuthich: string;
     public phieuxuatmuonhang_chitiet_id: number;
 
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
+
     constructor(
         id: number = null,
         phieunhaptramuonhang_id: number = null,
@@ -94,7 +100,7 @@ export class PhieuNhapTraMuonHang_ChiTiet {
         hanghoa_lohang_id: number = null,
         dvt_id: number = null,
         tilequydoi: number = 1,
-        soluong: number = 1,
+        soluong: number = 0,
         chuthich: string = null,
         phieuxuatmuonhang_chitiet_id: number = null
     ) {

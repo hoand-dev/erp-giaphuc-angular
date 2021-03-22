@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChiNhanh, PhieuKhachTraHang, KhachHang, KhoHang, NguoiDung, PhieuKhachTraHang_ChiTiet } from '@app/shared/entities';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import {
     AppInfoService,
     CommonService,
@@ -18,6 +19,7 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { timeout } from 'rxjs/operators';
 
 @Component({
     selector: 'app-phieu-khach-tra-hang-cap-nhat',
@@ -61,6 +63,7 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -252,8 +255,13 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        setTimeout(() => {
+            this.onTinhTien();
+        });
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
@@ -293,6 +301,11 @@ export class PhieuKhachTraHangCapNhatComponent implements OnInit {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tilequydoiphu > 0 ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            v.soluongconlai  = v.soluong - v.soluongdanhap;
+
             v.thanhtien = v.soluong * v.dongia;
             v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
 

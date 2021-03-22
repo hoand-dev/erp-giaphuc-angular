@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppInfoService, PhieuChiService } from '@app/shared/services';
+import { AppInfoService, CommonService, PhieuChiService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
@@ -23,6 +23,15 @@ export class PhieuChiComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     public bsModalRef: BsModalRef;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
@@ -42,6 +51,7 @@ export class PhieuChiComponent implements OnInit {
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private objPhieuChiService: PhieuChiService,
         private authenticationService: AuthenticationService,
         private bsModalService: BsModalService
@@ -53,6 +63,24 @@ export class PhieuChiComponent implements OnInit {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieuchi-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieuchi-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieuchi-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieuchi-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieuchi-xuatdulieu');
+                },
+                (error) => {
+                    this.objPhieuChiService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {
@@ -90,6 +118,10 @@ export class PhieuChiComponent implements OnInit {
                 }
             )
         );
+    }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {

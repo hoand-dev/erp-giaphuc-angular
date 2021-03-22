@@ -60,14 +60,14 @@
                                     (onContextMenuPreparing)="addMenuItems($event)"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
-                                    <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
 
                                     <!-- dx-data-grid option -->
                                     <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                                     <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                                     <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
 
-                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                                     <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                                     <dxo-paging [pageSize]="50"></dxo-paging>
                                     <dxo-pager
@@ -78,6 +78,11 @@
                                     >
                                     </dxo-pager>
 
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
                                     <dxi-column dataField="matieuchuan" caption="Tiêu chuẩn"></dxi-column>
                                     <dxi-column dataField="maloaihang" caption="Loại hàng"></dxi-column>
                                     <dxi-column dataField="magiacong" caption="Gia công"></dxi-column>

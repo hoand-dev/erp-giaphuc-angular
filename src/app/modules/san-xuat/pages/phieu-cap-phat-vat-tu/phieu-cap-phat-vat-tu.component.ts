@@ -13,12 +13,25 @@ export class PhieuCapPhatVatTuComponent implements OnInit {
     ];
     customers: any[];
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     constructor(private router: Router) {}
 
     ngOnInit(): void {}
 
     onThemMoi() {
         this.router.navigate(['/phieu-cap-phat-vat-tu/them-moi']);
+    }
+
+    rowNumber(rowIndex){
+        //return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onToolbarPreparing(e) {

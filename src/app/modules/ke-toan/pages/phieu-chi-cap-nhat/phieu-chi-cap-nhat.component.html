@@ -105,49 +105,33 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"> </dxi-validation-rule>
                                     </dxi-item>
 
+                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinhan_dienthoai"></dxi-item>
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    <dxi-item
-                                        *ngIf="loaiphieuchi != 'lenhvay'"
-                                        [label]="{ text: 'TIỀN CHI' }"
-                                        editorType="dxNumberBox"
-                                        dataField="sotienchi"
-                                        [editorOptions]="{ format: '#,##0.###' }"
-                                    ></dxi-item>
+
+                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuchi" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'NGƯỜI NHẬN' }" dataField="nguoinhan_hoten" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="nguoinhan_diachi" [colSpan]="2"></dxi-item>
+
+                                    <dxi-item [label]="{ text: 'TIỀN CHI' }" *ngIf="loaiphieuchi != 'lenhvay'">
+                                        <div *dxTemplate>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuchi.sotienchi" valueChangeEvent="keyup" (onValueChanged)="onChangeTienChi($event)"></dx-number-box>
+                                        </div>
+                                    </dxi-item>
                                     <dxi-item
                                         *ngIf="loaiphieuchi == 'lenhvay'"
                                         [label]="{ text: 'TIỀN CHI' }"
                                         editorType="dxNumberBox"
                                         dataField="sotienchi_lenhvay"
-                                        [editorOptions]="{ format: '#,##0.###' }"
-                                    ></dxi-item>
-
-                                    <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuchi" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
-                                    <dxi-item [label]="{ text: 'NGƯỜI NHẬN TIỀN' }" dataField="nguoinhan_hoten"></dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="nguoinhan_diachi" [colSpan]="2"></dxi-item>
-
-                                    <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinhan_dienthoai"></dxi-item>
-
-                                    <dxi-item
-                                        *ngIf="loaiphieuchi != 'lenhvay'"
-                                        [label]="{ text: 'TIỀN GIẢM' }"
-                                        editorType="dxNumberBox"
-                                        dataField="sotiengiam"
-                                        [editorOptions]="{ format: '#,##0.###' }"
-                                    ></dxi-item>
-                                    <dxi-item
-                                        *ngIf="loaiphieuchi == 'lenhvay'"
-                                        [label]="{ text: 'TIỀN CHI LÃI' }"
-                                        editorType="dxNumberBox"
-                                        dataField="sotienchi_laixuat"
-                                        [editorOptions]="{ format: '#,##0.###' }"
+                                        [editorOptions]="{ format: '#,##0.###', valueChangeEvent: 'keyup' }"
                                     ></dxi-item>
 
                                     <dxi-item [label]="{ text: 'CHỨNG TỪ' }" dataField="chungtu"></dxi-item>
                                     <dxi-item
+                                        [colSpan]="2"
                                         [label]="{ text: 'QUỸ CHI' }"
                                         dataField="quychi_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy' }"
+                                        [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy', dropDownOptions: { width: 320 } }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn quỹ chi"></dxi-validation-rule>
                                     </dxi-item>
@@ -166,10 +150,38 @@
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'CÒN NỢ' }" editorType="dxNumberBox" dataField="conno" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'TỔNG CHI' }" editorType="dxNumberBox" dataField="tongchi" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'TIỀN GIẢM' }" *ngIf="loaiphieuchi != 'lenhvay'">
+                                        <div *dxTemplate>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuchi.sotiengiam" valueChangeEvent="keyup" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
+                                        </div>
+                                    </dxi-item>
+                                    <dxi-item
+                                        *ngIf="loaiphieuchi == 'lenhvay'"
+                                        [label]="{ text: 'TIỀN CHI LÃI' }"
+                                        editorType="dxNumberBox"
+                                        dataField="sotienchi_laixuat"
+                                        [editorOptions]="{ format: '#,##0.###', valueChangeEvent: 'keyup' }"
+                                    ></dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item
+                                        [label]="{ text: 'TỔNG CHI' }"
+                                        editorType="dxNumberBox"
+                                        dataField="tongchi"
+                                        [editorOptions]="{
+                                            value: this.phieuchi.sotienchi + this.phieuchi.sotiengiam + this.phieuchi.sotienchi_lenhvay + this.phieuchi.sotienchi_laixuat,
+                                            readOnly: true,
+                                            format: '#,##0.###'
+                                        }"
+                                    >
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
+                                    <dxi-item
+                                        [label]="{ text: 'CÒN NỢ' }"
+                                        editorType="dxNumberBox"
+                                        dataField="conno"
+                                        [editorOptions]="{ value: calculateNoConLai(), readOnly: true, format: '#,##0.###' }"
+                                    >
+                                    </dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="phieunhapkhos.length > 0">
                                         <div class="table-responsive">
@@ -196,18 +208,37 @@
                                                         <td>{{ item.sotienchitruoc | number: '1.0-3' }}</td>
                                                         <td>{{ item.tongthanhtien - item.sotienchitruoc | number: '1.0-3' }}</td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.sotienchi" (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [(value)]="item.sotienchi"
+                                                                valueChangeEvent="keyup"
+                                                                (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box
                                                                 format="#,##0.###"
                                                                 [(value)]="item.sotiengiam"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="45"></th>
+                                                        <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'tongthanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchitruoc') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienconlai') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchi') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotiengiam') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

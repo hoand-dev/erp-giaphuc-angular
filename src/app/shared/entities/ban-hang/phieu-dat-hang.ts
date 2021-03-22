@@ -113,9 +113,15 @@ export class PhieuDatHang_ChiTiet {
     public soluongtattoan: number;
     public tenhanghoa_inphieu: string;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
 
     constructor(
         id: number = null,
@@ -126,7 +132,7 @@ export class PhieuDatHang_ChiTiet {
         dvt_id: number = null,
         tilequydoi: number = 1,
         tilequydoiphu: number = 1,
-        soluong: number = 1,
+        soluong: number = 0,
         dongia: number = 0,
         chietkhau: number = 0,
         thuevat: number = 0,

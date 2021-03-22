@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { ThongKeCongNoQuaHan } from '@app/shared/entities';
-import { AppInfoService, ThongKeCongNoService } from '@app/shared/services';
+import { AppInfoService, CommonService, ThongKeCongNoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -16,6 +17,15 @@ export class ThongKeCongNoQuaHanComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     
     private subscriptions: Subscription = new Subscription();
+
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
     
     public dataSource_CongNoQuaHan: ThongKeCongNoQuaHan[];
     public exportFileName: string = "[THỐNG KÊ] - CÔNG NỢ QUÁ HẠN - " + moment().format("DD_MM_YYYY");
@@ -29,6 +39,8 @@ export class ThongKeCongNoQuaHanComponent implements OnInit, OnDestroy {
     constructor(
         private titleService: Title,
         private appInfoService: AppInfoService,
+        private router: Router,
+        private commonService: CommonService,
         private authenticationService: AuthenticationService,
         private objThongKeCongNoService: ThongKeCongNoService
     ) {
@@ -36,6 +48,22 @@ export class ThongKeCongNoQuaHanComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'thongkecongno-quahan')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                },
+                (error) => {
+                    this.objThongKeCongNoService.handleError(error);
+                }
+            )
+        );
+
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh
                 .subscribe((x) => {

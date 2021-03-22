@@ -87,7 +87,7 @@ export class BangGia_ChiTiet {
     public chuthich: string;
     public tenhanghoa_inphieu: string;
 
-    public trongluong: number;
+    public trongluong: number = 0;
     public tendonvitinh: string;
     public tendonvitinhphu: string;
 

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DonViGiaCong, KhachHang, KhoHang, PhieuXuatKhoGiaCong, PhieuXuatKhoGiaCong_ChiTiet } from '@app/shared/entities';
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import {
     AppInfoService,
     CommonService,
@@ -63,6 +64,7 @@ export class PhieuXuatKhoGiaCongCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -266,8 +268,13 @@ export class PhieuXuatKhoGiaCongCapNhatComponent implements OnInit {
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        setTimeout(() => {
+            this.onTinhTong();
+        });
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
@@ -282,6 +289,15 @@ export class PhieuXuatKhoGiaCongCapNhatComponent implements OnInit {
                 this.hanghoas[index].soluong = e.value;
                 break;
         }
+    }
+
+    onTinhTong(){
+        this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            //v.soluongconlai  = v.soluong - v.soluongdaxuat;
+        });
     }
 
     public onSubmitForm(e) {

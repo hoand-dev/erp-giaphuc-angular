@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DanhMucLoi } from '@app/shared/entities';
-import { AppInfoService, DanhMucLoiService } from '@app/shared/services';
+import { AppInfoService, CommonService, DanhMucLoiService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -20,6 +20,15 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - DANH MỤC LỖI - ' + moment().format('DD_MM_YYYY');
 
@@ -29,11 +38,29 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
         storageKey: 'dxGrid_DanhMucLoi'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private danhmucloiService: DanhMucLoiService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private danhmucloiService: DanhMucLoiService) {
         this.titleService.setTitle('DANH MỤC LỖI | ' + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'danhmucloi-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'danhmucloi-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'danhmucloi-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'danhmucloi-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'danhmucloi-xuatdulieu');
+                },
+                (error) => {
+                    this.danhmucloiService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -61,6 +88,10 @@ export class DanhMucLoiComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
             )
         );
+    }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {

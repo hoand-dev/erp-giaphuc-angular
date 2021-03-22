@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ChiNhanh, QuyTaiKhoan } from '@app/shared/entities';
-import { AppInfoService, QuyTaiKhoanService } from '@app/shared/services';
+import { AppInfoService, CommonService, QuyTaiKhoanService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -22,6 +22,15 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
     subscriptions: Subscription = new Subscription();
     currChiNhanh: ChiNhanh;
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - QUỸ TÀI KHOẢN - ' + moment().format('DD_MM_YYYY');
 
@@ -35,13 +44,32 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private authenticationService: AuthenticationService,
         private quytaikhoanService: QuyTaiKhoanService
     ) {
         this.titleService.setTitle("QUỸ TÀI KHOẢN | " + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'quytaikhoan-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'quytaikhoan-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'quytaikhoan-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'quytaikhoan-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'quytaikhoan-xuatdulieu');
+                },
+                (error) => {
+                    this.quytaikhoanService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -75,6 +103,10 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
             )
         );
+    }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {

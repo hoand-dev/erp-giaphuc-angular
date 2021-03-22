@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChiNhanh } from '@app/shared/entities';
-import { AppInfoService, TheoDoiHopDongService } from '@app/shared/services';
+import { AppInfoService, CommonService, TheoDoiHopDongService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
@@ -19,15 +19,20 @@ export class TheoDoiHopDongComponent implements OnInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /*tối ưu subscriptions */
-
     subscriptions: Subscription = new Subscription();
 
-    private currentChiNhanh = ChiNhanh;
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
-    public timeCreateAt: Date = new Date();
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - THEO DÕI HỢP ĐỒNG - ' + moment().format('DD_MM_YYYY');
@@ -42,6 +47,7 @@ export class TheoDoiHopDongComponent implements OnInit {
         private titleService: Title,
         private appInfoService: AppInfoService,
         private router: Router,
+        private commonService: CommonService,
         private theodoihopdongService: TheoDoiHopDongService,
         private authenticationService: AuthenticationService
     ) {
@@ -52,7 +58,24 @@ export class TheoDoiHopDongComponent implements OnInit {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
-        this.timeCreateAt = moment().add(1, 'days').toDate();
+
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'theodoihopdong-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'theodoihopdong-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'theodoihopdong-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'theodoihopdong-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'theodoihopdong-xuatdulieu');
+                },
+                (error) => {
+                    this.theodoihopdongService.handleError(error);
+                }
+            )
+        );
     }
 
     ngAfterViewInit(): void {
@@ -74,6 +97,10 @@ export class TheoDoiHopDongComponent implements OnInit {
                 }
             )
         );
+    }
+
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {

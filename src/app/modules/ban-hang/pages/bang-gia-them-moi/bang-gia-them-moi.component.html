@@ -23,8 +23,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title" [style.margin-bottom.px]="20">
-                            <h5>{{ 'bảng giá' | uppercase }} - THÊM MỚI</h5>
+                        <div class="card-title" [style.margin-bottom.px]="20" [style.width]="'100%'">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>{{ 'bảng giá' | uppercase }} - THÊM MỚI</h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button" class="btn btn-sm btn-primary float-right" (click)="fileUpload.click()">
+                                        <i class="fa fa-file-excel" aria-hidden="true"></i> Tải lên từ Excel
+                                        <input #fileUpload hidden="true" type="file" (change)="onChangeFile($event)" />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
@@ -38,6 +48,7 @@
                                         dataField="khachhang_id"
                                         editorType="dxSelectBox"
                                         [editorOptions]="{
+                                            showClearButton: true,
                                             dataSource: dataSource_KhachHang,
                                             valueExpr: 'id',
                                             searchEnabled: true,
@@ -45,7 +56,6 @@
                                             displayExpr: 'tenkhachhang'
                                         }"
                                     >
-                                        <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai"> </dxi-item>
@@ -65,7 +75,7 @@
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="mabanggia" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
 
-                                    <dxi-item [colSpan]="6" *ngIf="isValidForm">
+                                    <dxi-item [colSpan]="6">
                                         <div class="table-responsive">
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
@@ -121,6 +131,7 @@
                                             </table>
                                         </div>
                                     </dxi-item>
+
                                     <dxi-item [colSpan]="6">
                                         <div *dxTemplate>
                                             <dx-button icon="back" [routerLink]="['/bang-gia']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>

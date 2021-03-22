@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 
 import Validator from 'devextreme/ui/validator';
 import CustomStore from 'devextreme/data/custom_store';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-dat-hang-them-moi',
@@ -49,6 +50,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
@@ -251,6 +253,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
@@ -292,6 +295,11 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
         let tongtienhang: number = 0;
 
         this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tilequydoiphu > 0 ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            v.soluongconlai  = v.soluong - v.soluongdagiao;
+
             v.thanhtien = v.soluong * v.dongia;
             v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
 

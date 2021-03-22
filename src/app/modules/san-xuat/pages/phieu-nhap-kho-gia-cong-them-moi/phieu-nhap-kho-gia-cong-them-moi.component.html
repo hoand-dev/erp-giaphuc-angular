@@ -201,6 +201,7 @@
                                                                 [readOnly]="true"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.heso"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -227,13 +228,13 @@
                                                         </td>
 
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiavon" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiavon" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
@@ -243,6 +244,7 @@
                                                                 [readOnly]="true"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.soluongloi"
+                                                                valueChangeEvent="keyup"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluongloi', i, $event)"
                                                                 (click)="onclickSoLuongLoi(i)"
                                                             ></dx-number-box>
@@ -266,6 +268,27 @@
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th [style.min-width.px]="25"></th>
+                                                        <th [style.min-width.px]="400">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.min-width.px]="110"></th>
+                                                        <th [style.min-width.px]="80"></th>
+                                                        <th [style.min-width.px]="110"></th>
+                                                        <th [style.min-width.px]="300"></th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120"></th>
+                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="100">{{this.sumTotal.transform(this.hanghoas, 'soluongloi') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.max-width.px]="20">
+                                                            <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </dxi-item>

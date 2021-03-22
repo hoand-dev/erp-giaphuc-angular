@@ -53,6 +53,10 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
 
     onLoadData() {}
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     public selectionChanged(data: any) {
         this.selectedItemKeys = data.selectedRowKeys;
     }

@@ -1,1 +1,1 @@
-export * from './thong-ke-mua-hang-chi-tiet.service'
+export * from './thong-ke-mua-hang.service'

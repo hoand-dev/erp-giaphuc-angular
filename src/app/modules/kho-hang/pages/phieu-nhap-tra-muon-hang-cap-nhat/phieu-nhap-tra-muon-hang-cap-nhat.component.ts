@@ -15,6 +15,7 @@ import { HangHoaService } from '@app/shared/services';
 import CustomStore from 'devextreme/data/custom_store';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DanhSachPhieuXuatMuonHangModalComponent } from '../../modals/danh-sach-phieu-xuat-muon-hang-modal/danh-sach-phieu-xuat-muon-hang-modal.component';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-nhap-tra-muon-hang-cap-nhat',
@@ -55,6 +56,7 @@ export class PhieuNhapTraMuonHangCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -215,6 +217,7 @@ export class PhieuNhapTraMuonHangCapNhatComponent implements OnInit {
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
         this.hanghoas[index].tilequydoiphu = selected.quydoi1;
         this.hanghoas[index].trongluong = selected.trongluong;
+        this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
@@ -241,12 +244,17 @@ export class PhieuNhapTraMuonHangCapNhatComponent implements OnInit {
 
     // tính tiền sau chiết khấu và tổng
     private onTinhTien() {
-        // let tongtienhang: number = 0;
-        // this.hanghoas.forEach((v, i) => {
-        //     v.thanhtien = v.soluong * v.dongia;
-        //     tongtienhang += v.thanhtien;
-        // });
-        // this.phieunhaptramuonhang.tongthanhtien = tongtienhang;
+        let tongtienhang: number = 0;
+        this.hanghoas.forEach((v, i) => {
+            v.tongtrongluong = v.soluong * v.trongluong;
+            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
+            v.soluongconlai  = v.soluong;
+
+            // v.thanhtien = v.soluong * v.dongia;
+            // tongtienhang += v.thanhtien;
+        });
+        //this.phieunhaptramuonhang.tongthanhtien = tongtienhang;
     }
 
     public onSubmitForm(e) {

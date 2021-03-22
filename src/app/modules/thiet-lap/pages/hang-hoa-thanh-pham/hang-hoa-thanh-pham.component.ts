@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AppInfoService, HangHoaService } from '@app/shared/services';
+import { Router } from '@angular/router';
+import { AppInfoService, CommonService, HangHoaService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
@@ -18,6 +19,15 @@ export class HangHoaThanhPhamComponent implements OnInit, OnDestroy, AfterViewIn
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
 
+    /* danh sách quyền được cấp */
+    public permissions: any[] = [];
+
+    /* danh sách các quyền theo biến số, mặc định false */
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - THÀNH PHẨM - ' + moment().format('DD_MM_YYYY');
 
@@ -27,11 +37,29 @@ export class HangHoaThanhPhamComponent implements OnInit, OnDestroy, AfterViewIn
         storageKey: 'dxGrid_HangHoaThanhPham'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private hanghoaService: HangHoaService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private hanghoaService: HangHoaService) {
         this.titleService.setTitle('THÀNH PHẨM | ' + this.appInfoService.appName);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.commonService.timKiem_QuyenDuocCap().subscribe(
+                (data) => {
+                    this.permissions = data;
+                    if (!this.commonService.getEnablePermission(this.permissions, 'thanhpham-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'thanhpham-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'thanhpham-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'thanhpham-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thanhpham-xuatdulieu');
+                },
+                (error) => {
+                    this.hanghoaService.handleError(error);
+                }
+            )
+        );
+    }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -61,6 +89,10 @@ export class HangHoaThanhPhamComponent implements OnInit, OnDestroy, AfterViewIn
         );
     }
 
+    rowNumber(rowIndex){
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+    
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`hanghoa_id: ${e.key.id}`);

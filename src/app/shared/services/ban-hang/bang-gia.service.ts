@@ -1,7 +1,7 @@
 import { BaseService } from '@app/shared/services';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BangGia } from '@app/shared/entities';
+import { BangGia, BangGia_ChiTiet } from '@app/shared/entities';
 
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
@@ -33,6 +33,18 @@ export class BangGiaService extends BaseService {
 
     updateBangGia(banggia: BangGia): Observable<BangGia> {
         return this.httpClient.put<BangGia>(this.apiUrl + `/${banggia.id}`, banggia);
+    }
+
+    // https://stackoverflow.com/questions/32423348/angular-post-uploaded-file
+    uploadExcel(files: File[]): Observable<BangGia_ChiTiet[]> {
+        let formData:FormData = new FormData();
+        formData.append('files', files[0], files[0].name);
+        // For multiple files
+        // for (let i = 0; i < files.length; i++) {
+        //     formData.append(`files[]`, files[i], files[i].name);
+        // }
+
+        return this.httpClient.post<BangGia_ChiTiet[]>(this.apiUrl + `/upload-excel`, formData);
     }
 
     deleteBangGia(id: number): Observable<BangGia> {

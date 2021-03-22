@@ -16,10 +16,11 @@ import { ThongKeXuatNhapTonChiTietModalComponent } from './kho-hang/modals/thong
 import { ThongKeXuatNhapTonTrongNgayComponent } from './kho-hang/pages/thong-ke-xuat-nhap-ton-trong-ngay/thong-ke-xuat-nhap-ton-trong-ngay.component';
 import { ThongKeCongNoDonViGiaCongComponent } from './cong-no/pages/thong-ke-cong-no-don-vi-gia-cong/thong-ke-cong-no-don-vi-gia-cong.component';
 import { DoiChieuCongNoDonViGiaCongModalComponent } from './cong-no/modals/doi-chieu-cong-no-don-vi-gia-cong-modal/doi-chieu-cong-no-don-vi-gia-cong-modal.component';
+import { ThongKeBanHangChiTietComponent } from './ban-hang/pages/thong-ke-ban-hang-chi-tiet/thong-ke-ban-hang-chi-tiet.component';
 
 
 @NgModule({
-  declarations: [ThongKeCongNoQuaHanComponent, ThongKeCongNoKhachHangComponent, ThongKeNoiDungThuChiComponent, ThongKeThuChiTonQuyComponent, ThongKeCongNoNhaCungCapComponent, ThongKeMuaHangChiTietComponent, DoiChieuCongNoKhachHangModalComponent, DoiChieuCongNoNhaCungCapModalComponent, ThongKeXuatNhapTonComponent, ThongKeXuatNhapTonChiTietPhieuModalComponent, ThongKeXuatNhapTonChiTietModalComponent, ThongKeXuatNhapTonTrongNgayComponent, ThongKeCongNoDonViGiaCongComponent, DoiChieuCongNoDonViGiaCongModalComponent],
+  declarations: [ThongKeCongNoQuaHanComponent, ThongKeCongNoKhachHangComponent, ThongKeNoiDungThuChiComponent, ThongKeThuChiTonQuyComponent, ThongKeCongNoNhaCungCapComponent, ThongKeMuaHangChiTietComponent, DoiChieuCongNoKhachHangModalComponent, DoiChieuCongNoNhaCungCapModalComponent, ThongKeXuatNhapTonComponent, ThongKeXuatNhapTonChiTietPhieuModalComponent, ThongKeXuatNhapTonChiTietModalComponent, ThongKeXuatNhapTonTrongNgayComponent, ThongKeCongNoDonViGiaCongComponent, DoiChieuCongNoDonViGiaCongModalComponent, ThongKeBanHangChiTietComponent],
   imports: [
     CommonModule,
     SharedModule,

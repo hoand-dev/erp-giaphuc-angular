@@ -28,7 +28,7 @@ export class HangHoa {
     public gianhap: number;
     public giabanle: number;
     public giabansi: number;
-    public trongluong: number;
+    public trongluong: number = 0;
     public dinhmucton: number;
     public giatrungbinhhientai: number;
     public dinhmuctonduoi: number;

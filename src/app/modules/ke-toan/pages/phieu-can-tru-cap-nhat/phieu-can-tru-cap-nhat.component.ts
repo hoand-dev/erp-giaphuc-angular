@@ -9,6 +9,7 @@ import { AppInfoService, CommonService, DonViGiaCongService, KhachHangService, N
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-phieu-can-tru-cap-nhat',
@@ -45,6 +46,7 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private commonService: CommonService,
         private routeInterceptorService: RouteInterceptorService,
@@ -115,10 +117,10 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             })
         );
 
-        // // kiểm tra có cantruộc các loại phiếu cantru này hay không?
+        // kiểm tra có cantruộc các loại phiếu cantru này hay không?
         // let arrLoaiPhieuCanTru: string[] = ['khachhang-nhacungcap', 'khachhang-donvigiacong', 'nhacungcap-donvigiacong'];
 
-        // // kiểm tra queryParams
+        // kiểm tra queryParams
         // this.subscriptions.add(
         //     this.activatedRoute.queryParams.subscribe((params) => {
         //         if (this.commonService.isNotEmpty(params.loaiphieucantru) && arrLoaiPhieuCanTru.includes(params.loaiphieucantru)) {
@@ -173,6 +175,7 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.khachHang_LoadNoCu(this.phieucantru.khachhang_id, this.currentChiNhanh.id, this.phieucantru.sort).subscribe((data) => {
                     this.phieucantru.nocu_khachhang = data;
+                    this.calculateChenhLech();
                 })
             );
 
@@ -189,6 +192,7 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
             this.subscriptions.add(
                 this.commonService.nhaCungCap_LoadNoCu(this.phieucantru.nhacungcap_id, this.currentChiNhanh.id, this.phieucantru.sort).subscribe((data) => {
                     this.phieucantru.nocu_nhacungcap = data;
+                    this.calculateChenhLech();
                 })
             );
 
@@ -202,41 +206,16 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
 
         if (e.dataField == 'donvigiacong_id' && e.value !== undefined && e.value !== null) {
             // load nợ củ
+            this.subscriptions.add(
+                this.commonService.donViGiaCong_LoadNoCu(this.phieucantru.donvigiacong_id, this.currentChiNhanh.id, this.phieucantru.sort).subscribe((data) => {
+                    this.phieucantru.nocu_donvigiacong = data;
+                    this.calculateChenhLech();
+                })
+            );
         }
+    }
 
-        if (e.dataField == 'sotiencantru' && e.value !== undefined && e.value !== null) {
-            // phân bổ tiền
-            if (this.isPhanBoTien) {
-                let sotienphanbo_xuatkho = this.phieucantru.sotiencantru;
-                this.phieuxuatkhos.forEach((v, i) => {
-                    if (sotienphanbo_xuatkho > 0) {
-                        let tiencancantru = v.tongthanhtien - v.sotienthutruoc;
-                        if (sotienphanbo_xuatkho > tiencancantru) {
-                            v.sotienthu = tiencancantru;
-                        }
-                        if (sotienphanbo_xuatkho <= tiencancantru) {
-                            v.sotienthu = sotienphanbo_xuatkho;
-                        }
-                        sotienphanbo_xuatkho -= v.sotienthu;
-                    } else v.sotienthu = 0;
-                });
-
-                let sotienphanbo_nhapkho = this.phieucantru.sotiencantru;
-                this.phieunhapkhos.forEach((v, i) => {
-                    if (sotienphanbo_nhapkho > 0) {
-                        let tiencancantru = v.tongthanhtien - v.sotienchitruoc;
-                        if (sotienphanbo_nhapkho > tiencancantru) {
-                            v.sotienchi = tiencancantru;
-                        }
-                        if (sotienphanbo_nhapkho <= tiencancantru) {
-                            v.sotienchi = sotienphanbo_nhapkho;
-                        }
-                        sotienphanbo_nhapkho -= v.sotienchi;
-                    } else v.sotienchi = 0;
-                });
-            }
-        }
-
+    calculateChenhLech(){
         if (this.loaiphieucantru == 'khachhang-nhacungcap') {
             this.phieucantru.nocu_chenhlech = this.phieucantru.nocu_khachhang - this.phieucantru.nocu_nhacungcap;
             if (this.phieucantru.nocu_khachhang < this.phieucantru.nocu_nhacungcap) {
@@ -257,17 +236,45 @@ export class PhieuCanTruCapNhatComponent implements OnInit {
         }
     }
 
+    onChangeTienCanTru(e) {
+        if (e.event) {
+            let sotienphanbo_xuatkho = this.phieucantru.sotiencantru;
+            this.phieuxuatkhos.forEach((v, i) => {
+                if (sotienphanbo_xuatkho > 0) {
+                    let tiencancantru = v.tongthanhtien - v.sotienthutruoc;
+                    if (sotienphanbo_xuatkho > tiencancantru) {
+                        v.sotienthu = tiencancantru;
+                    }
+                    if (sotienphanbo_xuatkho <= tiencancantru) {
+                        v.sotienthu = sotienphanbo_xuatkho;
+                    }
+                    sotienphanbo_xuatkho -= v.sotienthu;
+                } else v.sotienthu = 0;
+            });
+
+            let sotienphanbo_nhapkho = this.phieucantru.sotiencantru;
+            this.phieunhapkhos.forEach((v, i) => {
+                if (sotienphanbo_nhapkho > 0) {
+                    let tiencancantru = v.tongthanhtien - v.sotienchitruoc;
+                    if (sotienphanbo_nhapkho > tiencancantru) {
+                        v.sotienchi = tiencancantru;
+                    }
+                    if (sotienphanbo_nhapkho <= tiencancantru) {
+                        v.sotienchi = sotienphanbo_nhapkho;
+                    }
+                    sotienphanbo_nhapkho -= v.sotienchi;
+                } else v.sotienchi = 0;
+            });
+        }
+    }
+
     public onHangHoaChangeRow(col: string, index: number, e: any) {
-        // this.isPhanBoTien = false;
-        // let tongcantru = 0;
-        // this.phieuxuatkhos.forEach((v, i) => {
-        //     tongcantru += v.sotienthu;
-        // });
-        // this.phieucantru.sotiencantru = tongcantru;
-        // // đặt time out 1s tránh được nó tự phân bổ, js bất đồng bộ
-        // setTimeout(() => {
-        //     this.isPhanBoTien = true;
-        // }, 1000);
+        this.phieuxuatkhos.forEach((x, i) => {
+            x.sotienconlai = x.tongthanhtien - x.sotienthutruoc;
+        });
+        this.phieunhapkhos.forEach((x, i) => {
+            x.sotienconlai = x.tongthanhtien - x.sotienchitruoc;
+        });
     }
 
     public onSubmitForm(e) {
