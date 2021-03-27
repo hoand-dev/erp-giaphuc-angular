@@ -34,7 +34,6 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     bsModalRef: BsModalRef;
 
     /* tối ưu subscriptions */
-
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
 
@@ -54,6 +53,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
+
+    public isChonTuPhieu: boolean = false;
 
     public saveProcessing = false;
     public loadingVisible = false;
@@ -175,6 +176,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.activatedRoute.queryParams.subscribe((params) => {
                 if (this.commonService.isNotEmpty(params.tuphieu)) {
+                    this.isChonTuPhieu = true;
                     this.hanghoas = [];
                     this.firstLoad_KhachHang = false;
                     // lấy thông tin phiếu đặt hàng ncc từ api

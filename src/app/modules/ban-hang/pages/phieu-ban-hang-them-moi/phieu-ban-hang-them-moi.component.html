@@ -50,7 +50,8 @@
                                             valueExpr: 'id',
                                             searchEnabled: true,
                                             searchExpr: ['tenkhachhang', 'makhachhang'],
-                                            displayExpr: 'tenkhachhang'
+                                            displayExpr: 'tenkhachhang',
+                                            readOnly: isChonTuPhieu
                                         }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
@@ -68,7 +69,7 @@
                                         [label]="{ text: 'KHO HÀNG' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{ readOnly: isChonTuPhieu, dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -118,6 +119,7 @@
                                                         <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
+                                                                [readOnly]="item.phieudathang_sxchitiet_id || item.phieudathang_chitiet_id ? true : false"
                                                                 id="nguyenlieu_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"
