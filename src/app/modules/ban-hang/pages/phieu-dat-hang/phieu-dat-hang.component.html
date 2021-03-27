@@ -71,9 +71,23 @@
                             <dxi-column dataField="thuevat" caption="Thuế VAT" format="#0.##%"></dxi-column>
                             <dxi-column dataField="tongthanhtien" caption="Tổng tiền" format="#,##0"></dxi-column>
 
-                            <dxi-column dataField="trangthainhap" caption="Trạng thái xuất" cellTemplate="cellTemplateTrangThaiXuat">
-                                <div *dxTemplate="let data of 'cellTemplateTrangThaiXuat'">
-                                    <span *ngIf="data.value == null">Chưa xuất</span>
+                            <dxi-column dataField="trangthaiyeucau" caption="Trạng thái sản xuất" cellTemplate="cellTemplateTrangThaiYeuCau">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiYeuCau'">
+                                    <span *ngIf="data.value == null">Chưa lên kế hoạch</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="trangthainhap" caption="Trạng thái thành phẩm" cellTemplate="cellTemplateTrangThaiNhap">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiNhap'">
+                                    <span *ngIf="data.value == null">Chưa nhập</span>
+                                    <span *ngIf="data.value != null">{{ data.value }}</span>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="trangthaiban" caption="Trạng thái bán" cellTemplate="cellTemplateTrangThaiBan">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiBan'">
+                                    <span *ngIf="data.value == null">Chưa bán</span>
                                     <span *ngIf="data.value != null">{{ data.value }}</span>
                                 </div>
                             </dxi-column>
@@ -105,8 +119,7 @@
                             <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-paging [pageSize]="10"></dxo-paging>
-                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true">
-                            </dxo-pager>
+                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20]" [showNavigationButtons]="true"> </dxo-pager>
                         </dx-data-grid>
                     </div>
                 </div>
