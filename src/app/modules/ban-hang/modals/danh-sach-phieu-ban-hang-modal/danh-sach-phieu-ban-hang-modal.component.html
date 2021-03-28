@@ -62,6 +62,13 @@
                 </dxi-column>
                 <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
 
+                <!-- Thêm trang tổng cộng cuối form -->
+                <dxo-summary>
+                    <dxi-total-item column="maphieubanhang" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                    <dxi-total-item column="tongtienhang" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                </dxo-summary>
+
                 <!-- dx-data-grid option -->
                 <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                 <dxo-filter-panel [visible]="true"></dxo-filter-panel>

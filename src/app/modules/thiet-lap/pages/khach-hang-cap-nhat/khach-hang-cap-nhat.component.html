@@ -43,14 +43,21 @@
                                         <dxi-validation-rule type="stringLength" [min]="9" [max]="50" message="Số điện thoại không đúng định dạng"></dxi-validation-rule>
                                     </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'EMAIL' }" dataField="email"></dxi-item>
+                                    <dxi-item [label]="{ text: 'EMAIL' }" dataField="email">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập email nhận hóa đơn"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="email" message="Email không đúng định dạng"></dxi-validation-rule>
+                                    </dxi-item>
+
                                     <dxi-item [label]="{ text: 'MÃ SỐ THUẾ' }" dataField="masothue"></dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"></dxi-item>
 
                                     <dxi-item [label]="{ text: 'SỐ TÀI KHOẢN' }" dataField="sotaikhoan"></dxi-item>
                                     <dxi-item [label]="{ text: 'NGÂN HÀNG' }" dataField="tennganhang"></dxi-item>
                                     <dxi-item [label]="{ text: 'CHỦ TÀI KHOẢN' }" dataField="tenchutaikhoan"></dxi-item>
-                                    <dxi-item [label]="{ text: 'SỐ NGÀY NỢ' }" dataField="songayno"></dxi-item>
+                                    <dxi-item [label]="{ text: 'SỐ NGÀY NỢ' }" dataField="songayno">
+                                        <dxi-validation-rule type="required" message="Vui lòng nhập thời gian công nợ - Khách hàng tiền mặt thì nhập số 0"> </dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="1" [max]="2" message="Thời gian công nợ trong khoảng < 99 ngày"></dxi-validation-rule>
+                                    </dxi-item>
                                     <dxi-item [label]="{ text: 'NGƯỜI ĐẠI DIỆN' }" dataField="nguoidaidien"></dxi-item>
                                     <dxi-item [label]="{ text: 'CHỨC VỤ' }" dataField="chucvu"></dxi-item>
 
