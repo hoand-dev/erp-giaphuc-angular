@@ -45,6 +45,7 @@
                                     [stateStoring]="stateStoringGrid"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
+                                    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                                     <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
 
                                     <!-- dx-data-grid option -->
@@ -78,13 +79,67 @@
                                     <dxo-summary [calculateCustomSummary]="calculateTongTien">
                                         <dxi-group-item column="ngaylap" summaryType="count" displayFormat="TỔNG CỘNG: {0}" [showInGroupFooter]="true"> </dxi-group-item>
 
-                                        <dxi-group-item column="quahan0115" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="quahan1630" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="quahan3145" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="quahan4660" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="quahan61" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item 
+                                        name="RowsSummaryquahan0115" 
+                                        column="quahan0115" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        
+                                    <dxi-group-item 
+                                    name="RowsSummaryquahan1630" 
+                                    column="quahan1630" 
+                                    summaryType="sum" 
+                                    valueFormat="#,##0.###" 
+                                    displayFormat="{0}" 
+                                    [showInGroupFooter]="false"
+                                    [alignByColumn]="true"
+                                    > 
+                                </dxi-group-item>
+                                        <dxi-group-item 
+                                        name="RowsSummaryquahan3145" 
+                                        column="quahan3145" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                         [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item
+                                        name="RowsSummaryquahan4660" 
+                                        column="quahan4660" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item
+                                        name="RowsSummaryquahan61"  
+                                        column="quahan61" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
 
-                                        <dxi-group-item name="RowsSummaryTongTien" showInColumn="tongtien" summaryType="custom" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true">
+                                        <dxi-group-item 
+                                        name="RowsSummaryTongTien" 
+                                        showInColumn="tongtien" 
+                                        summaryType="custom" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        >
                                         </dxi-group-item>
                                     </dxo-summary>
 
