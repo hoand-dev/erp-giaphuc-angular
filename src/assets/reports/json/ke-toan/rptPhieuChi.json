@@ -43,9 +43,10 @@
         , "quy_diachi": null
         
         , "nhacungcap_sotaikhoan": null
-        , "nhacungcap_ tenchutaikhoan": null
-        , "nhacungcap_tennganhang": null
-        , "nhacungcap_chinhanhnganhang": null
+        , "nhacungcap_chinhanh": null
+        , "nhacungcap_chutaikhoan": null
+        , "nhacungcap_diachi": null
+
 
         ,  "nguoitao_hoten": null
 
