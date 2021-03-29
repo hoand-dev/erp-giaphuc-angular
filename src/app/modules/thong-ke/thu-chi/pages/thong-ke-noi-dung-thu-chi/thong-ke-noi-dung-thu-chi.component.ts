@@ -64,7 +64,7 @@ export class ThongKeNoiDungThuChiComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/khong-co-quyen']);
                     }
                     
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkethuchi-noidung-xuatdulieu');
                 },
                 (error) => {
                     this.objThongKeThuChiService.handleError(error);

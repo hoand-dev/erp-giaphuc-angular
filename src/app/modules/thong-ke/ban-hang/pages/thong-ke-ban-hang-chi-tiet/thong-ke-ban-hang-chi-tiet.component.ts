@@ -65,7 +65,7 @@ export class ThongKeBanHangChiTietComponent implements OnInit {
                         this.router.navigate(['/khong-co-quyen']);
                     }
                     
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkeban-banhangchitiet-xuatdulieu');
                 },
                 (error) => {
                     this.objThongKeBanhangService.handleError(error);
