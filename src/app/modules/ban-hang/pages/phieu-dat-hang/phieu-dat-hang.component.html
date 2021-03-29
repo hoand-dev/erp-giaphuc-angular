@@ -57,7 +57,7 @@
                             </dxi-column>
                             <dxi-column width="140" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
                                 <div *dxTemplate="let data of 'cellTemplate'">
-                                    <a [routerLink]="['/phieu-dat-hang/' + data.value + '/cap-nhat']" [queryParams]="{ tattoan: 'ok' }">Tất toán</a> |
+                                    <a [routerLink]="['/phieu-dat-hang/' + data.value + '/cap-nhat']" [queryParams]="{ tattoan: 'ok' }" *ngIf="enableFinish">Tất toán</a> |
                                     <a [routerLink]="['/phieu-dat-hang/' + data.value + '/cap-nhat']" *ngIf="enableUpdate">Sửa</a> |
                                     <a href="javascript:void(0)" (click)="onRowDelete(data.value)" *ngIf="enableDelete">Xóa</a>
                                 </div>

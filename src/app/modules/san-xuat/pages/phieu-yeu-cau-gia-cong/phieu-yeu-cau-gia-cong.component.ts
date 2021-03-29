@@ -34,6 +34,9 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
     public enableDelete: boolean = false;
     public enableExport: boolean = false;
 
+    /* tất toán */
+    public enableFinish: boolean = false;
+
     public bsModalRef: BsModalRef;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
@@ -77,6 +80,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
                     this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-capnhat');
                     this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-xoa');
                     this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-xuatdulieu');
+                    this.enableFinish = this.commonService.getEnablePermission(this.permissions, 'phieuyeucaugiacong-tattoan');
                 },
                 (error) => {
                     this.objPhieuYeuCauGiaCongService.handleError(error);

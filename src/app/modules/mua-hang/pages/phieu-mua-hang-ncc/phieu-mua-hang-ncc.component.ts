@@ -31,6 +31,9 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
     public enableDelete: boolean = false;
     public enableExport: boolean = false;
 
+    /* tất toán */
+    public enableFinish: boolean = false;
+
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -71,6 +74,7 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
                     this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieumuahangncc-capnhat');
                     this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieumuahangncc-xoa');
                     this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieumuahangncc-xuatdulieu');
+                    this.enableFinish = this.commonService.getEnablePermission(this.permissions, 'phieumuahangncc-tattoan');
                 },
                 (error) => {
                     this.objPhieuMuaHangNCCService.handleError(error);
