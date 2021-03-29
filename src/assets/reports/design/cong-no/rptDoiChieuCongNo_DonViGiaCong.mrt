@@ -106,7 +106,7 @@
       <Components isList="true" count="5">
         <PageHeaderBand1 Ref="8" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,20,5</ClientRectangle>
+          <ClientRectangle>0,0.4,20.6,5</ClientRectangle>
           <Components isList="true" count="14">
             <Text5 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -333,10 +333,11 @@
           <Name>PageHeaderBand1</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
+          <PrintOn>OnlyFirstPage</PrintOn>
         </PageHeaderBand1>
         <ColumnHeaderBand1 Ref="24" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,6.2,20,0.6</ClientRectangle>
+          <ClientRectangle>0,6.2,20.6,0.6</ClientRectangle>
           <Components isList="true" count="12">
             <Text20 Ref="25" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -553,7 +554,7 @@ PHÁT SINH</Text>
         <DataBand1 Ref="37" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,7.6,20,0.6</ClientRectangle>
+          <ClientRectangle>0,7.6,20.6,0.6</ClientRectangle>
           <Components isList="true" count="12">
             <Text4 Ref="38" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -749,6 +750,7 @@ PHÁT SINH</Text>
               <Parent isRef="37" />
               <Text>{rptThongKeCongNo_ChiTiet.yeucau}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text37>
@@ -783,6 +785,7 @@ PHÁT SINH</Text>
               <Parent isRef="37" />
               <Text>{rptThongKeCongNo_ChiTiet.ghichu}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text40>
@@ -798,7 +801,7 @@ PHÁT SINH</Text>
         </DataBand1>
         <ColumnFooterBand1 Ref="55" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,9,20,0.8</ClientRectangle>
+          <ClientRectangle>0,9,20.6,0.8</ClientRectangle>
           <Components isList="true" count="4">
             <Text46 Ref="56" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -887,7 +890,7 @@ PHÁT SINH</Text>
         </ColumnFooterBand1>
         <ReportSummaryBand1 Ref="62" type="ReportSummaryBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.6,20,5</ClientRectangle>
+          <ClientRectangle>0,10.6,20.6,5</ClientRectangle>
           <Components isList="true" count="9">
             <Text51 Ref="63" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -1042,10 +1045,12 @@ PHÁT SINH</Text>
       <Guid>46983acd9dbd43db835143cabf2e4daa</Guid>
       <Margins>0.5,0.5,0.5,0.5</Margins>
       <Name>Page1</Name>
-      <PageHeight>29.7</PageHeight>
-      <PageWidth>21</PageWidth>
-      <PaperSize>A4</PaperSize>
+      <PageHeight>27.9</PageHeight>
+      <PageWidth>21.6</PageWidth>
+      <PaperSize>Letter</PaperSize>
       <Report isRef="0" />
+      <UnlimitedBreakable>False</UnlimitedBreakable>
+      <UnlimitedHeight>True</UnlimitedHeight>
     </Page1>
   </Pages>
   <ReferencedAssemblies isList="true" count="8">
@@ -1059,10 +1064,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/9/2021 5:48:58 PM</ReportChanged>
+  <ReportChanged>3/28/2021 4:24:05 PM</ReportChanged>
   <ReportCreated>3/9/2021 4:17:40 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_DonViGiaCong.mrt</ReportFile>
-  <ReportGuid>26e249306ff14cac9646e344904f51dc</ReportGuid>
+  <ReportGuid>e9e686d83b9742afab861b05e5364211</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

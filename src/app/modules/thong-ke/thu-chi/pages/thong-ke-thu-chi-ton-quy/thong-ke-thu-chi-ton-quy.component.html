@@ -100,10 +100,46 @@
                                             [alignByColumn]="true"
                                         >
                                         </dxi-group-item>
-                                        <dxi-group-item column="sotienthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="sotienchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
+                                        <dxi-group-item
+                                        name="RowsSummarysotienthu" 
+                                        column="sotienthu" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item 
+                                        name="RowsSummarysotiengiamthu" 
+                                        column="sotiengiamthu" 
+                                        summaryType="sum"
+                                         valueFormat="#,##0.###" 
+                                         displayFormat="{0}" 
+                                         [showInGroupFooter]="false"
+                                         [alignByColumn]="true"
+                                         > 
+                                        </dxi-group-item>
+                                        <dxi-group-item
+                                        name="RowsSummarysotienchi"  
+                                        column="sotienchi" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item 
+                                        name="RowsSummarysotiengiamchi"  
+                                        column="sotiengiamchi" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
                                         <dxi-group-item
                                             name="RowsSummaryTonCuoiKy"
                                             summaryType="custom"
@@ -111,7 +147,8 @@
                                             summaryType="custom"
                                             valueFormat="#,##0.###"
                                             displayFormat="{0}"
-                                            [showInGroupFooter]="true"
+                                            [showInGroupFooter]="false"
+                                            [alignByColumn]="true"
                                         >
                                         </dxi-group-item>
                                         <dxi-group-item
@@ -121,7 +158,8 @@
                                             summaryType="custom"
                                             valueFormat="#,##0.###"
                                             displayFormat="{0}"
-                                            [showInGroupFooter]="true"
+                                            [showInGroupFooter]="false"
+                                            [alignByColumn]="true"
                                         >
                                         </dxi-group-item>
                                     </dxo-summary>

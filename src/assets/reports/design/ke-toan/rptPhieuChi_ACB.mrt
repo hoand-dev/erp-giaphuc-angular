@@ -7,13 +7,13 @@
         <Alias>rptPhieuChi</Alias>
         <Key />
         <Name>rptPhieuChi</Name>
-        <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\ke-toan\rptPhieuChi.json</PathData>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\ke-toan\rptPhieuChi.json</PathData>
       </rptPhieuChi>
     </Databases>
     <DataSources isList="true" count="1">
       <rptPhieuChi Ref="3" type="DataTableSource" isKey="true">
         <Alias>rptPhieuChi</Alias>
-        <Columns isList="true" count="41">
+        <Columns isList="true" count="43">
           <value>id,System.String</value>
           <value>chinhanh_id,System.String</value>
           <value>kichhoat,System.String</value>
@@ -51,13 +51,15 @@
           <value>quy_tencongty,System.String</value>
           <value>quy_tainganhang,System.String</value>
           <value>quy_sotaikhoan,System.String</value>
+          <value>quy_diachi,System.String</value>
           <value>nhacungcap_sotaikhoan,System.String</value>
-          <value>nhacungcap__x0020_tenchutaikhoan,System.String</value>
-          <value>nhacungcap_tennganhang,System.String</value>
-          <value>nhacungcap_chinhanhnganhang,System.String</value>
+          <value>nhacungcap_chinhanh,System.String</value>
+          <value>nhacungcap_chutaikhoan,System.String</value>
+          <value>nhacungcap_diachi,System.String</value>
+          <value>nguoitao_hoten,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Key>1bacdeaa372d458ca9ab5a53d74b1c51</Key>
+        <Key>83e84435309249dba202966480fc7fff</Key>
         <Name>rptPhieuChi</Name>
         <NameInSource>rptPhieuChi.rptPhieuChi</NameInSource>
       </rptPhieuChi>
@@ -304,7 +306,7 @@
           <Name>Text15</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nguoinhan_hoten}</Text>
+          <Text>{rptPhieuChi.nhacungcap_chutaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -336,7 +338,7 @@
           <Parent isRef="4" />
           <Text>{rptPhieuChi.nhacungcap_sotaikhoan}</Text>
           <TextBrush>Black</TextBrush>
-          <Type>DataColumn</Type>
+          <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text17>
         <Text18 Ref="23" type="Text" isKey="true">
@@ -451,10 +453,10 @@
           <Name>Text25</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_chinhanhnganhang}</Text>
+          <Text>{rptPhieuChi.nhacungcap_chinhanh}</Text>
           <TextBrush>Black</TextBrush>
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-          <Type>DataColumn</Type>
+          <Type>Expression</Type>
         </Text25>
         <Text26 Ref="31" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
@@ -966,9 +968,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 10:51:11 AM</ReportChanged>
+  <ReportChanged>3/25/2021 6:15:09 PM</ReportChanged>
   <ReportCreated>1/21/2021 4:14:33 PM</ReportCreated>
-  <ReportGuid>f89d02e45cec4575a1b103e8ef538559</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_ACB.mrt</ReportFile>
+  <ReportGuid>4ade258b64be495ba5e083f19353eb77</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

@@ -20,9 +20,10 @@ export class PhieuChi {
     public quy_diachi: string;
 
     public nhacungcap_sotaikhoan: string;
+    public nhacungcap_chinhanh: string;
+    public nhacungcap_chutaikhoan: string;
+    public nhacungcap_diachi: string;
 
-    public nhacungcap_tennganhang: string;
-    public nhacungcap_chinhanhnganhang: string;
 
     public tenquychi: string;
     public tennoidungchi: string;

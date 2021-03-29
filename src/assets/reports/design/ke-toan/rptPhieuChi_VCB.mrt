@@ -7,7 +7,7 @@
         <Alias>rptPhieuChi</Alias>
         <Key />
         <Name>rptPhieuChi</Name>
-        <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\ke-toan\rptPhieuChi.json</PathData>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\ke-toan\rptPhieuChi.json</PathData>
       </rptPhieuChi>
     </Databases>
     <DataSources isList="true" count="1">
@@ -51,15 +51,15 @@
           <value>quy_tencongty,System.String</value>
           <value>quy_tainganhang,System.String</value>
           <value>quy_sotaikhoan,System.String</value>
-          <value>nhacungcap_sotaikhoan,System.String</value>
-          <value>nhacungcap__x0020_tenchutaikhoan,System.String</value>
-          <value>nhacungcap_tennganhang,System.String</value>
-          <value>nhacungcap_chinhanhnganhang,System.String</value>
           <value>quy_diachi,System.String</value>
+          <value>nhacungcap_sotaikhoan,System.String</value>
+          <value>nhacungcap_chinhanh,System.String</value>
+          <value>nhacungcap_chutaikhoan,System.String</value>
           <value>nhacungcap_diachi,System.String</value>
+          <value>nguoitao_hoten,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Key>3880614b87214e59bbc7e362617613a7</Key>
+        <Key>1935a4e2b6ef43c5977e37410d9b4ba9</Key>
         <Name>rptPhieuChi</Name>
         <NameInSource>rptPhieuChi.rptPhieuChi</NameInSource>
       </rptPhieuChi>
@@ -163,7 +163,7 @@
               <Text>{rptPhieuChi.quy_diachi}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
             </Text4>
             <Text5 Ref="12" type="Text" isKey="true">
               <Border>Top, Right, Bottom;[127:127:127];1;Solid;False;4;Black</Border>
@@ -175,7 +175,7 @@
               <Name>Text5</Name>
               <Page isRef="4" />
               <Parent isRef="8" />
-              <Text>{rptPhieuChi.quy_tainganhang}</Text>
+              <Text>{rptPhieuChi.quy_diachi}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -575,10 +575,10 @@ Including</Text>
               <Name>Text30</Name>
               <Page isRef="4" />
               <Parent isRef="39" />
-              <Text>{rptPhieuChi.nguoinhan_hoten}</Text>
+              <Text>{rptPhieuChi.nhacungcap_chutaikhoan}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text30>
             <Text31 Ref="41" type="Text" isKey="true">
@@ -610,10 +610,10 @@ Including</Text>
               <Name>Text32</Name>
               <Page isRef="4" />
               <Parent isRef="39" />
-              <Text>{rptPhieuChi.nhacungcap_tennganhang}</Text>
+              <Text>{rptPhieuChi.nhacungcap_diachi}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text32>
             <Text34 Ref="43" type="Text" isKey="true">
@@ -766,7 +766,7 @@ Including</Text>
               <Name>Text33</Name>
               <Page isRef="4" />
               <Parent isRef="39" />
-              <Text>{rptPhieuChi.nhacungcap_chinhanhnganhang}</Text>
+              <Text>{rptPhieuChi.nhacungcap_chinhanh}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -1101,9 +1101,10 @@ AElFTkSuQmCC</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 10:51:34 AM</ReportChanged>
+  <ReportChanged>3/25/2021 6:04:34 PM</ReportChanged>
   <ReportCreated>1/7/2021 2:40:07 PM</ReportCreated>
-  <ReportGuid>1b9260d6e13a4a04b43a9b86b0ea2118</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_VCB.mrt</ReportFile>
+  <ReportGuid>547598fb4f874a15be0f8dd23b4d95c5</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

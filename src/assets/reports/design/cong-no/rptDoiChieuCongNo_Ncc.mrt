@@ -338,6 +338,7 @@
           <Name>PageHeaderBand1</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
+          <PrintOn>OnlyFirstPage</PrintOn>
         </PageHeaderBand1>
         <PageFooterBand1 Ref="24" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
@@ -982,6 +983,8 @@ PHÁT SINH</Text>
       <PageHeight>29.7</PageHeight>
       <PageWidth>21</PageWidth>
       <Report isRef="0" />
+      <UnlimitedBreakable>False</UnlimitedBreakable>
+      <UnlimitedHeight>True</UnlimitedHeight>
     </Page1>
   </Pages>
   <ReferencedAssemblies isList="true" count="8">
@@ -995,10 +998,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/6/2021 4:28:40 PM</ReportChanged>
+  <ReportChanged>3/28/2021 4:25:28 PM</ReportChanged>
   <ReportCreated>2/24/2021 10:10:25 AM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Ncc.mrt</ReportFile>
-  <ReportGuid>d9a923d27fc14cfaabb62d7fba15e657</ReportGuid>
+  <ReportGuid>932639b51a574c33b427b53e61615a08</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

@@ -48,7 +48,7 @@
                                     (onContextMenuPreparing)="addMenuItems($event)"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
-                                    <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+                                    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                                     <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
 
                                     <!-- dx-data-grid option -->
@@ -98,10 +98,45 @@
                                             [alignByColumn]="true"
                                         >
                                         </dxi-group-item>
-                                        <dxi-group-item column="tiengiacong" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="tongtienthu" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item column="tongtienchi" summaryType="sum" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true"> </dxi-group-item>
-                                        <dxi-group-item name="RowsSummaryNoCuoiKy" summaryType="custom" showInColumn="nocuoiky" valueFormat="#,##0.###" displayFormat="{0}" [showInGroupFooter]="true">
+                                        <dxi-group-item
+                                        name="RowsSummarytiengiacong" 
+                                        column="tiengiacong" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item
+                                        name="RowsSummarytongtienthu"  
+                                        column="tongtienthu" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item 
+                                        name="RowsSummarytongtienchi"
+                                        column="tongtienchi" 
+                                        summaryType="sum" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        > 
+                                    </dxi-group-item>
+                                        <dxi-group-item 
+                                        name="RowsSummaryNoCuoiKy" 
+                                        summaryType="custom" 
+                                        showInColumn="nocuoiky" 
+                                        valueFormat="#,##0.###" 
+                                        displayFormat="{0}" 
+                                        [showInGroupFooter]="false"
+                                        [alignByColumn]="true"
+                                        >
                                         </dxi-group-item>
                                         <dxi-group-item
                                             name="RowsSummaryCongNoHienTai"
@@ -109,7 +144,8 @@
                                             showInColumn="congnohientai"
                                             valueFormat="#,##0.###"
                                             displayFormat="{0}"
-                                            [showInGroupFooter]="true"
+                                            [showInGroupFooter]="false"
+                                            [alignByColumn]="true"
                                         >
                                         </dxi-group-item>
                                     </dxo-summary>

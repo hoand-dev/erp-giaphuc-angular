@@ -7,13 +7,13 @@
         <Alias>rptPhieuChi</Alias>
         <Key />
         <Name>rptPhieuChi</Name>
-        <PathData>D:\erp-giaphuc-angular\src\assets\reports\json\ke-toan\rptPhieuChi.json</PathData>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\ke-toan\rptPhieuChi.json</PathData>
       </rptPhieuChi>
     </Databases>
     <DataSources isList="true" count="1">
       <rptPhieuChi Ref="3" type="DataTableSource" isKey="true">
         <Alias>rptPhieuChi</Alias>
-        <Columns isList="true" count="41">
+        <Columns isList="true" count="43">
           <value>id,System.String</value>
           <value>chinhanh_id,System.String</value>
           <value>kichhoat,System.String</value>
@@ -51,13 +51,15 @@
           <value>quy_tencongty,System.String</value>
           <value>quy_tainganhang,System.String</value>
           <value>quy_sotaikhoan,System.String</value>
+          <value>quy_diachi,System.String</value>
           <value>nhacungcap_sotaikhoan,System.String</value>
-          <value>nhacungcap__x0020_tenchutaikhoan,System.String</value>
-          <value>nhacungcap_tennganhang,System.String</value>
-          <value>nhacungcap_chinhanhnganhang,System.String</value>
+          <value>nhacungcap_chinhanh,System.String</value>
+          <value>nhacungcap_chutaikhoan,System.String</value>
+          <value>nhacungcap_diachi,System.String</value>
+          <value>nguoitao_hoten,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Key>525e2d4408ff4617ade9fbcb4e78e8f2</Key>
+        <Key>b60e75b3215b48f9be1116d7d1bf7d98</Key>
         <Name>rptPhieuChi</Name>
         <NameInSource>rptPhieuChi.rptPhieuChi</NameInSource>
       </rptPhieuChi>
@@ -159,14 +161,13 @@
           <ClientRectangle>3.6,3.8,8.8,0.6</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,12</Font>
-          <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
           <Name>Text12</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nguoinhan_hoten}</Text>
+          <Text>{rptPhieuChi.nhacungcap_chutaikhoan}</Text>
           <TextBrush>Black</TextBrush>
-          <Type>DataColumn</Type>
+          <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text12>
         <Text13 Ref="11" type="Text" isKey="true">
@@ -194,7 +195,7 @@
           <Name>Text14</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_sotaikhoan}</Text>
+          <Text>{rptPhieuChi.quy_sotaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -224,7 +225,7 @@
           <Name>Text16</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_chinhanhnganhang}</Text>
+          <Text>{rptPhieuChi.nhacungcap_chinhanh}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -258,7 +259,6 @@
           <TextBrush>Black</TextBrush>
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
-          <VertAlignment>Center</VertAlignment>
         </Text18>
         <Text19 Ref="17" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
@@ -656,9 +656,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 10:51:22 AM</ReportChanged>
+  <ReportChanged>3/26/2021 7:58:32 AM</ReportChanged>
   <ReportCreated>1/21/2021 3:03:04 PM</ReportCreated>
-  <ReportGuid>3531fea153194902afc0f894378b3787</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_SCB.mrt</ReportFile>
+  <ReportGuid>5788911b7dd64d26a8532cce1aaccb0e</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
