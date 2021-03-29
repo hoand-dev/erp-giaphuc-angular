@@ -32,6 +32,7 @@
                                     <dxi-item [label]="{ text: 'MÃ NỘI DUNG THU CHI' }" dataField="manoidungthuchi">
                                         <dxi-validation-rule type="required" message="Nhập mã nội dung thu chi"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã nội dung thu chi quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NỘI DUNG THU CHI' }" dataField="tennoidungthuchi">
