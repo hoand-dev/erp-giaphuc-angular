@@ -1,4 +1,7 @@
 export class PhieuDatHang {
+    public phieudathang_sanxuatchitiets: PhieuDatHang_SanXuatChiTiet[];
+    public phieudathang_thanhphams: PhieuDatHang_ThanhPham[];
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -28,7 +31,11 @@ export class PhieuDatHang {
     public tongthanhtien: number;
     public giuhang: boolean;
     public khoxuat_id: number;
+    
     public trangthaigiao: string;
+    public trangthaiyeucau: string;
+    public trangthaiban: string;
+    public trangthainhap: string;
 
     public phieudathang_chitiet: PhieuDatHang_ChiTiet[];
 
@@ -58,10 +65,11 @@ export class PhieuDatHang {
         chietkhau: number = 0,
         thuevat: number = 0,
         tongthanhtien: number = 0,
-        giuhang: boolean = true,
+        giuhang: boolean = false,
         khoxuat_id: number = null,
         trangthaigiao: string = null,
-        phieudathang_chitiet: PhieuDatHang_ChiTiet[] = null
+        phieudathang_chitiet: PhieuDatHang_ChiTiet[] = [],
+        phieudathang_sanxuatchitiets: PhieuDatHang_SanXuatChiTiet[] = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -89,6 +97,7 @@ export class PhieuDatHang {
         this.khoxuat_id = khoxuat_id;
         this.trangthaigiao = trangthaigiao;
         this.phieudathang_chitiet = phieudathang_chitiet;
+        this.phieudathang_sanxuatchitiets = phieudathang_sanxuatchitiets;
     }
 }
 
@@ -166,4 +175,144 @@ export class PhieuDatHang_ChiTiet {
         this.tenhanghoa_inphieu = tenhanghoa_inphieu;
         this.trongluong = trongluong;
     }
+}
+
+export class PhieuDatHang_SanXuatChiTiet {
+    public tenyeucau: string;
+    public yeucaus: string;
+    public arr_yeucaus: number[];
+
+    public tenhanghoa: string;
+    public mathanhpham: string;
+    public tenthanhpham: string;
+
+    public trongluong: number = 0;
+    public tendonvitinh: string;
+    public tendonvitinhphu: string;
+
+    public id: number;
+    public phieudathang_id: number;
+
+    public khoxuat_id: number;
+    public khonhap_id: number;
+    public khogiacong_id: number;
+
+    public loaihanghoa: string;
+    public thanhpham_id: number;
+    public hanghoa_id: number;
+    public hanghoa_lohang_id: number;
+    public dvt_id: number;
+    public tilequydoi: number;
+    public tilequydoiphu: number;
+    public somat_id: number;
+    public somat_thanhpham_id: number;
+
+    public soluongtattoan: number;
+    public soluong: number;
+    public dongia: number;
+    public chietkhau: number;
+    public thuevat: number;
+    public thanhtien: number;
+    public chuthich: string;
+
+    public soluongdayeucau: number;
+    public trangthaiyeucau: string;
+    public soluongdanhap  : number;
+    public trangthainhap  : string;
+
+    public tongtrongluong: number = 0;
+    public tongkien: number = 0;
+    public tongm3: number = 0;
+    public m3: number = 0;
+    public soluongconlai: number = 0;
+
+    constructor(
+        id: number = null,
+        phieudathang_id: number = null,
+        khoxuat_id: number = null,
+        khonhap_id: number = null,
+        khogiacong_id: number = null,
+        loaihanghoa: string = null,
+        thanhpham_id: number = null,
+        hanghoa_id: number = null,
+        hanghoa_lohang_id: number = null,
+        dvt_id: number = null,
+        tilequydoi: number = 1,
+        somat_id: number = null,
+        somat_thanhpham_id: number = null,
+        soluongtattoan: number = 0,
+        soluong: number = 0,
+        dongia: number = 0,
+        chietkhau: number = 0,
+        thuevat: number = 0,
+        thanhtien: number = 0,
+        chuthich: string = null,
+        soluongdanhap: number = 0,
+        trangthainhap: string = null,
+
+        yeucaus: string = null,
+        arr_yeucaus: number[] = []
+    ) {
+        this.id = id;
+        this.phieudathang_id = phieudathang_id;
+        this.khoxuat_id = khoxuat_id;
+        this.khonhap_id = khonhap_id;
+        this.khogiacong_id = khogiacong_id;
+        this.loaihanghoa = loaihanghoa;
+        this.thanhpham_id = thanhpham_id;
+        this.hanghoa_id = hanghoa_id;
+        this.hanghoa_lohang_id = hanghoa_lohang_id;
+        this.dvt_id = dvt_id;
+        this.tilequydoi = tilequydoi;
+        this.somat_id = somat_id;
+        this.somat_thanhpham_id = somat_thanhpham_id;
+        this.soluongtattoan = soluongtattoan;
+        this.soluong = soluong;
+        this.dongia = dongia;
+        this.chietkhau = chietkhau;
+        this.thuevat = thuevat;
+        this.thanhtien = thanhtien;
+        this.chuthich = chuthich;
+        this.soluongdanhap = soluongdanhap;
+        this.trangthainhap = trangthainhap;
+
+        this.yeucaus = yeucaus;
+        this.arr_yeucaus = arr_yeucaus;
+    }
+}
+
+export class HangHoaDatHang extends PhieuDatHang_SanXuatChiTiet {
+    public ngayphatsinh  : Date  ;
+    public maphieu       : string;
+    public khachhang_id  : number;
+    public khachhang     : string;
+    public khoxuat       : string;
+    public khonhap       : string;
+    public khogiacong    : string;
+
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+    public thoigiantao   : Date  ;
+}
+
+
+export class PhieuDatHang_ThanhPham{
+    public tenthanhpham                  : string;
+    
+    public id                            : number;
+    public thanhpham_id                  : number;
+    public khonhap_id                    : number;
+    public dvt_id                        : number;
+    public tilequydoi                    : number;
+    public loaihanghoa                   : string;
+    public soluong                       : number;
+    public soluongtattoan                : number;
+    public soluongdaban                  : number;
+    public trangthaiban                  : string;
+    public phieudathang_sanxuatchitiet_id: number;
+    
+    public dongia                        : number;
+    public chietkhau                     : number;
+    public thuevat                       : number;
+    public thanhtien                     : number;
 }

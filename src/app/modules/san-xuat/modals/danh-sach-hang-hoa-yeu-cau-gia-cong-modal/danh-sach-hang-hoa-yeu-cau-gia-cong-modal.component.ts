@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HangHoaDatHang } from '@app/shared/entities';
 import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
+import { PhieuDatHangService } from '@app/shared/services';
 
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -31,7 +33,7 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
         storageKey: 'dxGrid_ModalHangHoaYeuCauGiaCong'
     };
 
-    constructor(public bsModalRef: BsModalRef, private authenticationService: AuthenticationService) {}
+    constructor(public bsModalRef: BsModalRef, private authenticationService: AuthenticationService, private objPhieuDatHangService: PhieuDatHangService) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
@@ -51,7 +53,23 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    onLoadData() {}
+    onLoadData() {
+        this.subscriptions.add(
+            this.objPhieuDatHangService.findHangHoaDatHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
+                (data) => {
+                    this.dataGrid.dataSource = data;
+                },
+                (error) => {
+                    this.objPhieuDatHangService.handleError(error);
+                }
+            )
+        );
+    }
+
+    soluong_calculateCellValue(rowData){
+        let x = <HangHoaDatHang> rowData;
+        return x.soluong - x.soluongtattoan - x.soluongdayeucau;
+    }
 
     rowNumber(rowIndex){
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
@@ -62,7 +80,7 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
     }
 
     public onConfirm(): void {
-        this.onClose.next(this.selectedItemKeys);
+        this.onClose.next(<HangHoaDatHang[]>this.selectedItemKeys);
         this.bsModalRef.hide();
     }
 

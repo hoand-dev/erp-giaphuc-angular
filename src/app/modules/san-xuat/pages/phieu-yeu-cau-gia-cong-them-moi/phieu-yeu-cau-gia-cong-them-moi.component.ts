@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChiNhanh, DinhMuc, DonViGiaCong, HangHoa, KhachHang, KhoHang, PhieuYeuCauGiaCong, PhieuYeuCauGiaCongCT, SoMat } from '@app/shared/entities';
+import { ChiNhanh, DinhMuc, DonViGiaCong, HangHoa, HangHoaDatHang, KhachHang, KhoHang, PhieuYeuCauGiaCong, PhieuYeuCauGiaCongCT, SoMat } from '@app/shared/entities';
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
@@ -20,8 +20,10 @@ import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { DanhSachHangHoaYeuCauGiaCongModalComponent } from '../../modals';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong-them-moi',
@@ -33,6 +35,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
+    bsModalRef: BsModalRef;
     private currentChiNhanh: ChiNhanh;
 
     public loaiphieu: string = 'taikho';
@@ -48,6 +51,8 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
     public lstSoMat: SoMat[];
+
+    public lstDonViGiaCong: DonViGiaCong[];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
@@ -79,7 +84,8 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private giacongService: DinhMucService,
-        private somatService: SoMatService
+        private somatService: SoMatService,
+        private modalService: BsModalService
     ) {}
 
     ngAfterViewInit() {
@@ -110,6 +116,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                 this.subscriptions.add(
                     this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
                         this.loadingVisible = false;
+                        this.lstDonViGiaCong = x;
                         this.dataSource_DonViGiaCong = new DataSource({
                             store: x,
                             paginate: true,
@@ -192,6 +199,49 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    openModal() {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'DANH SÁCH - HÀNG HOÁ CHỜ SẢN XUẤT' // và nhiều hơn thế nữa
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(DanhSachHangHoaYeuCauGiaCongModalComponent, { class: 'modal-xxl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRef.content.onClose.subscribe((result) => {
+            if(result){
+                this.hanghoas = <PhieuYeuCauGiaCongCT[]> [];
+                let res: HangHoaDatHang[] = result;
+                res.forEach(x => {
+                    let item: PhieuYeuCauGiaCongCT = new PhieuYeuCauGiaCongCT();
+                    item.yeucaus                 = x.yeucaus                                       ;
+                    item.arr_yeucaus             = JSON.parse(x.yeucaus)                           ;
+                    item.mathanhpham             = x.mathanhpham                                   ;
+                    item.tenthanhpham            = x.tenthanhpham                                  ;
+                    item.khogiacong_id           = x.khogiacong_id                                 ;
+                    item.loaihanghoa             = x.loaihanghoa                                   ;
+                    item.thanhpham_id            = x.thanhpham_id                                  ;
+                    item.hanghoa_id              = x.hanghoa_id                                    ;
+                    item.dvt_id                  = x.dvt_id                                        ;
+                    item.tilequydoi              = x.tilequydoi                                    ;
+                    item.somat_id                = x.somat_id                                      ;
+                    item.somat_thanhpham_id      = x.somat_thanhpham_id                            ;
+                    item.soluong                 = x.soluong - x.soluongtattoan - x.soluongdayeucau;
+                    item.phieudathang_chitiet_id = x.id                                            ;
+                    item.xuatnguyenlieu          = true                                            ;
+                    // add arr hanghoas
+                    this.hanghoas.push(item);
+                });
+
+                let donvigiacong = this.lstDonViGiaCong.find((x) => x.khogiacong_id == res[0].khogiacong_id);
+                this.phieuyeucaugiacong.donvigiacong_id = donvigiacong ? donvigiacong.id : null;
+                //this.phieuyeucaugiacong.khogiacong_id = donvigiacong ? donvigiacong.khogiacong_id : null;
+            }            
+        });
+    }
+
     clickLayGia() {
         this.isClicked_LayGia = true;
         if (this.loaiphieu != 'taikho' && this.phieuyeucaugiacong.donvigiacong_id === null) {
@@ -219,7 +269,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     onFormFieldChanged(e) {
         if (e.dataField == 'donvigiacong_id' && e.value !== undefined) {
-            let donvigiacong = this.dataSource_DonViGiaCong.items().find((x) => x.id == this.phieuyeucaugiacong.donvigiacong_id);
+            let donvigiacong = this.lstDonViGiaCong.find((x) => x.id == this.phieuyeucaugiacong.donvigiacong_id);
             this.phieuyeucaugiacong.khogiacong_id = donvigiacong ? donvigiacong.khogiacong_id : null;
         }
 

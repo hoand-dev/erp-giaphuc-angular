@@ -85,6 +85,8 @@ export class PhieuYeuCauGiaCongCT {
     public arr_yeucaus: number[];
     public tenyeucau: string;
 
+    public tenkhachhang: string; // ? lên kế hoạch cho khách hàng nào
+    public tenhanghoa: string;
     public mathanhpham: string;
     public tenthanhpham: string;
 
@@ -115,6 +117,7 @@ export class PhieuYeuCauGiaCongCT {
     public trangthainhap: string;
     public phieudathang_chitiet_id: number;
     public xuatnguyenlieu: boolean;
+    public khachhang_id: number;
 
     public tongtrongluong: number = 0;
     public tongkien: number = 0;
