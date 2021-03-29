@@ -32,6 +32,7 @@
                                     <dxi-item [label]="{ text: 'MÃ CHI NHÁNH' }" dataField="machinhanh">
                                         <dxi-validation-rule type="required" message="Nhập mã chi nhánh"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã chi nhánh quá ngắn"></dxi-validation-rule>
+                                        <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã chi nhánh đã tồn tại" [validationCallback]="theCallbackValid">
                                             <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
                                         </dxi-validation-rule>

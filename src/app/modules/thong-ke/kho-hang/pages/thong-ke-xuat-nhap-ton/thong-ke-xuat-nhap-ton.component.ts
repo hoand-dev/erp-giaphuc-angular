@@ -70,7 +70,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/khong-co-quyen']);
                     }
                     
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhapton-xuatdulieu');
                 },
                 (error) => {
                     this.objThongKeKhoHangService.handleError(error);

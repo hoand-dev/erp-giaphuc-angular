@@ -29,7 +29,10 @@
                                     <h5>{{ 'Phiếu yêu cầu gia công' + (this.loaiphieu == 'taikho' ? ' TẠI KHO' : ' NGOÀI') | uppercase }} - THÊM MỚI</h5>
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block float-right" (click)="clickLayGia()">LẤY GIÁ</button>
+                                    <button type="button" class="btn btn-sm btn-danger float-right ml-1" (click)="clickLayGia()">
+                                        <i class="fa fa-download"></i> LẤY GIÁ
+                                    </button>
+                                    <button *ngIf="loaiphieu == 'taikho'" type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()">TỪ ĐƠN ĐẶT HÀNG</button>
                                 </div>
                             </div>
                         </div>
@@ -123,6 +126,7 @@
                                                         <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
+                                                                [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
                                                                 id="hanghoa_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"
@@ -144,6 +148,7 @@
 
                                                         <td>
                                                             <dx-tag-box
+                                                                [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
                                                                 id="yeucaus_row_{{ i }}"
                                                                 [(value)]="item.arr_yeucaus"
                                                                 [dataSource]="dataSource_GiaCong"
@@ -160,6 +165,7 @@
 
                                                         <td>
                                                             <dx-select-box
+                                                                [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.somat_id"
                                                                 [dataSource]="dataSource_SoMat"
@@ -180,6 +186,7 @@
 
                                                         <td>
                                                             <dx-select-box
+                                                                [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.somat_thanhpham_id"
                                                                 [dataSource]="dataSource_SoMat"

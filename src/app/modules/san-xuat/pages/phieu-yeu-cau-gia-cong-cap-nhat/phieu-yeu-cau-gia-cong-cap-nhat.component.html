@@ -131,7 +131,7 @@
                                                         <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
                                                                 id="hanghoa_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"
@@ -153,7 +153,7 @@
 
                                                         <td>
                                                             <dx-tag-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
                                                                 id="yeucaus_row_{{ i }}"
                                                                 [(value)]="item.arr_yeucaus"
                                                                 [dataSource]="dataSource_GiaCong"
@@ -170,7 +170,7 @@
 
                                                         <td>
                                                             <dx-select-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.somat_id"
                                                                 [dataSource]="dataSource_SoMat"
@@ -197,7 +197,7 @@
 
                                                         <td>
                                                             <dx-select-box
-                                                                [readOnly]="isTatToan"
+                                                                [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.somat_thanhpham_id"
                                                                 [dataSource]="dataSource_SoMat"

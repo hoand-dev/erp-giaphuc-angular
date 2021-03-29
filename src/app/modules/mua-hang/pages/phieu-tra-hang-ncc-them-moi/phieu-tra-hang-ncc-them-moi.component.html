@@ -50,7 +50,8 @@
                                             valueExpr: 'id',
                                             searchEnabled: true,
                                             searchExpr: ['tennhacungcap', 'manhacungcap'],
-                                            displayExpr: 'tennhacungcap'
+                                            displayExpr: 'tennhacungcap',
+                                            readOnly: true
                                         }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
@@ -61,8 +62,8 @@
 
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieutrahangncc" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" [colSpan]="3" dataField="diachinhacungcap" [editorOptions]="{ readOnly: true }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'keyup' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'keyup' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'keyup', readOnly: true }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'keyup', readOnly: true }"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="maphieumuahangncc" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
                                     <dxi-item
@@ -103,6 +104,7 @@
                                                         <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
+                                                                [readOnly]="true"
                                                                 id="nguyenlieu_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"
@@ -130,10 +132,11 @@
                                                             <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box [readOnly]="true" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box
+                                                                [readOnly]="true"
                                                                 format="#0.##%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.chietkhau"
@@ -143,6 +146,7 @@
                                                         </td>
                                                         <td>
                                                             <dx-number-box
+                                                                [readOnly]="true"
                                                                 format="#0.##%"
                                                                 [step]="0.01"
                                                                 [(value)]="item.thuevat"

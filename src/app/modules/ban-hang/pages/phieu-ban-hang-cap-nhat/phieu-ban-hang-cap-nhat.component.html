@@ -53,7 +53,7 @@
                                             searchEnabled: true,
                                             searchExpr: ['tenkhachhang', 'makhachhang'],
                                             displayExpr: 'tenkhachhang',
-                                            readOnly: isTatToan || isDuyetGia
+                                            readOnly: isTatToan || isDuyetGia || true
                                         }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn Khách hàng"></dxi-validation-rule>
@@ -83,7 +83,7 @@
                                             searchEnabled: true,
                                             searchExpr: ['tenkhohang', 'makhohang'],
                                             displayExpr: 'tenkhohang',
-                                            readOnly: isTatToan || isDuyetGia
+                                            readOnly: isTatToan || isDuyetGia || phieubanhang.phieudathang_id != null
                                         }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
@@ -135,7 +135,7 @@
                                                         <td>{{ i + 1 }}</td>
                                                         <td>
                                                             <dx-select-box
-                                                                [readOnly]="isTatToan || isDuyetGia"
+                                                                [readOnly]="isTatToan || isDuyetGia || (item.phieudathang_thanhpham_id || item.phieudathang_chitiet_id ? true : false)"
                                                                 id="nguyenlieu_row_{{ i }}"
                                                                 [(value)]="item.hanghoa_id"
                                                                 [dataSource]="dataSource_HangHoa"

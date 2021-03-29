@@ -31,6 +31,10 @@ export enum ETrangThaiPhieu {
     chuatra    = "Chưa trả"   ,
     dangtra    = "Đang trả"   ,
     datra      = "Đã trả"     ,
+
+    chuaban    = "Chưa bán"   ,
+    dangban    = "Đang bán"   ,
+    daban      = "Đã bán"     ,
     
     chuagiao   = "Chưa giao"  ,
     danggiao   = "Đang giao"  ,

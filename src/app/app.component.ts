@@ -161,11 +161,11 @@ export class AppComponent implements OnInit {
 
         if (this.isAutorized()) {
             // phải refresh token trước khi lấy thông tin người dùng
-            if (this.fisrtRefreshToken){
+            /* if (this.fisrtRefreshToken){
                 console.log("refresh token...");
                 this.fisrtRefreshToken = false;
                 this.refreshAuthToken();
-            }
+            } */
             this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe(x =>
                 this.currentUser = x
             ));
@@ -198,7 +198,7 @@ export class AppComponent implements OnInit {
             setInterval(() => {
                 console.log("interval refresh token...");
                 this.refreshAuthToken();
-            }, 1000 * 60 * 25);
+            }, 1000 * 60 * 15);
         }
     }
 

@@ -58,6 +58,7 @@
                                         <dxi-item [label]="{ text: 'TÀI KHOẢN' }" dataField="username">
                                             <dxi-validation-rule type="required" message="Nhập tài khoản"> </dxi-validation-rule>
                                             <dxi-validation-rule type="stringLength" [min]="2" message="Tài khoản quá ngắn"></dxi-validation-rule>
+                                            <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Tài khoản không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                             <dxi-validation-rule type="async" message="Tài khoản đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                         </dxi-item>
                                         <dxi-item [label]="{ text: 'MẬT KHẨU' }" dataField="password" [editorOptions]="{ mode: 'password' }">

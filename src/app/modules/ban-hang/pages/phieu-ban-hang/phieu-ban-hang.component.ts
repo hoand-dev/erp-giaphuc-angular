@@ -33,6 +33,10 @@ export class PhieuBanHangComponent implements OnInit {
     public enableDelete: boolean = false;
     public enableExport: boolean = false;
 
+    /* tất toán */
+    public enableFinish: boolean = false;
+    public enableDuyetGia: boolean = false;
+
     /* Khai báo thời gian bắt đầu và kết thúc */
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
@@ -74,6 +78,8 @@ export class PhieuBanHangComponent implements OnInit {
                     this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieubanhang-capnhat');
                     this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieubanhang-xoa');
                     this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieubanhang-xuatdulieu');
+                    this.enableFinish = this.commonService.getEnablePermission(this.permissions, 'phieubanhang-tattoan');
+                    this.enableDuyetGia = this.commonService.getEnablePermission(this.permissions, 'phieubanhang-duyetgia');
                 },
                 (error) => {
                     this.objPhieuBanHangService.handleError(error);

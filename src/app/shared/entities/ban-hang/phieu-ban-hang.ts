@@ -123,6 +123,7 @@ export class PhieuBanHang_ChiTiet {
     public trangthaixuat: string;
     public soluong_tudondathang: number;
     public phieudathang_chitiet_id: number;
+    public phieudathang_thanhpham_id: number;
     public soluongtattoan: number;
     public phieudathang_chitiet: number;
     public trangthaitra: string;
@@ -163,6 +164,7 @@ export class PhieuBanHang_ChiTiet {
         trangthaixuat: string = null,
         soluong_tudondathang: number = null,
         phieudathang_chitiet_id: number = null,
+        phieudathang_thanhpham_id: number = null,
         soluongtattoan: number = null,
         trongluong: number = 0,
         xuathoadon: boolean = false
@@ -188,6 +190,7 @@ export class PhieuBanHang_ChiTiet {
         this.trangthaixuat = trangthaixuat;
         this.soluong_tudondathang = soluong_tudondathang;
         this.phieudathang_chitiet_id = phieudathang_chitiet_id;
+        this.phieudathang_thanhpham_id = phieudathang_thanhpham_id;
         this.soluongtattoan = soluongtattoan;
         this.trongluong = trongluong;
         this.xuathoadon = xuathoadon;

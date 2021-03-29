@@ -31,7 +31,7 @@
                                 <dx-form id="form" [colCount]="2" [formData]="nhomkhachhang" [showValidationSummary]="true">
                                     <dxi-item [label]="{ text: 'MÃ NHÓM KHÁCH HÀNG' }" dataField="manhomkhachhang">
                                         <dxi-validation-rule type="required" message="Nhập mã nhóm khách hàng"></dxi-validation-rule>
-
+                                        <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã nhóm khách hàng đã tồn tại" [validationCallback]="theCallbackValid">
                                             <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
                                         </dxi-validation-rule>

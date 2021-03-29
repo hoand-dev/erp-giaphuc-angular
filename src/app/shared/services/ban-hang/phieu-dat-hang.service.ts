@@ -1,7 +1,7 @@
 import { BaseService } from '@app/shared/services';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PhieuDatHang } from '@app/shared/entities';
+import { HangHoaDatHang, PhieuDatHang } from '@app/shared/entities';
 
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
@@ -26,6 +26,13 @@ export class PhieuDatHangService extends BaseService {
         let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
         let denngay = moment(toDay).format('YYYY-MM-DD HH:mm:ss');
         return this.httpClient.get<PhieuDatHang[]>(this.apiUrl + query_chinhanh + `tungay=${tungay}&denngay=${denngay}`);
+    }
+
+    findHangHoaDatHangs(chinhanh_id: number = null, fromDay: Date, toDay: Date): Observable<HangHoaDatHang[]> {
+        let query_chinhanh = chinhanh_id == null ? '?' : '?chinhanh_id=' + chinhanh_id + '&';
+        let tungay = moment(fromDay).format('YYYY-MM-DD HH:mm:ss');
+        let denngay = moment(toDay).format('YYYY-MM-DD HH:mm:ss');
+        return this.httpClient.get<[HangHoaDatHang]>(this.apiUrl + "/hang-hoa-dat-hang" + query_chinhanh + `tungay=${tungay}&denngay=${denngay}`);
     }
 
     addPhieuDatHang(phieudathang: PhieuDatHang): Observable<PhieuDatHang> {

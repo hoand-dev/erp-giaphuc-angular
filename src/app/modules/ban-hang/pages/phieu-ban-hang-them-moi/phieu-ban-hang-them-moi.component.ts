@@ -34,7 +34,6 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     bsModalRef: BsModalRef;
 
     /* tối ưu subscriptions */
-
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
 
@@ -54,6 +53,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
+
+    public isChonTuPhieu: boolean = false;
 
     public saveProcessing = false;
     public loadingVisible = false;
@@ -175,6 +176,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         this.subscriptions.add(
             this.activatedRoute.queryParams.subscribe((params) => {
                 if (this.commonService.isNotEmpty(params.tuphieu)) {
+                    this.isChonTuPhieu = true;
                     this.hanghoas = [];
                     this.firstLoad_KhachHang = false;
                     // lấy thông tin phiếu đặt hàng ncc từ api
@@ -184,7 +186,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                             setTimeout(() => {
                                 this.authenticationService.setDisableChiNhanh(true);
                             });
-
+                            this.hanghoas = [];
+                            
                             /* phiếu đặt hàng -> phiếu bán hàng*/
                             // xử lý phần thông tin phiếu
                             this.phieubanhang.khachhang_id = data.khachhang_id;
@@ -199,10 +202,12 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                             this.phieubanhang.nhanviensale_id = data.nhanviensale_id;
                             this.phieubanhang.khoxuat_id = data.khoxuat_id;
                             this.phieubanhang.maphieudathang = data.maphieudathang;
+                            
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieudathang_chitiet.length;
+                            this.hanghoalenght += data.phieudathang_thanhphams.length;
 
-                            // xử lý phần thông tin chi tiết phiếu
+                            // xử lý phần thông tin chi tiết phiếu, hàng có sẵn
                             data.phieudathang_chitiet.forEach((value, index) => {
                                 if (value.trangthaigiao != ETrangThaiPhieu.dagiao) {
                                     let item = new PhieuBanHang_ChiTiet();
@@ -225,6 +230,34 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                                     this.hanghoas.push(item);
                                 }
                             });
+
+                            // xử lý phần thông tin chi tiết phiếu, hàng sản xuất - thành phẩm
+                            data.phieudathang_thanhphams.forEach((value, index) => {
+                                if (value.trangthaiban != ETrangThaiPhieu.daban) {
+                                    let item = new PhieuBanHang_ChiTiet();
+
+                                    item.loaihanghoa = value.loaihanghoa;
+                                    item.hanghoa_id = value.thanhpham_id;
+                                    item.hanghoa_lohang_id = null ; //value.hanghoa_lohang_id;
+                                    item.dvt_id = value.dvt_id;
+                                    item.tilequydoi = value.tilequydoi;
+                                    item.soluong = value.soluong - value.soluongtattoan - value.soluongdaban / value.tilequydoi;
+                                    item.dongia = value.dongia;
+                                    item.thuevat = value.thuevat;
+                                    item.chietkhau = value.chietkhau;
+                                    item.thanhtien = value.thanhtien;
+                                    item.chuthich = null; //value.chuthich;
+                                    item.tenhanghoa_inphieu = value.tenthanhpham; //value.tenhanghoa_inphieu;
+                                    item.phieudathang_thanhpham_id = value.id;
+                                    item.xuathoadon = value.thuevat > 0 ? true : false;
+
+                                    this.hanghoas.push(item);
+                                }
+                            });
+
+                            if(data.phieudathang_thanhphams.length > 0){
+                                this.phieubanhang.khoxuat_id = data.phieudathang_thanhphams[0].khonhap_id;
+                            }
                         },
                         (error) => {
                             this.phieubanhangService.handleError(error);

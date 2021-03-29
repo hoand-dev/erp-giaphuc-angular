@@ -68,7 +68,7 @@ export class ThongKeCongNoDonViGiaCongComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/khong-co-quyen']);
                     }
                     
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkecongno-donvigiacong-xuatdulieu');
                 },
                 (error) => {
                     this.objThongKeCongNoService.handleError(error);
@@ -98,6 +98,8 @@ export class ThongKeCongNoDonViGiaCongComponent implements OnInit, OnDestroy {
                     data.forEach((value) => {
                         if (madonvigiacong == value.madonvigiacong) {
                             luytien += value.tiengiacong - value.tongtienchi + value.tongtienthu;
+                            value.nodauky = 0;
+                            value.nocuoiky = 0;
                         } else {
                             madonvigiacong = value.madonvigiacong;
                             luytien = value.nodauky + value.tiengiacong - value.tongtienchi + value.tongtienthu;

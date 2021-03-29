@@ -68,7 +68,7 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/khong-co-quyen']);
                     }
                     
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, '');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkecongno-khachhang-xuatdulieu');
                 },
                 (error) => {
                     this.objThongKeCongNoService.handleError(error);
@@ -98,6 +98,8 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
                     data.forEach((value) => {
                         if (makhachhang == value.makhachhang) {
                             luytien += value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
+                            value.nodauky = 0;
+                            value.nocuoiky = 0;
                         } else {
                             makhachhang = value.makhachhang;
                             luytien = value.nodauky + value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
