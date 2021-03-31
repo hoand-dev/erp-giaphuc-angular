@@ -56,6 +56,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
 
+        this.calculateSummary = this.calculateSummary.bind(this);
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
@@ -98,10 +99,22 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
     }
 
     customizeText(rowData) {
-        return '-';
+        return null;
     }
 
+    onOptionChanged(e){
+        // thay đổi bộ lọc hoặc tìm kiếm gán lại giá trị để tính tổng cộng
+        this.dau = [];
+        this.cuoi = [];
+        this.hientai = [];
+    }
+
+    dau: string[] = [];
+    cuoi: string[] = [];
+    hientai: string[] = [];
+
     calculateSummary(options) {
+        /* custom summary group */
         if (options.name === 'RowsSummaryTonDauKy') {
             if (options.summaryProcess === 'start') {
                 options.totalValue = 0;
@@ -121,6 +134,38 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
                 options.totalValue = 0;
             } else if (options.summaryProcess === 'calculate') {
                 options.totalValue = options.value.tonquyhientai;
+            }
+        }
+
+        /* custom summary total */
+        if (options.name === 'RowsSummaryTonDauKyTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.dau.includes(options.value.maquy)){
+                    options.totalValue += options.value.tondauky;
+                    this.dau.push(options.value.maquy);
+                }
+            }
+        }
+        if (options.name === 'RowsSummaryTonCuoiKyTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.cuoi.includes(options.value.maquy)){
+                    options.totalValue += options.value.toncuoiky;
+                    this.cuoi.push(options.value.maquy);
+                }
+            }
+        }
+        if (options.name === 'RowsSummaryTonHienTaiTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.hientai.includes(options.value.maquy)){
+                    options.totalValue += options.value.tonquyhientai;
+                    this.hientai.push(options.value.maquy);
+                }
             }
         }
     }

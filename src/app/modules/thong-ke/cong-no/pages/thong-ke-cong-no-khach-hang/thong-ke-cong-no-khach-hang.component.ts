@@ -59,7 +59,8 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
-
+        
+        this.calculateSummary = this.calculateSummary.bind(this);
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
@@ -98,8 +99,6 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
                     data.forEach((value) => {
                         if (makhachhang == value.makhachhang) {
                             luytien += value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
-                            value.nodauky = 0;
-                            value.nocuoiky = 0;
                         } else {
                             makhachhang = value.makhachhang;
                             luytien = value.nodauky + value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
@@ -185,8 +184,19 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
     }
 
     customizeText(rowData) {
-        return '-';
+        return null;
     }
+
+    onOptionChanged(e){
+        // thay đổi bộ lọc hoặc tìm kiếm gán lại giá trị để tính tổng cộng
+        this.dau = [];
+        this.cuoi = [];
+        this.hientai = [];
+    }
+
+    dau: string[] = [];
+    cuoi: string[] = [];
+    hientai: string[] = [];
 
     calculateSummary(options) {
         if (options.name === 'RowsSummaryMaKhachHang') {
@@ -215,6 +225,37 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
                 options.totalValue = 0;
             } else if (options.summaryProcess === 'calculate') {
                 options.totalValue = options.value.congnohientai;
+            }
+        }
+
+        if (options.name === 'RowsSummaryNoDauKyTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.dau.includes(options.value.makhachhang)){
+                    options.totalValue += options.value.nodauky;
+                    this.dau.push(options.value.makhachhang);
+                }
+            }
+        }
+        if (options.name === 'RowsSummaryNoCuoiKyTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.cuoi.includes(options.value.makhachhang)){
+                    options.totalValue += options.value.nocuoiky;
+                    this.cuoi.push(options.value.makhachhang);
+                }
+            }
+        }
+        if (options.name === 'RowsSummaryCongNoHienTaiTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.hientai.includes(options.value.makhachhang)){
+                    options.totalValue += options.value.congnohientai;
+                    this.hientai.push(options.value.makhachhang);
+                }
             }
         }
     }

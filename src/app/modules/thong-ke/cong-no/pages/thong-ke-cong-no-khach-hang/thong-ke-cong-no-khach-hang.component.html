@@ -46,6 +46,7 @@
                                     [allowColumnReordering]="true"
                                     [stateStoring]="stateStoringGrid"
                                     (onContextMenuPreparing)="addMenuItems($event)"
+                                    (onOptionChanged)="onOptionChanged($event)"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
@@ -165,13 +166,13 @@
                                     <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
                                         <dxi-total-item column="maphieu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
-                                        <dxi-total-item column="nodauky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryNoDauKyTotal" showInColumn="nodauky" summaryType="custom" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="tongtienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="tongtienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="tongtienban" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="tongtientra" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                                        <dxi-total-item column="nocuoiky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                                        <dxi-total-item column="congnohientai" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryNoCuoiKyTotal" showInColumn="nocuoiky" summaryType="custom" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryCongNoHienTaiTotal" showInColumn="congnohientai" summaryType="custom" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
 
                                     <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
