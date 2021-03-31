@@ -559,6 +559,7 @@ PHÁT SINH</Text>
               <Brush>Transparent</Brush>
               <ClientRectangle>4.2,0,5,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>9d478376717a4c0da32cb89141648a6d</Guid>
               <Margins>4,0,0,0</Margins>
@@ -632,8 +633,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>cafd4803eed6466dbc605d8c978ca5ed</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,4,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -655,8 +656,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>72486e9020c14a34b7a4730cd65c19a6</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,4,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -695,8 +696,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>bbd8f255b636435cb3c92ef38f1e08be</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,4,0,0</Margins>
               <Name>Text18</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -718,8 +719,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>64e27a63714b474e96ca6229837865c0</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,4,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -741,8 +742,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>d244550e16584dae819799dd29c9d77f</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,4,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -765,6 +766,7 @@ PHÁT SINH</Text>
               <Brush>Transparent</Brush>
               <ClientRectangle>18.2,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,9</Font>
               <Guid>f8536be517024092a14cb3223b9d261e</Guid>
               <HorAlignment>Center</HorAlignment>
@@ -780,6 +782,7 @@ PHÁT SINH</Text>
                 <NegativePattern>1</NegativePattern>
                 <State>DecimalDigits</State>
               </TextFormat>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text38>
@@ -1063,10 +1066,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/31/2021 4:44:04 PM</ReportChanged>
+  <ReportChanged>3/31/2021 4:53:27 PM</ReportChanged>
   <ReportCreated>2/24/2021 10:10:25 AM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Ncc.mrt</ReportFile>
-  <ReportGuid>58a23fa812a7439fa16b9e220d212019</ReportGuid>
+  <ReportGuid>4e19c398f04844efba4fafb008305253</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
