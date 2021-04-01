@@ -32,7 +32,7 @@
                                     <dxi-item [label]="{ text: 'MÃ NHÀ CUNG CẤP' }" dataField="manhacungcap">
                                         <dxi-validation-rule type="required" message="Nhập mã nhà cung cấp"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã nhà cung cấp quá ngắn"></dxi-validation-rule>
-                                        <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
+                                        <dxi-validation-rule type="pattern" [pattern]="'^\\S+$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NHÀ CUNG CẤP' }" dataField="tennhacungcap">

@@ -31,7 +31,7 @@
                                 <dx-form #test id="form" [colCount]="2" [formData]="khuvuc" [showValidationSummary]="true">
                                     <dxi-item [label]="{ text: 'MÃ KHU VỰC' }" dataField="makhuvuc">
                                         <dxi-validation-rule type="required" message="Nhập mã Khu vực"> </dxi-validation-rule>
-                                        <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
+                                        <dxi-validation-rule type="pattern" [pattern]="'^\\S+$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                         <dxi-validation-rule type="async" message="Mã khu vực đã tồn tại" [validationCallback]="theCallbackValid">
                                             <!-- custom -> xử lý tại client, async -> httpClient từ một Promise  -->
                                         </dxi-validation-rule>
