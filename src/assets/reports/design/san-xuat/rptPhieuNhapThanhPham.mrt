@@ -144,7 +144,7 @@
           <Components isList="true" count="1">
             <Text1 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,20,0.61</ClientRectangle>
+              <ClientRectangle>0,0,20,0.41</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>86100a3d758845ceb5cd0f5daee55ebe</Guid>
@@ -864,6 +864,8 @@
       <PageWidth>21</PageWidth>
       <PaperSize>A5</PaperSize>
       <Report isRef="0" />
+      <UnlimitedBreakable>False</UnlimitedBreakable>
+      <UnlimitedHeight>True</UnlimitedHeight>
     </Page1>
   </Pages>
   <ReferencedAssemblies isList="true" count="8">
@@ -877,10 +879,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/27/2021 1:57:22 PM</ReportChanged>
+  <ReportChanged>4/1/2021 10:39:06 AM</ReportChanged>
   <ReportCreated>1/27/2021 4:07:51 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\san-xuat\rptPhieuNhapThanhPham.mrt</ReportFile>
-  <ReportGuid>71ce7e207e1541809d3fa5cad2aa606c</ReportGuid>
+  <ReportGuid>7f437e14c6fe44dabacc5e27f08d94bc</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
