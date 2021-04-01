@@ -24,7 +24,7 @@
           <value>ghichu,System.String</value>
           <value>ids,System.String</value>
           <value>sort,System.String</value>
-          <value>ngaychi,System.String</value>
+          <value>ngaychi,System.DateTime</value>
           <value>maphieuchi,System.String</value>
           <value>loaiphieuchi,System.String</value>
           <value>chungtu,System.String</value>
@@ -601,7 +601,6 @@
               <Name>Text28</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>{rptPhieuChi.nguoitao_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -751,12 +750,9 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Parent isRef="5" />
               <Text>{rptPhieuChi.ngaylapphieu}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="52" type="DateFormat" isKey="true">
-                <StringFormat>D</StringFormat>
-              </TextFormat>
               <Type>Expression</Type>
             </Text46>
-            <Text47 Ref="53" type="Text" isKey="true">
+            <Text47 Ref="52" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>9.14,0,1.78,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -770,7 +766,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text47>
-            <Text48 Ref="54" type="Text" isKey="true">
+            <Text48 Ref="53" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>9.14,0.51,0.77,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -783,7 +779,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Bottom</VertAlignment>
             </Text48>
-            <Text49 Ref="55" type="Text" isKey="true">
+            <Text49 Ref="54" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>9.14,1.02,0.77,0.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -797,7 +793,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text49>
-            <Text50 Ref="56" type="Text" isKey="true">
+            <Text50 Ref="55" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>9.14,1.52,0.77,0.51</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -811,7 +807,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text50>
-            <Text51 Ref="57" type="Text" isKey="true">
+            <Text51 Ref="56" type="Text" isKey="true">
               <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>10.92,0,2.8,0.51</ClientRectangle>
@@ -824,7 +820,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text51>
-            <Text52 Ref="58" type="Text" isKey="true">
+            <Text52 Ref="57" type="Text" isKey="true">
               <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.91,0.51,3.81,0.51</ClientRectangle>
@@ -837,7 +833,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text52>
-            <Text53 Ref="59" type="Text" isKey="true">
+            <Text53 Ref="58" type="Text" isKey="true">
               <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.91,1.02,3.81,0.5</ClientRectangle>
@@ -850,7 +846,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text53>
-            <Text54 Ref="60" type="Text" isKey="true">
+            <Text54 Ref="59" type="Text" isKey="true">
               <Border>Bottom;[127:127:127];1;Dash;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>9.91,1.52,3.81,0.51</ClientRectangle>
@@ -863,23 +859,24 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text54>
-            <Text15 Ref="61" type="Text" isKey="true">
+            <Text15 Ref="60" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>14.2,6.2,5.66,0.61</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,9,Bold| Italic</Font>
+              <Font>Times New Roman,11,Bold| Italic</Font>
               <Guid>fc03d676c5004073bd3f894fbf8f6dfd</Guid>
-              <HorAlignment>Center</HorAlignment>
+              <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>{rptPhieuChi.ngaylapphieu}</Text>
+              <Text>Ngày {Day(rptPhieuChi.ngaychi)} tháng {Month(rptPhieuChi.ngaychi)} năm {Year(rptPhieuChi.ngaychi)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="62" type="DateFormat" isKey="true">
+              <TextFormat Ref="61" type="DateFormat" isKey="true">
                 <StringFormat>D</StringFormat>
               </TextFormat>
               <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text15>
           </Components>
           <Conditions isList="true" count="0" />
@@ -910,9 +907,10 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>rptPhieuChiC31</ReportAlias>
-  <ReportChanged>1/30/2021 10:51:46 AM</ReportChanged>
+  <ReportChanged>4/1/2021 11:40:50 AM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
-  <ReportGuid>296d157890eb466982fe4f2f1606e050</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
+  <ReportGuid>793cdf14427843ee95d79343244edfae</ReportGuid>
   <ReportName>rptPhieuChiC31</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
@@ -941,7 +939,7 @@ namespace Reports
 </Script>
   <ScriptLanguage>CSharp</ScriptLanguage>
   <Styles isList="true" count="1">
-    <Style1 Ref="63" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Style1 Ref="62" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Brush>Transparent</Brush>
       <Conditions isList="true" count="0" />
       <Font>Times New Roman,8</Font>

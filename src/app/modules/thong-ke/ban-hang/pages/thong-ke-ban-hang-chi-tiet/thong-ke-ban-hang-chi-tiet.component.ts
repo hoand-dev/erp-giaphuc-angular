@@ -101,8 +101,4 @@ export class ThongKeBanHangChiTietComponent implements OnInit {
     rowNumber(rowIndex){
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
-
-    customizeText(rowData) {
-        return '-';
-    }
 }

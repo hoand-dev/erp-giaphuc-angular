@@ -607,7 +607,6 @@
               <Name>Text28</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>{rptPhieuThu.nguoitao_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -890,9 +889,10 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>rptPhieuThu</ReportAlias>
-  <ReportChanged>1/30/2021 10:51:56 AM</ReportChanged>
+  <ReportChanged>4/1/2021 10:43:55 AM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
-  <ReportGuid>fd83c905cf6a460d9869885696297897</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuThuC31.mrt</ReportFile>
+  <ReportGuid>5bf3f0ad0bd144a3b3e12001a451dcdb</ReportGuid>
   <ReportName>rptPhieuThu</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

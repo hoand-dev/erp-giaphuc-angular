@@ -197,6 +197,7 @@
                                                         <th [style.min-width.px]="120">TIỀN CHI</th>
                                                         <th [style.min-width.px]="120">TIỀN GIẢM</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
+                                                        <th [style.max-width.px]="20">XOÁ</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -224,6 +225,7 @@
                                                             ></dx-number-box>
                                                         </td>
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                        <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -237,6 +239,7 @@
                                                         <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotienchi') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieunhapkhos, 'sotiengiam') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="250"></th>
+                                                        <th [style.max-width.px]="20"></th>
                                                     </tr>
                                                 </tfoot>
                                             </table>

@@ -307,6 +307,13 @@ export class PhieuChiCapNhatComponent implements OnInit {
         this.onTinhNoConLai();
     }
 
+    public onHangHoaDelete(item) {
+        this.phieunhapkhos = this.phieunhapkhos.filter((i)=> {
+            return i !== item;
+        });
+        this.onTinhNoConLai();
+    }
+
     calculateNoConLai() {
         switch (this.loaiphieuchi) {
             case 'khac':
@@ -355,7 +362,7 @@ export class PhieuChiCapNhatComponent implements OnInit {
         if (!this.frmPhieuChi.instance.validate().isValid) return;
 
         // bỏ qua các dòng dữ liệu số tiền thu = 0 và số tiền giảm = 0
-        let phieuchi_phieunhapkhos = this.phieunhapkhos.filter((x) => x.sotienchi != 0 || x.sotiengiam != 0);
+        let phieuchi_phieunhapkhos = this.phieunhapkhos; //.filter((x) => x.sotienchi != 0 || x.sotiengiam != 0);
         let phieuchi_req = this.phieuchi;
 
         // gán lại dữ liệu

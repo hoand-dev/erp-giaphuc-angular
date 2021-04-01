@@ -60,6 +60,7 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().add(1, 'days').toDate();
 
+        this.calculateSummary = this.calculateSummary.bind(this);
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
@@ -98,8 +99,6 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
                     data.forEach((value) => {
                         if (manhacungcap == value.manhacungcap) {
                             luytien += value.tongtienmua - value.tongtientra - value.tongtienchi + value.tongtienthu;
-                            value.nodauky = 0;
-                            value.nocuoiky = 0;
                         } else {
                             manhacungcap = value.manhacungcap;
                             luytien = value.nodauky + value.tongtienmua - value.tongtientra - value.tongtienchi + value.tongtienthu;
@@ -156,8 +155,19 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
     }
 
     customizeText(rowData) {
-        return '-';
+        return null;
     }
+
+    onOptionChanged(e){
+        // thay đổi bộ lọc hoặc tìm kiếm gán lại giá trị để tính tổng cộng
+        this.dau = [];
+        this.cuoi = [];
+        this.hientai = [];
+    }
+
+    dau: string[] = [];
+    cuoi: string[] = [];
+    hientai: string[] = [];
 
     calculateSummary(options) {
         if (options.name === 'RowsSummaryNoDauKy') {
@@ -179,6 +189,37 @@ export class ThongKeCongNoNhaCungCapComponent implements OnInit, OnDestroy {
                 options.totalValue = 0;
             } else if (options.summaryProcess === 'calculate') {
                 options.totalValue = options.value.congnohientai;
+            }
+        }
+
+        if (options.name === 'RowsSummaryNoDauKyTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.dau.includes(options.value.manhacungcap)){
+                    options.totalValue += options.value.nodauky;
+                    this.dau.push(options.value.manhacungcap);
+                }
+            }
+        }
+        if (options.name === 'RowsSummaryNoCuoiKyTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.cuoi.includes(options.value.manhacungcap)){
+                    options.totalValue += options.value.nocuoiky;
+                    this.cuoi.push(options.value.manhacungcap);
+                }
+            }
+        }
+        if (options.name === 'RowsSummaryCongNoHienTaiTotal') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } else if (options.summaryProcess === 'calculate') {
+                if(!this.hientai.includes(options.value.manhacungcap)){
+                    options.totalValue += options.value.congnohientai;
+                    this.hientai.push(options.value.manhacungcap);
+                }
             }
         }
     }

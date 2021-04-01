@@ -45,6 +45,7 @@
                                     [allowColumnReordering]="true"
                                     [columnAutoWidth]="true"
                                     [stateStoring]="stateStoringGrid"
+                                    (onOptionChanged)="onOptionChanged($event)"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
@@ -54,15 +55,8 @@
                                     <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
                                     <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                                     <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
-                                    <dxo-paging [pageSize]="50"></dxo-paging>
-                                    <dxo-pager
-                                        [showInfo]="true"
-                                       
-                                        [showPageSizeSelector]="true"
-                                        [allowedPageSizes]="[10, 20]"
-                                        [showNavigationButtons]="true"
-                                    >
-                                    </dxo-pager>
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
 
                                     <dxi-column dataField="null" caption="Quỹ"></dxi-column>
                                     <dxi-column dataField="tenquy" caption="Quỹ" [groupIndex]="0"></dxi-column>
@@ -167,13 +161,13 @@
                                     <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>
                                         <dxi-total-item column="maphieu" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
-                                        <dxi-total-item column="tondauky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryTonDauKyTotal" showInColumn="tondauky" summaryType="custom" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                                        <dxi-total-item column="toncuoiky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                                        <dxi-total-item column="tonquyhientai" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryTonCuoiKyTotal" showInColumn="toncuoiky" summaryType="custom" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item name="RowsSummaryTonHienTaiTotal" showInColumn="tonquyhientai" summaryType="custom" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
 
                                     <dxo-filter-panel [visible]="true"></dxo-filter-panel>

@@ -83,6 +83,7 @@ export class PhieuChiInPhieuModalComponent implements OnInit {
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
                     data.sotien_bangchu = number2vn(data.sotienchi);
+                    data.sotien_bangchu = data.sotien_bangchu.charAt(0).toUpperCase() + data.sotien_bangchu.slice(1);
 
                     dsPhieuChi.readJson({ rptPhieuChi: data });
                     report.regData('rptPhieuChi', null, dsPhieuChi);
