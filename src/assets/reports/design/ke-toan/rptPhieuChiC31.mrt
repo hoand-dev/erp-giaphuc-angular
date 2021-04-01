@@ -24,7 +24,7 @@
           <value>ghichu,System.String</value>
           <value>ids,System.String</value>
           <value>sort,System.String</value>
-          <value>ngaychi,System.String</value>
+          <value>ngaychi,System.DateTime</value>
           <value>maphieuchi,System.String</value>
           <value>loaiphieuchi,System.String</value>
           <value>chungtu,System.String</value>
@@ -870,7 +870,7 @@ của Bộ trưởng Bộ Tài Chính</Text>
               <Name>Text15</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>Ngày {Day(Today)} tháng {Month(Today)} năm {Year(Today)}</Text>
+              <Text>Ngày {Day(rptPhieuChi.ngaychi)} tháng {Month(rptPhieuChi.ngaychi)} năm {Year(rptPhieuChi.ngaychi)}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="61" type="DateFormat" isKey="true">
                 <StringFormat>D</StringFormat>
@@ -907,10 +907,10 @@ của Bộ trưởng Bộ Tài Chính</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>rptPhieuChiC31</ReportAlias>
-  <ReportChanged>4/1/2021 11:22:29 AM</ReportChanged>
+  <ReportChanged>4/1/2021 11:40:50 AM</ReportChanged>
   <ReportCreated>11/15/2020 1:37:51 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChiC31.mrt</ReportFile>
-  <ReportGuid>67415b484b5549b581731d15d43fb07d</ReportGuid>
+  <ReportGuid>793cdf14427843ee95d79343244edfae</ReportGuid>
   <ReportName>rptPhieuChiC31</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
