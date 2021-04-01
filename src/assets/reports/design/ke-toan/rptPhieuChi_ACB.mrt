@@ -138,12 +138,9 @@
           <Parent isRef="4" />
           <Text>{rptPhieuChi.ngaylapphieu}</Text>
           <TextBrush>Black</TextBrush>
-          <TextFormat Ref="9" type="DateFormat" isKey="true">
-            <StringFormat>dd/MM/yyyy</StringFormat>
-          </TextFormat>
           <Type>Expression</Type>
         </Text4>
-        <Text5 Ref="10" type="Text" isKey="true">
+        <Text5 Ref="9" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>13.6,0.2,3,1</ClientRectangle>
@@ -159,7 +156,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text5>
-        <Text6 Ref="11" type="Text" isKey="true">
+        <Text6 Ref="10" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,1.4,20,0.8</ClientRectangle>
@@ -175,7 +172,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text6>
-        <Text7 Ref="12" type="Text" isKey="true">
+        <Text7 Ref="11" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,2.2,4.8,0.6</ClientRectangle>
@@ -190,7 +187,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text7>
-        <Text8 Ref="13" type="Text" isKey="true">
+        <Text8 Ref="12" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>4.8,2.2,15.2,0.6</ClientRectangle>
@@ -205,7 +202,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text8>
-        <Text9 Ref="14" type="Text" isKey="true">
+        <Text9 Ref="13" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,2.8,3.4,0.6</ClientRectangle>
@@ -220,7 +217,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text9>
-        <Text10 Ref="15" type="Text" isKey="true">
+        <Text10 Ref="14" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>3.4,2.8,2.6,0.6</ClientRectangle>
@@ -235,13 +232,13 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text10>
-        <Text11 Ref="16" type="Text" isKey="true">
+        <Text11 Ref="15" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>6,2.8,7.2,0.6</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,10</Font>
-          <Margins>0,0,0,0</Margins>
+          <Margins>4,0,0,0</Margins>
           <Name>Text11</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
@@ -250,7 +247,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text11>
-        <Text12 Ref="17" type="Text" isKey="true">
+        <Text12 Ref="16" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>13.2,2.8,6.8,0.6</ClientRectangle>
@@ -265,7 +262,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text12>
-        <Text13 Ref="18" type="Text" isKey="true">
+        <Text13 Ref="17" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,3.6,20,0.8</ClientRectangle>
@@ -281,7 +278,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text13>
-        <Text14 Ref="19" type="Text" isKey="true">
+        <Text14 Ref="18" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,4.4,5.6,0.8</ClientRectangle>
@@ -296,7 +293,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text14>
-        <Text15 Ref="20" type="Text" isKey="true">
+        <Text15 Ref="19" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>5.6,4.4,14.4,0.8</ClientRectangle>
@@ -311,7 +308,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text15>
-        <Text16 Ref="21" type="Text" isKey="true">
+        <Text16 Ref="20" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,5.2,5.6,0.6</ClientRectangle>
@@ -326,7 +323,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text16>
-        <Text17 Ref="22" type="Text" isKey="true">
+        <Text17 Ref="21" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>5.6,5.2,14.4,0.6</ClientRectangle>
@@ -341,7 +338,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text17>
-        <Text18 Ref="23" type="Text" isKey="true">
+        <Text18 Ref="22" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,5.8,6,0.6</ClientRectangle>
@@ -356,7 +353,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text18>
-        <Text19 Ref="24" type="Text" isKey="true">
+        <Text19 Ref="23" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>6,5.8,3,0.6</ClientRectangle>
@@ -370,7 +367,7 @@
           <TextBrush>Black</TextBrush>
           <VertAlignment>Center</VertAlignment>
         </Text19>
-        <Text20 Ref="25" type="Text" isKey="true">
+        <Text20 Ref="24" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>9,5.8,3,0.6</ClientRectangle>
@@ -386,7 +383,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text20>
-        <Text21 Ref="26" type="Text" isKey="true">
+        <Text21 Ref="25" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>12,5.8,2,0.6</ClientRectangle>
@@ -400,7 +397,7 @@
           <TextBrush>Black</TextBrush>
           <VertAlignment>Center</VertAlignment>
         </Text21>
-        <Text22 Ref="27" type="Text" isKey="true">
+        <Text22 Ref="26" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>14,5.8,3,0.6</ClientRectangle>
@@ -415,7 +412,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text22>
-        <Text23 Ref="28" type="Text" isKey="true">
+        <Text23 Ref="27" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>17,5.8,3,0.6</ClientRectangle>
@@ -429,7 +426,7 @@
           <TextBrush>Black</TextBrush>
           <VertAlignment>Center</VertAlignment>
         </Text23>
-        <Text24 Ref="29" type="Text" isKey="true">
+        <Text24 Ref="28" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,6.4,5.6,1</ClientRectangle>
@@ -443,7 +440,7 @@
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
         </Text24>
-        <Text25 Ref="30" type="Text" isKey="true">
+        <Text25 Ref="29" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>5.6,6.4,9.4,1</ClientRectangle>
@@ -458,7 +455,7 @@
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
         </Text25>
-        <Text26 Ref="31" type="Text" isKey="true">
+        <Text26 Ref="30" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>15,6.4,5,1</ClientRectangle>
@@ -472,7 +469,7 @@
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
         </Text26>
-        <Text27 Ref="32" type="Text" isKey="true">
+        <Text27 Ref="31" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,7.4,6.8,0.6</ClientRectangle>
@@ -487,7 +484,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text27>
-        <Text29 Ref="33" type="Text" isKey="true">
+        <Text29 Ref="32" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,9,3.2,0.6</ClientRectangle>
@@ -502,7 +499,7 @@
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
         </Text29>
-        <Text30 Ref="34" type="Text" isKey="true">
+        <Text30 Ref="33" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>3.2,9,10.4,0.6</ClientRectangle>
@@ -518,7 +515,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text30>
-        <Text31 Ref="35" type="Text" isKey="true">
+        <Text31 Ref="34" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,8,13.6,1</ClientRectangle>
@@ -535,7 +532,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text31>
-        <Text32 Ref="36" type="Text" isKey="true">
+        <Text32 Ref="35" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>13.6,7.4,6.4,0.6</ClientRectangle>
@@ -551,7 +548,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text32>
-        <Text33 Ref="37" type="Text" isKey="true">
+        <Text33 Ref="36" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>13.6,8,5.4,1.6</ClientRectangle>
@@ -564,7 +561,7 @@
           <Parent isRef="4" />
           <Text>{rptPhieuChi.sotienchi}</Text>
           <TextBrush>Black</TextBrush>
-          <TextFormat Ref="38" type="NumberFormat" isKey="true">
+          <TextFormat Ref="37" type="NumberFormat" isKey="true">
             <DecimalDigits>0</DecimalDigits>
             <GroupSeparator>,</GroupSeparator>
             <NegativePattern>1</NegativePattern>
@@ -573,7 +570,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text33>
-        <Text34 Ref="39" type="Text" isKey="true">
+        <Text34 Ref="38" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>19,8,1,1.6</ClientRectangle>
@@ -589,7 +586,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text34>
-        <Text35 Ref="40" type="Text" isKey="true">
+        <Text35 Ref="39" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,9.6,6.8,0.6</ClientRectangle>
@@ -605,7 +602,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text35>
-        <Text36 Ref="41" type="Text" isKey="true">
+        <Text36 Ref="40" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>7.2,9.6,6,0.6</ClientRectangle>
@@ -621,7 +618,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text36>
-        <Text37 Ref="42" type="Text" isKey="true">
+        <Text37 Ref="41" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>13.2,9.6,6.8,0.6</ClientRectangle>
@@ -637,7 +634,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text37>
-        <Text38 Ref="43" type="Text" isKey="true">
+        <Text38 Ref="42" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,10.4,2.4,0.6</ClientRectangle>
@@ -653,7 +650,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text38>
-        <Text39 Ref="44" type="Text" isKey="true">
+        <Text39 Ref="43" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,11,2.4,0.6</ClientRectangle>
@@ -669,7 +666,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text39>
-        <Text40 Ref="45" type="Text" isKey="true">
+        <Text40 Ref="44" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>3.6,10.4,3.2,0.6</ClientRectangle>
@@ -685,7 +682,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text40>
-        <Text41 Ref="46" type="Text" isKey="true">
+        <Text41 Ref="45" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>3.6,11,3,0.6</ClientRectangle>
@@ -701,7 +698,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text41>
-        <Text42 Ref="47" type="Text" isKey="true">
+        <Text42 Ref="46" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>7.2,10.4,5.6,0.6</ClientRectangle>
@@ -717,7 +714,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text42>
-        <Text44 Ref="48" type="Text" isKey="true">
+        <Text44 Ref="47" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>7.2,11,5.6,0.6</ClientRectangle>
@@ -733,7 +730,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text44>
-        <Text45 Ref="49" type="Text" isKey="true">
+        <Text45 Ref="48" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>7.2,11.6,5.6,0.6</ClientRectangle>
@@ -749,7 +746,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text45>
-        <Text46 Ref="50" type="Text" isKey="true">
+        <Text46 Ref="49" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>13.2,10.4,6.8,0.6</ClientRectangle>
@@ -766,7 +763,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text46>
-        <Text48 Ref="51" type="Text" isKey="true">
+        <Text48 Ref="50" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>12.8,11,4.4,0.6</ClientRectangle>
@@ -782,7 +779,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text48>
-        <Text49 Ref="52" type="Text" isKey="true">
+        <Text49 Ref="51" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>17.2,11,2.8,0.6</ClientRectangle>
@@ -798,7 +795,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text49>
-        <Text50 Ref="53" type="Text" isKey="true">
+        <Text50 Ref="52" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>12.8,11.6,4.4,0.6</ClientRectangle>
@@ -814,7 +811,7 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text50>
-        <Text51 Ref="54" type="Text" isKey="true">
+        <Text51 Ref="53" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>17.2,11.6,2.8,0.6</ClientRectangle>
@@ -830,64 +827,64 @@
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text51>
-        <HorizontalLinePrimitive1 Ref="55" type="HorizontalLinePrimitive" isKey="true">
+        <HorizontalLinePrimitive1 Ref="54" type="HorizontalLinePrimitive" isKey="true">
           <ClientRectangle>0,1.4,20,0.0254</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="56" type="Cap" isKey="true">
+          <EndCap Ref="55" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Name>HorizontalLinePrimitive1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="57" type="Cap" isKey="true">
+          <StartCap Ref="56" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </HorizontalLinePrimitive1>
-        <HorizontalLinePrimitive2 Ref="58" type="HorizontalLinePrimitive" isKey="true">
+        <HorizontalLinePrimitive2 Ref="57" type="HorizontalLinePrimitive" isKey="true">
           <ClientRectangle>0,3.6,20,0.0254</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="59" type="Cap" isKey="true">
+          <EndCap Ref="58" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Name>HorizontalLinePrimitive2</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="60" type="Cap" isKey="true">
+          <StartCap Ref="59" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </HorizontalLinePrimitive2>
-        <HorizontalLinePrimitive3 Ref="61" type="HorizontalLinePrimitive" isKey="true">
+        <HorizontalLinePrimitive3 Ref="60" type="HorizontalLinePrimitive" isKey="true">
           <ClientRectangle>0,7.4,20,0.0254</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="62" type="Cap" isKey="true">
+          <EndCap Ref="61" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Name>HorizontalLinePrimitive3</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="63" type="Cap" isKey="true">
+          <StartCap Ref="62" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </HorizontalLinePrimitive3>
-        <VerticalLinePrimitive1 Ref="64" type="VerticalLinePrimitive" isKey="true">
+        <VerticalLinePrimitive1 Ref="63" type="VerticalLinePrimitive" isKey="true">
           <ClientRectangle>13.6,7.4,0.0254,2.2</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="65" type="Cap" isKey="true">
+          <EndCap Ref="64" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Guid>910a7e7aea864da8804f5b6a72e92e8d</Guid>
           <Name>VerticalLinePrimitive1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="66" type="Cap" isKey="true">
+          <StartCap Ref="65" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </VerticalLinePrimitive1>
-        <StartPointPrimitive1 Ref="67" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
+        <StartPointPrimitive1 Ref="66" type="Stimulsoft.Report.Components.StiStartPointPrimitive" isKey="true">
           <ClientRectangle>13.6,7.4,0,0</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Name>StartPointPrimitive1</Name>
@@ -895,7 +892,7 @@
           <Parent isRef="4" />
           <ReferenceToGuid>910a7e7aea864da8804f5b6a72e92e8d</ReferenceToGuid>
         </StartPointPrimitive1>
-        <EndPointPrimitive1 Ref="68" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
+        <EndPointPrimitive1 Ref="67" type="Stimulsoft.Report.Components.StiEndPointPrimitive" isKey="true">
           <ClientRectangle>13.6,9.6,0,0</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Name>EndPointPrimitive1</Name>
@@ -903,45 +900,45 @@
           <Parent isRef="4" />
           <ReferenceToGuid>910a7e7aea864da8804f5b6a72e92e8d</ReferenceToGuid>
         </EndPointPrimitive1>
-        <HorizontalLinePrimitive4 Ref="69" type="HorizontalLinePrimitive" isKey="true">
+        <HorizontalLinePrimitive4 Ref="68" type="HorizontalLinePrimitive" isKey="true">
           <ClientRectangle>13.6,8,6.4,0.0254</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="70" type="Cap" isKey="true">
+          <EndCap Ref="69" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Name>HorizontalLinePrimitive4</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="71" type="Cap" isKey="true">
+          <StartCap Ref="70" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </HorizontalLinePrimitive4>
-        <HorizontalLinePrimitive5 Ref="72" type="HorizontalLinePrimitive" isKey="true">
+        <HorizontalLinePrimitive5 Ref="71" type="HorizontalLinePrimitive" isKey="true">
           <ClientRectangle>13.6,9.6,6.4,0.0254</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="73" type="Cap" isKey="true">
+          <EndCap Ref="72" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Name>HorizontalLinePrimitive5</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="74" type="Cap" isKey="true">
+          <StartCap Ref="73" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </HorizontalLinePrimitive5>
-        <HorizontalLinePrimitive6 Ref="75" type="HorizontalLinePrimitive" isKey="true">
+        <HorizontalLinePrimitive6 Ref="74" type="HorizontalLinePrimitive" isKey="true">
           <ClientRectangle>0,9.6,20,0.0254</ClientRectangle>
           <Color>127, 127, 127</Color>
           <Conditions isList="true" count="0" />
-          <EndCap Ref="76" type="Cap" isKey="true">
+          <EndCap Ref="75" type="Cap" isKey="true">
             <Color>Black</Color>
           </EndCap>
           <Name>HorizontalLinePrimitive6</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <StartCap Ref="77" type="Cap" isKey="true">
+          <StartCap Ref="76" type="Cap" isKey="true">
             <Color>Black</Color>
           </StartCap>
         </HorizontalLinePrimitive6>
@@ -968,10 +965,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/25/2021 6:15:09 PM</ReportChanged>
+  <ReportChanged>4/1/2021 11:05:17 AM</ReportChanged>
   <ReportCreated>1/21/2021 4:14:33 PM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_ACB.mrt</ReportFile>
-  <ReportGuid>4ade258b64be495ba5e083f19353eb77</ReportGuid>
+  <ReportGuid>31cdbbd374864f28a462c9fb87c05bfe</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
