@@ -198,7 +198,7 @@ export class AppComponent implements OnInit {
             setInterval(() => {
                 console.log("interval refresh token...");
                 this.refreshAuthToken();
-            }, 1000 * 60 * 15);
+            }, 1000 * 60 * 60 * 4);
         }
     }
 
