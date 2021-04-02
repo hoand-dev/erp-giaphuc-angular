@@ -33,6 +33,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
     public enableExport: boolean = false;
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
+    public lblTimeView: string = null;
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
@@ -55,7 +56,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
         private objThongKeKhoHangService: ThongKeKhoHangService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("THỐNG KÊ - XUẤT NHẬP TỒN | " + this.appInfoService.appName);
+        this.titleService.setTitle('THỐNG KÊ - XUẤT NHẬP TỒN | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -69,7 +70,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
                     if (!this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhapton')) {
                         this.router.navigate(['/khong-co-quyen']);
                     }
-                    
+
                     this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhapton-xuatdulieu');
                 },
                 (error) => {
@@ -207,6 +208,10 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
         this.subscriptions.add(
             this.objThongKeKhoHangService.findsXuatNhapTon(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id, null).subscribe(
                 (data) => {
+                    this.lblTimeView = 'Từ ngày: ' + moment(this.firstDayTime).format('DD/MM/YYYY') + ' - Đến ngày: ' + moment(this.currDayTime).format('DD/MM/YYYY');
+                    if(moment(this.firstDayTime).format('DD/MM/YYYY') === moment(this.currDayTime).format('DD/MM/YYYY')){
+                        this.lblTimeView = 'Trong ngày: ' + moment(this.firstDayTime).format('DD/MM/YYYY');
+                    }
                     this.dataGrid.dataSource = data;
                     this.loadingVisible = false;
                 },
@@ -218,7 +223,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 }
