@@ -326,7 +326,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>14.2,1.4,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,11</Font>
+              <Font>Times New Roman,13</Font>
               <Guid>bbe83a171eff4a9a8e6d330335339d81</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
@@ -785,7 +785,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>9.8,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12</Font>
+              <Font>Times New Roman,13</Font>
               <Guid>2b2b94c4cd9c4adaa8fe0dc5a5fb4869</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -1088,10 +1088,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/26/2021 3:48:50 PM</ReportChanged>
+  <ReportChanged>4/1/2021 6:17:08 PM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_CoGia.mrt</ReportFile>
-  <ReportGuid>0b9cf89585c14be592f14156bc5fa82b</ReportGuid>
+  <ReportGuid>a5e6a53cea4d42f080ca5a1a5346d0b3</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
