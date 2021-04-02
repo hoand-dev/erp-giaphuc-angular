@@ -77,7 +77,7 @@
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'NCC' }" dataField="ncc">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập ncc"></dxi-validation-rule>
-                                        <dxi-validation-rule type="pattern" [pattern]="'^[a-zA-Z0-9]*$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
+                                        <dxi-validation-rule type="pattern" [pattern]="'^\\S+$'" message="Mã không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
                                     </dxi-item>
 
                                     <dxi-item [label]="{ text: 'DÀY' }" dataField="day" editorType="dxNumberBox">
