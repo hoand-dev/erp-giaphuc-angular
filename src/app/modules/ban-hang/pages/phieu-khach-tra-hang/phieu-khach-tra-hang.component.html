@@ -72,9 +72,9 @@
                             <dxi-column dataField="tongthanhtien" caption="Tổng tiền" format="#,##0"></dxi-column>
                             <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>
 
-                            <dxi-column dataField="trangthaixuat" caption="Trạng thái xuất" cellTemplate="cellTemplateTrangThaiXuat">
-                                <div *dxTemplate="let data of 'cellTemplateTrangThaiXuat'">
-                                    <span *ngIf="data.value == null">Chưa xuất</span>
+                            <dxi-column dataField="trangthainhap" caption="Trạng thái nhập" cellTemplate="cellTemplateTrangThaiNhap">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThaiNhap'">
+                                    <span *ngIf="data.value == null">Chưa nhập</span>
                                     <span *ngIf="data.value != null">{{ data.value }}</span>
                                 </div>
                             </dxi-column>
