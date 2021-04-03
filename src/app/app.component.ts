@@ -321,7 +321,8 @@ export class AppComponent implements OnInit {
             "/mua-hang-chi-tiet"
         ];
         const THONGKE_BANHANG = [
-            "/ban-hang-chi-tiet"
+            "/ban-hang-chi-tiet",
+            "/xuat-ban-hang-chi-tiet",
         ];
         const HETHONG = [
             "/nguoi-dung",
