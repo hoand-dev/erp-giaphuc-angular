@@ -148,7 +148,7 @@ export class PhieuNhapChuyenKhoThemMoiComponent implements OnInit {
                             this.phieunhapchuyenkho.khoxuatchuyen_id = data.khoxuatchuyen_id;
                             this.phieunhapchuyenkho.khonhap_id = data.khonhap_id;
                             this.phieunhapchuyenkho.phieuxuatchuyenkho_id = data.id;
-                            this.phieunhapchuyenkho.tumaphieu = data.maphieuxuatchuyenkho;
+                            this.phieunhapchuyenkho.maphieuxuatchuyenkho = data.maphieuxuatchuyenkho;
 
                             // gán độ dài danh sách hàng hóa load lần đầu
                             this.hanghoalenght = data.phieuxuatchuyenkho_chitiets.length;
