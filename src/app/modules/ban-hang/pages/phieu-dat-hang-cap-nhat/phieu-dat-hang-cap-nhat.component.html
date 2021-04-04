@@ -85,8 +85,8 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'keyup', readOnly: isTatToan }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'keyup', readOnly: isTatToan }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'input', readOnly: isTatToan }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'input', readOnly: isTatToan }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
                                     </dxi-item>
 
@@ -152,7 +152,7 @@
                                                                         format="#,##0.###"
                                                                         [readOnly]="isTatToan"
                                                                         [(value)]="item.soluong"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -162,7 +162,7 @@
                                                                         [readOnly]="!isTatToan"
                                                                         [max]="item.soluong - item.soluongdagiao"
                                                                         [(value)]="item.soluongtattoan"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -171,7 +171,7 @@
                                                                         format="#,##0.###"
                                                                         [readOnly]="isTatToan"
                                                                         [(value)]="item.dongia"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -181,7 +181,7 @@
                                                                         format="#0.##%"
                                                                         [step]="0.01"
                                                                         [(value)]="item.chietkhau"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -191,7 +191,7 @@
                                                                         format="#0.##%"
                                                                         [step]="0.01"
                                                                         [(value)]="item.thuevat"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -387,7 +387,7 @@
                                                                         [readOnly]="isTatToan"
                                                                         format="#,##0.###"
                                                                         [(value)]="item.soluong"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -397,7 +397,7 @@
                                                                         [readOnly]="!isTatToan"
                                                                         [max]="item.soluong"
                                                                         [(value)]="item.soluongtattoan"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -406,7 +406,7 @@
                                                                         [readOnly]="isTatToan"
                                                                         format="#,##0.###"
                                                                         [(value)]="item.dongia"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -416,7 +416,7 @@
                                                                         format="#0.##%"
                                                                         [step]="0.01"
                                                                         [(value)]="item.chietkhau"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -426,7 +426,7 @@
                                                                         format="#0.##%"
                                                                         [step]="0.01"
                                                                         [(value)]="item.thuevat"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -539,7 +539,7 @@
                                                                         [readOnly]="!isTatToan"
                                                                         [max]="item.soluong"
                                                                         [(value)]="item.soluongtattoan"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -548,7 +548,7 @@
                                                                         [readOnly]="true"
                                                                         format="#,##0.###"
                                                                         [(value)]="item.dongia"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -558,7 +558,7 @@
                                                                         format="#0.##%"
                                                                         [step]="0.01"
                                                                         [(value)]="item.chietkhau"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
@@ -568,7 +568,7 @@
                                                                         format="#0.##%"
                                                                         [step]="0.01"
                                                                         [(value)]="item.thuevat"
-                                                                        valueChangeEvent="keyup"
+                                                                        valueChangeEvent="input"
                                                                         (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>

@@ -199,7 +199,7 @@
                                                                 [readOnly]="true"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.heso"
-                                                                valueChangeEvent="keyup"
+                                                                valueChangeEvent="input"
                                                                 (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -226,13 +226,13 @@
                                                         </td>
 
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiavon" valueChangeEvent="keyup" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
+                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongiavon" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
@@ -242,7 +242,7 @@
                                                                 [readOnly]="true"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.soluongloi"
-                                                                valueChangeEvent="keyup"
+                                                                valueChangeEvent="input"
                                                                 (onValueChanged)="onHangHoaChangeRow('soluongloi', i, $event)"
                                                                 (click)="onclickSoLuongLoi(i)"
                                                             ></dx-number-box>

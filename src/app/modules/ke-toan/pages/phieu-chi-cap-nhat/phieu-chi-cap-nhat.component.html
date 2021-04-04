@@ -114,7 +114,7 @@
 
                                     <dxi-item [label]="{ text: 'TIỀN CHI' }" *ngIf="loaiphieuchi != 'lenhvay'">
                                         <div *dxTemplate>
-                                            <dx-number-box format="#,##0.###" [(value)]="phieuchi.sotienchi" valueChangeEvent="keyup" (onValueChanged)="onChangeTienChi($event)"></dx-number-box>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuchi.sotienchi" valueChangeEvent="input" (onValueChanged)="onChangeTienChi($event)"></dx-number-box>
                                         </div>
                                     </dxi-item>
                                     <dxi-item
@@ -122,7 +122,7 @@
                                         [label]="{ text: 'TIỀN CHI' }"
                                         editorType="dxNumberBox"
                                         dataField="sotienchi_lenhvay"
-                                        [editorOptions]="{ format: '#,##0.###', valueChangeEvent: 'keyup' }"
+                                        [editorOptions]="{ format: '#,##0.###', valueChangeEvent: 'input' }"
                                     ></dxi-item>
 
                                     <dxi-item [label]="{ text: 'CHỨNG TỪ' }" dataField="chungtu"></dxi-item>
@@ -152,7 +152,7 @@
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TIỀN GIẢM' }" *ngIf="loaiphieuchi != 'lenhvay'">
                                         <div *dxTemplate>
-                                            <dx-number-box format="#,##0.###" [(value)]="phieuchi.sotiengiam" valueChangeEvent="keyup" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuchi.sotiengiam" valueChangeEvent="input" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
                                         </div>
                                     </dxi-item>
                                     <dxi-item
@@ -160,7 +160,7 @@
                                         [label]="{ text: 'TIỀN CHI LÃI' }"
                                         editorType="dxNumberBox"
                                         dataField="sotienchi_laixuat"
-                                        [editorOptions]="{ format: '#,##0.###', valueChangeEvent: 'keyup' }"
+                                        [editorOptions]="{ format: '#,##0.###', valueChangeEvent: 'input' }"
                                     ></dxi-item>
 
                                     <dxi-item
@@ -212,7 +212,7 @@
                                                             <dx-number-box
                                                                 format="#,##0.###"
                                                                 [(value)]="item.sotienchi"
-                                                                valueChangeEvent="keyup"
+                                                                valueChangeEvent="input"
                                                                 (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -220,7 +220,7 @@
                                                             <dx-number-box
                                                                 format="#,##0.###"
                                                                 [(value)]="item.sotiengiam"
-                                                                valueChangeEvent="keyup"
+                                                                valueChangeEvent="input"
                                                                 (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
