@@ -232,6 +232,7 @@
               <Parent isRef="8" />
               <Text>{rptThongKeCongNo.tennhacungcap}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
@@ -560,9 +561,9 @@ PHÁT SINH</Text>
               <ClientRectangle>4.2,0,5,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Editable>True</Editable>
-              <Font>Times New Roman,9</Font>
+              <Font>Times New Roman,10</Font>
               <Guid>9d478376717a4c0da32cb89141648a6d</Guid>
-              <Margins>4,0,0,0</Margins>
+              <Margins>4,4,4,4</Margins>
               <Name>Text4</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -1066,10 +1067,9 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/31/2021 4:53:27 PM</ReportChanged>
+  <ReportChanged>4/3/2021 3:42:13 PM</ReportChanged>
   <ReportCreated>2/24/2021 10:10:25 AM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Ncc.mrt</ReportFile>
-  <ReportGuid>4e19c398f04844efba4fafb008305253</ReportGuid>
+  <ReportGuid>f4f5fc4a7510442394249c9eabeb963a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

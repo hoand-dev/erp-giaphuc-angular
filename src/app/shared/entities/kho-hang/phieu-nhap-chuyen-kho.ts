@@ -25,7 +25,7 @@ export class PhieuNhapChuyenKho {
 
     public tenkhoxuatchuyen: string;
     public tenkhonhap: string;
-    public tumaphieu: string;
+    public maphieuxuatchuyenkho: string;
 
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;

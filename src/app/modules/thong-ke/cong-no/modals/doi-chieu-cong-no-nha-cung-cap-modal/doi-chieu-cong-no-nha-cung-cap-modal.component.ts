@@ -89,13 +89,25 @@ export class DoiChieuCongNoNhaCungCapModalComponent implements OnInit {
                     report.dictionary.variables.getByName('LogoComapny').valueObject = imageLogo;
 
                     /* render report */
+                    this.reportOptions.height = (window.innerHeight - window.innerHeight * 0.1) + "px";
+
                     this.reportOptions.appearance.showTooltipsHelp = false;
+                    this.reportOptions.appearance.scrollbarsMode = true;
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
+                    this.reportOptions.toolbar.zoom = Stimulsoft.Viewer.StiZoomMode.PageWidth;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
 
                     this.reportViewer.report = report;
                     this.reportViewer.renderHtml('viewerContent');
+
+                    var userButton = this.reportViewer.jsObject.SmallButton("userButton", "Đóng", "emptyImage"); 
+                    userButton.action = () => {
+                        this.onCancel();
+                    };
+                    
+                    var toolbarTable = this.reportViewer.jsObject.controls.toolbar.lastChild.lastChild;
+                    toolbarTable.addCell(userButton);
                 },
                 (error) => {
                     this.objThongKeCongNoService.handleError(error);

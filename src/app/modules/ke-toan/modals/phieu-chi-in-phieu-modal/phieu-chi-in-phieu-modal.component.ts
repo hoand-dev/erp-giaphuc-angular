@@ -79,7 +79,7 @@ export class PhieuChiInPhieuModalComponent implements OnInit {
                     /*Thông tin tin phiếu */
                     let dsPhieuChi = new Stimulsoft.System.Data.DataSet();
 
-                    data.ngaylapphieu = moment(data.ngaychi).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaychi).format('DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
                     data.sotien_bangchu = number2vn(data.sotienchi);

@@ -82,7 +82,7 @@
 
                                     <dxi-item [label]="{ text: 'TIỀN THU' }">
                                         <div *dxTemplate>
-                                            <dx-number-box format="#,##0.###" [(value)]="phieuthu.sotienthu" valueChangeEvent="keyup" (onValueChanged)="onChangeTienThu($event)"></dx-number-box>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuthu.sotienthu" valueChangeEvent="input" (onValueChanged)="onChangeTienThu($event)"></dx-number-box>
                                         </div>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'CHỨNG TỪ' }" dataField="chungtu"></dxi-item>
@@ -112,7 +112,7 @@
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TIỀN GIẢM' }">
                                         <div *dxTemplate>
-                                            <dx-number-box format="#,##0.###" [(value)]="phieuthu.sotiengiam" valueChangeEvent="keyup" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
+                                            <dx-number-box format="#,##0.###" [(value)]="phieuthu.sotiengiam" valueChangeEvent="input" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
                                         </div>
                                     </dxi-item>
 
@@ -149,7 +149,7 @@
                                                             <dx-number-box
                                                                 format="#,##0.###"
                                                                 [(value)]="item.sotienthu"
-                                                                valueChangeEvent="keyup"
+                                                                valueChangeEvent="input"
                                                                 (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
@@ -157,7 +157,7 @@
                                                             <dx-number-box
                                                                 format="#,##0.###"
                                                                 [(value)]="item.sotiengiam"
-                                                                valueChangeEvent="keyup"
+                                                                valueChangeEvent="input"
                                                                 (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"
                                                             ></dx-number-box>
                                                         </td>

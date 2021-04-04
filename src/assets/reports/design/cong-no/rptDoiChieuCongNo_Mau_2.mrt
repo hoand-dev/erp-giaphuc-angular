@@ -231,6 +231,7 @@
               <Parent isRef="8" />
               <Text>{rptThongKeCongNo.tenkhachhang}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
@@ -911,10 +912,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/28/2021 4:24:23 PM</ReportChanged>
+  <ReportChanged>4/3/2021 3:42:26 PM</ReportChanged>
   <ReportCreated>2/23/2021 1:32:41 PM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_2.mrt</ReportFile>
-  <ReportGuid>e45e488acfe84af0bfe1139defd659e5</ReportGuid>
+  <ReportGuid>bb3f1ca24f494766bdd80757abc26113</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
