@@ -74,7 +74,7 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                     let dsPhieuBanHang = new Stimulsoft.System.Data.DataSet();
 
                     /*Thông tin phiếu */
-                    data.ngaylapphieu = moment(data.ngaybanhang).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaybanhang).format('DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
                     data.tongtien_bangchu = number2vn(data.tongthanhtien);

@@ -69,7 +69,7 @@ export class PhieuXuatKhoGiaCongInPhieuModalComponent implements OnInit {
                     /*Thông tin chi tiết */
                     let dsPhieuXuatKhoGiaCong = new Stimulsoft.System.Data.DataSet();
 
-                    data.ngaylapphieu = moment(data.ngayxuatkhogiacong).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngayxuatkhogiacong).format('DD/MM/YYYY');
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
 

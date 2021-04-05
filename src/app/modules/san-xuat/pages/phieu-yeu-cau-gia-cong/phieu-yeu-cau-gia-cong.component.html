@@ -27,8 +27,8 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
-                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
                                 <button *ngIf="enableAddNew" [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
@@ -70,7 +70,7 @@
                                 </div>
                             </dxi-column>
 
-                            <dxi-column dataField="ngayyeucaugiacong" dataType="datetime" caption="Ngày yêu cầu"></dxi-column>
+                            <dxi-column dataField="ngayyeucaugiacong" dataType="date" caption="Ngày yêu cầu"></dxi-column>
                             <dxi-column dataField="maphieuyeucaugiacong" caption="Mã phiếu"></dxi-column>
                             <dxi-column dataField="loaiphieu" caption="Yêu cầu G/C" cellTemplate="cellTemplateLoaiPhieu">
                                 <div *dxTemplate="let data of 'cellTemplateLoaiPhieu'">

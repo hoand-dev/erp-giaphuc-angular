@@ -9,8 +9,8 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
-            <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
-            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
 
             <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
         </div>
@@ -34,7 +34,7 @@
                         {{ rowNumber(data.rowIndex) }}
                     </div>
                 </dxi-column>
-                <dxi-column dataField="ngaydathang" dataType="datetime" caption="Ngày đặt hàng"></dxi-column>
+                <dxi-column dataField="ngaydathang" dataType="date" caption="Ngày đặt hàng"></dxi-column>
                 <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
                 <dxi-column dataField="khachhang_hoten" caption="Tên khách hàng"></dxi-column>
                 <dxi-column dataField="tongthanhtien" caption="Tiền hàng" format="#,##0"></dxi-column>

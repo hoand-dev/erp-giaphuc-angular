@@ -71,7 +71,7 @@ export class PhieuCanTruInPhieuModalComponent implements OnInit {
                     let dsPhieuCanTru = new Stimulsoft.System.Data.DataSet();
 
                     /* thông tin phiếu */
-                    data.ngaylapphieu = moment(data.ngaycantru).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaycantru).format('DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
                     data.sotien_bangchu = number2vn(data.sotiencantru);

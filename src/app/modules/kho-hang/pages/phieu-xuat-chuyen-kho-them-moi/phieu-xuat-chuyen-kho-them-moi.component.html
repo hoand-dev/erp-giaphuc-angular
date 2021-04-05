@@ -34,7 +34,7 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="phieuxuatchuyenkho" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY XUẤT CHUYỂN KHO' }" dataField="ngayxuatchuyenkho" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                    <dxi-item [label]="{ text: 'NGÀY XUẤT CHUYỂN KHO' }" dataField="ngayxuatchuyenkho" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày xuất chuyển kho"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuxuatchuyenkho" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>

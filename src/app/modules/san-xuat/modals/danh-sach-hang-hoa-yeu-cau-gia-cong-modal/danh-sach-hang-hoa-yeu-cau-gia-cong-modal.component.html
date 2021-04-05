@@ -9,8 +9,8 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
-            <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
-            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
 
             <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
         </div>
@@ -56,7 +56,7 @@
                 </dxi-column>
 
                 <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
-                <dxi-column dataField="thoigiantao" caption="Thời gian tạo" dataType="datetime"></dxi-column>
+                <dxi-column dataField="thoigiantao" caption="Thời gian tạo" dataType="date"></dxi-column>
 
                 <!-- dx-data-grid option -->
                 <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple"></dxo-selection>
