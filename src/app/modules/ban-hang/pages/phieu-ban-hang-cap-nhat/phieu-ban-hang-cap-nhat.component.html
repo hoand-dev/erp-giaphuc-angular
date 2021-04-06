@@ -38,7 +38,7 @@
                                         [label]="{ text: 'NGÀY BÁN HÀNG' }"
                                         dataField="ngaybanhang"
                                         editorType="dxDateBox"
-                                        [editorOptions]="{ type: 'datetime', readOnly: isTatToan || isDuyetGia }"
+                                        [editorOptions]="{ type: 'date', readOnly: isTatToan || isDuyetGia }"
                                     >
                                         <dxi-validation-rule type="required" message="Chọn ngày ngày bán hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -66,7 +66,7 @@
                                         [label]="{ text: 'NGÀY NHẬN HÀNG' }"
                                         dataField="ngaynhanhang_dukien"
                                         editorType="dxDateBox"
-                                        [editorOptions]="{ type: 'datetime', readOnly: isTatToan || isDuyetGia }"
+                                        [editorOptions]="{ type: 'date', readOnly: isTatToan || isDuyetGia }"
                                     >
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>

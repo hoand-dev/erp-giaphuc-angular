@@ -9,6 +9,7 @@ import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { DoiChieuCongNoKhachHangModalComponent } from '../../modals/doi-chieu-cong-no-khach-hang-modal/doi-chieu-cong-no-khach-hang-modal.component';
+import { KhachHangChiTietCongNoModalComponent } from '../../modals/khach-hang-chi-tiet-cong-no-modal/khach-hang-chi-tiet-cong-no-modal.component';
 
 @Component({
     selector: 'app-thong-ke-cong-no-khach-hang',
@@ -94,17 +95,17 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
             this.objThongKeCongNoService.findsCongNo_KhachHang(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id).subscribe(
                 (data) => {
                     // tính luỹ tiến theo từng khách hàng
-                    let luytien: number = 0;
-                    let makhachhang: string = null;
-                    data.forEach((value) => {
-                        if (makhachhang == value.makhachhang) {
-                            luytien += value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
-                        } else {
-                            makhachhang = value.makhachhang;
-                            luytien = value.nodauky + value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
-                        }
-                        value.luytien = luytien;
-                    });
+                    // let luytien: number = 0;
+                    // let makhachhang: string = null;
+                    // data.forEach((value) => {
+                    //     if (makhachhang == value.makhachhang) {
+                    //         luytien += value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
+                    //     } else {
+                    //         makhachhang = value.makhachhang;
+                    //         luytien = value.nodauky + value.tongtienban - value.tongtientra - value.tongtienthu + value.tongtienchi;
+                    //     }
+                    //     value.luytien = luytien;
+                    // });
                     this.dataGrid.dataSource = data;
                 },
                 (error) => {
@@ -123,6 +124,15 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
 
             // Add a custom menu item
             e.items.push(
+                {
+                    text: 'Chi tiết công nợ',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoKhachHang = e.row.key as ThongKeCongNoKhachHang;
+                        this.openModalChiTietPhieu(rowData);
+                    }
+                },
                 {
                     text: 'Đối chiếu công nợ - Mẫu 1',
                     icon: 'print',
@@ -161,6 +171,25 @@ export class ThongKeCongNoKhachHangComponent implements OnInit, OnDestroy {
                 }
             );
         }
+    }
+
+    openModalChiTietPhieu(congnodonvigiacong: ThongKeCongNoKhachHang) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `KHÁCH HÀNG - CHI TIẾT CÔNG NỢ: "${congnodonvigiacong.makhachhang}"`,
+            tungay: this.firstDayTime,
+            denngay: this.currDayTime,
+            congnodonvigiacong: congnodonvigiacong
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(KhachHangChiTietCongNoModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     openModal(congnokhachhang: ThongKeCongNoKhachHang, mauin: number) {

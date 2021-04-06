@@ -108,7 +108,7 @@ export class DoiChieuCongNoKhachHangModalComponent implements OnInit {
                     this.reportOptions.appearance.scrollbarsMode = true;
                     this.reportOptions.toolbar.showOpenButton = false;
                     this.reportOptions.toolbar.showAboutButton = false;
-                    this.reportOptions.toolbar.zoom = Stimulsoft.Viewer.StiZoomMode.PageWidth;
+                    this.reportOptions.toolbar.zoom = 150; // Stimulsoft.Viewer.StiZoomMode.PageWidth;
                     this.reportOptions.toolbar.printDestination = Stimulsoft.Viewer.StiPrintDestination.Direct;
 
                     this.reportViewer.report = report;

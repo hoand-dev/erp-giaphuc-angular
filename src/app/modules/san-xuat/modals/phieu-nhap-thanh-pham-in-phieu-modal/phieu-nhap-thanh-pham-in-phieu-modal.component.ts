@@ -67,7 +67,7 @@ export class PhieuNhapThanhPhamInPhieuModalComponent implements OnInit {
 
                     /*Thông tin chi chiết phiếu */
                     let dsPhieuNhapThanhPham = new Stimulsoft.System.Data.DataSet();
-                    data.ngaylapphieu = moment(data.ngaynhapkhogiacong).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaynhapkhogiacong).format('DD/MM/YYYY');
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
 

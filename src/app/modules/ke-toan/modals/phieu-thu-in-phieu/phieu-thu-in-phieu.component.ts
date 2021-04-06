@@ -59,7 +59,7 @@ export class PhieuThuInPhieuComponent implements OnInit {
 
                     let dsPhieuThu = new Stimulsoft.System.Data.DataSet();
 
-                    data.ngaylapphieu = moment(data.ngaythu).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaythu).format('DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
                     data.sotien_bangchu = number2vn(data.sotienthu);

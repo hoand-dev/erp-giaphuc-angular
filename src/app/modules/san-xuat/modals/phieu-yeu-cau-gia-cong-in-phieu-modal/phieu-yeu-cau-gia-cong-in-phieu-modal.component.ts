@@ -66,7 +66,7 @@ export class PhieuYeuCauGiaCongInPhieuModalComponent implements OnInit {
 
                     /*Thông tin chi chiết phiếu */
                     let dsPhieuYeuCauGiaCong = new Stimulsoft.System.Data.DataSet();
-                    data.ngaylapphieu = moment(data.ngayyeucaugiacong).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngayyeucaugiacong).format('DD/MM/YYYY');
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
 

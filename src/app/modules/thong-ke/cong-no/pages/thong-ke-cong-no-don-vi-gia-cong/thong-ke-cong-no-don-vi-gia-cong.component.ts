@@ -9,6 +9,7 @@ import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { DoiChieuCongNoDonViGiaCongModalComponent } from '../../modals/doi-chieu-cong-no-don-vi-gia-cong-modal/doi-chieu-cong-no-don-vi-gia-cong-modal.component';
+import { DonViGiaCongChiTietCongNoModalComponent } from '../../modals/don-vi-gia-cong-chi-tiet-cong-no-modal/don-vi-gia-cong-chi-tiet-cong-no-modal.component';
 
 @Component({
     selector: 'app-thong-ke-cong-no-don-vi-gia-cong',
@@ -94,17 +95,17 @@ export class ThongKeCongNoDonViGiaCongComponent implements OnInit, OnDestroy {
             this.objThongKeCongNoService.findsCongNo_DonViGiaCong(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id).subscribe(
                 (data) => {
                     // tính luỹ tiến theo từng khách hàng
-                    let luytien: number = 0;
-                    let madonvigiacong: string = null;
-                    data.forEach((value) => {
-                        if (madonvigiacong == value.madonvigiacong) {
-                            luytien += value.tiengiacong - value.tongtienchi + value.tongtienthu;
-                        } else {
-                            madonvigiacong = value.madonvigiacong;
-                            luytien = value.nodauky + value.tiengiacong - value.tongtienchi + value.tongtienthu;
-                        }
-                        value.luytien = luytien;
-                    });
+                    // let luytien: number = 0;
+                    // let madonvigiacong: string = null;
+                    // data.forEach((value) => {
+                    //     if (madonvigiacong == value.madonvigiacong) {
+                    //         luytien += value.tiengiacong - value.tongtienchi + value.tongtienthu;
+                    //     } else {
+                    //         madonvigiacong = value.madonvigiacong;
+                    //         luytien = value.nodauky + value.tiengiacong - value.tongtienchi + value.tongtienthu;
+                    //     }
+                    //     value.luytien = luytien;
+                    // });
                     this.dataGrid.dataSource = data;
                 },
                 (error) => {
@@ -122,16 +123,46 @@ export class ThongKeCongNoDonViGiaCongComponent implements OnInit, OnDestroy {
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
-            e.items.push({
-                text: 'Đối chiếu công nợ',
-                icon: 'print',
-                visible: true,
-                onItemClick: () => {
-                    let rowData: ThongKeCongNoDonViGiaCong = e.row.key as ThongKeCongNoDonViGiaCong;
-                    this.openModal(rowData, 1);
+            e.items.push(
+                {
+                    text: 'Chi tiết công nợ',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoDonViGiaCong = e.row.key as ThongKeCongNoDonViGiaCong;
+                        this.openModalChiTietPhieu(rowData);
+                    }
+                },
+                {
+                    text: 'Đối chiếu công nợ',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeCongNoDonViGiaCong = e.row.key as ThongKeCongNoDonViGiaCong;
+                        this.openModal(rowData, 1);
+                    }
                 }
-            });
+            );
         }
+    }
+
+    openModalChiTietPhieu(congnodonvigiacong: ThongKeCongNoDonViGiaCong) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `GIA CÔNG - CHI TIẾT CÔNG NỢ: "${congnodonvigiacong.madonvigiacong}"`,
+            tungay: this.firstDayTime,
+            denngay: this.currDayTime,
+            congnodonvigiacong: congnodonvigiacong
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(DonViGiaCongChiTietCongNoModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     openModal(congnodonvigiacong: ThongKeCongNoDonViGiaCong, mauin: number) {

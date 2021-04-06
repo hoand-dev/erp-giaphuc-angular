@@ -27,8 +27,8 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
-                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/bang-gia-gia-cong/them-moi']" *ngIf="enableAddNew">Thêm mới</button>
@@ -63,7 +63,7 @@
                                 </div>
                             </dxi-column>
 
-                            <dxi-column dataField="ngayapdung" dataType="datetime" caption="Ngày áp dụng"></dxi-column>
+                            <dxi-column dataField="ngayapdung" dataType="date" caption="Ngày áp dụng"></dxi-column>
                             <dxi-column dataField="mabanggiacong" caption="Mã bảng giá"></dxi-column>
                             <dxi-column dataField="tendonvigiacong" caption="Đơn vị gia công"></dxi-column>
 

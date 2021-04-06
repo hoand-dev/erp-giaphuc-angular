@@ -39,7 +39,7 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="banggia" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY BÁO GIÁ' }" dataField="ngaybanggia" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                    <dxi-item [label]="{ text: 'NGÀY BÁO GIÁ' }" dataField="ngaybanggia" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày báo giá"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
@@ -60,7 +60,7 @@
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="sodienthoai"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'NGÀY CÓ HIỆU LỰC' }" dataField="ngaycohieuluc" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'NGÀY CÓ HIỆU LỰC' }" dataField="ngaycohieuluc" editorType="dxDateBox" [editorOptions]="{ type: 'date' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA ĐIỂM GIAO' }" dataField="diadiemgiao" [colSpan]="4"></dxi-item>
                                     <dxi-item
                                         [colSpan]="1"

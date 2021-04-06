@@ -27,8 +27,8 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
-                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
                                 <button *ngIf="enableAddNew" [style.margin-left.px]="5" type="button" class="btn btn btn-sm btn-primary dropdown-toggle dropdown-hover" data-toggle="dropdown" aria-expanded="false">
@@ -72,7 +72,7 @@
                                 </div>
                             </dxi-column>
 
-                            <dxi-column dataField="ngaythu" dataType="datetime" caption="Ngày thu"></dxi-column>
+                            <dxi-column dataField="ngaythu" dataType="date" caption="Ngày thu"></dxi-column>
                             <dxi-column dataField="maphieuthu" caption="Mã phiếu"></dxi-column>
                             <dxi-column dataField="loaiphieuthu" caption="Loại phiếu"></dxi-column>
                             <dxi-column dataField="chungtu" caption="Chứng từ"></dxi-column>

@@ -12,7 +12,15 @@ export class ThongKeCongNoDonViGiaCong{
     public tendonvigiacong  : string;
     public diachi           : string;
     public sodienthoai      : string;
-    
+
+    public congnohientai    : number;
+    public nodauky          : number;
+    public tongtienthu      : number;
+    public tongtienchi      : number;
+    public tiengiacong      : number;
+    public nocuoiky         : number;
+}
+export class ThongKeCongNoDonViGiaCong_ChiTietPhieu{
     public ngayphatsinh     : Date  ;
     public maphieu          : string;
     public noidung          : string;

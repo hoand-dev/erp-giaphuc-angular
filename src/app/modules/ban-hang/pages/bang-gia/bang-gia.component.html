@@ -27,8 +27,8 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <dx-date-box [style.width.px]="200" type="datetime" [(value)]="firstDayTime"></dx-date-box>
-                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="datetime" [(value)]="currDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
 
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
                                 <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" [routerLink]="['/bang-gia/them-moi']" *ngIf="enableAddNew">Thêm mới</button>
@@ -62,8 +62,8 @@
                                 </div>
                             </dxi-column>
 
-                            <dxi-column dataField="ngaybanggia" dataType="datetime" caption="Ngày lập"></dxi-column>
-                            <dxi-column dataField="ngaycohieuluc" dataType="datetime" caption="Ngày có hiệu lực"></dxi-column>
+                            <dxi-column dataField="ngaybanggia" dataType="date" caption="Ngày lập"></dxi-column>
+                            <dxi-column dataField="ngaycohieuluc" dataType="date" caption="Ngày có hiệu lực"></dxi-column>
                             <dxi-column dataField="mabanggia" caption="Mã phiếu"></dxi-column>
                             <dxi-column dataField="tenkhachhang" caption="Tên khách hàng"></dxi-column>
                             <dxi-column dataField="diadiemgiao" caption="Địa điểm giao"></dxi-column>
@@ -80,6 +80,7 @@
                             <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
                             <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
                             <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
 
                             <dxo-summary>
                                 <dxi-total-item column="mabanggia" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>

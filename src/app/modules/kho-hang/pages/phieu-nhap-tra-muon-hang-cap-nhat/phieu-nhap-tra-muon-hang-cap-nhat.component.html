@@ -41,7 +41,7 @@
                                     labelLocation="top"
                                     (onFieldDataChanged)="onFormFieldChanged($event)"
                                 >
-                                    <dxi-item [label]="{ text: 'NGÀY NHẬP' }" dataField="ngaynhaptramuonhang" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: true }">
+                                    <dxi-item [label]="{ text: 'NGÀY NHẬP' }" dataField="ngaynhaptramuonhang" editorType="dxDateBox" [editorOptions]="{ type: 'date', readOnly: true }">
                                         <dxi-validation-rule type="required" message="Chọn ngày nhập"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item

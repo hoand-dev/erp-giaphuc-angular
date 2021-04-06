@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <dx-data-grid
+                id="gridContainer"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
+                [stateStoring]="stateStoringGrid"
+                [sorting]="false"
+            >
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
+
+                <dxi-column dataField="ngayphatsinh" dataType="date" caption="Ngày phát sinh"></dxi-column>
+                <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
+                <dxi-column dataField="noidung" caption="Nội dung"></dxi-column>
+                <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+                <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
+
+                <!-- <dxi-column dataField="tongtienthu" caption="" format="#,##0"></dxi-column> -->
+                <dxi-column dataField="tiengiacong" caption="Tiền gia công" format="#,##0"></dxi-column>
+                <dxi-column dataField="tongtienchi" caption="Tiền chi" format="#,##0"></dxi-column>
+                <dxi-column dataField="luytien" caption="Còn lại" format="#,##0"></dxi-column>
+
+                <dxo-summary [calculateCustomSummary]="calculateSummary">
+                    <dxi-total-item summaryType="custom" alignment="right" showInColumn="ngayphatsinh" displayFormat="TỔNG CỘNG:"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonDauKy" summaryType="custom" alignment="right" showInColumn="nhanvien" valueFormat="#,##0" displayFormat="Nợ đầu kỳ: {0}"> </dxi-total-item>
+                    <dxi-total-item column="tiengiacong" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item column="tongtienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonCuoiKy" summaryType="custom" showInColumn="luytien" valueFormat="#,##0" displayFormat="Nợ cuối kỳ: {0}"> </dxi-total-item>
+                </dxo-summary>
+
+                <!-- dx-data-grid option -->
+                <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div>

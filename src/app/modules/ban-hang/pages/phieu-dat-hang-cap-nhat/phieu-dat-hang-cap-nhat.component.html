@@ -29,7 +29,7 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="phieudathang" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY ĐẶT HÀNG' }" dataField="ngaydathang" editorType="dxDateBox" [editorOptions]="{ readOnly: isTatToan, type: 'datetime' }">
+                                    <dxi-item [label]="{ text: 'NGÀY ĐẶT HÀNG' }" dataField="ngaydathang" editorType="dxDateBox" [editorOptions]="{ readOnly: isTatToan, type: 'date' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày đặt hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
@@ -52,7 +52,7 @@
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
                                     <!-- <dxi-item [label]="{ text: 'GIỮ HÀNG CÓ SẴN' }" dataField="giuhang" editorType="dxCheckBox" [editorOptions]="{ text: 'Giữ hàng', readOnly: isTatToan }"> </dxi-item> -->
 
-                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: isTatToan }">
+                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ type: 'date', readOnly: isTatToan }">
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2" [editorOptions]="{ readOnly: isTatToan }"> </dxi-item>
 

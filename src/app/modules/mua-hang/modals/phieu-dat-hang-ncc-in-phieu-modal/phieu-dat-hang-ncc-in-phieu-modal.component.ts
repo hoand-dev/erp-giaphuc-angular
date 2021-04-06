@@ -69,7 +69,7 @@ export class PhieuDatHangNCCInPhieuModalComponent implements OnInit {
 
                     let dsPhieuDatHangNCC = new Stimulsoft.System.Data.DataSet();
                     /* thông tin phiếu */
-                    data.ngaylapphieu = moment(data.ngaydathangncc).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaydathangncc).format('DD/MM/YYYY');
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
                     data.tongthanhtien_bangchu = number2vn(data.tongthanhtien);

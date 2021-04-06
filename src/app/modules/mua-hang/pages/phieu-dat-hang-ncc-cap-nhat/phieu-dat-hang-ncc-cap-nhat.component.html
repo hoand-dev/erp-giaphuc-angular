@@ -29,7 +29,7 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="phieudathangncc" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY ĐẶT HÀNG' }" dataField="ngaydathangncc" editorType="dxDateBox" [editorOptions]="{ type: 'datetime', readOnly: true }">
+                                    <dxi-item [label]="{ text: 'NGÀY ĐẶT HÀNG' }" dataField="ngaydathangncc" editorType="dxDateBox" [editorOptions]="{ type: 'date', readOnly: true }">
                                         <dxi-validation-rule type="required" message="Chọn ngày đặt hàng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
@@ -52,7 +52,7 @@
                                     <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ readOnly: isTatToan, type: 'datetime' }">
+                                    <dxi-item [label]="{ text: 'NGÀY NHẬN HÀNG' }" dataField="ngaynhanhang_dukien" editorType="dxDateBox" [editorOptions]="{ readOnly: isTatToan, type: 'date' }">
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" [colSpan]="4" dataField="nhacungcap_diachi" [editorOptions]="{ readOnly: true }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', readOnly: isTatToan, valueChangeEvent: 'input' }"> </dxi-item>

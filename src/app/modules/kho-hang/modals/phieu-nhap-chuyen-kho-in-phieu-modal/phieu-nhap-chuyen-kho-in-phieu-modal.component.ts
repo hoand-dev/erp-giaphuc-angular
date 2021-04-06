@@ -69,7 +69,7 @@ export class PhieuNhapChuyenKhoInPhieuModalComponent implements OnInit {
 
                     /*Thông tin phiếu */
 
-                    data.ngaylapphieu = moment(data.ngaynhapchuyenkho).format('HH:mm DD/MM/YYYY');
+                    data.ngaylapphieu = moment(data.ngaynhapchuyenkho).format('DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
 

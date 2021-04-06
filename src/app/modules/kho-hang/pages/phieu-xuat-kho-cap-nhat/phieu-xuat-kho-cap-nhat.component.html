@@ -34,7 +34,7 @@
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
                                 <dx-form id="form" [colCount]="6" [formData]="phieuxuatkho" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
-                                    <dxi-item [label]="{ text: 'NGÀY XUẤT KHO' }" dataField="ngayxuatkho" editorType="dxDateBox" [editorOptions]="{ type: 'datetime' }">
+                                    <dxi-item [label]="{ text: 'NGÀY XUẤT KHO' }" dataField="ngayxuatkho" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                                         <dxi-validation-rule type="required" message="Chọn ngày xuất kho"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
@@ -73,7 +73,7 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho xuất"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'SỐ NGÀY NỢ' }" dataField="songaytoihan" editorType="dxNumberBox"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'NGÀY ĐẾN HẠN' }" dataField="ngaytoihan" editorType="dxDateBox" [editorOptions]="{ readOnly: true, type: 'datetime' }"> </dxi-item>
+                                    <dxi-item [label]="{ text: 'NGÀY ĐẾN HẠN' }" dataField="ngaytoihan" editorType="dxDateBox" [editorOptions]="{ readOnly: true, type: 'date' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'SỐ HOÁ ĐƠN' }" dataField="chungtu"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'LÝ DO XUẤT' }" dataField="ghichu" [colSpan]="6"></dxi-item>
