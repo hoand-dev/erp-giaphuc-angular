@@ -13,7 +13,16 @@ export class ThongKeCongNoNhaCungCap{
     public tennhacungcap: string;
     public diachi: string;
     public sodienthoai: string;
-
+    
+    public congnohientai: number;
+    public nodauky: number;
+    public tongtienthu: number;
+    public tongtienchi: number;
+    public tongtienmua: number;
+    public tongtientra: number;
+    public nocuoiky: number;
+}
+export class ThongKeCongNoNhaCungCap_ChiTietPhieu{
     public ngayphatsinh: Date;
     public maphieu: string;
     public noidung: string;

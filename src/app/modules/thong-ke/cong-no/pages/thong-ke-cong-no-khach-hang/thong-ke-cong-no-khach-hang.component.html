@@ -67,26 +67,28 @@
                                     </dxo-pager>
 
                                     <dxi-column dataField="tennhomkhachhang" caption="Nhóm khách hàng"></dxi-column>
-                                    <dxi-column dataField="tenkhachhang" caption="Khách hàng" [groupIndex]="0"></dxi-column>
+                                    <dxi-column dataField="tenkhachhang" caption="Khách hàng"></dxi-column>
                                     <dxi-column dataField="makhachhang" caption="Mã khách hàng"></dxi-column>
                                     <dxi-column dataField="diachi" caption="Địa chỉ"></dxi-column>
                                     <dxi-column dataField="sodienthoai" caption="Điện thoại"></dxi-column>
 
+                                    <!--
                                     <dxi-column dataField="ngayphatsinh" caption="Ngày phát sinh" dataType="date"></dxi-column>
                                     <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
                                     <dxi-column dataField="noidung" caption="Nội dung"></dxi-column>
                                     <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
                                     <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
+                                    -->
 
-                                    <dxi-column dataField="nodauky" caption="Nợ đầu kỳ" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="nodauky" caption="Nợ đầu kỳ" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtienban" caption="Tiền bán" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtientra" caption="Khách trả hàng" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="tongtienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="nocuoiky" caption="Nợ cuối kỳ" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
-                                    <dxi-column dataField="congnohientai" caption="Nợ cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="nocuoiky" caption="Nợ cuối kỳ" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="congnohientai" caption="Nợ cuối" alignment="right" format="#,##0.###"></dxi-column>
 
-                                    <dxi-column dataField="luytien" caption="Luỹ tiến" alignment="right" format="#,##0.###"></dxi-column>
+                                    <!-- <dxi-column dataField="luytien" caption="Luỹ tiến" alignment="right" format="#,##0.###"></dxi-column> -->
 
                                     <dxo-summary [calculateCustomSummary]="calculateSummary">
                                         <dxi-group-item showInColumn="ngayphatsinh" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>

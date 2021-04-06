@@ -13,7 +13,17 @@ export class ThongKeCongNoKhachHang{
     public tenkhachhang: string;
     public diachi: string;
     public sodienthoai: string;
+    
+    public congnohientai: number;
+    public nodauky: number;
+    public tongtienthu: number;
+    public tongtienchi: number;
+    public tongtienban: number;
+    public tongtientra: number;
+    public nocuoiky: number;
+}
 
+export class ThongKeCongNoKhachHang_ChiTietPhieu{
     public ngayphatsinh: Date;
     public maphieu: string;
     public noidung: string;
@@ -30,6 +40,7 @@ export class ThongKeCongNoKhachHang{
 
     public luytien: number;
 }
+
 export class ThongKeCongNoKhachHang_DoiChieu{
     public ngayphatsinh: string;
     public maphieu: string;
