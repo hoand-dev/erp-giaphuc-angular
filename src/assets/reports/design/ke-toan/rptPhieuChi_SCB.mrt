@@ -166,7 +166,7 @@
           <Name>Text14</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.quy_sotaikhoan}</Text>
+          <Text>{rptPhieuChi.nhacungcap_sotaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -575,10 +575,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/2/2021 4:15:13 PM</ReportChanged>
+  <ReportChanged>4/5/2021 12:03:07 PM</ReportChanged>
   <ReportCreated>1/21/2021 3:03:04 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_SCB.mrt</ReportFile>
-  <ReportGuid>b3699ca9378d45d28c07cd5ea4d6e2da</ReportGuid>
+  <ReportGuid>b24024ae0f2a40b9ab62f9e87d4c1aa9</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
