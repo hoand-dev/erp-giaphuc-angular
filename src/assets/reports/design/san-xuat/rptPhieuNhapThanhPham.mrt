@@ -144,7 +144,7 @@
           <Components isList="true" count="1">
             <Text1 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,20,0.41</ClientRectangle>
+              <ClientRectangle>0,0,20,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>86100a3d758845ceb5cd0f5daee55ebe</Guid>
@@ -263,7 +263,7 @@
             <Text10 Ref="17" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4.2,1.4,7.8,0.6</ClientRectangle>
+              <ClientRectangle>4.2,1.4,10.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>1354b47645284f0c9b2026f75d64e8f7</Guid>
@@ -328,7 +328,7 @@
             <Text41 Ref="21" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4.2,0.8,7.8,0.6</ClientRectangle>
+              <ClientRectangle>4.2,0.8,10.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>6eb3d54bd9114be6b30aa9bf3143990b</Guid>
@@ -361,7 +361,7 @@
             <Text13 Ref="23" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12,2,3,0.6</ClientRectangle>
+              <ClientRectangle>12,2,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>c1ef674dbef84acfada455224b5acfb2</Guid>
@@ -377,7 +377,7 @@
             <Text16 Ref="24" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15,2,5,0.6</ClientRectangle>
+              <ClientRectangle>13.8,2,6.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>ffb4798fa4fa451db7f0d76e5ccf55c9</Guid>
@@ -873,10 +873,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/6/2021 9:26:59 AM</ReportChanged>
+  <ReportChanged>4/6/2021 9:36:44 AM</ReportChanged>
   <ReportCreated>1/27/2021 4:07:51 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\san-xuat\rptPhieuNhapThanhPham.mrt</ReportFile>
-  <ReportGuid>d3f3a44ebba847bfa920128475cd1816</ReportGuid>
+  <ReportGuid>d56f20f79f2b451d874b836d056ddb83</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
