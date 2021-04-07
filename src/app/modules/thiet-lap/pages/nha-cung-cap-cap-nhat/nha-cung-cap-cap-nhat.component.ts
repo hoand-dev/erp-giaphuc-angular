@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./nha-cung-cap-cap-nhat.component.css']
 })
 export class NhaCungCapCapNhatComponent implements OnInit {
-    @ViewChild(DxFormModule, { static: false }) frmNhaCungCap: DxFormComponent;
+    @ViewChild(DxFormComponent, { static: false }) frmNhaCungCap: DxFormComponent;
 
     /*tối ưu subscription */
 
