@@ -167,6 +167,7 @@ export class PhieuXuatKho_ChiTiet {
     public tongm3: number = 0;
     public m3: number = 0;
     public soluongconlai: number = 0;
+    public dongiavat: number;
 
     constructor(
         id: number = null,

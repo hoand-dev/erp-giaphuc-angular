@@ -339,6 +339,17 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
             this.onHangHoaAdd();
         }
     }
+    
+    clickLayGia() {
+        this.hanghoas.forEach((e) => {
+            if (e.hanghoa_id != null)
+                this.subscriptions.add(
+                    this.phieubanhangService.laygiaTheoBangGia(e.hanghoa_id, e.xuathoadon, this.phieubanhang.khachhang_id).subscribe((x) => {
+                        e.dongia = x;
+                    })
+                );
+        });
+    }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
         switch (col) {

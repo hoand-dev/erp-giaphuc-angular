@@ -104,7 +104,13 @@
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
                                     </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
+
+                                    <dxi-item [colSpan]="2"  [label]="{ text: 'LẤY GIÁ THEO BẢNG GIÁ' }">
+                                        <button type="button" class="btn btn-sm btn-danger float-left" (click)="clickLayGia()"><i class="fa fa-download"></i>NHẤN ĐỂ LẤY GIÁ</button>
+                                    </dxi-item>
+
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
