@@ -39,7 +39,7 @@ export class BangGia {
         ids: number = null,
         sort: string = null,
         ngaybanggia: Date = new Date(),
-        ngaycohieuluc: Date = null,
+        ngaycohieuluc: Date = new Date(),
         mabanggia: string = null,
         khachhang_id: number = null,
         noidungno_id: number = null,

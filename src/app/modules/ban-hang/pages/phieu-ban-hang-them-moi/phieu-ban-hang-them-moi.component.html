@@ -69,7 +69,14 @@
                                         [label]="{ text: 'KHO HÀNG' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ readOnly: isChonTuPhieu, dataSource: dataSource_KhoHang, valueExpr: 'id', searchEnabled: true, searchExpr: ['tenkhohang', 'makhohang'], displayExpr: 'tenkhohang' }"
+                                        [editorOptions]="{
+                                            readOnly: isChonTuPhieu,
+                                            dataSource: dataSource_KhoHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang'
+                                        }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn kho hàng"></dxi-validation-rule>
                                     </dxi-item>
@@ -89,7 +96,11 @@
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
                                     </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
+
+                                    <dxi-item [colSpan]="2"  [label]="{ text: 'LẤY GIÁ THEO BẢNG GIÁ' }">
+                                        <button type="button" class="btn btn-sm btn-danger float-left" (click)="clickLayGia()"><i class="fa fa-download"></i>NHẤN ĐỂ LẤY GIÁ</button>
+                                    </dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
@@ -144,10 +155,20 @@
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }}</td>
 
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [(value)]="item.soluong"
+                                                                valueChangeEvent="input"
+                                                                (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box
+                                                                format="#,##0.###"
+                                                                [(value)]="item.dongia"
+                                                                valueChangeEvent="input"
+                                                                (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"
+                                                            ></dx-number-box>
                                                         </td>
                                                         <td>
                                                             <dx-number-box
@@ -186,16 +207,16 @@
                                                         <th [style.min-width.px]="25"></th>
                                                         <th [style.min-width.px]="550">TỔNG CỘNG:</th>
                                                         <th [style.min-width.px]="75"></th>
-                                                        <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
-                                                        <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongtrongluong') | number: '1.0-3'}}</th>
-                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="75">{{ this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3' }}</th>
+                                                        <th [style.min-width.px]="75">{{ this.sumTotal.transform(this.hanghoas, 'tongtrongluong') | number: '1.0-3' }}</th>
+                                                        <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
                                                         <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="75"></th>
                                                         <th [style.min-width.px]="75"></th>
                                                         <th [style.min-width.px]="80"></th>
-                                                        <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
-                                                        <th [style.min-width.px]="100">{{this.sumTotal.transform(this.hanghoas, 'soluongdaxuat') | number: '1.0-3'}}</th>
-                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluongconlai') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
+                                                        <th [style.min-width.px]="100">{{ this.sumTotal.transform(this.hanghoas, 'soluongdaxuat') | number: '1.0-3' }}</th>
+                                                        <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluongconlai') | number: '1.0-3' }}</th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
