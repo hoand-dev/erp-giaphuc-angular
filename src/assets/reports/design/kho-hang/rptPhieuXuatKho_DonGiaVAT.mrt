@@ -3,93 +3,21 @@
   <Dictionary Ref="1" type="Dictionary" isKey="true">
     <BusinessObjects isList="true" count="0" />
     <Databases isList="true" count="2">
-      <rptPhieuNhapKho Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
-        <Alias>rptPhieuNhapKho</Alias>
-        <Key />
-        <Name>rptPhieuNhapKho</Name>
-        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\kho-hang\rptPhieuNhapKho.json</PathData>
-      </rptPhieuNhapKho>
-      <Info Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+      <Info Ref="2" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
         <Alias>Info</Alias>
         <Key />
         <Name>Info</Name>
         <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\Info.json</PathData>
       </Info>
+      <rptPhieuXuatKho Ref="3" type="Stimulsoft.Report.Dictionary.StiJsonDatabase" isKey="true">
+        <Alias>rptPhieuXuatKho</Alias>
+        <Key />
+        <Name>rptPhieuXuatKho</Name>
+        <PathData>D:\repositories\erp-giaphuc-angular\src\assets\reports\json\kho-hang\rptPhieuXuatKho.json</PathData>
+      </rptPhieuXuatKho>
     </Databases>
     <DataSources isList="true" count="3">
-      <rptThongTinHangHoa Ref="4" type="DataTableSource" isKey="true">
-        <Alias>rptThongTinHangHoa</Alias>
-        <Columns isList="true" count="21">
-          <value>id,System.String</value>
-          <value>phieunhapkho_id,System.String</value>
-          <value>khonhap_id,System.String</value>
-          <value>loaihanghoa,System.String</value>
-          <value>hanghoa_id,System.String</value>
-          <value>hanghoa_lohang_id,System.String</value>
-          <value>dvt_id,System.String</value>
-          <value>tilequydoi,System.String</value>
-          <value>soluong,System.String</value>
-          <value>dongia,System.String</value>
-          <value>cuocvanchuyen,System.String</value>
-          <value>chietkhau,System.String</value>
-          <value>thuevat,System.String</value>
-          <value>thanhtien,System.String</value>
-          <value>chuthich,System.String</value>
-          <value>tenhanghoa_inphieu,System.String</value>
-          <value>phieumuahangncc_chitiet_id,System.String</value>
-          <value>phieukhachtrahang_chitiet_id,System.String</value>
-          <value>soluonghong,System.String</value>
-          <value>khonhaphong_id,System.String</value>
-          <value>tendonvitinh,System.String</value>
-        </Columns>
-        <Dictionary isRef="1" />
-        <Key>a3e1f9b54ea543379fedeb6179e45c63</Key>
-        <Name>rptThongTinHangHoa</Name>
-        <NameInSource>rptPhieuNhapKho.rptThongTinHangHoa</NameInSource>
-      </rptThongTinHangHoa>
-      <rptThongTinPhieu Ref="5" type="DataTableSource" isKey="true">
-        <Alias>rptThongTinPhieu</Alias>
-        <Columns isList="true" count="33">
-          <value>id,System.String</value>
-          <value>chinhanh_id,System.String</value>
-          <value>kichhoat,System.String</value>
-          <value>nguoitao_id,System.String</value>
-          <value>thoigiantao,System.String</value>
-          <value>nguoisua_id,System.String</value>
-          <value>thoigiansua,System.String</value>
-          <value>ghichu,System.String</value>
-          <value>ids,System.String</value>
-          <value>sort,System.String</value>
-          <value>maphieunhapkho,System.String</value>
-          <value>ngaynhapkho,System.String</value>
-          <value>loaiphieunhapkho,System.String</value>
-          <value>khonhap_id,System.String</value>
-          <value>phieumuahang_id,System.String</value>
-          <value>phieukhachtrahang_id,System.String</value>
-          <value>chungtu,System.String</value>
-          <value>tongtienhang,System.String</value>
-          <value>chietkhau,System.String</value>
-          <value>thuevat,System.String</value>
-          <value>tongthanhtien,System.String</value>
-          <value>nhacungcap_id,System.String</value>
-          <value>khachhang_id,System.String</value>
-          <value>sotiendachi,System.String</value>
-          <value>trangthaichi,System.String</value>
-          <value>nguoigiao_hoten,System.String</value>
-          <value>nguoigiao_diachi,System.String</value>
-          <value>nguoigiao_dienthoai,System.String</value>
-          <value>nhanviensale_hoten,System.String</value>
-          <value>ngaylapphieu,System.String</value>
-          <value>tongthanhtien_bangchu,System.String</value>
-          <value>inphieu_thoigian,System.String</value>
-          <value>inphieu_hoten,System.String</value>
-        </Columns>
-        <Dictionary isRef="1" />
-        <Key>096a54fe2f0744b0b8d1da97aa89f4ff</Key>
-        <Name>rptThongTinPhieu</Name>
-        <NameInSource>rptPhieuNhapKho.rptThongTinPhieu</NameInSource>
-      </rptThongTinPhieu>
-      <Info Ref="6" type="DataTableSource" isKey="true">
+      <Info Ref="4" type="DataTableSource" isKey="true">
         <Alias>Info</Alias>
         <Columns isList="true" count="19">
           <value>id,System.String</value>
@@ -113,10 +41,87 @@
           <value>logo_url,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Key>b904cbbc7c8548359523c8667a5d1055</Key>
+        <Key>6dce111d67734428a0748eca6673047c</Key>
         <Name>Info</Name>
         <NameInSource>Info.Info</NameInSource>
       </Info>
+      <rptPhieuXuatKho Ref="5" type="DataTableSource" isKey="true">
+        <Alias>rptPhieuXuatKho</Alias>
+        <Columns isList="true" count="39">
+          <value>id,System.String</value>
+          <value>chinhanh_id,System.String</value>
+          <value>kichhoat,System.String</value>
+          <value>nguoitao_id,System.String</value>
+          <value>thoigiantao,System.String</value>
+          <value>nguoisua_id,System.String</value>
+          <value>thoigiansua,System.String</value>
+          <value>ghichu,System.String</value>
+          <value>ids,System.String</value>
+          <value>sort,System.String</value>
+          <value>maphieuxuatkho,System.String</value>
+          <value>ngayxuatkho,System.String</value>
+          <value>loaiphieuxuatkho,System.String</value>
+          <value>khoxuat_id,System.String</value>
+          <value>phieubanhang_id,System.String</value>
+          <value>phieutrahangncc_id,System.String</value>
+          <value>chungtu,System.String</value>
+          <value>tongtienhang,System.String</value>
+          <value>chietkhau,System.String</value>
+          <value>thuevat,System.String</value>
+          <value>tongthanhtien,System.String</value>
+          <value>ngaytoihan,System.String</value>
+          <value>songaytoihan,System.String</value>
+          <value>xe_id,System.String</value>
+          <value>taixe_id,System.String</value>
+          <value>taixe_dienthoai,System.String</value>
+          <value>khachhang_id,System.String</value>
+          <value>nhacungcap_id,System.String</value>
+          <value>nguoinhan_hoten,System.String</value>
+          <value>nguoinhan_diachi,System.String</value>
+          <value>nguoinhan_dienthoai,System.String</value>
+          <value>sotiendathu,System.String</value>
+          <value>trangthaithu,System.String</value>
+          <value>nhanviensale_hoten,System.String</value>
+          <value>biensoxe,System.String</value>
+          <value>ngaylapphieu,System.String</value>
+          <value>tongthanhtien_bangchu,System.String</value>
+          <value>inphieu_thoigian,System.String</value>
+          <value>inphieu_hoten,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>4a1d77c60dda4851a00e405a0f50b153</Key>
+        <Name>rptPhieuXuatKho</Name>
+        <NameInSource>rptPhieuXuatKho.rptPhieuXuatKho</NameInSource>
+      </rptPhieuXuatKho>
+      <rptPhieuXuatKho_HangHoa Ref="6" type="DataTableSource" isKey="true">
+        <Alias>rptPhieuXuatKho_HangHoa</Alias>
+        <Columns isList="true" count="20">
+          <value>id,System.String</value>
+          <value>phieuxuatkho_id,System.String</value>
+          <value>khoxuat_id,System.String</value>
+          <value>loaihanghoa,System.String</value>
+          <value>hanghoa_id,System.String</value>
+          <value>hanghoa_lohang_id,System.String</value>
+          <value>dvt_id,System.String</value>
+          <value>tilequydoi,System.String</value>
+          <value>soluong,System.String</value>
+          <value>dongia,System.String</value>
+          <value>cuocvanchuyen,System.String</value>
+          <value>chietkhau,System.String</value>
+          <value>thuevat,System.String</value>
+          <value>thanhtien,System.String</value>
+          <value>chuthich,System.String</value>
+          <value>tenhanghoa_inphieu,System.String</value>
+          <value>phieubanhang_chitiet_id,System.String</value>
+          <value>phieutrahangncc_chitiet_id,System.String</value>
+          <value>tendonvitinh,System.String</value>
+          <value>dongiavat,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>d9143463cd3b4e7c875049e58bf66b76</Key>
+        <Name>rptPhieuXuatKho_HangHoa</Name>
+        <NameInSource>rptPhieuXuatKho.rptPhieuXuatKho_HangHoa</NameInSource>
+      </rptPhieuXuatKho_HangHoa>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
@@ -127,7 +132,7 @@
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
-  <Key>08f950be959f44dc802f82ba692725fc</Key>
+  <Key>0511a1371a3d4170936f305f3e64e9f7</Key>
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="1">
     <Page1 Ref="7" type="Page" isKey="true">
@@ -138,72 +143,72 @@
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,20.6,2</ClientRectangle>
           <Components isList="true" count="5">
-            <Text2 Ref="9" type="Text" isKey="true">
+            <Text11 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,0,17.2,0.6</ClientRectangle>
+              <ClientRectangle>2.2,0,17.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>de6c70e1672441598317e68cef2e4428</Guid>
+              <Guid>fe992284aa6348f78679c3dae9a9e87d</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text2</Name>
+              <Name>Text11</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
               <Text>{Info.tencongty}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text2>
-            <Text1 Ref="10" type="Text" isKey="true">
+            </Text11>
+            <Text41 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,0.6,17.2,0.4</ClientRectangle>
+              <ClientRectangle>2.2,0.6,17.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>72831ac3c530468ca5798742a86daa8d</Guid>
+              <Guid>a09c384ea07542b1900d66cc3d9a3d51</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text1</Name>
+              <Name>Text41</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
               <Text>Địa chỉ: {Info.diachi} - MST: {Info.masothue}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text1>
-            <Text3 Ref="11" type="Text" isKey="true">
+            </Text41>
+            <Text50 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,1,17.2,0.4</ClientRectangle>
+              <ClientRectangle>2.2,1,17.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>5ba1c8a37cdd46be8e1a9f2c100e2611</Guid>
+              <Guid>d9ee4ddfcdf0489fbdb2b1c25af0d2dc</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text3</Name>
+              <Name>Text50</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
               <Text>Điện thoại: {Info.dienthoai}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text3>
-            <Text4 Ref="12" type="Text" isKey="true">
+            </Text50>
+            <Text51 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,1.4,17.2,0.4</ClientRectangle>
+              <ClientRectangle>2.2,1.4,17.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>e4c538ee2caa42f39005aba0df5aad54</Guid>
+              <Guid>a451df5595d446838b1906d88347cead</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text4</Name>
+              <Name>Text51</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
               <Text>Email: {Info.email} - Website: {Info.website}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text4>
+            </Text51>
             <Image1 Ref="13" type="Image" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,2,1.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Guid>6f3725ba2c9a4a85975ea9682b941db2</Guid>
+              <Guid>325b8531a5574a72a21df8226755249b</Guid>
               <HorAlignment>Center</HorAlignment>
               <ImageData>{LogoComapny}</ImageData>
               <Margins>0,0,0,0</Margins>
@@ -215,379 +220,377 @@
             </Image1>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>152b7066376442b4b3ed0b85759f4fc6</Guid>
+          <Guid>25abed4d26b8478a808cf1f0ba2bb7c4</Guid>
           <Name>PageHeader</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
         </PageHeader>
         <PageFooter Ref="14" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,33.8,20.6,0.8</ClientRectangle>
-          <Components isList="true" count="2">
-            <Text18 Ref="15" type="Text" isKey="true">
+          <ClientRectangle>0,24.3,20.6,2.6</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text24 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>10,0.08,9.6,0.6</ClientRectangle>
+              <ClientRectangle>10,1.88,9.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,8</Font>
-              <Guid>dde20feff8d342b09c4694c9b7ed83fd</Guid>
+              <Guid>e6a5e1d8b73d4933b0a60adae626c428</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text18</Name>
+              <Name>Text24</Name>
               <Page isRef="7" />
               <Parent isRef="14" />
               <Text>Trang {PageNumber}/{TotalPageCount}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text18>
+            </Text24>
             <Text47 Ref="16" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.08,10,0.6</ClientRectangle>
+              <ClientRectangle>0,1.88,10,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,8,Italic</Font>
-              <Guid>b86a192833994f88b5a4bb8367d4a0f0</Guid>
+              <Guid>1a3fc854c235457f8ab448229e62898b</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text47</Name>
               <Page isRef="7" />
               <Parent isRef="14" />
-              <Text>{rptThongTinPhieu.inphieu_hoten} - {rptThongTinPhieu.inphieu_thoigian}</Text>
+              <Text>{rptPhieuXuatKho.inphieu_hoten} - {rptPhieuXuatKho.inphieu_thoigian}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text47>
+            <Text48 Ref="17" type="Text" isKey="true">
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.1,19.6,1.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,11,Italic</Font>
+              <Guid>94e31549defd427bae8e3ae7338eaee4</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text48</Name>
+              <Page isRef="7" />
+              <Parent isRef="14" />
+              <Text>Khách hàng vui lòng kiểm tra hàng trước khi nhận hàng, sau khi giao hàng Hồng nghi không chịu trách nhiệm các vấn đề nhầm lẫn hàng, độ dày, màu sắc, hoặc các vấn đề liên quan đến chất lượng có thể kiểm tra bằng mắt nhìn như trầy xước, ẩm ướt, bể vỡ các cạnh biên.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text48>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>61177289af7f499ab97365016af8f935</Guid>
+          <Guid>6ae454c292824adf9675d5d9b35addbd</Guid>
           <Name>PageFooter</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
         </PageFooter>
-        <ReportTitle Ref="17" type="ReportTitleBand" isKey="true">
+        <ReportTitle Ref="18" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,3.2,20.6,4</ClientRectangle>
-          <Components isList="true" count="12">
-            <Text7 Ref="18" type="Text" isKey="true">
+          <ClientRectangle>0,3.2,20.6,4.4</ClientRectangle>
+          <Components isList="true" count="13">
+            <Text1 Ref="19" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,19.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,14,Bold</Font>
-              <Guid>b3d5044102c74ad395195a91405316ff</Guid>
+              <Font>Times New Roman,16,Bold</Font>
+              <Guid>b48f599c10de4e439c12d13c568a852c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text7</Name>
+              <Name>Text1</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>PHIẾU NHẬP KHO HÀNG TRẢ</Text>
+              <Parent isRef="18" />
+              <Text>PHIẾU XUẤT KHO</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
-            </Text7>
-            <Text8 Ref="19" type="Text" isKey="true">
+            </Text1>
+            <Text2 Ref="20" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>4,0.8,12,0.6</ClientRectangle>
+              <ClientRectangle>5.2,0.8,9,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
-              <Guid>fe2daf91a8054603a390ac522f38c18b</Guid>
+              <Guid>d3fb85d64b32468dbd13e310b682967e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text8</Name>
+              <Name>Text2</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>Ngày lập: {rptThongTinPhieu.ngaylapphieu}</Text>
+              <Parent isRef="18" />
+              <Text>Ngày lập: {rptPhieuXuatKho.ngaylapphieu}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-            </Text8>
-            <Text9 Ref="20" type="Text" isKey="true">
+            </Text2>
+            <Text9 Ref="21" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>16,0.8,3.6,0.6</ClientRectangle>
+              <ClientRectangle>14.2,0.8,5.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,10</Font>
-              <Guid>6f913c4770d54336a107f012314407f1</Guid>
-              <HorAlignment>Right</HorAlignment>
+              <Font>Times New Roman,11</Font>
+              <Guid>03273cd6f6bc4b21840de9831eec8e69</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>Mã phiếu: {rptThongTinPhieu.maphieunhapkho}</Text>
+              <Parent isRef="18" />
+              <Text>Mã phiếu: {rptPhieuXuatKho.maphieuxuatkho}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text11 Ref="21" type="Text" isKey="true">
+            <Text12 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14.2,1.4,5.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Times New Roman,13</Font>
+              <Guid>80ffa362b4314435bd48208eb09b3145</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="7" />
+              <Parent isRef="18" />
+              <Text>Số xe: {rptPhieuXuatKho.biensoxe}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text12>
+            <Text14 Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2.2,2,17.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,11</Font>
-              <Guid>a002eb13ff064836aab8889742c72b0d</Guid>
+              <Font>Times New Roman,12</Font>
+              <Guid>2cdaddb16139486bb7f89e7a110c75f2</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text11</Name>
+              <Name>Text14</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>{rptThongTinPhieu.nguoigiao_hoten}</Text>
+              <Parent isRef="18" />
+              <Text>{rptPhieuXuatKho.nguoinhan_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text11>
-            <Text37 Ref="22" type="Text" isKey="true">
+            </Text14>
+            <Text37 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,2,2.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>95a48e01065f46938382c0bee6a330fc</Guid>
+              <Guid>9a9f2a9c06004be3a183cc7d5b1e8eb9</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text37</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
+              <Parent isRef="18" />
               <Text>Khách hàng: </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text37>
-            <Text5 Ref="23" type="Text" isKey="true">
+            <Text15 Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,1.4,3.95,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>09ebb227eccb4867a4bd970fa784b8ba</Guid>
+              <Guid>2488cdc2d5fb4a9f892a02ea3301d8c8</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text5</Name>
+              <Name>Text15</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
+              <Parent isRef="18" />
               <Text>Nhân viên kinh doanh:</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text5>
-            <Text6 Ref="24" type="Text" isKey="true">
+            </Text15>
+            <Text25 Ref="26" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4,1.4,15.6,0.6</ClientRectangle>
+              <ClientRectangle>4,1.4,10.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>d611641a5c314e999296f84ff3ff2d6f</Guid>
+              <Guid>95a114b866644c5c878905a52d38938f</Guid>
               <Margins>0,0,0,0</Margins>
-              <Name>Text6</Name>
+              <Name>Text25</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>{rptThongTinPhieu.nhanviensale_hoten}</Text>
+              <Parent isRef="18" />
+              <Text>{rptPhieuXuatKho.nhanviensale_hoten}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text6>
-            <Text39 Ref="25" type="Text" isKey="true">
+            </Text25>
+            <Text39 Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,3.2,3.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>8ba50daacdb44592a10225baea974505</Guid>
+              <Guid>701f34ab08164b07a25bc648b3cef154</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text39</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
+              <Parent isRef="18" />
               <Text>Địa chỉ giao hàng:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
             </Text39>
-            <Text40 Ref="26" type="Text" isKey="true">
+            <Text40 Ref="28" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.2,3.2,16.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>613787f9a36e452dbd89bc2145298efe</Guid>
+              <Guid>e20e8e1bae7146fa801422ad1799c89a</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text40</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>{rptThongTinPhieu.nguoigiao_diachi}</Text>
+              <Parent isRef="18" />
+              <Text>{rptPhieuXuatKho.nguoinhan_diachi}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text40>
-            <Text42 Ref="27" type="Text" isKey="true">
+            <Text42 Ref="29" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,2.6,2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>2e2462138d99401cb462e5d7012bfaac</Guid>
+              <Guid>41844e735e5a48309b1c3859573fa939</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text42</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
+              <Parent isRef="18" />
               <Text>Điện thoại: </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text42>
-            <Text38 Ref="28" type="Text" isKey="true">
+            <Text38 Ref="30" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2,2.6,17.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
-              <Guid>775cb8e665d746739e6b84d446311359</Guid>
+              <Guid>fec66b61640947d490e1ada5f41674cc</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text38</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
-              <Text>{rptThongTinPhieu.nguoigiao_dienthoai}</Text>
+              <Parent isRef="18" />
+              <Text>{rptPhieuXuatKho.nguoinhan_dienthoai}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text38>
-            <Text41 Ref="29" type="Text" isKey="true">
+            <Text32 Ref="31" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.8,4,0.6</ClientRectangle>
+              <ClientRectangle>0,0.8,5.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
-              <Guid>68215c1cf91645e39be6651b62bdd0a1</Guid>
+              <Guid>7ee5cfd4eb3c4dc2953c2c2fd3e9ebfe</Guid>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text41</Name>
+              <Name>Text32</Name>
               <Page isRef="7" />
-              <Parent isRef="17" />
+              <Parent isRef="18" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-            </Text41>
+            </Text32>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>09e6f1cf09ce41faadd50b6414595309</Guid>
+          <Guid>c2a9a6679dee4766a3675c74c3a5bfac</Guid>
           <Name>ReportTitle</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
         </ReportTitle>
-        <ColumnHeader Ref="30" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
+        <ColumnHeaderBand1 Ref="32" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,8,20.6,0.6</ClientRectangle>
-          <Components isList="true" count="9">
-            <Text19 Ref="31" type="Text" isKey="true">
+          <ClientRectangle>0,8.4,20.6,0.6</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text19 Ref="33" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>3cc81a0292964913a2132f1fb8215a3f</Guid>
+              <Guid>d35a9608b54540ce97a75e7f9bceaaf8</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>STT</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text19>
-            <Text20 Ref="32" type="Text" isKey="true">
+            <Text20 Ref="34" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>1.2,0,7.6,0.6</ClientRectangle>
+              <ClientRectangle>1,0,8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>69eb8ec019ff425ba1b056cb47272f9c</Guid>
+              <Guid>99eadaf506d148c79bd126c1d4ad328c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>Tên sản phẩm</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text20>
-            <Text21 Ref="33" type="Text" isKey="true">
+            <Text21 Ref="35" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.8,0,1.4,0.6</ClientRectangle>
+              <ClientRectangle>9,0,1.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>2657aa4faf5648be8f6ba7e64439f1ef</Guid>
+              <Guid>a94466ae36974794bfe0613c035a09b2</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>Đvt</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text21>
-            <Text22 Ref="34" type="Text" isKey="true">
+            <Text22 Ref="36" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.2,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>10.2,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>acb29284d59145ca99d11926102899be</Guid>
+              <Guid>237c274e8fbe45e1a5483a4a36446caf</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>SL</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text22>
-            <Text23 Ref="35" type="Text" isKey="true">
+            <Text23 Ref="37" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.8,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>11.6,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>f0a509ca0009454cbda382040cbb31aa</Guid>
+              <Guid>56e88a1754a74040b655140bdaa7ad2a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text23</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>Đơn giá</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text23>
-            <Text24 Ref="36" type="Text" isKey="true">
-              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>13.4,0,1.2,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12,Bold</Font>
-              <Guid>2d962463c594479a9f6746bb101bd41a</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text24</Name>
-              <Page isRef="7" />
-              <Parent isRef="30" />
-              <Text>CK</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text24>
-            <Text25 Ref="37" type="Text" isKey="true">
-              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,0,1.2,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12,Bold</Font>
-              <Guid>d73e2e6a86b349ff813b600a0b32cedd</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text25</Name>
-              <Page isRef="7" />
-              <Parent isRef="30" />
-              <Text>VAT</Text>
-              <TextBrush>Black</TextBrush>
-              <VertAlignment>Center</VertAlignment>
-            </Text25>
             <Text26 Ref="38" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.8,0,2,0.6</ClientRectangle>
+              <ClientRectangle>13.4,0,2.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>f49ed607cc1b461e8b6c815d965434b4</Guid>
+              <Guid>5c640aa220084153a1244de5dd5cb6d9</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>Thành tiền</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
@@ -595,40 +598,39 @@
             <Text27 Ref="39" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.8,0,1.8,0.6</ClientRectangle>
+              <ClientRectangle>16,0,3.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>9620160d4e454014ae7e7093db85a936</Guid>
+              <Guid>6c0a81ad87f642a3b06423b34adbffcb</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="7" />
-              <Parent isRef="30" />
+              <Parent isRef="32" />
               <Text>Ghi chú</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text27>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>c0b9e673e68045c8ad2cbeb75b7d680b</Guid>
-          <Name>ColumnHeader</Name>
+          <Name>ColumnHeaderBand1</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
-        </ColumnHeader>
+        </ColumnHeaderBand1>
         <Data Ref="40" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,9.4,20.6,0.6</ClientRectangle>
-          <Components isList="true" count="9">
+          <ClientRectangle>0,9.8,20.6,0.8</ClientRectangle>
+          <Components isList="true" count="7">
             <Text28 Ref="41" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>0,0,1,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>14a88761e45c4a2397815f654e414aef</Guid>
+              <Guid>5103851f363f4ad8a88bce687d476dc4</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text28</Name>
@@ -643,15 +645,16 @@
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>1.2,0,7.6,0.6</ClientRectangle>
+              <ClientRectangle>1,0,8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,12</Font>
-              <Guid>299d213a96d2422f9e9b2a0296d20895</Guid>
-              <Margins>0,0,0,0</Margins>
+              <Guid>549410fb46d1432985046fc9011c54f0</Guid>
+              <Margins>5,0,0,0</Margins>
               <Name>Text29</Name>
               <Page isRef="7" />
               <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.tenhanghoa_inphieu}</Text>
+              <Text>{rptPhieuXuatKho_HangHoa.tenhanghoa_inphieu}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -660,16 +663,16 @@
             <Text30 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>8.8,0,1.4,0.6</ClientRectangle>
+              <ClientRectangle>9,0,1.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>79fdb22b247e4bf68177e9217fd0afc4</Guid>
+              <Guid>f397fc6e948741cd83f0f90159e11e0e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="7" />
               <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.tendonvitinh}</Text>
+              <Text>{rptPhieuXuatKho_HangHoa.tendonvitinh}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -677,16 +680,16 @@
             <Text31 Ref="44" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.8,0,2,0.6</ClientRectangle>
+              <ClientRectangle>13.4,0,2.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>55cf304ad75b41c3a8df23e226fbf0b2</Guid>
+              <Guid>abb2b34fa2b543ea93875932cfde1609</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text31</Name>
               <Page isRef="7" />
               <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.thanhtien}</Text>
+              <Text>{rptPhieuXuatKho_HangHoa.thanhtien}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="45" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
@@ -698,19 +701,19 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text31>
-            <Text32 Ref="46" type="Text" isKey="true">
+            <Text3 Ref="46" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.8,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>11.6,0,1.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>27260f11e19647b5bdfb57a3635b2d38</Guid>
+              <Guid>13568a6762ff46a391ea08971bbb6957</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text32</Name>
+              <Name>Text3</Name>
               <Page isRef="7" />
               <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.dongia}</Text>
+              <Text>{rptPhieuXuatKho_HangHoa.dongiavat}</Text>
               <TextBrush>Black</TextBrush>
               <TextFormat Ref="47" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
@@ -721,74 +724,22 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text32>
-            <Text33 Ref="48" type="Text" isKey="true">
+            </Text3>
+            <Text35 Ref="48" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.4,0,1.2,0.6</ClientRectangle>
+              <ClientRectangle>10.2,0,1.4,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>34500290c7ad44cbaa95694ad958cdb0</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text33</Name>
-              <Page isRef="7" />
-              <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.chietkhau}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="49" type="PercentageFormat" isKey="true">
-                <DecimalDigits>0</DecimalDigits>
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <PositivePattern>1</PositivePattern>
-                <Symbol />
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text33>
-            <Text34 Ref="50" type="Text" isKey="true">
-              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>14.6,0,1.2,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12</Font>
-              <Guid>1dec87f0a0024caab48d00f5e5105254</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text34</Name>
-              <Page isRef="7" />
-              <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.thuevat}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="51" type="PercentageFormat" isKey="true">
-                <DecimalDigits>0</DecimalDigits>
-                <DecimalSeparator>,</DecimalSeparator>
-                <GroupSeparator>.</GroupSeparator>
-                <NegativePattern>1</NegativePattern>
-                <PositivePattern>1</PositivePattern>
-                <Symbol />
-                <UseLocalSetting>False</UseLocalSetting>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text34>
-            <Text35 Ref="52" type="Text" isKey="true">
-              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>10.2,0,1.6,0.6</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12</Font>
-              <Guid>fe5ee18a2f4f491fac06694aa1c48547</Guid>
+              <Guid>8ea45c5f385a47f2992418e6a3918cec</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text35</Name>
               <Page isRef="7" />
               <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.soluong}</Text>
+              <Text>{rptPhieuXuatKho_HangHoa.soluong}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="53" type="NumberFormat" isKey="true">
+              <TextFormat Ref="49" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
@@ -798,19 +749,20 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text35>
-            <Text36 Ref="54" type="Text" isKey="true">
+            <Text36 Ref="50" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.8,0,1.8,0.6</ClientRectangle>
+              <ClientRectangle>16,0,3.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
               <Font>Times New Roman,12</Font>
-              <Guid>2b539048033c43eab08210db6d7a4303</Guid>
+              <Guid>8c4079e687074ee8bbcab78a285c813a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text36</Name>
               <Page isRef="7" />
               <Parent isRef="40" />
-              <Text>{rptThongTinHangHoa.chuthich}</Text>
+              <Text>{rptPhieuXuatKho_HangHoa.chuthich}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
@@ -819,50 +771,50 @@
           </Components>
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
-          <DataSourceName>rptThongTinHangHoa</DataSourceName>
+          <DataSourceName>rptPhieuXuatKho_HangHoa</DataSourceName>
           <Filters isList="true" count="0" />
-          <Guid>4824a929eb524ea9893beea8032661bb</Guid>
+          <Guid>86a18be27fb746f3816a1c9ed9621224</Guid>
           <Name>Data</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
           <Sort isList="true" count="0" />
         </Data>
-        <ColumnFooterBand1 Ref="55" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
+        <ColumnFooterBand1 Ref="51" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.8,20.6,0.6</ClientRectangle>
+          <ClientRectangle>0,11.4,20.6,0.6</ClientRectangle>
           <Components isList="true" count="5">
-            <Text45 Ref="56" type="Text" isKey="true">
+            <Text45 Ref="52" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,10.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>2ee94db8d8994146a1f5907d18510120</Guid>
+              <Guid>d06a08df47174f68a8b2743b9b677536</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text45</Name>
               <Page isRef="7" />
-              <Parent isRef="55" />
+              <Parent isRef="51" />
               <Text>TỔNG CỘNG:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text45>
-            <Text46 Ref="57" type="Text" isKey="true">
+            <Text4 Ref="53" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>10.2,0,1.6,0.6</ClientRectangle>
+              <ClientRectangle>10.2,0,1.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>c69872d5957b481bad1b3b1c5b7ccda7</Guid>
+              <Guid>c8483554a366451da5f8cd3ea6223d32</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text46</Name>
+              <Name>Text4</Name>
               <Page isRef="7" />
-              <Parent isRef="55" />
-              <Text>{Sum(rptThongTinHangHoa.soluong)}</Text>
+              <Parent isRef="51" />
+              <Text>{Sum(rptPhieuXuatKho_HangHoa.soluong)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="58" type="NumberFormat" isKey="true">
+              <TextFormat Ref="54" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
@@ -871,38 +823,38 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text46>
-            <Text50 Ref="59" type="Text" isKey="true">
+            </Text4>
+            <Text5 Ref="55" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11.8,0,4,0.6</ClientRectangle>
+              <ClientRectangle>11.6,0,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>cbba7fda51614fafb9f25c436fc43640</Guid>
+              <Guid>c2d341fc1c2d4b2d8607715fa2c247da</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text50</Name>
+              <Name>Text5</Name>
               <Page isRef="7" />
-              <Parent isRef="55" />
+              <Parent isRef="51" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text50>
-            <Text51 Ref="60" type="Text" isKey="true">
+            </Text5>
+            <Text6 Ref="56" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.8,0,2,0.6</ClientRectangle>
+              <ClientRectangle>13.4,0,2.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>d979ec14c2694ded998b7ce720bd7199</Guid>
+              <Guid>ebe685a888b6454ea1afd3b0ba1fbbd1</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text51</Name>
+              <Name>Text6</Name>
               <Page isRef="7" />
-              <Parent isRef="55" />
-              <Text>{Sum(rptThongTinHangHoa.thanhtien)}</Text>
+              <Parent isRef="51" />
+              <Text>{Sum(rptPhieuXuatKho_HangHoa.thanhtien)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="61" type="NumberFormat" isKey="true">
+              <TextFormat Ref="57" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
@@ -911,171 +863,171 @@
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text51>
-            <Text52 Ref="62" type="Text" isKey="true">
+            </Text6>
+            <Text7 Ref="58" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>17.8,0,1.8,0.6</ClientRectangle>
+              <ClientRectangle>16,0,3.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>43273f985b6c464d92fcf6b376ef1686</Guid>
+              <Guid>732522f69b0346ffb2162663de9ab6d8</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text52</Name>
+              <Name>Text7</Name>
               <Page isRef="7" />
-              <Parent isRef="55" />
+              <Parent isRef="51" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text52>
+            </Text7>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>0db9ab6931354bc8bc0514466da82219</Guid>
+          <Guid>8ce5e4901ef041f4a8d07cf4a16741c9</Guid>
           <Name>ColumnFooterBand1</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
         </ColumnFooterBand1>
-        <Footer Ref="63" type="FooterBand" isKey="true">
+        <Footer Ref="59" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.2,20.6,4.2</ClientRectangle>
+          <ClientRectangle>0,12.8,20.6,4.6</ClientRectangle>
           <Components isList="true" count="8">
-            <Text12 Ref="64" type="Text" isKey="true">
+            <Text8 Ref="60" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,1,7,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>ef9a8785a8ca474e88f3b001a92ecd9e</Guid>
+              <Guid>eccee1528124429992fda4ca6c54cb4b</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text12</Name>
+              <Name>Text8</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>Người lập phiếu</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
-            </Text12>
-            <Text13 Ref="65" type="Text" isKey="true">
+            </Text8>
+            <Text13 Ref="61" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7,1,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>2e8337f02ad144948df2e9281a095564</Guid>
+              <Guid>8ce55370fda0418c97b4630b9b8db8df</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>Người nhận hàng</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text14 Ref="66" type="Text" isKey="true">
+            <Text10 Ref="62" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13,1,6.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
-              <Guid>fcf229e0454f479d84aeb76b2268f376</Guid>
+              <Guid>e0de9a20ea1f409f8d1edbcb827e2e5a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text14</Name>
+              <Name>Text10</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>Thủ kho</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
-            </Text14>
-            <Text15 Ref="67" type="Text" isKey="true">
+            </Text10>
+            <Text18 Ref="63" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,1.6,7,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
-              <Guid>fdf9ed9c46fa4d6099ce74c0b70a4572</Guid>
+              <Guid>4b2a7b7770a547d5a25583788820f6b1</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text15</Name>
+              <Name>Text18</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>(Ký, họ tên)</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
-            </Text15>
-            <Text17 Ref="68" type="Text" isKey="true">
+            </Text18>
+            <Text17 Ref="64" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>13,1.6,6.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
-              <Guid>51210ef176b74d1b8d3d346d7366f5e8</Guid>
+              <Guid>42f288e2102846bf8f0f69f9d29b35eb</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>(Ký, họ tên)</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text17>
-            <Text16 Ref="69" type="Text" isKey="true">
+            <Text16 Ref="65" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7,1.6,6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10,Italic</Font>
-              <Guid>7340e5430a3745dabc64867440254f48</Guid>
+              <Guid>bfb16bba09eb4103889204e8c3ef707b</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text16</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>(Ký, họ tên)</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text16>
-            <Text43 Ref="70" type="Text" isKey="true">
+            <Text43 Ref="66" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.2,2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
-              <Guid>1c322b14a44242fea1af219d9ea5a63a</Guid>
+              <Guid>b593ac6d2c424f5ebda53c2340e86215</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
+              <Parent isRef="59" />
               <Text>Bằng chữ: </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text43>
-            <Text44 Ref="71" type="Text" isKey="true">
+            <Text44 Ref="67" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2,0.2,17.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
-              <Guid>2d8b3ac925d84906b96953cb58cb0ded</Guid>
+              <Guid>3208cfa0cb984c92adf54618428d488b</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text44</Name>
               <Page isRef="7" />
-              <Parent isRef="63" />
-              <Text>{rptThongTinPhieu.tongthanhtien_bangchu} đồng.</Text>
+              <Parent isRef="59" />
+              <Text>{rptPhieuXuatKho.tongthanhtien_bangchu} đồng</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text44>
           </Components>
           <Conditions isList="true" count="0" />
-          <Guid>2a2e2235535244389c29c97ce6f78ae9</Guid>
+          <Guid>20a8bec66556461a816317bda6127036</Guid>
           <Name>Footer</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
         </Footer>
       </Components>
       <Conditions isList="true" count="0" />
-      <Guid>22558c5bb9624df2a2e9da3ec17a8fa9</Guid>
+      <Guid>a872258100a54f2695ed86b92dc0b614</Guid>
       <Margins>0.5,0.5,0.5,0.5</Margins>
       <Name>Page1</Name>
-      <PageHeight>35.6</PageHeight>
+      <PageHeight>27.9</PageHeight>
       <PageWidth>21.6</PageWidth>
-      <PaperSize>Legal</PaperSize>
+      <PaperSize>Letter</PaperSize>
       <Report isRef="0" />
     </Page1>
   </Pages>
@@ -1090,10 +1042,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/9/2021 8:39:21 AM</ReportChanged>
-  <ReportCreated>1/16/2021 11:33:34 AM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuNhapKho_TraHang_CoGia.mrt</ReportFile>
-  <ReportGuid>51f76d9570524456b3263bb937d60ad5</ReportGuid>
+  <ReportChanged>4/10/2021 9:08:29 AM</ReportChanged>
+  <ReportCreated>1/9/2021 3:49:12 PM</ReportCreated>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_DonGiaVAT.mrt</ReportFile>
+  <ReportGuid>3fb2cd7430a8498e8918a0777cee72d4</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
