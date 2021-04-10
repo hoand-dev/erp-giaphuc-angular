@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PhieuBanHang } from '@app/shared/entities';
 
@@ -46,5 +46,13 @@ export class PhieuBanHangService extends BaseService {
 
     deletePhieuBanHang(id: number): Observable<PhieuBanHang> {
         return this.httpClient.delete<PhieuBanHang>(this.apiUrl + `/${id}`);
+    }
+
+    laygiaTheoBangGia(hanghoa_id: number, layvat:boolean, khachhang_id?: number): Observable<number> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set("hanghoa_id", hanghoa_id.toString());
+        query_params = query_params.set("layvat", layvat.toString());
+        query_params = query_params.set("khachhang_id", khachhang_id != null? khachhang_id.toString() : null);
+        return this.httpClient.get<number>(this.apiUrl + `/laygia`, { params: query_params });
     }
 }

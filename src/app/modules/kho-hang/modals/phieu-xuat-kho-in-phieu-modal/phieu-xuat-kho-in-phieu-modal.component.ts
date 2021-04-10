@@ -31,6 +31,7 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
     public loaiphieuxuat: string;
     public loaiphieuin: string = 'cogia'; // cogia or khonggia
 
+
     constructor(public bsModalRef: BsModalRef, private nguoidungService: NguoiDungService, private objPhieuXuatKhoService: PhieuXuatKhoService, private authenticationService: AuthenticationService) {}
 
     ngOnInit(): void {
@@ -68,6 +69,9 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     if (this.loaiphieuin == 'khonggia' && this.loaiphieuxuat == 'xuattrahangncc') {
                         report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_TraHang_KhongGia.mrt');
                     }
+                    if (this.loaiphieuin == 'dongiavat' && this.loaiphieuxuat == 'xuatbanhang') {
+                        report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_DonGiaVAT.mrt');
+                    }
 
                     /* xoá dữ liệu trước khi in */
                     report.dictionary.databases.clear();
@@ -98,6 +102,11 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                             item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
                         });
                     }
+                    /* tính đơn giá vat */
+                    data.phieuxuatkho_chitiets.forEach((item) => {
+                        item.dongiavat = item.dongia - item.dongia * item.chietkhau + (item.dongia - item.dongia * item.chietkhau) * item.thuevat;
+                    });
+
                     dsPhieuXuatKho.readJson({ rptPhieuXuatKho: data, rptPhieuXuatKho_HangHoa: data.phieuxuatkho_chitiets });
                     report.regData('rptPhieuXuatKho', null, dsPhieuXuatKho);
 

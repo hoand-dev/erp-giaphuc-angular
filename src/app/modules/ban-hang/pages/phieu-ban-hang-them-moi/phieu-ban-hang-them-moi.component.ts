@@ -446,6 +446,17 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         this.onTinhTien();
     }
 
+    clickLayGia() {
+        this.hanghoas.forEach((e) => {
+            if (e.hanghoa_id != null)
+                this.subscriptions.add(
+                    this.phieubanhangService.laygiaTheoBangGia(e.hanghoa_id, e.xuathoadon, this.phieubanhang.khachhang_id).subscribe((x) => {
+                        e.dongia = x;
+                    })
+                );
+        });
+    }
+
     // tính tiền sau chiết khấu và tổng
     private onTinhTien() {
         let tongtienhang: number = 0;
