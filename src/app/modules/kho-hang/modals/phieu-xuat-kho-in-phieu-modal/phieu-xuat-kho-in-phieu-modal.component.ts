@@ -82,29 +82,22 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     report.regData('Info', null, dsThongTin);
 
                     let dsPhieuXuatKho = new Stimulsoft.System.Data.DataSet();
+
                     /* thông tin phiếu */
                     data.ngaylapphieu = moment(data.ngayxuatkho).format('DD/MM/YYYY');
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
                     data.tongthanhtien_bangchu = number2vn(data.tongthanhtien);
+                    
                     /* thông tin chi tiết phiếu */
-                    if (data.chietkhau > 0) {
-                        data.phieuxuatkho_chitiets.forEach((item) => {
-                            item.chietkhau = data.chietkhau;
-                            item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
-                        });
-                    }
-                    if (data.thuevat > 0) {
-                        data.phieuxuatkho_chitiets.forEach((item) => {
-                            item.thuevat = data.thuevat;
-                            item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
-                        });
-                    }
-                    /* tính đơn giá vat */
                     data.phieuxuatkho_chitiets.forEach((item) => {
+                        item.chietkhau = data.chietkhau != 0 ? data.chietkhau : item.chietkhau;
+                        item.thuevat   = data.thuevat   != 0 ? data.thuevat   : item.thuevat  ;
                         item.dongiavat = item.dongia - item.dongia * item.chietkhau + (item.dongia - item.dongia * item.chietkhau) * item.thuevat;
+
+                        // làm tròn đơn giá vat và thành tiền
+                        item.dongiavat = Math.round(      item.dongiavat);
+                        item.thanhtien = item.dongiavat * item.soluong   ;
                     });
 
                     dsPhieuXuatKho.readJson({ rptPhieuXuatKho: data, rptPhieuXuatKho_HangHoa: data.phieuxuatkho_chitiets });
