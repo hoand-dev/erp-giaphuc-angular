@@ -1,5 +1,6 @@
 export class ThongKeXuatNhapTonTrongNgay {
     public chungtu            : string;
+    public noidung            : string;
     public ngayphatsinh       : Date  ;
     public tenhanghoa         : string;
     public tenhanghoa_inphieu : string;

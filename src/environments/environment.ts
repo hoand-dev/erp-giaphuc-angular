@@ -7,6 +7,7 @@ const PORT = '1769';
 
 export const environment = {
     production: false,
+    version: "2021.04.12",
     apiUrl: `http://${HOST}:${PORT}/api`,
     baseUrl: `http://${HOST}:${PORT}`,
 };

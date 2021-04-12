@@ -55,8 +55,8 @@ export class NguoiDungThemMoiComponent implements OnInit {
                         key: 'maquyen',
                         data: x.filter((z) => z.maquyencha != null)
                     }),
-                    paginate: true,
-                    pageSize: 4,
+                    // paginate: true,
+                    // pageSize: 4,
                     group: (value) => {
                         return value.tenquyencha;
                     }

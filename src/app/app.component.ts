@@ -16,6 +16,7 @@ import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import Swal from 'sweetalert2';
+import { environment } from '@environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -158,6 +159,11 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.subscriptions.add(this.authenticationService.currentUser.subscribe(x => this.currentUserToken = x));
         this.notifyChiNhanh = false;
+
+        if (localStorage.getItem("app_vrsion") != environment.version) {
+            localStorage.setItem("app_vrsion", environment.version);
+            location.reload();
+        }
 
         if (this.isAutorized()) {
             // phải refresh token trước khi lấy thông tin người dùng
@@ -326,6 +332,7 @@ export class AppComponent implements OnInit {
         ];
         const HETHONG = [
             "/nguoi-dung",
+            "/lich-su-du-lieu",
         ];
         
         /* xử lý chuỗi url */
