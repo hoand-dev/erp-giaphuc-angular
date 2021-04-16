@@ -58,7 +58,11 @@
                                         <dxi-item [label]="{ text: 'TÀI KHOẢN' }" dataField="username">
                                             <dxi-validation-rule type="required" message="Nhập tài khoản"> </dxi-validation-rule>
                                             <dxi-validation-rule type="stringLength" [min]="2" message="Tài khoản quá ngắn"></dxi-validation-rule>
-                                            <dxi-validation-rule type="pattern" [pattern]="'^\\S+$'" message="Tài khoản không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
+                                            <dxi-validation-rule
+                                                type="pattern"
+                                                [pattern]="'^\\S+$'"
+                                                message="Tài khoản không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."
+                                            ></dxi-validation-rule>
                                             <dxi-validation-rule type="async" message="Tài khoản đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
                                         </dxi-item>
                                         <dxi-item [label]="{ text: 'MẬT KHẨU' }" dataField="password" [editorOptions]="{ mode: 'password' }">
@@ -70,10 +74,20 @@
                                         </dxi-item>
                                     </dxi-item>
 
+                                    <dxi-item
+                                    [colSpan]="3"
+                                    [label]="{ text: 'NHÓM KHÁCH HÀNG' }"
+                                    dataField="nhomkhachhangs"
+                                    editorType="dxTagBox"
+                                    [editorOptions]="{ dataSource: dataSource_NhomKhachHang, showSelectionControls:true, applyValueMode: 'useButtons',  searchEnabled: true, searchExpr: ['temnhomkhachhang', 'manhomkhachhang'], displayExpr: 'tennhomkhachhang', valueExpr: 'id' }"
+                                >
+                                    <dxi-validation-rule type="required" message="Vui lòng chọn Nhóm khách hàng"></dxi-validation-rule>
+                                </dxi-item>
+                                
                                     <dxi-item itemType="group" [colSpan]="3" [colCount]="3">
                                         <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="3"></dxi-item>
                                         <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
-
+                                       
                                         <dxi-item [colSpan]="2">
                                             <div *dxTemplate>
                                                 <dx-button icon="back" [routerLink]="['/nguoi-dung']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>

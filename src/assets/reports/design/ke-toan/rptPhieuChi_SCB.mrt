@@ -52,14 +52,14 @@
           <value>quy_tainganhang,System.String</value>
           <value>quy_sotaikhoan,System.String</value>
           <value>quy_diachi,System.String</value>
-          <value>nhacungcap_sotaikhoan,System.String</value>
-          <value>nhacungcap_chinhanh,System.String</value>
-          <value>nhacungcap_chutaikhoan,System.String</value>
-          <value>nhacungcap_diachi,System.String</value>
+          <value>doituong_sotaikhoan,System.String</value>
+          <value>doituong_tennganhang,System.String</value>
+          <value>doituong_tenchutaikhoan,System.String</value>
+          <value>doituong_diachi,System.String</value>
           <value>nguoitao_hoten,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Key>b60e75b3215b48f9be1116d7d1bf7d98</Key>
+        <Key>a10992049bf047f39f8e1d1ac1af8de5</Key>
         <Name>rptPhieuChi</Name>
         <NameInSource>rptPhieuChi.rptPhieuChi</NameInSource>
       </rptPhieuChi>
@@ -135,7 +135,7 @@
           <Name>Text11</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>Tên đơn vị nhận tiền: {rptPhieuChi.nhacungcap_chutaikhoan}</Text>
+          <Text>Tên đơn vị nhận tiền: {rptPhieuChi.doituong_tenchutaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
@@ -166,7 +166,7 @@
           <Name>Text14</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_sotaikhoan}</Text>
+          <Text>{rptPhieuChi.doituong_sotaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -196,7 +196,7 @@
           <Name>Text16</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_chinhanh}</Text>
+          <Text>{rptPhieuChi.doituong_tennganhang}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -575,12 +575,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-
-  <ReportChanged>4/5/2021 12:03:07 PM</ReportChanged>
+  <ReportChanged>4/13/2021 3:40:23 PM</ReportChanged>
   <ReportCreated>1/21/2021 3:03:04 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_SCB.mrt</ReportFile>
-  <ReportGuid>b24024ae0f2a40b9ab62f9e87d4c1aa9</ReportGuid>
-
+  <ReportGuid>380d9731758f434d984a032517920045</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

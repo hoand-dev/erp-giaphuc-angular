@@ -1,7 +1,7 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NguoiDung } from '@app/shared/entities';
+import { NguoiDung, NguoiDung_NhomKhachHang } from '@app/shared/entities';
 
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
@@ -33,6 +33,7 @@ export class NguoiDungService extends BaseService {
         return this.httpClient.get<NguoiDung[]>(this.apiUrl);
     }
 
+    
     addNguoiDung(nguoidung: NguoiDung): Observable<NguoiDung> {
         return this.httpClient.post<NguoiDung>(this.apiUrl, nguoidung);
     }

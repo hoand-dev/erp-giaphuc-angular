@@ -24,6 +24,8 @@ export class NguoiDung {
     public diachi: string;
     public login_chinhanh: boolean;
     public sys: boolean;
+    public nguoidung_nhomkhachhangs: NguoiDung_NhomKhachHang[];
+    public nhomkhachhangs: number[];
 
     constructor(
         id: number = null,
@@ -45,7 +47,8 @@ export class NguoiDung {
         email: string = null,
         diachi: string = null,
         login_chinhanh: boolean = null,
-        sys: boolean = null
+        sys: boolean = null,
+        nhomkhachhangs = []
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -67,5 +70,20 @@ export class NguoiDung {
         this.diachi = diachi;
         this.login_chinhanh = login_chinhanh;
         this.sys = sys;
+
+        this.nhomkhachhangs = nhomkhachhangs;
+    }
+}
+export class NguoiDung_NhomKhachHang{
+    public nguoidung_id:number;
+    public nhomkhachhang_id: number;
+    constructor(
+        nguoidung_id:number = null,
+        nhomkhachhang_id: number =null
+
+    ){
+        this.nguoidung_id = nguoidung_id;
+        this.nhomkhachhang_id = nhomkhachhang_id;
+
     }
 }

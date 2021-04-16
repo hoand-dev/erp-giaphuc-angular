@@ -52,14 +52,14 @@
           <value>quy_tainganhang,System.String</value>
           <value>quy_sotaikhoan,System.String</value>
           <value>quy_diachi,System.String</value>
-          <value>nhacungcap_sotaikhoan,System.String</value>
-          <value>nhacungcap_chinhanh,System.String</value>
-          <value>nhacungcap_chutaikhoan,System.String</value>
-          <value>nhacungcap_diachi,System.String</value>
+          <value>doituong_sotaikhoan,System.String</value>
+          <value>doituong_tennganhang,System.String</value>
+          <value>doituong_tenchutaikhoan,System.String</value>
+          <value>doituong_diachi,System.String</value>
           <value>nguoitao_hoten,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Key>83e84435309249dba202966480fc7fff</Key>
+        <Key>c3f59bb865cf41e88b4f20a53017cbcd</Key>
         <Name>rptPhieuChi</Name>
         <NameInSource>rptPhieuChi.rptPhieuChi</NameInSource>
       </rptPhieuChi>
@@ -303,7 +303,7 @@
           <Name>Text15</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_chutaikhoan}</Text>
+          <Text>{rptPhieuChi.doituong_tenchutaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -333,7 +333,7 @@
           <Name>Text17</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_sotaikhoan}</Text>
+          <Text>{rptPhieuChi.doituong_sotaikhoan}</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
@@ -450,7 +450,7 @@
           <Name>Text25</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.nhacungcap_chinhanh}</Text>
+          <Text>{rptPhieuChi.doituong_tennganhang}</Text>
           <TextBrush>Black</TextBrush>
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
@@ -965,9 +965,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/1/2021 11:05:17 AM</ReportChanged>
+  <ReportChanged>4/14/2021 10:09:43 AM</ReportChanged>
   <ReportCreated>1/21/2021 4:14:33 PM</ReportCreated>
-  <ReportGuid>31cdbbd374864f28a462c9fb87c05bfe</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_ACB.mrt</ReportFile>
+  <ReportGuid>a628ef4c3cfa402884927b957eef3b10</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

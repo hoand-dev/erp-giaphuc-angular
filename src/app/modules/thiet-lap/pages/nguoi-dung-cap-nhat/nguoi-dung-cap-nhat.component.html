@@ -52,6 +52,25 @@
                                         <dxi-item [label]="{ text: 'EMAIL' }" dataField="email"></dxi-item>
                                         <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="dienthoai"></dxi-item>
                                         <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="3"></dxi-item>
+
+                                        <dxi-item
+                                            [colSpan]="3"
+                                            [label]="{ text: 'NHÓM KHÁCH HÀNG' }"
+                                            dataField="nhomkhachhangs"
+                                            editorType="dxTagBox"
+                                            [editorOptions]="{
+                                                dataSource: dataSource_NhomKhachHang,
+                                                showSelectionControls: true,
+                                                applyValueMode: 'useButtons',
+                                                searchEnabled: true,
+                                                searchExpr: ['temnhomkhachhang', 'manhomkhachhang'],
+                                                displayExpr: 'tennhomkhachhang',
+                                                valueExpr: 'id'
+                                            }"
+                                        >
+                                            <dxi-validation-rule type="required" message="Vui lòng chọn Nhóm khách hàng"></dxi-validation-rule>
+                                        </dxi-item>
+
                                         <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="3"></dxi-item>
 
                                         <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
