@@ -42,10 +42,10 @@
         , "quy_sotaikhoan": null 
         , "quy_diachi": null
         
-        , "nhacungcap_sotaikhoan": null
-        , "nhacungcap_chinhanh": null
-        , "nhacungcap_chutaikhoan": null
-        , "nhacungcap_diachi": null
+        , "doituong_sotaikhoan": null
+        , "doituong_tennganhang": null
+        , "doituong_tenchutaikhoan": null
+        , "doituong_diachi": null
 
 
         ,  "nguoitao_hoten": null
