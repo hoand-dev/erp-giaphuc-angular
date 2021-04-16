@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChiNhanh, NguoiDung } from '@app/shared/entities';
-import { NguoiDungService } from '@app/shared/services';
+import { ChiNhanh, NguoiDung, NguoiDung_NhomKhachHang, NhomKhachHang } from '@app/shared/entities';
+import { NguoiDungService, NhomKhachHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
@@ -29,6 +29,12 @@ export class NguoiDungCapNhatComponent implements OnInit {
     public popupVisible = false;
     public lstGioiTinh: any[] = ['Nam', 'Nữ'];
 
+    
+    public nhomkhachhangs: NhomKhachHang[] = [];
+    public dataSource_NhomKhachHang: DataSource;
+    public lstNhomKhachHang: NhomKhachHang[] = [];
+
+
     public permissionSelected: any[] = [];
     public dataSource_Permission: DataSource;
 
@@ -38,7 +44,7 @@ export class NguoiDungCapNhatComponent implements OnInit {
         useSubmitBehavior: true
     };
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private nguoidungService: NguoiDungService) {}
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private nguoidungService: NguoiDungService, private nhomkhachhangService: NhomKhachHangService) {}
 
     ngAfterViewInit() {}
 
@@ -65,14 +71,31 @@ export class NguoiDungCapNhatComponent implements OnInit {
             })
         );
         this.subscriptions.add(
+            this.nhomkhachhangService.findNhomKhachHangs().subscribe((x) => {
+             //   this.loadingVisible = false;
+                this.lstNhomKhachHang = x;
+                this.dataSource_NhomKhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+        this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
                 let nguoidung_id = params.id;
                 if (nguoidung_id) {
                     this.subscriptions.add(
                         this.nguoidungService.findNguoiDung(nguoidung_id).subscribe(
                             (data) => {
-                                this.nguoidung = data[0];
+                                this.nguoidung = data;
                                 this.username_old = this.nguoidung.username;
+
+                                let nhomkhachhangs: number[] = [];
+                                this.nguoidung.nguoidung_nhomkhachhangs.forEach(x => {
+                                    nhomkhachhangs.push(x.nhomkhachhang_id);
+                                });
+                                this.nguoidung.nhomkhachhangs = nhomkhachhangs;
 
                                 this.permissionSelected = this.nguoidung.permission_codes !== null && this.nguoidung.permission_codes !== '' ? this.nguoidung.permission_codes.split(',') : [];
                             },
@@ -84,6 +107,7 @@ export class NguoiDungCapNhatComponent implements OnInit {
                 }
             })
         );
+        
     }
 
     ngOnDestroy(): void {
@@ -113,6 +137,18 @@ export class NguoiDungCapNhatComponent implements OnInit {
 
         let nguoidung_req = this.nguoidung;
         nguoidung_req.chinhanh_id = this.currentChiNhanh.id;
+
+        
+        let nguoidung_nhomkhachhangs: NguoiDung_NhomKhachHang[] = [];
+        this.nguoidung.nhomkhachhangs.forEach(x => {
+            let item: NguoiDung_NhomKhachHang = new NguoiDung_NhomKhachHang();
+            item.nguoidung_id = this.nguoidung.id;
+            item.nhomkhachhang_id = x;
+
+            nguoidung_nhomkhachhangs.push(item);
+        });
+        this.nguoidung.nguoidung_nhomkhachhangs = nguoidung_nhomkhachhangs;
+
 
         this.saveProcessing = true;
         this.subscriptions.add(

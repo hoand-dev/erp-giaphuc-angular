@@ -129,7 +129,45 @@ export class BangGiaThemMoiComponent implements OnInit {
             })
         );
 
-        this.onHangHoaAdd();
+        // kiểm tra queryParams
+        this.subscriptions.add(
+            this.activatedRoute.queryParams.subscribe((params) => {
+                if (this.commonService.isNotEmpty(params.saochep)) {
+                    this.hanghoas = [];
+                    // lấy thông tin phiếu đặt hàng ncc từ api
+                    this.banggiaService.findBangGia(params.saochep).subscribe(
+                        (data) => {
+                            /* chọn từ phiếu không cho thay đổi chi nhánh */
+                            setTimeout(() => {
+                                this.authenticationService.setDisableChiNhanh(true);
+                            });
+
+                            /* phiếu đặt hàng ncc -> phiếu mua hàng ncc */
+                            // xử lý phần thông tin phiếu
+                            this.banggia.khachhang_id = data.khachhang_id;
+                            this.banggia.noidungno_id = data.noidungno_id;
+
+                            // xử lý phần thông tin chi tiết phiếu
+                            data.banggia_chitiet.forEach((value, index) => {
+                                let item = new BangGia_ChiTiet();
+
+                                item.loaihanghoa = value.loaihanghoa;
+                                item.hanghoa_id = value.hanghoa_id;
+                                item.dvt_id = value.dvt_id;
+                                item.tilequydoi = value.tilequydoi;
+                                item.dongia = value.dongia;
+                                item.dongiacothue = value.dongiacothue;
+                                item.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
+                                this.hanghoas.push(item);
+                            });
+                        },
+                        (error) => {
+                            this.banggiaService.handleError(error);
+                        }
+                    );
+                }
+            })
+        );
     }
 
     ngOnDestroy(): void {

@@ -4,6 +4,11 @@ export class DonViGiaCong {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
+    public doituong_sotaikhoan: string;
+    public doituong_tenchutaikhoan: string;
+    public doituong_tennganhang: string;
+    public doituong_diachi: string;
+
     public id: number;
     public chinhanh_id: number;
     public kichhoat: boolean;
