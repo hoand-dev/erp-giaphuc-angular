@@ -162,6 +162,7 @@ export class AppComponent implements OnInit {
 
         if (localStorage.getItem("app_vrsion") != environment.version) {
             localStorage.setItem("app_vrsion", environment.version);
+            this.logout();
             location.reload();
         }
 

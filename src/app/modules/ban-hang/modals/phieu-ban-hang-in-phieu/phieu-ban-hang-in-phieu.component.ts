@@ -66,38 +66,28 @@ export class PhieuBanHangInPhieuComponent implements OnInit {
                     /*xóa dữ liệu trên cache trước khi in */
                     report.dictionary.databases.clear();
 
-                    /*Thông tin chung in phiếu */
+                    /* Thông tin chung in phiếu */
                     let dsThongTin = new Stimulsoft.System.Data.DataSet();
                     dsThongTin.readJson({ Info: this.authenticationService.currentChiNhanhValue });
                     report.regData('Info', null, dsThongTin);
 
                     let dsPhieuBanHang = new Stimulsoft.System.Data.DataSet();
 
-                    /*Thông tin phiếu */
+                    /* Thông tin phiếu */
                     data.ngaylapphieu = moment(data.ngaybanhang).format('DD/MM/YYYY');
                     data.phieuin_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.phieuin_nguoiin = this.currentUser.fullName;
                     data.tongtien_bangchu = number2vn(data.tongthanhtien);
 
-                    /*Thông tin chi tiết phiếu */
-                    if (data.chietkhau > 0) {
-                        data.phieubanhang_chitiet.forEach((item) => {
-                            item.chietkhau = data.chietkhau;
-                            item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
-                        });
-                    }
-                    if (data.thuevat > 0) {
-                        data.phieubanhang_chitiet.forEach((item) => {
-                            item.thuevat = data.thuevat;
-                            item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
-                        });
-                    }
-
-                    /* tính đơn giá vat */
+                    /* Thông tin chi tiết phiếu */
                     data.phieubanhang_chitiet.forEach((item) => {
+                        item.chietkhau = data.chietkhau != 0 ? data.chietkhau : item.chietkhau;
+                        item.thuevat   = data.thuevat   != 0 ? data.thuevat   : item.thuevat  ;
                         item.dongiavat = item.dongia - item.dongia * item.chietkhau + (item.dongia - item.dongia * item.chietkhau) * item.thuevat;
+
+                        // làm tròn đơn giá vat và thành tiền
+                        item.dongiavat = Math.round(      item.dongiavat);
+                        item.thanhtien = item.dongiavat * item.soluong   ;
                     });
 
                     dsPhieuBanHang.readJson({ rptPhieuYeuCauXuatKho: data, rptPhieuYeuCauXuatKho_ChiTiet: data.phieubanhang_chitiet });
