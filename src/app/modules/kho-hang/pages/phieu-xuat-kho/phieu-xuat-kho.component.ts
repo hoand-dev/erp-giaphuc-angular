@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuXuatKhoInPhieuModalComponent } from '../../modals/phieu-xuat-kho-in-phieu-modal/phieu-xuat-kho-in-phieu-modal.component';
 import { Title } from '@angular/platform-browser';
+import { PhieuXuatKhoViewModalComponent } from '../../modals/phieu-xuat-kho-view-modal/phieu-xuat-kho-view-modal.component';
 
 @Component({
     selector: 'app-phieu-xuat-kho',
@@ -130,6 +131,30 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
 
             // Add a custom menu item
             e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU XUẤT KHO',
+                            isView: 'xemphieu',
+                            phieuxuatkho_id: rowData.id,
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
                 {
                     text: 'Cập nhật hoá đơn',
                     icon: 'edit',
