@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuNhapKhoInPhieuModalComponent } from '../../modals/phieu-nhap-kho-in-phieu-modal/phieu-nhap-kho-in-phieu-modal.component';
 import { Title } from '@angular/platform-browser';
+import { PhieuNhapKhoViewModalComponent } from '../../modals/phieu-nhap-kho-view-modal/phieu-nhap-kho-view-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-kho',
@@ -129,6 +130,29 @@ export class PhieuNhapKhoComponent implements OnInit, OnDestroy, AfterViewInit {
 
             // Add a custom menu item
             e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuNhapKho = e.row.key as PhieuNhapKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU NHẬP KHO',
+                            isView: 'xemphieu',
+                            phieunhapkho_id: rowData.id,
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapKhoViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
                 {
                     text: 'In phiếu (có giá)',
                     icon: 'print',
