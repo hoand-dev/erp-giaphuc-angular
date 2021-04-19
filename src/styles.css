@@ -40,6 +40,10 @@
     border-radius: 100px;
 }
 
+.dx-toast-message {
+    padding-right: 15px;
+}
+
 .dx-form-validation-summary.dx-validationsummary.dx-widget.dx-collection {
     margin-top: 12px;
 }
