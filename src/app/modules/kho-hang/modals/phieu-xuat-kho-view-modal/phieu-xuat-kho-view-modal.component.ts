@@ -3,7 +3,7 @@ import { ChiNhanh, KhoHang, NhaCungCap, PhieuXuatKho, PhieuXuatKho_ChiTiet } fro
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, DanhSachXeService, HangHoaService, KhoHangService, PhieuXuatKhoService, TaiXeService } from '@app/shared/services';
+import { CommonService, DanhSachXeService, HangHoaService, KhoHangService, LichSuService, PhieuXuatKhoService, TaiXeService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
@@ -52,6 +52,7 @@ export class PhieuXuatKhoViewModalComponent implements OnInit {
         private taixeService: TaiXeService,
         private xeService: DanhSachXeService,
         private hanghoaService: HangHoaService,
+        private lichsuService: LichSuService,
         private commonService: CommonService,
         public sumTotal: SumTotalPipe
     ) {}
@@ -144,7 +145,21 @@ export class PhieuXuatKhoViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findXuatKho(this.phieuxuatkho_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieuxuatkho_chitiets.length;
+
+                        this.phieuxuatkho = data;
+                        this.hanghoas = this.phieuxuatkho.phieuxuatkho_chitiets;
+                        this.phieuxuatkho.phieuxuatkho_chitiets_old = this.phieuxuatkho.phieuxuatkho_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
 
