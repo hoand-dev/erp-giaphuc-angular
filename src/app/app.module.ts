@@ -44,6 +44,7 @@ import { KeToanModule } from './modules/ke-toan/ke-toan.module';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import { NotPermissionComponent } from './shared/components/not-permission/not-permission.component';
 import { SumTotalPipe } from './shared/pipes/sum-total.pipe';
+import { HeThongModule } from './modules/he-thong/he-thong.module';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, HomeComponent, NotFoundComponent, ChangePasswordComponent, NotPermissionComponent],
@@ -80,8 +81,9 @@ import { SumTotalPipe } from './shared/pipes/sum-total.pipe';
         KhoHangModule,
         KeToanModule,
         ThongKeModule,
+        HeThongModule,
 
-        AppRoutingModule // root route phải đặt ở cuối nếu có module con sử dụng route
+        AppRoutingModule,// root route phải đặt ở cuối nếu có module con sử dụng route
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

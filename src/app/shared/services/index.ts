@@ -10,3 +10,4 @@ export * from './kho-hang';
 export * from './ke-toan';
 export * from './san-xuat';
 export * from './thong-ke';
+export * from './he-thong';
