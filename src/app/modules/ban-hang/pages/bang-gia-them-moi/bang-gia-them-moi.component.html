@@ -115,6 +115,7 @@
                                                         </td>
                                                         <td>
                                                             <dx-number-box
+                                                                [step]="0"
                                                                 format="#,##0.###"
                                                                 [(value)]="item.dongiacothue"
                                                                 (onValueChanged)="onHangHoaChangeRow('dongiacothue', i, $event)"
