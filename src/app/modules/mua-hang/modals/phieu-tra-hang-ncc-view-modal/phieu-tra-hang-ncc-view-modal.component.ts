@@ -121,31 +121,7 @@ export class PhieuTraHangNccViewModalComponent implements OnInit {
                 }
             })
         });
-
-        this.loadingVisible = true;
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieutrahangncc_id = params.id;
-                // lấy thông tin
-                if (phieutrahangncc_id) {
-                    this.subscriptions.add(
-                        this.phieutrahangnccService.findPhieuTraHangNCC(phieutrahangncc_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieutrahangncc_chitiet.length;
-
-                                this.phieutrahangncc = data;
-                                this.hanghoas = this.phieutrahangncc.phieutrahangncc_chitiet;
-                            },
-                            (error) => {
-                                this.phieutrahangnccService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
+        
         if (this.isView == 'xemphieu') {
             this.subscriptions.add(
                 this.phieutrahangnccService.findPhieuTraHangNCC(this.phieutrahangncc_id).subscribe(

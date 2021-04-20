@@ -161,43 +161,7 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
                 }
             })
         });
-        // kiểm tra queryParams
-        this.subscriptions.add(
-            this.activatedRoute.queryParams.subscribe((params) => {
-                if (this.commonService.isNotEmpty(params.tattoan)) {
-                    this.isTatToan = true;
-                }
-            })
-        );
-
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieuyeucaugiacong_id = params.id;
-                // lấy thông tin
-                if (phieuyeucaugiacong_id) {
-                    this.subscriptions.add(
-                        this.phieuyeucaugiacongService.findPhieuYeuCauGiaCong(phieuyeucaugiacong_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieuyeucaugiacong_chitiets.length;
-                                this.hanghoalenght_yeucau = data.phieuyeucaugiacong_chitiets.length;
-                                this.hanghoalenght_somat = data.phieuyeucaugiacong_chitiets.length;
-                                this.hanghoalenght_somat_thanhpham = data.phieuyeucaugiacong_chitiets.length;
-
-                                this.loaiphieu = data.loaiphieu;
-
-                                this.phieuyeucaugiacong = data;
-                                this.hanghoas = this.phieuyeucaugiacong.phieuyeucaugiacong_chitiets;
-                            },
-                            (error) => {
-                                this.phieuyeucaugiacongService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
+        
         if (this.isView == 'xemphieu') {
             this.subscriptions.add(
                 this.phieuyeucaugiacongService.findPhieuYeuCauGiaCong(this.phieuyeucaugiacong_id).subscribe(

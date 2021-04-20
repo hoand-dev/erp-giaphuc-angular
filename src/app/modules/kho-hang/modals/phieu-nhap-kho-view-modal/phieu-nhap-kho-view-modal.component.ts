@@ -111,7 +111,8 @@ export class PhieuNhapKhoViewModalComponent implements OnInit {
                     }
                 )
             );
-        } else if (this.isView == 'xemlichsu') {
+        }
+        else if (this.isView == 'xemlichsu') {
             this.subscriptions.add(
                 this.lichsuService.findNhapKho(this.phieunhapkho_id).subscribe(
                     (data) => {

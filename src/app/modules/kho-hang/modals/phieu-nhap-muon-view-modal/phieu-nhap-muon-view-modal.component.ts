@@ -120,29 +120,6 @@ export class PhieuNhapMuonViewModalComponent implements OnInit {
             })
         });
 
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieunhapmuonhang_id = params.id;
-                // lấy thông tin
-                if (phieunhapmuonhang_id) {
-                    this.subscriptions.add(
-                        this.phieunhapmuonhangService.findPhieuNhapMuonHang(phieunhapmuonhang_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieunhapmuonhang_chitiets.length;
-
-                                this.phieunhapmuonhang = data;
-                                this.hanghoas = this.phieunhapmuonhang.phieunhapmuonhang_chitiets;
-                            },
-                            (error) => {
-                                this.phieunhapmuonhangService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
         if (this.isView == 'xemphieu') {
             this.subscriptions.add(
                 this.phieunhapmuonhangService.findPhieuNhapMuonHang(this.phieunhapmuonhang_id).subscribe(
