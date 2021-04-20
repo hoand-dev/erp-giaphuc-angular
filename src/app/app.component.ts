@@ -333,7 +333,7 @@ export class AppComponent implements OnInit {
         ];
         const HETHONG = [
             "/nguoi-dung",
-            "/lich-su-du-lieu",
+            "/he-thong/lich-su",
         ];
         
         /* xử lý chuỗi url */

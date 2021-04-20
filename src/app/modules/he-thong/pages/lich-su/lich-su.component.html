@@ -1,0 +1,79 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Hệ thống</a></li>
+                    <li class="breadcrumb-item active">Lịch sử</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'LỊCH SỬ' | uppercase }} - DANH SÁCH</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
+
+                        <dx-data-grid
+                            id="gridContainer"
+                            [showBorders]="true"
+                            [showRowLines]="true"
+                            [columnAutoWidth]="true"
+                            [hoverStateEnabled]="true"
+                            [stateStoring]="stateStoringGrid"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
+                            [allowColumnReordering]="true"
+                            (onRowDblClick)="onRowDblClick($event)"
+                        >
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
+
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="log_thoigianthaotac" caption="Thời gian" dataType="datetime"></dxi-column>
+                            <dxi-column dataField="nguoithaotac" caption="Người thao tác"></dxi-column>
+                            <dxi-column dataField="log_chucnang" caption="Chức năng"></dxi-column>
+                            <dxi-column dataField="log_noidung" caption="Nội dung"></dxi-column>
+                            <dxi-column dataField="madulieu" caption="Dữ liệu"></dxi-column>
+
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                            <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
