@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import { PhieuNhapChuyenKhoInPhieuModalComponent } from '../../modals/phieu-nhap-chuyen-kho-in-phieu-modal/phieu-nhap-chuyen-kho-in-phieu-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Title } from '@angular/platform-browser';
+import { PhieuNhapChuyenKhoViewModalComponent } from '../../modals/phieu-nhap-chuyen-kho-view-modal/phieu-nhap-chuyen-kho-view-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-chuyen-kho',
@@ -116,7 +117,7 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -124,30 +125,56 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         if (e.row.rowType === 'data') {
             if (!e.items) e.items = [];
 
-            e.items.push({
-                text: 'In Phiếu',
-                icon: 'print',
-                visible: 'true',
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuNhapChuyenKho = e.row.key as PhieuNhapChuyenKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU NHẬP CHUYỂN KHO',
+                            isView: 'xemphieu',
+                            phieunhapchuyenkho_id: rowData.id
+                        };
 
-                onItemClick: () => {
-                    let rowData: PhieuNhapChuyenKho = e.row.key as PhieuNhapChuyenKho;
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapChuyenKhoViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
 
-                    /* Khởi tạo gia trị modal */
-                    const initialState = {
-                        title: ' IN PHIẾU NHẬP CHUYỂN KHO',
-                        phieunhapchuyenkho_id: rowData.id
-                    };
+                {
+                    text: 'In Phiếu',
+                    icon: 'print',
+                    visible: 'true',
 
-                    /* Hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuNhapChuyenKhoInPhieuModalComponent, {
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = ' Đóng';
+                    onItemClick: () => {
+                        let rowData: PhieuNhapChuyenKho = e.row.key as PhieuNhapChuyenKho;
+
+                        /* Khởi tạo gia trị modal */
+                        const initialState = {
+                            title: ' IN PHIẾU NHẬP CHUYỂN KHO',
+                            phieunhapchuyenkho_id: rowData.id
+                        };
+
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapChuyenKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = ' Đóng';
+                    }
                 }
-            });
+            );
         }
     }
 
