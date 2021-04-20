@@ -136,7 +136,7 @@
                                     <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="9"></dxi-item>
                                     <dxi-item [colSpan]="3" [label]="{ text: 'SỐ TIỀN CẤN TRỪ' }">
                                         <div *dxTemplate>
-                                            <dx-number-box format="#,##0.###" [(value)]="phieucantru.sotiencantru" valueChangeEvent="input" (onValueChanged)="onChangeTienCanTru($event)"></dx-number-box>
+                                            <dx-number-box step="0" format="#,##0.###" [(value)]="phieucantru.sotiencantru" valueChangeEvent="input" (onValueChanged)="onChangeTienCanTru($event)"></dx-number-box>
                                         </div>
                                         <dxi-validation-rule type="range" [min]="0" message="Số tiền cấn trừ phải lớn hơn 0"> </dxi-validation-rule>
                                     </dxi-item>
@@ -167,6 +167,7 @@
                                                             <td>{{ item.tongthanhtien - item.sotienthutruoc | number: '1.0-3' }}</td>
                                                             <td>
                                                                 <dx-number-box
+                                                                    [step]="0"
                                                                     format="#,##0.###"
                                                                     [(value)]="item.sotienthu"
                                                                     (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"
@@ -213,6 +214,7 @@
                                                             <td>{{ item.tongthanhtien - item.sotienchitruoc | number: '1.0-3' }}</td>
                                                             <td>
                                                                 <dx-number-box
+                                                                    [step]="0"
                                                                     format="#,##0.###"
                                                                     [(value)]="item.sotienchi"
                                                                     (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"
