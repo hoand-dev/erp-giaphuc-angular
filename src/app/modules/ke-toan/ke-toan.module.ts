@@ -22,6 +22,7 @@ import { DanhSachLenhVayModalComponent, PhieuChiInPhieuModalComponent, PhieuThuI
 import { PhieuThuViewModalComponent } from './modals/phieu-thu-view-modal/phieu-thu-view-modal.component';
 import { PhieuChiViewModalComponent } from './modals/phieu-chi-view-modal/phieu-chi-view-modal.component';
 import { PhieuCanTruViewModalComponent } from './modals/phieu-can-tru-view-modal/phieu-can-tru-view-modal.component';
+import { LenhVayViewModalComponent } from './modals/lenh-vay-view-modal/lenh-vay-view-modal.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { PhieuCanTruViewModalComponent } from './modals/phieu-can-tru-view-modal
         PhieuCanTruInPhieuModalComponent,
         PhieuThuViewModalComponent,
         PhieuChiViewModalComponent,
-        PhieuCanTruViewModalComponent
+        PhieuCanTruViewModalComponent,
+        LenhVayViewModalComponent
     ],
     imports: [CommonModule, SharedModule, KeToanRoutingModule]
 })
