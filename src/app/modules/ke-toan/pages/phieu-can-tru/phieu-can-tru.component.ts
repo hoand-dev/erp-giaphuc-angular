@@ -13,6 +13,7 @@ import { AuthenticationService } from '@app/_services';
 import { PhieuCanTruInPhieuModalComponent } from '../../modals/phieu-can-tru-in-phieu-modal/phieu-can-tru-in-phieu-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Title } from '@angular/platform-browser';
+import { PhieuCanTruViewModalComponent } from '../../modals/phieu-can-tru-view-modal/phieu-can-tru-view-modal.component';
 
 @Component({
     selector: 'app-phieu-can-tru',
@@ -136,6 +137,29 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
             if (!e.items) e.items = [];
 
             e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuCanTru = e.row.key as PhieuCanTru;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU CẤN TRỪ',
+                            isView: 'xemphieu',
+                            phieucantru_id: rowData.id
+                        };
+                
+                        /* hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuCanTruViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
                 {
                     text: 'CẤN TRỪ KH - NCC',
                     icon: 'print',
