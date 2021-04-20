@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuXuatTraMuonHangInPhieuModalComponent } from '../../modals/phieu-xuat-tra-muon-hang-in-phieu-modal/phieu-xuat-tra-muon-hang-in-phieu-modal.component';
 import { Title } from '@angular/platform-browser';
+import { PhieuXuatTraViewModalComponent } from '../../modals/phieu-xuat-tra-view-modal/phieu-xuat-tra-view-modal.component';
 
 @Component({
     selector: 'app-phieu-xuat-tra-muon-hang',
@@ -38,8 +39,8 @@ export class PhieuXuatTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-     /* dataGrid */
-     public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT TRẢ HÀNG MƯỢN - ' + moment().format('DD_MM_YYYY');
+    /* dataGrid */
+    public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT TRẢ HÀNG MƯỢN - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -56,7 +57,7 @@ export class PhieuXuatTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU XUẤT TRẢ HÀNG MƯỢN | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU XUẤT TRẢ HÀNG MƯỢN | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -116,7 +117,7 @@ export class PhieuXuatTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -128,28 +129,53 @@ export class PhieuXuatTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
-            e.items.push({
-                text: 'In phiếu',
-                icon: 'print',
-                visible: true,
-                onItemClick: () => {
-                    let rowData: PhieuXuatTraMuonHang = e.row.key as PhieuXuatTraMuonHang;
-                    /* khởi tạo giá trị cho modal */
-                    const initialState = {
-                        title: 'XEM IN PHIẾU XUẤT TRẢ MƯỢN HÀNG',
-                        phieuxuattramuonhang_id: rowData.id
-                    };
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatTraMuonHang = e.row.key as PhieuXuatTraMuonHang;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU XUẤT TRẢ HÀNG MƯỢN',
+                            isView: 'xemphieu',
+                            phieuxuattramuonhang_id: rowData.id
+                        };
 
-                    /* hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuXuatTraMuonHangInPhieuModalComponent, {
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatTraViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In phiếu',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatTraMuonHang = e.row.key as PhieuXuatTraMuonHang;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU XUẤT TRẢ MƯỢN HÀNG',
+                            phieuxuattramuonhang_id: rowData.id
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatTraMuonHangInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
                 }
-            });
+            );
         }
     }
 

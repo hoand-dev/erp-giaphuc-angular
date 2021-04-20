@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import { Title } from '@angular/platform-browser';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuTraHangNccViewModalComponent } from '../../modals/phieu-tra-hang-ncc-view-modal/phieu-tra-hang-ncc-view-modal.component';
 
 @Component({
     selector: 'app-phieu-tra-hang-ncc',
@@ -24,6 +26,8 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
+
+    public bsModalRef: BsModalRef;
 
     /* danh sách các quyền theo biến số, mặc định false */
     public enableAddNew: boolean = false;
@@ -50,9 +54,10 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         private router: Router,
         private commonService: CommonService,
         private objPhieuTraHangNCCService: PhieuTraHangNCCService,
+        private modalService: BsModalService,
         private authenticationService: AuthenticationService
     ) {
-        this.titleService.setTitle("PHIẾU TRẢ HÀNG NCC | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU TRẢ HÀNG NCC | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -111,8 +116,39 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
             )
         );
     }
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
 
-    rowNumber(rowIndex){
+            // Add a custom menu item
+            e.items.push({
+                text: 'Xem lại',
+                icon: 'rename',
+                visible: true,
+                onItemClick: () => {
+                    let rowData: PhieuTraHangNCC = e.row.key as PhieuTraHangNCC;
+                    /* khởi tạo giá trị cho modal */
+                    const initialState = {
+                        title: 'THÔNG TIN PHIẾU TRẢ HÀNG',
+                        isView: 'xemphieu',
+                        phieutrahangncc_id: rowData.id
+                    };
+
+                    /* hiển thị modal */
+                    this.bsModalRef = this.modalService.show(PhieuTraHangNccViewModalComponent, {
+                        class: 'modal-xxl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                }
+            });
+        }
+    }
+
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 

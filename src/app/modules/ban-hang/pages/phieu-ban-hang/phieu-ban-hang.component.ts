@@ -12,6 +12,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { Subscription, Subject } from 'rxjs';
 import { PhieuBanHangInPhieuComponent } from '../../modals/phieu-ban-hang-in-phieu/phieu-ban-hang-in-phieu.component';
+import { PhieuBanHangViewModalComponent } from '../../modals/phieu-ban-hang-view-modal/phieu-ban-hang-view-modal.component';
 
 @Component({
     selector: 'app-phieu-ban-hang',
@@ -113,7 +114,7 @@ export class PhieuBanHangComponent implements OnInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -122,6 +123,29 @@ export class PhieuBanHangComponent implements OnInit {
             if (!e.items) e.items = [];
 
             e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU BÁN HÀNG',
+                            isView: 'xemphieu',
+                            phieubanhang_id: rowData.id
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuBanHangViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
                 {
                     text: 'In phiếu - Đơn giá chưa VAT',
                     icon: 'print',
