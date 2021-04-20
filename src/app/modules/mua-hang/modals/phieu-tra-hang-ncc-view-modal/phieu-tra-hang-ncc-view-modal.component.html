@@ -39,8 +39,8 @@
 
                         <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieutrahangncc" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                         <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" [colSpan]="3" dataField="diachinhacungcap" [editorOptions]="{ readOnly: true }"> </dxi-item>
-                        <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'input', readOnly: true }"> </dxi-item>
-                        <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0.01', valueChangeEvent: 'input', readOnly: true }"> </dxi-item>
+                        <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0', valueChangeEvent: 'input', readOnly: true }"> </dxi-item>
+                        <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0', valueChangeEvent: 'input', readOnly: true }"> </dxi-item>
 
                         <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="maphieumuahangncc" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
                         <dxi-item
@@ -113,7 +113,7 @@
                                             <td>{{ item.soluong * item.trongluong | number: '1.0-3' }}</td>
 
                                             <td>
-                                                <!-- <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box> -->
+                                                <!-- <dx-number-box [step]=0 format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box> -->
                                                 {{ item.soluong }}
                                             </td>
                                             <td>
@@ -124,7 +124,7 @@
                                                 <!-- <dx-number-box
                                                     [readOnly]="true"
                                                     format="#0.##%"
-                                                    [step]="0.01"
+                                                    [step]="0"
                                                     [(value)]="item.chietkhau"
                                                     valueChangeEvent="input"
                                                     (onValueChanged)="onHangHoaChangeRow('chietkhau', i, $event)"
@@ -135,7 +135,7 @@
                                                 <!-- <dx-number-box
                                                     [readOnly]="true"
                                                     format="#0.##%"
-                                                    [step]="0.01"
+                                                    [step]="0"
                                                     [(value)]="item.thuevat"
                                                     valueChangeEvent="input"
                                                     (onValueChanged)="onHangHoaChangeRow('thuevat', i, $event)"

@@ -125,7 +125,7 @@
                                             <td>{{ item.soluong * item.trongluong | number: '1.0-3' }}</td>
 
                                             <td>
-                                                <!-- <dx-number-box format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box> -->
+                                                <!-- <dx-number-box step="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box> -->
                                                 {{ item.soluong }}
                                             </td>
                                             <td><dx-text-box [readOnly]="true" [(value)]="item.chuthich"></dx-text-box></td>
