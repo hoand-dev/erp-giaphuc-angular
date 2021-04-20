@@ -13,6 +13,7 @@ import { AuthenticationService } from '@app/_services';
 import Swal from 'sweetalert2';
 import { PhieuNhapThanhPhamInPhieuModalComponent } from '../../modals/phieu-nhap-thanh-pham-in-phieu-modal/phieu-nhap-thanh-pham-in-phieu-modal.component';
 import { Title } from '@angular/platform-browser';
+import { PhieuNhapNhapThanhPhamViewModalComponent } from '../../modals/phieu-nhap-nhap-thanh-pham-view-modal/phieu-nhap-nhap-thanh-pham-view-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-kho-gia-cong',
@@ -57,7 +58,7 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU NHẬP KHO GIA CÔNG | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU NHẬP KHO GIA CÔNG | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -117,7 +118,7 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -125,30 +126,55 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
-            e.items.push({
-                text: 'In Phiếu',
-                icon: 'print',
-                visible: 'true',
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuNhapKhoGiaCong = e.row.key as PhieuNhapKhoGiaCong;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU NHẬP THÀNH PHẨM',
+                            isView: 'xemphieu',
+                            phieunhapkhogiacong_id: rowData.id
+                        };
 
-                onItemClick: () => {
-                    let rowData: PhieuNhapKhoGiaCong = e.row.key as PhieuNhapKhoGiaCong;
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapNhapThanhPhamViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In Phiếu',
+                    icon: 'print',
+                    visible: 'true',
 
-                    /*Khởi tạo giá trị trên modal */
-                    const initialState = {
-                        title: 'IN PHIẾU NHẬP KHO GIA CÔNG',
-                        phieunhapkhogiacong_id: rowData.id
-                    };
+                    onItemClick: () => {
+                        let rowData: PhieuNhapKhoGiaCong = e.row.key as PhieuNhapKhoGiaCong;
 
-                    /* Hiển thị trên modal */
-                    this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamInPhieuModalComponent, {
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN PHIẾU NHẬP KHO GIA CÔNG',
+                            phieunhapkhogiacong_id: rowData.id
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
                 }
-            });
+            );
 
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 

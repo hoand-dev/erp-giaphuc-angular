@@ -46,10 +46,11 @@
                             [allowColumnResizing]="true"
                             [allowColumnReordering]="true"
                             (onRowDblClick)="onRowDblClick($event)"
+                            (onContextMenuPreparing)="addMenuItems($event)"
                         >
                             <dxo-selection mode="single"></dxo-selection>
                             <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
-                            
+
                             <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
                                 <div *dxTemplate="let data of 'cellTemplateSTT'">
                                     {{ rowNumber(data.rowIndex) }}
@@ -106,8 +107,7 @@
                             <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                             <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                             <dxo-paging [pageSize]="10"></dxo-paging>
-                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true">
-                            </dxo-pager>
+                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
                         </dx-data-grid>
                     </div>
                 </div>

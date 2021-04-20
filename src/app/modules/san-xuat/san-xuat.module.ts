@@ -30,6 +30,9 @@ import {
     PhieuYeuCauGiaCongInPhieuModalComponent,
     PhieuNhapThanhPhamInPhieuModalComponent
 } from './modals';
+import { PhieuYeuCauGiaCongViewModalComponent } from './modals/phieu-yeu-cau-gia-cong-view-modal/phieu-yeu-cau-gia-cong-view-modal.component';
+import { PhieuXuatKhoGiaCongViewModalComponent } from './modals/phieu-xuat-kho-gia-cong-view-modal/phieu-xuat-kho-gia-cong-view-modal.component';
+import { PhieuNhapNhapThanhPhamViewModalComponent } from './modals/phieu-nhap-nhap-thanh-pham-view-modal/phieu-nhap-nhap-thanh-pham-view-modal.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +56,10 @@ import {
         DanhSachLoiModalComponent,
         PhieuXuatKhoGiaCongInPhieuModalComponent,
         PhieuYeuCauGiaCongInPhieuModalComponent,
-        PhieuNhapThanhPhamInPhieuModalComponent
+        PhieuNhapThanhPhamInPhieuModalComponent,
+        PhieuYeuCauGiaCongViewModalComponent,
+        PhieuXuatKhoGiaCongViewModalComponent,
+        PhieuNhapNhapThanhPhamViewModalComponent
     ],
     imports: [CommonModule, SharedModule, SanXuatRoutingModule]
 })

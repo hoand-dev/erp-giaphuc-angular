@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import { PhieuXuatChuyenKhoInPhieuModalComponent } from '../../modals/phieu-xuat-chuyen-kho-in-phieu-modal/phieu-xuat-chuyen-kho-in-phieu-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Title } from '@angular/platform-browser';
+import { PhieuXuatChuyenKhoViewModalComponent } from '../../modals/phieu-xuat-chuyen-kho-view-modal/phieu-xuat-chuyen-kho-view-modal.component';
 
 @Component({
     selector: 'app-phieu-xuat-chuyen-kho',
@@ -56,7 +57,7 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU XUẤT CHUYỂN KHO | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU XUẤT CHUYỂN KHO | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -116,7 +117,7 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -129,30 +130,55 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         if (e.row.rowType === 'data') {
             if (!e.items) e.items = [];
 
-            e.items.push({
-                text: 'In Phiếu',
-                icon: 'print',
-                visible: 'true',
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatChuyenKho = e.row.key as PhieuXuatChuyenKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU XUẤT CHUYỂN KHO',
+                            isView: 'xemphieu',
+                            phieuxuatchuyenkho_id: rowData.id
+                        };
 
-                onItemClick: () => {
-                    let rowData: PhieuXuatChuyenKho = e.row.key as PhieuXuatChuyenKho;
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In Phiếu',
+                    icon: 'print',
+                    visible: 'true',
 
-                    /*Khởi tạo giá trị trên modal */
-                    const initialState = {
-                        title: 'IN PHIẾU XUẤT CHUYỂN KHO',
-                        phieuxuatchuyenkho_id: rowData.id
-                    };
+                    onItemClick: () => {
+                        let rowData: PhieuXuatChuyenKho = e.row.key as PhieuXuatChuyenKho;
 
-                    /* Hiển thị trên modal */
-                    this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoInPhieuModalComponent, {
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN PHIẾU XUẤT CHUYỂN KHO',
+                            phieuxuatchuyenkho_id: rowData.id
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
                 }
-            });
+            );
         }
     }
 

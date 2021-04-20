@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhieuNhapTraMuonHang } from '@app/shared/entities';
+import { PhieuNhapMuonHang, PhieuNhapTraMuonHang } from '@app/shared/entities';
 import { AppInfoService, CommonService, PhieuNhapTraMuonHangService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -12,6 +12,7 @@ import { AuthenticationService } from '@app/_services';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuNhapTraMuonHangInPhieuModalComponent } from '../../modals/phieu-nhap-tra-muon-hang-in-phieu-modal/phieu-nhap-tra-muon-hang-in-phieu-modal.component';
 import { Title } from '@angular/platform-browser';
+import { PhieuNhapTraViewModalComponent } from '../../modals/phieu-nhap-tra-view-modal/phieu-nhap-tra-view-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-tra-muon-hang',
@@ -20,7 +21,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-    
+
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     public bsModalRef: BsModalRef;
@@ -56,7 +57,7 @@ export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU NHẬP TRẢ HÀNG MƯỢN | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU NHẬP TRẢ HÀNG MƯỢN | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -116,7 +117,7 @@ export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -128,28 +129,53 @@ export class PhieuNhapTraMuonHangComponent implements OnInit, OnDestroy, AfterVi
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
             // Add a custom menu item
-            e.items.push({
-                text: 'In phiếu',
-                icon: 'print',
-                visible: true,
-                onItemClick: () => {
-                    let rowData: PhieuNhapTraMuonHang = e.row.key as PhieuNhapTraMuonHang;
-                    /* khởi tạo giá trị cho modal */
-                    const initialState = {
-                        title: 'XEM IN PHIẾU NHẬP TRẢ MƯỢN HÀNG',
-                        phieunhaptramuonhang_id: rowData.id
-                    };
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuNhapTraMuonHang = e.row.key as PhieuNhapTraMuonHang;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU NHẬP TRẢ',
+                            isView: 'xemphieu',
+                            phieunhaptramuonhang_id: rowData.id
+                        };
 
-                    /* hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuNhapTraMuonHangInPhieuModalComponent, {
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapTraViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In phiếu',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuNhapTraMuonHang = e.row.key as PhieuNhapTraMuonHang;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU NHẬP TRẢ MƯỢN HÀNG',
+                            phieunhaptramuonhang_id: rowData.id
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapTraMuonHangInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
                 }
-            });
+            );
         }
     }
 

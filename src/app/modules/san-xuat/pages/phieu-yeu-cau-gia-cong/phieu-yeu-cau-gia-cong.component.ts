@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { PhieuYeuCauGiaCongInPhieuModalComponent } from '../../modals/phieu-yeu-cau-gia-cong-in-phieu-modal/phieu-yeu-cau-gia-cong-in-phieu-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Title } from '@angular/platform-browser';
+import { PhieuYeuCauGiaCongViewModalComponent } from '../../modals/phieu-yeu-cau-gia-cong-view-modal/phieu-yeu-cau-gia-cong-view-modal.component';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong',
@@ -61,7 +62,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU YÊU CẦU GIA CÔNG | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU YÊU CẦU GIA CÔNG | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -122,7 +123,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -130,30 +131,55 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
         if (e.row.rowType === 'data') {
             // e.items can be undefined
             if (!e.items) e.items = [];
-            e.items.push({
-                text: 'In Phiếu',
-                icon: 'print',
-                visible: 'true',
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuYeuCauGiaCong = e.row.key as PhieuYeuCauGiaCong;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU YÊU CẦU',
+                            isView: 'xemphieu',
+                            phieuyeucaugiacong_id: rowData.id
+                        };
 
-                onItemClick: () => {
-                    let rowData: PhieuYeuCauGiaCong = e.row.key as PhieuYeuCauGiaCong;
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In Phiếu',
+                    icon: 'print',
+                    visible: 'true',
 
-                    /*Khởi tạo giá trị trên modal */
-                    const initialState = {
-                        title: 'IN PHIẾU YÊU CẦU GIA CÔNG',
-                        phieuyeucaugiacong_id: rowData.id
-                    };
+                    onItemClick: () => {
+                        let rowData: PhieuYeuCauGiaCong = e.row.key as PhieuYeuCauGiaCong;
 
-                    /* Hiển thị trên modal */
-                    this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongInPhieuModalComponent, {
-                        class: 'modal-xl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN PHIẾU YÊU CẦU GIA CÔNG',
+                            phieuyeucaugiacong_id: rowData.id
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
                 }
-            });
+            );
 
             // bạn có thể thêm context theo trường mình muốn thông qua e.column
 

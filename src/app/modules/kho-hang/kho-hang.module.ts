@@ -47,8 +47,16 @@ import {
     PhieuNhapTraMuonHangInPhieuModalComponent,
     PhieuXuatTraMuonHangInPhieuModalComponent,
  } from './modals';
+
 import { PhieuDieuChinhKhoInPhieuModalComponent } from './modals/phieu-dieu-chinh-kho-in-phieu-modal/phieu-dieu-chinh-kho-in-phieu-modal.component';
 import { PhieuNhapKhoViewModalComponent } from './modals/phieu-nhap-kho-view-modal/phieu-nhap-kho-view-modal.component';
+import { PhieuDieuChinhKhoViewModalComponent } from './modals/phieu-dieu-chinh-kho-view-modal/phieu-dieu-chinh-kho-view-modal.component';
+import { PhieuXuatChuyenKhoViewModalComponent } from './modals/phieu-xuat-chuyen-kho-view-modal/phieu-xuat-chuyen-kho-view-modal.component';
+import { PhieuNhapChuyenKhoViewModalComponent } from './modals/phieu-nhap-chuyen-kho-view-modal/phieu-nhap-chuyen-kho-view-modal.component';
+import { PhieuXuatMuonViewModalComponent } from './modals/phieu-xuat-muon-view-modal/phieu-xuat-muon-view-modal.component';
+import { PhieuNhapTraViewModalComponent } from './modals/phieu-nhap-tra-view-modal/phieu-nhap-tra-view-modal.component';
+import { PhieuNhapMuonViewModalComponent } from './modals/phieu-nhap-muon-view-modal/phieu-nhap-muon-view-modal.component';
+import { PhieuXuatTraViewModalComponent } from './modals/phieu-xuat-tra-view-modal/phieu-xuat-tra-view-modal.component';
 import { PhieuXuatKhoViewModalComponent } from './modals/phieu-xuat-kho-view-modal/phieu-xuat-kho-view-modal.component';
 
 @NgModule({
@@ -93,6 +101,13 @@ import { PhieuXuatKhoViewModalComponent } from './modals/phieu-xuat-kho-view-mod
         PhieuXuatTraMuonHangInPhieuModalComponent,
         PhieuDieuChinhKhoInPhieuModalComponent,
         PhieuNhapKhoViewModalComponent,
+        PhieuDieuChinhKhoViewModalComponent,
+        PhieuXuatChuyenKhoViewModalComponent,
+        PhieuNhapChuyenKhoViewModalComponent,
+        PhieuXuatMuonViewModalComponent,
+        PhieuNhapTraViewModalComponent,
+        PhieuNhapMuonViewModalComponent,
+        PhieuXuatTraViewModalComponent,
         PhieuXuatKhoViewModalComponent
     ],
     imports: [CommonModule, SharedModule, KhoHangRoutingModule]
