@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import { Title } from '@angular/platform-browser';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PhieuMuaHangViewModalComponent } from '../../modals/phieu-mua-hang-view-modal/phieu-mua-hang-view-modal.component';
 
 @Component({
     selector: 'app-phieu-mua-hang-ncc',
@@ -24,6 +26,8 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
+
+    public bsModalRef: BsModalRef;
 
     /* danh sách các quyền theo biến số, mặc định false */
     public enableAddNew: boolean = false;
@@ -53,9 +57,10 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         private router: Router,
         private commonService: CommonService,
         private objPhieuMuaHangNCCService: PhieuMuaHangNCCService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU MUA HÀNG NCC | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU MUA HÀNG NCC | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -102,6 +107,37 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         // xử lý trước khi thoát khỏi trang
         this.subscriptions.unsubscribe();
     }
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+
+            // Add a custom menu item
+            e.items.push({
+                text: 'Xem lại',
+                icon: 'rename',
+                visible: true,
+                onItemClick: () => {
+                    let rowData: PhieuMuaHangNCC = e.row.key as PhieuMuaHangNCC;
+                    /* khởi tạo giá trị cho modal */
+                    const initialState = {
+                        title: 'THÔNG TIN PHIẾU MUA HÀNG',
+                        isView: 'xemphieu',
+                        phieumuahangncc_id: rowData.id
+                    };
+
+                    /* hiển thị modal */
+                    this.bsModalRef = this.modalService.show(PhieuMuaHangViewModalComponent, {
+                        class: 'modal-xxl modal-dialog-centered',
+                        ignoreBackdropClick: false,
+                        keyboard: false,
+                        initialState
+                    });
+                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                }
+            });
+        }
+    }
 
     onLoadData() {
         this.subscriptions.add(
@@ -116,7 +152,7 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 

@@ -17,6 +17,8 @@ import {
 } from './pages';
 
 import { DanhSachPhieuDatHangNCCModalComponent, DanhSachPhieuMuaHangNCCModalComponent, DanhSachPhieuTraHangNCCModalComponent, PhieuDatHangNCCInPhieuModalComponent } from './modals';
+import { PhieuMuaHangViewModalComponent } from './modals/phieu-mua-hang-view-modal/phieu-mua-hang-view-modal.component';
+import { PhieuTraHangNccViewModalComponent } from './modals/phieu-tra-hang-ncc-view-modal/phieu-tra-hang-ncc-view-modal.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +34,9 @@ import { DanhSachPhieuDatHangNCCModalComponent, DanhSachPhieuMuaHangNCCModalComp
         DanhSachPhieuDatHangNCCModalComponent,
         DanhSachPhieuMuaHangNCCModalComponent,
         DanhSachPhieuTraHangNCCModalComponent,
-        PhieuDatHangNCCInPhieuModalComponent
+        PhieuDatHangNCCInPhieuModalComponent,
+        PhieuMuaHangViewModalComponent,
+        PhieuTraHangNccViewModalComponent
     ],
     imports: [CommonModule, SharedModule, MuaHangRoutingModule]
 })
