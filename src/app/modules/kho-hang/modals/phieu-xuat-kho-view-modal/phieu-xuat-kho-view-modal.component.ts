@@ -144,7 +144,8 @@ export class PhieuXuatKhoViewModalComponent implements OnInit {
                     }
                 )
             );
-        } else if (this.isView == 'xemlichsu') {
+        } 
+        else if (this.isView == 'xemlichsu') {
             this.subscriptions.add(
                 this.lichsuService.findXuatKho(this.phieuxuatkho_id).subscribe(
                     (data) => {

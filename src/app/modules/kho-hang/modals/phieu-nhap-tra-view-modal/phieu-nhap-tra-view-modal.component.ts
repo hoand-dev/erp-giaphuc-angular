@@ -119,29 +119,6 @@ export class PhieuNhapTraViewModalComponent implements OnInit {
             })
         });
 
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieunhaptramuonhang_id = params.id;
-                // lấy thông tin
-                if (phieunhaptramuonhang_id) {
-                    this.subscriptions.add(
-                        this.phieunhaptramuonhangService.findPhieuNhapTraMuonHang(phieunhaptramuonhang_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieunhaptramuonhang_chitiets.length;
-
-                                this.phieunhaptramuonhang = data;
-                                this.hanghoas = this.phieunhaptramuonhang.phieunhaptramuonhang_chitiets;
-                            },
-                            (error) => {
-                                this.phieunhaptramuonhangService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
         if (this.isView == 'xemphieu') {
             this.subscriptions.add(
                 this.phieunhaptramuonhangService.findPhieuNhapTraMuonHang(this.phieunhaptramuonhang_id).subscribe(

@@ -123,10 +123,10 @@
                                                         <td>{{ item.soluong * item.trongluong | number: '1.0-3' }}</td>
 
                                                         <td>
-                                                            <dx-number-box step="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
+                                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-number-box step="0" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
+                                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td>{{ item.thanhtien | number: '1.0-3' }}</td>
                                                         <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>

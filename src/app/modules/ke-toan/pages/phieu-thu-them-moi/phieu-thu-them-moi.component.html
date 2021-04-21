@@ -84,7 +84,7 @@
 
                                     <dxi-item [label]="{ text: 'TIỀN THU' }">
                                         <div *dxTemplate>
-                                            <dx-number-box step="0" format="#,##0.###" [(value)]="phieuthu.sotienthu" valueChangeEvent="input" (onValueChanged)="onChangeTienThu($event)"></dx-number-box>
+                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="phieuthu.sotienthu" valueChangeEvent="input" (onValueChanged)="onChangeTienThu($event)"></dx-number-box>
                                         </div>
                                     </dxi-item>
 
@@ -124,7 +124,7 @@
 
                                     <dxi-item [label]="{ text: 'TIỀN GIẢM' }">
                                         <div *dxTemplate>
-                                            <dx-number-box step="0" format="#,##0.###" [(value)]="phieuthu.sotiengiam" valueChangeEvent="input" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
+                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="phieuthu.sotiengiam" valueChangeEvent="input" (onValueChanged)="onChangeTienGiam($event)"></dx-number-box>
                                         </div>
                                     </dxi-item>
 

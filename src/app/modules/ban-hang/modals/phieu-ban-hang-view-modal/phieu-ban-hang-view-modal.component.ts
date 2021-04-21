@@ -145,29 +145,6 @@ export class PhieuBanHangViewModalComponent implements OnInit {
             })
         });
 
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieubanhang_id = params.id;
-                // lấy thông tin
-                if (phieubanhang_id) {
-                    this.subscriptions.add(
-                        this.phieubanhangService.findPhieuBanHang(phieubanhang_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieubanhang_chitiet.length;
-
-                                this.phieubanhang = data;
-                                this.hanghoas = this.phieubanhang.phieubanhang_chitiet;
-                            },
-                            (error) => {
-                                this.phieubanhangService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
         if (this.isView == 'xemphieu') {
             this.subscriptions.add(
                 this.phieubanhangService.findPhieuBanHang(this.phieubanhang_id).subscribe(

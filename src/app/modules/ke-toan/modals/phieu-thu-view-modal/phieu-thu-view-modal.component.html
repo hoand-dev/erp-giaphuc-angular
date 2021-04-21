@@ -1,0 +1,187 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="form-container">
+                <!-- (submit)="onSubmitForm($event)" -->
+                <form>
+                    <dx-form id="form" [colCount]="6" [formData]="phieuthu" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                        <dxi-item [label]="{ text: 'NGÀY THU' }" dataField="ngaythu" editorType="dxDateBox" [editorOptions]="{ type: 'date', readOnly: true }">
+                            <dxi-validation-rule type="required" message="Chọn ngày thu"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item
+                            *ngIf="loaiphieuthu == 'khachhang' || loaiphieuthu == 'khac' || loaiphieuthu == 'muonhang'"
+                            [colSpan]="3"
+                            [label]="{ text: 'KHÁCH HÀNG' }"
+                            dataField="khachhang_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhachHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhachhang', 'makhachhang'],
+                                displayExpr: 'tenkhachhang',
+                                readOnly: true
+                            }"
+                        >
+                            <dxi-validation-rule *ngIf="loaiphieuthu == 'khachhang'" type="required" message="Vui lòng chọn khách hàng"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <dxi-item
+                            *ngIf="loaiphieuthu == 'nhacungcap'"
+                            [colSpan]="3"
+                            [label]="{ text: 'NHÀ CUNG CẤP' }"
+                            dataField="nhacungcap_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_NhaCungCap,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tennhacungcap', 'manhacungcap'],
+                                displayExpr: 'tennhacungcap',
+                                readOnly: true
+                            }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn nhà cung cấp"></dxi-validation-rule>
+                        </dxi-item>
+
+                        <dxi-item [label]="{ text: 'ĐIỆN THOẠI' }" dataField="nguoinop_dienthoai" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item [label]="{ text: 'NỢ CŨ' }" editorType="dxNumberBox" dataField="nocu" [editorOptions]="{ readOnly: true, format: '#,##0.###' }"> </dxi-item>
+
+                        <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuthu" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                        <dxi-item [label]="{ text: 'NGƯỜI NỘP' }" dataField="nguoinop_hoten" [colSpan]="2" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="nguoinop_diachi" [colSpan]="2" [editorOptions]="{ readOnly: true }"></dxi-item>
+
+                        <dxi-item [label]="{ text: 'TIỀN THU' }">
+                            <div *dxTemplate>
+                                <!-- (onValueChanged)="onChangeTienThu($event)" -->
+                                <dx-number-box format="#,##0.###" [readOnly]="true" [(value)]="phieuthu.sotienthu" valueChangeEvent="input"></dx-number-box>
+                            </div>
+                        </dxi-item>
+                        <dxi-item [label]="{ text: 'CHỨNG TỪ' }" dataField="chungtu" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item
+                            [colSpan]="2"
+                            [label]="{ text: 'QUỸ THU' }"
+                            dataField="quythu_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{ dataSource: dataSource_QuyTaiKhoan, valueExpr: 'id', searchEnabled: true, displayExpr: 'tenquy', dropDownOptions: { width: 320 }, readOnly: true }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn quỹ thu"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item
+                            [colSpan]="2"
+                            [label]="{ text: 'NỘI DUNG' }"
+                            dataField="noidungthuchi_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_NoiDungThuChi,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tennoidungthuchi', 'manoidungthuchi'],
+                                displayExpr: 'tennoidungthuchi',
+                                readOnly: true
+                            }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn nội dung"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item [label]="{ text: 'TIỀN GIẢM' }">
+                            <div *dxTemplate>
+                                <!-- (onValueChanged)="onChangeTienGiam($event)" -->
+                                <dx-number-box format="#,##0.###" [readOnly]="true" [(value)]="phieuthu.sotiengiam" valueChangeEvent="input"></dx-number-box>
+                            </div>
+                        </dxi-item>
+
+                        <dxi-item [label]="{ text: 'TỔNG THU' }" editorType="dxNumberBox" dataField="tongthu" [editorOptions]="{ value: phieuthu.sotienthu + phieuthu.sotiengiam, readOnly: true, format: '#,##0.###' }"> </dxi-item>
+                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item [label]="{ text: 'CÒN NỢ' }" editorType="dxNumberBox" dataField="conno" [editorOptions]="{ value: calculateNoConLai(), readOnly: true, format: '#,##0.###' }"> </dxi-item>
+
+                        <dxi-item [colSpan]="6" *ngIf="phieuxuatkhos.length > 0">
+                            <div class="table-responsive">
+                                <table class="table table-vertical table-hover mt-4">
+                                    <thead>
+                                        <tr>
+                                            <th [style.min-width.px]="45">STT</th>
+                                            <th [style.min-width.px]="120">NGÀY XUẤT</th>
+                                            <th [style.min-width.px]="120">MÃ PHIẾU</th>
+                                            <th [style.min-width.px]="120">GIÁ TRỊ PHIẾU</th>
+                                            <th [style.min-width.px]="120">ĐÃ THU TRƯỚC</th>
+                                            <th [style.min-width.px]="120">CÒN CẦN THU</th>
+                                            <th [style.min-width.px]="120">TIỀN THU</th>
+                                            <th [style.min-width.px]="120">TIỀN GIẢM</th>
+                                            <th [style.min-width.px]="250">GHI CHÚ</th>
+                                            <!-- <th [style.max-width.px]="20">XOÁ</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of phieuxuatkhos; index as i">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.ngayxuatkho | date: 'HH:mm dd/MM/yyyy' }}</td>
+                                            <td>{{ item.maphieuxuatkho }}</td>
+                                            <td>{{ item.tongthanhtien | number: '1.0-3' }}</td>
+                                            <td>{{ item.sotienthutruoc | number: '1.0-3' }}</td>
+                                            <td>{{ item.tongthanhtien - item.sotienthutruoc | number: '1.0-3' }}</td>
+                                            <td>
+                                                <!-- <dx-number-box
+                                                    format="#,##0.###"
+                                                    [(value)]="item.sotienthu"
+                                                    valueChangeEvent="input"
+                                                    (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"
+                                                ></dx-number-box> -->
+                                                {{ item.sotienthu }}
+                                            </td>
+                                            <td>
+                                                <!-- <dx-number-box
+                                                    format="#,##0.###"
+                                                    [(value)]="item.sotiengiam"
+                                                    valueChangeEvent="input"
+                                                    (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"
+                                                ></dx-number-box> -->
+                                                {{ item.sotiengiam }}
+                                            </td>
+                                            <td>
+                                                <!-- <dx-text-box [(value)]="item.chuthich"></dx-text-box> -->
+                                                {{ item.chuthich }}
+                                            </td>
+                                            <!-- <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td> -->
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th [style.min-width.px]="45"></th>
+                                            <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                            <th [style.min-width.px]="120"></th>
+                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'tongthanhtien') | number: '1.0-3'}}</th>
+                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienthutruoc') | number: '1.0-3'}}</th>
+                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienconlai') | number: '1.0-3'}}</th>
+                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotienthu') | number: '1.0-3'}}</th>
+                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.phieuxuatkhos, 'sotiengiam') | number: '1.0-3'}}</th>
+                                            <th [style.min-width.px]="250"></th>
+                                            <!-- <th [style.max-width.px]="20"></th> -->
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </dxi-item>
+
+                        <!-- <dxi-item [colSpan]="6">
+                            <div *dxTemplate>
+                                <dx-button icon="back" [routerLink]="['/phieu-thu']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                            </div>
+                        </dxi-item> -->
+                    </dx-form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div>

@@ -39,7 +39,7 @@
                                 </dx-select-box>
                             </td>
                             <td>
-                                <dx-number-box step="0" format="#,##0.###" [(value)]="item.soluong"></dx-number-box>
+                                <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong"></dx-number-box>
                             </td>
                             <td><i class="gg-btn gg-remove" (click)="onDelete_Row(item)"></i></td>
                         </tr>

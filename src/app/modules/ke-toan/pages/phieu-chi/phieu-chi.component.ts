@@ -11,6 +11,7 @@ import { PhieuChi } from '@app/shared/entities';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PhieuChiInPhieuModalComponent } from '../../modals/phieu-chi-in-phieu-modal/phieu-chi-in-phieu-modal.component';
 import { Title } from '@angular/platform-browser';
+import { PhieuChiViewModalComponent } from '../../modals/phieu-chi-view-modal/phieu-chi-view-modal.component';
 
 @Component({
     selector: 'app-phieu-chi',
@@ -135,6 +136,29 @@ export class PhieuChiComponent implements OnInit {
 
             //add a custom menu item
             e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuChi = e.row.key as PhieuChi;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN PHIẾU CHI',
+                            isView: 'xemphieu',
+                            phieuchi_id: rowData.id
+                        };
+                
+                        /* hiển thị modal */
+                        this.bsModalRef = this.bsModalService.show(PhieuChiViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
                 {
                     text: 'UNC VCB',
                     icon: 'print',

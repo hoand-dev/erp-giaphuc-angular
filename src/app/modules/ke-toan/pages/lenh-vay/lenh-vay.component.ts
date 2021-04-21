@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AuthenticationService } from '@app/_services';
 import { Title } from '@angular/platform-browser';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { LenhVayViewModalComponent } from '../../modals/lenh-vay-view-modal/lenh-vay-view-modal.component';
 
 @Component({
     selector: 'app-lenh-vay',
@@ -21,6 +23,7 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
 
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
+    public bsModalRef: BsModalRef;
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
@@ -50,7 +53,8 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
         private router: Router,
         private commonService: CommonService,
         private objLenhVayService: LenhVayService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
     ) {
         this.titleService.setTitle('LỆNH VAY | ' + this.appInfoService.appName);
     }
@@ -110,6 +114,39 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
             )
         );
+    }
+
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            if (!e.items) e.items = [];
+
+            //add custom menu item
+            e.items.push(
+                {
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: LenhVay = e.row.key as LenhVay;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'THÔNG TIN LỆNH VAY',
+                            isView: 'xemphieu',
+                            lenhvay_id: rowData.id
+                        };
+                
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(LenhVayViewModalComponent, {
+                            class: 'modal-xxl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                }
+            );
+        }
     }
 
     rowNumber(rowIndex) {

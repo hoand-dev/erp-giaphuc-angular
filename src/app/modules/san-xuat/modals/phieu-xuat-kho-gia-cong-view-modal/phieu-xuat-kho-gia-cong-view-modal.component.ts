@@ -168,31 +168,6 @@ export class PhieuXuatKhoGiaCongViewModalComponent implements OnInit {
             })
         });
 
-        this.loadingVisible = true;
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieuxuatkhogiacong_id = params.id;
-                // lấy thông tin
-                if (phieuxuatkhogiacong_id) {
-                    this.subscriptions.add(
-                        this.phieuxuatkhogiacongService.findPhieuXuatKhoGiaCong(phieuxuatkhogiacong_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieuxuatkhogiacong_chitiets.length;
-
-                                this.phieuxuatkhogiacong = data;
-                                this.hanghoas = this.phieuxuatkhogiacong.phieuxuatkhogiacong_chitiets;
-                                this.phieuxuatkhogiacong.phieuxuatkhogiacong_chitiets_old = this.phieuxuatkhogiacong.phieuxuatkhogiacong_chitiets;
-                            },
-                            (error) => {
-                                this.phieuxuatkhogiacongService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
         if (this.isView == 'xemphieu') {
             this.subscriptions.add(
                 this.phieuxuatkhogiacongService.findPhieuXuatKhoGiaCong(this.phieuxuatkhogiacong_id).subscribe(
