@@ -5,7 +5,7 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import { AppInfoService, ChiNhanhService, CommonService, KhoHangService, PhieuXuatMuonHangService, RouteInterceptorService } from '@app/shared/services';
+import { AppInfoService, ChiNhanhService, CommonService, KhoHangService, LichSuService, PhieuXuatMuonHangService, RouteInterceptorService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -58,7 +58,7 @@ export class PhieuXuatMuonViewModalComponent implements OnInit {
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private commonService: CommonService,
-
+        private lichsuService: LichSuService,
         private activatedRoute: ActivatedRoute,
         public sumTotal: SumTotalPipe
     ) {}
@@ -135,7 +135,18 @@ export class PhieuXuatMuonViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findXuatMuonHang(this.phieuxuatmuonhang_id).subscribe(
+                    (data) => {
+                        this.hanghoalenght = data.phieuxuatmuonhang_chitiets.length;
+                        this.phieuxuatmuonhang = data;
+                        this.hanghoas = this.phieuxuatmuonhang.phieuxuatmuonhang_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
     public onHangHoaChanged(index, e) {
