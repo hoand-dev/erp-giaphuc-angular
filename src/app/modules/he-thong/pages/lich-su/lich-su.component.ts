@@ -17,9 +17,9 @@ import { PhieuNhapKhoViewModalComponent } from '@app/modules/kho-hang/modals/phi
 import { PhieuXuatKhoViewModalComponent } from '@app/modules/kho-hang/modals/phieu-xuat-kho-view-modal/phieu-xuat-kho-view-modal.component';
 
 @Component({
-  selector: 'app-lich-su',
-  templateUrl: './lich-su.component.html',
-  styleUrls: ['./lich-su.component.css']
+    selector: 'app-lich-su',
+    templateUrl: './lich-su.component.html',
+    styleUrls: ['./lich-su.component.css']
 })
 export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
@@ -60,13 +60,13 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("LỊCH SỬ | " + this.appInfoService.appName);
+        this.titleService.setTitle('LỊCH SỬ | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = moment().toDate(); //new Date(moment().get('year'), moment().get('month'), 1);
-        this.currDayTime = moment().toDate();  //.add(1, 'days')
+        this.currDayTime = moment().toDate(); //.add(1, 'days')
 
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
@@ -118,16 +118,15 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {
         // double click xem thông tin phiếu
         let row: LichSu = e.key;
-        
+
         switch (row.log_chucnang) {
-            
             case ELichSu.DATHANGNCC:
                 break;
             case ELichSu.MUAHANGNCC:
@@ -176,7 +175,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
                 break;
             case ELichSu.PHIEUCANTRU:
                 break;
-            
+
             case ELichSu.BANGGIAGIACONG:
                 break;
             case ELichSu.XUATKHOGIACONG:
@@ -185,17 +184,18 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
                 break;
             case ELichSu.NHAPTHANHPHAM:
                 break;
-        
-            default: break;
+
+            default:
+                break;
         }
     }
 
     showModalNhapKho(x: LichSu) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: `THÔNG TIN PHIẾU NHẬP KHO: ${ moment(x.log_thoigianthaotac).format("HH:mm DD/MM/YYYY") } - ${ x.nguoithaotac } - ${ x.log_noidung }`,
+            title: `THÔNG TIN PHIẾU NHẬP KHO: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
             isView: 'xemlichsu',
-            phieunhapkho_id: x.id,
+            phieunhapkho_id: x.id
         };
 
         /* hiển thị modal */
@@ -211,9 +211,9 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
     showModalXuatKho(x: LichSu) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: `THÔNG TIN PHIẾU XUẤT KHO: ${ moment(x.log_thoigianthaotac).format("HH:mm DD/MM/YYYY") } - ${ x.nguoithaotac } - ${ x.log_noidung }`,
+            title: `THÔNG TIN PHIẾU XUẤT KHO: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
             isView: 'xemlichsu',
-            phieuxuatkho_id: x.id,
+            phieuxuatkho_id: x.id
         };
 
         /* hiển thị modal */
