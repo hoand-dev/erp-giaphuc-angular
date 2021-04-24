@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="form-container">
+                <form (submit)="onSubmitForm($event)">
+                    <dx-form id="form" [formData]="ipv4" [showValidationSummary]="true" [labelLocation]="'top'">
+                        <dxi-item [label]="{ text: 'IP' }" dataField="ipv4">
+                            <dxi-validation-rule type="required" message="Vùi lòng nhập IP"> </dxi-validation-rule>
+                            <dxi-validation-rule type="pattern" [pattern]="'^\\S+$'" message="IP không hợp lệ. Viết liền không dấu và không chứa kí tự đặc biệt."></dxi-validation-rule>
+                            <dxi-validation-rule type="async" message="IP đã tồn tại" [validationCallback]="theCallbackValid"></dxi-validation-rule>
+                        </dxi-item>
+                        
+                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu"></dxi-item>
+                        <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+
+                        <dxi-item>
+                            <div *dxTemplate>
+                                <dx-button icon="close" (click)="onCancel()" text="Đóng" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                            </div>
+                        </dxi-item>
+                    </dx-form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div> -->

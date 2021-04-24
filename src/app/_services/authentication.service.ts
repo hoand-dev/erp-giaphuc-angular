@@ -51,9 +51,9 @@ export class AuthenticationService {
         this.disableChiNhanhSubject.next(disable);
     }
 
-    login(username: string, password: string, grant_type: string = 'password') { // hoand grant_type
+    login(ip: string, username: string, password: string, grant_type: string = 'password') { // hoand grant_type
         var data = "username=" + username + "&password=" + password + "&grant_type=" + grant_type;
-        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True' });
+        var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True', "Ipv4-Login" : ip });
         return this.http.post<any>(environment.apiUrl + '/auth-token', data, { headers: reqHeader })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes

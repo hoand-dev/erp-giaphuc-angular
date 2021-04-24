@@ -6,6 +6,7 @@ import { AuthenticationService } from '../_services';
 import { ChiNhanhService } from '@app/shared/services/thiet-lap';
 import { ChiNhanh } from '@app/shared/entities';
 import { Subscription } from 'rxjs';
+import { Ipv4Service } from '@app/shared/services';
 
 @Component({
     selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     error = '';
     submitText: string = 'Đăng nhập';
 
+    ipv4: string = "";
     chinhanhs: ChiNhanh[] = [];
     chinhanhSelected: ChiNhanh;
     private subscription: Subscription;
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private chinhanhService: ChiNhanhService
+        private chinhanhService: ChiNhanhService,
+        private ipv4Service: Ipv4Service
     ) {}
 
     ngOnInit() {
@@ -64,6 +67,10 @@ export class LoginComponent implements OnInit {
                 this.submitText = 'Lỗi tải dữ liệu chi nhánh!';
             }
         );
+
+        this.ipv4Service.ip().toPromise().then(data =>{
+            this.ipv4 = data.query;
+        });
     }
 
     // convenience getter for easy access to form fields
@@ -92,7 +99,7 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService
-            .login(this.f.username.value, this.f.password.value)
+            .login(this.ipv4, this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe({
                 next: () => {

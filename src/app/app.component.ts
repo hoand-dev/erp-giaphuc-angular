@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 import * as AdminLte from 'admin-lte';
 
 import { ChiNhanh } from './shared/entities';
-import { ChiNhanhService, CommonService, NguoiDungService } from './shared/services';
+import { ChiNhanhService, CommonService, Ipv4Service, NguoiDungService } from './shared/services';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
     
     bsModalRef: BsModalRef;
     fisrtRefreshToken: boolean = true;
+
+    ipv4: string = null;
 
     /* themes */
     navbar_dark_skins = [
@@ -151,6 +153,7 @@ export class AppComponent implements OnInit {
         public authenticationService: AuthenticationService,
         private chinhanhService: ChiNhanhService,
         private nguoidungService: NguoiDungService,
+        private ipv4Service: Ipv4Service,
         private modalService: BsModalService
     ) {
 
@@ -206,6 +209,23 @@ export class AppComponent implements OnInit {
                 console.log("interval refresh token...");
                 this.refreshAuthToken();
             }, 1000 * 60 * 60 * 4);
+
+            this.subscriptions.add(
+                this.ipv4Service.ip().subscribe(
+                    (data) => {
+                        this.ipv4 = data.query;
+                        if (this.ipv4) {
+                            this.ipv4Service.updateOnline(this.ipv4).toPromise();
+                            setInterval(() => {
+                                this.ipv4Service.updateOnline(this.ipv4).toPromise();
+                            }, 1000 * 30);
+                        }
+                    },
+                    (error) => {
+                        this.ipv4Service.handleError(error);
+                    }
+                )
+            );
         }
     }
 
