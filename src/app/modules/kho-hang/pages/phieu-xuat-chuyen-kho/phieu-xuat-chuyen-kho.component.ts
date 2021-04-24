@@ -122,8 +122,9 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuXuatChuyenKho_id: ${e.key.id}`);
+        let rowData: PhieuXuatChuyenKho = e.key;
+        this.openViewModal(rowData);
     }
 
     addMenuItems(e) {
@@ -137,21 +138,7 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuXuatChuyenKho = e.row.key as PhieuXuatChuyenKho;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU XUẤT CHUYỂN KHO',
-                            isView: 'xemphieu',
-                            phieuxuatchuyenkho_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -180,6 +167,24 @@ export class PhieuXuatChuyenKhoComponent implements OnInit, OnDestroy, AfterView
                 }
             );
         }
+    }
+
+    openViewModal(rowData: PhieuXuatChuyenKho) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU XUẤT CHUYỂN KHO',
+            isView: 'xemphieu',
+            phieuxuatchuyenkho_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuXuatChuyenKhoViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     onRowDelete(id) {
