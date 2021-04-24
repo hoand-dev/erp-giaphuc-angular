@@ -58,7 +58,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         private authenticationService: AuthenticationService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU XUẤT KHO | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU XUẤT KHO | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -118,7 +118,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -137,22 +137,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
-                        
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU XUẤT KHO',
-                            isView: 'xemphieu',
-                            phieuxuatkho_id: rowData.id,
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuXuatKhoViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -189,7 +174,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                 //     }
                 // },
                 {
-                    text: 'In phiếu (không giá)',
+                    text: 'In phiếu ( HN không giá)',
                     icon: 'print',
                     visible: true,
                     onItemClick: () => {
@@ -213,7 +198,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                     }
                 },
                 {
-                    text: 'In phiếu (Có Giá)',
+                    text: 'In phiếu ( HN Có Giá)',
                     icon: 'print',
                     visible: true,
                     onItemClick: () => {
@@ -236,8 +221,73 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         this.bsModalRef.content.closeBtnName = 'Đóng';
                     }
                 },
+                {
+                    text: 'In phiếu ( GP Không Giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'gpkhonggia'
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In phiếu ( GP Có Giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'gpcogia'
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
             );
         }
+    }
+    openViewModal(rowData: PhieuXuatKho) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU XUẤT KHO',
+            isView: 'xemphieu',
+            phieuxuatkho_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuXuatKhoViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     async onCapNhatHoaDon(id: number, maphieu: string, sohoadon?: string) {
@@ -283,8 +333,9 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuXuatKho_id: ${e.key.id}`);
+        let rowData: PhieuXuatKho = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

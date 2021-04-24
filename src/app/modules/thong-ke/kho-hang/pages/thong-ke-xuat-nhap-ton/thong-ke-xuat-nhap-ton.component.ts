@@ -195,7 +195,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
 
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(ThongKeXuatNhapTonChiTietModalComponent, {
-            class: 'modal-xl modal-dialog-centered',
+            class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState

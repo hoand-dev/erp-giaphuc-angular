@@ -41,21 +41,23 @@
                 <dxi-column dataField="noidung" caption="Nội dung"></dxi-column>
                 <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
                 <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
+                <dxi-column dataField="nguoinopnhan" caption="Người nộp/nhận"></dxi-column>
 
-                <dxi-column dataField="tongtienban" caption="Tiền bán" alignment="right" format="#,##0.###"></dxi-column>
-                <dxi-column dataField="tongtienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
-                <dxi-column dataField="tongtientra" caption="Khách trả hàng" alignment="right" format="#,##0.###"></dxi-column>
-                <dxi-column dataField="tongtienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
-                <dxi-column dataField="luytien" caption="Còn lại" format="#,##0"></dxi-column>
+                <!-- <dxi-column dataField="tondauky" caption="Tồn đầu" alignment="right" format="#,##0.###"></dxi-column> -->
+                <dxi-column dataField="sotienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
+                <!-- <dxi-column dataField="sotiengiamthu" caption="Tiền giảm thu" alignment="right" format="#,##0.###"></dxi-column> -->
+                <dxi-column dataField="sotienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
+                <!-- <dxi-column dataField="sotiengiamchi" caption="Số tiền giảm chi" format="#,##0"></dxi-column> -->
+                <dxi-column dataField="toncuoiky" caption="Tồn cuối kỳ" format="#,##0"></dxi-column>
 
                 <dxo-summary [calculateCustomSummary]="calculateSummary">
                     <dxi-total-item summaryType="custom" alignment="right" showInColumn="ngayphatsinh" displayFormat="TỔNG CỘNG:"> </dxi-total-item>
-                    <dxi-total-item name="RowsSummaryTonDauKy" summaryType="custom" alignment="right" showInColumn="nhanvien" valueFormat="#,##0" displayFormat="Nợ đầu kỳ: {0}"> </dxi-total-item>
-                    <dxi-total-item column="tongtienban" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                    <dxi-total-item column="tongtienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                    <dxi-total-item column="tongtientra" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                    <dxi-total-item column="tongtienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
-                    <dxi-total-item name="RowsSummaryTonCuoiKy" summaryType="custom" showInColumn="luytien" valueFormat="#,##0" displayFormat="Nợ cuối kỳ: {0}"> </dxi-total-item>
+                    <dxi-total-item name="RowsSummaryTonDauKy" summaryType="custom" alignment="right" showInColumn="nhanvien" valueFormat="#,##0" displayFormat="Tồn đầu kỳ: {0}"> </dxi-total-item>
+                    <dxi-total-item column="sotienthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                    <!-- <dxi-total-item column="sotiengiamthu" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item> -->
+                    <dxi-total-item column="sotienchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                    <!-- <dxi-total-item column="sotiengiamchi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item> -->
+                    <dxi-total-item name="RowsSummaryTonCuoiKy" summaryType="custom" showInColumn="toncuoiky" valueFormat="#,##0" displayFormat="Tồn cuối kỳ: {0}"> </dxi-total-item>
                 </dxo-summary>
 
                 <!-- dx-data-grid option -->

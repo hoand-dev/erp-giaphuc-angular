@@ -72,6 +72,12 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     if (this.loaiphieuin == 'dongiavat' && this.loaiphieuxuat == 'xuatbanhang') {
                         report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_DonGiaVAT.mrt');
                     }
+                    if (this.loaiphieuin == 'gpcogia' && this.loaiphieuxuat == 'xuatbanhang') {
+                        report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_BanHang_CoGia_GP.mrt');
+                    }
+                    if (this.loaiphieuin == 'gpkhonggia' && this.loaiphieuxuat == 'xuatbanhang') {
+                        report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_BanHang_KhongGia_GP.mrt');
+                    }
 
                     /* xoá dữ liệu trước khi in */
                     report.dictionary.databases.clear();

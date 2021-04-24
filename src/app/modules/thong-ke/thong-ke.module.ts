@@ -21,10 +21,11 @@ import { ThongKeXuatBanChiTietComponent } from './ban-hang/pages/thong-ke-xuat-b
 import { KhachHangChiTietCongNoModalComponent } from './cong-no/modals/khach-hang-chi-tiet-cong-no-modal/khach-hang-chi-tiet-cong-no-modal.component';
 import { NhaCungCapChiTietCongNoModalComponent } from './cong-no/modals/nha-cung-cap-chi-tiet-cong-no-modal/nha-cung-cap-chi-tiet-cong-no-modal.component';
 import { DonViGiaCongChiTietCongNoModalComponent } from './cong-no/modals/don-vi-gia-cong-chi-tiet-cong-no-modal/don-vi-gia-cong-chi-tiet-cong-no-modal.component';
+import { ThongKeChiTietTonQuyComponent } from './thu-chi/modals/thong-ke-chi-tiet-ton-quy/thong-ke-chi-tiet-ton-quy-modal.component';
 
 
 @NgModule({
-  declarations: [ThongKeCongNoQuaHanComponent, ThongKeCongNoKhachHangComponent, ThongKeNoiDungThuChiComponent, ThongKeThuChiTonQuyComponent, ThongKeCongNoNhaCungCapComponent, ThongKeMuaHangChiTietComponent, DoiChieuCongNoKhachHangModalComponent, DoiChieuCongNoNhaCungCapModalComponent, ThongKeXuatNhapTonComponent, ThongKeXuatNhapTonChiTietPhieuModalComponent, ThongKeXuatNhapTonChiTietModalComponent, ThongKeXuatNhapTonTrongNgayComponent, ThongKeCongNoDonViGiaCongComponent, DoiChieuCongNoDonViGiaCongModalComponent, ThongKeBanHangChiTietComponent, ThongKeXuatBanChiTietComponent, KhachHangChiTietCongNoModalComponent, NhaCungCapChiTietCongNoModalComponent, DonViGiaCongChiTietCongNoModalComponent],
+  declarations: [ThongKeCongNoQuaHanComponent, ThongKeCongNoKhachHangComponent, ThongKeNoiDungThuChiComponent, ThongKeThuChiTonQuyComponent, ThongKeCongNoNhaCungCapComponent, ThongKeMuaHangChiTietComponent, DoiChieuCongNoKhachHangModalComponent, DoiChieuCongNoNhaCungCapModalComponent, ThongKeXuatNhapTonComponent, ThongKeXuatNhapTonChiTietPhieuModalComponent, ThongKeXuatNhapTonChiTietModalComponent, ThongKeXuatNhapTonTrongNgayComponent, ThongKeCongNoDonViGiaCongComponent, DoiChieuCongNoDonViGiaCongModalComponent, ThongKeBanHangChiTietComponent, ThongKeXuatBanChiTietComponent, KhachHangChiTietCongNoModalComponent, NhaCungCapChiTietCongNoModalComponent, DonViGiaCongChiTietCongNoModalComponent, ThongKeChiTietTonQuyComponent],
   imports: [
     CommonModule,
     SharedModule,

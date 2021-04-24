@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ThongKeThuChiTonQuy } from '@app/shared/entities';
+import { ThongKeThuChiTonQuy, ThongKeThuChiTonQuy_ChiTietPhieu } from '@app/shared/entities';
 import { AppInfoService, CommonService, ThongKeThuChiService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { ThongKeChiTietTonQuyComponent } from '../../modals/thong-ke-chi-tiet-ton-quy/thong-ke-chi-tiet-ton-quy-modal.component';
 
 @Component({
     selector: 'app-thong-ke-thu-chi-ton-quy',
@@ -17,6 +19,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     private subscriptions: Subscription = new Subscription();
+    public bsModalRef: BsModalRef;
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
@@ -46,7 +49,8 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         private router: Router,
         private commonService: CommonService,
         private authenticationService: AuthenticationService,
-        private objThongKeThuChiService: ThongKeThuChiService
+        private objThongKeThuChiService: ThongKeThuChiService,
+        private modalService: BsModalService
     ) {
         this.titleService.setTitle('THỐNG KÊ - THU CHI TỒN QUỸ | ' + this.appInfoService.appName);
     }
@@ -80,6 +84,48 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         );
     }
 
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+            // bạn có thể thêm context theo trường mình muốn thông qua e.column
+            // Add a custom menu item
+            e.items.push(
+                {
+                    text: 'Chi tiết quỹ',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: ThongKeThuChiTonQuy = e.row.key as ThongKeThuChiTonQuy;
+                        this.openModalChiTietPhieu(rowData);
+                    }
+                },
+               
+            );
+        }
+    }
+
+    openModalChiTietPhieu(thongkethuchi: ThongKeThuChiTonQuy) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `QUỸ - CHI TIẾT: "${thongkethuchi.maquy}"`,
+            tungay: this.firstDayTime,
+            denngay: this.currDayTime,
+            thongkethuchitonquy: thongkethuchi
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(ThongKeChiTietTonQuyComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+
+
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
@@ -97,6 +143,8 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
             )
         );
     }
+    
+    
 
     customizeText(rowData) {
         return null;

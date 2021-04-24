@@ -122,8 +122,9 @@ export class PhieuKhachTraHangComponent implements OnInit {
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuKhachTraHang_id: ${e.key.id}`);
+        let rowData: PhieuKhachTraHang = e.key;
+        this.openViewModal(rowData);
     }
     addMenuItems(e) {
         if (e.row.rowType === 'data') {
@@ -135,24 +136,27 @@ export class PhieuKhachTraHangComponent implements OnInit {
                 visible: true,
                 onItemClick: () => {
                     let rowData: PhieuKhachTraHang = e.row.key as PhieuKhachTraHang;
-                    /* khởi tạo giá trị cho modal */
-                    const initialState = {
-                        title: 'THÔNG TIN PHIẾU TRẢ HÀNG',
-                        isView: 'xemphieu',
-                        phieukhachtrahang_id: rowData.id
-                    };
-
-                    /* hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuKhachTraHangViewModalComponent, {
-                        class: 'modal-xxl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                    this.openViewModal(rowData);
                 }
             });
         }
+    }
+    openViewModal(rowData: PhieuKhachTraHang) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU TRẢ HÀNG',
+            isView: 'xemphieu',
+            phieukhachtrahang_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuKhachTraHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     onRowDelete(id) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhieuTraHangNCC } from '@app/shared/entities';
+import { PhieuKhachTraHang, PhieuTraHangNCC } from '@app/shared/entities';
 import { AppInfoService, CommonService, PhieuTraHangNCCService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -128,24 +128,28 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
                 visible: true,
                 onItemClick: () => {
                     let rowData: PhieuTraHangNCC = e.row.key as PhieuTraHangNCC;
-                    /* khởi tạo giá trị cho modal */
-                    const initialState = {
-                        title: 'THÔNG TIN PHIẾU TRẢ HÀNG',
-                        isView: 'xemphieu',
-                        phieutrahangncc_id: rowData.id
-                    };
-
-                    /* hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuTraHangNccViewModalComponent, {
-                        class: 'modal-xxl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                    this.openViewModal(rowData);
                 }
             });
         }
+    }
+
+    openViewModal(rowData: PhieuTraHangNCC) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU TRẢ HÀNG',
+            isView: 'xemphieu',
+            phieutrahangncc_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuTraHangNccViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     rowNumber(rowIndex) {
@@ -153,8 +157,9 @@ export class PhieuTraHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuTraHangNCC_id: ${e.key.id}`);
+        let rowData: PhieuTraHangNCC = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

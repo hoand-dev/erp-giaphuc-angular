@@ -132,21 +132,7 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuNhapChuyenKho = e.row.key as PhieuNhapChuyenKho;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU NHẬP CHUYỂN KHO',
-                            isView: 'xemphieu',
-                            phieunhapchuyenkho_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuNhapChuyenKhoViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
 
@@ -178,9 +164,28 @@ export class PhieuNhapChuyenKhoComponent implements OnInit, OnDestroy, AfterView
         }
     }
 
+    openViewModal(rowData: PhieuNhapChuyenKho) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU NHẬP CHUYỂN KHO',
+            isView: 'xemphieu',
+            phieunhapchuyenkho_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuNhapChuyenKhoViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuNhapChuyenKho_id: ${e.key.id}`);
+        let rowData: PhieuNhapChuyenKho = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {
