@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhieuThu } from '@app/shared/entities';
+import { PhieuChi, PhieuThu } from '@app/shared/entities';
 import { AppInfoService, CommonService, PhieuThuService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -140,21 +140,7 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuThu = e.row.key as PhieuThu;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU THU',
-                            isView: 'xemphieu',
-                            phieuthu_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuThuViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -182,9 +168,28 @@ export class PhieuThuComponent implements OnInit, OnDestroy, AfterViewInit {
         }
     }
 
+    openViewModal(rowData: PhieuThu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU THU',
+            isView: 'xemphieu',
+            phieuthu_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuThuViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuThu_id: ${e.key.id}`);
+        let rowData: PhieuThu = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

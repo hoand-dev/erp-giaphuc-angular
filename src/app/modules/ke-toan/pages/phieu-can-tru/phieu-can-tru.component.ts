@@ -59,7 +59,7 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
         private authenticationService: AuthenticationService,
         private bsModalService: BsModalService
     ) {
-        this.titleService.setTitle("PHIẾU CẤN TRỪ | " + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU CẤN TRỪ | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -123,13 +123,14 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuCanTru_id: ${e.key.id}`);
+        let rowData: PhieuCanTru = e.key;
+        this.openViewModal(rowData);
     }
 
     addMenuItems(e) {
@@ -143,21 +144,7 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuCanTru = e.row.key as PhieuCanTru;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU CẤN TRỪ',
-                            isView: 'xemphieu',
-                            phieucantru_id: rowData.id
-                        };
-                
-                        /* hiển thị modal */
-                        this.bsModalRef = this.bsModalService.show(PhieuCanTruViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -208,6 +195,24 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
             );
         }
+    }
+
+    openViewModal(rowData: PhieuCanTru) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU CẤN TRỪ',
+            isView: 'xemphieu',
+            phieucantru_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.bsModalService.show(PhieuCanTruViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     onRowDelete(id) {

@@ -121,32 +121,34 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
             if (!e.items) e.items = [];
 
             //add custom menu item
-            e.items.push(
-                {
-                    text: 'Xem lại',
-                    icon: 'rename',
-                    visible: true,
-                    onItemClick: () => {
-                        let rowData: LenhVay = e.row.key as LenhVay;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN LỆNH VAY',
-                            isView: 'xemphieu',
-                            lenhvay_id: rowData.id
-                        };
-                
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(LenhVayViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
-                    }
+            e.items.push({
+                text: 'Xem lại',
+                icon: 'rename',
+                visible: true,
+                onItemClick: () => {
+                    let rowData: LenhVay = e.row.key as LenhVay;
+                    this.openViewModal(rowData);
                 }
-            );
+            });
         }
+    }
+
+    openViewModal(rowData: LenhVay) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN LỆNH VAY',
+            isView: 'xemphieu',
+            lenhvay_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(LenhVayViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     rowNumber(rowIndex) {
@@ -154,8 +156,9 @@ export class LenhVayComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objLenhVay_id: ${e.key.id}`);
+        let rowData: LenhVay = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {
