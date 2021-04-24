@@ -73,9 +73,9 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
                 (data) => {
                     this.permissions = data;
 
-                    // if (!this.commonService.getEnablePermission(this.permissions, 'lichsu-truycap')) {
-                    //     this.router.navigate(['/khong-co-quyen']);
-                    // }
+                    if (!this.commonService.getEnablePermission(this.permissions, 'lichsu-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
                     this.enableReView = this.commonService.getEnablePermission(this.permissions, 'lichsu-xemlaiphieu');
                     this.enableExport = this.commonService.getEnablePermission(this.permissions, 'lichsu-xuatdulieu');
                 },
