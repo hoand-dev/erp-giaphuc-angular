@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChiNhanh, KhoHang, NhaCungCap, PhieuNhapKho, PhieuNhapKho_ChiTiet, PhieuXuatChuyenKho, PhieuXuatChuyenKho_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, HangHoaService, KhoHangService, PhieuNhapKhoService, PhieuXuatChuyenKhoService } from '@app/shared/services';
+import { CommonService, HangHoaService, KhoHangService, LichSuService, PhieuNhapKhoService, PhieuXuatChuyenKhoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
@@ -49,6 +49,7 @@ export class PhieuXuatChuyenKhoViewModalComponent implements OnInit {
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private commonService: CommonService,
+        private lichsuService: LichSuService,
         private phieuxuatchuyenkhoService: PhieuXuatChuyenKhoService,
         private activatedRoute: ActivatedRoute,
         public sumTotal: SumTotalPipe
@@ -119,7 +120,19 @@ export class PhieuXuatChuyenKhoViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findXuatChuyenKho(this.phieuxuatchuyenkho_id).subscribe(
+                    (data) => {
+                        this.hanghoalenght = data.phieuxuatchuyenkho_chitiets.length;
+
+                        this.phieuxuatchuyenkho = data;
+                        this.hanghoas = this.phieuxuatchuyenkho.phieuxuatchuyenkho_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
 

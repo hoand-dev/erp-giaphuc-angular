@@ -7,18 +7,24 @@ import { BaseService } from '@app/shared/services';
 import {
     LenhVay,
     LichSu,
+    PhieuBanHang,
     PhieuCanTru,
     PhieuChi,
     PhieuDieuChinhKho,
+    PhieuKhachTraHang,
+    PhieuMuaHangNCC,
     PhieuNhapChuyenKho,
     PhieuNhapKho,
     PhieuNhapMuonHang,
     PhieuNhapTraMuonHang,
     PhieuThu,
+    PhieuTraHangNCC,
     PhieuXuatChuyenKho,
     PhieuXuatKho,
+    PhieuXuatKhoGiaCong,
     PhieuXuatMuonHang,
-    PhieuXuatTraMuonHang
+    PhieuXuatTraMuonHang,
+    PhieuYeuCauGiaCong
 } from '@app/shared/entities';
 
 @Injectable({
@@ -40,6 +46,46 @@ export class LichSuService extends BaseService {
         return this.httpClient.get<LichSu[]>(this.apiUrl + '/lich-su', { params: query_params });
     }
 
+    /* SẢN XUẤT */
+    findXuatKhoGiaCong(master_id: number): Observable<PhieuXuatKhoGiaCong> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuXuatKhoGiaCong>(this.apiUrl + '/lich-su-xuat-kho-gia-cong', { params: query_params });
+    }
+    
+    findYeuCauGiaCong(master_id: number): Observable<PhieuYeuCauGiaCong> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuYeuCauGiaCong>(this.apiUrl + '/lich-su-yeu-cau-gia-cong', { params: query_params });
+    }
+    
+    /* MUA HÀNG */
+    findMuaHangNCC(master_id: number): Observable<PhieuMuaHangNCC> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuMuaHangNCC>(this.apiUrl + '/lich-su-mua-hang-ncc', { params: query_params });
+    }
+
+    findTraHangNCC(master_id: number): Observable<PhieuTraHangNCC> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuTraHangNCC>(this.apiUrl + '/lich-su-tra-hang-ncc', { params: query_params });
+    }
+    
+    /* BÁN HÀNG */
+    findBanHang(master_id: number): Observable<PhieuBanHang> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuBanHang>(this.apiUrl + '/lich-su-ban-hang', { params: query_params });
+    }
+
+    findKhachTraHang(master_id: number): Observable<PhieuKhachTraHang> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuKhachTraHang>(this.apiUrl + '/lich-su-khach-tra-hang', { params: query_params });
+    }
+
+    /* KHO */
     findNhapKho(master_id: number): Observable<PhieuNhapKho> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set('master_id', master_id.toString());

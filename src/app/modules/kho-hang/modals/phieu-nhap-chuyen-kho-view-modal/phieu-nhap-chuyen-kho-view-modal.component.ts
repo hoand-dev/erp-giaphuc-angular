@@ -12,7 +12,7 @@ import {
     PhieuXuatChuyenKho_ChiTiet
 } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, HangHoaService, KhoHangService, PhieuNhapChuyenKhoService, PhieuNhapKhoService, PhieuXuatChuyenKhoService } from '@app/shared/services';
+import { CommonService, HangHoaService, KhoHangService, LichSuService, PhieuNhapChuyenKhoService, PhieuNhapKhoService, PhieuXuatChuyenKhoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
@@ -59,6 +59,7 @@ export class PhieuNhapChuyenKhoViewModalComponent implements OnInit {
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private commonService: CommonService,
+        private lichsuService: LichSuService,
         private phieunhapchuyenkhoService: PhieuNhapChuyenKhoService,
         private activatedRoute: ActivatedRoute,
         public sumTotal: SumTotalPipe
@@ -129,7 +130,19 @@ export class PhieuNhapChuyenKhoViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findNhapChuyenKho(this.phieunhapchuyenkho_id).subscribe(
+                    (data) => {
+                        this.hanghoalenght = data.phieunhapchuyenkho_chitiets.length;
+
+                        this.phieunhapchuyenkho = data;
+                        this.hanghoas = this.phieunhapchuyenkho.phieunhapchuyenkho_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
     public onHangHoaChanged(index, e) {

@@ -1,0 +1,87 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">IP</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">IP - DANH SÁCH</h5>
+                        <p class="card-text"></p>
+
+                        <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" (click)="onAddNew()" *ngIf="enableAddNew">Thêm mới</button>
+
+                        <dx-data-grid
+                            id="gridContainer"
+                            [showBorders]="true"
+                            [showRowLines]="true"
+                            [hoverStateEnabled]="true"
+                            [columnAutoWidth]="true"
+                            [columnResizingMode]="'widget'"
+                            [allowColumnResizing]="true"
+                            [allowColumnReordering]="true"
+                            [stateStoring]="stateStoringGrid"
+                            (onRowDblClick)="onRowDblClick($event)"
+                        >
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
+
+                            <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                    {{ rowNumber(data.rowIndex) }}
+                                </div>
+                            </dxi-column>
+                            <dxi-column width="80" dataField="id" caption="Thao tác" [allowFiltering]="false" [allowSorting]="false" cellTemplate="cellTemplate">
+                                <div *dxTemplate="let data of 'cellTemplate'">
+                                    <a href="javascript:void(0)" (click)="onRowEdit(data.value)" *ngIf="enableUpdate">Sửa</a> |
+                                    <a href="javascript:void(0)" (click)="onRowDelete(data.value)" *ngIf="enableDelete">Xóa</a>
+                                </div>
+                            </dxi-column>
+
+                            <dxi-column dataField="ipv4" caption="IP"></dxi-column>
+                            <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                                <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                                    <div class="text-green" *ngIf="data.value == true">Kích hoạt</div>
+                                    <div class="text-red" *ngIf="data.value != true">Ngưng sử dụng</div>
+                                </div>
+                            </dxi-column>
+                            <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
+
+                            <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                            <dxi-column dataField="thoigiantao" dataType="datetime" caption="Ngày tạo"></dxi-column>
+                            <dxi-column dataField="nguoisua_hoten" caption="Người sửa"></dxi-column>
+                            <dxi-column dataField="thoigiansua" dataType="datetime" caption="Ngày sửa"></dxi-column>
+
+                            <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                            <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                            <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
+                            <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true">
+                            </dxo-pager>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

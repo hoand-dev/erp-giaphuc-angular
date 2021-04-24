@@ -6,7 +6,7 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import { AppInfoService, CommonService, KhoHangService, NhaCungCapService, PhieuDieuChinhKhoService } from '@app/shared/services';
+import { AppInfoService, CommonService, KhoHangService, LichSuService, NhaCungCapService, PhieuDieuChinhKhoService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -57,6 +57,7 @@ export class PhieuDieuChinhKhoViewModalComponent implements OnInit {
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private commonService: CommonService,
+        private lichsuService: LichSuService,
         private phieudieuchinhkhoService: PhieuDieuChinhKhoService,
         private activatedRoute: ActivatedRoute,
         public sumTotal: SumTotalPipe
@@ -127,7 +128,20 @@ export class PhieuDieuChinhKhoViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findDieuChinhKho(this.phieudieuchinhkho_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieudieuchinhkho_chitiets.length;
+
+                        this.phieudieuchinhkho = data;
+                        this.hanghoas = this.phieudieuchinhkho.phieudieuchinhkho_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
 

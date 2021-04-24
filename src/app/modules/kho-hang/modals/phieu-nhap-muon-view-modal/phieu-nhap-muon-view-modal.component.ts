@@ -5,7 +5,7 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import { AppInfoService, ChiNhanhService, CommonService, KhoHangService, PhieuNhapMuonHangService, PhieuNhapTraMuonHangService, RouteInterceptorService } from '@app/shared/services';
+import { AppInfoService, ChiNhanhService, CommonService, KhoHangService, LichSuService, PhieuNhapMuonHangService, PhieuNhapTraMuonHangService, RouteInterceptorService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -58,6 +58,7 @@ export class PhieuNhapMuonViewModalComponent implements OnInit {
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private commonService: CommonService,
+        private lichsuService: LichSuService,
         private phieunhaptramuonhangService: PhieuNhapTraMuonHangService,
         private activatedRoute: ActivatedRoute,
         private phieunhapmuonhangService: PhieuNhapMuonHangService,
@@ -136,7 +137,19 @@ export class PhieuNhapMuonViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findNhapMuonHang(this.phieunhapmuonhang_id).subscribe(
+                    (data) => {
+                        this.hanghoalenght = data.phieunhapmuonhang_chitiets.length;
+
+                        this.phieunhapmuonhang = data;
+                        this.hanghoas = this.phieunhapmuonhang.phieunhapmuonhang_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
 
