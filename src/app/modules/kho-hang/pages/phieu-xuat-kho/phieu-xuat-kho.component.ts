@@ -174,7 +174,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                 //     }
                 // },
                 {
-                    text: 'In phiếu (không giá)',
+                    text: 'In phiếu ( HN không giá)',
                     icon: 'print',
                     visible: true,
                     onItemClick: () => {
@@ -198,7 +198,7 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                     }
                 },
                 {
-                    text: 'In phiếu (Có Giá)',
+                    text: 'In phiếu ( HN Có Giá)',
                     icon: 'print',
                     visible: true,
                     onItemClick: () => {
@@ -220,7 +220,55 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         });
                         this.bsModalRef.content.closeBtnName = 'Đóng';
                     }
-                }
+                },
+                {
+                    text: 'In phiếu ( GP Không Giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'gpkhonggia'
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In phiếu ( GP Có Giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'gpcogia'
+                        };
+
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
             );
         }
     }
