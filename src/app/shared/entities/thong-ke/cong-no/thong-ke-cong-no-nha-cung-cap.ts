@@ -23,6 +23,7 @@ export class ThongKeCongNoNhaCungCap{
     public nocuoiky: number;
 }
 export class ThongKeCongNoNhaCungCap_ChiTietPhieu{
+    public idphieu: number;
     public ngayphatsinh: Date;
     public maphieu: string;
     public noidung: string;
@@ -38,6 +39,7 @@ export class ThongKeCongNoNhaCungCap_ChiTietPhieu{
     public nocuoiky: number;
 
     public luytien: number;
+    public phieuquery: string;
 }
 export class ThongKeCongNoNhaCungCap_DoiChieu{
     public ngayphatsinh: string;

@@ -24,6 +24,7 @@ export class ThongKeCongNoKhachHang{
 }
 
 export class ThongKeCongNoKhachHang_ChiTietPhieu{
+    public idphieu     : number;
     public ngayphatsinh: Date;
     public maphieu: string;
     public noidung: string;
@@ -39,6 +40,7 @@ export class ThongKeCongNoKhachHang_ChiTietPhieu{
     public nocuoiky: number;
 
     public luytien: number;
+    public phieuquery:string;
 }
 
 export class ThongKeCongNoKhachHang_DoiChieu{

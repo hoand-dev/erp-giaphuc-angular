@@ -25,6 +25,7 @@
                 [allowColumnReordering]="true"
                 [stateStoring]="stateStoringGrid"
                 [sorting]="false"
+                (onRowDblClick)="onRowDblClick($event)"
             >
                 <dxo-selection mode="single"></dxo-selection>
                 <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>

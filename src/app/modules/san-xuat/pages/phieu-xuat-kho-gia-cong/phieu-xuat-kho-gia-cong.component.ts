@@ -133,21 +133,7 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuXuatKhoGiaCong = e.row.key as PhieuXuatKhoGiaCong;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU XUẤT KHO GIA CÔNG',
-                            isView: 'xemphieu',
-                            phieuxuatkhogiacong_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuXuatKhoGiaCongViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -177,64 +163,28 @@ export class PhieuXuatKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
             );
         }
     }
-    // bạn có thể thêm context theo trường mình muốn thông qua e.column
 
-    // Add a custom menu item
-    // e.items.push(
-    //     {
-    //         text: "Cập nhật hoá đơn", icon: "edit", visible: true,
-    //         onItemClick: () => {
-    //             let rowData: PhieuXuatKhoGiaCong = e.row.key as PhieuXuatKhoGiaCong;
-    //             this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
-    //         }
-    //     }
-    // );
+    openViewModal(rowData: PhieuXuatKhoGiaCong) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU XUẤT KHO GIA CÔNG',
+            isView: 'xemphieu',
+            phieuxuatkhogiacong_id: rowData.id
+        };
 
-    // async onCapNhatHoaDon(id: number, maphieu: string, sohoadon?: string) {
-    //     const { value: soHoaDon } = await Swal.fire({
-    //         title: 'CẬP NHẬT HOÁ ĐƠN',
-    //         input: 'text',
-    //         inputLabel: maphieu,
-    //         inputValue: sohoadon,
-    //         showCancelButton: true,
-    //         inputValidator: (value) => {
-    //             if (!value) {
-    //                 return 'Bạn chưa nhập số hoá đơn!';
-    //             }
-    //         }
-    //     });
-
-    //     if (soHoaDon) {
-    //         this.subscriptions.add(
-    //             this.objPhieuXuatKhoGiaCongService.updateHoaDonPhieuXuatKhoGiaCong(id, soHoaDon).subscribe(
-    //                 (data) => {
-    //                     if (data) {
-    //                         notify(
-    //                             {
-    //                                 width: 320,
-    //                                 message: 'Cập nhật hoá đơn thành công',
-    //                                 position: { my: 'right top', at: 'right top' }
-    //                             },
-    //                             'success',
-    //                             475
-    //                         );
-    //                     }
-    //                     // load lại dữ liệu
-    //                     this.onLoadData();
-    //                 },
-    //                 (error) => {
-    //                     this.objPhieuXuatKhoGiaCongService.handleError(error);
-    //                     // load lại dữ liệu
-    //                     this.onLoadData();
-    //                 }
-    //             )
-    //         );
-    //     }
-    // }
-
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuXuatKhoGiaCongViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuXuatKhoGiaCong_id: ${e.key.id}`);
+        let rowData: PhieuXuatKhoGiaCong = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {
