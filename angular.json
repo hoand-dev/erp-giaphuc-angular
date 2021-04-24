@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "allowedCommonJsDependencies": ["lodash", "jquery", "globalize", "devextreme", "devextreme-angular"],
+                        "allowedCommonJsDependencies": ["lodash", "jquery", "globalize", "devextreme", "devextreme-angular", "moment", "moment/locale/vi"],
                         "showCircularDependencies": false,
                         "outputPath": "D:/publish/angular",
                         "index": "src/index.html",
