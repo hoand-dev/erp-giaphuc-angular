@@ -133,21 +133,7 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuNhapKhoGiaCong = e.row.key as PhieuNhapKhoGiaCong;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU NHẬP THÀNH PHẨM',
-                            isView: 'xemphieu',
-                            phieunhapkhogiacong_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuNhapNhapThanhPhamViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -191,9 +177,29 @@ export class PhieuNhapKhoGiaCongComponent implements OnInit, OnDestroy, AfterVie
         }
     }
 
+    openViewModal(rowData: PhieuNhapKhoGiaCong) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU NHẬP THÀNH PHẨM',
+            isView: 'xemphieu',
+            phieunhapkhogiacong_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuNhapNhapThanhPhamViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`objPhieuNhapKhoGiaCong_id: ${e.key.id}`);
+        let rowData: PhieuNhapKhoGiaCong = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

@@ -129,21 +129,7 @@ export class PhieuBanHangComponent implements OnInit {
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU BÁN HÀNG',
-                            isView: 'xemphieu',
-                            phieubanhang_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuBanHangViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -198,8 +184,28 @@ export class PhieuBanHangComponent implements OnInit {
         }
     }
 
+    openViewModal(rowData: PhieuBanHang) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU BÁN HÀNG',
+            isView: 'xemphieu',
+            phieubanhang_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuBanHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
     onRowDblClick(e) {
         console.log(`objPhieuBanHang_id: ${e.key.id}`);
+        let rowData: PhieuBanHang = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

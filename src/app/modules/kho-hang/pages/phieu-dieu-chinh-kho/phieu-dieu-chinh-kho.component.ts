@@ -95,21 +95,7 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuDieuChinhKho = e.row.key as PhieuDieuChinhKho;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU ĐIỀU CHỈNH KHO',
-                            isView: 'xemphieu',
-                            phieudieuchinhkho_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuDieuChinhKhoViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
 
@@ -139,6 +125,24 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
                 }
             );
         }
+    }
+
+    openViewModal(rowData: PhieuDieuChinhKho) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU ĐIỀU CHỈNH KHO',
+            isView: 'xemphieu',
+            phieudieuchinhkho_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuDieuChinhKhoViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     ngAfterViewInit(): void {
@@ -179,8 +183,9 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuDieuChinhKho_id: ${e.key.id}`);
+        let rowData: PhieuDieuChinhKho = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

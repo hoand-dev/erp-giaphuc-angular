@@ -35,4 +35,13 @@ export class ThongKeThuChiService extends BaseService {
         
         return this.httpClient.get<ThongKeThuChiTonQuy[]>(this.apiUrl + "/ton-quy", { params: query_params });
     }
+    findsThuChi_TonQuy_ChiTiet(fromDay:Date, toDay: Date, chinhanh_id: number = null, quy_id: number = null): Observable<ThongKeThuChiTonQuy[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set("tungay", moment(fromDay).format("YYYY-MM-DD HH:mm:ss"));
+        query_params = query_params.set("denngay", moment(toDay).format("YYYY-MM-DD HH:mm:ss"));
+        query_params = query_params.set("chinhanh_id", chinhanh_id ? chinhanh_id.toString() : null);
+        query_params = query_params.set("quy_id", quy_id ? quy_id.toString() : null);
+        
+        return this.httpClient.get<ThongKeThuChiTonQuy[]>(this.apiUrl + "/ton-quy-chi-tiet", { params: query_params });
+    }
 }

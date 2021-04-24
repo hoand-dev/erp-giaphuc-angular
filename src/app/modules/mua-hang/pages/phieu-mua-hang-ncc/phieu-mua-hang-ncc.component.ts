@@ -119,21 +119,7 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
                 visible: true,
                 onItemClick: () => {
                     let rowData: PhieuMuaHangNCC = e.row.key as PhieuMuaHangNCC;
-                    /* khởi tạo giá trị cho modal */
-                    const initialState = {
-                        title: 'THÔNG TIN PHIẾU MUA HÀNG',
-                        isView: 'xemphieu',
-                        phieumuahangncc_id: rowData.id
-                    };
-
-                    /* hiển thị modal */
-                    this.bsModalRef = this.modalService.show(PhieuMuaHangViewModalComponent, {
-                        class: 'modal-xxl modal-dialog-centered',
-                        ignoreBackdropClick: false,
-                        keyboard: false,
-                        initialState
-                    });
-                    this.bsModalRef.content.closeBtnName = 'Đóng';
+                    this.openViewModal(rowData);
                 }
             });
         }
@@ -152,13 +138,32 @@ export class PhieuMuaHangNCCComponent implements OnInit, OnDestroy, AfterViewIni
         );
     }
 
+    openViewModal(rowData: PhieuMuaHangNCC) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU MUA HÀNG',
+            isView: 'xemphieu',
+            phieumuahangncc_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuMuaHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
     rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuMuaHangNCC_id: ${e.key.id}`);
+        let rowData: PhieuMuaHangNCC = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

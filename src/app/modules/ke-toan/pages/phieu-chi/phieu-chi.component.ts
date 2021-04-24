@@ -121,13 +121,14 @@ export class PhieuChiComponent implements OnInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuChi_id: ${e.key.id}`);
+        let rowData: PhieuChi = e.key;
+        this.openViewModal(rowData);
     }
 
     addMenuItems(e) {
@@ -142,21 +143,7 @@ export class PhieuChiComponent implements OnInit {
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuChi = e.row.key as PhieuChi;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU CHI',
-                            isView: 'xemphieu',
-                            phieuchi_id: rowData.id
-                        };
-                
-                        /* hiển thị modal */
-                        this.bsModalRef = this.bsModalService.show(PhieuChiViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -253,6 +240,24 @@ export class PhieuChiComponent implements OnInit {
                 }
             );
         }
+    }
+
+    openViewModal(rowData: PhieuChi) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU CHI',
+            isView: 'xemphieu',
+            phieuchi_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.bsModalService.show(PhieuChiViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     onRowDelete(id) {

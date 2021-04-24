@@ -136,21 +136,7 @@ export class PhieuXuatMuonHangComponent implements OnInit, OnDestroy, AfterViewI
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuXuatMuonHang = e.row.key as PhieuXuatMuonHang;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU XUẤT MƯỢN',
-                            isView: 'xemphieu',
-                            phieuxuatmuonhang_id: rowData.id
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuXuatMuonViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -179,9 +165,28 @@ export class PhieuXuatMuonHangComponent implements OnInit, OnDestroy, AfterViewI
         }
     }
 
+    openViewModal(rowData: PhieuXuatMuonHang) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU XUẤT MƯỢN',
+            isView: 'xemphieu',
+            phieuxuatmuonhang_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuXuatMuonViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuXuatMuonHang_id: ${e.key.id}`);
+        let rowData: PhieuXuatMuonHang = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {

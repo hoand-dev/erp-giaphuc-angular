@@ -45,6 +45,7 @@
                                     [allowColumnReordering]="true"
                                     [columnAutoWidth]="true"
                                     [stateStoring]="stateStoringGrid"
+                                    (onContextMenuPreparing)="addMenuItems($event)"
                                     (onOptionChanged)="onOptionChanged($event)"
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
@@ -58,27 +59,27 @@
                                     <dxo-paging [pageSize]="10"></dxo-paging>
                                     <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
 
-                                    <dxi-column dataField="null" caption="Quỹ"></dxi-column>
-                                    <dxi-column dataField="tenquy" caption="Quỹ" [groupIndex]="0"></dxi-column>
+                                    <!-- <dxi-column dataField="null" caption="Quỹ"></dxi-column> -->
+                                    <dxi-column dataField="tenquy" caption="Quỹ"></dxi-column>
                                     <dxi-column dataField="maquy" caption="Mã quỹ"></dxi-column>
                                     <dxi-column dataField="sotaikhoan" caption="Số tài khoản"></dxi-column>
                                     <dxi-column dataField="tainganhang" caption="Ngân hàng"></dxi-column>
 
-                                    <dxi-column dataField="ngayphatsinh" caption="Ngày phát sinh" dataType="date"></dxi-column>
+                                    <!-- <dxi-column dataField="ngayphatsinh" caption="Ngày phát sinh" dataType="date"></dxi-column>
                                     <dxi-column dataField="phieu" caption="Phiếu"></dxi-column>
                                     <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
                                     <dxi-column dataField="nguoinopnhan" caption="Người nộp/nhận"></dxi-column>
                                     <dxi-column dataField="nhanvien" caption="Nhân viên"></dxi-column>
 
-                                    <dxi-column dataField="ghichu" caption="Diễn giải"></dxi-column>
+                                    <dxi-column dataField="ghichu" caption="Diễn giải"></dxi-column>-->
 
-                                    <dxi-column dataField="tondauky" caption="Tồn đầu" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="tondauky" caption="Tồn đầu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotienthu" caption="Tiền thu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotiengiamthu" caption="Tiền giảm thu" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotienchi" caption="Tiền chi" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="sotiengiamchi" caption="Tiền giảm chi" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="toncuoiky" caption="Tồn cuối kỳ" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
-                                    <dxi-column dataField="tonquyhientai" caption="Tồn cuối" alignment="right" format="#,##0.###" [customizeText]="customizeText"></dxi-column>
+                                    <dxi-column dataField="toncuoiky" caption="Tồn cuối kỳ" alignment="right" format="#,##0.###" ></dxi-column>
+                                    <dxi-column dataField="tonquyhientai" caption="Tồn cuối" alignment="right" format="#,##0.###"></dxi-column> 
 
                                     <dxo-summary [calculateCustomSummary]="calculateSummary">
                                         <dxi-group-item showInColumn="ghichu" displayFormat="TỔNG CỘNG:" [showInGroupFooter]="true"> </dxi-group-item>

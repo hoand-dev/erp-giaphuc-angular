@@ -117,7 +117,7 @@ export class PhieuNhapKhoComponent implements OnInit, OnDestroy, AfterViewInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -136,21 +136,7 @@ export class PhieuNhapKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                     visible: true,
                     onItemClick: () => {
                         let rowData: PhieuNhapKho = e.row.key as PhieuNhapKho;
-                        /* khởi tạo giá trị cho modal */
-                        const initialState = {
-                            title: 'THÔNG TIN PHIẾU NHẬP KHO',
-                            isView: 'xemphieu',
-                            phieunhapkho_id: rowData.id,
-                        };
-
-                        /* hiển thị modal */
-                        this.bsModalRef = this.modalService.show(PhieuNhapKhoViewModalComponent, {
-                            class: 'modal-xxl modal-dialog-centered',
-                            ignoreBackdropClick: false,
-                            keyboard: false,
-                            initialState
-                        });
-                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                        this.openViewModal(rowData);
                     }
                 },
                 {
@@ -204,10 +190,28 @@ export class PhieuNhapKhoComponent implements OnInit, OnDestroy, AfterViewInit {
             );
         }
     }
+    openViewModal(rowData: PhieuNhapKho) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU NHẬP KHO',
+            isView: 'xemphieu',
+            phieunhapkho_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuNhapKhoViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuNhapKho_id: ${e.key.id}`);
+        let rowData: PhieuNhapKho = e.key;
+        this.openViewModal(rowData);
     }
 
     onRowDelete(id) {
