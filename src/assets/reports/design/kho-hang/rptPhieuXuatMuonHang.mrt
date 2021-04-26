@@ -569,6 +569,7 @@
               <Parent isRef="32" />
               <Text>{rptThongTinHangHoa.chuthich}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text36>
@@ -806,10 +807,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/25/2021 2:53:40 PM</ReportChanged>
+  <ReportChanged>4/26/2021 3:29:31 PM</ReportChanged>
   <ReportCreated>1/26/2021 8:16:40 AM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatMuonHang.mrt</ReportFile>
-  <ReportGuid>18cd689786514783a0cb93320487b0df</ReportGuid>
+  <ReportGuid>de4dff264f964009bc9fb507758d44c9</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
