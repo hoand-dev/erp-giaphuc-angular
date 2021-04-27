@@ -14,7 +14,7 @@
                 <form>
                     <!--  (onFieldDataChanged)="onFormFieldChanged($event)" -->
                     <dx-form id="form" [colCount]="12" [formData]="phieuyeucaugiacong" [showValidationSummary]="true" labelLocation="top">
-                        <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY YÊU CẦU' }" dataField="ngayyeucaugiacong" editorType="dxDateBox" [editorOptions]="{ type: 'date', readOnly: isTatToan }">
+                        <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY YÊU CẦU' }" dataField="ngayyeucaugiacong" editorType="dxDateBox" [editorOptions]="{ type: 'date', readOnly: true }">
                             <dxi-validation-rule type="required" message="Chọn ngày yêu cầu"></dxi-validation-rule>
                         </dxi-item>
 
