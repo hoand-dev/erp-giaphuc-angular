@@ -126,6 +126,7 @@ export class PhieuNhapKho_ChiTiet {
     public tilequydoiphu: number;
     public soluong: number;
     public dongia: number;
+    public dongiavat: number;
     public cuocvanchuyen: number;
     public chietkhau: number;
     public thuevat: number;
