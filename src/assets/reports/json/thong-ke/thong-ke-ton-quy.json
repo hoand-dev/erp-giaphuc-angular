@@ -1,50 +1,47 @@
 {
-    "rptThongKeTonQuy":{
-
-                "maquy": null,
-                "tenquy": null,
-                "sotaikhoan": null,
-                "tainganhang": null,
-                "quy_id": null,
-                "ngayphatsinh": null,
-                "maphieu": null,
-                "nguoinopnhan": null,
-                "sotienthu": null,
-                "sotiengiamthu": null,
-                "sotienchi": null,
-                "sotiengiamchi": null,
-                "ghichu": null,
-                "nhanvien": null,
-                "phieu": null,
-                "noidung": null,
-                "tonquyhientai": null,
-                "tondauky": null,
-                "toncuoiky": null,
-                "nocuoiky_bangchu" : null,
-                "inphieu_hoten"    : null,
-                "inphieu_thoigian" : null
-            
-            },
-            "rptThongKeThuChiTonQuy_ChiTiet":[{
-
-                "idphieu"       : null,
-                "ngayphatsinh"  : null,
-                "maphieu"       : null,
-                "noidung"       : null,
-                "ghichu"        : null,
-                "nhanvien"      : null,
-                "tonquyhientai" : null,
-                "tondauky"      : null,
-                "sotienthu"     : null,
-                "sotiengiamthu" : null,
-                "sotienchi"     : null,
-                "sotiengiamchi" : null,
-                "toncuoiky"     : null,
-                "luytien"       : null,
-                "phieuquery"    : null,
-
-                "nguoinopnhan" : null,
-                "tenquy" : null
+    "rptThongKeTonQuy": {
+        "maquy"           : null,
+        "tenquy"          : null,
+        "sotaikhoan"      : null,
+        "tainganhang"     : null,
+        "quy_id"          : null,
+        "ngayphatsinh"    : null,
+        "maphieu"         : null,
+        "nguoinopnhan"    : null,
+        "sotienthu"       : null,
+        "sotiengiamthu"   : null,
+        "sotienchi"       : null,
+        "sotiengiamchi"   : null,
+        "ghichu"          : null,
+        "nhanvien"        : null,
+        "phieu"           : null,
+        "noidung"         : null,
+        "tonquyhientai"   : null,
+        "tondauky"        : null,
+        "toncuoiky"       : null,
+        "nocuoiky_bangchu": null,
+        "inphieu_hoten"   : null,
+        "inphieu_thoigian": null
+    },
+    "rptThongKeTonQuy_ChiTiet": [
+        {
+            "idphieu"       : null,
+            "ngayphatsinh"  : null,
+            "maphieu"       : null,
+            "noidung"       : null,
+            "ghichu"        : null,
+            "nhanvien"      : null,
+            "tonquyhientai" : null,
+            "tondauky"      : null,
+            "sotienthu"     : null,
+            "sotiengiamthu" : null,
+            "sotienchi"     : null,
+            "sotiengiamchi" : null,
+            "toncuoiky"     : null,
+            "luytien"       : null,
+            "phieuquery"    : null,
+            "nguoinopnhan"  : null,
+            "tenquy"        : null
         }
     ]
 }
