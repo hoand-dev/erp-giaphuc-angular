@@ -184,7 +184,7 @@
                                         }"
                                     >
                                     </dxi-item>
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
                                     <dxi-item
                                         [label]="{ text: 'CÒN NỢ' }"
                                         editorType="dxNumberBox"
@@ -238,7 +238,7 @@
                                                             </dx-number-box>
                                                         </td>
                                                         <td>
-                                                            <dx-text-box [(value)]="item.chuthich"></dx-text-box>
+                                                            <dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box>
                                                         </td>
                                                     </tr>
                                                 </tbody>

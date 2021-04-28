@@ -140,7 +140,7 @@
                                         [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
                                     ></dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="9"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="9"></dxi-item>
                                     <dxi-item [colSpan]="3" [label]="{ text: 'SỐ TIỀN CẤN TRỪ' }">
                                         <div *dxTemplate>
                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="phieucantru.sotiencantru" valueChangeEvent="input" (onValueChanged)="onChangeTienCanTru($event)"></dx-number-box>
@@ -180,7 +180,7 @@
                                                                     (onValueChanged)="onHangHoaChangeRow('sotienthu', i, $event)"
                                                                 ></dx-number-box>
                                                             </td>
-                                                            <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                           <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"><</dx-text-box></td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot>
@@ -227,7 +227,7 @@
                                                                     (onValueChanged)="onHangHoaChangeRow('sotienchi', i, $event)"
                                                                 ></dx-number-box>
                                                             </td>
-                                                            <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                           <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"><</dx-text-box></td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot>

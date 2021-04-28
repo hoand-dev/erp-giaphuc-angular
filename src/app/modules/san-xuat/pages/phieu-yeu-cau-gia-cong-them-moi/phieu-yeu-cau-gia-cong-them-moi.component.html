@@ -89,7 +89,7 @@
                                         dataField="maphieuyeucaugiacong"
                                         [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"
                                     ></dxi-item>
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [colSpan]="8"></dxi-item>
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'NGUYÊN LIỆU' }"
@@ -217,7 +217,7 @@
                                                         <td>
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                                         </td>
-                                                        <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"><</dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>

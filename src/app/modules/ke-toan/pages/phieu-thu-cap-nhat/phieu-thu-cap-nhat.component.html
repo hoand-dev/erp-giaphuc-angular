@@ -117,7 +117,7 @@
                                     </dxi-item>
 
                                     <dxi-item [label]="{ text: 'TỔNG THU' }" editorType="dxNumberBox" dataField="tongthu" [editorOptions]="{ value: phieuthu.sotienthu + phieuthu.sotiengiam, readOnly: true, format: '#,##0.###' }"> </dxi-item>
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="4"></dxi-item>
                                     <dxi-item [label]="{ text: 'CÒN NỢ' }" editorType="dxNumberBox" dataField="conno" [editorOptions]="{ value: calculateNoConLai(), readOnly: true, format: '#,##0.###' }"> </dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="phieuxuatkhos.length > 0">
@@ -163,7 +163,7 @@
                                                                 (onValueChanged)="onHangHoaChangeRow('sotiengiam', i, $event)"
                                                             ></dx-number-box>
                                                         </td>
-                                                        <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                        <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>

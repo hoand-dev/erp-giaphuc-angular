@@ -85,7 +85,7 @@
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
                                     </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
                                             <table class="table table-vertical table-hover mt-4">
@@ -172,7 +172,7 @@
                                                         <td>{{ item.soluongdanhap | number: '1.0-3' }}</td>
                                                         <td>{{ item.soluong - item.soluongdanhap | number: '1.0-3' }}</td>
 
-                                                        <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                        <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td>
                                                             <dx-text-box [readOnly]="true" [(value)]="item.tenhanghoabanhang_inphieu"></dx-text-box>
                                                         </td>
