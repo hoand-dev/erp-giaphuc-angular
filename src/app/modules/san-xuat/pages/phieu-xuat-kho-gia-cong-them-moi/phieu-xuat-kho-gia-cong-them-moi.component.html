@@ -148,7 +148,7 @@
                                                         <td>
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
-                                                        <td><dx-text-box [(value)]="item.chuthich"></dx-text-box></td>
+                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"><</dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
