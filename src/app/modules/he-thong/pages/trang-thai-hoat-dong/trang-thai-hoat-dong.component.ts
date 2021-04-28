@@ -28,10 +28,10 @@ export class TrangThaiHoatDongComponent implements OnInit, OnDestroy, AfterViewI
     public permissions: any[] = [];
 
     /* danh sách các quyền theo biến số, mặc định false */
-    public enableAddNew: boolean = true;
-    public enableUpdate: boolean = true;
-    public enableDelete: boolean = true;
-    public enableExport: boolean = true;
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - TRẠNG THÁI HOẠT ĐỘNG - ' + moment().format('DD_MM_YYYY');
@@ -58,13 +58,13 @@ export class TrangThaiHoatDongComponent implements OnInit, OnDestroy, AfterViewI
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
                     this.permissions = data;
-                    // if (!this.commonService.getEnablePermission(this.permissions, 'ipv4-truycap')) {
-                    //     this.router.navigate(['/khong-co-quyen']);
-                    // }
-                    // this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'ipv4-themmoi');
-                    // this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'ipv4-capnhat');
-                    // this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'ipv4-xoa');
-                    // this.enableExport = this.commonService.getEnablePermission(this.permissions, 'ipv4-xuatdulieu');
+                    if (!this.commonService.getEnablePermission(this.permissions, 'trangthaihoatdong-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    // this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'trangthaihoatdong-themmoi');
+                    // this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'trangthaihoatdong-capnhat');
+                    // this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'trangthaihoatdong-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'trangthaihoatdong-xuatdulieu');
                 },
                 (error) => {
                     this.ipv4Service.handleError(error);
