@@ -16,13 +16,12 @@ import { Subject, Subscription } from 'rxjs';
   templateUrl: './thong-ke-chi-tiet-ton-quy-modal.component.html',
   styleUrls: ['./thong-ke-chi-tiet-ton-quy-modal.component.css']
 })
-export class ThongKeChiTietTonQuyComponent  implements OnInit {
+export class ThongKeChiTietTonQuyModalComponent  implements OnInit {
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
-    public bsModalRefChild: BsModalRef;
-
     public title: string;
     public closeBtnName: string;
+    public bsModalRefChild: BsModalRef;
 
     public tungay: Date;
     public denngay: Date;
@@ -51,7 +50,7 @@ export class ThongKeChiTietTonQuyComponent  implements OnInit {
     onLoadData() {
         this.subscriptions.add(
             this.objThongKeThuChi
-                .findsThuChi_TonQuy_ChiTiet(this.tungay, this.denngay, this.authenticationService.currentChiNhanhValue.id, this.thongkethuchitonquy.quy_id)
+                .findsThuChi_TonQuy_ChiTiet(this.tungay, this.denngay, this.authenticationService.currentChiNhanhValue.id, this.thongkethuchitonquy.quy_id.toString())
                 .subscribe(
                     (data) => {
                         let luytien = this.thongkethuchitonquy.tondauky;

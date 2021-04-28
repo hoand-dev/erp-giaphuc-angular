@@ -2,13 +2,15 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ThongKeThuChiTonQuy, ThongKeThuChiTonQuy_ChiTietPhieu } from '@app/shared/entities';
-import { AppInfoService, CommonService, ThongKeThuChiService } from '@app/shared/services';
+import { AppInfoService, CommonService, QuyTaiKhoanService, ThongKeThuChiService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
+import DataSource from 'devextreme/data/data_source';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
-import { ThongKeChiTietTonQuyComponent } from '../../modals/thong-ke-chi-tiet-ton-quy/thong-ke-chi-tiet-ton-quy-modal.component';
+import { ThongKeChiTietTonQuyModalComponent } from '../../modals/thong-ke-chi-tiet-ton-quy-modal/thong-ke-chi-tiet-ton-quy-modal.component';
+import { ThongKeThuChiTonQuyTongHopModalComponent } from '../../modals/thong-ke-thu-chi-ton-quy-tong-hop-modal/thong-ke-thu-chi-ton-quy-tong-hop-modal.component';
 
 @Component({
     selector: 'app-thong-ke-thu-chi-ton-quy',
@@ -31,6 +33,8 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
     public enableExport: boolean = false;
 
     public dataSource_ThuChiTonQuy: ThongKeThuChiTonQuy[];
+    public dataSource_QuyTaiKhoan: DataSource;
+    public quySelected: number[] = [];
     public exportFileName: string = '[THỐNG KÊ] - THU CHI TỒN QUỸ - ' + moment().format('DD_MM_YYYY');
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
@@ -50,6 +54,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         private commonService: CommonService,
         private authenticationService: AuthenticationService,
         private objThongKeThuChiService: ThongKeThuChiService,
+        private quyService: QuyTaiKhoanService,
         private modalService: BsModalService
     ) {
         this.titleService.setTitle('THỐNG KÊ - THU CHI TỒN QUỸ | ' + this.appInfoService.appName);
@@ -80,6 +85,17 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.onLoadData();
+
+                this.subscriptions.add(
+                    this.quyService.findQuyTaiKhoans(x.id).subscribe((data) => {
+                        // this.quySelected = data.map(a => a.id);
+                        this.dataSource_QuyTaiKhoan = new DataSource({
+                            store: data,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
     }
@@ -100,11 +116,30 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
                         this.openModalChiTietPhieu(rowData);
                     }
                 },
-               
             );
         }
     }
 
+    openModalTongHop() {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `TỔNG HỢP CHI PHÍ QUẢN LÝ`,
+            tungay: this.firstDayTime,
+            denngay: this.currDayTime,
+            chinhanh_id: this.authenticationService.currentChiNhanhValue.id,
+            quy_ids: this.quySelected.join(",")
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(ThongKeThuChiTonQuyTongHopModalComponent, {
+            class: 'modal-xl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+    
     openModalChiTietPhieu(thongkethuchi: ThongKeThuChiTonQuy) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -115,7 +150,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(ThongKeChiTietTonQuyComponent, {
+        this.bsModalRef = this.modalService.show(ThongKeChiTietTonQuyModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
@@ -124,8 +159,6 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
-
-
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
@@ -133,7 +166,7 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
     onLoadData() {
         // gọi service lấy dữ liệu báo cáo
         this.subscriptions.add(
-            this.objThongKeThuChiService.findsThuChi_TonQuy(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id).subscribe(
+            this.objThongKeThuChiService.findsThuChi_TonQuy(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id, this.quySelected.join(",")).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },
@@ -144,7 +177,9 @@ export class ThongKeThuChiTonQuyComponent implements OnInit, OnDestroy {
         );
     }
     
-    
+    onQuyChanged(e){
+        this.onLoadData();
+    }
 
     customizeText(rowData) {
         return null;

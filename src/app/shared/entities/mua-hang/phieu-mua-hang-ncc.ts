@@ -88,6 +88,7 @@ export class PhieuMuaHangNCC_ChiTiet {
     public tilequydoiphu: number;
     public soluong: number;
     public dongia: number;
+    public dongiavat: number;
     public thuevat: number;
     public chietkhau: number;
     public cuocvanchuyen: number;

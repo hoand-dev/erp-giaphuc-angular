@@ -83,21 +83,20 @@ export class PhieuNhapKhoInPhieuModalComponent implements OnInit {
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
                     data.tongthanhtien_bangchu = number2vn(data.tongthanhtien);
+
                     /* thông tin chi tiết phiếu */
-                    if (data.chietkhau > 0) {
-                        data.phieunhapkho_chitiets.forEach((item) => {
-                            item.chietkhau = data.chietkhau;
-                            item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
-                        });
-                    }
-                    if (data.thuevat > 0) {
-                        data.phieunhapkho_chitiets.forEach((item) => {
-                            item.thuevat = data.thuevat;
-                            item.thanhtien = item.soluong * item.dongia;
-                            item.thanhtien = item.thanhtien - item.thanhtien * item.chietkhau + (item.thanhtien - item.thanhtien * item.chietkhau) * item.thuevat;
-                        });
-                    }
+                    data.phieunhapkho_chitiets.forEach((item) => {
+                        item.chietkhau = data.chietkhau != 0 ? data.chietkhau : item.chietkhau;
+                        item.thuevat = data.thuevat != 0 ? data.thuevat : item.thuevat;
+                        item.dongiavat = item.dongia - item.dongia * item.chietkhau + (item.dongia - item.dongia * item.chietkhau) * item.thuevat;
+
+                        // làm tròn đơn giá vat và thành tiền
+                        if (data.loaiphieunhapkho == 'nhapkhachtrahang') {
+                            item.dongiavat = Math.round(item.dongiavat);
+                        }
+                        item.thanhtien = item.dongiavat * item.soluong;
+                    });
+
                     dsPhieuNhapKho.readJson({ rptThongTinPhieu: data, rptThongTinHangHoa: data.phieunhapkho_chitiets });
                     report.regData('rptPhieuNhapKho', null, dsPhieuNhapKho);
 
