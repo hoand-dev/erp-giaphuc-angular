@@ -92,7 +92,7 @@
                                         dataField="maphieunhapkhogiacong"
                                         [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"
                                     ></dxi-item>
-                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [colSpan]="5"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
                                     <dxi-item
                                         [colSpan]="3"
                                         [label]="{ text: 'KHO NHẬP' }"
@@ -264,7 +264,7 @@
                                                             >
                                                             </dx-select-box>
                                                         </td>
-                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"><</dx-text-box></td>
+                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>

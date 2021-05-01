@@ -56,7 +56,7 @@
                                     <dxi-item [label]="{ text: 'NGƯỜI GIAO' }" [colSpan]="5" dataField="nguoigiao_hoten"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'TỪ PHIẾU' }" dataField="tumaphieu" [editorOptions]="{ readOnly: true, placeholder: 'CHỌN TỪ PHIẾU' }"></dxi-item>
-                                    <dxi-item [label]="{ text: 'LÝ DO NHẬP' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'LÝ DO NHẬP' }" dataField="ghichu" [colSpan]="5"></dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
@@ -138,7 +138,7 @@
                                                             </dx-select-box>
                                                         </td> -->
 
-                                                        <td><dx-text-box value="ghi chú" [(value)]="item.chuthich"></dx-text-box></td>
+                                                        <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" value="ghi chú" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>

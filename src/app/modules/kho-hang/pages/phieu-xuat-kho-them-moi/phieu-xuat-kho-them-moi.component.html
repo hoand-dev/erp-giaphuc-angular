@@ -80,7 +80,7 @@
                                     <dxi-item [label]="{ text: 'NGÀY ĐẾN HẠN' }" dataField="ngaytoihan" editorType="dxDateBox" [editorOptions]="{ readOnly: true, type: 'date' }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'SỐ HOÁ ĐƠN' }" dataField="chungtu"> </dxi-item>
 
-                                    <dxi-item [label]="{ text: 'LÝ DO XUẤT' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'LÝ DO XUẤT' }" dataField="ghichu" [colSpan]="6"></dxi-item>
 
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <div class="table-responsive">
@@ -134,7 +134,7 @@
                                                         <td>
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
-                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"><</dx-text-box></td>
+                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td><dx-text-box [(value)]="item.tenhanghoa_inphieu" readOnly="true"></dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
