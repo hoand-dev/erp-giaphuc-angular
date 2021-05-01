@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChiNhanh, KhoHang, NhaCungCap, PhieuMuaHangNCC, PhieuMuaHangNCC_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, HangHoaService, KhoHangService, NhaCungCapService, PhieuMuaHangNCCService } from '@app/shared/services';
+import { CommonService, HangHoaService, KhoHangService, LichSuService, NhaCungCapService, PhieuMuaHangNCCService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
@@ -50,6 +50,7 @@ export class PhieuMuaHangViewModalComponent implements OnInit {
         private phieumuahangNCCService: PhieuMuaHangNCCService,
         private nhacungcapService: NhaCungCapService,
         private hanghoaService: HangHoaService,
+        private lichsuService: LichSuService,
         private commonService: CommonService,
         public sumTotal: SumTotalPipe
     ) {}
@@ -118,7 +119,20 @@ export class PhieuMuaHangViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findMuaHangNCC(this.phieumuahangncc_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieumuahangncc_chitiet.length;
+
+                        this.phieumuahangncc = data;
+                        this.hanghoas = this.phieumuahangncc.phieumuahangncc_chitiet;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
     public onHangHoaChanged(index, e) {

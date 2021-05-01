@@ -12,6 +12,7 @@ import {
     HangHoaService,
     KhachHangService,
     KhoHangService,
+    LichSuService,
     PhieuNhapKhoGiaCongService,
     PhieuXuatKhoGiaCongService,
     PhieuYeuCauGiaCongService,
@@ -88,6 +89,7 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
         private hanghoaService: HangHoaService,
         private giacongService: DinhMucService,
         private somatService: SoMatService,
+        private lichsuService: LichSuService,
         private modalService: BsModalService
     ) {}
 
@@ -185,7 +187,20 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findNhapKhoGiaCong(this.phieunhapkhogiacong_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieunhapkhogiacong_chitiets.length;
+
+                        this.phieunhapkhogiacong = data;
+                        this.hanghoas = this.phieunhapkhogiacong.phieunhapkhogiacong_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
     onFormFieldChanged(e) {

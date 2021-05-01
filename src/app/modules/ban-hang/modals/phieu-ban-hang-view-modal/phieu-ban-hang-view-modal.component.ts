@@ -8,6 +8,7 @@ import {
     HangHoaService,
     KhachHangService,
     KhoHangService,
+    LichSuService,
     NguoiDungService,
     PhieuBanHangService,
     PhieuDatHangService,
@@ -74,6 +75,7 @@ export class PhieuBanHangViewModalComponent implements OnInit {
         private hanghoaService: HangHoaService,
         private khohangService: KhoHangService,
         private nguoidungService: NguoiDungService,
+        private lichsuService: LichSuService,
         public bsModalRef: BsModalRef
     ) {}
 
@@ -161,7 +163,20 @@ export class PhieuBanHangViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findBanHang(this.phieubanhang_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieubanhang_chitiet.length;
+
+                        this.phieubanhang = data;
+                        this.hanghoas = this.phieubanhang.phieubanhang_chitiet;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
 
