@@ -17,6 +17,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import Swal from 'sweetalert2';
 import { environment } from '@environments/environment';
+import moment from 'moment';
 
 @Component({
     selector: 'app-root',
@@ -169,6 +170,12 @@ export class AppComponent implements OnInit {
             location.reload();
         }
 
+        if (localStorage.getItem("app_logindate") != moment().format("YYYYMMDD")) {
+            localStorage.setItem("app_logindate", moment().format("YYYYMMDD"));
+            this.logout();
+            location.reload();
+        }
+
         if (this.isAutorized()) {
             // phải refresh token trước khi lấy thông tin người dùng
             /* if (this.fisrtRefreshToken){
@@ -216,9 +223,9 @@ export class AppComponent implements OnInit {
                         this.ipv4 = data.query;
                         if (this.ipv4) {
                             this.ipv4Service.updateOnline(this.ipv4).toPromise();
-                            setInterval(() => {
-                                this.ipv4Service.updateOnline(this.ipv4).toPromise();
-                            }, 1000 * 30);
+                            // setInterval(() => {
+                            //     this.ipv4Service.updateOnline(this.ipv4).toPromise();
+                            // }, 1000 * 60 * 60);
                         }
                     },
                     (error) => {
