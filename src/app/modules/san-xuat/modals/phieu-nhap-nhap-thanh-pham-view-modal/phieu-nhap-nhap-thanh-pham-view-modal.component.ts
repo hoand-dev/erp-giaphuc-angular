@@ -73,6 +73,8 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
     private hanghoalenght: number = 0;
     private hanghoalenght_yeucau: number = 0;
 
+    public bsModalRefChild: BsModalRef;
+
     constructor(
         public sumTotal: SumTotalPipe,
         private authenticationService: AuthenticationService,
@@ -269,11 +271,11 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachLoiModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild = this.modalService.show(DanhSachLoiModalComponent, { class: 'modal-lg modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if (result !== false) {
                 this.hanghoas[index].chitietlois = result;
                 let soluongloi: number = 0;
