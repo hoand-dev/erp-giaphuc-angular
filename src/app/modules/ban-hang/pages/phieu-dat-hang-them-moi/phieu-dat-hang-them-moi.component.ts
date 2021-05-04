@@ -468,7 +468,7 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
 
     // tính tiền sau chiết khấu và tổng
     private onTinhTien() {
-        let tongtienhang: number = 0;
+        let tongthanhtien: number = 0;
 
         this.hanghoas.forEach((v, i) => {
             v.tongtrongluong = v.soluong * v.trongluong;
@@ -476,10 +476,15 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
             v.tongm3         = v.soluong * v.m3;
             v.soluongconlai  = v.soluong - v.soluongdagiao;
 
-            v.thanhtien = v.soluong * v.dongia;
-            v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
+            let chietkhau = this.phieudathang.chietkhau != 0 ? this.phieudathang.chietkhau : v.chietkhau;
+            let thuevat   = this.phieudathang.thuevat   != 0 ? this.phieudathang.thuevat   : v.thuevat  ;
+            let dongiavat = v.dongia - v.dongia * chietkhau + (v.dongia - v.dongia * chietkhau) * thuevat ;
+            
+            // làm tròn đơn giá vat và thành tiền
+            dongiavat = Math.round(dongiavat);
+            v.thanhtien = dongiavat * v.soluong;
 
-            tongtienhang += v.thanhtien;
+            tongthanhtien += v.thanhtien;
         });
 
         this.hanghoas_sanxuat.forEach((v, i) => {
@@ -488,14 +493,18 @@ export class PhieuDatHangThemMoiComponent implements OnInit {
             v.tongm3         = v.soluong * v.m3;
             v.soluongconlai  = v.soluong;
 
-            v.thanhtien = v.soluong * v.dongia;
-            v.thanhtien = v.thanhtien - v.thanhtien * v.chietkhau + (v.thanhtien - v.thanhtien * v.chietkhau) * v.thuevat;
+            let chietkhau = this.phieudathang.chietkhau != 0 ? this.phieudathang.chietkhau : v.chietkhau;
+            let thuevat   = this.phieudathang.thuevat   != 0 ? this.phieudathang.thuevat   : v.thuevat  ;
+            let dongiavat = v.dongia - v.dongia * chietkhau + (v.dongia - v.dongia * chietkhau) * thuevat ;
             
-            tongtienhang += v.thanhtien;
+            // làm tròn đơn giá vat và thành tiền
+            dongiavat = Math.round(dongiavat);
+            v.thanhtien = dongiavat * v.soluong;
+
+            tongthanhtien += v.thanhtien;
         });
 
-        this.phieudathang.tongtienhang = tongtienhang;
-        this.phieudathang.tongthanhtien = tongtienhang - tongtienhang * this.phieudathang.chietkhau + (tongtienhang - tongtienhang * this.phieudathang.chietkhau) * this.phieudathang.thuevat;
+        this.phieudathang.tongthanhtien = tongthanhtien;
     }
 
     public onSubmitForm(e) {
