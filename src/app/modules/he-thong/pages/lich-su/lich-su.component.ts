@@ -26,6 +26,13 @@ import { LenhVayViewModalComponent } from '@app/modules/ke-toan/modals/lenh-vay-
 import { PhieuThuViewModalComponent } from '@app/modules/ke-toan/modals/phieu-thu-view-modal/phieu-thu-view-modal.component';
 import { PhieuChiViewModalComponent } from '@app/modules/ke-toan/modals/phieu-chi-view-modal/phieu-chi-view-modal.component';
 import { PhieuCanTruViewModalComponent } from '@app/modules/ke-toan/modals/phieu-can-tru-view-modal/phieu-can-tru-view-modal.component';
+import { PhieuMuaHangViewModalComponent } from '@app/modules/mua-hang/modals/phieu-mua-hang-view-modal/phieu-mua-hang-view-modal.component';
+import { PhieuTraHangNccViewModalComponent } from '@app/modules/mua-hang/modals/phieu-tra-hang-ncc-view-modal/phieu-tra-hang-ncc-view-modal.component';
+import { PhieuBanHangViewModalComponent } from '@app/modules/ban-hang/modals/phieu-ban-hang-view-modal/phieu-ban-hang-view-modal.component';
+import { PhieuKhachTraHangViewModalComponent } from '@app/modules/ban-hang/modals/phieu-khach-tra-hang-view-modal/phieu-khach-tra-hang-view-modal.component';
+import { PhieuYeuCauGiaCongViewModalComponent } from '@app/modules/san-xuat/modals/phieu-yeu-cau-gia-cong-view-modal/phieu-yeu-cau-gia-cong-view-modal.component';
+import { PhieuXuatKhoGiaCongViewModalComponent } from '@app/modules/san-xuat/modals/phieu-xuat-kho-gia-cong-view-modal/phieu-xuat-kho-gia-cong-view-modal.component';
+import { PhieuNhapNhapThanhPhamViewModalComponent } from '@app/modules/san-xuat/modals/phieu-nhap-nhap-thanh-pham-view-modal/phieu-nhap-nhap-thanh-pham-view-modal.component';
 
 @Component({
     selector: 'app-lich-su',
@@ -138,13 +145,18 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
         let row: LichSu = e.key;
 
         switch (row.log_chucnang) {
+            
+            /* mua hàng */
             case ELichSu.DATHANGNCC:
                 break;
             case ELichSu.MUAHANGNCC:
+                this.showModalMuaHangNCC(row);
                 break;
             case ELichSu.TRAHANGNCC:
+                this.showModalTraHangNCC(row);
                 break;
 
+            /* bán hàng */
             case ELichSu.HOPDONG:
                 break;
             case ELichSu.BANGGIA:
@@ -152,10 +164,13 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
             case ELichSu.DATHANG:
                 break;
             case ELichSu.BANHANG:
+                this.showModalBanHang(row);
                 break;
             case ELichSu.TRAHANG:
+                this.showModalKhachTraHang(row);
                 break;
 
+            /* kho hàng */
             case ELichSu.NHAPKHO:
                 this.showModalNhapKho(row);
                 break;
@@ -172,6 +187,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.showModalNhapChuyenKho(row);
                 break;
 
+            /* mượn hàng */
             case ELichSu.NHAPMUONHANG:
                 this.showModalNhapMuonHang(row);
                 break;
@@ -185,6 +201,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.showModalNhapTraMuonHang(row);
                 break;
 
+            /* kế toán */
             case ELichSu.LENHVAY:
                 this.showModalLenhVay(row);
                 break;
@@ -198,18 +215,94 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.showModalCanTru(row);
                 break;
 
+            /* sản xuất */
             case ELichSu.BANGGIAGIACONG:
                 break;
             case ELichSu.XUATKHOGIACONG:
+                this.showModalXuatKhoGiaCong(row);
                 break;
             case ELichSu.YEUCAUGIACONG:
+                this.showModalYeuCauGiaCong(row);
                 break;
             case ELichSu.NHAPTHANHPHAM:
+                this.showModalNhapKhoGiaCong(row);
                 break;
 
             default:
                 break;
         }
+    }
+
+    showModalMuaHangNCC(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU MUA HÀNG NCC: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieumuahangncc_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuMuaHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    showModalTraHangNCC(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU TRẢ HÀNG NCC: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieutrahangncc_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuTraHangNccViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    showModalBanHang(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU BÁN HÀNG: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieubanhang_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuBanHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    showModalKhachTraHang(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU KHÁCH TRẢ HÀNG: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieukhachtrahang_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuKhachTraHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     showModalNhapKho(x: LichSu) {
@@ -301,7 +394,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
         });
         this.bsModalRef.content.closeBtnName = 'Đóng';
     }
-    
+
     showModalNhapMuonHang(x: LichSu) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -319,7 +412,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
         });
         this.bsModalRef.content.closeBtnName = 'Đóng';
     }
-    
+
     showModalXuatMuonHang(x: LichSu) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -373,7 +466,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
         });
         this.bsModalRef.content.closeBtnName = 'Đóng';
     }
-    
+
     showModalLenhVay(x: LichSu) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -399,7 +492,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
             isView: 'xemlichsu',
             phieuthu_id: x.id
         };
-    
+
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(PhieuThuViewModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
@@ -417,7 +510,7 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
             isView: 'xemlichsu',
             phieuchi_id: x.id
         };
-    
+
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(PhieuChiViewModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
@@ -435,9 +528,63 @@ export class LichSuComponent implements OnInit, OnDestroy, AfterViewInit {
             isView: 'xemlichsu',
             phieucantru_id: x.id
         };
-    
+
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(PhieuCanTruViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    showModalXuatKhoGiaCong(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU XUẤT GIA CÔNG: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieuxuatkhogiacong_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuXuatKhoGiaCongViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    showModalYeuCauGiaCong(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU YÊU CẦU GIA CÔNG: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieuyeucaugiacong_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    showModalNhapKhoGiaCong(x: LichSu) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: `THÔNG TIN PHIẾU NHẬP THÀNH PHẨM: ${moment(x.log_thoigianthaotac).format('HH:mm DD/MM/YYYY')} - ${x.nguoithaotac} - ${x.log_noidung}`,
+            isView: 'xemlichsu',
+            phieunhapkhogiacong_id: x.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuNhapNhapThanhPhamViewModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,

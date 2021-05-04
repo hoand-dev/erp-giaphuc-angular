@@ -11,6 +11,7 @@ import {
     DonViGiaCongService,
     HangHoaService,
     KhoHangService,
+    LichSuService,
     PhieuYeuCauGiaCongService,
     RouteInterceptorService,
     SoMatService
@@ -79,6 +80,7 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
         private somatService: SoMatService,
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
+        private lichsuService: LichSuService,
         private commonService: CommonService,
         public sumTotal: SumTotalPipe
     ) {}
@@ -183,7 +185,25 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findYeuCauGiaCong(this.phieuyeucaugiacong_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieuyeucaugiacong_chitiets.length;
+                        this.hanghoalenght_yeucau = data.phieuyeucaugiacong_chitiets.length;
+                        this.hanghoalenght_somat = data.phieuyeucaugiacong_chitiets.length;
+                        this.hanghoalenght_somat_thanhpham = data.phieuyeucaugiacong_chitiets.length;
+
+                        this.loaiphieu = data.loaiphieu;
+
+                        this.phieuyeucaugiacong = data;
+                        this.hanghoas = this.phieuyeucaugiacong.phieuyeucaugiacong_chitiets;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
     public onHangHoaChanged(index, e) {

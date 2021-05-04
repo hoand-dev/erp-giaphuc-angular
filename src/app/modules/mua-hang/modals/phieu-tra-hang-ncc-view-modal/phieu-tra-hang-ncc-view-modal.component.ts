@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChiNhanh, KhoHang, NhaCungCap, PhieuMuaHangNCC, PhieuMuaHangNCC_ChiTiet, PhieuTraHangNCC, PhieuTraHangNCC_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, HangHoaService, KhoHangService, NhaCungCapService, PhieuMuaHangNCCService, PhieuTraHangNCCService } from '@app/shared/services';
+import { CommonService, HangHoaService, KhoHangService, LichSuService, NhaCungCapService, PhieuMuaHangNCCService, PhieuTraHangNCCService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
@@ -55,6 +55,7 @@ export class PhieuTraHangNccViewModalComponent implements OnInit {
         private nhacungcapService: NhaCungCapService,
         private hanghoaService: HangHoaService,
         private khohangService: KhoHangService,
+        private lichsuService: LichSuService,
         private activatedRoute: ActivatedRoute,
         private commonService: CommonService,
         public sumTotal: SumTotalPipe
@@ -138,7 +139,20 @@ export class PhieuTraHangNccViewModalComponent implements OnInit {
                 )
             );
         } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
+            this.subscriptions.add(
+                this.lichsuService.findTraHangNCC(this.phieutrahangncc_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieutrahangncc_chitiet.length;
+
+                        this.phieutrahangncc = data;
+                        this.hanghoas = this.phieutrahangncc.phieutrahangncc_chitiet;
+                    },
+                    (error) => {
+                        this.lichsuService.handleError(error);
+                    }
+                )
+            );
         }
     }
     public onHangHoaChanged(index, e) {

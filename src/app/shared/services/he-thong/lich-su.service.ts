@@ -15,6 +15,7 @@ import {
     PhieuMuaHangNCC,
     PhieuNhapChuyenKho,
     PhieuNhapKho,
+    PhieuNhapKhoGiaCong,
     PhieuNhapMuonHang,
     PhieuNhapTraMuonHang,
     PhieuThu,
@@ -57,6 +58,13 @@ export class LichSuService extends BaseService {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set('master_id', master_id.toString());
         return this.httpClient.get<PhieuYeuCauGiaCong>(this.apiUrl + '/lich-su-yeu-cau-gia-cong', { params: query_params });
+    }
+
+    
+    findNhapKhoGiaCong(master_id: number): Observable<PhieuNhapKhoGiaCong> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('master_id', master_id.toString());
+        return this.httpClient.get<PhieuNhapKhoGiaCong>(this.apiUrl + '/lich-su-nhap-kho-gia-cong', { params: query_params });
     }
     
     /* MUA HÀNG */
@@ -116,6 +124,7 @@ export class LichSuService extends BaseService {
         return this.httpClient.get<PhieuNhapChuyenKho>(this.apiUrl + '/lich-su-nhap-chuyen-kho', { params: query_params });
     }
 
+    /* MƯỢN HÀNG */
     findXuatMuonHang(master_id: number): Observable<PhieuXuatMuonHang> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set('master_id', master_id.toString());
