@@ -6,6 +6,7 @@ export class PhieuDatHang {
     public nguoisua_hoten: string;
 
     public makhachhang: string;
+   
 
     public id: number;
     public chinhanh_id: number;
@@ -41,6 +42,13 @@ export class PhieuDatHang {
 
     public nocu: number = 0;
     public tenkhohang: string;
+    public ngayhengiao: string;
+
+    public nhanviensale_hoten: string;
+    public tongtien_bangchu: string;
+    public phieuin_thoigian: string;
+    public phieuin_nguoiin: string;
+    public ngaylapphieu: string;
 
     constructor(
         id: number = null,
@@ -54,7 +62,7 @@ export class PhieuDatHang {
         ids: number = null,
         sort: string = null,
         ngaydathang: Date = new Date(),
-        ngaygiaohang: Date = null,
+        ngaygiaohang: Date = new Date(),
         maphieudathang: string = null,
         nhanviensale_id: number = null,
         khachhang_id: number = null,
@@ -70,6 +78,8 @@ export class PhieuDatHang {
         trangthaigiao: string = null,
         phieudathang_chitiet: PhieuDatHang_ChiTiet[] = [],
         phieudathang_sanxuatchitiets: PhieuDatHang_SanXuatChiTiet[] = []
+
+
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -131,6 +141,7 @@ export class PhieuDatHang_ChiTiet {
     public tongm3: number = 0;
     public m3: number = 0;
     public soluongconlai: number = 0;
+    
 
     constructor(
         id: number = null,
@@ -225,6 +236,10 @@ export class PhieuDatHang_SanXuatChiTiet {
     public tongm3: number = 0;
     public m3: number = 0;
     public soluongconlai: number = 0;
+    public dongiavat: number;
+
+    public tensomat: string;
+    public tenkhohang: string;
 
     constructor(
         id: number = null,
