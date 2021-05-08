@@ -26,6 +26,7 @@ export class NhaCungCap {
     public tenchutaikhoan: string;
     public tennganhang: string;
     public nhomnhacungcap_id: number;
+    public tenrutgon: string;
 
     public nhacungcap_sotaikhoan: NhaCungCap_SoTaiKhoan[];
 
@@ -50,7 +51,8 @@ export class NhaCungCap {
         sotaikhoan: string = null,
         tenchutaikhoan: string = null,
         tennganhang: string = null,
-        nhomnhacungcap_id: number = null
+        nhomnhacungcap_id: number = null,
+        tenrutgon: string = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -71,6 +73,7 @@ export class NhaCungCap {
         this.tenchutaikhoan = tenchutaikhoan;
         this.tennganhang = tennganhang;
         this.nhomnhacungcap_id = nhomnhacungcap_id;
+        this.tenrutgon = tenrutgon;
     }
 }
 export class NhaCungCap_SoTaiKhoan {
