@@ -79,7 +79,7 @@ export class DinhMucComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.dinhmucService.findDinhMucs().subscribe(
+            this.dinhmucService.findDinhMucs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

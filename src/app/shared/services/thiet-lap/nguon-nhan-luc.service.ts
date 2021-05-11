@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NguonNhanLuc } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class NguonNhanLucService extends BaseService {
         return this.httpClient.get<NguonNhanLuc>(this.apiUrl + `/${id}`);
     }
 
-    findNguonNhanLucs(): Observable<NguonNhanLuc[]> {
-        return this.httpClient.get<NguonNhanLuc[]>(this.apiUrl);
+    findNguonNhanLucs(kichhoat: boolean = true): Observable<NguonNhanLuc[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<NguonNhanLuc[]>(this.apiUrl, { params: query_params });
     }
 
     addNguonNhanLuc(nguonnhanluc: NguonNhanLuc): Observable<NguonNhanLuc> {

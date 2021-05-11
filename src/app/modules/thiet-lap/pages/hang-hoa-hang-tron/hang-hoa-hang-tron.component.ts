@@ -79,7 +79,7 @@ export class HangHoaHangTronComponent implements OnInit, OnDestroy, AfterViewIni
 
     onLoadData() {
         this.subscriptions.add(
-            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_hangtron).subscribe(
+            this.hanghoaService.findHangHoas(this.appInfoService.loaihanghoa_hangtron, null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HangHoa } from '@app/shared/entities';
 
@@ -19,10 +19,16 @@ export class HangHoaService extends BaseService {
         return this.httpClient.get<HangHoa>(this.apiUrl + `/${id}`);
     }
 
-    findHangHoas(loaihanghoa: string = null): Observable<HangHoa[]> {
-        if(loaihanghoa)
-            return this.httpClient.get<HangHoa[]>(this.apiUrl + '?loaihanghoa=' + loaihanghoa);
-        return this.httpClient.get<HangHoa[]>(this.apiUrl);
+    findHangHoas(loaihanghoa: string = null,kichhoat: boolean = true): Observable<HangHoa[]> {
+        let query_params: HttpParams = new HttpParams();
+        if(loaihanghoa){
+            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+            query_params = query_params.set('loaihanghoa', loaihanghoa);
+            return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
+         }else{
+            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null); 
+            return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
+         }   
     }
 
     addHangHoa(hanghoa: HangHoa): Observable<HangHoa> {

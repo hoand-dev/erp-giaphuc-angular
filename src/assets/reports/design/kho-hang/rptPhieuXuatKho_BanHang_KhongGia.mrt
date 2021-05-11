@@ -203,7 +203,7 @@
               <VertAlignment>Bottom</VertAlignment>
             </Text4>
             <Image1 Ref="13" type="Image" isKey="true">
-              <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
+              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,2,1.8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -864,10 +864,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/1/2021 6:18:20 PM</ReportChanged>
+  <ReportChanged>5/10/2021 11:23:53 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_KhongGia.mrt</ReportFile>
-  <ReportGuid>7b3385452a6646b18f5870bba4e2b8da</ReportGuid>
+  <ReportGuid>1903b2ce4410466bbd77925131ca982a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

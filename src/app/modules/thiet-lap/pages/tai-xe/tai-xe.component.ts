@@ -76,7 +76,7 @@ export class TaiXeComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.taixeService.findTaiXes().subscribe(
+            this.taixeService.findTaiXes(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

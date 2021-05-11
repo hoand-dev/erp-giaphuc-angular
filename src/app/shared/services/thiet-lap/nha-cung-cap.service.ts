@@ -20,8 +20,10 @@ export class NhaCungCapService extends BaseService {
         return this.httpClient.get<NhaCungCap>(this.apiUrl + `/${id}`);
     }
 
-    findNhaCungCaps(): Observable<NhaCungCap[]> {
-        return this.httpClient.get<NhaCungCap[]>(this.apiUrl);
+    findNhaCungCaps(kichhoat: boolean = true): Observable<NhaCungCap[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<NhaCungCap[]>(this.apiUrl, { params: query_params });
     }
 
     findNhaCungCap_SoTaiKhoans( nhacungcap_id?:number): Observable<NhaCungCap_SoTaiKhoan[]>{

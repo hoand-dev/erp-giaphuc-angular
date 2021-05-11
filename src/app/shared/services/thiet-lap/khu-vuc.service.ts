@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { KhuVuc } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class KhuVucService extends BaseService {
         return this.httpClient.get<KhuVuc>(this.apiUrl + `/${id}`);
     }
 
-    findKhuVucs(): Observable<KhuVuc[]> {
-        return this.httpClient.get<KhuVuc[]>(this.apiUrl);
+    findKhuVucs(kichhoat: boolean = true): Observable<KhuVuc[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<KhuVuc[]>(this.apiUrl, { params: query_params });
     }
 
     addKhuVuc(khuvuc: KhuVuc): Observable<KhuVuc> {

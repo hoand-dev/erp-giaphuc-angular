@@ -19,10 +19,16 @@ export class NoiDungThuChiService extends BaseService {
         return this.httpClient.get<NoiDungThuChi>(this.apiUrl + `/${id}`);
     }
 
-    findNoiDungThuChis(loaithuchi: string = null): Observable<NoiDungThuChi[]> {
+    findNoiDungThuChis(loaithuchi: string = null,kichhoat: boolean = true): Observable<NoiDungThuChi[]> {
         let query_params: HttpParams = new HttpParams();
-        if(loaithuchi)
+        if(loaithuchi){
+            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
             query_params = query_params.set('loaithuchi', loaithuchi);
+            return this.httpClient.get<NoiDungThuChi[]>(this.apiUrl, { params: query_params });
+        }else{
+            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null); 
+            return this.httpClient.get<NoiDungThuChi[]>(this.apiUrl, { params: query_params });
+         }   
 
         return this.httpClient.get<NoiDungThuChi[]>(this.apiUrl, { params: query_params });
     }

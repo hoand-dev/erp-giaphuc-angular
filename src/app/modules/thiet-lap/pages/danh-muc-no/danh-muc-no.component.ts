@@ -79,7 +79,7 @@ export class DanhMucNoComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.danhmucnoService.findDanhMucNos().subscribe(
+            this.danhmucnoService.findDanhMucNos(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

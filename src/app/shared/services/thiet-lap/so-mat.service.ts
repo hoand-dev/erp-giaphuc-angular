@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SoMat } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class SoMatService extends BaseService {
         return this.httpClient.get<SoMat>(this.apiUrl + `/${id}`);
     }
 
-    findSoMats(): Observable<SoMat[]> {
-        return this.httpClient.get<SoMat[]>(this.apiUrl);
+    findSoMats(kichhoat: boolean = true): Observable<SoMat[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<SoMat[]>(this.apiUrl, { params: query_params });
     }
 
     addSoMat(somat: SoMat): Observable<SoMat> {

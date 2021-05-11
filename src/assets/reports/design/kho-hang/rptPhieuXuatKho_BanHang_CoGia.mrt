@@ -1055,7 +1055,7 @@
               <Name>Text44</Name>
               <Page isRef="7" />
               <Parent isRef="65" />
-              <Text>{rptPhieuXuatKho.tongthanhtien_bangchu} đồng.</Text>
+              <Text>{rptPhieuXuatKho.tongthanhtien_bangchu} đồng./</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -1088,10 +1088,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/1/2021 6:17:08 PM</ReportChanged>
+  <ReportChanged>5/10/2021 11:24:15 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_BanHang_CoGia.mrt</ReportFile>
-  <ReportGuid>a5e6a53cea4d42f080ca5a1a5346d0b3</ReportGuid>
+  <ReportGuid>64a7af4054044ae4bcab3c3c85fb3abc</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
