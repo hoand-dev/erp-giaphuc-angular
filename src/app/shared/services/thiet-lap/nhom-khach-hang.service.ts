@@ -1,9 +1,8 @@
 import { NhomKhachHang } from './../../entities/thiet-lap/nhom-khach-hang';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { not } from '@angular/compiler/src/output/output_ast';
 import { environment } from '@environments/environment';
-import { constructor } from 'jquery';
 import { Observable } from 'rxjs';
 import { BaseService } from '..';
 
@@ -20,12 +19,10 @@ export class NhomKhachHangService extends BaseService {
     return this.httpClient.get<NhomKhachHang>(this.apiUrl + `/${id}`);
   }
 
-  findNhomKhachHangs(notAuth: boolean = false): Observable<NhomKhachHang[]>{
-    if(notAuth) {
-      var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True'});
-      return this.httpClient.get<any>(this.apiUrl + `/not-auth`,{headers: reqHeader});
-    }
-    return this.httpClient.get<NhomKhachHang[]>(this.apiUrl);
+  findNhomKhachHangs(kichhoat: boolean = true): Observable<NhomKhachHang[]>{
+    let query_params: HttpParams = new HttpParams();
+    query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+    return this.httpClient.get<NhomKhachHang[]>(this.apiUrl, { params: query_params });
   }
 
   addNhomKhachHang(nhomkhachhang: NhomKhachHang): Observable<NhomKhachHang> {

@@ -67,7 +67,7 @@ export class NhaCungCapComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.nhacungcapService.findNhaCungCaps().subscribe(
+            this.nhacungcapService.findNhaCungCaps(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

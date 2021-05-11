@@ -79,7 +79,7 @@ export class NguonNhanLucComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.nguonnhanlucService.findNguonNhanLucs().subscribe(
+            this.nguonnhanlucService.findNguonNhanLucs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

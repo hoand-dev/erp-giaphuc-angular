@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DanhMucGiaCong } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class DanhMucGiaCongService extends BaseService {
         return this.httpClient.get<DanhMucGiaCong>(this.apiUrl + `/${id}`);
     }
 
-    findDanhMucGiaCongs(): Observable<DanhMucGiaCong[]> {
-        return this.httpClient.get<DanhMucGiaCong[]>(this.apiUrl);
+    findDanhMucGiaCongs(kichhoat: boolean = true): Observable<DanhMucGiaCong[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<DanhMucGiaCong[]>(this.apiUrl, { params: query_params });
     }
 
     addDanhMucGiaCong(danhmucgiacong: DanhMucGiaCong): Observable<DanhMucGiaCong> {

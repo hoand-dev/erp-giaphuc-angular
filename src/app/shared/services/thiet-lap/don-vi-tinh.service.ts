@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DonViTinh } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class DonViTinhService extends BaseService {
         return this.httpClient.get<DonViTinh>(this.apiUrl + `/${id}`);
     }
 
-    findDonViTinhs(): Observable<DonViTinh[]> {
-        return this.httpClient.get<DonViTinh[]>(this.apiUrl);
+    findDonViTinhs(kichhoat: boolean = true): Observable<DonViTinh[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<DonViTinh[]>(this.apiUrl, { params: query_params });
     }
 
     addDonViTinh(donvitinh: DonViTinh): Observable<DonViTinh> {

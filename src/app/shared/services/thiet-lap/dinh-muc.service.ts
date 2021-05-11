@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DinhMuc } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class DinhMucService extends BaseService {
         return this.httpClient.get<DinhMuc>(this.apiUrl + `/${id}`);
     }
 
-    findDinhMucs(): Observable<DinhMuc[]> {
-        return this.httpClient.get<DinhMuc[]>(this.apiUrl);
+    findDinhMucs(kichhoat: boolean = true): Observable<DinhMuc[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<DinhMuc[]>(this.apiUrl, { params: query_params });
     }
 
     addDinhMuc(dinhmuc: DinhMuc): Observable<DinhMuc> {
