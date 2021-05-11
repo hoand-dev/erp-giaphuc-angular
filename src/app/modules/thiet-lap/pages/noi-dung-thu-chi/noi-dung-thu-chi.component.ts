@@ -79,7 +79,7 @@ export class NoiDungThuChiComponent implements OnInit, OnDestroy, AfterViewInit 
 
     onLoadData() {
         this.subscriptions.add(
-            this.noidungthuchiService.findNoiDungThuChis(null).subscribe(
+            this.noidungthuchiService.findNoiDungThuChis(null, null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },
