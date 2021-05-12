@@ -40,7 +40,7 @@
 
                 <!-- <dxi-column dataField="khoxuat" caption="Kho xuất"></dxi-column>
                 <dxi-column dataField="khogiacong" caption="Kho gia công"></dxi-column> -->
-                <dxi-column dataField="khonhap" caption="Kho thành phẩm"></dxi-column>
+                <!-- <dxi-column dataField="khonhap" caption="Kho thành phẩm"></dxi-column> -->
 
                 <dxi-column dataField="tenhanghoa" caption="Hàng hoá"></dxi-column>
                 <dxi-column dataField="tenyeucau" caption="Yêu cầu"></dxi-column>
@@ -50,8 +50,8 @@
 
                 <dxi-column dataField="trangthaiyeucau" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
                     <div *dxTemplate="let data of 'cellTemplateTrangThai'">
-                        <span class="text-green" *ngIf="data.value == null">Chưa yêu cầu</span>
-                        <span class="text-red" *ngIf="data.value != null">{{ data.value }}</span>
+                        <span class="text-red" *ngIf="data.value == null || data.value == 'Chưa lên kế hoạch'">Chưa lên kế hoạch</span>
+                        <span class="text-warning" *ngIf="data.value != null && data.value != 'Chưa lên kế hoạch'">{{ data.value }}</span>
                     </div>
                 </dxi-column>
 
@@ -75,6 +75,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="onConfirm()">Lên lịch sản xuất</button>
+    <button type="button" class="btn btn-success" (click)="onConfirm('capnhat')">Bổ sung</button>
+    <button type="button" class="btn btn-success" (click)="onConfirm()">Tạo mới</button>
     <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
 </div>

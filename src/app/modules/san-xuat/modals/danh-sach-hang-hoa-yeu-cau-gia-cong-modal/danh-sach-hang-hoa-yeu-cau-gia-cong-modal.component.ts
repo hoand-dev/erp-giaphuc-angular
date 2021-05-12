@@ -57,7 +57,7 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
         this.subscriptions.add(
             this.objPhieuDatHangService.findHangHoaDatHangs(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data;
+                    this.dataGrid.dataSource = data.filter(x => x.trangthaiyeucau != ETrangThaiPhieu.dalenkehoach);
                 },
                 (error) => {
                     this.objPhieuDatHangService.handleError(error);
@@ -79,9 +79,9 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
         this.selectedItemKeys = data.selectedRowKeys;
     }
 
-    public onConfirm(): void {
-        this.onClose.next(<HangHoaDatHang[]>this.selectedItemKeys);
+    public onConfirm(action: string = null): void {
         this.bsModalRef.hide();
+        this.onClose.next({ action: action, data: <HangHoaDatHang[]>this.selectedItemKeys });
     }
 
     public onCancel(): void {
