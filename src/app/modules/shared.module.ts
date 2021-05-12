@@ -25,6 +25,7 @@ import {
     DxLoadPanelModule
 } from 'devextreme-angular';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @NgModule({
@@ -51,7 +52,8 @@ import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
         DxScrollViewModule,
         DxListModule,
         DxLoadPanelModule,
-        MatTabsModule
+        MatTabsModule,
+        DragDropModule
     ],
     exports: [
         SumTotalPipe,
@@ -76,7 +78,8 @@ import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
         DxScrollViewModule,
         DxListModule,
         DxLoadPanelModule,
-        MatTabsModule
+        MatTabsModule,
+        DragDropModule
     ]
 })
 export class SharedModule {}
