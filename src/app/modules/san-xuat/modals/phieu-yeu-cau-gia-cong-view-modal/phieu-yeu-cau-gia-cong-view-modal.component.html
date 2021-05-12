@@ -59,7 +59,22 @@
                         ></dxi-item>
 
                         <dxi-item [colSpan]="2" [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuyeucaugiacong" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
-                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item
+                            [colSpan]="3"
+                            [label]="{ text: 'KHO HÀNG TRƠN' }"
+                            dataField="khoxuat_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhoHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhohang', 'makhohang'],
+                                displayExpr: 'tenkhohang',
+                                readOnly: true
+                            }"
+                        >
+                        </dxi-item>
                         <dxi-item
                             [colSpan]="2"
                             [label]="{ text: 'NGUYÊN LIỆU' }"
