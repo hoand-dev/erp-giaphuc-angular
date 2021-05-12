@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title" [style.margin-bottom.px]="20">
-                            <h5>{{ 'Phiếu đặt hàng' | uppercase }} - THÊM MỚI</h5>
+                            <h5>{{ 'Phiếu đặt hàng' | uppercase }} - CẬP NHẬT</h5>
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
@@ -85,12 +85,12 @@
                                         <dxi-validation-rule type="required" message="Vui lòng chọn nhân viên kinh doanh"></dxi-validation-rule>
                                     </dxi-item>
                                     <!-- <dxi-item [label]="{ text: 'TỔNG TIỀN HÀNG' }" editorType="dxNumberBox" dataField="tongtienhang" [editorOptions]="{ readOnly: true, format: '#,##0' }"> </dxi-item> -->
-                                    <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0', valueChangeEvent: 'input', readOnly: isTatToan }"> </dxi-item>
+                                    <!-- <dxi-item [label]="{ text: 'CK' }" dataField="chietkhau" [editorOptions]="{ format: '#0.##%', step: '0', valueChangeEvent: 'input', readOnly: isTatToan }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'VAT' }" dataField="thuevat" [editorOptions]="{ format: '#0.##%', step: '0', valueChangeEvent: 'input', readOnly: isTatToan }"> </dxi-item>
                                     <dxi-item [label]="{ text: 'TỔNG THÀNH TIỀN' }" editorType="dxNumberBox" dataField="tongthanhtien" [editorOptions]="{ readOnly: true, format: '#,##0' }">
-                                    </dxi-item>
+                                    </dxi-item> -->
 
-                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="6"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="3"></dxi-item>
                                     <dxi-item [colSpan]="6" *ngIf="isValidForm">
                                         <mat-tab-group mat-align-tabs="start" [style.margin-top.px]="10">
                                             <!-- <mat-tab label="HÀNG CÓ SẴN">
@@ -236,19 +236,19 @@
                                                         <thead>
                                                             <tr>
                                                                 <th [style.min-width.px]="25">STT</th>
-                                                                <th [style.min-width.px]="250">KHO XUẤT</th>
+                                                                <!-- <th [style.min-width.px]="250">KHO XUẤT</th> -->
                                                                 <th [style.min-width.px]="500">HÀNG HOÁ</th>
-                                                                <th [style.min-width.px]="250">KHO GIA CÔNG</th>
-                                                                <th [style.min-width.px]="250">KHO NHẬP TP</th>
+                                                                <!-- <th [style.min-width.px]="250">KHO GIA CÔNG</th> -->
+                                                                <!-- <th [style.min-width.px]="250">KHO NHẬP TP</th> -->
                                                                 <th [style.min-width.px]="250">Y/C</th>
                                                                 <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
                                                                 <th [style.min-width.px]="110">SỐ MẶT TP</th>
                                                                 <th [style.min-width.px]="80">SL Y/C</th>
                                                                 <th *ngIf="isTatToan" [style.min-width.px]="100">TẤT TOÁN</th>
-                                                                <th [style.min-width.px]="120">ĐƠN GIÁ BÁN</th>
+                                                                <!-- <th [style.min-width.px]="120">ĐƠN GIÁ BÁN</th>
                                                                 <th [style.min-width.px]="75">CK</th>
                                                                 <th [style.min-width.px]="75">VAT</th>
-                                                                <th [style.min-width.px]="120">THÀNH TIỀN</th>
+                                                                <th [style.min-width.px]="120">THÀNH TIỀN</th> -->
                                                                 <th [style.min-width.px]="250">GHI CHÚ</th>
                                                                 <th [style.min-width.px]="300">THÀNH PHẨM</th>
                                                                 <th [style.max-width.px]="20">
@@ -259,7 +259,7 @@
                                                         <tbody>
                                                             <tr *ngFor="let item of hanghoas_sanxuat; index as i">
                                                                 <td>{{ i + 1 }}</td>
-                                                                <td>
+                                                                <!-- <td>
                                                                     <dx-select-box
                                                                         [readOnly]="isTatToan || i != 0"
                                                                         id="khoxuat_row_{{ i }}"
@@ -274,7 +274,7 @@
                                                                         [minSearchLength]="0"
                                                                     >
                                                                     </dx-select-box>
-                                                                </td>
+                                                                </td> -->
                                                                 <td>
                                                                     <dx-select-box
                                                                         [readOnly]="isTatToan"
@@ -299,7 +299,7 @@
                                                                         </div>
                                                                     </dx-select-box>
                                                                 </td>
-                                                                <td>
+                                                                <!-- <td>
                                                                     <dx-select-box
                                                                         [readOnly]="isTatToan || i != 0"
                                                                         id="khogiacong_row_{{ i }}"
@@ -314,8 +314,8 @@
                                                                         [minSearchLength]="0"
                                                                     >
                                                                     </dx-select-box>
-                                                                </td>
-                                                                <td>
+                                                                </td> -->
+                                                                <!-- <td>
                                                                     <dx-select-box
                                                                         [readOnly]="isTatToan || i != 0"
                                                                         id="khonhap_row_{{ i }}"
@@ -330,7 +330,7 @@
                                                                         [minSearchLength]="0"
                                                                     >
                                                                     </dx-select-box>
-                                                                </td>
+                                                                </td> -->
                                                                 <td>
                                                                     <dx-tag-box
                                                                         [readOnly]="isTatToan"
@@ -403,7 +403,7 @@
                                                                         (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
-                                                                <td>
+                                                                <!-- <td>
                                                                     <dx-number-box
                                                                         [step]="0"
                                                                         [readOnly]="isTatToan"
@@ -437,7 +437,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
-                                                                </td>
+                                                                </td> -->
                                                                <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                                 <td> {{ item.tenthanhpham }} </td>
                                                                 <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item, 'sanxuat')"></i></td>
@@ -446,19 +446,19 @@
                                                         <tfoot>
                                                             <tr>
                                                                 <th [style.min-width.px]="25"></th>
-                                                                <th [style.min-width.px]="250">TỔNG CỘNG:</th>
-                                                                <th [style.min-width.px]="500"></th>
-                                                                <th [style.min-width.px]="250"></th>
-                                                                <th [style.min-width.px]="250"></th>
+                                                                <!-- <th [style.min-width.px]="250"></th> -->
+                                                                <th [style.min-width.px]="500">TỔNG CỘNG:</th>
+                                                                <!-- <th [style.min-width.px]="250"></th> -->
+                                                                <!-- <th [style.min-width.px]="250"></th> -->
                                                                 <th [style.min-width.px]="250"></th>
                                                                 <th [style.min-width.px]="110"></th>
                                                                 <th [style.min-width.px]="110"></th>
                                                                 <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'soluong') | number: '1.0-3' }}</th>
                                                                 <th *ngIf="isTatToan" [style.min-width.px]="100">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'soluongtattoan') | number: '1.0-3' }}</th>
-                                                                <th [style.min-width.px]="120"></th>
+                                                                <!-- <th [style.min-width.px]="120"></th>
                                                                 <th [style.min-width.px]="75"></th>
                                                                 <th [style.min-width.px]="75"></th>
-                                                                <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'thanhtien') | number: '1.0-3' }}</th>
+                                                                <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'thanhtien') | number: '1.0-3' }}</th> -->
                                                                 <th [style.min-width.px]="250"></th>
                                                                 <th [style.min-width.px]="300"></th>
                                                                 <th [style.max-width.px]="20">
@@ -479,10 +479,10 @@
                                                                 <th [style.min-width.px]="250">KHO NHẬP TP</th>
                                                                 <th [style.min-width.px]="80">SL</th>
                                                                 <th *ngIf="isTatToan" [style.min-width.px]="100">TẤT TOÁN</th>
-                                                                <th [style.min-width.px]="120">ĐƠN GIÁ BÁN</th>
+                                                                <!-- <th [style.min-width.px]="120">ĐƠN GIÁ BÁN</th>
                                                                 <th [style.min-width.px]="75">CK</th>
                                                                 <th [style.min-width.px]="75">VAT</th>
-                                                                <th [style.min-width.px]="120">THÀNH TIỀN</th>
+                                                                <th [style.min-width.px]="120">THÀNH TIỀN</th> -->
                                                                 <!-- <th [style.max-width.px]="20">
                                                                     <i class="gg-btn gg-add btn-primary"></i>
                                                                 </th> -->
@@ -550,7 +550,7 @@
                                                                         (onValueChanged)="onHangHoaChangeRow('soluongtattoan', i, $event)"
                                                                     ></dx-number-box>
                                                                 </td>
-                                                                <td>
+                                                                <!-- <td>
                                                                     <dx-number-box
                                                                         [step]="0"
                                                                         [readOnly]="true"
@@ -584,8 +584,8 @@
                                                                 </td>
                                                                 <td>
                                                                     <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
-                                                                </td>
-                                                                <td><!-- <i class="gg-btn gg-remove" (click)="onHangHoaDelete(item, 'thanhpham')"></i> --></td>
+                                                                </td> -->
+                                                                <!-- <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item, 'thanhpham')"></i></td> -->
                                                             </tr>
                                                         </tbody>
                                                         <tfoot>
@@ -593,12 +593,12 @@
                                                                 <th [style.min-width.px]="25"></th>
                                                                 <th [style.min-width.px]="500">TỔNG CỘNG:</th>
                                                                 <th [style.min-width.px]="250"></th>
-                                                                <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'soluong') | number: '1.0-3' }}</th>
-                                                                <th *ngIf="isTatToan" [style.min-width.px]="100">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'soluongtattoan') | number: '1.0-3' }}</th>
-                                                                <th [style.min-width.px]="120"></th>
+                                                                <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas_thanhpham, 'soluong') | number: '1.0-3' }}</th>
+                                                                <th *ngIf="isTatToan" [style.min-width.px]="100">{{ this.sumTotal.transform(this.hanghoas_thanhpham, 'soluongtattoan') | number: '1.0-3' }}</th>
+                                                                <!-- <th [style.min-width.px]="120"></th>
                                                                 <th [style.min-width.px]="75"></th>
                                                                 <th [style.min-width.px]="75"></th>
-                                                                <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas_sanxuat, 'thanhtien') | number: '1.0-3' }}</th>
+                                                                <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas_thanhpham, 'thanhtien') | number: '1.0-3' }}</th> -->
                                                                 <!-- <th [style.max-width.px]="20">
                                                                     <i class="gg-btn gg-add btn-primary"></i>
                                                                 </th> -->
