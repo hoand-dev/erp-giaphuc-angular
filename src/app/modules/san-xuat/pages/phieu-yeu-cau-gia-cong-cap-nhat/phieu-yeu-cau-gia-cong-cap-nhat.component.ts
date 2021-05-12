@@ -10,6 +10,7 @@ import {
     DinhMucService,
     DonViGiaCongService,
     HangHoaService,
+    KhachHangService,
     KhoHangService,
     PhieuYeuCauGiaCongService,
     RouteInterceptorService,
@@ -40,6 +41,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_KhachHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -49,6 +51,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
     public lstSoMat: SoMat[];
+    public lstKhachHang: KhachHang[] = [];
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
@@ -76,6 +79,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
 
         private phieuyeucaugiacongService: PhieuYeuCauGiaCongService,
         private donvigiacongService: DonViGiaCongService,
+        private khachhangService: KhachHangService,
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private giacongService: DinhMucService,
@@ -135,6 +139,19 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
             this.somatService.findSoMats().subscribe((x) => {
                 this.lstSoMat = x;
                 this.dataSource_SoMat = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
+
+                this.dataSource_KhachHang = new DataSource({
                     store: x,
                     paginate: true,
                     pageSize: 50
