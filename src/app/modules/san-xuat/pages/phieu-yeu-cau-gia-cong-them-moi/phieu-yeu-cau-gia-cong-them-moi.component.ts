@@ -10,6 +10,7 @@ import {
     DinhMucService,
     DonViGiaCongService,
     HangHoaService,
+    KhachHangService,
     KhoHangService,
     PhieuYeuCauGiaCongService,
     RouteInterceptorService,
@@ -24,6 +25,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { DanhSachHangHoaYeuCauGiaCongModalComponent } from '../../modals';
+
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong-them-moi',
@@ -43,6 +46,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_KhachHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -53,6 +57,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     public lstSoMat: SoMat[];
 
     public lstDonViGiaCong: DonViGiaCong[];
+    public lstKhachHang: KhachHang[] = [];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
@@ -84,6 +89,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
         private phieuyeucaugiacongService: PhieuYeuCauGiaCongService,
         private donvigiacongService: DonViGiaCongService,
+        private khachhangService: KhachHangService,
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private giacongService: DinhMucService,
@@ -152,6 +158,19 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
             })
         );
 
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
+
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
         this.dataSource_HangHoa = new DataSource({
             paginate: true,
             pageSize: 50,
@@ -202,6 +221,10 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    drop(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
+    }
+
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -215,8 +238,15 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
             if (result) {
-                this.hanghoas = <PhieuYeuCauGiaCongCT[]>[];
-                let res: HangHoaDatHang[] = result;
+                let res: HangHoaDatHang[] = [];
+                if(result.action == 'capnhat'){
+                    // chỉ lấy những hàng hoá nào chưa được chọn trước đó
+                    res = result.data.filter(o=> !this.hanghoas.some(i=> i.phieudathang_chitiet_id === o.id));
+                }
+                else{
+                    this.hanghoas = <PhieuYeuCauGiaCongCT[]>[];
+                    res = result.data;
+                }
 
                 this.hanghoalenght = res.length;
                 this.hanghoalenght_yeucau = res.length;
@@ -231,7 +261,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                     item.tenthanhpham = x.tenthanhpham;
                     item.khogiacong_id = x.khogiacong_id;
                     item.loaihanghoa = x.loaihanghoa;
-                    item.thanhpham_id = x.thanhpham_id;
+                    item.thanhpham_id = null; //x.thanhpham_id; // cho tạo lại thành phẩm
                     item.hanghoa_id = x.hanghoa_id;
                     item.dvt_id = x.dvt_id;
                     item.tilequydoi = x.tilequydoi;
@@ -239,14 +269,15 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                     item.somat_thanhpham_id = x.somat_thanhpham_id;
                     item.soluong = x.soluong - x.soluongtattoan - x.soluongdayeucau;
                     item.phieudathang_chitiet_id = x.id;
-                    item.xuatnguyenlieu = true;
+                    item.khachhang_id = x.khachhang_id;
+
+                    item.khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
+                    item.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
+                    item.xuatnguyenlieu = this.phieuyeucaugiacong.xuatnguyenlieu;
+
                     // add arr hanghoas
                     this.hanghoas.push(item);
                 });
-
-                let donvigiacong = this.lstDonViGiaCong.find((x) => x.khogiacong_id == res[0].khogiacong_id);
-                this.phieuyeucaugiacong.donvigiacong_id = donvigiacong ? donvigiacong.id : null;
-                //this.phieuyeucaugiacong.khogiacong_id = donvigiacong ? donvigiacong.khogiacong_id : null;
             }
         });
     }
@@ -287,6 +318,12 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                 v.khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
             });
         }
+        
+        if (e.dataField == 'khoxuat_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
+            });
+        }
 
         if (e.dataField == 'xuatnguyenlieu' && e.value !== undefined) {
             this.hanghoas.forEach((v, i) => {
@@ -323,6 +360,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         }
         else {
             this.hanghoas[index].khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
+            this.hanghoas[index].khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
             this.hanghoas[index].xuatnguyenlieu = this.phieuyeucaugiacong.xuatnguyenlieu;
             this.hanghoas[index].dvt_id = selected.dvt_id;
 
