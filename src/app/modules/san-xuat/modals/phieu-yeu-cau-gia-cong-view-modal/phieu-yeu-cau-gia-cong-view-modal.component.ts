@@ -10,6 +10,7 @@ import {
     DinhMucService,
     DonViGiaCongService,
     HangHoaService,
+    KhachHangService,
     KhoHangService,
     LichSuService,
     PhieuYeuCauGiaCongService,
@@ -50,6 +51,7 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_KhachHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -59,6 +61,7 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
     public lstSoMat: SoMat[];
+    public lstKhachHang: KhachHang[] = [];
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
@@ -76,6 +79,7 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
 
         private phieuyeucaugiacongService: PhieuYeuCauGiaCongService,
         private donvigiacongService: DonViGiaCongService,
+        private khachhangService: KhachHangService,
         private giacongService: DinhMucService,
         private somatService: SoMatService,
         private khohangService: KhoHangService,
@@ -139,7 +143,20 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
                 });
             })
         );
+        
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
 
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+        
         this.dataSource_HangHoa = new DataSource({
             paginate: true,
             pageSize: 50,
