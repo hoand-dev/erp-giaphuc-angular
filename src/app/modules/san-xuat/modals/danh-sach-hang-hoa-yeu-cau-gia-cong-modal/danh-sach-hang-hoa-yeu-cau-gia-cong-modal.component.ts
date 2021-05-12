@@ -20,6 +20,7 @@ export class DanhSachHangHoaYeuCauGiaCongModalComponent implements OnInit {
     public title: string;
     public closeBtnName: string;
 
+    isupdate: boolean = false;
     selectedItemKeys: any[] = [];
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
