@@ -73,7 +73,7 @@ export class NguoiDungComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.nguoidungService.findNguoiDungs().subscribe(
+            this.nguoidungService.findNguoiDungs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

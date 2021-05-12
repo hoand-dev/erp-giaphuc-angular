@@ -79,7 +79,7 @@ export class SoMatComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.somatService.findSoMats().subscribe(
+            this.somatService.findSoMats(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

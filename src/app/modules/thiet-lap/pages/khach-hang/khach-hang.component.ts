@@ -82,7 +82,7 @@ export class KhachHangComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.khachhangService.findKhachHangs().subscribe(
+            this.khachhangService.findKhachHangs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

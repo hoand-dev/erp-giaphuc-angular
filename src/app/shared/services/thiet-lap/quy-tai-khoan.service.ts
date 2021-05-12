@@ -19,10 +19,11 @@ export class QuyTaiKhoanService extends BaseService {
         return this.httpClient.get<QuyTaiKhoan>(this.apiUrl + `/${id}`);
     }
 
-    findQuyTaiKhoans(chinhanh_id ? : number): Observable<QuyTaiKhoan[]> {
+    findQuyTaiKhoans(chinhanh_id ? : number,kichhoat: boolean = true): Observable<QuyTaiKhoan[]> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set("chinhanh_id", chinhanh_id ? chinhanh_id.toString() : null);
-        
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+
         return this.httpClient.get<QuyTaiKhoan[]>(this.apiUrl, { params: query_params });
     }
 

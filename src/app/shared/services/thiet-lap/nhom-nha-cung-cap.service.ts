@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { NhomNhaCungCap } from './../../entities/thiet-lap/nhom-nha-cung-cap';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { BaseService } from '..';
 
@@ -18,8 +18,10 @@ export class NhomNhaCungCapService extends BaseService {
     return  this.httpClient.get<NhomNhaCungCap>(this.apiUrl + `/${id}`);
   }
 
-  findNhomNhaCungCaps(noAuth: boolean =false): Observable<NhomNhaCungCap[]>{
-    return this.httpClient.get<NhomNhaCungCap[]>(this.apiUrl );
+  findNhomNhaCungCaps(kichhoat: boolean = true): Observable<NhomNhaCungCap[]>{
+    let query_params: HttpParams = new HttpParams();
+    query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+    return this.httpClient.get<NhomNhaCungCap[]>(this.apiUrl, { params: query_params })
   }
 
   addNhomNhaCungCap(nhomnhacungcap: NhomNhaCungCap): Observable<NhomNhaCungCap>{

@@ -30,6 +30,7 @@ import {
 } from './modals';
 import { PhieuBanHangViewModalComponent } from './modals/phieu-ban-hang-view-modal/phieu-ban-hang-view-modal.component';
 import { PhieuKhachTraHangViewModalComponent } from './modals/phieu-khach-tra-hang-view-modal/phieu-khach-tra-hang-view-modal.component';
+import { PhieuKhachDatHangViewModalComponent } from './modals/phieu-khach-dat-hang-view-modal/phieu-khach-dat-hang-view-modal.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { PhieuKhachTraHangViewModalComponent } from './modals/phieu-khach-tra-ha
         PhieuKhachDatHangInPhieuModalComponent,
         PhieuBanHangInPhieuComponent,
         PhieuBanHangViewModalComponent,
-        PhieuKhachTraHangViewModalComponent
+        PhieuKhachTraHangViewModalComponent,
+        PhieuKhachDatHangViewModalComponent
     ],
     imports: [CommonModule, SharedModule, BanHangRoutingModule]
 })

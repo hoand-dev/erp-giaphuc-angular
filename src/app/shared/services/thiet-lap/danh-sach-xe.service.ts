@@ -1,7 +1,7 @@
 import { BaseService } from './../base-service';
 import { DanhSachXe } from './../../entities/thiet-lap/danh-sach-xe';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@environments/environment';
 
 import { Injectable } from '@angular/core';
@@ -18,8 +18,10 @@ export class DanhSachXeService extends BaseService {
     findDanhSachXe (id:number) :Observable<DanhSachXe>{
         return this.httpClient.get<DanhSachXe>(this.apiUrl +`/${id}`);
     }
-    findDanhSachXes(): Observable<DanhSachXe[]>{
-        return this.httpClient.get<DanhSachXe[]>(this.apiUrl);
+    findDanhSachXes(kichhoat: boolean = true): Observable<DanhSachXe[]>{
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<DanhSachXe[]>(this.apiUrl, { params: query_params });
     }
 
     addDanhSachXe(danhsachxe: DanhSachXe): Observable<DanhSachXe>{

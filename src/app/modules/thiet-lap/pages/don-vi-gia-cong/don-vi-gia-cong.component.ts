@@ -91,7 +91,7 @@ export class DonViGiaCongComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe(
+            this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id, null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

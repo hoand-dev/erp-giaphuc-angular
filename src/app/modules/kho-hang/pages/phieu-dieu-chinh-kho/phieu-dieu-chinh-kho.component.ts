@@ -110,7 +110,33 @@ export class PhieuDieuChinhKhoComponent implements OnInit, OnDestroy, AfterViewI
                         /* Khởi tạo gia trị modal */
                         const initialState = {
                             title: ' IN PHIẾU ĐIỀU CHỈNH KHO',
-                            phieudieuchinhkho_id: rowData.id
+                            phieudieuchinhkho_id: rowData.id,
+                            loaiphieuin: 'kho'
+                        };
+
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuDieuChinhKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = ' Đóng';
+                    }
+                },
+                {
+                    text: 'In Phiếu Nhập Kho Gửi Hàng',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuDieuChinhKho = e.row.key as PhieuDieuChinhKho;
+
+                        /* Khởi tạo gia trị modal */
+                        const initialState = {
+                            title: ' IN PHIẾU ĐIỀU CHỈNH - NHẬP KHO',
+                            phieudieuchinhkho_id: rowData.id,
+                            loaiphieuin: 'kh'
                         };
 
                         /* Hiển thị modal */

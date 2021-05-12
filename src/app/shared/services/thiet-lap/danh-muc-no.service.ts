@@ -1,5 +1,5 @@
 import { BaseService } from '@app/shared/services';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DanhMucNo } from '@app/shared/entities';
 
@@ -19,8 +19,10 @@ export class DanhMucNoService extends BaseService {
         return this.httpClient.get<DanhMucNo>(this.apiUrl + `/${id}`);
     }
 
-    findDanhMucNos(): Observable<DanhMucNo[]> {
-        return this.httpClient.get<DanhMucNo[]>(this.apiUrl);
+    findDanhMucNos(kichhoat: boolean = true): Observable<DanhMucNo[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<DanhMucNo[]>(this.apiUrl, { params: query_params });
     }
 
     addDanhMucNo(danhmucno: DanhMucNo): Observable<DanhMucNo> {

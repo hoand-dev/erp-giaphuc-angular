@@ -19,9 +19,10 @@ export class DonViGiaCongService extends BaseService {
         return this.httpClient.get<DonViGiaCong>(this.apiUrl + `/${id}`);
     }
 
-    findDonViGiaCongs(chinhanh_id: number = null): Observable<DonViGiaCong[]> {
+    findDonViGiaCongs(chinhanh_id: number = null, kichhoat: boolean = true): Observable<DonViGiaCong[]> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set('chinhanh_id', chinhanh_id ? chinhanh_id.toString():null);
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
         return this.httpClient.get<DonViGiaCong[]>(this.apiUrl, {params: query_params});
     }
 

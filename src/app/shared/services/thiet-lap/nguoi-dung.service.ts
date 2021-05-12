@@ -29,8 +29,10 @@ export class NguoiDungService extends BaseService {
         return this.httpClient.get<NguoiDung>(this.apiUrl + `/${id}`);
     }
 
-    findNguoiDungs(): Observable<NguoiDung[]> {
-        return this.httpClient.get<NguoiDung[]>(this.apiUrl);
+    findNguoiDungs(kichhoat: boolean = true): Observable<NguoiDung[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        return this.httpClient.get<NguoiDung[]>(this.apiUrl, { params: query_params });
     }
 
     

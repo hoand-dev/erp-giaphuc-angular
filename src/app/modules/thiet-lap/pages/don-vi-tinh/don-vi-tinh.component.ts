@@ -79,7 +79,7 @@ export class DonViTinhComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.donvitinhService.findDonViTinhs().subscribe(
+            this.donvitinhService.findDonViTinhs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

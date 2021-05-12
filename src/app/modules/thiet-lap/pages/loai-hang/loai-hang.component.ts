@@ -71,7 +71,7 @@ export class LoaiHangComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.loaihangService.findLoaiHangs().subscribe(
+            this.loaihangService.findLoaiHangs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

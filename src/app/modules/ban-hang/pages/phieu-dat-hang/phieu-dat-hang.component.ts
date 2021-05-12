@@ -1,13 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { PhieuDatHang } from '@app/shared/entities';
 import { AppInfoService, CommonService, PhieuDatHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription, Subject } from 'rxjs';
+import { PhieuKhachDatHangInPhieuModalComponent } from '../../modals';
 
 @Component({
     selector: 'app-phieu-dat-hang',
@@ -35,6 +38,8 @@ export class PhieuDatHangComponent implements OnInit {
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
+    public bsModalRef: BsModalRef;
+
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - PHIẾU KHÁCH ĐẶT HÀNG - ' + moment().format('DD_MM_YYYY');
 
@@ -50,7 +55,8 @@ export class PhieuDatHangComponent implements OnInit {
         private router: Router,
         private commonService: CommonService,
         private objPhieuDatHangService: PhieuDatHangService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private modalService: BsModalService
     ) {
         this.titleService.setTitle('PHIẾU KHÁCH ĐẶT HÀNG | ' + this.appInfoService.appName);
     }
@@ -117,10 +123,69 @@ export class PhieuDatHangComponent implements OnInit {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            if (!e.items) e.items = [];
+
+            e.items.push(
+                // {
+                //     text: 'Xem lại',
+                //     icon: 'rename',
+                //     visible: true,
+                //     onItemClick: () => {
+                //         let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
+                //         this.openViewModal(rowData);
+                //     }
+                // },
+                {
+                    text: 'In phiếu đặt hàng',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuDatHang = e.row.key as PhieuDatHang;
+
+                        /*Khởi tạo giá trị modal */
+                        const initialState = {
+                            title: 'PHIẾU ĐẶT HÀNG SẢN XUẤT',
+                            phieudathang_id: rowData.id,
+                        };
+                        /* Hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuKhachDatHangInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = ' Đóng';
+                    }
+                }
+            );
+        }
+    }
+
+    // openViewModal(rowData: PhieuBanHang) {
+    //     /* khởi tạo giá trị cho modal */
+    //     const initialState = {
+    //         title: 'THÔNG TIN PHIẾU BÁN HÀNG',
+    //         isView: 'xemphieu',
+    //         phieubanhang_id: rowData.id
+    //     };
+
+    //     /* hiển thị modal */
+    //     this.bsModalRef = this.modalService.show(PhieuBanHangViewModalComponent, {
+    //         class: 'modal-xxl modal-dialog-centered',
+    //         ignoreBackdropClick: false,
+    //         keyboard: false,
+    //         initialState
+    //     });
+    //     this.bsModalRef.content.closeBtnName = 'Đóng';
+    // }
+
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
         console.log(`objPhieuDatHang_id: ${e.key.id}`);
     }
+
 
     onRowDelete(id) {
         let result = confirm('<i>Bạn có muốn xóa phiếu này?</i>', 'Xác nhận xóa');

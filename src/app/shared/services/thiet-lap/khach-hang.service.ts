@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { KhachHang } from '@app/shared/entities';
 import { environment } from '@environments/environment';
@@ -17,8 +17,10 @@ export class KhachHangService  extends BaseService {
     return this.httpClient.get<KhachHang>(this.apiUrl +`/${id}`);
   }
 
-  findKhachHangs(): Observable<KhachHang[]>{
-    return  this.httpClient.get<KhachHang[]>(this.apiUrl);
+  findKhachHangs(kichhoat: boolean = true): Observable<KhachHang[]>{
+    let query_params: HttpParams = new HttpParams();
+    query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+    return this.httpClient.get<KhachHang[]>(this.apiUrl, { params: query_params });
   }
   
   addKhachHang(khachhang: KhachHang): Observable<KhachHang>{
