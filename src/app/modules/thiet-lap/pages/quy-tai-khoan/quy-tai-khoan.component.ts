@@ -94,7 +94,7 @@ export class QuyTaiKhoanComponent implements OnInit, OnDestroy, AfterViewInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.quytaikhoanService.findQuyTaiKhoans(this.currChiNhanh.id).subscribe(
+            this.quytaikhoanService.findQuyTaiKhoans(this.currChiNhanh.id, null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

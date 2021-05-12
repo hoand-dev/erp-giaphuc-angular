@@ -97,7 +97,7 @@ export class KhoHangComponent implements OnInit, OnDestroy, AfterViewInit {
     onLoadData(chinhanh_id: number = null) {
         chinhanh_id = chinhanh_id == null ? this.currChiNhanh.id : chinhanh_id;
         this.subscriptions.add(
-            this.khohangService.findKhoHangs(chinhanh_id).subscribe(
+            this.khohangService.findKhoHangs(chinhanh_id, null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

@@ -79,7 +79,7 @@ export class DanhMucTieuChuanComponent implements OnInit, OnDestroy, AfterViewIn
 
     onLoadData() {
         this.subscriptions.add(
-            this.danhmuctieuchuanService.findDanhMucTieuChuans().subscribe(
+            this.danhmuctieuchuanService.findDanhMucTieuChuans(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

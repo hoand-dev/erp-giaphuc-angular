@@ -39,9 +39,13 @@
                                         <dxi-validation-rule type="required" message="Nhập tên khách hàng"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Tên khách hàng quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
+                                  
                                     <dxi-item [label]="{ text: 'SĐT' }" dataField="sodienthoai">
                                         <dxi-validation-rule type="required" message="Vui lòng nhập SĐT"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="9" [max]="50" message="Số điện thoại không đúng định dạng"></dxi-validation-rule>
+                                    </dxi-item>
+                                    <dxi-item [label]="{ text: ' TÊN RÚT GỌN' }" dataField="tenrutgon">
+                                        <dxi-validation-rule type="async" message="Mã đã tồn tại" [validationCallback]="theCallBackValid"></dxi-validation-rule>
                                     </dxi-item>
 
                                     <dxi-item [label]="{ text: 'EMAIL' }" dataField="email">
@@ -49,7 +53,7 @@
                                         <dxi-validation-rule type="email" message="Email không đúng định dạng"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'MÃ SỐ THUẾ' }" dataField="masothue"></dxi-item>
-                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi" [colSpan]="2"></dxi-item>
+                                    <dxi-item [label]="{ text: 'ĐỊA CHỈ' }" dataField="diachi"></dxi-item>
 
                                     <dxi-item [label]="{ text: 'SỐ TÀI KHOẢN' }" dataField="sotaikhoan"></dxi-item>
                                     <dxi-item [label]="{ text: 'NGÂN HÀNG' }" dataField="tennganhang"></dxi-item>

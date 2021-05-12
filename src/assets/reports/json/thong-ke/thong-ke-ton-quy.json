@@ -22,6 +22,7 @@
         "nocuoiky_bangchu": null,
         "inphieu_hoten"   : null,
         "inphieu_thoigian": null
+
     },
     "rptThongKeTonQuy_ChiTiet": [
         {
@@ -41,7 +42,8 @@
             "luytien"       : null,
             "phieuquery"    : null,
             "nguoinopnhan"  : null,
-            "tenquy"        : null
+            "tenquy"        : null,     
+            "tenrutgon"     : null
         }
     ]
 }

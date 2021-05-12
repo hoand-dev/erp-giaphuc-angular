@@ -72,7 +72,7 @@ export class KhuVucComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.khuvucService.findKhuVucs().subscribe(
+            this.khuvucService.findKhuVucs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

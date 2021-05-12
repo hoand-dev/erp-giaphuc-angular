@@ -254,7 +254,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>1.6,3.4,18.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,12</Font>
+              <Font>Times New Roman,11</Font>
               <Guid>ae082411f8ba41589268323e3143772e</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
@@ -1094,9 +1094,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>4/3/2021 3:42:20 PM</ReportChanged>
+  <ReportChanged>5/6/2021 4:12:39 PM</ReportChanged>
   <ReportCreated>2/23/2021 1:19:53 PM</ReportCreated>
-  <ReportGuid>63ed06900dfd46ffb85263440febf9dd</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_1.mrt</ReportFile>
+  <ReportGuid>e097ad9270df4da5baad42ce4fa1adb1</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

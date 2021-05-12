@@ -31,6 +31,7 @@ export class KhachHang {
     public chucvu: string;
     public email: string;
     public tennganhang: string;
+    public tenrutgon: string;
 
     public tennhomkhachhang: string;
     public tenkhuvuc: string;
@@ -59,7 +60,8 @@ export class KhachHang {
         nguoidaidien: string = null,
         chucvu: string = null,
         email: string = null,
-        tennganhang: string = null
+        tennganhang: string = null,
+        tenrutgon: string = null
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -85,5 +87,6 @@ export class KhachHang {
         this.chucvu = chucvu;
         this.email = email;
         this.tennganhang = tennganhang;
+        this.tenrutgon = tenrutgon;
     }
 }

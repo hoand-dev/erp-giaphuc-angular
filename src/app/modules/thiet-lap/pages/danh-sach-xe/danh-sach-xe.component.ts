@@ -78,7 +78,7 @@ export class DanhSachXeComponent implements OnInit {
 
     onLoadData() {
         this.subscriptions.add(
-            this.danhsachxeService.findDanhSachXes().subscribe(
+            this.danhsachxeService.findDanhSachXes(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },

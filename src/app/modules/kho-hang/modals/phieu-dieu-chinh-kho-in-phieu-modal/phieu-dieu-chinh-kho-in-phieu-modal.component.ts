@@ -27,6 +27,8 @@ export class PhieuDieuChinhKhoInPhieuModalComponent implements OnInit {
 
     private currentUser: User;
     public phieudieuchinhkho_id: number;
+    
+    public loaiphieuin: string = 'kh';
 
     constructor(
         public bsModalRef: BsModalRef,
@@ -56,7 +58,13 @@ export class PhieuDieuChinhKhoInPhieuModalComponent implements OnInit {
                 (data) => {
                     /*khởi tạo report*/
                     let report = new Stimulsoft.Report.StiReport();
-                    report.loadFile('assets/reports/design/kho-hang/rptPhieuDieuChinhKho.mrt');
+
+                    if(this.loaiphieuin =='kho'){
+                        report.loadFile('assets/reports/design/kho-hang/rptPhieuDieuChinhKho.mrt');
+                    }
+                    if(this.loaiphieuin =='kh'){
+                        report.loadFile('assets/reports/design/kho-hang/rptPhieuDieuChinhKho_KhachGui.mrt');
+                    }
 
                     /*Xóa dữ liệu trên cache trước khi in */
                     report.dictionary.databases.clear();

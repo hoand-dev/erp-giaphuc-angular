@@ -72,7 +72,7 @@ export class NhomKhachHangComponent implements OnInit {
 
     onLoadData(): void {
         this.subscriptions.add(
-            this.nhomkhachhangService.findNhomKhachHangs().subscribe(
+            this.nhomkhachhangService.findNhomKhachHangs(null).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },
