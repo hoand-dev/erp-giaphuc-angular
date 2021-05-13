@@ -1,0 +1,18 @@
+{
+    "rptPhieuXuatKhoGiaCong": {
+        "ngaylapphieu"    : null,
+        "tenkhoxuat"      : null,
+        "tendonvigiacong" : null,
+        "inphieu_thoigian": null,
+        "inphieu_hoten"   : null
+    },
+
+    "rptPhieuXuatKhoGiaCong_ChiTiet": [
+        {
+            "tenhanghoa"  : null,
+            "tendonvitinh": null,
+            "soluong"     : null,
+            "chuthich"    : null
+        }
+    ]
+}
