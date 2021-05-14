@@ -38,5 +38,9 @@ export enum ETrangThaiPhieu {
     
     chuagiao   = "Chưa giao"  ,
     danggiao   = "Đang giao"  ,
-    dagiao     = "Đã giao"
+    dagiao     = "Đã giao"    ,
+
+    chualenkehoach = "Chưa lên kế hoạch",
+    danglenkehoach = "Đang lên kế hoạch",
+    dalenkehoach   = "Đã lên kế hoạch"  ,
 }

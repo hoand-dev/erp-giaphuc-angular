@@ -766,8 +766,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>f18467aa7b074199a0c4092a02222194</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -784,7 +784,7 @@
               <Font>Times New Roman,9</Font>
               <Guid>40625a8cffd64e47be68b12ac13ebdde</Guid>
               <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>0,3,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -835,8 +835,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>0f541e3216964c1b8116c4743be13e5a</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text37</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -852,8 +852,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>da0604c02f5a4e81a8a430580e3c3e6b</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text40</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -902,8 +902,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>9905e57562d8437ab5da1ec10fc787d9</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text48</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -933,7 +933,7 @@
               <Font>Times New Roman,9</Font>
               <Guid>393d1c73a9f04cb580a3b3db177c579e</Guid>
               <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>0,3,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -949,7 +949,7 @@
               <Font>Times New Roman,9</Font>
               <Guid>2cc0497512464d29a2d80133ee8d294f</Guid>
               <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>0,3,0,0</Margins>
               <Name>Text62</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -965,7 +965,7 @@
               <Font>Times New Roman,9</Font>
               <Guid>060f230d58fe4cc79875754548013302</Guid>
               <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <Margins>0,3,0,0</Margins>
               <Name>Text65</Name>
               <Page isRef="2" />
               <Parent isRef="48" />
@@ -1021,9 +1021,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/30/2021 10:50:15 AM</ReportChanged>
+  <ReportChanged>5/14/2021 7:36:08 AM</ReportChanged>
   <ReportCreated>1/12/2021 8:40:10 AM</ReportCreated>
-  <ReportGuid>38cc0ae7f59848979e92739d32a378b8</ReportGuid>
+  <ReportGuid>51d58b0ec15a48a88a33b470ff919aaa</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

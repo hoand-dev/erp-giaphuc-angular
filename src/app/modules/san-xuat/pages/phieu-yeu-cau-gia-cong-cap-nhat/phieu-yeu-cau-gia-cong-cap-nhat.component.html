@@ -28,8 +28,11 @@
                                 <div class="col-md-9">
                                     <h5>{{ 'Phiếu yêu cầu gia công' + (this.loaiphieu == 'taikho' ? ' TẠI KHO' : ' NGOÀI') | uppercase }} - {{ 'Cập nhật' | uppercase }}</h5>
                                 </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block float-right" (click)="clickLayGia()">LẤY GIÁ</button>
+                                <div class="col-md-3" *ngIf="!isTatToan">
+                                    <button type="button" class="btn btn-sm btn-danger float-right ml-1" (click)="clickLayGia()">
+                                        <i class="fa fa-download"></i> LẤY GIÁ
+                                    </button>
+                                    <button *ngIf="loaiphieu == 'taikho'" type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()">TỪ ĐƠN ĐẶT HÀNG</button>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +96,22 @@
                                         dataField="maphieuyeucaugiacong"
                                         [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"
                                     ></dxi-item>
-                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+                                    <dxi-item
+                                        [colSpan]="3"
+                                        [label]="{ text: 'KHO HÀNG TRƠN' }"
+                                        dataField="khoxuat_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhoHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang',
+                                            readOnly: true
+                                        }"
+                                    >
+                                    </dxi-item>
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'NGUYÊN LIỆU' }"
@@ -108,8 +126,10 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
+                                                        <th *ngIf="!isTatToan" [style.min-width.px]="25"></th>
                                                         <th [style.min-width.px]="25">STT</th>
-                                                        <th [style.min-width.px]="500">HÀNG HOÁ</th>
+                                                        <th [style.min-width.px]="250">KHÁCH HÀNG</th>
+                                                        <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="250">Y/C</th>
                                                         <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
                                                         <th [style.min-width.px]="80">HỆ SỐ</th>
@@ -120,15 +140,38 @@
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ VỐN</th>
                                                         <th [style.min-width.px]="120">PHÍ G/C</th>
+                                                        <th [style.min-width.px]="145">NGÀY NHẬN</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
-                                                        <th [style.max-width.px]="20" *ngIf="!isTatToan">
+                                                        <th [style.max-width.px]="40" *ngIf="!isTatToan">
                                                             <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{ i + 1 }}</td>
+                                                <tbody (cdkDropListDropped)="drop($event)" cdkDropList class="drag-list">
+                                                    <tr *ngFor="let item of hanghoas; index as i" cdkDrag class="drag-box">
+                                                        <td *ngIf="!isTatToan" [style.min-width.px]="25" cdkDragHandle class="drag-handle">
+                                                            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                            </svg>
+                                                        </td>
+                                                        <td [style.min-width.px]="25">{{ i + 1 }}</td>
+                                                        <td>
+                                                            <dx-select-box
+                                                                id="somat_row_{{ i }}"
+                                                                [(value)]="item.khachhang_id"
+                                                                [dataSource]="dataSource_KhachHang"
+                                                                [displayExpr]="'tenkhachhang'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['makhachhang', 'tenkhachhang']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                                [readOnly]="true"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
                                                         <td>
                                                             <dx-select-box
                                                                 [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
@@ -151,9 +194,9 @@
                                                             </dx-select-box>
                                                         </td>
 
-                                                        <td>
+                                                        <td><!-- [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)" -->
                                                             <dx-tag-box
-                                                                [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
+                                                                
                                                                 id="yeucaus_row_{{ i }}"
                                                                 [(value)]="item.arr_yeucaus"
                                                                 [dataSource]="dataSource_GiaCong"
@@ -196,9 +239,9 @@
                                                             ></dx-number-box>
                                                         </td>
 
-                                                        <td>
+                                                        <td><!-- [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)" -->
                                                             <dx-select-box
-                                                                [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
+                                                                
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.somat_thanhpham_id"
                                                                 [dataSource]="dataSource_SoMat"
@@ -260,14 +303,19 @@
                                                         <td>
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                                         </td>
+                                                        <td>
+                                                            <dx-date-box type="date" [(value)]="item.ngaynhanhang"></dx-date-box>
+                                                        </td>
                                                        <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td *ngIf="!isTatToan"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
+                                                        <th *ngIf="!isTatToan" [style.min-width.px]="25"></th>
                                                         <th [style.min-width.px]="25"></th>
-                                                        <th [style.min-width.px]="500">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.min-width.px]="110"></th>
                                                         <th [style.min-width.px]="80"></th>
@@ -278,8 +326,9 @@
                                                         <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="145"></th>
                                                         <th [style.min-width.px]="250"></th>
-                                                        <th [style.max-width.px]="20">
+                                                        <th *ngIf="!isTatToan" [style.max-width.px]="40">
                                                             <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
                                                         </th>
                                                     </tr>

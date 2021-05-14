@@ -10,6 +10,7 @@ import {
     DinhMucService,
     DonViGiaCongService,
     HangHoaService,
+    KhachHangService,
     KhoHangService,
     PhieuYeuCauGiaCongService,
     RouteInterceptorService,
@@ -24,6 +25,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { DanhSachHangHoaYeuCauGiaCongModalComponent } from '../../modals';
+
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong-them-moi',
@@ -43,6 +46,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_KhachHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -53,13 +57,17 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     public lstSoMat: SoMat[];
 
     public lstDonViGiaCong: DonViGiaCong[];
+    public lstKhachHang: KhachHang[] = [];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
 
-    // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu mua hàng
+    // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu
     private hanghoalenght: number = 0;
+    private hanghoalenght_yeucau: number = 0;
+    private hanghoalenght_somat: number = 0;
+    private hanghoalenght_somat_thanhpham: number = 0;
 
     // kiểm tra nhấn lấy giá chưa
     private isClicked_LayGia: boolean = false;
@@ -81,6 +89,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
         private phieuyeucaugiacongService: PhieuYeuCauGiaCongService,
         private donvigiacongService: DonViGiaCongService,
+        private khachhangService: KhachHangService,
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private giacongService: DinhMucService,
@@ -149,6 +158,19 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
             })
         );
 
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
+
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
         this.dataSource_HangHoa = new DataSource({
             paginate: true,
             pageSize: 50,
@@ -199,6 +221,10 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    drop(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
+    }
+
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -211,34 +237,48 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
-            if(result){
-                this.hanghoas = <PhieuYeuCauGiaCongCT[]> [];
-                let res: HangHoaDatHang[] = result;
-                res.forEach(x => {
+            if (result) {
+                let res: HangHoaDatHang[] = [];
+                if(result.action == 'capnhat'){
+                    // chỉ lấy những hàng hoá nào chưa được chọn trước đó
+                    res = result.data.filter(o=> !this.hanghoas.some(i=> i.phieudathang_chitiet_id === o.id));
+                }
+                else{
+                    this.hanghoas = <PhieuYeuCauGiaCongCT[]>[];
+                    res = result.data;
+                }
+
+                this.hanghoalenght = res.length;
+                this.hanghoalenght_yeucau = res.length;
+                this.hanghoalenght_somat = res.length;
+                this.hanghoalenght_somat_thanhpham = res.length;
+
+                res.forEach((x) => {
                     let item: PhieuYeuCauGiaCongCT = new PhieuYeuCauGiaCongCT();
-                    item.yeucaus                 = x.yeucaus                                       ;
-                    item.arr_yeucaus             = JSON.parse(x.yeucaus)                           ;
-                    item.mathanhpham             = x.mathanhpham                                   ;
-                    item.tenthanhpham            = x.tenthanhpham                                  ;
-                    item.khogiacong_id           = x.khogiacong_id                                 ;
-                    item.loaihanghoa             = x.loaihanghoa                                   ;
-                    item.thanhpham_id            = x.thanhpham_id                                  ;
-                    item.hanghoa_id              = x.hanghoa_id                                    ;
-                    item.dvt_id                  = x.dvt_id                                        ;
-                    item.tilequydoi              = x.tilequydoi                                    ;
-                    item.somat_id                = x.somat_id                                      ;
-                    item.somat_thanhpham_id      = x.somat_thanhpham_id                            ;
-                    item.soluong                 = x.soluong - x.soluongtattoan - x.soluongdayeucau;
-                    item.phieudathang_chitiet_id = x.id                                            ;
-                    item.xuatnguyenlieu          = true                                            ;
+                    item.yeucaus = x.yeucaus;
+                    item.arr_yeucaus = JSON.parse(x.yeucaus);
+                    item.mathanhpham = x.mathanhpham;
+                    item.tenthanhpham = x.tenthanhpham;
+                    item.khogiacong_id = x.khogiacong_id;
+                    item.loaihanghoa = x.loaihanghoa;
+                    item.thanhpham_id = null; //x.thanhpham_id; // cho tạo lại thành phẩm
+                    item.hanghoa_id = x.hanghoa_id;
+                    item.dvt_id = x.dvt_id;
+                    item.tilequydoi = x.tilequydoi;
+                    item.somat_id = x.somat_id;
+                    item.somat_thanhpham_id = x.somat_thanhpham_id;
+                    item.soluong = x.soluong - x.soluongtattoan - x.soluongdayeucau;
+                    item.phieudathang_chitiet_id = x.id;
+                    item.khachhang_id = x.khachhang_id;
+
+                    item.khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
+                    item.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
+                    item.xuatnguyenlieu = this.phieuyeucaugiacong.xuatnguyenlieu;
+
                     // add arr hanghoas
                     this.hanghoas.push(item);
                 });
-
-                let donvigiacong = this.lstDonViGiaCong.find((x) => x.khogiacong_id == res[0].khogiacong_id);
-                this.phieuyeucaugiacong.donvigiacong_id = donvigiacong ? donvigiacong.id : null;
-                //this.phieuyeucaugiacong.khogiacong_id = donvigiacong ? donvigiacong.khogiacong_id : null;
-            }            
+            }
         });
     }
 
@@ -278,6 +318,12 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                 v.khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
             });
         }
+        
+        if (e.dataField == 'khoxuat_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
+            });
+        }
 
         if (e.dataField == 'xuatnguyenlieu' && e.value !== undefined) {
             this.hanghoas.forEach((v, i) => {
@@ -308,10 +354,17 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         // xử lý lại thông tin dựa trên lựa chọn
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
-        } else {
+            this.hanghoas[index].arr_yeucaus = JSON.parse(this.hanghoas[index].yeucaus);
+            this.hanghoalenght_yeucau = this.hanghoas[index].arr_yeucaus.length;
+            this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
+        }
+        else {
             this.hanghoas[index].khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
+            this.hanghoas[index].khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
             this.hanghoas[index].xuatnguyenlieu = this.phieuyeucaugiacong.xuatnguyenlieu;
             this.hanghoas[index].dvt_id = selected.dvt_id;
+
+            this.onTaoThanhPham(index);
         }
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
@@ -320,8 +373,6 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-
-        this.onTaoThanhPham(index);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
@@ -332,14 +383,18 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     onYeuCauChanged(index, e) {
         this.isClicked_LayGia = false;
-        this.onTaoThanhPham(index);
+        if (this.hanghoalenght_yeucau > 0) {
+            this.hanghoalenght_yeucau--;
+        }
+        else this.onTaoThanhPham(index);
     }
 
     onSoMatYeuCauChanged(index, e) {
         let selected = e.selectedItem;
-        if (this.hanghoalenght > 0) {
-            this.hanghoalenght--;
-        } else {
+        if (this.hanghoalenght_somat > 0) {
+            this.hanghoalenght_somat--;
+        }
+        else {
             // gán số mặt cho thành phẩm
             this.hanghoas[index].somat_thanhpham_id = selected.id;
 
@@ -350,16 +405,17 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
 
     onSoMatThanhPhamChanged(index, e) {
         let selected = e.selectedItem;
-        if (this.hanghoalenght > 0) {
-            this.hanghoalenght--;
-        } else {
+        if (this.hanghoalenght_somat_thanhpham > 0) {
+            this.hanghoalenght_somat_thanhpham--;
+        }
+        else {
             /* tạo lại mã mới cho thành phẩm */
             this.onTaoThanhPham(index);
         }
     }
 
     onTaoThanhPham(index) {
-        if (this.hanghoas[index].hanghoa_id != null) {
+        if (this.hanghoas[index].hanghoa_id != null && this.hanghoalenght == 0) {
             let somat = this.lstSoMat.find((x) => x.id == this.hanghoas[index].somat_thanhpham_id);
             let masomat: string = somat != null ? somat.masomat.toString().trim() : '';
             let tensomat: string = somat != null ? somat.tensomat.toString().trim() : '';
@@ -418,9 +474,9 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         let tongtienhang: number = 0;
         this.hanghoas.forEach((v, i) => {
             v.tongtrongluong = v.soluong * v.trongluong;
-            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
-            v.tongm3         = v.soluong * v.m3;
-            v.soluongconlai  = v.soluong - v.soluongdanhap - v.soluongtattoan;
+            v.tongkien = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3 = v.soluong * v.m3;
+            v.soluongconlai = v.soluong - v.soluongdanhap - v.soluongtattoan;
 
             v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia * v.heso;
             tongtienhang += v.thanhtien;

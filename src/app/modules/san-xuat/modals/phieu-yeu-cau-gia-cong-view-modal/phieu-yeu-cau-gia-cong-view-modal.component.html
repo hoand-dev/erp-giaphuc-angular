@@ -59,7 +59,22 @@
                         ></dxi-item>
 
                         <dxi-item [colSpan]="2" [label]="{ text: 'MÃ PHIẾU' }" dataField="maphieuyeucaugiacong" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
-                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5" [editorOptions]="{ readOnly: true }"></dxi-item>
+                        <dxi-item
+                            [colSpan]="3"
+                            [label]="{ text: 'KHO HÀNG TRƠN' }"
+                            dataField="khoxuat_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhoHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhohang', 'makhohang'],
+                                displayExpr: 'tenkhohang',
+                                readOnly: true
+                            }"
+                        >
+                        </dxi-item>
                         <dxi-item
                             [colSpan]="2"
                             [label]="{ text: 'NGUYÊN LIỆU' }"
@@ -75,7 +90,8 @@
                                     <thead>
                                         <tr>
                                             <th [style.min-width.px]="25">STT</th>
-                                            <th [style.min-width.px]="500">HÀNG HOÁ</th>
+                                            <th [style.min-width.px]="250">KHÁCH HÀNG</th>
+                                            <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                             <th [style.min-width.px]="250">Y/C</th>
                                             <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
                                             <th [style.min-width.px]="80">HỆ SỐ</th>
@@ -86,6 +102,7 @@
                                             <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                             <th [style.min-width.px]="120">ĐƠN GIÁ VỐN</th>
                                             <th [style.min-width.px]="120">PHÍ G/C</th>
+                                            <th [style.min-width.px]="145">NGÀY NHẬN</th>
                                             <th [style.min-width.px]="250">GHI CHÚ</th>
                                             <!-- <th [style.max-width.px]="20" *ngIf="!isTatToan">
                                                 <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
@@ -95,6 +112,22 @@
                                     <tbody>
                                         <tr *ngFor="let item of hanghoas; index as i">
                                             <td>{{ i + 1 }}</td>
+                                            <td>
+                                                <dx-select-box
+                                                    id="somat_row_{{ i }}"
+                                                    [(value)]="item.khachhang_id"
+                                                    [dataSource]="dataSource_KhachHang"
+                                                    [displayExpr]="'tenkhachhang'"
+                                                    [valueExpr]="'id'"
+                                                    [searchMode]="'contains'"
+                                                    [searchExpr]="['makhachhang', 'tenkhachhang']"
+                                                    [searchTimeout]="500"
+                                                    [searchEnabled]="true"
+                                                    [minSearchLength]="0"
+                                                    [readOnly]="true"
+                                                >
+                                                </dx-select-box>
+                                            </td>
                                             <td>
                                                 <dx-select-box
                                                     [readOnly]="isTatToan || (item.phieudathang_chitiet_id ? true : false)"
@@ -227,6 +260,9 @@
                                             <td>
                                                 <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                             </td>
+                                            <td>
+                                                <dx-date-box type="date" [(value)]="item.ngaynhanhang" [readOnly]="true"></dx-date-box>
+                                            </td>
                                             <td><dx-text-box [(value)]="item.chuthich" [readOnly]="true"></dx-text-box></td>
                                             <!-- <td *ngIf="!isTatToan"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td> -->
                                         </tr>
@@ -234,7 +270,8 @@
                                     <tfoot>
                                         <tr>
                                             <th [style.min-width.px]="25"></th>
-                                            <th [style.min-width.px]="500">TỔNG CỘNG:</th>
+                                            <th [style.min-width.px]="250"></th>
+                                            <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                             <th [style.min-width.px]="250"></th>
                                             <th [style.min-width.px]="110"></th>
                                             <th [style.min-width.px]="80"></th>
@@ -245,6 +282,7 @@
                                             <th [style.min-width.px]="120"></th>
                                             <th [style.min-width.px]="120"></th>
                                             <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
+                                            <th [style.min-width.px]="145"></th>
                                             <th [style.min-width.px]="250"></th>
                                             <!-- <th [style.max-width.px]="20">
                                                 <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>

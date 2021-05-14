@@ -30,6 +30,7 @@ export class PhieuYeuCauGiaCong {
     public maphieuyeucaugiacong: string;
     public donvigiacong_id: number;
     public khogiacong_id: number;
+    public khoxuat_id: number;
     public tongthanhtien: number;
     public trangthainhap: string;
     public loaiphieu: string;
@@ -50,6 +51,7 @@ export class PhieuYeuCauGiaCong {
         maphieuyeucaugiacong: string = null,
         donvigiacong_id: number = null,
         khogiacong_id: number = null,
+        khoxuat_id: number = null,
         tongthanhtien: number = 0,
         trangthainhap: string = null,
         loaiphieu: string = null,
@@ -71,6 +73,7 @@ export class PhieuYeuCauGiaCong {
         this.maphieuyeucaugiacong = maphieuyeucaugiacong;
         this.donvigiacong_id = donvigiacong_id;
         this.khogiacong_id = khogiacong_id;
+        this.khoxuat_id = khoxuat_id;
         this.tongthanhtien = tongthanhtien;
         this.trangthainhap = trangthainhap;
         this.loaiphieu = loaiphieu;
@@ -97,6 +100,7 @@ export class PhieuYeuCauGiaCongCT {
     public id: number;
     public phieuyeucaugiacong_id: number;
     public khogiacong_id: number;
+    public khoxuat_id: number;
     public loaihanghoa: string;
     public thanhpham_id: number;
     public hanghoa_id: number;
@@ -118,6 +122,7 @@ export class PhieuYeuCauGiaCongCT {
     public phieudathang_chitiet_id: number;
     public xuatnguyenlieu: boolean;
     public khachhang_id: number;
+    public ngaynhanhang: Date;
 
     public tongtrongluong: number = 0;
     public tongkien: number = 0;
@@ -129,6 +134,7 @@ export class PhieuYeuCauGiaCongCT {
         id: number = null,
         phieuyeucaugiacong_id: number = null,
         khogiacong_id: number = null,
+        khoxuat_id: number = null,
         loaihanghoa: string = null,
         thanhpham_id: number = null,
         hanghoa_id: number = null,
@@ -155,6 +161,7 @@ export class PhieuYeuCauGiaCongCT {
         this.id = id;
         this.phieuyeucaugiacong_id = phieuyeucaugiacong_id;
         this.khogiacong_id = khogiacong_id;
+        this.khoxuat_id = khoxuat_id;
         this.loaihanghoa = loaihanghoa;
         this.thanhpham_id = thanhpham_id;
         this.hanghoa_id = hanghoa_id;
@@ -177,5 +184,8 @@ export class PhieuYeuCauGiaCongCT {
         this.yeucaus = yeucaus;
         this.arr_yeucaus = arr_yeucaus;
         this.phieudathang_chitiet_id = phieudathang_chitiet_id;
+
+        this.khachhang_id = null;
+        this.ngaynhanhang = null;
     }
 }

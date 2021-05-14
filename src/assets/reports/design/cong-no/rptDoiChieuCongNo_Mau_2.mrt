@@ -565,8 +565,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>b376c0824b9441cea78a2a13687d5f10</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="7" />
               <Parent isRef="33" />
@@ -588,8 +588,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>d8a2194ac4e1468badcee541fae1ce32</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="7" />
               <Parent isRef="33" />
@@ -660,8 +660,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>256473885ff448f98b2d5660575703ad</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text47</Name>
               <Page isRef="7" />
               <Parent isRef="44" />
@@ -683,8 +683,8 @@
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>51e82698e48742cbb2d0da24afd00bef</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text48</Name>
               <Page isRef="7" />
               <Parent isRef="44" />
@@ -912,10 +912,9 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/6/2021 4:13:09 PM</ReportChanged>
+  <ReportChanged>5/14/2021 7:32:47 AM</ReportChanged>
   <ReportCreated>2/23/2021 1:32:41 PM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_2.mrt</ReportFile>
-  <ReportGuid>f8efdcf9e46c49fc953788c22ae6e170</ReportGuid>
+  <ReportGuid>6d704216366d4933899666b062a5609f</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

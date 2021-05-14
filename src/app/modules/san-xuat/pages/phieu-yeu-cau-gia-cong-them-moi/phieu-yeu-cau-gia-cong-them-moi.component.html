@@ -89,7 +89,21 @@
                                         dataField="maphieuyeucaugiacong"
                                         [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"
                                     ></dxi-item>
-                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8"></dxi-item>
+                                    <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+                                    <dxi-item
+                                        [colSpan]="3"
+                                        [label]="{ text: 'KHO HÀNG TRƠN' }"
+                                        dataField="khoxuat_id"
+                                        editorType="dxSelectBox"
+                                        [editorOptions]="{
+                                            dataSource: dataSource_KhoHang,
+                                            valueExpr: 'id',
+                                            searchEnabled: true,
+                                            searchExpr: ['tenkhohang', 'makhohang'],
+                                            displayExpr: 'tenkhohang'
+                                        }"
+                                    >
+                                    </dxi-item>
                                     <dxi-item
                                         [colSpan]="2"
                                         [label]="{ text: 'NGUYÊN LIỆU' }"
@@ -104,8 +118,10 @@
                                             <table class="table table-vertical table-hover mt-4">
                                                 <thead>
                                                     <tr>
+                                                        <th [style.min-width.px]="25"></th>
                                                         <th [style.min-width.px]="25">STT</th>
-                                                        <th [style.min-width.px]="500">HÀNG HOÁ</th>
+                                                        <th [style.min-width.px]="250">KHÁCH HÀNG</th>
+                                                        <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="250">Y/C</th>
                                                         <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
                                                         <th [style.min-width.px]="80">HỆ SỐ</th>
@@ -115,16 +131,39 @@
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ VỐN</th>
                                                         <th [style.min-width.px]="120">PHÍ G/C</th>
+                                                        <th [style.min-width.px]="145">NGÀY NHẬN</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
-                                                        <th [style.max-width.px]="20">
+                                                        <th [style.max-width.px]="40">
                                                             <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let item of hanghoas; index as i">
-                                                        <td>{{ i + 1 }}</td>
+                                                <tbody (cdkDropListDropped)="drop($event)" cdkDropList class="drag-list">
+                                                    <tr *ngFor="let item of hanghoas; index as i" cdkDrag class="drag-box">
+                                                        <td [style.min-width.px]="25" cdkDragHandle class="drag-handle">
+                                                            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                            </svg>
+                                                        </td>
+                                                        <td [style.min-width.px]="25">{{ i + 1 }}</td>
                                                         <td>
+                                                            <dx-select-box
+                                                                id="somat_row_{{ i }}"
+                                                                [(value)]="item.khachhang_id"
+                                                                [dataSource]="dataSource_KhachHang"
+                                                                [displayExpr]="'tenkhachhang'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['makhachhang', 'tenkhachhang']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                                [readOnly]="true"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
+                                                        <td [style.min-width.px]="400">
                                                             <dx-select-box
                                                                 [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
                                                                 id="hanghoa_row_{{ i }}"
@@ -146,9 +185,9 @@
                                                             </dx-select-box>
                                                         </td>
 
-                                                        <td>
+                                                        <td [style.min-width.px]="250"><!-- [readOnly]="(item.phieudathang_chitiet_id ? true : false)" -->
                                                             <dx-tag-box
-                                                                [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
+                                                                
                                                                 id="yeucaus_row_{{ i }}"
                                                                 [(value)]="item.arr_yeucaus"
                                                                 [dataSource]="dataSource_GiaCong"
@@ -163,7 +202,7 @@
                                                             </dx-tag-box>
                                                         </td>
 
-                                                        <td>
+                                                        <td [style.min-width.px]="110">
                                                             <dx-select-box
                                                                 [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
                                                                 id="somat_row_{{ i }}"
@@ -180,13 +219,13 @@
                                                             >
                                                             </dx-select-box>
                                                         </td>
-                                                        <td>
+                                                        <td [style.min-width.px]="80">
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.heso" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"></dx-number-box>
                                                         </td>
 
-                                                        <td>
+                                                        <td [style.min-width.px]="110"><!-- [readOnly]="(item.phieudathang_chitiet_id ? true : false)" -->
                                                             <dx-select-box
-                                                                [readOnly]="(item.phieudathang_chitiet_id ? true : false)"
+                                                                
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.somat_thanhpham_id"
                                                                 [dataSource]="dataSource_SoMat"
@@ -201,30 +240,35 @@
                                                             >
                                                             </dx-select-box>
                                                         </td>
-                                                        <td>
+                                                        <td [style.min-width.px]="300">
                                                             {{ item.tenthanhpham }}
                                                         </td>
 
-                                                        <td>
+                                                        <td [style.min-width.px]="80">
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
-                                                        <td>
+                                                        <td [style.min-width.px]="120">
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
-                                                        <td>
+                                                        <td [style.min-width.px]="120">
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongiavon" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
                                                         </td>
-                                                        <td>
+                                                        <td [style.min-width.px]="120">
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                                         </td>
-                                                       <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
-                                                        <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
+                                                        <td>
+                                                            <dx-date-box type="date" [(value)]="item.ngaynhanhang"></dx-date-box>
+                                                        </td>
+                                                        <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
+                                                        <td [style.max-width.px]="20"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th [style.min-width.px]="25"></th>
-                                                        <th [style.min-width.px]="500">TỔNG CỘNG:</th>
+                                                        <th [style.min-width.px]="25"></th>
+                                                        <th [style.min-width.px]="250"></th>
+                                                        <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.min-width.px]="110"></th>
                                                         <th [style.min-width.px]="80"></th>
@@ -234,8 +278,9 @@
                                                         <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="145"></th>
                                                         <th [style.min-width.px]="250"></th>
-                                                        <th [style.max-width.px]="20">
+                                                        <th [style.max-width.px]="40">
                                                             <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
                                                         </th>
                                                     </tr>
