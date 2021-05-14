@@ -64,13 +64,13 @@
                                     <dxi-item [label]="{ text: 'TÊN NGƯỜI NHẬN' }" dataField="khachhang_hoten" [colSpan]="2"> </dxi-item>
 
                                     <dxi-item [label]="{ text: 'ĐỊA CHỈ GIAO' }" dataField="khachhang_diachi" [colSpan]="2"> </dxi-item>
+                                    <!-- readOnly: isChonTuPhieu, -->
                                     <dxi-item
                                         [colSpan]="1"
                                         [label]="{ text: 'KHO HÀNG' }"
                                         dataField="khoxuat_id"
                                         editorType="dxSelectBox"
                                         [editorOptions]="{
-                                            readOnly: isChonTuPhieu,
                                             dataSource: dataSource_KhoHang,
                                             valueExpr: 'id',
                                             searchEnabled: true,

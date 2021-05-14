@@ -124,6 +124,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
                         this.openModal_HangGiuLai(rowData, 'giubanhang');
                     }
                 },
+                /* // không còn sử dụng nữa
                 {
                     text: 'Xem chi tiết - Giữ chuyển kho' + ` (${rowData.soluong_giuchuyenkho})`,
                     icon: 'view',
@@ -140,6 +141,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
                         this.openModal_HangGiuLai(rowData, 'datgiuhang');
                     }
                 },
+                */
                 {
                     text: 'Xem chi tiết - Đang về' + ` (${rowData.soluong_muachuanhap})`,
                     icon: 'view',

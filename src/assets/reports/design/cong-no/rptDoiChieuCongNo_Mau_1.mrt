@@ -640,8 +640,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>ce026963538648e6a66e72e60793bb01</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -700,8 +700,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>64f3d2a8e59e40a0b079f38c59bc2c12</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text42</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -724,8 +724,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>47d496ba4a99456cb7785f61a300a3f8</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -748,8 +748,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9</Font>
               <Guid>2257808a9eb7493ba0365d782e7e1b06</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text44</Name>
               <Page isRef="7" />
               <Parent isRef="37" />
@@ -841,8 +841,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>bfe6656c91f74f5cb2e4fb486c6ec812</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text47</Name>
               <Page isRef="7" />
               <Parent isRef="55" />
@@ -864,8 +864,8 @@ PHÁT SINH</Text>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,9,Bold</Font>
               <Guid>522e20534f7540ff9f7249ff0855e468</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,3,0,0</Margins>
               <Name>Text48</Name>
               <Page isRef="7" />
               <Parent isRef="55" />
@@ -1094,10 +1094,9 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/6/2021 4:12:39 PM</ReportChanged>
+  <ReportChanged>5/14/2021 7:28:36 AM</ReportChanged>
   <ReportCreated>2/23/2021 1:19:53 PM</ReportCreated>
-  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_1.mrt</ReportFile>
-  <ReportGuid>e097ad9270df4da5baad42ce4fa1adb1</ReportGuid>
+  <ReportGuid>ceda5a45785b40188ab7b87961ed5a45</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
