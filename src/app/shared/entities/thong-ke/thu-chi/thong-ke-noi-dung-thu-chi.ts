@@ -13,4 +13,5 @@ export class ThongKeNoiDungThuChi{
 
     public nhanvien: string;
     public quythuchi: string;
+    public tenrutgon: string;
 }

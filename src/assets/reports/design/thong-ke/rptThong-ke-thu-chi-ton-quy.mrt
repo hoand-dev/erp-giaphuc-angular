@@ -122,11 +122,11 @@
       <Components isList="true" count="7">
         <PageHeader Ref="8" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,28.7,1</ClientRectangle>
-          <Components isList="true" count="3">
+          <ClientRectangle>0,0.4,28.7,0.6</ClientRectangle>
+          <Components isList="true" count="2">
             <Text2 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,0,26.2,0.6</ClientRectangle>
+              <ClientRectangle>0,0,26.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,14,Bold</Font>
               <Guid>805d67429860497b89bb7d821b092efc</Guid>
@@ -141,34 +141,19 @@
             </Text2>
             <Text1 Ref="10" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.4,0.6,26.2,0.4</ClientRectangle>
+              <ClientRectangle>0,0.4,26.2,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,13</Font>
-              <Guid>dfbd666a98e64661bcb5587400719686</Guid>
+              <Font>Times New Roman,14,Bold</Font>
+              <Guid>305a731bcc1548868fbd076134c6393f</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>Địa chỉ: {Info.diachi} - MST: {Info.masothue}</Text>
+              <Text>{Info.masothue}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Bottom</VertAlignment>
-            </Text1>
-            <Image1 Ref="11" type="Image" isKey="true">
-              <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,2,1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Guid>8dd22cb6e3e94469a21e582e6a70592c</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <ImageData>{LogoComapny}</ImageData>
-              <Margins>0,0,0,0</Margins>
-              <Name>Image1</Name>
-              <Page isRef="7" />
-              <Parent isRef="8" />
-              <Stretch>True</Stretch>
               <VertAlignment>Center</VertAlignment>
-            </Image1>
+            </Text1>
           </Components>
           <Conditions isList="true" count="0" />
           <Guid>7246e5bd567e437ba243ffc1baa87139</Guid>
@@ -176,11 +161,11 @@
           <Page isRef="7" />
           <Parent isRef="7" />
         </PageHeader>
-        <ReportTitle Ref="12" type="ReportTitleBand" isKey="true">
+        <ReportTitle Ref="11" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,2.2,28.7,2</ClientRectangle>
+          <ClientRectangle>0,1.8,28.7,2</ClientRectangle>
           <Components isList="true" count="3">
-            <Text7 Ref="13" type="Text" isKey="true">
+            <Text7 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,28.6,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -190,13 +175,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="7" />
-              <Parent isRef="12" />
+              <Parent isRef="11" />
               <Text>TỔNG HỢP CHI PHÍ QUẢN LÝ HOẠT ĐỘNG CÔNG TY </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text7>
-            <Text32 Ref="14" type="Text" isKey="true">
+            <Text32 Ref="13" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>4.4,1.2,25,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -205,14 +190,14 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text32</Name>
               <Page isRef="7" />
-              <Parent isRef="12" />
+              <Parent isRef="11" />
               <Text>{Day(Today)}/{Month(Today)}/{Year(Today)}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text32>
-            <Text5 Ref="15" type="Text" isKey="true">
+            <Text5 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,1.2,4.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -221,7 +206,7 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="7" />
-              <Parent isRef="12" />
+              <Parent isRef="11" />
               <Text>Thời điểm báo cáo:</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
@@ -235,13 +220,13 @@
           <Page isRef="7" />
           <Parent isRef="7" />
         </ReportTitle>
-        <ColumnHeader Ref="16" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
+        <ColumnHeader Ref="15" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,5,28.7,0.8</ClientRectangle>
+          <ClientRectangle>0,4.6,28.7,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <Text19 Ref="17" type="Text" isKey="true">
+            <Text19 Ref="16" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,1.2,0.6</ClientRectangle>
@@ -252,12 +237,12 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>STT</Text>
               <TextBrush>Black</TextBrush>
               <VertAlignment>Center</VertAlignment>
             </Text19>
-            <Text20 Ref="18" type="Text" isKey="true">
+            <Text20 Ref="17" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.2,0,6.4,0.6</ClientRectangle>
@@ -268,13 +253,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>NỘI DUNG</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text20>
-            <Text21 Ref="19" type="Text" isKey="true">
+            <Text21 Ref="18" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.6,0,4,0.6</ClientRectangle>
@@ -285,13 +270,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>NGƯỜI NHẬN</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text21>
-            <Text22 Ref="20" type="Text" isKey="true">
+            <Text22 Ref="19" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.6,0,7.2,0.6</ClientRectangle>
@@ -302,13 +287,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>DIỄN GIÃI</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text22>
-            <Text25 Ref="21" type="Text" isKey="true">
+            <Text25 Ref="20" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>18.8,0,4.2,0.6</ClientRectangle>
@@ -319,13 +304,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text25</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>TÊN QUỸ</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text25>
-            <Text26 Ref="22" type="Text" isKey="true">
+            <Text26 Ref="21" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>23,0,2.6,0.6</ClientRectangle>
@@ -336,13 +321,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>THU</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text26>
-            <Text27 Ref="23" type="Text" isKey="true">
+            <Text27 Ref="22" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>25.6,0,2.6,0.6</ClientRectangle>
@@ -353,7 +338,7 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="7" />
-              <Parent isRef="16" />
+              <Parent isRef="15" />
               <Text>CHI</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -366,14 +351,14 @@
           <Page isRef="7" />
           <Parent isRef="7" />
         </ColumnHeader>
-        <Data Ref="24" type="DataBand" isKey="true">
+        <Data Ref="23" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,6.6,28.7,0.8</ClientRectangle>
+          <ClientRectangle>0,6.2,28.7,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <Text28 Ref="25" type="Text" isKey="true">
+            <Text28 Ref="24" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,1.2,0.6</ClientRectangle>
@@ -384,13 +369,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text28</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text28>
-            <Text6 Ref="26" type="Text" isKey="true">
+            <Text6 Ref="25" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.2,0,6.4,0.6</ClientRectangle>
@@ -400,14 +385,14 @@
               <Margins>5,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{rptThongKeTonQuy_ChiTiet.noidung}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text8 Ref="27" type="Text" isKey="true">
+            <Text8 Ref="26" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.6,0,4,0.6</ClientRectangle>
@@ -418,14 +403,14 @@
               <Margins>5,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{rptThongKeTonQuy_ChiTiet.tenrutgon}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text9 Ref="28" type="Text" isKey="true">
+            <Text9 Ref="27" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.6,0,7.2,0.6</ClientRectangle>
@@ -435,14 +420,14 @@
               <Margins>5,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{rptThongKeTonQuy_ChiTiet.ghichu}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="29" type="Text" isKey="true">
+            <Text10 Ref="28" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>18.8,0,4.2,0.6</ClientRectangle>
@@ -452,14 +437,14 @@
               <Margins>5,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{rptThongKeTonQuy_ChiTiet.tenquy}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text11 Ref="30" type="Text" isKey="true">
+            <Text11 Ref="29" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>23,0,2.6,0.6</ClientRectangle>
@@ -470,10 +455,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{rptThongKeTonQuy_ChiTiet.sotienthu}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="31" type="NumberFormat" isKey="true">
+              <TextFormat Ref="30" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -482,7 +467,7 @@
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text12 Ref="32" type="Text" isKey="true">
+            <Text12 Ref="31" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>25.6,0,2.6,0.6</ClientRectangle>
@@ -493,10 +478,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="7" />
-              <Parent isRef="24" />
+              <Parent isRef="23" />
               <Text>{rptThongKeTonQuy_ChiTiet.sotienchi}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="33" type="NumberFormat" isKey="true">
+              <TextFormat Ref="32" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -516,18 +501,18 @@
           <Parent isRef="7" />
           <Sort isList="true" count="0" />
         </Data>
-        <ColumnHeaderBand1 Ref="34" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
+        <ColumnHeaderBand1 Ref="33" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <CanBreak>True</CanBreak>
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,8.2,28.7,1.4</ClientRectangle>
+          <ClientRectangle>0,7.8,28.7,1.4</ClientRectangle>
           <Components isList="true" count="1">
-            <Panel1 Ref="35" type="Panel" isKey="true">
+            <Panel1 Ref="34" type="Panel" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.4,24.2,1</ClientRectangle>
               <Components isList="true" count="7">
-                <Text15 Ref="36" type="Text" isKey="true">
+                <Text15 Ref="35" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>7.4,0,4.4,1</ClientRectangle>
@@ -539,13 +524,13 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text15</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>SỐ DƯ ĐẦU KỲ</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text15>
-                <Text16 Ref="37" type="Text" isKey="true">
+                <Text16 Ref="36" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>11.8,0,7.4,0.5</ClientRectangle>
@@ -556,13 +541,13 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text16</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>PHÁT SINH TRONG KỲ</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text16>
-                <Text18 Ref="38" type="Text" isKey="true">
+                <Text18 Ref="37" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>11.8,0.5,3.8,0.5</ClientRectangle>
@@ -573,13 +558,13 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text18</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>THU</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text18>
-                <Text24 Ref="39" type="Text" isKey="true">
+                <Text24 Ref="38" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>19.2,0,5,1</ClientRectangle>
@@ -591,13 +576,13 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text24</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>SỐ DƯ CUỐI KỲ</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text24>
-                <Text14 Ref="40" type="Text" isKey="true">
+                <Text14 Ref="39" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>1.2,0,6.2,1</ClientRectangle>
@@ -609,13 +594,13 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text14</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>TÊN QUỸ</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text14>
-                <Text13 Ref="41" type="Text" isKey="true">
+                <Text13 Ref="40" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>0,0,1.2,1</ClientRectangle>
@@ -627,12 +612,12 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text13</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>STT</Text>
                   <TextBrush>Black</TextBrush>
                   <VertAlignment>Center</VertAlignment>
                 </Text13>
-                <Text23 Ref="42" type="Text" isKey="true">
+                <Text23 Ref="41" type="Text" isKey="true">
                   <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
                   <Brush>Transparent</Brush>
                   <ClientRectangle>15.6,0.5,3.6,0.5</ClientRectangle>
@@ -643,7 +628,7 @@
                   <Margins>0,0,0,0</Margins>
                   <Name>Text23</Name>
                   <Page isRef="7" />
-                  <Parent isRef="35" />
+                  <Parent isRef="34" />
                   <Text>CHI</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
@@ -653,7 +638,7 @@
               <Conditions isList="true" count="0" />
               <Name>Panel1</Name>
               <Page isRef="7" />
-              <Parent isRef="34" />
+              <Parent isRef="33" />
             </Panel1>
           </Components>
           <Conditions isList="true" count="0" />
@@ -662,14 +647,14 @@
           <Page isRef="7" />
           <Parent isRef="7" />
         </ColumnHeaderBand1>
-        <DataBand1 Ref="43" type="DataBand" isKey="true">
+        <DataBand1 Ref="42" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,10.4,28.7,0.6</ClientRectangle>
+          <ClientRectangle>0,10,28.7,0.6</ClientRectangle>
           <Components isList="true" count="6">
-            <Text17 Ref="44" type="Text" isKey="true">
+            <Text17 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,1.2,0.6</ClientRectangle>
@@ -680,13 +665,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="7" />
-              <Parent isRef="43" />
+              <Parent isRef="42" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text17>
-            <Text29 Ref="45" type="Text" isKey="true">
+            <Text29 Ref="44" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.2,0,6.2,0.6</ClientRectangle>
@@ -696,14 +681,14 @@
               <Margins>5,0,0,0</Margins>
               <Name>Text29</Name>
               <Page isRef="7" />
-              <Parent isRef="43" />
+              <Parent isRef="42" />
               <Text>{rptThongKeTonQuy.tenquy}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text29>
-            <Text30 Ref="46" type="Text" isKey="true">
+            <Text30 Ref="45" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.4,0,4.4,0.6</ClientRectangle>
@@ -714,10 +699,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="7" />
-              <Parent isRef="43" />
+              <Parent isRef="42" />
               <Text>{rptThongKeTonQuy.tondauky}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="47" type="NumberFormat" isKey="true">
+              <TextFormat Ref="46" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -726,7 +711,7 @@
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text30>
-            <Text31 Ref="48" type="Text" isKey="true">
+            <Text31 Ref="47" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.8,0,3.8,0.6</ClientRectangle>
@@ -737,10 +722,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text31</Name>
               <Page isRef="7" />
-              <Parent isRef="43" />
+              <Parent isRef="42" />
               <Text>{rptThongKeTonQuy.sotienthu}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="49" type="NumberFormat" isKey="true">
+              <TextFormat Ref="48" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -749,7 +734,7 @@
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text31>
-            <Text33 Ref="50" type="Text" isKey="true">
+            <Text33 Ref="49" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.6,0,3.6,0.6</ClientRectangle>
@@ -760,10 +745,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text33</Name>
               <Page isRef="7" />
-              <Parent isRef="43" />
+              <Parent isRef="42" />
               <Text>{rptThongKeTonQuy.sotienchi}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="51" type="NumberFormat" isKey="true">
+              <TextFormat Ref="50" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -772,7 +757,7 @@
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
             </Text33>
-            <Text34 Ref="52" type="Text" isKey="true">
+            <Text34 Ref="51" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>19.2,0,5,0.6</ClientRectangle>
@@ -783,10 +768,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text34</Name>
               <Page isRef="7" />
-              <Parent isRef="43" />
+              <Parent isRef="42" />
               <Text>{rptThongKeTonQuy.toncuoiky}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="53" type="NumberFormat" isKey="true">
+              <TextFormat Ref="52" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -806,11 +791,11 @@
           <Parent isRef="7" />
           <Sort isList="true" count="0" />
         </DataBand1>
-        <ColumnFooterBand1 Ref="54" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
+        <ColumnFooterBand1 Ref="53" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,11.8,28.7,0.6</ClientRectangle>
+          <ClientRectangle>0,11.4,28.7,0.6</ClientRectangle>
           <Components isList="true" count="5">
-            <Text45 Ref="55" type="Text" isKey="true">
+            <Text45 Ref="54" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,7.4,0.6</ClientRectangle>
@@ -820,13 +805,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text45</Name>
               <Page isRef="7" />
-              <Parent isRef="54" />
+              <Parent isRef="53" />
               <Text>TỔNG CỘNG:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text45>
-            <Text46 Ref="56" type="Text" isKey="true">
+            <Text46 Ref="55" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11.8,0,3.8,0.6</ClientRectangle>
@@ -837,10 +822,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text46</Name>
               <Page isRef="7" />
-              <Parent isRef="54" />
+              <Parent isRef="53" />
               <Text>{Sum(rptThongKeTonQuy.sotienthu)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="57" type="NumberFormat" isKey="true">
+              <TextFormat Ref="56" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
@@ -850,7 +835,7 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text46>
-            <Text51 Ref="58" type="Text" isKey="true">
+            <Text51 Ref="57" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.6,0,3.6,0.6</ClientRectangle>
@@ -861,10 +846,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text51</Name>
               <Page isRef="7" />
-              <Parent isRef="54" />
+              <Parent isRef="53" />
               <Text>{Sum(rptThongKeTonQuy.sotienchi)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="59" type="NumberFormat" isKey="true">
+              <TextFormat Ref="58" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
@@ -874,7 +859,7 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text51>
-            <Text52 Ref="60" type="Text" isKey="true">
+            <Text52 Ref="59" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>19.2,0,5,0.6</ClientRectangle>
@@ -885,10 +870,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text52</Name>
               <Page isRef="7" />
-              <Parent isRef="54" />
+              <Parent isRef="53" />
               <Text>{Sum(rptThongKeTonQuy.toncuoiky)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="61" type="NumberFormat" isKey="true">
+              <TextFormat Ref="60" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>1</NegativePattern>
@@ -897,7 +882,7 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text52>
-            <Text35 Ref="62" type="Text" isKey="true">
+            <Text35 Ref="61" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7.4,0,4.4,0.6</ClientRectangle>
@@ -908,10 +893,10 @@
               <Margins>0,8,0,0</Margins>
               <Name>Text35</Name>
               <Page isRef="7" />
-              <Parent isRef="54" />
+              <Parent isRef="53" />
               <Text>{Sum(rptThongKeTonQuy.tondauky)}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="63" type="NumberFormat" isKey="true">
+              <TextFormat Ref="62" type="NumberFormat" isKey="true">
                 <DecimalDigits>0</DecimalDigits>
                 <DecimalSeparator>,</DecimalSeparator>
                 <GroupSeparator>.</GroupSeparator>
@@ -953,10 +938,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>TỔNG HỢP CHI PHÍ QUẢN LÝ HOẠT ĐỘNG CÔNG TY</ReportAlias>
-  <ReportChanged>5/6/2021 1:28:02 PM</ReportChanged>
+  <ReportChanged>5/15/2021 8:28:48 AM</ReportChanged>
   <ReportCreated>4/24/2021 2:58:11 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\thong-ke\rptThong-ke-thu-chi-ton-quy.mrt</ReportFile>
-  <ReportGuid>bb49ffa43c1648df93e79ac6c97f5ac1</ReportGuid>
+  <ReportGuid>2c5e9a80176e4c189a7a6f9c5f931ecc</ReportGuid>
   <ReportName>TỔNG HỢP CHI PHÍ QUẢN LÝ HOẠT ĐỘNG CÔNG TY</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
