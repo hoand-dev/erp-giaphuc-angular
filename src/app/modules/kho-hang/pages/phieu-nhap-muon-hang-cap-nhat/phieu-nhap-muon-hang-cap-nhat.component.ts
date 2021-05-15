@@ -87,7 +87,7 @@ export class PhieuNhapMuonHangCapNhatComponent implements OnInit {
                     this.khohangService.findKhoHangs().subscribe((x) => {
                         this.loadingVisible = false;
 
-                        this.lstKhoNhap = x.filter((z) => z.chinhanh_id == this.currentChiNhanh.id && z.khongoai != true);
+                        this.lstKhoNhap = x.filter((z) => z.chinhanh_id == this.currentChiNhanh.id); // && z.khongoai != true // cho phép nhập tại kho ngoài
                         this.dataSource_KhoNhap = new DataSource({
                             store: this.lstKhoNhap,
                             paginate: true,

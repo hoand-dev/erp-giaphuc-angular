@@ -92,7 +92,7 @@ export class PhieuXuatTraMuonHangCapNhatComponent implements OnInit {
                     this.khohangService.findKhoHangs().subscribe((x) => {
                         this.loadingVisible = false;
 
-                        this.lstKhoXuat = x.filter((z) => z.chinhanh_id == this.currentChiNhanh.id && z.khongoai != true);
+                        this.lstKhoXuat = x.filter((z) => z.chinhanh_id == this.currentChiNhanh.id); // && z.khongoai != true
                         this.dataSource_KhoXuat = new DataSource({
                             store: this.lstKhoXuat,
                             paginate: true,

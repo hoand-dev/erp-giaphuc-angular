@@ -10,6 +10,9 @@ import { ThongKeCongNoQuaHanComponent } from './cong-no/pages/thong-ke-cong-no-q
 import { ThongKeXuatNhapTonTrongNgayComponent } from './kho-hang/pages/thong-ke-xuat-nhap-ton-trong-ngay/thong-ke-xuat-nhap-ton-trong-ngay.component';
 import { ThongKeXuatNhapTonComponent } from './kho-hang/pages/thong-ke-xuat-nhap-ton/thong-ke-xuat-nhap-ton.component';
 import { ThongKeMuaHangChiTietComponent } from './mua-hang/pages/thong-ke-mua-hang-chi-tiet/thong-ke-mua-hang-chi-tiet.component';
+import { ThongKeTinhHinhSanXuatDonHangComponent } from './san-xuat/pages/thong-ke-tinh-hinh-san-xuat-don-hang/thong-ke-tinh-hinh-san-xuat-don-hang.component';
+import { ThongKeTinhHinhXuatKhoDonHangComponent } from './san-xuat/pages/thong-ke-tinh-hinh-xuat-kho-don-hang/thong-ke-tinh-hinh-xuat-kho-don-hang.component';
+import { ThongKeTyLeHangLoiComponent } from './san-xuat/pages/thong-ke-ty-le-hang-loi/thong-ke-ty-le-hang-loi.component';
 import { ThongKeNoiDungThuChiComponent } from './thu-chi/pages/thong-ke-noi-dung-thu-chi/thong-ke-noi-dung-thu-chi.component';
 import { ThongKeThuChiTonQuyComponent } from './thu-chi/pages/thong-ke-thu-chi-ton-quy/thong-ke-thu-chi-ton-quy.component';
 
@@ -39,6 +42,10 @@ const routes: Routes = [
             { path: 'ban-hang-chi-tiet', component: ThongKeBanHangChiTietComponent },
             { path: 'xuat-ban-hang-chi-tiet', component: ThongKeXuatBanChiTietComponent },
 
+            /* nhóm thống kê sản xuất */
+            { path: 'tinh-hinh-san-xuat', component: ThongKeTinhHinhSanXuatDonHangComponent },
+            { path: 'tinh-hinh-xuat-kho', component: ThongKeTinhHinhXuatKhoDonHangComponent },
+            { path: 'ty-le-hang-loi', component: ThongKeTyLeHangLoiComponent },
         ]
     }
 ];
