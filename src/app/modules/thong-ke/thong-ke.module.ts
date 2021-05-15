@@ -23,6 +23,9 @@ import { NhaCungCapChiTietCongNoModalComponent } from './cong-no/modals/nha-cung
 import { DonViGiaCongChiTietCongNoModalComponent } from './cong-no/modals/don-vi-gia-cong-chi-tiet-cong-no-modal/don-vi-gia-cong-chi-tiet-cong-no-modal.component';
 import { ThongKeChiTietTonQuyModalComponent } from './thu-chi/modals/thong-ke-chi-tiet-ton-quy-modal/thong-ke-chi-tiet-ton-quy-modal.component';
 import { ThongKeThuChiTonQuyTongHopModalComponent } from './thu-chi/modals/thong-ke-thu-chi-ton-quy-tong-hop-modal/thong-ke-thu-chi-ton-quy-tong-hop-modal.component';
+import { ThongKeTinhHinhXuatKhoDonHangComponent } from './san-xuat/pages/thong-ke-tinh-hinh-xuat-kho-don-hang/thong-ke-tinh-hinh-xuat-kho-don-hang.component';
+import { ThongKeTinhHinhSanXuatDonHangComponent } from './san-xuat/pages/thong-ke-tinh-hinh-san-xuat-don-hang/thong-ke-tinh-hinh-san-xuat-don-hang.component';
+import { ThongKeTyLeHangLoiComponent } from './san-xuat/pages/thong-ke-ty-le-hang-loi/thong-ke-ty-le-hang-loi.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +49,10 @@ import { ThongKeThuChiTonQuyTongHopModalComponent } from './thu-chi/modals/thong
         NhaCungCapChiTietCongNoModalComponent,
         DonViGiaCongChiTietCongNoModalComponent,
         ThongKeChiTietTonQuyModalComponent,
-        ThongKeThuChiTonQuyTongHopModalComponent
+        ThongKeThuChiTonQuyTongHopModalComponent,
+        ThongKeTinhHinhXuatKhoDonHangComponent,
+        ThongKeTinhHinhSanXuatDonHangComponent,
+        ThongKeTyLeHangLoiComponent
     ],
     imports: [CommonModule, SharedModule, ThongKeRoutingModule]
 })
