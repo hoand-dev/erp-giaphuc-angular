@@ -11,6 +11,7 @@ import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription, Subject } from 'rxjs';
 import { PhieuKhachDatHangInPhieuModalComponent } from '../../modals';
+import { PhieuKhachDatHangViewModalComponent } from '../../modals/phieu-khach-dat-hang-view-modal/phieu-khach-dat-hang-view-modal.component';
 
 @Component({
     selector: 'app-phieu-dat-hang',
@@ -119,7 +120,7 @@ export class PhieuDatHangComponent implements OnInit {
         );
     }
 
-    rowNumber(rowIndex){
+    rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
@@ -128,17 +129,17 @@ export class PhieuDatHangComponent implements OnInit {
             if (!e.items) e.items = [];
 
             e.items.push(
-                // {
-                //     text: 'Xem lại',
-                //     icon: 'rename',
-                //     visible: true,
-                //     onItemClick: () => {
-                //         let rowData: PhieuBanHang = e.row.key as PhieuBanHang;
-                //         this.openViewModal(rowData);
-                //     }
-                // },
                 {
-                    text: 'In phiếu đặt hàng',
+                    text: 'Xem lại',
+                    icon: 'rename',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuDatHang = e.row.key as PhieuDatHang;
+                        this.openViewModal(rowData);
+                    }
+                },
+                {
+                    text: 'In phiếu - Đặt Hàng',
                     icon: 'print',
                     visible: 'true',
 
@@ -147,8 +148,8 @@ export class PhieuDatHangComponent implements OnInit {
 
                         /*Khởi tạo giá trị modal */
                         const initialState = {
-                            title: 'PHIẾU ĐẶT HÀNG SẢN XUẤT',
-                            phieudathang_id: rowData.id,
+                            title: 'IN PHIẾU YÊU ĐẶT HÀNG SX',
+                            phieudathang_id: rowData.id
                         };
                         /* Hiển thị modal */
                         this.bsModalRef = this.modalService.show(PhieuKhachDatHangInPhieuModalComponent, {
@@ -164,28 +165,29 @@ export class PhieuDatHangComponent implements OnInit {
         }
     }
 
-    // openViewModal(rowData: PhieuBanHang) {
-    //     /* khởi tạo giá trị cho modal */
-    //     const initialState = {
-    //         title: 'THÔNG TIN PHIẾU BÁN HÀNG',
-    //         isView: 'xemphieu',
-    //         phieubanhang_id: rowData.id
-    //     };
+    openViewModal(rowData: PhieuDatHang) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU ĐẶT HÀNG',
+            isView: 'xemphieu',
+            phieudathang_id: rowData.id
+        };
 
-    //     /* hiển thị modal */
-    //     this.bsModalRef = this.modalService.show(PhieuBanHangViewModalComponent, {
-    //         class: 'modal-xxl modal-dialog-centered',
-    //         ignoreBackdropClick: false,
-    //         keyboard: false,
-    //         initialState
-    //     });
-    //     this.bsModalRef.content.closeBtnName = 'Đóng';
-    // }
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuKhachDatHangViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
 
     onRowDblClick(e) {
         console.log(`objPhieuDatHang_id: ${e.key.id}`);
+        let rowData: PhieuDatHang = e.key;
+        this.openViewModal(rowData);
     }
-
 
     onRowDelete(id) {
         let result = confirm('<i>Bạn có muốn xóa phiếu này?</i>', 'Xác nhận xóa');

@@ -10,6 +10,7 @@ import { PhieuXuatMuonViewModalComponent } from '@app/modules/kho-hang/modals/ph
 import { PhieuXuatTraViewModalComponent } from '@app/modules/kho-hang/modals/phieu-xuat-tra-view-modal/phieu-xuat-tra-view-modal.component';
 import { PhieuNhapNhapThanhPhamViewModalComponent } from '@app/modules/san-xuat/modals/phieu-nhap-nhap-thanh-pham-view-modal/phieu-nhap-nhap-thanh-pham-view-modal.component';
 import { PhieuXuatKhoGiaCongViewModalComponent } from '@app/modules/san-xuat/modals/phieu-xuat-kho-gia-cong-view-modal/phieu-xuat-kho-gia-cong-view-modal.component';
+import { PhieuYeuCauGiaCongViewModalComponent } from '@app/modules/san-xuat/modals/phieu-yeu-cau-gia-cong-view-modal/phieu-yeu-cau-gia-cong-view-modal.component';
 import { ThongKeXuatNhapTon_ChiTiet } from '@app/shared/entities';
 import { ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
@@ -86,7 +87,7 @@ export class ThongKeXuatNhapTonChiTietModalComponent implements OnInit {
         let rowData: ThongKeXuatNhapTon_ChiTiet = e.key as ThongKeXuatNhapTon_ChiTiet;
 
         /* kiểm tra xem dòng hiện tại là phiếu gì để gọi đúng modal */
-        switch (rowData.phieuquery) {
+        switch (rowData.phieuquery) { // tên lấy từ query db
             case 'nhapkho'://1
                 this.onOpenModalNhapKho(rowData);
                 break;
@@ -119,6 +120,9 @@ export class ThongKeXuatNhapTonChiTietModalComponent implements OnInit {
                 break;
             case 'nhaptramuonhang': //11
                 this.onOpenModalNhapTraMuonHang(rowData);
+                break;
+            case 'yeucaugiacong': //12
+                this.onOpenModalPhieuYeuCauGiaCong(rowData);
                 break;
 
             default:
@@ -308,6 +312,23 @@ export class ThongKeXuatNhapTonChiTietModalComponent implements OnInit {
 
         /* hiển thị modal */
         this.bsModalRef_XemPhieu = this.modalService.show(PhieuNhapTraViewModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef_XemPhieu.content.closeBtnName = 'Đóng';
+    }
+    onOpenModalPhieuYeuCauGiaCong(rowData: ThongKeXuatNhapTon_ChiTiet) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN PHIẾU YÊU CẦU GIA CÔNG',
+            isView: 'xemphieu',
+            phieuyeucaugiacong_id: rowData.idphieu
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef_XemPhieu = this.modalService.show(PhieuYeuCauGiaCongViewModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,

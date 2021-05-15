@@ -3,7 +3,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, PhieuDatHang, KhachHang, NguoiDung, KhoHang, PhieuDatHang_ChiTiet, DinhMuc, HangHoa, PhieuDatHang_SanXuatChiTiet, SoMat, PhieuDatHang_ThanhPham } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { AppInfoService, PhieuDatHangService, KhachHangService, HangHoaService, NguoiDungService, KhoHangService, CommonService, DinhMucService, SoMatService, RouteInterceptorService } from '@app/shared/services';
+import {
+    AppInfoService,
+    PhieuDatHangService,
+    KhachHangService,
+    HangHoaService,
+    NguoiDungService,
+    KhoHangService,
+    CommonService,
+    DinhMucService,
+    SoMatService,
+    RouteInterceptorService
+} from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
@@ -13,11 +24,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-phieu-khach-dat-hang-view-modal',
-  templateUrl: './phieu-khach-dat-hang-view-modal.component.html',
-  styleUrls: ['./phieu-khach-dat-hang-view-modal.component.css']
+    selector: 'app-phieu-khach-dat-hang-view-modal',
+    templateUrl: './phieu-khach-dat-hang-view-modal.component.html',
+    styleUrls: ['./phieu-khach-dat-hang-view-modal.component.css']
 })
-export class PhieuKhachDatHangViewModalComponent  implements OnInit {
+export class PhieuKhachDatHangViewModalComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
     public title: string;
@@ -31,6 +42,7 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
     public phieudathang_id: number;
 
     /* thông tin copy */
+    /* tối ưu subscriptions */
     public phieudathang: PhieuDatHang;
 
     public lstKhachHang: KhachHang[] = [];
@@ -99,7 +111,6 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
         /*thêm nội dung vào đây */
 
         this.phieudathang = new PhieuDatHang();
-
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -193,40 +204,33 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
                 }
             })
         });
-
         this.dataSource_HangHoaSX = this.dataSource_HangHoa;
 
-        this.loadingVisible = true;
-        this.subscriptions.add(
-            this.activatedRoute.params.subscribe((params) => {
-                let phieudathang_id = params.id;
-                // lấy thông tin định mức
-                if (phieudathang_id) {
-                    this.subscriptions.add(
-                        this.phieudathangService.findPhieuDatHang(phieudathang_id).subscribe(
-                            (data) => {
-                                // gán độ dài danh sách hàng hóa load lần đầu
-                                this.hanghoalenght = data.phieudathang_chitiet.length;
+        if (this.isView == 'xemphieu') {
+            this.subscriptions.add(
+                this.phieudathangService.findPhieuDatHang(this.phieudathang_id).subscribe(
+                    (data) => {
+                        // gán độ dài danh sách hàng hóa load lần đầu
+                        this.hanghoalenght = data.phieudathang_chitiet.length;
 
-                                this.sxhanghoalenght = data.phieudathang_sanxuatchitiets.length;
-                                this.sxhanghoalenght_yeucau = data.phieudathang_sanxuatchitiets.length;
-                                this.sxhanghoalenght_somat = data.phieudathang_sanxuatchitiets.length;
-                                this.sxhanghoalenght_somat_thanhpham = data.phieudathang_sanxuatchitiets.length;
+                        this.sxhanghoalenght = data.phieudathang_sanxuatchitiets.length;
+                        this.sxhanghoalenght_yeucau = data.phieudathang_sanxuatchitiets.length;
+                        this.sxhanghoalenght_somat = data.phieudathang_sanxuatchitiets.length;
+                        this.sxhanghoalenght_somat_thanhpham = data.phieudathang_sanxuatchitiets.length;
 
-                                this.phieudathang = data;
-                                this.hanghoas = this.phieudathang.phieudathang_chitiet;
-                                this.hanghoas_sanxuat = this.phieudathang.phieudathang_sanxuatchitiets;
-                                this.hanghoas_thanhpham = this.phieudathang.phieudathang_thanhphams;
-                            },
-                            (error) => {
-                                this.phieudathangService.handleError(error);
-                            }
-                        )
-                    );
-                }
-            })
-        );
-
+                        this.phieudathang = data;
+                        this.hanghoas = this.phieudathang.phieudathang_chitiet;
+                        this.hanghoas_sanxuat = this.phieudathang.phieudathang_sanxuatchitiets;
+                        this.hanghoas_thanhpham = this.phieudathang.phieudathang_thanhphams;
+                    },
+                    (error) => {
+                        this.phieudathangService.handleError(error);
+                    }
+                )
+            );
+        } else if (this.isView == 'xemlichsu') {
+            // xem lịch sử xử lý sau
+        }
         // kiểm tra queryParams
         this.subscriptions.add(
             this.activatedRoute.queryParams.subscribe((params) => {
@@ -237,7 +241,7 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
         );
     }
 
-    dataSourceReload(index){
+    dataSourceReload(index) {
         this.dataSource_HangHoaSX = new DataSource({
             paginate: true,
             pageSize: 50,
@@ -245,7 +249,7 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.hanghoas_sanxuat[index].khoxuat_id, "hangtron,thanhpham", loadOptions)
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.hanghoas_sanxuat[index].khoxuat_id, 'hangtron,thanhpham', loadOptions)
                         .toPromise()
                         .then((result) => {
                             return result;
@@ -261,41 +265,8 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
                 }
             })
         });
-    
-
-        if (this.isView == 'xemphieu') {
-            this.subscriptions.add(
-                this.phieudathangService.findPhieuDatHang(this.phieudathang_id).subscribe(
-                    (data) => {
-                        // gán độ dài danh sách hàng hóa load lần đầu
-                        this.hanghoalenght = data.phieudathang_sanxuatchitiets.length;
-
-                        this.phieudathang = data;
-                        this.hanghoas_sanxuat = this.phieudathang.phieudathang_sanxuatchitiets;
-                    },
-                    (error) => {
-                        this.phieudathangService.handleError(error);
-                    }
-                )
-            );
-        } else if (this.isView == 'xemlichsu') {
-            // xem lịch sử xử lý sau
-        }
     }
 
-    checkGiuHang(params) {
-        let valid = true;
-        if (this.phieudathang.giuhang && params.value == null) {
-            valid = false;
-        }
-
-        return new Promise((resolve) => {
-            setTimeout(function () {
-                resolve(valid);
-            }, 300);
-        });
-    }
-    
     onYeuCauChanged(index, e) {
         if (this.sxhanghoalenght_yeucau > 0) {
             this.sxhanghoalenght_yeucau--;
@@ -376,6 +347,7 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
             );
         }
     }
+
     public onHangHoaChanged(index, e, tabName: string = 'hangcosan') {
         let selected = e.selectedItem;
 
@@ -387,7 +359,7 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
                 this.hanghoas[index].khoxuat_id = this.phieudathang.khoxuat_id;
                 this.hanghoas[index].dvt_id = selected.dvt_id;
                 this.hanghoas[index].tenhanghoa_inphieu = selected.tenhanghoa;
-    
+
                 this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
                 this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
             }
@@ -401,9 +373,6 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
 
             // chỉ thêm row mới khi không tồn tài dòng rỗng nào
             let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
-            if (rowsNull.length == 0) {
-               // this.onHangHoaAdd();
-            }
         }
         if (tabName == 'sanxuat') {
             if (this.sxhanghoalenght > 0) {
@@ -426,38 +395,9 @@ export class PhieuKhachDatHangViewModalComponent  implements OnInit {
 
             // chỉ thêm row mới khi không tồn tài dòng rỗng nào
             let rowsNull = this.hanghoas_sanxuat.filter((x) => x.hanghoa_id == null);
-            if (rowsNull.length == 0) {
-              //  this.onHangHoaAdd('sanxuat');
-            }
         }
     }
-    public onHangHoaChangeRow(col: string, index: number, e: any) {
-        switch (col) {
-            case 'soluong':
-                //this.hanghoas[index].soluong = e.value;
-                break;
-            case 'dongia':
-                //this.hanghoas[index].dongia = e.value;
-                break;
-            case 'chietkhau':
-                // this.hanghoas[index].chietkhau = e.value;
-                if (e.value != 0) {
-                    this.phieudathang.chietkhau = 0;
-                }
-                break;
-            case 'thuevat':
-                // this.hanghoas[index].thuevat = e.value;
-                if (e.value != 0) {
-                    this.phieudathang.thuevat = 0;
-                }
-                break;
-        }
 
-        // tính tiền sau chiết khấu
-       // this.onTinhTien();
-    }
-
-    
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
