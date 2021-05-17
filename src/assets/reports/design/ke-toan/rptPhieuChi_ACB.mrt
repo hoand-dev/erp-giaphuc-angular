@@ -281,7 +281,7 @@
         <Text14 Ref="18" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,4.4,5.6,0.8</ClientRectangle>
+          <ClientRectangle>0,4.4,4.8,0.8</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
           <Margins>0,0,0,0</Margins>
@@ -296,7 +296,7 @@
         <Text15 Ref="19" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>5.6,4.4,14.4,0.8</ClientRectangle>
+          <ClientRectangle>4.8,4.4,15.2,0.8</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,12</Font>
           <Margins>0,0,0,0</Margins>
@@ -305,6 +305,7 @@
           <Parent isRef="4" />
           <Text>{rptPhieuChi.doituong_tenchutaikhoan}</Text>
           <TextBrush>Black</TextBrush>
+          <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
           <VertAlignment>Center</VertAlignment>
         </Text15>
@@ -526,7 +527,7 @@
           <Name>Text31</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
-          <Text>{rptPhieuChi.sotien_bangchu} đồng /</Text>
+          <Text>{rptPhieuChi.sotien_bangchu} đồng ./</Text>
           <TextBrush>Black</TextBrush>
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
@@ -2280,10 +2281,10 @@ g7IUidDiwndgbNigieCelYbi+N8olFq6x2gxmaqxZh1TSJtHzt/xzF1fcQThf4Nv8A2+wTf4d4VW
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/6/2021 4:49:36 PM</ReportChanged>
+  <ReportChanged>5/17/2021 3:33:17 PM</ReportChanged>
   <ReportCreated>1/21/2021 4:14:33 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_ACB.mrt</ReportFile>
-  <ReportGuid>0a41fbbd3b264fc8bccd70dda2b32bef</ReportGuid>
+  <ReportGuid>7e065850acc548c7bbace77442082ce3</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
