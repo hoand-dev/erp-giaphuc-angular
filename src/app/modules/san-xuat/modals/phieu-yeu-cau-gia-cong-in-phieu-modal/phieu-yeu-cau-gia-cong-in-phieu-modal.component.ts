@@ -23,6 +23,8 @@ export class PhieuYeuCauGiaCongInPhieuModalComponent implements OnInit {
     public title: string;
     public closeBtnName: string;
 
+    public loaiphieuin: string = 'hangtron';
+
     private currentUser: User;
     public phieuyeucaugiacong_id: number;
     constructor(
@@ -53,8 +55,12 @@ export class PhieuYeuCauGiaCongInPhieuModalComponent implements OnInit {
                 (data) => {
                     /* Khởi tạo report */
                     let report = new Stimulsoft.Report.StiReport();
-
-                    report.loadFile('assets/reports/design/san-xuat/rptPhieuYeuCauGiaCong.mrt');
+                    if(this.loaiphieuin =='yeucau'){
+                        report.loadFile('assets/reports/design/san-xuat/rptPhieuYeuCauGiaCong.mrt');
+                    }
+                    if(this.loaiphieuin == 'hangtron'){
+                        report.loadFile('assets/reports/design/san-xuat/rptPhieuXuatGiaCongTrenFormYeuCauGiaCong.mrt');
+                    }
 
                     /* Xóa dữ liệu trên cache trước khi in */
                     report.dictionary.databases.clear();

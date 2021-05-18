@@ -142,7 +142,7 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
                     }
                 },
                 {
-                    text: 'In Phiếu',
+                    text: 'In Phiếu Yêu Cầu',
                     icon: 'print',
                     visible: 'true',
 
@@ -152,7 +152,33 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
                         /*Khởi tạo giá trị trên modal */
                         const initialState = {
                             title: 'IN PHIẾU YÊU CẦU GIA CÔNG',
-                            phieuyeucaugiacong_id: rowData.id
+                            phieuyeucaugiacong_id: rowData.id,
+                            loaiphieuin: 'yeucau'
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In Phiếu Xuất Hàng Trơn',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuYeuCauGiaCong = e.row.key as PhieuYeuCauGiaCong;
+
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN XUẤT HÀNG TRƠN',
+                            phieuyeucaugiacong_id: rowData.id,
+                            loaiphieuin: 'hangtron'
                         };
 
                         /* Hiển thị trên modal */
