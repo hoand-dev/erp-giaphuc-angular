@@ -190,6 +190,31 @@ export class PhieuYeuCauGiaCongComponent implements OnInit, OnDestroy, AfterView
                         });
                         this.bsModalRef.content.closeBtnName = 'Đóng';
                     }
+                },
+                {
+                    text: 'In Phiếu Tất Toán',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuYeuCauGiaCong = e.row.key as PhieuYeuCauGiaCong;
+
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN TẤT TOÁN',
+                            phieuyeucaugiacong_id: rowData.id,
+                            loaiphieuin: 'tattoan'
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuYeuCauGiaCongInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
                 }
             );
 
