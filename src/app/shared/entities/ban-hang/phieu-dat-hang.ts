@@ -308,6 +308,8 @@ export class HangHoaDatHang extends PhieuDatHang_SanXuatChiTiet {
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
     public thoigiantao   : Date  ;
+
+    public heso          : number;
 }
 
 
