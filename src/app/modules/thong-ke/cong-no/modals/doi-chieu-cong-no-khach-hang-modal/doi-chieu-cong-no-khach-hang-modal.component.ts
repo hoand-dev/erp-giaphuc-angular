@@ -93,6 +93,8 @@ export class DoiChieuCongNoKhachHangModalComponent implements OnInit {
                     this.congnokhachhang.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     this.congnokhachhang.inphieu_hoten = this.currentUser.fullName;
                     this.congnokhachhang.nocuoiky_bangchu = number2vn(this.congnokhachhang.nocuoiky);
+                    this.congnokhachhang.nocuoiky_bangchu = this.congnokhachhang.nocuoiky_bangchu.charAt(0).toUpperCase() + this.congnokhachhang.nocuoiky_bangchu.slice(1);
+
 
                     dsThongKeCongNo.readJson({ rptThongKeCongNo: this.congnokhachhang, rptThongKeCongNo_ChiTiet: data });
                     report.regData('rptThongKeCongNo', null, dsThongKeCongNo);

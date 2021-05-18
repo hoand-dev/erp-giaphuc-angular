@@ -996,7 +996,7 @@ PHÁT SINH</Text>
               <Name>Text55</Name>
               <Page isRef="7" />
               <Parent isRef="63" />
-              <Text>{rptThongKeCongNo.nocuoiky_bangchu} đồng.</Text>
+              <Text>{rptThongKeCongNo.nocuoiky_bangchu} đồng./</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -1094,9 +1094,10 @@ PHÁT SINH</Text>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/14/2021 7:28:36 AM</ReportChanged>
+  <ReportChanged>5/17/2021 3:35:39 PM</ReportChanged>
   <ReportCreated>2/23/2021 1:19:53 PM</ReportCreated>
-  <ReportGuid>ceda5a45785b40188ab7b87961ed5a45</ReportGuid>
+  <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\cong-no\rptDoiChieuCongNo_Mau_1.mrt</ReportFile>
+  <ReportGuid>70d3a777583f47f3af1ac1af9b690c5c</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
