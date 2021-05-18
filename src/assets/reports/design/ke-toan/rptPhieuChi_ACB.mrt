@@ -281,7 +281,7 @@
         <Text14 Ref="18" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,4.4,4.8,0.8</ClientRectangle>
+          <ClientRectangle>0,4.4,5.2,0.8</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,11</Font>
           <Margins>0,0,0,0</Margins>
@@ -291,12 +291,11 @@
           <Text>Đơn vị thụ hưởng / Beneficiary:</Text>
           <TextBrush>Black</TextBrush>
           <Type>Expression</Type>
-          <VertAlignment>Center</VertAlignment>
         </Text14>
         <Text15 Ref="19" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>4.8,4.4,15.2,0.8</ClientRectangle>
+          <ClientRectangle>5.2,4.4,14.8,0.8</ClientRectangle>
           <Conditions isList="true" count="0" />
           <Font>Times New Roman,12</Font>
           <Margins>0,0,0,0</Margins>
@@ -307,7 +306,6 @@
           <TextBrush>Black</TextBrush>
           <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
           <Type>Expression</Type>
-          <VertAlignment>Center</VertAlignment>
         </Text15>
         <Text16 Ref="20" type="Text" isKey="true">
           <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
@@ -2281,10 +2279,10 @@ g7IUidDiwndgbNigieCelYbi+N8olFq6x2gxmaqxZh1TSJtHzt/xzF1fcQThf4Nv8A2+wTf4d4VW
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/17/2021 3:33:17 PM</ReportChanged>
+  <ReportChanged>5/18/2021 7:19:59 AM</ReportChanged>
   <ReportCreated>1/21/2021 4:14:33 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\ke-toan\rptPhieuChi_ACB.mrt</ReportFile>
-  <ReportGuid>7e065850acc548c7bbace77442082ce3</ReportGuid>
+  <ReportGuid>11927346a96e46479ebde51cd97ada8c</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>

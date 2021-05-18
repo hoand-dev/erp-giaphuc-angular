@@ -9,6 +9,7 @@ export class PhieuYeuCauGiaCong {
     tentaixe: string;
 
     tenkhoxuat: string;
+    loaiphieuin: string;
 
     public tendonvigiacong: string;
     public tenkhogiacong: string;
