@@ -266,6 +266,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                     item.dvt_id = x.dvt_id;
                     item.tilequydoi = x.tilequydoi;
                     item.somat_id = x.somat_id;
+                    item.heso = x.heso;
                     item.somat_thanhpham_id = x.somat_thanhpham_id;
                     item.soluong = x.soluong - x.soluongtattoan - x.soluongdayeucau;
                     item.phieudathang_chitiet_id = x.id;
