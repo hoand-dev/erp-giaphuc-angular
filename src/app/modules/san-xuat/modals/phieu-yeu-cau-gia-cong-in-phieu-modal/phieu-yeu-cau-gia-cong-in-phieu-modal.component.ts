@@ -61,6 +61,9 @@ export class PhieuYeuCauGiaCongInPhieuModalComponent implements OnInit {
                     if(this.loaiphieuin == 'hangtron'){
                         report.loadFile('assets/reports/design/san-xuat/rptPhieuXuatGiaCongTrenFormYeuCauGiaCong.mrt');
                     }
+                    if(this.loaiphieuin == 'tattoan'){
+                        report.loadFile('assets/reports/design/san-xuat/rptPhieuNhapHangTatToan.mrt');
+                    }
 
                     /* Xóa dữ liệu trên cache trước khi in */
                     report.dictionary.databases.clear();
