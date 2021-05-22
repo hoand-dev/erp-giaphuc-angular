@@ -70,7 +70,7 @@ export class NhomKhachHangThemMoiComponent implements OnInit {
                             message: 'Lưu thành công',
                             position: { my: 'right top', at: 'right top' }
                         },
-                        'sucess',
+                        'success',
                         475
                     );
                     this.router.navigate(['/nhom-khach-hang']); // chuyển trang sau khi thêm

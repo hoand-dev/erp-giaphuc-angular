@@ -36,7 +36,7 @@ export class NhaCungCapCapNhatComponent implements OnInit {
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
-        type: 'sucess',
+        type: 'success',
         useSubmitBehavior: true
     };
 

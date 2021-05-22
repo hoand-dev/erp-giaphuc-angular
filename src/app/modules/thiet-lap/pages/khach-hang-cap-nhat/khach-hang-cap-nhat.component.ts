@@ -129,10 +129,10 @@ export class KhachHangCapNhatComponent implements OnInit {
                     notify(
                         {
                             width: 320,
-                            message: ' Lưu thành công',
-                            position: { my: 'right top', at: ' right top' }
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
                         },
-                        'sucess',
+                        'success',
                         475
                     );
                     this.router.navigate(['/khach-hang']);
