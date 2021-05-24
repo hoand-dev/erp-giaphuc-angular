@@ -115,7 +115,7 @@ export class KhachHangComponent implements OnInit {
                                         message: 'Xóa thành công',
                                         position: { my: 'right top', at: 'right top' }
                                     },
-                                    'sucess',
+                                    'success',
                                     475
                                 );
                             }
