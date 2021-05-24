@@ -28,7 +28,7 @@ export class TheoDoiHopDongService extends BaseService {
     }
     
     addHopDong(hopdong: TheoDoiHopDong): Observable<TheoDoiHopDong>{
-      return this.httpClient.post<TheoDoiHopDong>(this.apiUrl , hopdong);
+      return this.httpClient.post<TheoDoiHopDong>(this.apiUrl, hopdong);
     }
   
     updateHopDong(hopdong: TheoDoiHopDong): Observable<TheoDoiHopDong>{
@@ -40,21 +40,21 @@ export class TheoDoiHopDongService extends BaseService {
     }
   
     checkExistHopDong(masohopdong: string, masohopdong_old: string = null){
-      if(masohopdong == masohopdong_old){
+      if(masohopdong == masohopdong_old)
         return new Promise((resolve) => {
             setTimeout( function() {
             resolve(true); 
           }, 300);
       });
-      }
-      else{
+      
+      else
         return this.httpClient.get(this.apiUrl + `/exist?masohopdong=${masohopdong}`)
         .toPromise()
-        .then(res => !res )
-        .catch(err =>{
+        .then(res => !res)
+        .catch(err => {
           console.error(err);
           this.handleError(err);
         });
-      }
+      
     }
 }

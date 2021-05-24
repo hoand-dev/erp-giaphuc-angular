@@ -28,12 +28,12 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
     public dataSource_NhomKhachHang: DataSource;
     public dataSource_NguoiDung: DataSource;
 
-    public hopdong: TheoDoiHopDong;
+    public theodoihopdong: TheoDoiHopDong;
 
     public saveProcessing = false;
     public loadingVisible = true;
 
-    public sohopdong_old: string;
+    public masohopdong_old: string;
 
     public rules: Object = { X: /[02-9]/ };
     public buttonSubmitOptions: any = {
@@ -59,7 +59,7 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
             this.authenticationService.setDisableChiNhanh(true);
         });
 
-        this.hopdong = new TheoDoiHopDong();
+        this.theodoihopdong = new TheoDoiHopDong();
 
         this.theCallBackValid = this.theCallBackValid.bind(this);
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
@@ -71,8 +71,8 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
                     this.subscriptions.add(
                         this.theodoihopdongService.findHopDong(hopdong_id).subscribe(
                             (data) => {
-                                this.hopdong = data;
-                                this.sohopdong_old = this.hopdong.masohopdong;
+                                this.theodoihopdong = data;
+                                this.masohopdong_old = this.theodoihopdong.masohopdong;
                                 // this.khachhang.loaikhachhang = this.khachhang.loaikhachhang == 2 true : false; -- khi nào cần xử lý loại khách hàng thì xử lý ở đây
                             },
                             (error) => {
@@ -125,13 +125,13 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
     }
 
     theCallBackValid(params) {
-        return this.theodoihopdongService.checkExistHopDong(params.value, this.sohopdong_old);
+        return this.theodoihopdongService.checkExistHopDong(params.value, this.masohopdong_old);
     }
 
     onSubmitForm(e) {
         if (!this.frmTheoDoiHopDong.instance.validate().isValid) return;
 
-        let hopdong_req = this.hopdong;
+        let hopdong_req = this.theodoihopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
 
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
@@ -148,10 +148,10 @@ export class TheoDoiHopDongCapNhatComponent implements OnInit {
                     notify(
                         {
                             width: 320,
-                            message: ' Lưu thành công',
-                            position: { my: 'right top', at: ' right top' }
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
                         },
-                        'sucess',
+                        'success',
                         475
                     );
                     this.router.navigate(['/theo-doi-hop-dong']);
