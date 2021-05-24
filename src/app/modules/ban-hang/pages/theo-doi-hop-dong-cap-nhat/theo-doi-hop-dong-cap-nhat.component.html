@@ -28,7 +28,7 @@
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="2" [formData]="hopdong" [showValidationSummary]="true">
+                                <dx-form id="form" [colCount]="2" [formData]="theodoihopdong" [showValidationSummary]="true">
                                     <dxi-item [label]="{ text: 'SỐ HỢP ĐỒNG' }" dataField="masohopdong">
                                         <dxi-validation-rule type="required" message="Nhập số hợp đồng"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã hợp đồng quá ngắn"></dxi-validation-rule>

@@ -29,7 +29,7 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     public dataSource_NhomKhachHang: DataSource;
     public dataSource_NguoiDung: DataSource;
 
-    public hopdong: TheoDoiHopDong;
+    public theodoihopdong: TheoDoiHopDong;
 
     public ngayky: Date;
     public ngayhethan: Date;
@@ -62,8 +62,8 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
             this.authenticationService.setDisableChiNhanh(true);
         });
 
-        this.hopdong = new TheoDoiHopDong();
-        this.theCallBackValid = this.theCallBackValid.bind(this);
+        this.theodoihopdong = new TheoDoiHopDong();
+        this.theCallbackValid = this.theCallbackValid.bind(this);
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -98,6 +98,10 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
             this.nguoidungService.findNguoiDungs().subscribe((x) => {
                 this.loadingVisible = false;
                 this.lstNguoiDung = x;
+                
+                // gán nhân viên sale mặc định
+                this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe((y) => (this.theodoihopdong.tennhanviensale)));
+
                 this.dataSource_NguoiDung = new DataSource({
                     store: x,
                     paginate: true,
@@ -112,10 +116,10 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    theCallBackValid(params) {
+    theCallbackValid(params) {
         return this.theodoihopdongService.checkExistHopDong(params.value);
     }
-
+ 
     public hieuluc(params) {
         //formatDate(value: string | number | Date, format: string, locale: string): string
     }
@@ -123,7 +127,7 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
     onSubmitForm(e) {
         if (!this.frmTheoDoiHopDong.instance.validate().isValid) return;
 
-        let hopdong_req = this.hopdong;
+        let hopdong_req = this.theodoihopdong;
         hopdong_req.chinhanh_id = this.currentChiNhanh.id;
         hopdong_req.khachhang_id = hopdong_req.khachhang_id;
 
@@ -134,10 +138,10 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
                     notify(
                         {
                             width: 320,
-                            message: ' Lưu thành công',
-                            position: { my: 'right top', at: ' right top' }
+                            message: 'Lưu thành công',
+                            position: { my: 'right top', at: 'right top' }
                         },
-                        'sucess',
+                        'success',
                         475
                     );
                     this.router.navigate(['/theo-doi-hop-dong']);

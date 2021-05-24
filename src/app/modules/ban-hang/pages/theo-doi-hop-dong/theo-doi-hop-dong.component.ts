@@ -57,7 +57,7 @@ export class TheoDoiHopDongComponent implements OnInit {
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
-        this.currDayTime = moment().add(1, 'days').toDate();
+        this.currDayTime = moment().toDate(); //.add(1, 'days')
 
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
@@ -121,10 +121,11 @@ export class TheoDoiHopDongComponent implements OnInit {
                                         message: 'Xóa thành công',
                                         position: { my: 'right top', at: 'right top' }
                                     },
-                                    'sucess',
+                                    'success',
                                     475
                                 );
                             }
+                            // load lại dữ liệu
                             this.onLoadData();
                         },
                         (error) => {
