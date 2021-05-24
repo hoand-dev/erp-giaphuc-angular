@@ -55,6 +55,7 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_KhachHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -64,6 +65,7 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
     public lstSoMat: SoMat[];
+    public lstKhachHang: KhachHang[] = [];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
@@ -127,6 +129,19 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
             })
         );
 
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
+
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+        
         this.subscriptions.add(
             this.giacongService.findDinhMucs().subscribe((x) => {
                 this.lstGiaCong = x;

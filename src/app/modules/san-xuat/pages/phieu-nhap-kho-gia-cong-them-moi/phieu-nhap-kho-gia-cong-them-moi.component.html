@@ -119,6 +119,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th [style.min-width.px]="25">STT</th>
+                                                        <th [style.min-width.px]="250">KHÁCH HÀNG</th>
                                                         <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="250">Y/C</th>
                                                         <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
@@ -140,6 +141,22 @@
                                                 <tbody>
                                                     <tr *ngFor="let item of hanghoas; index as i">
                                                         <td>{{ i + 1 }}</td>
+                                                        <td>
+                                                            <dx-select-box
+                                                                id="somat_row_{{ i }}"
+                                                                [(value)]="item.khachhang_id"
+                                                                [dataSource]="dataSource_KhachHang"
+                                                                [displayExpr]="'tenrutgon'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['makhachhang', 'tenkhachhang']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                                [readOnly]="true"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
                                                         <td>
                                                             <dx-select-box
                                                                 [readOnly]="true"
@@ -273,6 +290,7 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th [style.min-width.px]="25"></th>
+                                                        <th [style.min-width.px]="250"></th>
                                                         <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.min-width.px]="110"></th>

@@ -71,6 +71,11 @@ export class PhieuNhapThanhPhamInPhieuModalComponent implements OnInit {
                     data.inphieu_thoigian = moment().format('HH:mm DD/MM/YYYY');
                     data.inphieu_hoten = this.currentUser.fullName;
 
+                    data.phieunhapkhogiacong_chitiets.forEach((x) => {
+                        x.chuthich = (x.chuthich ? x.chuthich : '') + (x.tenkhachhang ? ' ' + x.tenkhachhang : '');
+                        x.chuthich = x.chuthich.trim();
+                    });
+
                     dsPhieuNhapThanhPham.readJson({ rptPhieuNhapThanhPham: data, rptPhieuNhapThanhPham_ChiTiet: data.phieunhapkhogiacong_chitiets });
                     report.regData('rptPhieuNhapThanhPham', null, dsPhieuNhapThanhPham);
 

@@ -11,6 +11,7 @@ import {
     DinhMucService,
     DonViGiaCongService,
     HangHoaService,
+    KhachHangService,
     KhoHangService,
     PhieuNhapKhoGiaCongService,
     PhieuYeuCauGiaCongService,
@@ -47,6 +48,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_KhachHang: DataSource;
 
     public saveProcessing = false;
     public loadingVisible = true;
@@ -56,6 +58,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
     public lstHangHoa: HangHoa[];
     public lstGiaCong: DinhMuc[];
     public lstSoMat: SoMat[];
+    public lstKhachHang: KhachHang[] = [];
 
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
@@ -83,6 +86,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         private phieunhapkhogiacongService: PhieuNhapKhoGiaCongService,
         private phieuyeucaugiacongService: PhieuYeuCauGiaCongService,
         private donvigiacongService: DonViGiaCongService,
+        private khachhangService: KhachHangService,
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
         private giacongService: DinhMucService,
@@ -127,7 +131,20 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
                 );
             })
         );
+        
+        this.subscriptions.add(
+            this.khachhangService.findKhachHangs().subscribe((x) => {
+                this.loadingVisible = false;
+                this.lstKhachHang = x;
 
+                this.dataSource_KhachHang = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+        
         this.subscriptions.add(
             this.giacongService.findDinhMucs().subscribe((x) => {
                 this.lstGiaCong = x;
@@ -235,7 +252,8 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
                                     item.xuatnguyenlieu = value.xuatnguyenlieu;
                                     item.yeucaus = value.yeucaus;
                                     item.phieuyeucaugiacongct_id = value.id;
-
+                                    item.khachhang_id = value.khachhang_id;
+                                    
                                     this.hanghoas.push(item);
                                 }
                             });

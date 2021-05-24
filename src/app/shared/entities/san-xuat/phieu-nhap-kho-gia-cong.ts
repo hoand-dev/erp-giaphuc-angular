@@ -94,6 +94,8 @@ export class PhieuNhapKhoGiaCongCT {
     tensomat: string;
     tenyeucau: string;
 
+    public tenkhachhang: string;
+
     public yeucaus: string;
     public arr_yeucaus: number[];
 
@@ -127,6 +129,7 @@ export class PhieuNhapKhoGiaCongCT {
     public khonhaploi_id: number;
     public somat_thanhpham_id: number;
     public xuatnguyenlieu: boolean;
+    public khachhang_id: number;
 
     public tongtrongluong: number = 0;
     public tongkien: number = 0;
@@ -157,6 +160,7 @@ export class PhieuNhapKhoGiaCongCT {
         khonhaploi_id: number = null,
         somat_thanhpham_id: number = null,
         xuatnguyenlieu: boolean = null,
+        khachhang_id: number = null,
 
         yeucaus: string = null,
         arr_yeucaus: number[] = []
@@ -183,7 +187,8 @@ export class PhieuNhapKhoGiaCongCT {
         this.khonhaploi_id = khonhaploi_id;
         this.somat_thanhpham_id = somat_thanhpham_id;
         this.xuatnguyenlieu = xuatnguyenlieu;
-
+        this.khachhang_id = khachhang_id;
+        
         this.yeucaus = yeucaus;
         this.arr_yeucaus = arr_yeucaus;
     }

@@ -100,7 +100,7 @@ export class TheoDoiHopDongThemMoiComponent implements OnInit {
                 this.lstNguoiDung = x;
                 
                 // gán nhân viên sale mặc định
-                this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe((y) => (this.theodoihopdong.tennhanviensale)));
+                this.subscriptions.add(this.nguoidungService.getCurrentUser().subscribe((y) => (this.theodoihopdong.user_id = y.id)));
 
                 this.dataSource_NguoiDung = new DataSource({
                     store: x,
