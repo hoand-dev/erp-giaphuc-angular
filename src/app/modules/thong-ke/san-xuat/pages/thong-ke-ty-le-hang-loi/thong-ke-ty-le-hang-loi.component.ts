@@ -57,7 +57,7 @@ export class ThongKeTyLeHangLoiComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
-        this.currDayTime = moment().add(1, 'days').toDate();
+        this.currDayTime = moment().toDate(); //.add(1, 'days')
 
         // phân quyền
         this.subscriptions.add(

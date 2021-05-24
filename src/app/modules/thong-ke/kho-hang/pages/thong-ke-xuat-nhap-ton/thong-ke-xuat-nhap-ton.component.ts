@@ -61,8 +61,8 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
-        this.currDayTime = moment().add(1, 'days').toDate();
-
+        this.currDayTime = moment().toDate(); //.add(1, 'days')
+        
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
@@ -174,7 +174,7 @@ export class ThongKeXuatNhapTonComponent implements OnInit, OnDestroy {
 
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(ThongKeXuatNhapTonChiTietPhieuModalComponent, {
-            class: 'modal-xl modal-dialog-centered',
+            class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
