@@ -40,10 +40,11 @@ export class PhieuYeuCauGiaCongService extends BaseService {
         return this.httpClient.delete<PhieuYeuCauGiaCong>(this.apiUrl + `/${id}`);
     }
 
-    laygiaPhieuYeuCauGiaCong(hanghoa_id: number, yeucaus: string, donvigiacong_id?: number): Observable<number> {
+    laygiaPhieuYeuCauGiaCong(hanghoa_id: number, yeucaus: string, somatyc_id: number, donvigiacong_id?: number): Observable<number> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set("hanghoa_id", hanghoa_id.toString());
         query_params = query_params.set("yeucaus", yeucaus);
+        query_params = query_params.set("somatyc_id", somatyc_id ? somatyc_id.toString() : null);
         query_params = query_params.set("donvigiacong_id", donvigiacong_id != null? donvigiacong_id.toString() : null);
 
         return this.httpClient.get<number>(this.apiUrl + `/laygia`, { params: query_params });
