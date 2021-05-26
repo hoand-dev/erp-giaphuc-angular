@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box> -->
+            <!-- <dx-tag-box [style.width.px]="400" class="float-left"
+                [(value)]="khachhangSelected"
+                [dataSource]="dataSource_KhachHang"
+                valueExpr="id"
+                displayExpr="tenkhachhang"
+                applyValueMode="instantly"
+                [showSelectionControls]="false"
+                [searchExpr]="['makhachhang', 'tenkhachhang']"
+                [multiline]="false"
+                [searchEnabled]="true"
+                (onSelectionChanged)="onKhachHangChanged($event)"
+            >
+            </dx-tag-box> -->
+            <dx-select-box  [style.width.px]="400" class="float-left"
+            [(value)]="khachhangSelected"
+            [dataSource]="dataSource_KhachHang"
+            [displayExpr]="'tenrutgon'"
+            [valueExpr]="'id'"
+            [searchMode]="'contains'"
+            [searchExpr]="['makhachhang', 'tenkhachhang','id']"
+            [searchTimeout]="500"
+            [searchEnabled]="true"
+            [minSearchLength]="0"
+            (onSelectionChanged)="onKhachHangChanged($event)"
+        >
+        </dx-select-box>
+            <button [style.margin-left.px]="20" class="btn btn-sm btn-success" (click)="onLoadData()">Lấy danh sách</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <dx-data-grid
+                id="gridContainer"
+                [(selectedRowKeys)]="selectedItemKeys"
+                [showBorders]="true"
+                [showRowLines]="true"
+                [hoverStateEnabled]="true"
+                [stateStoring]="stateStoringGrid"
+                [columnAutoWidth]="true"
+                [columnResizingMode]="'widget'"
+                [allowColumnResizing]="true"
+                [allowColumnReordering]="true"
+            >
+            <dxo-export [enabled]="true" [fileName]="exportFileName"></dxo-export>
+                <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                    <div *dxTemplate="let data of 'cellTemplateSTT'">
+                        {{ rowNumber(data.rowIndex) }}
+                    </div>
+                </dxi-column>
+                <dxi-column dataField="ngayphatsinh" dataType="date" caption="Ngày đặt hàng"></dxi-column>
+                <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
+                <dxi-column dataField="khachhang" caption="Khách hàng"></dxi-column>
+
+                <dxi-column dataField="khonhap" caption="Kho nhập"></dxi-column>
+                <!-- <dxi-column dataField="khogiacong" caption="Kho gia công"></dxi-column> -->
+                <!-- <dxi-column dataField="khonhap" caption="Kho thành phẩm"></dxi-column> -->
+
+                <dxi-column dataField="tenthanhpham" caption="Tên Thành phẩm"></dxi-column>
+                <!-- <dxi-column dataField="tenyeucau" caption="Yêu cầu"></dxi-column>
+                <dxi-column dataField="tensomat" caption="Số mặt"></dxi-column> -->
+                <!-- <dxi-column dataField="soluong" caption="Số lượng" format="#,##0"></dxi-column> -->
+                <dxi-column caption="Số lượng" [calculateCellValue]="soluong_calculateCellValue" format="#,##0"></dxi-column>
+
+                <dxi-column dataField="chuaban" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
+                    <div *dxTemplate="let data of 'cellTemplateTrangThai'">
+                        <span class="text-red" *ngIf="data.value == null || data.value == 'Chưa bán'">Chưa bán</span>
+                        <span class="text-warning" *ngIf="data.value != null && data.value != 'Chưa bán'">{{ data.value }}</span>
+                    </div>
+                </dxi-column>
+
+                <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                <dxi-column dataField="thoigiantao" caption="Thời gian tạo" dataType="date"></dxi-column>
+
+                <!-- dx-data-grid option -->
+                <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple"></dxo-selection>
+                <dxo-sorting mode="multiple"> <!-- "single" or "multiple" | "none" --> </dxo-sorting>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+                <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
+                <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button type="button" class="btn btn-success" (click)="onConfirm('capnhat')">Bổ sung</button> -->
+    <button type="button" class="btn btn-success" (click)="onConfirm()" *ngIf="!isupdate">Tạo mới</button>
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div>
