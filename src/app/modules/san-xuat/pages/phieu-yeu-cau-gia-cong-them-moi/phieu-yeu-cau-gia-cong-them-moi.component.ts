@@ -337,6 +337,10 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         return item && item.tenhanghoa; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
     }
 
+    displayExprKhachHang(item) {
+        return item && item.id + ", " + item.tenrutgon;
+    }
+
     public onHangHoaAdd() {
         this.hanghoas.push(new PhieuYeuCauGiaCongCT());
     }
