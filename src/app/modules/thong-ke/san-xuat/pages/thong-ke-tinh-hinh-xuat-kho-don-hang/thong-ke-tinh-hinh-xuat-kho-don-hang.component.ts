@@ -86,6 +86,10 @@ export class ThongKeTinhHinhXuatKhoDonHangComponent implements OnInit, OnDestroy
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
+    
+    rowNumber(rowIndex) {
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
 
     onLoadData() {
         // gọi service lấy dữ liệu báo cáo

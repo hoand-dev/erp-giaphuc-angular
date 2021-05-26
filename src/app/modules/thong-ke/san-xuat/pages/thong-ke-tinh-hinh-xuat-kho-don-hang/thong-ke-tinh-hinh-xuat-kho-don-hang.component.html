@@ -57,6 +57,12 @@
                                     <dxo-paging [pageSize]="10"></dxo-paging>
                                     <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
 
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
+                                    
                                     <dxi-column dataField="ngaydathang" caption="Ngày đặt" dataType="date"></dxi-column>
                                     <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
                                     <dxi-column dataField="tenthanhpham" caption="Thành phẩm"></dxi-column>

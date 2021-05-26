@@ -87,6 +87,10 @@ export class ThongKeTyLeHangLoiComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
+    rowNumber(rowIndex) {
+        return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
     onLoadData() {
         // gọi service lấy dữ liệu báo cáo
         this.subscriptions.add(
