@@ -268,7 +268,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         this.hanghoas.forEach((e) => {
             if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
+                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, e.somat_id, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
                         e.dongia = x;
                     })
                 );
@@ -422,7 +422,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
             this.hanghoas[index].somat_thanhpham_id = selected.id;
 
             // gán giá trị hệ số
-            this.hanghoas[index].heso = selected.giatri;
+            // this.hanghoas[index].heso = selected.giatri;
         }
     }
 
