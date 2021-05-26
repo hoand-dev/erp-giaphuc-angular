@@ -118,13 +118,15 @@ export class DinhMuc_ChiPhiKhac {
     public tinhphi: boolean;
     public chuthich: string;
     public dinhmuc_id: number;
+    public nhansomat: boolean;
 
-    constructor(id: number = null, noidung_id: number = null, chiphi: number = 0, tinhphi: boolean = false, chuthich: string = null, dinhmuc_id: number = null) {
+    constructor(id: number = null, noidung_id: number = null, chiphi: number = 0, tinhphi: boolean = false, chuthich: string = null, dinhmuc_id: number = null, nhansomat: boolean =false) {
         this.id = id;
         this.noidung_id = noidung_id;
         this.chiphi = chiphi;
         this.tinhphi = tinhphi;
         this.chuthich = chuthich;
         this.dinhmuc_id = dinhmuc_id;
+        this.nhansomat = nhansomat;
     }
 }
