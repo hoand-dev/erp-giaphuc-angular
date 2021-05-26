@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import moment from 'moment';
 import { ThongKeXuatNhapTon, ThongKeXuatNhapTonTrongNgay, ThongKeXuatNhapTon_ChiTiet, ThongKeXuatNhapTon_ChiTietPhieu } from '@app/shared/entities';
+import { ThongKeXuatMuonComponent } from '@app/modules/thong-ke/kho-hang/pages/thong-ke-xuat-muon/thong-ke-xuat-muon.component';
+import { ThongKeMuonNgoaiComponent } from '@app/modules/thong-ke/kho-hang/pages/thong-ke-muon-ngoai/thong-ke-muon-ngoai.component';
 
 @Injectable({
     providedIn: 'root'
@@ -56,5 +58,22 @@ export class ThongKeKhoHangService extends BaseService {
         query_params = query_params.set('view', view);
 
         return this.httpClient.get<ThongKeXuatNhapTon_ChiTietPhieu[]>(this.apiUrl + '/xuat-nhap-ton-chi-tiet-phieu', { params: query_params });
+    }
+
+    findsHangHoaXuatMuon(fromDay: Date, toDay: Date, chinhanh_id: number = null): Observable<ThongKeXuatMuonComponent[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('tungay', moment(fromDay).format('YYYY-MM-DD HH:mm:ss'));
+        query_params = query_params.set('denngay', moment(toDay).format('YYYY-MM-DD HH:mm:ss'));
+        query_params = query_params.set('chinhanh_id', chinhanh_id ? chinhanh_id.toString() : null);
+        return this.httpClient.get<ThongKeXuatMuonComponent[]>(this.apiUrl + '/hang-xuat-muon', { params: query_params });
+    }
+
+
+    findsHangHoaMuonNgoai(fromDay: Date, toDay: Date, chinhanh_id: number = null): Observable<ThongKeMuonNgoaiComponent[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('tungay', moment(fromDay).format('YYYY-MM-DD HH:mm:ss'));
+        query_params = query_params.set('denngay', moment(toDay).format('YYYY-MM-DD HH:mm:ss'));
+        query_params = query_params.set('chinhanh_id', chinhanh_id ? chinhanh_id.toString() : null);
+        return this.httpClient.get<ThongKeMuonNgoaiComponent[]>(this.apiUrl + '/hang-nhap-muon-ngoai', { params: query_params });
     }
 }

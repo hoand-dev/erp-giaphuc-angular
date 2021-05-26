@@ -339,7 +339,9 @@ export class AppComponent implements OnInit {
         ];
         const THONGKE_KHOHANG =[
             "/xuat-nhap-ton-trong-ngay",
-            "/xuat-nhap-ton"
+            "/xuat-nhap-ton",
+            "/hang-xuat-muon",
+            "/hang-nhap-muon-ngoai"
         ];
         const THONGKE_CONGNO = [
             "/cong-no-qua-han",

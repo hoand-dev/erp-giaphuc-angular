@@ -55,8 +55,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th [style.min-width.px]="25">STT</th>
-                                                        <th [style.min-width.px]="200">GIA CÔNG</th>
                                                         <th [style.min-width.px]="200">TIÊU CHUẨN</th>
+                                                        <th [style.min-width.px]="200">GIA CÔNG</th>
+                                                        <th [style.min-width.px]="100">SỐ MẶT</th>
                                                         <th [style.min-width.px]="100">ĐƠN GIÁ</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
                                                         <th [style.max-width.px]="20" (click)="onHangHoaAdd()">
@@ -67,6 +68,22 @@
                                                 <tbody>
                                                     <tr *ngFor="let item of chitiets; index as i">
                                                         <td>{{ i + 1 }}</td>
+                                                        <td>
+                                                            <dx-select-box
+                                                                id="tieuchuan_row_{{ i }}"
+                                                                [(value)]="item.tieuchuan_id"
+                                                                [dataSource]="dataSource_TieuChuan"
+                                                                [displayExpr]="'tendanhmuctieuchuan'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['madanhmuctieuchuan', 'tendanhmuctieuchuan']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                                (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
                                                         <td>
                                                             <dx-select-box
                                                                 id="danhmucgiacong_row_{{ i }}"
@@ -85,13 +102,13 @@
                                                         </td>
                                                         <td>
                                                             <dx-select-box
-                                                                id="tieuchuan_row_{{ i }}"
-                                                                [(value)]="item.tieuchuan_id"
-                                                                [dataSource]="dataSource_TieuChuan"
-                                                                [displayExpr]="'tendanhmuctieuchuan'"
+                                                                id="somat_row_{{ i }}"
+                                                                [(value)]="item.somat_id"
+                                                                [dataSource]="dataSource_SoMat"
+                                                                [displayExpr]="'tensomat'"
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
-                                                                [searchExpr]="['madanhmuctieuchuan', 'tendanhmuctieuchuan']"
+                                                                [searchExpr]="['masomat', 'tensomat']"
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
@@ -107,6 +124,7 @@
                                             </table>
                                         </div>
                                     </dxi-item>
+
 
                                     <dxi-item [colSpan]="6">
                                         <div *dxTemplate>

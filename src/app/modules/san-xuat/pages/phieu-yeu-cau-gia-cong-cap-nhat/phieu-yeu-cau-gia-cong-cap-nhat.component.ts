@@ -279,6 +279,11 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
 
+    displayExprKhachHang(item) {
+        return item && item.id + ", " + item.tenrutgon;
+    }
+
+
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {

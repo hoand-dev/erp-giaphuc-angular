@@ -65,13 +65,15 @@ export class BangGiaGiaCong_ChiTiet {
     public tieuchuan_id: number;
     public dongia: number;
     public chuthich: string;
+    public somat_id: number;
 
-    constructor(id: number = null, bangiagiacong_id: number = null, danhmucgiacong_id: number = null, tieuchuan_id: number = null, dongia: number = 0, chuthich: string = null) {
+    constructor(id: number = null, bangiagiacong_id: number = null, danhmucgiacong_id: number = null, tieuchuan_id: number = null, dongia: number = 0, chuthich: string = null, somat_id: number =null) {
         this.id = id;
         this.bangiagiacong_id = bangiagiacong_id;
         this.danhmucgiacong_id = danhmucgiacong_id;
         this.tieuchuan_id = tieuchuan_id;
         this.dongia = dongia;
         this.chuthich = chuthich;
+        this.somat_id = somat_id;
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChiNhanh, KhachHang, KhoHang, NguoiDung, PhieuBanHang, PhieuBanHang_ChiTiet, PhieuDatHang, PhieuDatHang_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, HangHoaDatHang, HangHoaThanhPham, KhachHang, KhoHang, NguoiDung, PhieuBanHang, PhieuBanHang_ChiTiet, PhieuDatHang, PhieuDatHang_ChiTiet } from '@app/shared/entities';
 import { ETrangThaiPhieu } from '@app/shared/enums/e-trang-thai-phieu.enum';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import {
@@ -21,6 +21,7 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { DanhSachHangHoaDatHangThanhPhamComponent } from '../../modals/danh-sach-hang-hoa-dat-hang-thanh-pham/danh-sach-hang-hoa-dat-hang-thanh-pham.component';
 import { DanhSachPhieuDatHangModalComponent } from '../../modals/danh-sach-phieu-dat-hang-modal/danh-sach-phieu-dat-hang-modal.component';
 
 @Component({
@@ -49,6 +50,10 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
     public hanghoas: PhieuBanHang_ChiTiet[] = [];
 
+    
+    // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu
+    private hanghoalenght: number = 0;
+
     public firstLoad_KhachHang = false;
 
     // điều kiện để hiển thị danh sách hàng hoá
@@ -59,8 +64,6 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     public saveProcessing = false;
     public loadingVisible = false;
 
-    // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu đặt hàng
-    private hanghoalenght: number = 0;
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -171,102 +174,6 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
         });
 
         // console.log(this.routeInterceptorService.previousUrl);
-
-        // kiểm tra queryParams
-        this.subscriptions.add(
-            this.activatedRoute.queryParams.subscribe((params) => {
-                if (this.commonService.isNotEmpty(params.tuphieu)) {
-                    this.isChonTuPhieu = true;
-                    this.hanghoas = [];
-                    this.firstLoad_KhachHang = false;
-                    // lấy thông tin phiếu đặt hàng ncc từ api
-                    this.objPhieuDatHangService.findPhieuDatHang(params.tuphieu).subscribe(
-                        (data) => {
-                            /* chọn từ phiếu không cho thay đổi chi nhánh */
-                            setTimeout(() => {
-                                this.authenticationService.setDisableChiNhanh(true);
-                            });
-                            this.hanghoas = [];
-                            
-                            /* phiếu đặt hàng -> phiếu bán hàng*/
-                            // xử lý phần thông tin phiếu
-                            this.phieubanhang.khachhang_id = data.khachhang_id;
-                            this.phieubanhang.khachhang_hoten = data.khachhang_hoten;
-                            this.phieubanhang.khachhang_dienthoai = data.khachhang_dienthoai;
-                            this.phieubanhang.khachhang_diachi = data.khachhang_diachi;
-                            this.phieubanhang.tongtienhang = data.tongtienhang;
-                            this.phieubanhang.thuevat = data.thuevat;
-                            this.phieubanhang.chietkhau = data.chietkhau;
-                            this.phieubanhang.tongthanhtien = data.tongthanhtien;
-                            this.phieubanhang.phieudathang_id = data.id;
-                            this.phieubanhang.nhanviensale_id = data.nhanviensale_id;
-                            this.phieubanhang.khoxuat_id = data.khoxuat_id;
-                            this.phieubanhang.maphieudathang = data.maphieudathang;
-                            
-                            // gán độ dài danh sách hàng hóa load lần đầu
-                            this.hanghoalenght = data.phieudathang_chitiet.length;
-                            this.hanghoalenght += data.phieudathang_thanhphams.length;
-
-                            // xử lý phần thông tin chi tiết phiếu, hàng có sẵn
-                            data.phieudathang_chitiet.forEach((value, index) => {
-                                if (value.trangthaigiao != ETrangThaiPhieu.dagiao) {
-                                    let item = new PhieuBanHang_ChiTiet();
-
-                                    item.loaihanghoa = value.loaihanghoa;
-                                    item.hanghoa_id = value.hanghoa_id;
-                                    item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                    item.dvt_id = value.dvt_id;
-                                    item.tilequydoi = value.tilequydoi;
-                                    item.soluong = value.soluong - value.soluongtattoan - value.soluongdagiao / value.tilequydoi;
-                                    item.dongia = value.dongia;
-                                    item.thuevat = value.thuevat;
-                                    item.chietkhau = value.chietkhau;
-                                    item.thanhtien = value.thanhtien;
-                                    item.chuthich = value.chuthich;
-                                    item.tenhanghoa_inphieu = value.tenhanghoa_inphieu;
-                                    item.phieudathang_chitiet_id = value.id;
-                                    item.xuathoadon = value.thuevat > 0 ? true : false;
-
-                                    this.hanghoas.push(item);
-                                }
-                            });
-
-                            // xử lý phần thông tin chi tiết phiếu, hàng sản xuất - thành phẩm
-                            data.phieudathang_thanhphams.forEach((value, index) => {
-                                if (value.trangthaiban != ETrangThaiPhieu.daban) {
-                                    let item = new PhieuBanHang_ChiTiet();
-
-                                    item.loaihanghoa = value.loaihanghoa;
-                                    item.hanghoa_id = value.thanhpham_id;
-                                    item.hanghoa_lohang_id = null ; //value.hanghoa_lohang_id;
-                                    item.dvt_id = value.dvt_id;
-                                    item.tilequydoi = value.tilequydoi;
-                                    item.soluong = value.soluong - value.soluongtattoan - value.soluongdaban / value.tilequydoi;
-                                    item.dongia = value.dongia;
-                                    item.thuevat = value.thuevat;
-                                    item.chietkhau = value.chietkhau;
-                                    item.thanhtien = value.thanhtien;
-                                    item.chuthich = null; //value.chuthich;
-                                    item.tenhanghoa_inphieu = value.tenthanhpham; //value.tenhanghoa_inphieu;
-                                    item.phieudathang_thanhpham_id = value.id;
-                                    item.xuathoadon = value.thuevat > 0 ? true : false;
-
-                                    this.hanghoas.push(item);
-                                }
-                            });
-
-                            if(data.phieudathang_thanhphams.length > 0){
-                                this.phieubanhang.khoxuat_id = data.phieudathang_thanhphams[0].khonhap_id;
-                            }
-                        },
-                        (error) => {
-                            this.phieubanhangService.handleError(error);
-                        }
-                    );
-                }
-            })
-        );
-
         // thêm sẵn 1 dòng cho user
         this.onHangHoaAdd();
     }
@@ -283,16 +190,46 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'DANH SÁCH PHIẾU ĐẶT HÀNG' // và nhiều hơn thế nữa
+            title: 'DANH SÁCH HÀNG HÓA ĐẶT CHỜ BÁN - KHÔNG THEO THỜI GIAN', // và nhiều hơn thế nữa
+            khachhangSelected: this.phieubanhang.khachhang_id
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachPhieuDatHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef = this.modalService.show(DanhSachHangHoaDatHangThanhPhamComponent, { class: 'modal-xxl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRef.content.onClose.subscribe((result) => {
-            this.router.navigate([`/phieu-ban-hang/them-moi`], { queryParams: { tuphieu: result.id } });
+            if (result) {
+                let res: HangHoaThanhPham[] = [];
+                if(result.action == 'capnhat'){
+                    // chỉ lấy những hàng hoá nào chưa được chọn trước đó
+                    res = result.data.filter(o=> !this.hanghoas.some(i=> i.phieudathang_thanhpham_id === o.id));
+                }
+                else{
+                    this.hanghoas = <PhieuBanHang_ChiTiet[]>[];
+                    res = result.data;
+                }
+
+                res.forEach((value) => {
+                    let item: PhieuBanHang_ChiTiet = new PhieuBanHang_ChiTiet();
+                 
+                    item.loaihanghoa = value.loaihanghoa;
+                    item.hanghoa_id = value.thanhpham_id;
+                    item.hanghoa_lohang_id = null ; //value.hanghoa_lohang_id;
+                    item.dvt_id = value.dvt_id;
+                    item.tilequydoi = value.tilequydoi;
+                    item.soluong = (value.soluong - value.soluongtattoan - value.soluongdaban) / value.tilequydoi;
+                    item.chuthich = null; //value.chuthich;
+                    item.tenhanghoa_inphieu = value.tenthanhpham; //value.tenhanghoa_inphieu;
+                    item.phieudathang_thanhpham_id = value.id;
+
+                    // add arr hanghoas
+                    this.hanghoas.push(item);
+                });
+                this.isValidForm=true;
+                this.phieubanhang.khachhang_id = res[0].khachhang_id;
+            }
         });
     }
 
@@ -310,7 +247,8 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
                 this.phieubanhang.khachhang_dienthoai = khachhang ? khachhang.sodienthoai : null;
                 this.phieubanhang.khachhang_diachi = khachhang ? khachhang.diachi : null;
                 this.phieubanhang.khachhang_hoten = khachhang ? khachhang.tenkhachhang : null;
-            } else {
+            }
+             else {
                 this.firstLoad_KhachHang = false; //chọn từ phiếu
             }
 
@@ -485,6 +423,7 @@ export class PhieuBanHangThemMoiComponent implements OnInit {
 
         // bỏ qua các dòng dữ liệu không chọn hàng hóa, nguồn lực và chi phí khác
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
+
         let phieubanhang_req = this.phieubanhang;
 
         // gán lại dữ liệu

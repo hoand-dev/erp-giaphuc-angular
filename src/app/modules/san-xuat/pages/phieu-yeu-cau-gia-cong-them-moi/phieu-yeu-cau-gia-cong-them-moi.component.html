@@ -146,16 +146,16 @@
                                                                 <path d="M0 0h24v24H0z" fill="none"></path>
                                                             </svg>
                                                         </td>
-                                                        <td [style.min-width.px]="25">{{ i + 1 }}</td>
+                                                        <td [style.min-width.px]="25">{{ i + 1 }}</td> 
                                                         <td>
                                                             <dx-select-box
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.khachhang_id"
                                                                 [dataSource]="dataSource_KhachHang"
-                                                                [displayExpr]="'tenrutgon'"
+                                                                [displayExpr]="displayExprKhachHang"
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
-                                                                [searchExpr]="['makhachhang', 'tenkhachhang']"
+                                                                [searchExpr]="['makhachhang', 'tenkhachhang','id']"
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"

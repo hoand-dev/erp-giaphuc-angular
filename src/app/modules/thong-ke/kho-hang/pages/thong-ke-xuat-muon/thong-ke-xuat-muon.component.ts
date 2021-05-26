@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ThongKeCongNoKhachHang } from '@app/shared/entities';
-import { AppInfoService, CommonService, ThongKeSanXuatService } from '@app/shared/services';
+import { AppInfoService, CommonService, ThongKeKhoHangService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -10,11 +9,11 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-thong-ke-tinh-hinh-san-xuat-don-hang',
-  templateUrl: './thong-ke-tinh-hinh-san-xuat-don-hang.component.html',
-  styleUrls: ['./thong-ke-tinh-hinh-san-xuat-don-hang.component.css']
+  selector: 'app-thong-ke-xuat-muon',
+  templateUrl: './thong-ke-xuat-muon.component.html',
+  styleUrls: ['./thong-ke-xuat-muon.component.css']
 })
-export class ThongKeTinhHinhSanXuatDonHangComponent implements OnInit, OnDestroy {
+export class ThongKeXuatMuonComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public bsModalRef: BsModalRef;
 
@@ -29,8 +28,7 @@ export class ThongKeTinhHinhSanXuatDonHangComponent implements OnInit, OnDestroy
     public enableDelete: boolean = false;
     public enableExport: boolean = false;
 
-    public dataSource_CongNoKhachHang: ThongKeCongNoKhachHang[];
-    public exportFileName: string = '[THỐNG KÊ] - TÌNH HÌNH SẢN XUẤT - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[THỐNG KÊ] - HÀNG KHÁCH MƯỢN HỒNG NGHI - ' + moment().format('DD_MM_YYYY');
 
     /* khai báo thời gian bắt đầu và thời gian kết thúc */
     public firstDayTime: Date;
@@ -39,7 +37,7 @@ export class ThongKeTinhHinhSanXuatDonHangComponent implements OnInit, OnDestroy
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
-        storageKey: 'dxGrid_ThongKe_TinhHinhSanXuat_DonHang'
+        storageKey: 'dxGrid_ThongKe_HangXuatMuon'
     };
 
     constructor(
@@ -48,30 +46,30 @@ export class ThongKeTinhHinhSanXuatDonHangComponent implements OnInit, OnDestroy
         private router: Router,
         private commonService: CommonService,
         private authenticationService: AuthenticationService,
-        private thongKeSanXuatService: ThongKeSanXuatService,
+        private thongkeKhoService: ThongKeKhoHangService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle('THỐNG KÊ - TÌNH HÌNH SẢN XUẤT | ' + this.appInfoService.appName);
+        this.titleService.setTitle('THỐNG KÊ - HÀNG XUẤT MƯỢN | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
         // khởi tạo thời gian bắt đầu và thời gian kết thúc
         this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
         this.currDayTime = moment().toDate(); //.add(1, 'days')
-        
+
         // phân quyền
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
                     this.permissions = data;
-                    if (!this.commonService.getEnablePermission(this.permissions, 'thongkesanxuat-tinhhinhsanxuatdh')) {
+                    if (!this.commonService.getEnablePermission(this.permissions, 'thongkekho-hangxuatmuon')) {
                         this.router.navigate(['/khong-co-quyen']);
                     }
-                    
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkesanxuat-tinhhinhsanxuatdh-xuatdulieu');
+
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkekho-hangxuatmuon-xuatdulieu');
                 },
                 (error) => {
-                    this.thongKeSanXuatService.handleError(error);
+                    this.thongkeKhoService.handleError(error);
                 }
             )
         );
@@ -86,7 +84,7 @@ export class ThongKeTinhHinhSanXuatDonHangComponent implements OnInit, OnDestroy
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
-
+    
     rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
@@ -94,12 +92,12 @@ export class ThongKeTinhHinhSanXuatDonHangComponent implements OnInit, OnDestroy
     onLoadData() {
         // gọi service lấy dữ liệu báo cáo
         this.subscriptions.add(
-            this.thongKeSanXuatService.findsTinhHinhSanXuat_DonHang(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id).subscribe(
+            this.thongkeKhoService.findsHangHoaXuatMuon(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },
                 (error) => {
-                    this.thongKeSanXuatService.handleError(error);
+                    this.thongkeKhoService.handleError(error);
                 }
             )
         );

@@ -154,6 +154,7 @@
                                                             <th [style.min-width.px]="120">CHI PHÍ KHÁC</th>
                                                             <th [style.min-width.px]="120">CHI PHÍ</th>
                                                             <th [style.min-width.px]="120">TÍNH CÔNG NỢ</th>
+                                                            <th [style.min-width.px]="120">TÍNH THEO S.M</th>
                                                             <th [style.min-width.px]="120">GHI CHÚ</th>
                                                             <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onChiPhiKhacAdd()"></i></th>
                                                         </tr>
@@ -182,6 +183,9 @@
                                                             </td>
                                                             <td>
                                                                 <dx-check-box text="Có tính" [(value)]="item.tinhphi"></dx-check-box>
+                                                            </td>
+                                                            <td>
+                                                                <dx-check-box text="Có tính" [(value)]="item.nhansomat"></dx-check-box>
                                                             </td>
                                                             <td>
                                                                 <dx-text-box value="ghi chú" [(value)]="item.chuthich"></dx-text-box>
