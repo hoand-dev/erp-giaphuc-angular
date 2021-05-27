@@ -337,6 +337,10 @@ export class PhieuYeuCauGiaCongViewModalComponent implements OnInit {
         return item && item.tenhanghoa; //+ ' (' + item.soluong_tonhientai + ', ' + item.soluong_tonduocxuat + ')';
     }
 
+    displayExprKhachHang(item) {
+        return item && item.id + ", " + item.tenrutgon;
+    }
+
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
