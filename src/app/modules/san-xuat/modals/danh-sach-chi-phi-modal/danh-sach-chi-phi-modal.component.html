@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th [style.min-width.px]="300">NỘI DUNG</th>
+                            <th [style.min-width.px]="80">SL</th>
+                            <th [style.min-width.px]="120">ĐƠN GIÁ</th>
+                            <th [style.min-width.px]="120">THÀNH TIỀN</th>
+                            <th [style.max-width.px]="20">
+                                <i class="gg-btn gg-add btn-primary" (click)="onAdd_Row()"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of chitietphiphatsinhs; index as i">
+                            <td>
+                                <dx-select-box
+                                    id="loi_row_{{ i }}"
+                                    [(value)]="item.noidungthuchi_id"
+                                    [dataSource]="dataSource_ChiPhi"
+                                    [displayExpr]="'tennoidungthuchi'"
+                                    [valueExpr]="'id'"
+                                    [searchMode]="'contains'"
+                                    [searchExpr]="['manoidungthuchi', 'tennoidungthuchi']"
+                                    [searchTimeout]="500"
+                                    [searchEnabled]="true"
+                                    [minSearchLength]="0"
+                                    (onSelectionChanged)="onChangeNoiDung()"
+                                >
+                                </dx-select-box>
+                            </td>
+                            <td><dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onChangeRow(i, $event)"></dx-number-box></td>
+                            <td><dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onChangeRow(i, $event)"></dx-number-box></td>
+                            <td><dx-number-box [step]="0" format="#,##0.###" [(value)]="item.thanhtien" [readOnly]="true"></dx-number-box></td>
+                            <td><i class="gg-btn gg-remove" (click)="onDeleteRow(item)"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="onConfirm()">Đồng ý</button>
+    <!-- <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button> -->
+</div>

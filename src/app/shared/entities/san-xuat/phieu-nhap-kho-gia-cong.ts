@@ -87,12 +87,14 @@ export class PhieuNhapKhoGiaCong {
 }
 
 export class PhieuNhapKhoGiaCongCT {
-    lois: string;
+    public lois: string;
+    public phiphatsinhs: string;
     public chitietlois: LoiGiaCong[] = [];
+    public chitietphiphatsinhs: PhiPhatSinh[] = [];
 
-    tenhanghoa: string;
-    tensomat: string;
-    tenyeucau: string;
+    public tenhanghoa: string;
+    public tensomat: string;
+    public tenyeucau: string;
 
     public tenkhachhang: string;
 
@@ -130,6 +132,7 @@ export class PhieuNhapKhoGiaCongCT {
     public somat_thanhpham_id: number;
     public xuatnguyenlieu: boolean;
     public khachhang_id: number;
+    public phiphatsinh: number;
 
     public tongtrongluong: number = 0;
     public tongkien: number = 0;
@@ -161,6 +164,7 @@ export class PhieuNhapKhoGiaCongCT {
         somat_thanhpham_id: number = null,
         xuatnguyenlieu: boolean = null,
         khachhang_id: number = null,
+        phiphatsinh: number = 0,
 
         yeucaus: string = null,
         arr_yeucaus: number[] = []
@@ -188,20 +192,37 @@ export class PhieuNhapKhoGiaCongCT {
         this.somat_thanhpham_id = somat_thanhpham_id;
         this.xuatnguyenlieu = xuatnguyenlieu;
         this.khachhang_id = khachhang_id;
-        
+        this.phiphatsinh = phiphatsinh;
+
         this.yeucaus = yeucaus;
         this.arr_yeucaus = arr_yeucaus;
     }
 }
 
 export class LoiGiaCong {
-    phieunhapkhogiacongct_id: number;
-    danhmucloi_id: number;
-    soluong: number;
+    public phieunhapkhogiacongct_id: number;
+    public danhmucloi_id: number;
+    public soluong: number;
 
     constructor(phieunhapkhogiacongct_id: number = null, danhmucloi_id: number = null, soluong: number = 0) {
         this.phieunhapkhogiacongct_id = phieunhapkhogiacongct_id;
         this.danhmucloi_id = danhmucloi_id;
         this.soluong = soluong;
+    }
+}
+
+export class PhiPhatSinh {
+    public phieunhapkhogiacongct_id: number;
+    public noidungthuchi_id: number;
+    public soluong: number;
+    public dongia: number;
+    public thanhtien: number;
+
+    constructor(phieunhapkhogiacongct_id: number = null, noidungthuchi_id: number = null, soluong: number = 0, dongia: number = 0, thanhtien: number = 0) {
+        this.phieunhapkhogiacongct_id = phieunhapkhogiacongct_id;
+        this.noidungthuchi_id = noidungthuchi_id;
+        this.soluong = soluong;
+        this.dongia = dongia;
+        this.thanhtien = thanhtien;
     }
 }
