@@ -87,7 +87,6 @@
                                             <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                             <th [style.min-width.px]="250">Y/C</th>
                                             <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
-                                            <th [style.min-width.px]="80">HỆ SỐ</th>
                                             <th [style.min-width.px]="110">SỐ MẶT TP</th>
                                             <th [style.min-width.px]="300">THÀNH PHẨM</th>
                                             <th [style.min-width.px]="80">SL</th>
@@ -176,15 +175,6 @@
                                                 >
                                                     <!-- (onSelectionChanged)="onSoMatYeuCauChanged(i, $event)" -->
                                                 </dx-select-box>
-                                            </td>
-                                            <td>
-                                                <dx-number-box
-                                                    [readOnly]="true"
-                                                    format="#,##0.###"
-                                                    [(value)]="item.heso"
-                                                    valueChangeEvent="input"
-                                                    (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"
-                                                ></dx-number-box>
                                             </td>
 
                                             <td>
@@ -275,7 +265,6 @@
                                             <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                             <th [style.min-width.px]="250"></th>
                                             <th [style.min-width.px]="110"></th>
-                                            <th [style.min-width.px]="80"></th>
                                             <th [style.min-width.px]="110"></th>
                                             <th [style.min-width.px]="300"></th>
                                             <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
