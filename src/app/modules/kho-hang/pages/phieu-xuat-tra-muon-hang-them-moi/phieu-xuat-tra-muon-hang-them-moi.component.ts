@@ -202,7 +202,7 @@ export class PhieuXuatTraMuonHangThemMoiComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachPhieuNhapMuonHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef = this.modalService.show(DanhSachPhieuNhapMuonHangModalComponent, { class: 'modal-xxl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */

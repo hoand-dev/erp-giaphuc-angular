@@ -293,8 +293,8 @@ export class PhieuNhapKhoThemMoiComponent implements OnInit {
 
         /* hiển thị modal */
         if (tuphieu == 'muahang') {
-            this.bsModalRef = this.modalService.show(DanhSachPhieuMuaHangNCCModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
-        } else this.bsModalRef = this.modalService.show(DanhSachPhieuKhachTraHangModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+            this.bsModalRef = this.modalService.show(DanhSachPhieuMuaHangNCCModalComponent, { class: 'modal-xxl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        } else this.bsModalRef = this.modalService.show(DanhSachPhieuKhachTraHangModalComponent, { class: 'modal-xxl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
