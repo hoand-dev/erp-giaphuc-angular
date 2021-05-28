@@ -22,6 +22,4 @@ export * from './nhom-khach-hang.service';
 export * from './nhom-nha-cung-cap.service';
 export * from './khach-hang.service';
 export * from './nha-cung-cap.service';
-
-
-
+export * from './danh-muc-phi.service';
