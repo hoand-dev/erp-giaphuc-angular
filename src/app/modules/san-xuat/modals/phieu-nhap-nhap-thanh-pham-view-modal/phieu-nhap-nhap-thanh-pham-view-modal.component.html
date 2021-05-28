@@ -91,6 +91,7 @@
                                             <th [style.min-width.px]="300">THÀNH PHẨM</th>
                                             <th [style.min-width.px]="80">SL</th>
                                             <th [style.min-width.px]="120">ĐƠN GIÁ</th>
+                                            <th [style.min-width.px]="120">PHÍ P.SINH</th>
                                             <th [style.min-width.px]="120">PHÍ G/C</th>
                                             <th [style.min-width.px]="100">SL LỖI</th>
                                             <th [style.min-width.px]="250">KHO NHẬP LỖI</th>
@@ -216,6 +217,17 @@
                                                 ></dx-number-box>
                                             </td>
                                             <td>
+                                                <dx-number-box
+                                                    [step]="0"
+                                                    [readOnly]="true"
+                                                    format="#,##0.###"
+                                                    [(value)]="item.phiphatsinh"
+                                                    valueChangeEvent="input"
+                                                    (onValueChanged)="onHangHoaChangeRow('phiphatsinh', i, $event)"
+                                                    (click)="onclickChiPhi(i)"
+                                                ></dx-number-box>
+                                            </td>
+                                            <td>
                                                 <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                             </td>
                                             <td>
@@ -258,6 +270,7 @@
                                             <th [style.min-width.px]="110"></th>
                                             <th [style.min-width.px]="300"></th>
                                             <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
+                                            <th [style.min-width.px]="120"></th>
                                             <th [style.min-width.px]="120"></th>
                                             <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
                                             <th [style.min-width.px]="100">{{ this.sumTotal.transform(this.hanghoas, 'soluongloi') | number: '1.0-3' }}</th>
