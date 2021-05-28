@@ -29,6 +29,7 @@ import { Subject, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { DanhSachLoiModalComponent } from '../../modals/danh-sach-loi-modal/danh-sach-loi-modal.component';
 import { DanhSachPhieuYeuCauGiaCongModalComponent } from '../../modals/danh-sach-phieu-yeu-cau-gia-cong-modal/danh-sach-phieu-yeu-cau-gia-cong-modal.component';
+import { DanhSachChiPhiModalComponent } from '../danh-sach-chi-phi-modal/danh-sach-chi-phi-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-nhap-thanh-pham-view-modal',
@@ -250,6 +251,7 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
             this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
 
             this.hanghoas[index].chitietlois = JSON.parse(this.hanghoas[index].lois);
+            this.hanghoas[index].chitietphiphatsinhs = JSON.parse(this.hanghoas[index].phiphatsinhs);
         }
 
         this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
@@ -265,17 +267,17 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
     }
 
     private onTinhTien() {
-        let tongtienhang: number = 0;
+        let tongtien: number = 0;
         this.hanghoas.forEach((v, i) => {
             v.tongtrongluong = v.soluong * v.trongluong;
-            v.tongkien = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
-            v.tongm3 = v.soluong * v.m3;
+            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3         = v.soluong * v.m3;
             //v.soluongconlai  = v.soluong - v.soluongdaxuat;
 
-            v.thanhtien = v.soluong * v.dongia * v.heso;
-            tongtienhang += v.thanhtien;
+            v.thanhtien = ( v.soluong * v.dongia * v.heso ) + v.phiphatsinh;
+            tongtien += v.thanhtien;
         });
-        this.phieunhapkhogiacong.tongthanhtien = tongtienhang;
+        this.phieunhapkhogiacong.tongthanhtien = tongtien;
     }
 
     public onclickSoLuongLoi(index) {
@@ -298,6 +300,31 @@ export class PhieuNhapNhapThanhPhamViewModalComponent implements OnInit {
                     soluongloi += e.soluong;
                 });
                 this.hanghoas[index].soluongloi = soluongloi;
+            }
+        });
+    }
+
+    public onclickChiPhi(index) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHI PHÍ PHÁT SINH', // và nhiều hơn thế nữa
+            chitietphiphatsinhs: this.hanghoas[index].chitietphiphatsinhs
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(DanhSachChiPhiModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRef.content.onClose.subscribe((result) => {
+            if (result !== false) {
+                this.hanghoas[index].chitietphiphatsinhs = result;
+                let phiphatsinh: number = 0;
+                result.forEach((e) => {
+                    phiphatsinh += e.thanhtien;
+                });
+                this.hanghoas[index].phiphatsinh = phiphatsinh;
+                this.onTinhTien();
             }
         });
     }
