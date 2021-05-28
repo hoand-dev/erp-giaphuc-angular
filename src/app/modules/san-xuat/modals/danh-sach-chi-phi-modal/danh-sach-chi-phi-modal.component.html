@@ -13,12 +13,12 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th [style.min-width.px]="300">NỘI DUNG</th>
+                            <th [style.min-width.px]="240">NỘI DUNG</th>
                             <th [style.min-width.px]="80">SL</th>
                             <th [style.min-width.px]="120">ĐƠN GIÁ</th>
-                            <th [style.min-width.px]="120">THÀNH TIỀN</th>
+                            <th [style.min-width.px]="120">T.TIỀN</th>
                             <th [style.max-width.px]="20">
-                                <i class="gg-btn gg-add btn-primary" (click)="onAdd_Row()"></i>
+                                <i class="gg-btn gg-add btn-primary" (click)="onAddNewRow()"></i>
                             </th>
                         </tr>
                     </thead>
@@ -27,16 +27,16 @@
                             <td>
                                 <dx-select-box
                                     id="loi_row_{{ i }}"
-                                    [(value)]="item.noidungthuchi_id"
+                                    [(value)]="item.danhmucphi_id"
                                     [dataSource]="dataSource_ChiPhi"
-                                    [displayExpr]="'tennoidungthuchi'"
+                                    [displayExpr]="'tendanhmucphi'"
                                     [valueExpr]="'id'"
                                     [searchMode]="'contains'"
-                                    [searchExpr]="['manoidungthuchi', 'tennoidungthuchi']"
+                                    [searchExpr]="['madanhmucphi', 'tendanhmucphi']"
                                     [searchTimeout]="500"
                                     [searchEnabled]="true"
                                     [minSearchLength]="0"
-                                    (onSelectionChanged)="onChangeNoiDung()"
+                                    (onSelectionChanged)="onChangeNoiDung(i, $event)"
                                 >
                                 </dx-select-box>
                             </td>

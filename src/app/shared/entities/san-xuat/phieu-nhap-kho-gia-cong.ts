@@ -91,6 +91,7 @@ export class PhieuNhapKhoGiaCongCT {
     public phiphatsinhs: string;
     public chitietlois: LoiGiaCong[] = [];
     public chitietphiphatsinhs: PhiPhatSinh[] = [];
+    public noidungphatsinh: string; // in phiếu
 
     public tenhanghoa: string;
     public tensomat: string;
@@ -213,14 +214,14 @@ export class LoiGiaCong {
 
 export class PhiPhatSinh {
     public phieunhapkhogiacongct_id: number;
-    public noidungthuchi_id: number;
+    public danhmucphi_id: number;
     public soluong: number;
     public dongia: number;
     public thanhtien: number;
 
-    constructor(phieunhapkhogiacongct_id: number = null, noidungthuchi_id: number = null, soluong: number = 0, dongia: number = 0, thanhtien: number = 0) {
+    constructor(phieunhapkhogiacongct_id: number = null, danhmucphi_id: number = null, soluong: number = 0, dongia: number = 0, thanhtien: number = 0) {
         this.phieunhapkhogiacongct_id = phieunhapkhogiacongct_id;
-        this.noidungthuchi_id = noidungthuchi_id;
+        this.danhmucphi_id = danhmucphi_id;
         this.soluong = soluong;
         this.dongia = dongia;
         this.thanhtien = thanhtien;
