@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Thống kê hàng xuất mượn</li>
+                    <li class="breadcrumb-item active">Thống kê hàng mượn</li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ 'Thống kê hàng xuất mượn' | uppercase }}</h5>
+                        <h5 class="card-title">{{ 'Thống kê hàng mượn' | uppercase }}</h5>
                         <p class="card-text"></p>
 
                         <div class="row">
@@ -65,13 +65,13 @@
                                     </dxi-column>
                                     
                                     <dxi-column dataField="maphieu" caption="Mã phiếu xuất trả"></dxi-column>
-                                    <dxi-column dataField="ngaynhapmuon" caption="Ngày xuất mượn" dataType="date"></dxi-column>
-                                    <dxi-column dataField="tenkhoxuat" caption="Tên kho xuất trả"></dxi-column>
+                                    <dxi-column dataField="ngaynhapmuon" caption="Ngày nhập mượn" dataType="date"></dxi-column>
+                                    <dxi-column dataField="tenkhonhap" caption="Tên kho nhập mượn"></dxi-column>
                                     
                                     <dxi-column dataField="tenhanghoa" caption="Tên hàng hóa"></dxi-column>
                                     <dxi-column dataField="soluongdamuon" caption="Số lượng đã mượn" alignment="right" format="#,##0.###"></dxi-column>
                         
-                                    <dxi-column dataField="tenkhonhap" caption="Tên kho nhập trả"></dxi-column>
+                                    <dxi-column dataField="tenkhoxuat" caption="Tên kho xuất trả"></dxi-column>
                                     <dxi-column dataField="ngaytrahang" caption="Ngày trả hàng"></dxi-column>
                                     <dxi-column dataField="soluongdatra" caption="Số lượng đã trả" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="soluongchuatra" caption="Số lượng chưa trả" alignment="right" format="#,##0.###"></dxi-column>

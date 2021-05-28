@@ -9,21 +9,7 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
-            <!-- <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
-            <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box> -->
-            <!-- <dx-tag-box [style.width.px]="400" class="float-left"
-                [(value)]="khachhangSelected"
-                [dataSource]="dataSource_KhachHang"
-                valueExpr="id"
-                displayExpr="tenkhachhang"
-                applyValueMode="instantly"
-                [showSelectionControls]="false"
-                [searchExpr]="['makhachhang', 'tenkhachhang']"
-                [multiline]="false"
-                [searchEnabled]="true"
-                (onSelectionChanged)="onKhachHangChanged($event)"
-            >
-            </dx-tag-box> -->
+            
             <dx-select-box  [style.width.px]="400" class="float-left"
             [(value)]="khachhangSelected"
             [dataSource]="dataSource_KhachHang"
@@ -35,6 +21,7 @@
             [searchEnabled]="true"
             [minSearchLength]="0"
             (onSelectionChanged)="onKhachHangChanged($event)"
+            [placeholder]="'Vui lòng chọn khách hàng trước'"
         >
         </dx-select-box>
             <button [style.margin-left.px]="20" class="btn btn-sm btn-success" (click)="onLoadData()">Lấy danh sách</button>
