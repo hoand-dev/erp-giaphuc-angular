@@ -80,7 +80,7 @@ export class PhieuYeuCauGiaCongInPhieuModalComponent implements OnInit {
                     data.inphieu_hoten = this.currentUser.fullName;
 
                     data.phieuyeucaugiacong_chitiets.forEach((x) => {
-                        x.chuthich = 'KH '+ (x.chuthich ? x.chuthich : '') + (x.khachhang_id ? ' ' + x.khachhang_id : '');
+                        x.chuthich = 'KH '+ (x.chuthich ? x.chuthich : '') + (x.khachhang_id ? ' ' + x.khachhang_id : '') + (x.tenkhachhang ? ' ' + x.tenkhachhang : '');
                         x.chuthich = x.chuthich.trim();
                     });
 
