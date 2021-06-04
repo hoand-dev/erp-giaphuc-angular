@@ -19,6 +19,7 @@ export class DanhSachChiPhiModalComponent implements OnInit {
     public title: string;
     public closeBtnName: string;
 
+    public noidunglenght: number = 0;
     public dataSource_ChiPhi: DataSource;
     public chitietphiphatsinhs: PhiPhatSinh[] = [];
 
@@ -27,6 +28,7 @@ export class DanhSachChiPhiModalComponent implements OnInit {
     ngOnInit(): void {
         this.onClose = new Subject();
 
+        this.noidunglenght = this.chitietphiphatsinhs.length;
         this.subscriptions.add(
             this.noidungthuchiService.findDanhMucPhis(true).subscribe(
                 (data) => {
@@ -63,9 +65,14 @@ export class DanhSachChiPhiModalComponent implements OnInit {
 
     onChangeNoiDung(i, e) {
         let value: DanhMucPhi = e.selectedItem;
-        this.chitietphiphatsinhs[i].dongia = value.chiphi;
-        this.chitietphiphatsinhs[i].thanhtien = this.chitietphiphatsinhs[i].soluong * this.chitietphiphatsinhs[i].dongia;
 
+        if (this.noidunglenght > 0) {
+            this.noidunglenght--;
+        } else {
+            this.chitietphiphatsinhs[i].dongia = value.chiphi;
+            this.chitietphiphatsinhs[i].thanhtien = this.chitietphiphatsinhs[i].soluong * this.chitietphiphatsinhs[i].dongia;
+        }
+        
         let rowsNull = this.chitietphiphatsinhs.filter((x) => x.danhmucphi_id == null);
         if (rowsNull.length == 0) {
             this.onAddNewRow();
