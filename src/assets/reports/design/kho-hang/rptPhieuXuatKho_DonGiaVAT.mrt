@@ -145,7 +145,7 @@
           <Components isList="true" count="6">
             <Text11 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,0,13,0.6</ClientRectangle>
+              <ClientRectangle>2.2,0,10.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Guid>fe992284aa6348f78679c3dae9a9e87d</Guid>
@@ -175,7 +175,7 @@
             </Text41>
             <Text50 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,1,17.4,0.4</ClientRectangle>
+              <ClientRectangle>2.2,1,11.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
               <Guid>d9ee4ddfcdf0489fbdb2b1c25af0d2dc</Guid>
@@ -190,7 +190,7 @@
             </Text50>
             <Text51 Ref="12" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,1.4,17.4,0.4</ClientRectangle>
+              <ClientRectangle>2.2,1.4,11.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
               <Guid>a451df5595d446838b1906d88347cead</Guid>
@@ -220,10 +220,11 @@
             </Image1>
             <Text49 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>15.2,0,4.4,0.6</ClientRectangle>
+              <ClientRectangle>13.6,1,6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,16,Bold</Font>
               <Guid>28d98b69cbb34e718532c92eb0b998e2</Guid>
+              <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text49</Name>
               <Page isRef="7" />
@@ -1057,10 +1058,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/1/2021 5:25:26 PM</ReportChanged>
+  <ReportChanged>6/8/2021 2:43:28 PM</ReportChanged>
   <ReportCreated>1/9/2021 3:49:12 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_DonGiaVAT.mrt</ReportFile>
-  <ReportGuid>d4697f5f7f3a4d38b34dba8adb9ad46d</ReportGuid>
+  <ReportGuid>27fe88122b0d4f4596aa98ff3309c41d</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
