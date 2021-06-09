@@ -63,7 +63,7 @@ export class PhieuXuatKhoInPhieuModalComponent implements OnInit {
                     if (this.loaiphieuin == 'khonggia' && this.loaiphieuxuat == 'xuatbanhang') {
                         report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_BanHang_KhongGia.mrt');
                     }
-                    if (this.loaiphieuin == 'cogia' && this.loaiphieuxuat == 'xuattrahangncc') {
+                    if (this.loaiphieuin == 'ncccogia' && this.loaiphieuxuat == 'xuattrahangncc') {
                         report.loadFile('assets/reports/design/kho-hang/rptPhieuXuatKho_TraHang_CoGia.mrt');
                     }
                     if (this.loaiphieuin == 'khonggia' && this.loaiphieuxuat == 'xuattrahangncc') {

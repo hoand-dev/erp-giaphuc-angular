@@ -140,7 +140,7 @@
       <Components isList="true" count="7">
         <PageHeader Ref="8" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,20,2</ClientRectangle>
+          <ClientRectangle>0,0.4,20.6,2</ClientRectangle>
           <Components isList="true" count="5">
             <Text2 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -226,7 +226,7 @@
         </PageHeader>
         <PageFooter Ref="14" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,27.9,20,0.8</ClientRectangle>
+          <ClientRectangle>0,26.1,20.6,0.8</ClientRectangle>
           <Components isList="true" count="2">
             <Text18 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -266,7 +266,7 @@
         </PageFooter>
         <ReportTitle Ref="17" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,3.2,20,4</ClientRectangle>
+          <ClientRectangle>0,3.2,20.6,4</ClientRectangle>
           <Components isList="true" count="11">
             <Text7 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -314,7 +314,7 @@
             </Text9>
             <Text10 Ref="21" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.2,1.4,6.8,0.6</ClientRectangle>
+              <ClientRectangle>0,1.4,20,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,10</Font>
               <Guid>bbe83a171eff4a9a8e6d330335339d81</Guid>
@@ -437,7 +437,7 @@
         </ReportTitle>
         <ColumnHeader Ref="29" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,8,20,0.6</ClientRectangle>
+          <ClientRectangle>0,8,20.6,0.6</ClientRectangle>
           <Components isList="true" count="5">
             <Text19 Ref="30" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -525,7 +525,7 @@
           <BusinessObjectGuid isNull="true" />
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,9.4,20,0.8</ClientRectangle>
+          <ClientRectangle>0,9.4,20.6,0.8</ClientRectangle>
           <Components isList="true" count="5">
             <Text28 Ref="36" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -615,6 +615,7 @@
               <Parent isRef="35" />
               <Text>{rptPhieuXuatKho_HangHoa.chuthich}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text36>
@@ -630,7 +631,7 @@
         </Data>
         <ColumnFooterBand1 Ref="42" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,11,20,0.6</ClientRectangle>
+          <ClientRectangle>0,11,20.6,0.6</ClientRectangle>
           <Components isList="true" count="3">
             <Text45 Ref="43" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -697,7 +698,7 @@
         </ColumnFooterBand1>
         <Footer Ref="47" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,12.4,20,2.8</ClientRectangle>
+          <ClientRectangle>0,12.4,20.6,2.8</ClientRectangle>
           <Components isList="true" count="6">
             <Text12 Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -796,9 +797,9 @@
       <Guid>5914586df3e34dc98e3e1deef304d76d</Guid>
       <Margins>0.5,0.5,0.5,0.5</Margins>
       <Name>Page1</Name>
-      <PageHeight>29.7</PageHeight>
-      <PageWidth>21</PageWidth>
-      <PaperSize>A4</PaperSize>
+      <PageHeight>27.9</PageHeight>
+      <PageWidth>21.6</PageWidth>
+      <PaperSize>Letter</PaperSize>
       <Report isRef="0" />
     </Page1>
   </Pages>
@@ -813,10 +814,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>2/19/2021 3:35:51 PM</ReportChanged>
+  <ReportChanged>6/9/2021 9:07:06 AM</ReportChanged>
   <ReportCreated>12/15/2020 1:33:00 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\kho-hang\rptPhieuXuatKho_TraHang_KhongGia.mrt</ReportFile>
-  <ReportGuid>acff2c57843b40ab95a9d50465998dd8</ReportGuid>
+  <ReportGuid>344080e245074ad9adca192059af43aa</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
