@@ -57,20 +57,28 @@
                                     <dxo-paging [pageSize]="10"></dxo-paging>
                                     <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
 
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
+                                    
                                     <dxi-column dataField="ngaydathang" caption="Ngày đặt" dataType="date"></dxi-column>
                                     <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
                                     <dxi-column dataField="tenthanhpham" caption="Thành phẩm"></dxi-column>
+                                    <dxi-column dataField="khachhang_id" caption="Khách hàng_id"></dxi-column>
                                     <dxi-column dataField="tenkhachhang" caption="Khách hàng"></dxi-column>
                                     <dxi-column dataField="nhanviensale" caption="Nhân viên"></dxi-column>
 
                                     <dxi-column dataField="soluongdat" caption="SL đặt" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="soluongdayeucau" caption="SL chưa y/c" alignment="right" format="#,##0.###"></dxi-column>
-                                    <dxi-column dataField="soluongchuayeucau" caption="SL đã y/c" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="soluongdayeucau" caption="SL đã y/c" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="soluongchuayeucau" caption="SL chưa y/c" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="soluongdanhap" caption="SL đã SX" alignment="right" format="#,##0.###"></dxi-column>
                                     <dxi-column dataField="soluongchuasx" caption="SL chưa SX" alignment="right" format="#,##0.###"></dxi-column>
 
                                     <dxi-column dataField="ngaynhanhang" caption="Ngày nhận" dataType="date" alignment="center"></dxi-column>
                                     <dxi-column dataField="trangthaisx" caption="Trạng thái"></dxi-column>
+                                    <dxi-column dataField="khogiacong" caption="Kho sản xuất"></dxi-column>
 
                                     <!-- Thêm trang tổng cộng cuối form -->
                                     <dxo-summary>

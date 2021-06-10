@@ -5,7 +5,7 @@ import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import { DxFormComponent } from 'devextreme-angular';
 
-import { AppInfoService, CommonService, DonViGiaCongService, BangGiaGiaCongService, RouteInterceptorService, DanhMucTieuChuanService, DanhMucGiaCongService } from '@app/shared/services';
+import { AppInfoService, CommonService, DonViGiaCongService, BangGiaGiaCongService, RouteInterceptorService, DanhMucTieuChuanService, DanhMucGiaCongService, SoMatService } from '@app/shared/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
@@ -34,6 +34,7 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
     public chitiets: BangGiaGiaCong_ChiTiet[] = [];
     public dataSource_DanhMucGiaCong: any = {};
     public dataSource_TieuChuan: any = {};
+    public dataSource_SoMat: any = {};
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -52,7 +53,8 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
         private banggiagiacongService: BangGiaGiaCongService,
         private donvigiacongService: DonViGiaCongService,
         private danhmucgiacongService: DanhMucGiaCongService,
-        private tieuchuanService: DanhMucTieuChuanService
+        private tieuchuanService: DanhMucTieuChuanService,
+        public somatService: SoMatService
     ) {}
 
     ngAfterViewInit() {
@@ -126,6 +128,18 @@ export class BangGiaGiaCongCapNhatComponent implements OnInit {
                         )
                     );
                 }
+            })
+        );
+        
+        this.subscriptions.add(
+            this.somatService.findSoMats().subscribe((x) => {
+                this.loadingVisible = false;
+
+                this.dataSource_SoMat = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 

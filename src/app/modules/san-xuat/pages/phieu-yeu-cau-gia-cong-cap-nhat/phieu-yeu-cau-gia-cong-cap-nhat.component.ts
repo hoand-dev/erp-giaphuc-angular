@@ -268,7 +268,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         this.hanghoas.forEach((e) => {
             if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
+                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, e.somat_id, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
                         e.dongia = x;
                     })
                 );
@@ -278,6 +278,11 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
+
+    displayExprKhachHang(item) {
+        return item && item.id + ", " + item.tenrutgon;
+    }
+
 
     openModal() {
         /* khởi tạo giá trị cho modal */
@@ -321,7 +326,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
                     item.dvt_id = x.dvt_id;
                     item.tilequydoi = x.tilequydoi;
                     item.somat_id = x.somat_id;
-                    item.heso = x.heso;
+                    item.heso = 1; //x.heso;
                     item.somat_thanhpham_id = x.somat_thanhpham_id;
                     item.soluong = x.soluong - x.soluongtattoan - x.soluongdayeucau;
                     item.phieudathang_chitiet_id = x.id;
@@ -422,7 +427,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
             this.hanghoas[index].somat_thanhpham_id = selected.id;
 
             // gán giá trị hệ số
-            this.hanghoas[index].heso = selected.giatri;
+            // this.hanghoas[index].heso = selected.giatri;
         }
     }
 

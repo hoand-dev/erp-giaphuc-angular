@@ -14,6 +14,7 @@ import { DanhMucGiaCong } from '@app/shared/entities';
 import { HangHoaService } from '@app/shared/services';
 import { NoiDungThuChiService } from '@app/shared/services';
 import { NguonNhanLucService } from '@app/shared/services';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 
 @Component({
     selector: 'app-dinh-muc-them-moi',
@@ -49,6 +50,7 @@ export class DinhMucThemMoiComponent implements OnInit {
     dataSource_ChiPhiKhac: any = {};
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private router: Router,
         private authenticationService: AuthenticationService,

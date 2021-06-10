@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thống kê hàng mượn</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Thống kê hàng mượn' | uppercase }}</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-data-grid
+                                    id="gridContainer"
+                                    [showBorders]="true"
+                                    [showRowLines]="true"
+                                    [hoverStateEnabled]="true"
+                                    [columnAutoWidth]="true"
+                                    [columnResizingMode]="'widget'"
+                                    [allowColumnResizing]="true"
+                                    [allowColumnReordering]="true"
+                                    [stateStoring]="stateStoringGrid"
+                                >
+                                    <dxo-selection mode="single"></dxo-selection>
+                                    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
+
+                                    <!-- dx-data-grid option -->
+                                    <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                                    <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
+                                    <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
+                                   
+                                  
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
+                                    
+                                    <dxi-column dataField="maphieu" caption="Mã phiếu xuất trả"></dxi-column>
+                                    <dxi-column dataField="ngaynhapmuon" caption="Ngày nhập mượn" dataType="date"></dxi-column>
+                                    <dxi-column dataField="tenkhonhap" caption="Tên kho nhập mượn"></dxi-column>
+                                    
+                                    <dxi-column dataField="tenhanghoa" caption="Tên hàng hóa"></dxi-column>
+                                    <dxi-column dataField="soluongdamuon" caption="Số lượng đã mượn" alignment="right" format="#,##0.###"></dxi-column>
+                        
+                                    <dxi-column dataField="tenkhoxuat" caption="Tên kho xuất trả"></dxi-column>
+                                    <dxi-column dataField="ngaytrahang" caption="Ngày trả hàng"></dxi-column>
+                                    <dxi-column dataField="soluongdatra" caption="Số lượng đã trả" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="soluongchuatra" caption="Số lượng chưa trả" alignment="right" format="#,##0.###"></dxi-column>
+                                    <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>
+                                    <dxi-column dataField="chuthich" caption="Chú thích" ></dxi-column>
+                                    
+
+
+                                    <!-- Thêm trang tổng cộng cuối form -->
+                                    <dxo-summary>
+                                        <dxi-total-item column="mathanhpham" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongyeucau" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongloi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                    </dxo-summary>
+
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -75,6 +75,7 @@ import {
     NguoiDungCapNhatComponent,
     NguoiDungThemMoiComponent,
 } from './pages';
+import { DanhMucPhiComponent } from './pages/danh-muc-phi/danh-muc-phi.component';
 import { NhaCungCapCapNhatComponent } from './pages/nha-cung-cap-cap-nhat/nha-cung-cap-cap-nhat.component';
 import { NhaCungCapThemMoiComponent } from './pages/nha-cung-cap-them-moi/nha-cung-cap-them-moi.component';
 import { NhaCungCapComponent } from './pages/nha-cung-cap/nha-cung-cap.component';
@@ -114,6 +115,13 @@ const routes: Routes = [
             { path: '', component: DanhMucNoComponent },
             { path: 'them-moi', component: DanhMucNoThemMoiComponent },
             { path: ':id/cap-nhat', component: DanhMucNoCapNhatComponent }
+        ]
+    },
+    {
+        path: 'danh-muc-phi',
+        canActivate: [AuthGuard],
+        children: [
+            { path: '', component: DanhMucPhiComponent }
         ]
     },
     {

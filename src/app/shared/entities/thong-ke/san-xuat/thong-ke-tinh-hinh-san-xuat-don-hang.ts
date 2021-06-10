@@ -13,4 +13,5 @@ export class TinhHinhSanXuat_DonDatHang{
     public soluongchuasx    : number;
     public ngaynhanhang     : Date  ;
     public trangthaisx      : string;
+    public khogiacong       : string;
 }

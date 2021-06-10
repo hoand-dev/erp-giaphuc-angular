@@ -162,7 +162,7 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
                         };
                         /* Hiển thị trên modal */
                         this.bsModalRef = this.bsModalService.show(PhieuCanTruInPhieuModalComponent, {
-                            class: 'modal-xl modal-dialog-centered',
+                            class: 'modal-xxl modal-dialog-centered',
                             ignoreBackdropClick: false,
                             keyboard: false,
                             initialState
@@ -185,7 +185,7 @@ export class PhieuCanTruComponent implements OnInit, OnDestroy, AfterViewInit {
                         };
                         /* Hiển thị trên modal */
                         this.bsModalRef = this.bsModalService.show(PhieuCanTruInPhieuModalComponent, {
-                            class: 'modal-xl modal-dialog-centered',
+                            class: 'modal-xxl modal-dialog-centered',
                             ignoreBackdropClick: false,
                             keyboard: false,
                             initialState

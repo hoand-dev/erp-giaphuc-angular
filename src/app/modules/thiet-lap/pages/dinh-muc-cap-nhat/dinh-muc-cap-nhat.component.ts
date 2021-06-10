@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DinhMuc, DanhMucGiaCong, DinhMuc_ChiPhiKhac, DinhMuc_NguonLuc, DinhMuc_NguyenLieu } from '@app/shared/entities';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import { DinhMucService, DanhMucGiaCongService, HangHoaService, NguonNhanLucService, NoiDungThuChiService, AppInfoService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
@@ -48,6 +49,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     };
 
     constructor(
+        public sumTotal: SumTotalPipe,
         public appInfoService: AppInfoService,
         private router: Router,
         private activatedRoute: ActivatedRoute,

@@ -94,13 +94,11 @@
                                             <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                             <th [style.min-width.px]="250">Y/C</th>
                                             <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
-                                            <th [style.min-width.px]="80">HỆ SỐ</th>
                                             <th [style.min-width.px]="110">SỐ MẶT TP</th>
                                             <th [style.min-width.px]="300">THÀNH PHẨM</th>
                                             <th [style.min-width.px]="80">SL Y/C</th>
                                             <th [style.min-width.px]="80">SL TẤT TOÁN</th>
                                             <th [style.min-width.px]="120">ĐƠN GIÁ</th>
-                                            <th [style.min-width.px]="120">ĐƠN GIÁ VỐN</th>
                                             <th [style.min-width.px]="120">PHÍ G/C</th>
                                             <th [style.min-width.px]="145">NGÀY NHẬN</th>
                                             <th [style.min-width.px]="250">GHI CHÚ</th>
@@ -117,7 +115,7 @@
                                                     id="somat_row_{{ i }}"
                                                     [(value)]="item.khachhang_id"
                                                     [dataSource]="dataSource_KhachHang"
-                                                    [displayExpr]="'tenrutgon'"
+                                                    [displayExpr]="displayExprKhachHang"
                                                     [valueExpr]="'id'"
                                                     [searchMode]="'contains'"
                                                     [searchExpr]="['makhachhang', 'tenkhachhang']"
@@ -185,16 +183,6 @@
                                                 >
                                                 </dx-select-box>
                                             </td>
-                                            <td>
-                                                <!-- <dx-number-box
-                                                    format="#,##0.###"
-                                                    [readOnly]="isTatToan"
-                                                    [(value)]="item.heso"
-                                                    valueChangeEvent="input"
-                                                    (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"
-                                                ></dx-number-box> -->
-                                                {{ item.heso }}
-                                            </td>
 
                                             <td>
                                                 <dx-select-box
@@ -248,16 +236,6 @@
                                                 {{ item.dongia }}
                                             </td>
                                             <td>
-                                                <!-- <dx-number-box
-                                                    format="#,##0.###"
-                                                    [readOnly]="isTatToan"
-                                                    [(value)]="item.dongiavon"
-                                                    valueChangeEvent="input"
-                                                    (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"
-                                                ></dx-number-box> -->
-                                                {{ item.dongiavon }}
-                                            </td>
-                                            <td>
                                                 <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                             </td>
                                             <td>
@@ -274,12 +252,10 @@
                                             <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                             <th [style.min-width.px]="250"></th>
                                             <th [style.min-width.px]="110"></th>
-                                            <th [style.min-width.px]="80"></th>
                                             <th [style.min-width.px]="110"></th>
                                             <th [style.min-width.px]="300"></th>
                                             <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
                                             <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluongtattoan') | number: '1.0-3' }}</th>
-                                            <th [style.min-width.px]="120"></th>
                                             <th [style.min-width.px]="120"></th>
                                             <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
                                             <th [style.min-width.px]="145"></th>

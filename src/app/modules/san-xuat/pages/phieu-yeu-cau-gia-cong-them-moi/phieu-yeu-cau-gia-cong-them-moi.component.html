@@ -124,12 +124,10 @@
                                                         <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                                         <th [style.min-width.px]="250">Y/C</th>
                                                         <th [style.min-width.px]="110">SỐ MẶT Y/C</th>
-                                                        <th [style.min-width.px]="80">HỆ SỐ</th>
                                                         <th [style.min-width.px]="110">SỐ MẶT TP</th>
                                                         <th [style.min-width.px]="300">THÀNH PHẨM</th>
                                                         <th [style.min-width.px]="80">SL Y/C</th>
                                                         <th [style.min-width.px]="120">ĐƠN GIÁ</th>
-                                                        <th [style.min-width.px]="120">ĐƠN GIÁ VỐN</th>
                                                         <th [style.min-width.px]="120">PHÍ G/C</th>
                                                         <th [style.min-width.px]="145">NGÀY NHẬN</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
@@ -146,16 +144,16 @@
                                                                 <path d="M0 0h24v24H0z" fill="none"></path>
                                                             </svg>
                                                         </td>
-                                                        <td [style.min-width.px]="25">{{ i + 1 }}</td>
+                                                        <td [style.min-width.px]="25">{{ i + 1 }}</td> 
                                                         <td>
                                                             <dx-select-box
                                                                 id="somat_row_{{ i }}"
                                                                 [(value)]="item.khachhang_id"
                                                                 [dataSource]="dataSource_KhachHang"
-                                                                [displayExpr]="'tenrutgon'"
+                                                                [displayExpr]="displayExprKhachHang"
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
-                                                                [searchExpr]="['makhachhang', 'tenkhachhang']"
+                                                                [searchExpr]="['makhachhang', 'tenkhachhang','id']"
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
@@ -219,9 +217,6 @@
                                                             >
                                                             </dx-select-box>
                                                         </td>
-                                                        <td [style.min-width.px]="80">
-                                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.heso" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('heso', i, $event)"></dx-number-box>
-                                                        </td>
 
                                                         <td [style.min-width.px]="110"><!-- [readOnly]="(item.phieudathang_chitiet_id ? true : false)" -->
                                                             <dx-select-box
@@ -251,9 +246,6 @@
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
                                                         <td [style.min-width.px]="120">
-                                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongiavon" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongiavon', i, $event)"></dx-number-box>
-                                                        </td>
-                                                        <td [style.min-width.px]="120">
                                                             <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                                         </td>
                                                         <td>
@@ -271,11 +263,9 @@
                                                         <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.min-width.px]="110"></th>
-                                                        <th [style.min-width.px]="80"></th>
                                                         <th [style.min-width.px]="110"></th>
                                                         <th [style.min-width.px]="300"></th>
                                                         <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
-                                                        <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="120"></th>
                                                         <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="145"></th>

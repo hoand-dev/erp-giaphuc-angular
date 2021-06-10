@@ -103,6 +103,18 @@
                                                             <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                         </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th [style.min-width.px]="25"></th>
+                                                            <th [style.min-width.px]="550">TỔNG CỘNG:</th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="120"></th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.hanghoas, 'thanhtien_chiphi') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </mat-tab>
                                             <mat-tab label="ĐỊNH MỨC - NGUỒN LỰC">
@@ -144,6 +156,15 @@
                                                             <td><i class="gg-btn gg-remove" (click)="onNguonLucDelete(item)"></i></td>
                                                         </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th [style.min-width.px]="25"></th>
+                                                            <th [style.min-width.px]="120">TỔNG CỘNG:</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.nguonlucs, 'chiphi') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="50"></th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </mat-tab>
                                             <mat-tab label="ĐỊNH MỨC - CHI PHÍ KHÁC">
@@ -154,6 +175,7 @@
                                                             <th [style.min-width.px]="120">CHI PHÍ KHÁC</th>
                                                             <th [style.min-width.px]="120">CHI PHÍ</th>
                                                             <th [style.min-width.px]="120">TÍNH CÔNG NỢ</th>
+                                                            <th [style.min-width.px]="120">TÍNH THEO S.M</th>
                                                             <th [style.min-width.px]="120">GHI CHÚ</th>
                                                             <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onChiPhiKhacAdd()"></i></th>
                                                         </tr>
@@ -184,11 +206,25 @@
                                                                 <dx-check-box text="Có tính" [(value)]="item.tinhphi"></dx-check-box>
                                                             </td>
                                                             <td>
+                                                                <dx-check-box text="Có tính" [(value)]="item.nhansomat"></dx-check-box>
+                                                            </td>
+                                                            <td>
                                                                 <dx-text-box value="ghi chú" [(value)]="item.chuthich"></dx-text-box>
                                                             </td>
                                                             <td><i class="gg-btn gg-remove" (click)="onChiPhiKhacDelete(item)"></i></td>
                                                         </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th [style.min-width.px]="25"></th>
+                                                            <th [style.min-width.px]="550">TỔNG CỘNG:</th>
+                                                            <th [style.min-width.px]="120">{{this.sumTotal.transform(this.chiphikhacs, 'chiphi') | number: '1.0-3'}}</th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.min-width.px]="120"></th>
+                                                            <th [style.min-width.px]="75"></th>
+                                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </mat-tab>
                                         </mat-tab-group>

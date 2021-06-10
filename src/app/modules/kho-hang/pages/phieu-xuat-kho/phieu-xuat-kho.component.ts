@@ -149,30 +149,30 @@ export class PhieuXuatKhoComponent implements OnInit, OnDestroy, AfterViewInit {
                         this.onCapNhatHoaDon(rowData.id, rowData.maphieuxuatkho, rowData.chungtu);
                     }
                 },
-                // {
-                //     text: 'In phiếu (có giá)',
-                //     icon: 'print',
-                //     visible: true,
-                //     onItemClick: () => {
-                //         let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
-                //         /* khởi tạo giá trị cho modal */
-                //         const initialState = {
-                //             title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
-                //             phieuxuatkho_id: rowData.id,
-                //             loaiphieuxuat: rowData.loaiphieuxuatkho,
-                //             loaiphieuin: 'cogia'
-                //         };
+                {
+                    text: 'In phiếu Trả hàng (có giá)',
+                    icon: 'print',
+                    visible: true,
+                    onItemClick: () => {
+                        let rowData: PhieuXuatKho = e.row.key as PhieuXuatKho;
+                        /* khởi tạo giá trị cho modal */
+                        const initialState = {
+                            title: 'XEM IN PHIẾU XUẤT KHO - CÓ GIÁ',
+                            phieuxuatkho_id: rowData.id,
+                            loaiphieuxuat: rowData.loaiphieuxuatkho,
+                            loaiphieuin: 'ncccogia'
+                        };
 
-                //         /* hiển thị modal */
-                //         this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
-                //             class: 'modal-xl modal-dialog-centered',
-                //             ignoreBackdropClick: false,
-                //             keyboard: false,
-                //             initialState
-                //         });
-                //         this.bsModalRef.content.closeBtnName = 'Đóng';
-                //     }
-                // },
+                        /* hiển thị modal */
+                        this.bsModalRef = this.modalService.show(PhieuXuatKhoInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
                 {
                     text: 'In phiếu ( HN không giá)',
                     icon: 'print',

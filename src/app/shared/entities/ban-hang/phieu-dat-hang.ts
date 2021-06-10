@@ -230,6 +230,7 @@ export class PhieuDatHang_SanXuatChiTiet {
     public trangthaiyeucau: string;
     public soluongdanhap  : number;
     public trangthainhap  : string;
+    public trangthaiban   : string;
 
     public tongtrongluong: number = 0;
     public tongkien: number = 0;
@@ -313,6 +314,7 @@ export class HangHoaDatHang extends PhieuDatHang_SanXuatChiTiet {
 }
 
 
+
 export class PhieuDatHang_ThanhPham{
     public tenthanhpham                  : string;
     
@@ -332,4 +334,18 @@ export class PhieuDatHang_ThanhPham{
     public chietkhau                     : number;
     public thuevat                       : number;
     public thanhtien                     : number;
+}
+
+export class HangHoaThanhPham extends PhieuDatHang_ThanhPham {
+    public ngayphatsinh  : Date  ;
+    public maphieu       : string;
+    public khachhang_id  : number;
+    public khachhang     : string;
+    public khonhap       : string;
+
+    public nguoitao_hoten: string;
+    public nguoisua_hoten: string;
+    public thoigiantao   : Date  ;
+    public tenthanhpham  :string;
+
 }

@@ -7,6 +7,7 @@ export class ThongKeXuatNhapTon{
     public rong                            : number;
     public dai                             : number;
     public m3                              : number;
+    public soluongm3                       : number ;
     public quydoi1                         : number;
     public trongluong                      : number;
     public giatrungbinhhientai             : number;
