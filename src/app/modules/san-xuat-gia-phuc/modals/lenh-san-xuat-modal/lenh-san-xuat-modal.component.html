@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="form-container">
+                <form (submit)="onSubmitForm($event)">
+                    <dx-form id="form" [formData]="lenhsanxuat" [showValidationSummary]="true" [labelLocation]="'top'">
+                        
+                        <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu"></dxi-item>
+
+                        <dxi-item>
+                            <div *dxTemplate>
+                                <dx-button icon="close" (click)="onCancel()" text="Đóng" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
+                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                            </div>
+                        </dxi-item>
+                    </dx-form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div> -->
