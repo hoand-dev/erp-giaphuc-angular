@@ -33,7 +33,7 @@ import { NotFoundComponent } from '@app/shared/components/not-found/not-found.co
 
 import { AppInfoService } from '@app/shared/services';
 
-import { ThietLapModule, MuaHangModule, BanHangModule, KhoHangModule, SanXuatModule, ThongKeModule } from '@app/modules';
+import { ThietLapModule, MuaHangModule, BanHangModule, KhoHangModule, SanXuatModule, ThongKeModule, HeThongModule, SanXuatGiaPhucModule } from '@app/modules';
 
 /* devextreme localization */
 import './shared/localization';
@@ -44,7 +44,6 @@ import { KeToanModule } from './modules/ke-toan/ke-toan.module';
 import { ChangePasswordComponent } from './shared/components/change-password/change-password.component';
 import { NotPermissionComponent } from './shared/components/not-permission/not-permission.component';
 import { SumTotalPipe } from './shared/pipes/sum-total.pipe';
-import { HeThongModule } from './modules/he-thong/he-thong.module';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, HomeComponent, NotFoundComponent, ChangePasswordComponent, NotPermissionComponent],
@@ -82,6 +81,7 @@ import { HeThongModule } from './modules/he-thong/he-thong.module';
         KeToanModule,
         ThongKeModule,
         HeThongModule,
+        SanXuatGiaPhucModule,
 
         AppRoutingModule,// root route phải đặt ở cuối nếu có module con sử dụng route
     ],
