@@ -12,8 +12,9 @@ export class LenhSanXuat{
     public sort           : string ;
     public loaiphieu      : string ;
     public ngaysanxuat    : Date   ;
-    public maphieu        : string ;
+    public malenhsanxuat  : string ;
     public donvigiacong_id: number ;
+    public tongthanhtien  : number ;
 
     constructor(
         id              : number  = null      ,
@@ -28,8 +29,9 @@ export class LenhSanXuat{
         sort            : string  = null      ,
         loaiphieu       : string  = null      ,
         ngaysanxuat     : Date    = new Date(),
-        maphieu         : string  = null      ,
+        malenhsanxuat   : string  = null      ,
         donvigiacong_id : number  = null      ,
+        tongthanhtien   : number  = 0         ,
     ){
         this.id              = id             ;
         this.chinhanh_id     = chinhanh_id    ;
@@ -43,12 +45,15 @@ export class LenhSanXuat{
         this.sort            = sort           ;
         this.loaiphieu       = loaiphieu      ;
         this.ngaysanxuat     = ngaysanxuat    ;
-        this.maphieu         = maphieu        ;
+        this.malenhsanxuat   = malenhsanxuat  ;
         this.donvigiacong_id = donvigiacong_id;
+        this.tongthanhtien   = tongthanhtien  ;
     }
 }
 
 export class LenhSanXuat_ChiTiet{
+
+    public soluongconlai: number = 0;
     
     public id: number;
     public lenhsanxuat_id: number;
@@ -58,6 +63,10 @@ export class LenhSanXuat_ChiTiet{
     public dvt_id: number;
     public tilequydoi: number;
     public soluong: number;
+    public soluongtattoan: number;
+    public soluongdanhap: number;
+    public dongia: number;
+    public thanhtien: number;
     public chuthich: string;
 
     constructor(
@@ -69,16 +78,24 @@ export class LenhSanXuat_ChiTiet{
         dvt_id            : number = null,
         tilequydoi        : number = 1   ,
         soluong           : number = 0   ,
+        soluongtattoan    : number = 0   ,
+        soluongdanhap     : number = 0   ,
+        dongia            : number = 0   ,
+        thanhtien         : number = 0   ,
         chuthich          : string = null,
     ){
-        this.id                = id               ;
-        this.lenhsanxuat_id    = lenhsanxuat_id   ;
-        this.loaihanghoa       = loaihanghoa      ;
-        this.hanghoa_id        = hanghoa_id       ;
-        this.hanghoa_lohang_id = hanghoa_lohang_id;
-        this.dvt_id            = dvt_id           ;
-        this.tilequydoi        = tilequydoi       ;
-        this.soluong           = soluong          ;
-        this.chuthich          = chuthich         ;
+        this.id                = id                ;
+        this.lenhsanxuat_id    = lenhsanxuat_id    ;
+        this.loaihanghoa       = loaihanghoa       ;
+        this.hanghoa_id        = hanghoa_id        ;
+        this.hanghoa_lohang_id = hanghoa_lohang_id ;
+        this.dvt_id            = dvt_id            ;
+        this.tilequydoi        = tilequydoi        ;
+        this.soluong           = soluong           ;
+        this.soluongtattoan    = soluongtattoan    ;
+        this.soluongdanhap     = soluongdanhap     ;
+        this.dongia            = dongia            ;
+        this.thanhtien         = thanhtien         ;
+        this.chuthich          = chuthich          ;
     }
 }

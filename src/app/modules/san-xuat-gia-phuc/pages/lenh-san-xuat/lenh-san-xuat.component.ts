@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { LenhSanXuat } from '@app/shared/entities';
 import { AppInfoService, CommonService, LenhSanXuatService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
@@ -58,6 +59,8 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().toDate();
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -103,6 +106,29 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
 
     rowNumber(rowIndex) {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
+    }
+
+    openViewModal(rowData: LenhSanXuat) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÔNG TIN LỆNH SẢN XUẤT',
+            isView: 'view',
+            lenhsanxuat_id: rowData.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(LenhSanXuatModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+    }
+
+    onRowDblClick(e) {
+        let rowData: LenhSanXuat = e.key;
+        this.openViewModal(rowData);
     }
 
     onAddNew() {

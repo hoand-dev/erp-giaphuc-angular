@@ -45,6 +45,7 @@
                             [allowColumnResizing]="true"
                             [allowColumnReordering]="true"
                             [stateStoring]="stateStoringGrid"
+                            (onRowDblClick)="onRowDblClick($event)"
                         >
                             <dxo-selection mode="single"></dxo-selection>
                             <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
@@ -61,8 +62,8 @@
                                 </div>
                             </dxi-column>
 
-                            <dxi-column dataField="" caption="Mã lệnh"></dxi-column>
-                            <dxi-column dataField="" caption=""></dxi-column>
+                            <dxi-column dataField="malenhsanxuat" caption="Mã lệnh"></dxi-column>
+                            <dxi-column dataField="tendonvigiacong" caption="Đơn vị gia công"></dxi-column>
 
                             <dxi-column dataField="trangthainhap" caption="Trạng thái"></dxi-column>
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>

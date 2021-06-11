@@ -1,7 +1,8 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChiNhanh, LenhSanXuat } from '@app/shared/entities';
+import { ChiNhanh, LenhSanXuat, LenhSanXuat_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, LenhSanXuatService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, HangHoaService, LenhSanXuatService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
@@ -34,6 +35,11 @@ export class LenhSanXuatModalComponent implements OnInit {
     public lenhsanxuat: LenhSanXuat;
     public saveProcessing = false;
 
+    public dataSource_DonViGiaCong: DataSource;
+    public dataSource_HangHoa: DataSource;
+
+    public hanghoas: LenhSanXuat_ChiTiet[] = [];
+
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
         type: 'success',
@@ -45,6 +51,8 @@ export class LenhSanXuatModalComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private commonService: CommonService,
         private lenhsanxuatService: LenhSanXuatService,
+        private donvigiacongService: DonViGiaCongService,
+        private hanghoaService: HangHoaService,
         public sumTotal: SumTotalPipe
     ) {}
 
@@ -52,13 +60,49 @@ export class LenhSanXuatModalComponent implements OnInit {
         this.onClose = new Subject();
 
         this.lenhsanxuat = new LenhSanXuat();
-        this.theCallbackValid = this.theCallbackValid.bind(this);
-
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                this.subscriptions.add(
+                    this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                        this.dataSource_DonViGiaCong = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
+
+        this.dataSource_HangHoa = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'thanhpham', loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findHangHoa(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
+        
+        if (this.isView == 'view_add'){
+            this.onHangHoaAdd();
+        }
 
         if (this.isView == 'view_edit') {
             this.subscriptions.add(
@@ -78,13 +122,43 @@ export class LenhSanXuatModalComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    theCallbackValid(params) {
-        if (this.isView == 'view_add') {
-            return this.lenhsanxuatService.checkExistLenhSanXuat(params.value, null);
+    drop(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
+    }
+    
+    public onHangHoaAdd() {
+        this.hanghoas.push(new LenhSanXuat_ChiTiet());
+    }
+
+    public onHangHoaDelete(item) {
+        this.hanghoas = this.hanghoas.filter(function (i) {
+            return i !== item;
+        });
+        this.onTinhTien();
+    }
+
+    public onHangHoaChanged(index, e) {
+        let selected = e.selectedItem;
+
+        // chỉ thêm row mới khi không tồn tài dòng rỗng nào
+        let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
+        if (rowsNull.length == 0) {
+            this.onHangHoaAdd();
         }
-        if (this.isView == 'view_edit') {
-            return this.lenhsanxuatService.checkExistLenhSanXuat(params.value, this.lenhsanxuat_old);
-        }
+    }
+
+    public onHangHoaChangeRow(col: string, index: number, e: any) {
+        this.onTinhTien();
+    }
+
+    private onTinhTien() {
+        let tongtienhang: number = 0;
+        this.hanghoas.forEach((v, i) => {
+            v.soluongconlai = v.soluong - v.soluongdanhap - v.soluongtattoan;
+            v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia;
+            tongtienhang += v.thanhtien;
+        });
+        this.lenhsanxuat.tongthanhtien = tongtienhang;
     }
 
     onSubmitForm(e) {
