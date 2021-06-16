@@ -1,23 +1,25 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChiNhanh, LenhSanXuat, LenhSanXuat_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, PhieuNhapThanhPham, PhieuNhapThanhPham_ChiTiet } from '@app/shared/entities';
+import { ETrangThaiPhieu } from '@app/shared/enums';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, DonViGiaCongService, HangHoaService, LenhSanXuatService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, HangHoaService, KhoHangService, LenhSanXuatService, PhieuNhapThanhPhamService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
+import { DanhSachLenhSanXuatModalComponent } from '../danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
 
 @Component({
-    selector: 'app-lenh-san-xuat-modal',
-    templateUrl: './lenh-san-xuat-modal.component.html',
-    styleUrls: ['./lenh-san-xuat-modal.component.css']
+    selector: 'app-phieu-nhap-thanh-pham-modal',
+    templateUrl: './phieu-nhap-thanh-pham-modal.component.html',
+    styleUrls: ['./phieu-nhap-thanh-pham-modal.component.css']
 })
-export class LenhSanXuatModalComponent implements OnInit {
-    @ViewChild(DxFormComponent, { static: false }) frmLenhSanXuat: DxFormComponent;
+export class PhieuNhapThanhPhamModalComponent implements OnInit {
+    @ViewChild(DxFormComponent, { static: false }) frmPhieuNhapThanhPham: DxFormComponent;
 
     private subscriptions: Subscription = new Subscription();
     public onClose: Subject<any>;
@@ -26,19 +28,21 @@ export class LenhSanXuatModalComponent implements OnInit {
 
     /* kiểm tra xem là xem lại thông tin phiếu hay xem log */
     public isView: string = 'view_add'; // 'view', 'view_history', 'view_add', 'view_edit'
+    public bsModalRefChild: BsModalRef;
 
     /* thông tin cần để lấy dữ liệu */
-    public lenhsanxuat_id: number;
+    public phieunhapthanhpham_id: number;
 
     /* thông tin */
     private currentChiNhanh: ChiNhanh;
-    public lenhsanxuat: LenhSanXuat;
+    public phieunhapthanhpham: PhieuNhapThanhPham;
     public saveProcessing = false;
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_HangHoa: DataSource;
+    public dataSource_KhoHang: DataSource;
 
-    public hanghoas: LenhSanXuat_ChiTiet[] = [];
+    public hanghoas: PhieuNhapThanhPham_ChiTiet[] = [];
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -50,19 +54,32 @@ export class LenhSanXuatModalComponent implements OnInit {
         public bsModalRef: BsModalRef,
         private authenticationService: AuthenticationService,
         private commonService: CommonService,
+        private phieunhapthanhphamService: PhieuNhapThanhPhamService,
         private lenhsanxuatService: LenhSanXuatService,
         private donvigiacongService: DonViGiaCongService,
         private hanghoaService: HangHoaService,
-        public sumTotal: SumTotalPipe
+        private khohangService: KhoHangService,
+        public sumTotal: SumTotalPipe,
+        private modalService: BsModalService
     ) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
 
-        this.lenhsanxuat = new LenhSanXuat();
+        this.phieunhapthanhpham = new PhieuNhapThanhPham();
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                this.subscriptions.add(
+                    this.khohangService.findKhoHangs(x.id).subscribe((x) => {
+                        this.dataSource_KhoHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
 
                 this.subscriptions.add(
                     this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
@@ -99,20 +116,20 @@ export class LenhSanXuatModalComponent implements OnInit {
                 }
             })
         });
-        
-        if (this.isView == 'view_add'){
+
+        if (this.isView == 'view_add') {
             this.onHangHoaAdd();
         }
 
         if (this.isView == 'view_edit' || this.isView == 'view') {
             this.subscriptions.add(
-                this.lenhsanxuatService.findLenhSanXuat(this.lenhsanxuat_id).subscribe(
+                this.phieunhapthanhphamService.findPhieuNhapThanhPham(this.phieunhapthanhpham_id).subscribe(
                     (data) => {
-                        this.lenhsanxuat = data;
-                        this.hanghoas = this.lenhsanxuat.lenhsanxuat_chitiets;
+                        this.phieunhapthanhpham = data;
+                        this.hanghoas = this.phieunhapthanhpham.phieunhapthanhpham_chitiets;
                     },
                     (error) => {
-                        this.lenhsanxuatService.handleError(error);
+                        this.phieunhapthanhphamService.handleError(error);
                     }
                 )
             );
@@ -123,12 +140,62 @@ export class LenhSanXuatModalComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    openModal() {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'DANH SÁCH LỆNH SẢN XUẤT'
+        };
+
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(DanhSachLenhSanXuatModalComponent, { class: 'modal-xxl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
+            if(result){
+                this.hanghoas = [];
+                this.lenhsanxuatService.findLenhSanXuat(result.id).subscribe(
+                    (data) => {
+                        // xử lý phần thông tin phiếu
+                        this.phieunhapthanhpham.donvigiacong_id = data.donvigiacong_id;
+                        this.phieunhapthanhpham.tongthanhtien = data.tongthanhtien;
+                        this.phieunhapthanhpham.loaiphieu = data.loaiphieu;
+                        this.phieunhapthanhpham.lenhsanxuat_id = data.id;
+
+                        // xử lý phần thông tin chi tiết phiếu
+                        data.lenhsanxuat_chitiets.forEach((value, index) => {
+                            if (value.trangthainhap != ETrangThaiPhieu.danhap) {
+                                let item = new PhieuNhapThanhPham_ChiTiet();
+
+                                item.loaihanghoa = value.loaihanghoa;
+                                item.hanghoa_id = value.hanghoa_id;
+                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                item.dvt_id = value.dvt_id;
+                                item.tilequydoi = value.tilequydoi;
+                                item.soluong = value.soluong - value.soluongtattoan - value.soluongdanhap;
+                                item.dongia = value.dongia;
+                                item.thanhtien = value.thanhtien;
+                                item.chuthich = value.chuthich;
+                                item.lenhsanxuat_chitiet_id = value.id;
+                                
+                                this.hanghoas.push(item);
+                            }
+                        });
+                    },
+                    (error) => {
+                        this.phieunhapthanhphamService.handleError(error);
+                    }
+                );
+            }
+        });
+    }
+
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
-    
+
     public onHangHoaAdd() {
-        this.hanghoas.push(new LenhSanXuat_ChiTiet());
+        this.hanghoas.push(new PhieuNhapThanhPham_ChiTiet());
     }
 
     public onHangHoaDelete(item) {
@@ -142,10 +209,10 @@ export class LenhSanXuatModalComponent implements OnInit {
         let selected = e.selectedItem;
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
-        let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
-        if (rowsNull.length == 0) {
-            this.onHangHoaAdd();
-        }
+        // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
+        // if (rowsNull.length == 0) {
+        //     this.onHangHoaAdd();
+        // }
     }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
@@ -155,36 +222,35 @@ export class LenhSanXuatModalComponent implements OnInit {
     private onTinhTien() {
         let tongtienhang: number = 0;
         this.hanghoas.forEach((v, i) => {
-            v.soluongconlai = v.soluong - v.soluongdanhap - v.soluongtattoan;
-            v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia;
+            v.thanhtien = v.soluong * v.dongia;
             tongtienhang += v.thanhtien;
         });
-        this.lenhsanxuat.tongthanhtien = tongtienhang;
+        this.phieunhapthanhpham.tongthanhtien = tongtienhang;
     }
 
     onSubmitForm(e) {
-        if (!this.frmLenhSanXuat.instance.validate().isValid) return;
+        if (!this.frmPhieuNhapThanhPham.instance.validate().isValid) return;
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
 
-        let lenhsanxuat_req = this.lenhsanxuat;
-        lenhsanxuat_req.chinhanh_id = this.currentChiNhanh.id;
-        lenhsanxuat_req.lenhsanxuat_chitiets = hanghoas;
+        let phieunhapthanhpham_req = this.phieunhapthanhpham;
+        phieunhapthanhpham_req.chinhanh_id = this.currentChiNhanh.id;
+        phieunhapthanhpham_req.phieunhapthanhpham_chitiets = hanghoas;
 
         if (this.isView == 'view_add') {
-            this.onAddNew(lenhsanxuat_req);
+            this.onAddNew(phieunhapthanhpham_req);
         }
 
         if (this.isView == 'view_edit') {
-            this.onUpdate(lenhsanxuat_req);
+            this.onUpdate(phieunhapthanhpham_req);
         }
 
         e.preventDefault();
     }
 
-    onAddNew(lenhsanxuat_req) {
+    onAddNew(phieunhapthanhpham_req) {
         this.saveProcessing = true;
         this.subscriptions.add(
-            this.lenhsanxuatService.addLenhSanXuat(lenhsanxuat_req).subscribe(
+            this.phieunhapthanhphamService.addPhieuNhapThanhPham(phieunhapthanhpham_req).subscribe(
                 (data) => {
                     notify(
                         {
@@ -200,17 +266,17 @@ export class LenhSanXuatModalComponent implements OnInit {
                     this.onConfirm();
                 },
                 (error) => {
-                    this.lenhsanxuatService.handleError(error);
+                    this.phieunhapthanhphamService.handleError(error);
                     this.saveProcessing = false;
                 }
             )
         );
     }
 
-    onUpdate(lenhsanxuat_req) {
+    onUpdate(phieunhapthanhpham_req) {
         this.saveProcessing = true;
         this.subscriptions.add(
-            this.lenhsanxuatService.updateLenhSanXuat(lenhsanxuat_req).subscribe(
+            this.phieunhapthanhphamService.updatePhieuNhapThanhPham(phieunhapthanhpham_req).subscribe(
                 (data) => {
                     notify(
                         {
@@ -226,7 +292,7 @@ export class LenhSanXuatModalComponent implements OnInit {
                     this.onConfirm();
                 },
                 (error) => {
-                    this.lenhsanxuatService.handleError(error);
+                    this.phieunhapthanhphamService.handleError(error);
                     this.saveProcessing = false;
                 }
             )

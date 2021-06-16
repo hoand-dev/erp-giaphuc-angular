@@ -9,11 +9,16 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
+            <button type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()">TỪ LỆNH</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div id="form-container">
                 <form (submit)="onSubmitForm($event)">
-                    <dx-form id="form" [colCount]="12" [formData]="lenhsanxuat" [showValidationSummary]="true" [labelLocation]="'top'">
-                        <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY SẢN XUẤT' }" dataField="ngaysanxuat" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
-                            <dxi-validation-rule type="required" message="Chọn ngày sản xuất"></dxi-validation-rule>
+                    <dx-form id="form" [colCount]="12" [formData]="phieunhapthanhpham" [showValidationSummary]="true" [labelLocation]="'top'">
+                        <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY NHẬP' }" dataField="ngaynhapthanhpham" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
+                            <dxi-validation-rule type="required" message="Chọn ngày nhập"></dxi-validation-rule>
                         </dxi-item>
 
                         <dxi-item
@@ -26,7 +31,8 @@
                                 valueExpr: 'id',
                                 searchEnabled: true,
                                 searchExpr: ['tendonvigiacong', 'madonvigiacong'],
-                                displayExpr: 'tendonvigiacong'
+                                displayExpr: 'tendonvigiacong',
+                                readOnly: true
                             }"
                         >
                             <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
@@ -40,10 +46,21 @@
                         ></dxi-item>
 
                         <dxi-item [colSpan]="2" [label]="{ text: 'MÃ LỆNH' }" dataField="malenhsanxuat" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
-                        <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8"></dxi-item>
-                        
-                        <dxi-item [colSpan]="2" [label]="{ text: 'CHI PHÍ' }">
-                            <button type="button" class="btn btn-sm btn-danger btn-block"><i class="fa fa-download"></i> TÍNH CHI PHÍ</button>
+                        <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="7"></dxi-item>
+                        <dxi-item
+                            [colSpan]="3"
+                            [label]="{ text: 'KHO NHẬP' }"
+                            dataField="khonhap_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhoHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhohang', 'makhohang'],
+                                displayExpr: 'tenkhohang'
+                            }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn kho nhập"></dxi-validation-rule>
                         </dxi-item>
 
                         <dxi-item [colSpan]="12">
@@ -59,7 +76,7 @@
                                                 <th [style.min-width.px]="120">PHÍ G/C</th>
                                                 <th [style.min-width.px]="250">GHI CHÚ</th>
                                                 <th [style.max-width.px]="40">
-                                                    <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
+                                                    <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
                                                 </th>
                                             </tr>
                                         </thead>
@@ -69,6 +86,7 @@
                                                 <td [style.min-width.px]="400">
                                                     <dx-select-box
                                                         id="hanghoa_row_{{ i }}"
+                                                        [readOnly]="true"
                                                         [(value)]="item.hanghoa_id"
                                                         [dataSource]="dataSource_HangHoa"
                                                         [displayExpr]="'tenhanghoa'"
@@ -117,7 +135,7 @@
                                                 <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
                                                 <th [style.min-width.px]="250"></th>
                                                 <th [style.max-width.px]="40">
-                                                    <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i>
+                                                    <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
                                                 </th>
                                             </tr>
                                         </tfoot>
@@ -129,7 +147,8 @@
                         <dxi-item [colSpan]="12">
                             <div *dxTemplate>
                                 <dx-button icon="close" (click)="onCancel()" text="Đóng" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
-                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing" *ngIf="this.isView !== 'view'"> </dx-button>
+                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing" *ngIf="this.isView !== 'view'">
+                                </dx-button>
                             </div>
                         </dxi-item>
                     </dx-form>
