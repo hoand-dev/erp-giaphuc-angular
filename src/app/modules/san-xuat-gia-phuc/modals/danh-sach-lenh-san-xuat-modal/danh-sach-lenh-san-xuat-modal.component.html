@@ -37,7 +37,7 @@
                 <dxi-column dataField="ngaysanxuat" dataType="date" caption="ngày sản xuất"></dxi-column>
                 <dxi-column dataField="malenhsanxuat" caption="Mã lệnh sản xuất"></dxi-column>>
                 <dxi-column dataField="tendonvigiacong" caption="Tên đơn vị gia công"></dxi-column>
-                <dxi-column dataField="tongthanhthien" caption="Tổng thành tiền" format="#,##0.###"></dxi-column>
+                
                 <dxi-column dataField="trangthainhap" caption="Trạng thái nhập" cellTemplate="cellTemplateTrangThaiXuat">
                     <div *dxTemplate="let data of 'cellTemplateTrangThaiXuat'">
                         <span *ngIf="data.value == null">Chưa nhập</span>
@@ -56,7 +56,6 @@
                 <!-- Thêm trang tổng cộng cuối form -->
                 <dxo-summary>
                     <dxi-total-item column="malenhsanxuat" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
-                    <dxi-total-item column="tongthanhtien" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                 </dxo-summary>
 
                 <!-- dx-data-grid option -->
