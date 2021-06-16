@@ -1,20 +1,26 @@
 export class LenhSanXuat{
+    public lenhsanxuat_chitiets: LenhSanXuat_ChiTiet[];
+
+    public tendonvigiacong : string ;
+    public nguoitao_hoten  : string ;
+    public nguoisua_hoten  : string ;
     
-    public id             : number ;
-    public chinhanh_id    : number ;
-    public kichhoat       : boolean;
-    public nguoitao_id    : number ;
-    public thoigiantao    : Date   ;
-    public nguoisua_id    : number ;
-    public thoigiansua    : Date   ;
-    public ghichu         : string ;
-    public ids            : number ;
-    public sort           : string ;
-    public loaiphieu      : string ;
-    public ngaysanxuat    : Date   ;
-    public malenhsanxuat  : string ;
-    public donvigiacong_id: number ;
-    public tongthanhtien  : number ;
+    public id              : number ;
+    public chinhanh_id     : number ;
+    public kichhoat        : boolean;
+    public nguoitao_id     : number ;
+    public thoigiantao     : Date   ;
+    public nguoisua_id     : number ;
+    public thoigiansua     : Date   ;
+    public ghichu          : string ;
+    public ids             : number ;
+    public sort            : string ;
+    public loaiphieu       : string ;
+    public ngaysanxuat     : Date   ;
+    public malenhsanxuat   : string ;
+    public donvigiacong_id : number ;
+    public tongthanhtien   : number ;
+    public trangthainhap   : string ;
 
     constructor(
         id              : number  = null      ,
@@ -32,6 +38,7 @@ export class LenhSanXuat{
         malenhsanxuat   : string  = null      ,
         donvigiacong_id : number  = null      ,
         tongthanhtien   : number  = 0         ,
+        trangthainhap   : string  = null      ,
     ){
         this.id              = id             ;
         this.chinhanh_id     = chinhanh_id    ;
@@ -48,6 +55,7 @@ export class LenhSanXuat{
         this.malenhsanxuat   = malenhsanxuat  ;
         this.donvigiacong_id = donvigiacong_id;
         this.tongthanhtien   = tongthanhtien  ;
+        this.trangthainhap   = trangthainhap  ;
     }
 }
 
@@ -68,6 +76,7 @@ export class LenhSanXuat_ChiTiet{
     public dongia: number;
     public thanhtien: number;
     public chuthich: string;
+    public trangthainhap: string;
 
     constructor(
         id                : number = null,
@@ -83,6 +92,7 @@ export class LenhSanXuat_ChiTiet{
         dongia            : number = 0   ,
         thanhtien         : number = 0   ,
         chuthich          : string = null,
+        trangthainhap     : string = null,
     ){
         this.id                = id                ;
         this.lenhsanxuat_id    = lenhsanxuat_id    ;
@@ -97,5 +107,6 @@ export class LenhSanXuat_ChiTiet{
         this.dongia            = dongia            ;
         this.thanhtien         = thanhtien         ;
         this.chuthich          = chuthich          ;
+        this.trangthainhap     = trangthainhap     ;
     }
 }

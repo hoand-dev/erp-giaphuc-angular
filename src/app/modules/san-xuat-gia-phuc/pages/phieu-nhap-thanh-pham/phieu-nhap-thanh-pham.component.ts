@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { LenhSanXuat } from '@app/shared/entities';
-import { AppInfoService, CommonService, LenhSanXuatService } from '@app/shared/services';
+import { PhieuNhapThanhPham } from '@app/shared/entities';
+import { AppInfoService, CommonService, PhieuNhapThanhPhamService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
@@ -10,14 +10,14 @@ import notify from 'devextreme/ui/notify';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
-import { LenhSanXuatModalComponent } from '../../modals/lenh-san-xuat-modal/lenh-san-xuat-modal.component';
+import { PhieuNhapThanhPhamModalComponent } from '../../modals/phieu-nhap-thanh-pham-modal/phieu-nhap-thanh-pham-modal.component';
 
 @Component({
-    selector: 'app-lenh-san-xuat',
-    templateUrl: './lenh-san-xuat.component.html',
-    styleUrls: ['./lenh-san-xuat.component.css']
+  selector: 'app-phieu-nhap-thanh-pham',
+  templateUrl: './phieu-nhap-thanh-pham.component.html',
+  styleUrls: ['./phieu-nhap-thanh-pham.component.css']
 })
-export class LenhSanXuatComponent implements OnInit, OnDestroy {
+export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
@@ -38,12 +38,12 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
     public currDayTime: Date = new Date();
 
     /* dataGrid */
-    public exportFileName: string = '[DANH SÁCH] - LỆNH SẢN XUẤT - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[DANH SÁCH] - NHẬP THÀNH PHẨM - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
         type: 'localStorage',
-        storageKey: 'dxGrid_LenhSanXuat'
+        storageKey: 'dxGrid_PhieuNhapThanhPham'
     };
 
     constructor(
@@ -52,10 +52,10 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
         private router: Router,
         private commonService: CommonService,
         private authenticationService: AuthenticationService,
-        private lenhsanxuatService: LenhSanXuatService,
+        private phieunhapthanhphamService: PhieuNhapThanhPhamService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle('LỆNH SẢN XUẤT | ' + this.appInfoService.appName);
+        this.titleService.setTitle('NHẬP THÀNH PHẨM | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -72,16 +72,16 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
                     this.permissions = data;
-                    if (!this.commonService.getEnablePermission(this.permissions, 'lenhsanxuat-truycap')) {
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieunhapthanhpham-truycap')) {
                         this.router.navigate(['/khong-co-quyen']);
                     }
-                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'lenhsanxuat-themmoi');
-                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'lenhsanxuat-capnhat');
-                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'lenhsanxuat-xoa');
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'lenhsanxuat-xuatdulieu');
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieunhapthanhpham-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieunhapthanhpham-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieunhapthanhpham-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieunhapthanhpham-xuatdulieu');
                 },
                 (error) => {
-                    this.lenhsanxuatService.handleError(error);
+                    this.phieunhapthanhphamService.handleError(error);
                 }
             )
         );
@@ -93,12 +93,12 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
 
     onLoadData() {
         this.subscriptions.add(
-            this.lenhsanxuatService.findLenhSanXuats(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
+            this.phieunhapthanhphamService.findPhieuNhapThanhPhams(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
                     this.dataGrid.dataSource = data;
                 },
                 (error) => {
-                    this.lenhsanxuatService.handleError(error);
+                    this.phieunhapthanhphamService.handleError(error);
                 }
             )
         );
@@ -108,16 +108,16 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
-    openViewModal(rowData: LenhSanXuat) {
+    openViewModal(rowData: PhieuNhapThanhPham) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÔNG TIN LỆNH SẢN XUẤT',
+            title: 'THÔNG TIN - PHIẾU NHẬP THÀNH PHẨM',
             isView: 'view',
-            lenhsanxuat_id: rowData.id
+            phieunhapthanhpham_id: rowData.id
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(LenhSanXuatModalComponent, {
+        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
@@ -127,19 +127,19 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
     }
 
     onRowDblClick(e) {
-        let rowData: LenhSanXuat = e.key;
+        let rowData: PhieuNhapThanhPham = e.key;
         this.openViewModal(rowData);
     }
 
     onAddNew() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM LỆNH SẢN XUẤT',
+            title: 'THÊM - PHIẾU NHẬP THÀNH PHẨM',
             isView: 'view_add'
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(LenhSanXuatModalComponent, {
+        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
@@ -158,13 +158,13 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
     onRowEdit(id) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'CẬP NHẬT LỆNH SẢN XUẤT',
+            title: 'CẬP NHẬT - PHIẾU NHẬP THÀNH PHẨM',
             isView: 'view_edit',
-            lenhsanxuat_id: id
+            phieunhapthanhpham_id: id
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(LenhSanXuatModalComponent, {
+        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
@@ -181,12 +181,12 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
     }
 
     onRowDelete(row) {
-        let result = confirm(`<i>Bạn có muốn xóa "${ row.data.malenhsanxuat }" này?</i>`, 'Xác nhận xóa');
+        let result = confirm(`<i>Bạn có muốn xóa "${ row.data.maphieunhapthanhpham }" này?</i>`, 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
                 this.subscriptions.add(
-                    this.lenhsanxuatService.deleteLenhSanXuat(row.data.id).subscribe(
+                    this.phieunhapthanhphamService.deletePhieuNhapThanhPham(row.data.id).subscribe(
                         (data) => {
                             if (data) {
                                 notify(
@@ -203,7 +203,7 @@ export class LenhSanXuatComponent implements OnInit, OnDestroy {
                             this.onLoadData();
                         },
                         (error) => {
-                            this.lenhsanxuatService.handleError(error);
+                            this.phieunhapthanhphamService.handleError(error);
                             // load lại dữ liệu
                             this.onLoadData();
                         }
