@@ -1,4 +1,5 @@
 export class LenhSanXuat{
+
     public lenhsanxuat_chitiets: LenhSanXuat_ChiTiet[];
 
     public tendonvigiacong : string ;
@@ -21,6 +22,7 @@ export class LenhSanXuat{
     public donvigiacong_id : number ;
     public tongthanhtien   : number ;
     public trangthainhap   : string ;
+
 
     constructor(
         id              : number  = null      ,
