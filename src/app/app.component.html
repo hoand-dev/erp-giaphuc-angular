@@ -437,6 +437,42 @@
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li class="nav-item has-treeview" routerLinkActive="menu-open">
+                                    <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('SANXUATGIAPHUC')}">
+                                        <i class="nav-icon fas fa-tree"></i>
+                                        <p>
+                                            Sản xuất GP
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/lenh-san-xuat']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Lệnh sản xuất</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-xuat-vat-tu']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu xuất vật tư</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-nhap-thanh-pham']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu nhập thành phẩm</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a [routerLink]="['/phieu-nhap-vat-tu']" class="nav-link" routerLinkActive="active">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phiếu nhập vật tư</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li class="nav-item has-treeview" routerLinkActive="menu-open">
                                     <a href="javascript:void(0)" class="nav-link" [ngClass]="{'active': activeGroupClass('MUAHANG')}">
                                         <i class="nav-icon fas fa-tree"></i>
                                         <p>
