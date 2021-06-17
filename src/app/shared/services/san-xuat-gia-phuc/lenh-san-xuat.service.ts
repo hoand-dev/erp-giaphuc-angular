@@ -40,10 +40,9 @@ export class LenhSanXuatService extends BaseService {
         return this.httpClient.delete<LenhSanXuat>(this.apiUrl + `/${id}`);
     }
 
-    laygiaLenhSanXuat(hanghoa_id: number, donvigiacong_id?: number): Observable<number> {
+    laygiaLenhSanXuat(hanghoa_id: number): Observable<number> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set("hanghoa_id", hanghoa_id.toString());
-        query_params = query_params.set("donvigiacong_id", donvigiacong_id != null? donvigiacong_id.toString() : null);
 
         return this.httpClient.get<number>(this.apiUrl + `/laygia`, { params: query_params });
     }
