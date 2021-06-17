@@ -123,6 +123,17 @@ export class LenhSanXuatModalComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    clickLayGia() {
+        this.hanghoas.forEach((e) => {
+            if (e.hanghoa_id != null)
+                this.subscriptions.add(
+                    this.lenhsanxuatService.laygiaLenhSanXuat(e.hanghoa_id).subscribe((x) => {
+                        e.dongia = x;
+                    })
+                );
+        });
+    }
+
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }

@@ -43,7 +43,7 @@
                         <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="8"></dxi-item>
                         
                         <dxi-item [colSpan]="2" [label]="{ text: 'CHI PHÍ' }">
-                            <button type="button" class="btn btn-sm btn-danger btn-block"><i class="fa fa-download"></i> TÍNH CHI PHÍ</button>
+                            <button (click)="clickLayGia()" type="button" class="btn btn-sm btn-danger btn-block"><i class="fa fa-download"></i> TÍNH CHI PHÍ</button>
                         </dxi-item>
 
                         <dxi-item [colSpan]="12">
