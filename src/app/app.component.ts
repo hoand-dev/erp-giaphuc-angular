@@ -309,7 +309,7 @@ export class AppComponent implements OnInit {
         const SANXUATGIAPHUC = [
             "/lenh-san-xuat",
             "/phieu-xuat-vat-tu",
-            "/phieu-nhap-thanh-pham",
+            "/nhap-thanh-pham",
             "/phieu-nhap-vat-tu",
         ];
         const MUAHANG = [
@@ -391,7 +391,7 @@ export class AppComponent implements OnInit {
             case 'NHACUNGCAP'     : $return = NHACUNGCAP     .includes($url); break;
             case 'HANGHOA'        : $return = HANGHOA        .includes($url); break;
             case 'SANXUAT'        : $return = SANXUAT        .includes($url); break;
-            case 'SANXUATGIAPHUC'      : $return = SANXUATGIAPHUC      .includes($url); break;
+            case 'SANXUATGIAPHUC' : $return = SANXUATGIAPHUC .includes($url); break;
             case 'MUAHANG'        : $return = MUAHANG        .includes($url); break;
             case 'BANHANG'        : $return = BANHANG        .includes($url); break;
             case 'KHOHANG'        : $return = KHOHANG        .includes($url); break;
