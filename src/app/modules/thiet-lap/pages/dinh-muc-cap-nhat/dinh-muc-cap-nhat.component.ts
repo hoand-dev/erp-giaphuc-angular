@@ -34,7 +34,7 @@ export class DinhMucCapNhatComponent implements OnInit, OnDestroy {
     public chiphikhacs: DinhMuc_ChiPhiKhac[] = [];
 
     // dữ liệu các select box tương ứng từng tab
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
     public dataSource_NguonLuc: any = {};
     public dataSource_ChiPhiKhac: any = {};
 
