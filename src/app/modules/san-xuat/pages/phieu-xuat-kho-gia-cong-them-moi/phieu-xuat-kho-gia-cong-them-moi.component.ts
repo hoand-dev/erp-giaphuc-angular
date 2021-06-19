@@ -51,7 +51,7 @@ export class PhieuXuatKhoGiaCongThemMoiComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuXuatKhoGiaCong_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
 
     // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu mua hàng
     private hanghoalenght: number = 0;

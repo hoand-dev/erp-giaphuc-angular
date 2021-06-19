@@ -40,7 +40,7 @@ export class PhieuXuatKhoViewModalComponent implements OnInit {
     public dataSource_KhoXuat: DataSource;
 
     public hanghoas: PhieuXuatKho_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
 
     private hanghoalenght: number = 0;
 
