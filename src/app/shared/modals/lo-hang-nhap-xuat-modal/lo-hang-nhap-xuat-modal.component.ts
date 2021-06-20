@@ -42,7 +42,7 @@ export class LoHangNhapXuatModalComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoaLoHang_TonKhoHienTai(this.authenticationService.currentChiNhanhValue.id, this.khohang_id, this.hanghoa_id, null, loadOptions)
+                        .hangHoaLoHang_TonKhoHienTai(this.authenticationService.currentChiNhanhValue.id, this.khohang_id, this.hanghoa_id, loadOptions)
                         .toPromise().then((result) => { return result; });
                 },
                 byKey: (key) => {

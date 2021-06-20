@@ -91,7 +91,7 @@ export class CommonService extends BaseService{
         return this.httpClient.get<HangHoa[]>(this.apiUrl + '/hanghoa-tonkhohientai', { params: query_params });
     }
 
-    hangHoaLoHang_TonKhoHienTai(chinhanh_id: number = null, khohang_id: number = null, hanghoa_id: number = null, loaihanghoa: string = null, loadOptions: LoadOptions = null): Observable<HangHoa_LoHang[]> {
+    hangHoaLoHang_TonKhoHienTai(chinhanh_id: number = null, khohang_id: number = null, hanghoa_id: number = null, loadOptions: LoadOptions = null): Observable<HangHoa_LoHang[]> {
         let query_params: HttpParams = new HttpParams();
         if(loadOptions){
             ['skip', 'take', 'sort', 'filter', 'searchExpr', 'searchOperation', 'searchValue', 'group'].forEach((i) => {
@@ -102,8 +102,6 @@ export class CommonService extends BaseService{
         query_params = query_params.set('chinhanh_id', chinhanh_id.toString());
         query_params = query_params.set('khohang_id', khohang_id ? khohang_id.toString() : null);
         query_params = query_params.set('hanghoa_id', hanghoa_id ? hanghoa_id.toString() : null);
-
-        if (loaihanghoa) query_params = query_params.set('loaihanghoa', loaihanghoa);
 
         if (query_params.get('searchValue') == null) {
             query_params = query_params.set('searchValue', ' ');
