@@ -13,22 +13,24 @@ export class HangHoaService extends BaseService {
 
     private apiUrl: string = environment.apiUrl + '/hanghoa';
 
-    constructor(private httpClient: HttpClient) { super(); }
+    constructor(private httpClient: HttpClient) {
+        super();
+    }
 
     findHangHoa(id: number): Observable<HangHoa> {
         return this.httpClient.get<HangHoa>(this.apiUrl + `/${id}`);
     }
 
-    findHangHoas(loaihanghoa: string = null,kichhoat: boolean = true): Observable<HangHoa[]> {
+    findHangHoas(loaihanghoa: string = null, kichhoat: boolean = true): Observable<HangHoa[]> {
         let query_params: HttpParams = new HttpParams();
-        if(loaihanghoa){
+        if (loaihanghoa) {
             query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
             query_params = query_params.set('loaihanghoa', loaihanghoa);
             return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
-         }else{
-            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null); 
+        } else {
+            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
             return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
-         }   
+        }
     }
 
     addHangHoa(hanghoa: HangHoa): Observable<HangHoa> {
@@ -51,10 +53,11 @@ export class HangHoaService extends BaseService {
                 }, 300);
             });
         else
-            return this.httpClient.get(this.apiUrl + `/exist?mahanghoa=${mahanghoa}`)
+            return this.httpClient
+                .get(this.apiUrl + `/exist?mahanghoa=${mahanghoa}`)
                 .toPromise()
-                .then(res => !res) // false -> true (chưa tồn tại) và ngược lại
-                .catch(err => {
+                .then((res) => !res) // false -> true (chưa tồn tại) và ngược lại
+                .catch((err) => {
                     console.error(err);
                     this.handleError(err);
                 });
