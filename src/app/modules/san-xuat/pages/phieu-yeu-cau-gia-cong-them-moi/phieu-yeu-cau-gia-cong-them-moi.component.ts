@@ -40,7 +40,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     bsModalRef: BsModalRef;
     private currentChiNhanh: ChiNhanh;
-
+    
     public loaiphieu: string = 'taikho';
     public phieuyeucaugiacong: PhieuYeuCauGiaCong;
 
@@ -224,6 +224,11 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
+
+        // kiểm tra xem 2 kho chọn có khác nhau hay không? nếu chọn khác trả về id kho nhập compare trả về true và ngược lại luôn false -> show warning
+        khoxuatComparison = () => {
+            return this.phieuyeucaugiacong.khogiacong_id != this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : false;
+        };
 
     openModal() {
         /* khởi tạo giá trị cho modal */
