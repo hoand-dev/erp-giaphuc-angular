@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { DanhSachHangHoaYeuCauGiaCongModalComponent } from '../../modals';
 
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-phieu-yeu-cau-gia-cong-them-moi',
@@ -40,7 +40,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     bsModalRef: BsModalRef;
     private currentChiNhanh: ChiNhanh;
-    
+
     public loaiphieu: string = 'taikho';
     public phieuyeucaugiacong: PhieuYeuCauGiaCong;
 
@@ -178,7 +178,12 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : this.phieuyeucaugiacong.khogiacong_id, 'hangtron,thanhpham', loadOptions)
+                        .hangHoa_TonKhoHienTai(
+                            this.currentChiNhanh.id,
+                            this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : this.phieuyeucaugiacong.khogiacong_id,
+                            'hangtron,thanhpham',
+                            loadOptions
+                        )
                         .toPromise()
                         .then((result) => {
                             return result;
@@ -225,10 +230,10 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
 
-        // kiểm tra xem 2 kho chọn có khác nhau hay không? nếu chọn khác trả về id kho nhập compare trả về true và ngược lại luôn false -> show warning
-        khoxuatComparison = () => {
-            return this.phieuyeucaugiacong.khogiacong_id != this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : false;
-        };
+    // kiểm tra xem 2 kho chọn có khác nhau hay không? nếu chọn khác trả về id kho nhập compare trả về true và ngược lại luôn false -> show warning
+    khoxuatComparison = () => {
+        return this.phieuyeucaugiacong.khogiacong_id != this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : false;
+    };
 
     openModal() {
         /* khởi tạo giá trị cho modal */
@@ -244,11 +249,10 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.bsModalRef.content.onClose.subscribe((result) => {
             if (result) {
                 let res: HangHoaDatHang[] = [];
-                if(result.action == 'capnhat'){
+                if (result.action == 'capnhat') {
                     // chỉ lấy những hàng hoá nào chưa được chọn trước đó
-                    res = result.data.filter(o=> !this.hanghoas.some(i=> i.phieudathang_chitiet_id === o.id));
-                }
-                else{
+                    res = result.data.filter((o) => !this.hanghoas.some((i) => i.phieudathang_chitiet_id === o.id));
+                } else {
                     this.hanghoas = <PhieuYeuCauGiaCongCT[]>[];
                     res = result.data;
                 }
@@ -306,9 +310,11 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.hanghoas.forEach((e) => {
             if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, e.somat_id, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
-                        e.dongia = x;
-                    })
+                    this.phieuyeucaugiacongService
+                        .laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, e.somat_id, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id)
+                        .subscribe((x) => {
+                            e.dongia = x;
+                        })
                 );
         });
     }
@@ -323,12 +329,14 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
             this.hanghoas.forEach((v, i) => {
                 v.khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
             });
+            this.frmPhieuYeuCauGiaCong.instance.validate();
         }
-        
+
         if (e.dataField == 'khoxuat_id' && e.value !== undefined) {
             this.hanghoas.forEach((v, i) => {
                 v.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
             });
+            this.frmPhieuYeuCauGiaCong.instance.validate();
         }
 
         if (e.dataField == 'xuatnguyenlieu' && e.value !== undefined) {
@@ -343,7 +351,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
     }
 
     displayExprKhachHang(item) {
-        return item && item.id + ", " + item.tenrutgon;
+        return item && item.id + ', ' + item.tenrutgon;
     }
 
     public onHangHoaAdd() {
@@ -367,8 +375,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
             this.hanghoas[index].arr_yeucaus = JSON.parse(this.hanghoas[index].yeucaus);
             this.hanghoalenght_yeucau = this.hanghoas[index].arr_yeucaus.length;
             this.hanghoas[index].yeucaus = this.hanghoas[index].arr_yeucaus.toString();
-        }
-        else {
+        } else {
             this.hanghoas[index].khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
             this.hanghoas[index].khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
             this.hanghoas[index].xuatnguyenlieu = this.phieuyeucaugiacong.xuatnguyenlieu;
@@ -395,16 +402,14 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         this.isClicked_LayGia = false;
         if (this.hanghoalenght_yeucau > 0) {
             this.hanghoalenght_yeucau--;
-        }
-        else this.onTaoThanhPham(index);
+        } else this.onTaoThanhPham(index);
     }
 
     onSoMatYeuCauChanged(index, e) {
         let selected = e.selectedItem;
         if (this.hanghoalenght_somat > 0) {
             this.hanghoalenght_somat--;
-        }
-        else {
+        } else {
             // gán số mặt cho thành phẩm
             this.hanghoas[index].somat_thanhpham_id = selected.id;
 
@@ -417,8 +422,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
         let selected = e.selectedItem;
         if (this.hanghoalenght_somat_thanhpham > 0) {
             this.hanghoalenght_somat_thanhpham--;
-        }
-        else {
+        } else {
             /* tạo lại mã mới cho thành phẩm */
             this.onTaoThanhPham(index);
         }
