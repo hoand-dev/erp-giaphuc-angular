@@ -366,17 +366,6 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
             });
             return false;
         }
-
-        if (this.hanghoas.filter((x) => x.soluongloi > x.soluong).length > 0) {
-            Swal.fire({
-                title: 'Số lượng lỗi không hợp lệ',
-                html: 'Vui lòng kiểm tra lại',
-                icon: 'warning',
-                timer: 3000,
-                timerProgressBar: true
-            });
-            return false;
-        }
         return true;
     }
 
