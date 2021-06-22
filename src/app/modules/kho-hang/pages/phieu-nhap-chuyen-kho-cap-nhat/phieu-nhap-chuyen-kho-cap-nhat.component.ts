@@ -285,7 +285,7 @@ export class PhieuNhapChuyenKhoCapNhatComponent implements OnInit {
 
     // kiểm tra xem 2 kho chọn có khác nhau hay không? nếu chọn khác trả về id kho nhập compare trả về true và ngược lại luôn false -> show warning
     khoxuatComparison = () => {
-        return this.phieunhapchuyenkho.khonhap_id != this.phieunhapchuyenkho.khonhap_id ? this.phieunhapchuyenkho.khonhap_id : false;
+        return this.phieunhapchuyenkho.khoxuatchuyen_id != this.phieunhapchuyenkho.khonhap_id ? this.phieunhapchuyenkho.khonhap_id : false;
     };
 
     public onSubmitForm(e) {

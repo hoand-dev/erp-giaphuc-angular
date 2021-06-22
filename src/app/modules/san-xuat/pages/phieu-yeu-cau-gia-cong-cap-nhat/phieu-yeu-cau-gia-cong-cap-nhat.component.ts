@@ -24,7 +24,7 @@ import notify from 'devextreme/ui/notify';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DanhSachHangHoaYeuCauGiaCongModalComponent } from '../../modals';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
@@ -173,7 +173,12 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : this.phieuyeucaugiacong.khogiacong_id, 'hangtron,thanhpham', loadOptions)
+                        .hangHoa_TonKhoHienTai(
+                            this.currentChiNhanh.id,
+                            this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : this.phieuyeucaugiacong.khogiacong_id,
+                            'hangtron,thanhpham',
+                            loadOptions
+                        )
                         .toPromise()
                         .then((result) => {
                             return result;
@@ -268,9 +273,11 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         this.hanghoas.forEach((e) => {
             if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieuyeucaugiacongService.laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, e.somat_id, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id).subscribe((x) => {
-                        e.dongia = x;
-                    })
+                    this.phieuyeucaugiacongService
+                        .laygiaPhieuYeuCauGiaCong(e.hanghoa_id, e.yeucaus, e.somat_id, this.loaiphieu == 'taikho' ? null : this.phieuyeucaugiacong.donvigiacong_id)
+                        .subscribe((x) => {
+                            e.dongia = x;
+                        })
                 );
         });
     }
@@ -279,10 +286,14 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
 
-    displayExprKhachHang(item) {
-        return item && item.id + ", " + item.tenrutgon;
-    }
+    // kiểm tra xem 2 kho chọn có khác nhau hay không? nếu chọn khác trả về id kho nhập compare trả về true và ngược lại luôn false -> show warning
+    khoxuatComparison = () => {
+        return this.phieuyeucaugiacong.khogiacong_id != this.phieuyeucaugiacong.khoxuat_id ? this.phieuyeucaugiacong.khoxuat_id : false;
+    };
 
+    displayExprKhachHang(item) {
+        return item && item.id + ', ' + item.tenrutgon;
+    }
 
     openModal() {
         /* khởi tạo giá trị cho modal */
@@ -299,11 +310,10 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         this.bsModalRef.content.onClose.subscribe((result) => {
             if (result) {
                 let res: HangHoaDatHang[] = [];
-                if(result.action == 'capnhat'){
+                if (result.action == 'capnhat') {
                     // chỉ lấy những hàng hoá nào chưa được chọn trước đó
-                    res = result.data.filter(o=> !this.hanghoas.some(i=> i.phieudathang_chitiet_id === o.id));
-                }
-                else{
+                    res = result.data.filter((o) => !this.hanghoas.some((i) => i.phieudathang_chitiet_id === o.id));
+                } else {
                     this.hanghoas = <PhieuYeuCauGiaCongCT[]>[];
                     res = result.data;
                 }
@@ -342,7 +352,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
             }
         });
     }
-    
+
     onFormFieldChanged(e) {
         // lưu ý: đoạn này nếu cho phép thay đổi đơn vị gia công hoặc kho thì cần xử lý lại nha ^_^
         // không cho phép người dùng thay đổi thông tin trước đó
@@ -350,6 +360,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         }
 
         if (e.dataField == 'khogiacong_id' && e.value !== undefined) {
+            this.frmPhieuYeuCauGiaCong.instance.validate();
         }
 
         if (e.dataField == 'khoxuat_id' && e.value !== undefined) {
@@ -357,6 +368,7 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
             // this.hanghoas.forEach((v, i) => {
             //     v.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
             // });
+            this.frmPhieuYeuCauGiaCong.instance.validate();
         }
 
         if (e.dataField == 'xuatnguyenlieu' && e.value !== undefined) {
@@ -501,9 +513,9 @@ export class PhieuYeuCauGiaCongCapNhatComponent implements OnInit {
         let tongtienhang: number = 0;
         this.hanghoas.forEach((v, i) => {
             v.tongtrongluong = v.soluong * v.trongluong;
-            v.tongkien       = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
-            v.tongm3         = v.soluong * v.m3;
-            v.soluongconlai  = v.soluong - v.soluongdanhap - v.soluongtattoan;
+            v.tongkien = v.tendonvitinhphu ? v.soluong / v.tilequydoiphu : 0;
+            v.tongm3 = v.soluong * v.m3;
+            v.soluongconlai = v.soluong - v.soluongdanhap - v.soluongtattoan;
 
             v.thanhtien = (v.soluong - v.soluongtattoan) * v.dongia * v.heso;
             tongtienhang += v.thanhtien;
