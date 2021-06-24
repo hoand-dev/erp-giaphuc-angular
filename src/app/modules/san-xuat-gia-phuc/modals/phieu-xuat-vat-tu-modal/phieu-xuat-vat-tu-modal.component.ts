@@ -27,26 +27,19 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
     public isView: string = 'view_add'; // 'view', 'view_history', 'view_add', 'view_edit'
 
     /* thông tin cần để lấy dữ liệu */
-    public phieuxuatvattu_id: number;
+    public phieuxuatvattu_id: number; // khi cập nhật, xem lại
+    public lenhsanxuat_id: number; // khi thêm mới
 
     /* thông tin */
     private currentChiNhanh: ChiNhanh;
     public phieuxuatvattu: PhieuXuatVatTu;
-    public phieuxuatvattu_old: string;
-    public saveProcessing = false;
-
     public hanghoas: PhieuXuatVatTu_ChiTiet[] = [];
-
     
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_HangHoa: DataSource;
     public dataSource_KhoHang: DataSource;
 
-    public buttonSubmitOptions: any = {
-        text: 'Lưu lại',
-        type: 'success',
-        useSubmitBehavior: true
-    };
+    public saveProcessing = false;
 
     constructor(
         public bsModalRef: BsModalRef,
@@ -57,14 +50,11 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
         public khohangService: KhoHangService,
         public donvigiacongService: DonViGiaCongService,
         public hanghoaService: HangHoaService
-        
     ) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
-
         this.phieuxuatvattu = new PhieuXuatVatTu();
-        this.theCallbackValid = this.theCallbackValid.bind(this);
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -116,12 +106,11 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
             })
         });
 
-        if (this.isView == 'view_edit') {
+        if (this.isView == 'view_edit' || this.isView == 'view') {
             this.subscriptions.add(
                 this.phieuxuatvattuService.findPhieuXuatVatTu(this.phieuxuatvattu_id).subscribe(
                     (data) => {
                         this.phieuxuatvattu = data;
-                        this.phieuxuatvattu_old = this.phieuxuatvattu.maphieu;
                     },
                     (error) => {
                         this.phieuxuatvattuService.handleError(error);
@@ -129,29 +118,14 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                 )
             );
         }
+
+        if (this.isView == 'view_add' && this.lenhsanxuat_id) {
+            
+        }
     }
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
-    }
-
-    public onHangHoaChanged(index, e) {
-        let selected = e.selectedItem;
-
-        // chỉ thêm row mới khi không tồn tài dòng rỗng nào
-        // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
-        // if (rowsNull.length == 0) {
-        //     this.onHangHoaAdd();
-        // }
-    }
-
-    theCallbackValid(params) {
-        if (this.isView == 'view_add') {
-            return this.phieuxuatvattuService.checkExistPhieuXuatVatTu(params.value, null);
-        }
-        if (this.isView == 'view_edit') {
-            return this.phieuxuatvattuService.checkExistPhieuXuatVatTu(params.value, this.phieuxuatvattu_old);
-        }
     }
 
     onSubmitForm(e) {
@@ -222,11 +196,6 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
             )
         );
     }
-
-    public onHangHoaChangeRow(col: string, index: number, e: any) {
-       
-    }
-
 
     onConfirm():void {
         this.onClose.next(true);
