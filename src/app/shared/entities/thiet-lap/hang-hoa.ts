@@ -1,6 +1,9 @@
 import { DinhMuc } from './dinh-muc';
 
 export class HangHoa {
+    
+    public hanghoadvts: HangHoaDonViTinh[] = [];
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -154,6 +157,32 @@ export class HangHoa {
         this.dinhmuc_id = dinhmuc_id;
         this.loi_id = loi_id;
         this.tiengtrung = tiengtrung;
+    }
+}
+
+export class HangHoaDonViTinh{
+
+    public hanghoa_id     : number ;
+    public dvt_id         : number ;
+    public chuyendoi      : number ;
+    public congthuc       : string ;
+    public mota           : string ;
+    public allow_chuyendoi: boolean;
+
+    constructor(
+        hanghoa_id     : number  = null ,
+        dvt_id         : number  = null ,
+        chuyendoi      : number  = 1    ,
+        congthuc       : string  = '*'  ,
+        mota           : string  = null ,
+        allow_chuyendoi: boolean = false,
+    ){
+        this.hanghoa_id      = hanghoa_id     ;
+        this.dvt_id          = dvt_id         ;
+        this.chuyendoi       = chuyendoi      ;
+        this.congthuc        = congthuc       ;
+        this.mota            = mota           ;
+        this.allow_chuyendoi = allow_chuyendoi;
     }
 }
 
