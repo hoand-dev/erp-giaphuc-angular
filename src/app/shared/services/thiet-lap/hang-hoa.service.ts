@@ -32,8 +32,10 @@ export class HangHoaService extends BaseService {
         }
     }
 
-    findLoHang(hanghoa_lohang_id: number): Observable<HangHoa> {
-        return this.httpClient.get<HangHoa>(this.apiUrl + `/lo-hang/${hanghoa_lohang_id}`);
+    findLoHang(hanghoa_lohang_id: number): Observable<HangHoa_LoHang> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('hanghoa_lohang_id', hanghoa_lohang_id ? hanghoa_lohang_id.toString() : null);
+        return this.httpClient.get<HangHoa_LoHang>(this.apiUrl + `/lo-hang`, { params: query_params });
     }
 
     findLoHangs(hanghoa_id: number): Observable<HangHoa_LoHang[]> {
