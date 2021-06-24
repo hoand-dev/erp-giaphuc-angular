@@ -22,7 +22,6 @@ export class HangHoaDonViTinhModalComponent implements OnInit {
 
     protected dataSource_DonViTinh: DataSource;
     public hanghoadvts: HangHoaDonViTinh[] = [];
-    protected validated = true;
 
     protected congthucs: any[] = [
         { key: '*', name: 'Phép nhân' },
@@ -71,29 +70,23 @@ export class HangHoaDonViTinhModalComponent implements OnInit {
         if (rowsNull.length == 0) {
             this.onAdd_Row();
         }
-        this.onValidate();
     }
 
     onDelete_Row(item) {
         this.hanghoadvts = this.hanghoadvts.filter((i) => {
             return i !== item;
         });
-        this.onValidate();
     }
 
-    onValidate(){
-        const uniqueValues = new Set(this.hanghoadvts.map(v => v.dvt_id && v.dvt_id != null));
-        this.validated = uniqueValues.size == this.hanghoadvts.length;
-    }
-    
     public onConfirm(): void {
-        if(!this.validated) {
+        this.hanghoadvts = this.hanghoadvts.filter((i) => i.dvt_id !== null);
+
+        const uniqueValues = new Set(this.hanghoadvts.map(v => v.dvt_id));
+        if(uniqueValues.size != this.hanghoadvts.length) {
             custom({showTitle: false, messageHtml: "Đơn vị tính bị trùng, vui lòng kiểm tra lại."}).show();
             return;
         }
 
-        // return khi và chỉ khi có chọn dvt
-        this.hanghoadvts = this.hanghoadvts.filter((i) => i.dvt_id !== null);
         this.onClose.next(this.hanghoadvts);
         this.bsModalRef.hide();
     }
