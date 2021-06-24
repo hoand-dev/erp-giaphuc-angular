@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppInfoService, CommonService, PhieuXuatVatTuService } from '@app/shared/services';
+import { AppInfoService, CommonService, LenhSanXuatService, PhieuXuatVatTuService } from '@app/shared/services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -10,9 +10,10 @@ import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import { PhieuXuatVatTuModalComponent } from '../../modals/phieu-xuat-vat-tu-modal/phieu-xuat-vat-tu-modal.component';
 import { AuthenticationService } from '@app/_services';
-import { DonViGiaCong, HangHoa, KhoHang, PhieuXuatVatTu } from '@app/shared/entities';
+import { DonViGiaCong, HangHoa, KhoHang, PhieuXuatVatTu, PhieuXuatVatTu_ChiTiet } from '@app/shared/entities';
 import DataSource from 'devextreme/data/data_source';
 import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
+import { ETrangThaiPhieu } from '@app/shared/enums';
 
 @Component({
     selector: 'app-phieu-xuat-vat-tu',
@@ -25,6 +26,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
     public bsModalRef: BsModalRef;
+    public bsModalRefChild: BsModalRef;
 
     /* Khai báo thời gian bắt đầu và kết thúc */
     public firstDayTime: Date;
@@ -34,6 +36,8 @@ export class PhieuXuatVatTuComponent implements OnInit {
     public lstdvgc: DonViGiaCong[] = [];
     public lstKhoXuat: KhoHang[] = [];
     public lstHangHoa: HangHoa[] = [];
+
+    public hanghoas: PhieuXuatVatTu_ChiTiet[] = [];
 
     //public dataSource_DVGC: DataSource;
     public dataSource_KhoHang: DataSource;
@@ -69,7 +73,8 @@ export class PhieuXuatVatTuComponent implements OnInit {
         private commonService: CommonService,
         private authenticationService: AuthenticationService,
         private phieuxuatvattuService: PhieuXuatVatTuService,
-        private modalService: BsModalService
+        private modalService: BsModalService,
+        public lenhsanxuatService: LenhSanXuatService
     ) {
         this.titleService.setTitle(' PHIẾU XUẤT VẬT TƯ | ' + this.appInfoService.appName);
     }
@@ -140,7 +145,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
 
         /* hiển thị modal */
         this.bsModalRef = this.modalService.show(DanhSachLenhSanXuatModalComponent, {
-            class: 'modal-xl modal-dialog-centered',
+            class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
@@ -148,9 +153,12 @@ export class PhieuXuatVatTuComponent implements OnInit {
         this.bsModalRef.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
+
         this.bsModalRef.content.onClose.subscribe((result) => {
             if (result) {
-                this.onLoadData();
+                this.openModal();
+
+
             }
         });
     }
@@ -160,7 +168,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
         const initialState = {
             title: 'CẬP NHẬT PHIẾU',
             isView: 'view_edit',
-            ipv4_id: id
+            phieuxuatvattu_id: id
         };
 
         /* hiển thị modal */
@@ -178,6 +186,59 @@ export class PhieuXuatVatTuComponent implements OnInit {
                 this.onLoadData();
             }
         });
+    }
+
+    openModal(){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÊM PHIẾU',
+            isView: 'view_add',
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuXuatVatTuModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRef.content.onClose.subscribe((result) => {
+            if (result) {
+                this.hanghoas = [];
+                this.lenhsanxuatService.findLenhSanXuat(result.id).subscribe(
+                    (data) => {
+                        // xử lý phần thông tin phiếu
+                        this.phieuxuatvattu.khoxuat_id = data.donvigiacong_id;
+                        this.phieuxuatvattu.loaiphieu = data.loaiphieu;
+                        this.phieuxuatvattu.lenhsanxuat_id = data.id;
+
+                        // xử lý phần thông tin chi tiết phiếu
+                        data.lenhsanxuat_chitiets.forEach((value, index) => {
+                            if (value.trangthainhap != ETrangThaiPhieu.danhap) {
+                                let item = new PhieuXuatVatTu_ChiTiet();
+
+                                item.loaihanghoa = value.loaihanghoa;
+                                item.hanghoa_id = value.hanghoa_id;
+                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                                item.dvt_id = value.dvt_id;
+                             //   item.soluong = value.soluong - value.soluongtattoan - value.soluongdanhap;
+                                item.chuthich = value.chuthich;
+                               // item.lenhsanxuat_chitiet_id = value.id;
+                                
+                                this.hanghoas.push(item);
+                            }
+                        });
+                    },
+                    (error) => {
+                        this.phieuxuatvattuService.handleError(error);
+                    }
+                );
+            }
+        });
+
     }
 
     onRowDelete(id) {

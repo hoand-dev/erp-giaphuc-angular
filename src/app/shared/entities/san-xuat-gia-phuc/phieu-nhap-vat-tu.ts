@@ -1,4 +1,7 @@
 export class PhieuNhapVatTu{
+    
+    public phieunhapvatu_chitiets: PhieuNhapVatTu_ChiTiet[];
+
     public id             : number ;
     public chinhanh_id    : number ;
     public kichhoat       : boolean;
