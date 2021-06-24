@@ -1,5 +1,7 @@
 export class PhieuXuatVatTu{
 
+    public phieuxuatvattu_chitiets: PhieuXuatVatTu_ChiTiet[];
+
     public id             : number ;
     public chinhanh_id    : number ;
     public kichhoat       : boolean;
@@ -61,6 +63,7 @@ export class PhieuXuatVatTu_ChiTiet{
     public tylequydoi: number;
     public soluong: number;
     public chuthich: string;
+    public trangthaixuat;
     
     constructor (
 

@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChiNhanh, PhieuNhapVatTu } from '@app/shared/entities';
+import { ChiNhanh, PhieuNhapVatTu, PhieuXuatVatTu_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, PhieuNhapVatTuService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, HangHoaService, KhoHangService, PhieuNhapVatTuService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
 import notify from 'devextreme/ui/notify';
+import DataSource from 'devextreme/data/data_source';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
   selector: 'app-phieu-nhap-vat-tu-modal',
@@ -33,6 +35,14 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
     public phieunhapvattu_old: string;
     public saveProcessing = false;
 
+        
+    public dataSource_DonViGiaCong: DataSource;
+    public dataSource_HangHoa: DataSource;
+    public dataSource_KhoHang: DataSource;
+
+    public hanghoas: PhieuXuatVatTu_ChiTiet[] = [];
+
+
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
         type: 'success',
@@ -44,7 +54,10 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private commonService: CommonService,
         private phieunhapvattuService: PhieuNhapVatTuService,
-        public sumTotal: SumTotalPipe
+        public sumTotal: SumTotalPipe,
+        public khohangService: KhoHangService,
+        public donvigiacongService: DonViGiaCongService,
+        public hanghoaService: HangHoaService
     ) {}
 
     ngOnInit(): void {
@@ -56,8 +69,53 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
                 this.currentChiNhanh = x;
+
+                this.subscriptions.add(
+                    this.khohangService.findKhoHangs(x.id).subscribe((x) => {
+                        this.dataSource_KhoHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
+
+                this.subscriptions.add(
+                    this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                        this.dataSource_DonViGiaCong = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
             })
         );
+
+        this.dataSource_HangHoa = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'thanhpham', loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findHangHoa(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
+
 
         if (this.isView == 'view_add') {
             this.subscriptions.add(
@@ -85,6 +143,21 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
             );
         }
     }
+
+    public onHangHoaChangeRow(col: string, index: number, e: any) {
+       
+    }
+
+    public onHangHoaChanged(index, e) {
+        let selected = e.selectedItem;
+
+        // chỉ thêm row mới khi không tồn tài dòng rỗng nào
+        // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
+        // if (rowsNull.length == 0) {
+        //     this.onHangHoaAdd();
+        // }
+    }
+
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();

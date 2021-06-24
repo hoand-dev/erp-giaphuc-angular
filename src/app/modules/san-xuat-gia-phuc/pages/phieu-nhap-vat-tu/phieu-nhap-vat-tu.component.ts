@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppInfoService, CommonService, PhieuNhapVatTuService } from '@app/shared/services';
+import { AppInfoService, CommonService, LenhSanXuatService, PhieuNhapVatTuService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -11,6 +11,7 @@ import notify from 'devextreme/ui/notify'
 import { confirm } from 'devextreme/ui/dialog';
 import { PhieuNhapVatTuModalComponent } from '../../modals/phieu-nhap-vat-tu-modal/phieu-nhap-vat-tu-modal.component';
 import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
+import { DanhSachPhieuXuatVatTuModalComponent } from '../../modals/danh-sach-phieu-xuat-vat-tu-modal/danh-sach-phieu-xuat-vat-tu-modal.component';
 
 @Component({
   selector: 'app-phieu-nhap-vat-tu',
@@ -124,7 +125,7 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachLenhSanXuatModalComponent, {
+        this.bsModalRef = this.modalService.show(DanhSachPhieuXuatVatTuModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
@@ -136,13 +137,8 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
         this.bsModalRef.content.onClose.subscribe((result) => {
             if(result){
 
-                //xử lý o day ?
+                this.openModal();
 
-                
-
-
-
-                this.onLoadData();
             }
         });
     }
@@ -171,6 +167,32 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
             }
         });
     }
+
+    openModal(){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÊM PHIẾU',
+            isView: 'view_add',
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(PhieuNhapVatTuModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRef.content.onClose.subscribe((result) => {
+            if (result) {
+                this.onLoadData();
+            }
+        });
+
+    }
+
 
     onRowDelete(id) {
         let result = confirm('<i>Bạn có muốn xóa danh mục này?</i>', 'Xác nhận xóa');
