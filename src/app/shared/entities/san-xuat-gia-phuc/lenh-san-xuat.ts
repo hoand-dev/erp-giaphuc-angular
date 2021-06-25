@@ -1,6 +1,9 @@
+import { PhieuXuatVatTu_ChiTiet } from "./phieu-xuat-vat-tu";
+
 export class LenhSanXuat{
 
     public lenhsanxuat_chitiets: LenhSanXuat_ChiTiet[];
+    public phieuxuatvattu_chitiets: PhieuXuatVatTu_ChiTiet[];
 
     public tendonvigiacong : string ;
     public nguoitao_hoten  : string ;
