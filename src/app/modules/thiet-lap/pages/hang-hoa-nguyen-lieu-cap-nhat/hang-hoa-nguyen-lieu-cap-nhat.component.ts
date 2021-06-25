@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChiNhanh, DonViTinh, HangHoa } from '@app/shared/entities';
-import { AppInfoService, DonViTinhService, HangHoaService } from '@app/shared/services';
+import { AppInfoService, DinhMucService, DonViTinhService, HangHoaService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import DataSource from 'devextreme/data/data_source';
@@ -10,6 +10,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import _ from 'lodash';
 import { HangHoaDonViTinhModalComponent } from '../../modals/hang-hoa-don-vi-tinh-modal/hang-hoa-don-vi-tinh-modal.component';
+import { custom } from 'devextreme/ui/dialog';
 
 @Component({
     selector: 'app-hang-hoa-nguyen-lieu-cap-nhat',
@@ -27,6 +28,7 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
 
     public lstDonViTinh: DonViTinh[] = [];
     public dataSource_DonViTinh: DataSource;
+    public dataSource_GiaCong: DataSource;
 
     public mahanghoa_old: string;
     public saveProcessing = false;
@@ -47,6 +49,7 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
         private authenticationService: AuthenticationService,
         private hanghoaService: HangHoaService,
         private donvitinhService: DonViTinhService,
+        private giacongService: DinhMucService,
         private modalService: BsModalService
     ) {}
 
@@ -82,6 +85,16 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
                 });
             }
         };
+
+        this.subscriptions.add(
+            this.giacongService.findDinhMucs().subscribe((x) => {
+                this.dataSource_GiaCong = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
 
         this.subscriptions.add(
             this.activatedRoute.params.subscribe((params) => {
@@ -128,6 +141,10 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
     }
 
     onSubmitForm(e) {
+        if(this.hanghoa.dinhmuc_giacong.length >= 2){
+            custom({messageHtml: 'Vui lòng chỉ chọn 1 gia công', showTitle: false}).show();
+            return;
+        }
         if (!this.frmHangHoa.instance.validate().isValid) return;
 
         let hanghoa_req = this.hanghoa;

@@ -5,13 +5,14 @@ import _ from 'lodash';
 
 import { DxFormComponent } from 'devextreme-angular';
 
-import { AppInfoService, DonViTinhService, HangHoaService } from '@app/shared/services';
+import { AppInfoService, DinhMucService, DonViTinhService, HangHoaService } from '@app/shared/services';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
 import DataSource from 'devextreme/data/data_source';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { HangHoaDonViTinhModalComponent } from '../../modals/hang-hoa-don-vi-tinh-modal/hang-hoa-don-vi-tinh-modal.component';
+import { custom } from 'devextreme/ui/dialog';
 
 @Component({
     selector: 'app-hang-hoa-nguyen-lieu-them-moi',
@@ -29,6 +30,7 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
 
     public lstDonViTinh: DonViTinh[] = [];
     public dataSource_DonViTinh: DataSource;
+    public dataSource_GiaCong: DataSource;
 
     public saveProcessing = false;
 
@@ -46,6 +48,7 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private hanghoaService: HangHoaService,
         private donvitinhService: DonViTinhService,
+        private giacongService: DinhMucService,
         private modalService: BsModalService
     ) {}
 
@@ -86,7 +89,15 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
                 });
             }
         };
-        
+        this.subscriptions.add(
+            this.giacongService.findDinhMucs().subscribe((x) => {
+                this.dataSource_GiaCong = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
         this.subscriptions.add(
             this.donvitinhService.findDonViTinhs().subscribe((x) => {
                 this.lstDonViTinh = x;
@@ -113,6 +124,10 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
     }
 
     onSubmitForm(e) {
+        if(this.hanghoa.dinhmuc_giacong.length >= 2){
+            custom({messageHtml: 'Vui lòng chỉ chọn 1 gia công', showTitle: false}).show();
+            return;
+        }
         if (!this.frmHangHoa.instance.validate().isValid) return;
 
         let hanghoa_req = this.hanghoa;
