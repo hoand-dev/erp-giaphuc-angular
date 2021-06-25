@@ -162,12 +162,15 @@ export class HangHoa {
 
 export class HangHoaDonViTinh{
 
-    public hanghoa_id     : number ;
-    public dvt_id         : number ;
-    public chuyendoi      : number ;
-    public congthuc       : string ;
-    public mota           : string ;
-    public allow_chuyendoi: boolean;
+    public madonvitinh     : string ;
+    public tendonvitinh    : string ;
+
+    public hanghoa_id      : number ;
+    public dvt_id          : number ;
+    public chuyendoi       : number ;
+    public congthuc        : string ;
+    public mota            : string ;
+    public allow_chuyendoi : boolean;
 
     constructor(
         hanghoa_id     : number  = null ,
