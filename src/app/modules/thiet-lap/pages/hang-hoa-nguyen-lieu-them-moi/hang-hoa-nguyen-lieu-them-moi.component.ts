@@ -1,6 +1,7 @@
 import { ChiNhanh, DonViTinh, HangHoa } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import notify from 'devextreme/ui/notify';
+import _ from 'lodash';
 
 import { DxFormComponent } from 'devextreme-angular';
 
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '@app/_services';
 import DataSource from 'devextreme/data/data_source';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { HangHoaDonViTinhModalComponent } from '../../modals/hang-hoa-don-vi-tinh-modal/hang-hoa-don-vi-tinh-modal.component';
 
 @Component({
     selector: 'app-hang-hoa-nguyen-lieu-them-moi',
@@ -22,6 +25,7 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
     public hanghoa: HangHoa;
+    public bsModalRef: BsModalRef;
 
     public lstDonViTinh: DonViTinh[] = [];
     public dataSource_DonViTinh: DataSource;
@@ -34,12 +38,15 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
         useSubmitBehavior: true
     };
 
+    public btnExchangeDonViTinh = {};
+
     constructor(
         public appInfoService: AppInfoService,
         private router: Router,
         private authenticationService: AuthenticationService,
         private hanghoaService: HangHoaService,
-        private donvitinhService: DonViTinhService
+        private donvitinhService: DonViTinhService,
+        private modalService: BsModalService
     ) {}
 
     ngAfterViewInit() {
@@ -56,6 +63,30 @@ export class HangHoaNguyenLieuThemMoiComponent implements OnInit {
         this.theCallbackValid = this.theCallbackValid.bind(this);
 
         this.subscriptions.add(this.authenticationService.currentChiNhanh.subscribe((x) => (this.currentChiNhanh = x)));
+
+        this.btnExchangeDonViTinh = {
+            hint: 'Chuyển đổi',
+            icon: 'refresh',
+            onClick: () => {
+                /* khởi tạo giá trị cho modal */
+                const initialState = {
+                    title: 'CHUYỂN ĐỔI ĐVT: ' + (this.hanghoa.tenhanghoa || ''), // và nhiều hơn thế nữa
+                    hanghoadvts: _.cloneDeep(this.hanghoa.hanghoadvts),
+                };
+    
+                /* hiển thị modal */
+                this.bsModalRef = this.modalService.show(HangHoaDonViTinhModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+                this.bsModalRef.content.closeBtnName = 'Đóng';
+    
+                /* nhận kết quả trả về từ modal sau khi đóng */
+                this.bsModalRef.content.onClose.subscribe((result) => {
+                    if (result !== false) {
+                        this.hanghoa.hanghoadvts = result;
+                    }
+                });
+            }
+        };
+        
         this.subscriptions.add(
             this.donvitinhService.findDonViTinhs().subscribe((x) => {
                 this.lstDonViTinh = x;
