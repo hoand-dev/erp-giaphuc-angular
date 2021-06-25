@@ -39,6 +39,7 @@ export class PhieuNhapMuonHangCapNhatComponent implements OnInit {
 
     public hanghoas: PhieuNhapMuonHang_ChiTiet[] = [];
     public dataSource_HangHoa: DataSource;
+    public dataSource_LoHang: DataSource[] = [];
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = true;
@@ -177,6 +178,32 @@ export class PhieuNhapMuonHangCapNhatComponent implements OnInit {
         this.onTinhTien();
     }
 
+    onLoadDataSourceLo(index, hanghoa_id) {
+        this.dataSource_LoHang[index] = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoaLoHang_TonKhoHienTai(this.currentChiNhanh.id, null, hanghoa_id, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findLoHang(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
+    }
+
     public onHangHoaAdd() {
         this.hanghoas.push(new PhieuNhapMuonHang_ChiTiet());
     }
@@ -215,6 +242,9 @@ export class PhieuNhapMuonHangCapNhatComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        this.hanghoas[index].hanghoa_lohang_id = null;
+        this.onLoadDataSourceLo(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

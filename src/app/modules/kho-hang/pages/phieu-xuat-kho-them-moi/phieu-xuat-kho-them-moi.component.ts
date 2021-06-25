@@ -1,4 +1,4 @@
-import { ChiNhanh, KhachHang, PhieuXuatKho, PhieuXuatKho_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, KhachHang, LoHangNhapXuat, PhieuXuatKho, PhieuXuatKho_ChiTiet } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
@@ -35,6 +35,7 @@ import moment from 'moment';
 import { DanhSachPhieuBanHangModalComponent } from '@app/modules/ban-hang/modals/danh-sach-phieu-ban-hang-modal/danh-sach-phieu-ban-hang-modal.component';
 import CustomStore from 'devextreme/data/custom_store';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
+import { LoHangNhapXuatModalComponent } from '@app/shared/modals';
 
 @Component({
     selector: 'app-phieu-xuat-kho-them-moi',
@@ -367,6 +368,32 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
         this.bsModalRef.content.onClose.subscribe((result) => {
             if (tuphieu == 'banhang') this.router.navigate([`/phieu-xuat-kho/them-moi`], { queryParams: { tuphieubanhang: result.id } });
             else this.router.navigate([`/phieu-xuat-kho/them-moi`], { queryParams: { tuphieutrahangncc: result.id } });
+        });
+    }
+
+    onClickLo(index){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHI TIẾT LÔ', // và nhiều hơn thế nữa
+            khohang_id: this.phieuxuatkho.khoxuat_id,
+            hanghoa_id: this.hanghoas[index].hanghoa_id,
+            lohangs: this.hanghoas[index].lohangs
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(LoHangNhapXuatModalComponent, { class: 'modal-md modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRef.content.onClose.subscribe((result) => {
+            if (result !== false) {
+                this.hanghoas[index].lohangs = result;
+                let soluonglo: number = 0;
+                result.forEach((e) => {
+                    soluonglo += e.soluong;
+                });
+                this.hanghoas[index].soluonglo = soluonglo;
+            }
         });
     }
 

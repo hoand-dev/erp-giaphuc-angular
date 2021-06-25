@@ -94,6 +94,7 @@
                                                         <th [style.min-width.px]="75">KIỆN</th>
                                                         <th [style.min-width.px]="75">KL</th>
                                                         <th [style.min-width.px]="80">SL</th>
+                                                        <th [style.min-width.px]="80">SL LOT</th>
                                                         <th [style.min-width.px]="150">GHI CHÚ</th>
                                                         <th [style.min-width.px]="250">TÊN IN</th>
                                                         <th [style.max-width.px]="20">
@@ -134,6 +135,9 @@
                                                         <td>
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
+                                                        <td>
+                                                            <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluonglo" (onValueChanged)="onHangHoaChangeRow('soluonglo', i, $event)" (click)="onClickLo(i)" [readOnly]="true"></dx-number-box>
+                                                        </td>
                                                        <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td><dx-text-box [(value)]="item.tenhanghoa_inphieu" readOnly="true"></dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
@@ -148,6 +152,7 @@
                                                         <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongtrongluong') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluonglo') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="150"></th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.max-width.px]="20">

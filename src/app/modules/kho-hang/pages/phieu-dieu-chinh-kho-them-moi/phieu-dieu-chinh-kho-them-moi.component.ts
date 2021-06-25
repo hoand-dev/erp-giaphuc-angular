@@ -158,19 +158,6 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
         this.onTinhTien();
     }
 
-    onValueChangeLoHang(index, e) {
-        /* if(e.value){
-            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
-                this.hanghoas[index].malohang = result.malohang;
-                this.hanghoas[index].hansudung = result.hansudung;
-            });
-        }
-        else{
-            this.hanghoas[index].malohang = null;
-            this.hanghoas[index].hansudung = null;
-        } */
-    }
-
     onLoadDataSourceLo(index, hanghoa_id) {
         this.dataSource_LoHang[index] = new DataSource({
             paginate: true,
@@ -235,7 +222,8 @@ export class PhieuDieuChinhKhoThemMoiComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
-
+        
+        this.hanghoas[index].hanghoa_lohang_id = null;
         this.onLoadDataSourceLo(index, selected.id);
         
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
