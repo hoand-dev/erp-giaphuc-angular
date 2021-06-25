@@ -22,6 +22,7 @@ export class HangHoaDonViTinhModalComponent implements OnInit {
 
     protected dataSource_DonViTinh: DataSource;
     public hanghoadvts: HangHoaDonViTinh[] = [];
+    public dvt_id: number; // dvt chính của hàng hoá
 
     protected congthucs: any[] = [
         { key: '*', name: 'Phép nhân' },
@@ -80,6 +81,12 @@ export class HangHoaDonViTinhModalComponent implements OnInit {
 
     public onConfirm(): void {
         this.hanghoadvts = this.hanghoadvts.filter((i) => i.dvt_id !== null);
+
+        const root = this.hanghoadvts.filter((i) => i.dvt_id === this.dvt_id);
+        if(root.length >= 1){
+            custom({showTitle: false, messageHtml: "Không chọn lại đơn vị tính chính."}).show();
+            return;
+        }
 
         const uniqueValues = new Set(this.hanghoadvts.map(v => v.dvt_id));
         if(uniqueValues.size != this.hanghoadvts.length) {

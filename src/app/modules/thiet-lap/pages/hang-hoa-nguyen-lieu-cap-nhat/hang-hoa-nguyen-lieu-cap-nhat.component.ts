@@ -67,10 +67,17 @@ export class HangHoaNguyenLieuCapNhatComponent implements OnInit, OnDestroy {
             hint: 'Chuyển đổi',
             icon: 'refresh',
             onClick: () => {
+                /* phải chọn dvt r mới cho chuyển đổi */
+                if(!this.hanghoa.dvt_id){
+                    custom({messageHtml: 'Vui lòng chọn đơn vị tính.', showTitle: false}).show();
+                    return false;
+                }
+
                 /* khởi tạo giá trị cho modal */
                 const initialState = {
                     title: 'CHUYỂN ĐỔI ĐVT: ' + (this.hanghoa.tenhanghoa || ''), // và nhiều hơn thế nữa
                     hanghoadvts: _.cloneDeep(this.hanghoa.hanghoadvts),
+                    dvt_id: this.hanghoa.dvt_id
                 };
     
                 /* hiển thị modal */
