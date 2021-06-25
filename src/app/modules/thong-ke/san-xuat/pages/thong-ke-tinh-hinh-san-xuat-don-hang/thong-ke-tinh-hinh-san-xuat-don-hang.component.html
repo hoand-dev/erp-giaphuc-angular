@@ -48,10 +48,11 @@
                                 >
                                     <dxo-selection mode="single"></dxo-selection>
                                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
-                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
-
-                                    <!-- dx-data-grid option -->
+                                    <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple"></dxo-selection>
+                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName" [allowExportSelectedData]="true"></dxo-export>
                                     <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                                     <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
                                     <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
                                     <dxo-paging [pageSize]="10"></dxo-paging>
@@ -65,6 +66,7 @@
                                     
                                     <dxi-column dataField="ngaydathang" caption="Ngày đặt" dataType="date"></dxi-column>
                                     <dxi-column dataField="maphieudathang" caption="Mã phiếu"></dxi-column>
+                                    <dxi-column dataField="maphieuyeucau" caption="Mã phiếu Y/C"></dxi-column>
                                     <dxi-column dataField="tenthanhpham" caption="Thành phẩm"></dxi-column>
                                     <dxi-column dataField="khachhang_id" caption="Khách hàng_id"></dxi-column>
                                     <dxi-column dataField="tenkhachhang" caption="Khách hàng"></dxi-column>
@@ -89,9 +91,6 @@
                                         <dxi-total-item column="soluongdanhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                         <dxi-total-item column="soluongchuasx" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
                                     </dxo-summary>
-
-                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
-                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
                                 </dx-data-grid>
                             </div>
                         </div>
