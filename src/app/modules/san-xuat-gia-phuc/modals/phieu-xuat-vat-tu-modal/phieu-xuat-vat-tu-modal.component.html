@@ -78,11 +78,12 @@
                                                 <th [style.min-width.px]="400">HÀNG HOÁ</th>
                                                 <th [style.min-width.px]="80">ĐVT</th>
                                                 <th [style.min-width.px]="80">S.LƯỢNG</th>
+                                                <th [style.min-width.px]="80">SL LOT</th>
                                                 <th [style.min-width.px]="250">GHI CHÚ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of hanghoas; index as i">
+                                            <tr *ngFor="let item of hanghoas; index as i" [ngClass]="[!item.calculate ? 'rthanhpham' : '']">
                                                 <td [style.min-width.px]="25">{{ i + 1 }}</td>
                                                 <td [style.min-width.px]="400">
                                                     <dx-select-box
@@ -100,11 +101,28 @@
                                                     >
                                                     </dx-select-box>
                                                 </td>
-                                                <td>dvt</td>
-                                                <td [style.min-width.px]="80">
-                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input"></dx-number-box>
+                                                <td>
+                                                    <dx-select-box
+                                                        [readOnly]="true"
+                                                        [(value)]="item.dvt_id"
+                                                        [dataSource]="dataSource_DonViTinh"
+                                                        [displayExpr]="'madonvitinh'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['madonvitinh', 'tendonvitinh']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                    >
+                                                    </dx-select-box>
                                                 </td>
-                                                <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich"></dx-text-box></td>
+                                                <td [style.min-width.px]="80">
+                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" [readOnly]="!item.calculate"></dx-number-box>
+                                                </td>
+                                                <td>
+                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluonglo" valueChangeEvent="input" (click)="onClickLo(i)" [readOnly]="true" [disabled]="!item.calculate"></dx-number-box>
+                                                </td>
+                                                <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich" [readOnly]="!item.calculate"></dx-text-box></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -113,6 +131,7 @@
                                                 <th [style.min-width.px]="400">TỔNG CỘNG:</th>
                                                 <th [style.min-width.px]="80"></th>
                                                 <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
+                                                <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluonglo') | number: '1.0-3' }}</th>
                                                 <th [style.min-width.px]="250"></th>
                                             </tr>
                                         </tfoot>

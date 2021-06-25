@@ -1,14 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChiNhanh, PhieuXuatVatTu, PhieuXuatVatTu_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, DonViGiaCongService, HangHoaService, KhoHangService, PhieuXuatVatTuService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, DonViTinhService, HangHoaService, KhoHangService, LenhSanXuatService, PhieuXuatVatTuService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
+import _  from 'lodash';
 import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
+import { LoHangNhapXuatModalComponent } from '@app/shared/modals';
+import { custom } from 'devextreme/ui/dialog';
+import { ETrangThaiPhieu } from '@app/shared/enums';
 
 @Component({
     selector: 'app-phieu-xuat-vat-tu-modal',
@@ -19,6 +23,7 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmPhieuXuatVatTu: DxFormComponent;
 
     private subscriptions: Subscription = new Subscription();
+    private bsModalRefChild: BsModalRef
     public onClose: Subject<any>;
     public title: string;
     public closeBtnName: string;
@@ -34,10 +39,11 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
     private currentChiNhanh: ChiNhanh;
     public phieuxuatvattu: PhieuXuatVatTu;
     public hanghoas: PhieuXuatVatTu_ChiTiet[] = [];
-    
+
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_HangHoa: DataSource;
     public dataSource_KhoHang: DataSource;
+    protected dataSource_DonViTinh: DataSource;
 
     public saveProcessing = false;
 
@@ -46,10 +52,13 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private commonService: CommonService,
         private phieuxuatvattuService: PhieuXuatVatTuService,
-        public sumTotal: SumTotalPipe,
-        public khohangService: KhoHangService,
+        private lenhsanxuatService: LenhSanXuatService,
         public donvigiacongService: DonViGiaCongService,
-        public hanghoaService: HangHoaService
+        public khohangService: KhoHangService,
+        public hanghoaService: HangHoaService,
+        private donvitinhService: DonViTinhService,
+        private modalService: BsModalService,
+        protected sumTotal: SumTotalPipe
     ) {}
 
     ngOnInit(): void {
@@ -81,7 +90,17 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                 );
             })
         );
-
+        
+        this.subscriptions.add(
+            this.donvitinhService.findDonViTinhs().subscribe((x) => {
+                this.dataSource_DonViTinh = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+        
         this.dataSource_HangHoa = new DataSource({
             paginate: true,
             pageSize: 50,
@@ -120,12 +139,73 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
         }
 
         if (this.isView == 'view_add' && this.lenhsanxuat_id) {
-            
+            this.hanghoas = [];
+            this.lenhsanxuatService.findLenhSanXuatVatTu(this.lenhsanxuat_id).subscribe(
+                (data) => {
+                    // xử lý phần thông tin phiếu
+                    /* this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id; */
+                    this.phieuxuatvattu.loaiphieu = data.loaiphieu;
+                    this.phieuxuatvattu.lenhsanxuat_id = data.id;
+
+                    // xử lý phần thông tin chi tiết phiếu
+                    data.phieuxuatvattu_chitiets.forEach((value, index) => {
+                            let item = new PhieuXuatVatTu_ChiTiet();
+                            item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                            item.loaihanghoa = value.loaihanghoa;
+                            item.hanghoa_id = value.hanghoa_id;
+                            item.dvt_id = value.dvt_id;
+                            item.tilequydoi = value.tilequydoi;
+                            item.soluongdinhmuc = value.soluong;
+                            item.soluong = value.soluong;
+                            item.soluonglo = 0;
+                            item.chuthich = value.chuthich;
+                            item.calculate = value.calculate;
+
+                            this.hanghoas.push(item);
+                    });
+                },
+                (error) => {
+                    this.phieuxuatvattuService.handleError(error);
+                }
+            );
         }
     }
 
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
+    }
+
+    onClickLo(index) {
+        if (!this.hanghoas[index].hanghoa_id) {
+            custom({ messageHtml: 'Vui lòng chọn hàng hoá.', showTitle: false }).show();
+            return;
+        }
+
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHI TIẾT LÔ', // và nhiều hơn thế nữa
+            khohang_id: this.phieuxuatvattu.khoxuat_id,
+            hanghoa_id: this.hanghoas[index].hanghoa_id,
+            lohangs: _.cloneDeep(this.hanghoas[index].lohangs)
+        };
+
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(LoHangNhapXuatModalComponent, { class: 'modal-md modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
+            if (result !== false) {
+                this.hanghoas[index].lohangs = result;
+                let soluonglo: number = 0;
+                result.forEach((e) => {
+                    soluonglo += e.soluong;
+                });
+                this.hanghoas[index].soluonglo = soluonglo;
+                this.hanghoas[index].soluong = this.hanghoas[index].soluongdinhmuc - soluonglo;
+                this.hanghoas[index].soluong = this.hanghoas[index].soluong < 0 ? 0 : this.hanghoas[index].soluong;
+            }
+        });
     }
 
     onSubmitForm(e) {
@@ -197,12 +277,12 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
         );
     }
 
-    onConfirm():void {
+    onConfirm(): void {
         this.onClose.next(true);
         this.bsModalRef.hide();
     }
 
-    onCancel(): void{
+    onCancel(): void {
         this.onClose.next(true);
         this.bsModalRef.hide();
     }
