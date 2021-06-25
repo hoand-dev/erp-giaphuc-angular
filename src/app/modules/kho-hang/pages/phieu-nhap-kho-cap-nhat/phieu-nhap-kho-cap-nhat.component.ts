@@ -37,7 +37,8 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuNhapKho_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
+    public dataSource_LoHang: DataSource[] = [];
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -155,6 +156,45 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    onValueChangeLoHang(index, e) {
+        if(e.value){
+            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
+                this.hanghoas[index].malohang = result.malohang;
+                this.hanghoas[index].hansudung = result.hansudung;
+            });
+        }
+        else{
+            this.hanghoas[index].malohang = null;
+            this.hanghoas[index].hansudung = null;
+        }
+    }
+
+    onLoadDataSourceLo(index, hanghoa_id) {
+        this.dataSource_LoHang[index] = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoaLoHang_TonKhoHienTai(this.currentChiNhanh.id, null, hanghoa_id, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findLoHang(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
+    }
+
     onFormFieldChanged(e) {
         if (e.value === undefined) return;
 
@@ -229,6 +269,9 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        this.hanghoas[index].hanghoa_lohang_id = null;
+        this.onLoadDataSourceLo(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

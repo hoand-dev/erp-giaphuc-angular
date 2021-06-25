@@ -34,7 +34,7 @@ export class PhieuNhapKhoViewModalComponent implements OnInit {
     public dataSource_KhoNhap: DataSource;
 
     public hanghoas: PhieuNhapKho_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
     private hanghoalenght: number = 0;
 
     constructor(

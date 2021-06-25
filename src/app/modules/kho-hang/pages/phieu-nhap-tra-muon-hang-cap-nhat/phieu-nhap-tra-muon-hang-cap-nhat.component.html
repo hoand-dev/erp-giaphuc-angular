@@ -78,6 +78,7 @@
                                                         <th [style.min-width.px]="75">KIỆN</th>
                                                         <th [style.min-width.px]="75">KL</th>
                                                         <th [style.min-width.px]="80">SL</th>
+                                                        <th [style.min-width.px]="180">LOT</th>
                                                         <th [style.min-width.px]="250">GHI CHÚ</th>
                                                         <th [style.max-width.px]="20" (click)="onHangHoaAdd()">
                                                             <i class="gg-btn gg-add btn-primary"></i>
@@ -116,6 +117,22 @@
                                                         <td>
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
+                                                        <td>
+                                                            <dx-select-box
+                                                                id="lohang_row_{{ i }}"
+                                                                [readOnly]="!item.hanghoa_id"
+                                                                [(value)]="item.hanghoa_lohang_id"
+                                                                [dataSource]="dataSource_LoHang[i]"
+                                                                [displayExpr]="'malohang'"
+                                                                [valueExpr]="'id'"
+                                                                [searchMode]="'contains'"
+                                                                [searchExpr]="['malohang']"
+                                                                [searchTimeout]="500"
+                                                                [searchEnabled]="true"
+                                                                [minSearchLength]="0"
+                                                            >
+                                                            </dx-select-box>
+                                                        </td>
                                                         <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td (click)="onHangHoaDelete(item)"><i class="gg-btn gg-remove"></i></td>
                                                     </tr>
@@ -128,6 +145,7 @@
                                                         <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongtrongluong') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
+                                                        <th [style.min-width.px]="180"></th>
                                                         <th [style.min-width.px]="250"></th>
                                                         <th [style.max-width.px]="20" (click)="onHangHoaAdd()">
                                                             <i class="gg-btn gg-add btn-primary"></i>

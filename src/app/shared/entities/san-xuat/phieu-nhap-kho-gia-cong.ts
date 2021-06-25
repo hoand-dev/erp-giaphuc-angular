@@ -134,6 +134,8 @@ export class PhieuNhapKhoGiaCongCT {
     public xuatnguyenlieu: boolean;
     public khachhang_id: number;
     public phiphatsinh: number;
+    public malohang: string;
+    public hansudung: Date;
 
     public tongtrongluong: number = 0;
     public tongkien: number = 0;
@@ -166,6 +168,8 @@ export class PhieuNhapKhoGiaCongCT {
         xuatnguyenlieu: boolean = null,
         khachhang_id: number = null,
         phiphatsinh: number = 0,
+        malohang: string = null,
+        hansudung: Date = null,
 
         yeucaus: string = null,
         arr_yeucaus: number[] = []
@@ -194,6 +198,8 @@ export class PhieuNhapKhoGiaCongCT {
         this.xuatnguyenlieu = xuatnguyenlieu;
         this.khachhang_id = khachhang_id;
         this.phiphatsinh = phiphatsinh;
+        this.malohang = malohang;
+        this.hansudung = hansudung;
 
         this.yeucaus = yeucaus;
         this.arr_yeucaus = arr_yeucaus;

@@ -63,6 +63,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
+    public dataSource_LoHang: DataSource[] = [];
 
     // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu mua hàng
     private hanghoalenght: number = 0;
@@ -223,6 +224,45 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         console.log('claw');
     }
 
+    onValueChangeLoHang(index, e) {
+        if(e.value){
+            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
+                this.hanghoas[index].malohang = result.malohang;
+                this.hanghoas[index].hansudung = result.hansudung;
+            });
+        }
+        else{
+            this.hanghoas[index].malohang = null;
+            this.hanghoas[index].hansudung = null;
+        }
+    }
+
+    onLoadDataSourceLo(index, hanghoa_id) {
+        this.dataSource_LoHang[index] = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoaLoHang_TonKhoHienTai(this.currentChiNhanh.id, null, hanghoa_id, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findLoHang(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
+    }
+    
     clickLayGia() {
         if (this.loaiphieu != 'taikho' && this.phieunhapkhogiacong.donvigiacong_id === null) {
             notify(
@@ -360,17 +400,6 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
             Swal.fire({
                 title: 'Chọn kho nhập lỗi',
                 html: 'Vui lòng chọn kho nhập cho số lượng lỗi đã nhập',
-                icon: 'warning',
-                timer: 3000,
-                timerProgressBar: true
-            });
-            return false;
-        }
-
-        if (this.hanghoas.filter((x) => x.soluongloi > x.soluong).length > 0) {
-            Swal.fire({
-                title: 'Số lượng lỗi không hợp lệ',
-                html: 'Vui lòng kiểm tra lại',
                 icon: 'warning',
                 timer: 3000,
                 timerProgressBar: true

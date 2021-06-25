@@ -25,7 +25,6 @@ export class PhieuXuatVatTuComponent implements OnInit {
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
-    public bsModalRef: BsModalRef;
     public bsModalRefChild: BsModalRef;
 
     /* Khai báo thời gian bắt đầu và kết thúc */
@@ -52,10 +51,10 @@ export class PhieuXuatVatTuComponent implements OnInit {
     /* CHƯA BIẾT LÀM TIẾP SAO....  */
 
     /* danh sách các quyền theo biến số, mặc định false */
-    // public enableAddNew: boolean = false;
-    // public enableUpdate: boolean = false;
-    // public enableDelete: boolean = false;
-    // public enableExport: boolean = false;
+    public enableAddNew: boolean = true;
+    public enableUpdate: boolean = true;
+    public enableDelete: boolean = true;
+    public enableExport: boolean = true;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT VẬT TƯ - ' + moment().format('DD_MM_YYYY');
@@ -107,10 +106,6 @@ export class PhieuXuatVatTuComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        //Called once, before the instance is destroyed.
-        //Add 'implements OnDestroy' to the class.
-
-        // xử lý trước khi thoát khỏi trang
         this.subscriptions.unsubscribe();
     }
 
@@ -132,33 +127,43 @@ export class PhieuXuatVatTuComponent implements OnInit {
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
-        console.log(`phieuxuatvattu_id: ${e.key.id}`);
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'XEM LẠI PHIẾU',
+            isView: 'view',
+            phieuxuatvattu_id: e.key.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(PhieuXuatVatTuModalComponent, {
+            class: 'modal-xl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
     }
 
     onAddNew() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM PHIẾU',
+            title: 'CHỌN LỆNH SẢN XUẤT',
             isView: 'view_add'
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachLenhSanXuatModalComponent, {
+        this.bsModalRefChild = this.modalService.show(DanhSachLenhSanXuatModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if (result) {
-                this.openModal();
-
-
+                this.openAddNewModal(result.id);
             }
         });
     }
@@ -172,77 +177,49 @@ export class PhieuXuatVatTuComponent implements OnInit {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuXuatVatTuModalComponent, {
+        this.bsModalRefChild = this.modalService.show(PhieuXuatVatTuModalComponent, {
             class: 'modal-xl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if (result) {
                 this.onLoadData();
             }
         });
     }
 
-    openModal(){
+    openAddNewModal(lenhsanxuat_id: number){
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'THÊM PHIẾU',
             isView: 'view_add',
+            lenhsanxuat_id: lenhsanxuat_id
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuXuatVatTuModalComponent, {
+        this.bsModalRefChild = this.modalService.show(PhieuXuatVatTuModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if (result) {
-                this.hanghoas = [];
-                this.lenhsanxuatService.findLenhSanXuat(result.id).subscribe(
-                    (data) => {
-                        // xử lý phần thông tin phiếu
-                        this.phieuxuatvattu.khoxuat_id = data.donvigiacong_id;
-                        this.phieuxuatvattu.loaiphieu = data.loaiphieu;
-                        this.phieuxuatvattu.lenhsanxuat_id = data.id;
-
-                        // xử lý phần thông tin chi tiết phiếu
-                        data.lenhsanxuat_chitiets.forEach((value, index) => {
-                            if (value.trangthainhap != ETrangThaiPhieu.danhap) {
-                                let item = new PhieuXuatVatTu_ChiTiet();
-
-                                item.loaihanghoa = value.loaihanghoa;
-                                item.hanghoa_id = value.hanghoa_id;
-                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                item.dvt_id = value.dvt_id;
-                             //   item.soluong = value.soluong - value.soluongtattoan - value.soluongdanhap;
-                                item.chuthich = value.chuthich;
-                               // item.lenhsanxuat_chitiet_id = value.id;
-                                
-                                this.hanghoas.push(item);
-                            }
-                        });
-                    },
-                    (error) => {
-                        this.phieuxuatvattuService.handleError(error);
-                    }
-                );
+                this.onLoadData();
             }
         });
-
     }
 
     onRowDelete(id) {
-        let result = confirm('<i>Bạn có muốn xóa danh mục này?</i>', 'Xác nhận xóa');
+        let result = confirm('<i>Bạn có muốn xóa phiếu này?</i>', 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa

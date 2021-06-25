@@ -45,7 +45,7 @@ export class DinhMucThemMoiComponent implements OnInit {
     public nguonlucs: DinhMuc_NguonLuc[] = [];
     public chiphikhacs: DinhMuc_ChiPhiKhac[] = [];
 
-    dataSource_HangHoa: any = {};
+    dataSource_HangHoa: DataSource;
     dataSource_NguonLuc: any = {};
     dataSource_ChiPhiKhac: any = {};
 

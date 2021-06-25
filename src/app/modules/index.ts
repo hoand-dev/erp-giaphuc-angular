@@ -1,6 +1,7 @@
 export * from './shared.module';
 
 export * from './thiet-lap';
+export * from './ke-toan';
 export * from './mua-hang';
 export * from './ban-hang';
 export * from './kho-hang';
