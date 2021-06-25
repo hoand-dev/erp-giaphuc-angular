@@ -36,6 +36,7 @@ export class PhieuMuaHangNCCCapNhatComponent implements OnInit {
 
     public hanghoas: PhieuMuaHangNCC_ChiTiet[] = [];
     public dataSource_HangHoa: DataSource;
+    public dataSource_HangHoaDvt: DataSource[] = [];
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -199,6 +200,27 @@ export class PhieuMuaHangNCCCapNhatComponent implements OnInit {
         this.onTinhTien();
     }
 
+    onValueChangeDvt(index, e) {
+        if(e.value){
+            this.hanghoaService.findHangHoaDvt(this.hanghoas[index].hanghoa_id, e.value).toPromise().then((result) => {
+                this.hanghoas[index].tilequydoi = result.chuyendoi;
+            });
+        }
+    }
+
+    onLoadDataSourceDvt(index, hanghoa_id) {
+        this.hanghoaService
+            .findHangHoaDvts(hanghoa_id)
+            .toPromise()
+            .then((result) => {
+                this.dataSource_HangHoaDvt[index] = new DataSource({
+                    store: result,
+                    paginate: true,
+                    pageSize: 50
+                });
+            });
+    }
+
     public onHangHoaAdd() {
         this.hanghoas.push(new PhieuMuaHangNCC_ChiTiet());
     }
@@ -216,7 +238,6 @@ export class PhieuMuaHangNCCCapNhatComponent implements OnInit {
         // xử lý lại thông tin dựa trên lựa chọn
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
-            //return;
         } else {
             this.hanghoas[index].dvt_id = selected.dvt_id;
 
@@ -233,6 +254,8 @@ export class PhieuMuaHangNCCCapNhatComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        this.onLoadDataSourceDvt(index, selected.id);
 
         setTimeout(() => {
             this.onTinhTien();
