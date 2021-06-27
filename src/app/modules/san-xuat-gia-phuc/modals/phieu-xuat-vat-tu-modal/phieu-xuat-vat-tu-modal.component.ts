@@ -140,10 +140,10 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
 
         if (this.isView == 'view_add' && this.lenhsanxuat_id) {
             this.hanghoas = [];
-            this.lenhsanxuatService.findLenhSanXuatVatTu(this.lenhsanxuat_id).subscribe(
+            this.lenhsanxuatService.findLenhSanXuatVatTu(this.lenhsanxuat_id, "xuatvattu").subscribe(
                 (data) => {
                     // xử lý phần thông tin phiếu
-                    /* this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id; */
+                    this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id;
                     this.phieuxuatvattu.loaiphieu = data.loaiphieu;
                     this.phieuxuatvattu.lenhsanxuat_id = data.id;
 

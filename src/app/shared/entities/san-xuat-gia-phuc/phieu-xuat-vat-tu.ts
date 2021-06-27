@@ -19,6 +19,8 @@ export class PhieuXuatVatTu{
     public maphieu        : string ;
     public khoxuat_id     : number ;
     public lenhsanxuat_id : number ;
+    public donvigiacong_id :number ;
+    public khogiacong_id   : number ;
 
     constructor(
         id              : number  = null      ,
@@ -36,6 +38,8 @@ export class PhieuXuatVatTu{
         maphieu         : string  = null      ,
         khoxuat_id      : number  = null      ,
         lenhsanxuat_id  : number  = null      ,
+        donvigiacong_id : number  = null      ,
+        khogiacong_id   : number  = null      ,
     ){
         this.id             = id             ;
         this.chinhanh_id    = chinhanh_id    ;
@@ -52,6 +56,8 @@ export class PhieuXuatVatTu{
         this.maphieu        = maphieu        ;
         this.khoxuat_id     = khoxuat_id     ;
         this.lenhsanxuat_id = lenhsanxuat_id ;
+        this.donvigiacong_id = donvigiacong_id ;
+        this.khogiacong_id   = khogiacong_id   ;
     }
 }
 
