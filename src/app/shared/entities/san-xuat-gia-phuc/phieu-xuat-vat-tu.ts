@@ -62,6 +62,7 @@ export class PhieuXuatVatTu{
 }
 
 export class PhieuXuatVatTu_ChiTiet{
+    public hidden: boolean = true;
 
     public soluongdinhmuc: number = 0;
     public lohangstr: string;
@@ -78,6 +79,7 @@ export class PhieuXuatVatTu_ChiTiet{
     public chuthich          : string;
     public soluonglo         : number;
     public calculate         : boolean;
+    public lenhsanxuat_chitiet_id : number;
     
     constructor (
         id                : number  = null  ,
@@ -91,6 +93,7 @@ export class PhieuXuatVatTu_ChiTiet{
         chuthich          : string  = null  ,
         soluonglo         : number  = 0     ,
         calculate         : boolean = false ,
+        lenhsanxuat_chitiet_id : number = null,
     ){
         this.id                = id                ;
         this.phieuxuatvattu_id = phieuxuatvattu_id ;
@@ -103,5 +106,6 @@ export class PhieuXuatVatTu_ChiTiet{
         this.chuthich          = chuthich          ;
         this.soluonglo         = soluonglo         ;
         this.calculate         = calculate         ;
+        this.lenhsanxuat_chitiet_id = lenhsanxuat_chitiet_id ;
     }
 }

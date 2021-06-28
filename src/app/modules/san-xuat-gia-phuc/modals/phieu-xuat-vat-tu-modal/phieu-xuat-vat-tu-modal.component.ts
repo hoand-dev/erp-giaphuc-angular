@@ -161,6 +161,8 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                             item.chuthich = value.chuthich;
                             item.calculate = value.calculate;
 
+                            item.lenhsanxuat_chitiet_id = value.lenhsanxuat_chitiet_id;
+
                             this.hanghoas.push(item);
                     });
                 },
@@ -206,6 +208,15 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                 this.hanghoas[index].soluong = this.hanghoas[index].soluong < 0 ? 0 : this.hanghoas[index].soluong;
             }
         });
+    }
+
+    onCollapseRow(index){
+        this.hanghoas[index].hidden = _.cloneDeep(!this.hanghoas[index].hidden);
+    }
+
+    onHiddenOf(id){
+        let row = this.hanghoas.find(x => x.lenhsanxuat_chitiet_id == id && x.calculate == false);
+        return row.hidden;
     }
 
     onSubmitForm(e) {
