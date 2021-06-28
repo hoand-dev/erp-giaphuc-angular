@@ -38,32 +38,4 @@ export class PhieuNhapVatTuService extends BaseService {
     deletePhieuNhapVatTu(id: number): Observable<PhieuNhapVatTu> {
         return this.httpClient.delete<PhieuNhapVatTu>(this.apiUrl + `/${id}`);
     }
-
-    checkExistPhieuNhapVatTu(phieunhapnhattu: string, phieunhapnhattu_old: string = null) {
-        if (phieunhapnhattu == phieunhapnhattu_old)
-            return new Promise((resolve) => {
-                setTimeout(function () {
-                    resolve(true); // chưa tồn tại
-                });
-            });
-        else
-            return this.httpClient
-                .get(this.apiUrl + `/exist?phieunhapnhattu=${phieunhapnhattu}`)
-                .toPromise()
-                .then((res) => !res ) // false -> true (chưa tồn tại) và ngược lại
-                .catch((err) => {
-                    console.error(err);
-                    this.handleError(err);
-                });
-    }
-
-    // laygiaPhieuNhapVatTu(hanghoa_id: number, donvigiacong_id?: number): Observable<number> {
-    //     let query_params: HttpParams = new HttpParams();
-    //     query_params = query_params.set("hanghoa_id", hanghoa_id.toString());
-    //     query_params = query_params.set("donvigiacong_id", donvigiacong_id != null? donvigiacong_id.toString() : null);
-
-    //     return this.httpClient.get<number>(this.apiUrl + `/laygia`, { params: query_params });
-    // }
 }
-
-

@@ -28,8 +28,7 @@ export class LenhSanXuatService extends BaseService {
 
         return this.httpClient.get<LenhSanXuat>(this.apiUrl + `/timkiem-vattu`, { params: query_params });
     }
-   
-
+    
     findLenhSanXuats(chinhanh_id: number = null, fromDay:Date, toDay: Date): Observable<LenhSanXuat[]> {
         let query_chinhanh = chinhanh_id == null ? "?" : '?chinhanh_id=' + chinhanh_id + '&';
         let tungay = moment(fromDay).format("YYYY-MM-DD HH:mm:ss");
