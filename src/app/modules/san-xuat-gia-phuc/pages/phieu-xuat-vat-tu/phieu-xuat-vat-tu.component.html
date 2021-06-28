@@ -25,9 +25,16 @@
                         <h5 class="card-title">PHIẾU XUẤT VẬT TƯ - DANH SÁCH</h5>
                         <p class="card-text"></p>
 
-                        <button class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
-                        <!-- <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" (click)="onAddNew()" *ngIf="enableAddNew">Thêm mới</button> -->
-                        <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" (click)="onAddNew()">Thêm mới</button> 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-primary" (click)="onAddNew()" *ngIf="enableAddNew">Thêm mới</button>
+                            </div>
+                        </div>
+
                         <dx-data-grid
                             id="gridContainer"
                             [showBorders]="true"
@@ -41,8 +48,7 @@
                             (onRowDblClick)="onRowDblClick($event)"
                         >
                             <dxo-selection mode="single"></dxo-selection>
-                            <!-- <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export> -->
-                            <dxo-export [fileName]="exportFileName"></dxo-export>
+                            <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
 
                             <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center">
                                 <div *dxTemplate="let data of 'cellTemplateSTT'">

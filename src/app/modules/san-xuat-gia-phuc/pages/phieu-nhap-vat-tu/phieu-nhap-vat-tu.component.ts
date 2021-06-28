@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppInfoService, CommonService, LenhSanXuatService, PhieuNhapVatTuService } from '@app/shared/services';
+import { AppInfoService, CommonService, PhieuNhapVatTuService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
@@ -17,11 +17,11 @@ import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-s
     templateUrl: './phieu-nhap-vat-tu.component.html',
     styleUrls: ['./phieu-nhap-vat-tu.component.css']
 })
-export class PhieuNhapVatTuComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PhieuNhapVatTuComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
+    public subscriptions: Subscription = new Subscription();
     public bsModalRefChild: BsModalRef;
 
     /* Khai báo thời gian bắt đầu và kết thúc */
@@ -59,30 +59,32 @@ export class PhieuNhapVatTuComponent implements OnInit, OnDestroy, AfterViewInit
     }
 
     ngOnInit(): void {
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().toDate();
+
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
+        );
+
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
                     this.permissions = data;
-                    // if (!this.commonService.getEnablePermission(this.permissions, 'ipv4-truycap')) {
-                    //     this.router.navigate(['/khong-co-quyen']);
-                    // }
-                    // this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'ipv4-themmoi');
-                    // this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'ipv4-capnhat');
-                    // this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'ipv4-xoa');
-                    // this.enableExport = this.commonService.getEnablePermission(this.permissions, 'ipv4-xuatdulieu');
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-xuatdulieu');
                 },
                 (error) => {
                     this.phieunhapvattuService.handleError(error);
                 }
             )
         );
-    }
-
-    ngAfterViewInit(): void {
-        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-        //Add 'implements AfterViewInit' to the class.
-
-        this.onLoadData();
     }
 
     ngOnDestroy(): void {
