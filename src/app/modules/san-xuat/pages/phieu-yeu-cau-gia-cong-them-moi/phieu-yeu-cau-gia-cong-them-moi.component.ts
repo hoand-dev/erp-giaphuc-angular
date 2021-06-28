@@ -280,7 +280,7 @@ export class PhieuYeuCauGiaCongThemMoiComponent implements OnInit {
                     item.soluong = x.soluong - x.soluongtattoan - x.soluongdayeucau;
                     item.phieudathang_chitiet_id = x.id;
                     item.khachhang_id = x.khachhang_id;
-                    item.chuthich = x.chuthich;
+                    //item.chuthich = x.chuthich;
 
                     item.khogiacong_id = this.phieuyeucaugiacong.khogiacong_id;
                     item.khoxuat_id = this.phieuyeucaugiacong.khoxuat_id;
