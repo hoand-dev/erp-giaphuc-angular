@@ -166,6 +166,7 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
             (data) => {
                 // xử lý phần thông tin phiếu
                 this.phieunhapthanhpham.donvigiacong_id = data.donvigiacong_id;
+                this.phieunhapthanhpham.khogiacong_id = data.khogiacong_id;
                 this.phieunhapthanhpham.tongthanhtien = data.tongthanhtien;
                 this.phieunhapthanhpham.loaiphieu = data.loaiphieu;
                 this.phieunhapthanhpham.lenhsanxuat_id = data.id;

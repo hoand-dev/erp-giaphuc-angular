@@ -151,8 +151,8 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
             this.lenhsanxuatService.findLenhSanXuatVatTu(this.lenhsanxuat_id, "nhapvattu").subscribe(
                 (data) => {
                     // xử lý phần thông tin phiếu
-                    /* this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id; */
                     this.phieunhapvattu.donvigiacong_id = data.donvigiacong_id;
+                    this.phieunhapvattu.khogiacong_id = data.khogiacong_id;
                     this.phieunhapvattu.loaiphieu = data.loaiphieu;
                     this.phieunhapvattu.lenhsanxuat_id = data.id;
 

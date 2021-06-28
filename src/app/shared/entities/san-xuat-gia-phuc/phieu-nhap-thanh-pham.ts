@@ -22,6 +22,7 @@ export class PhieuNhapThanhPham {
     public maphieu           : string ;
     public khonhap_id        : number ;
     public donvigiacong_id   : number ;
+    public khogiacong_id     : number ;
     public tongthanhtien     : number ;
     public lenhsanxuat_id    : number ;
 
@@ -41,6 +42,7 @@ export class PhieuNhapThanhPham {
         maphieu           : string  = null      ,
         khonhap_id        : number  = null      ,
         donvigiacong_id   : number  = null      ,
+        khogiacong_id     : number  = null      ,
         tongthanhtien     : number  = 0         ,
         lenhsanxuat_id    : number  = null      ,
     ) {
@@ -59,6 +61,7 @@ export class PhieuNhapThanhPham {
         this.maphieu           = maphieu          ;
         this.khonhap_id        = khonhap_id       ;
         this.donvigiacong_id   = donvigiacong_id  ;
+        this.khogiacong_id     = khogiacong_id    ;
         this.tongthanhtien     = tongthanhtien    ;
         this.lenhsanxuat_id    = lenhsanxuat_id   ;
     }

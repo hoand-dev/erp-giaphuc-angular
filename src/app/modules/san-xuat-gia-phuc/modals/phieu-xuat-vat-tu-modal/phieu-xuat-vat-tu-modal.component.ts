@@ -144,6 +144,7 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                 (data) => {
                     // xử lý phần thông tin phiếu
                     this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id;
+                    this.phieuxuatvattu.khogiacong_id = data.khogiacong_id;
                     this.phieuxuatvattu.loaiphieu = data.loaiphieu;
                     this.phieuxuatvattu.lenhsanxuat_id = data.id;
 
