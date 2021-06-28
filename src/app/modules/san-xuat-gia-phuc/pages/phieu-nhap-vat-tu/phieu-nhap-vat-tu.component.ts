@@ -1,30 +1,28 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { AppInfoService, CommonService, LenhSanXuatService, PhieuNhapVatTuService } from '@app/shared/services';
+import { AppInfoService, CommonService, PhieuNhapVatTuService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
-import notify from 'devextreme/ui/notify'
+import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import { PhieuNhapVatTuModalComponent } from '../../modals/phieu-nhap-vat-tu-modal/phieu-nhap-vat-tu-modal.component';
 import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
-import { DanhSachPhieuXuatVatTuModalComponent } from '../../modals/danh-sach-phieu-xuat-vat-tu-modal/danh-sach-phieu-xuat-vat-tu-modal.component';
 
 @Component({
-  selector: 'app-phieu-nhap-vat-tu',
-  templateUrl: './phieu-nhap-vat-tu.component.html',
-  styleUrls: ['./phieu-nhap-vat-tu.component.css']
+    selector: 'app-phieu-nhap-vat-tu',
+    templateUrl: './phieu-nhap-vat-tu.component.html',
+    styleUrls: ['./phieu-nhap-vat-tu.component.css']
 })
-export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewInit {
+export class PhieuNhapVatTuComponent implements OnInit, OnDestroy {
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
+    public subscriptions: Subscription = new Subscription();
     public bsModalRefChild: BsModalRef;
-
 
     /* Khai báo thời gian bắt đầu và kết thúc */
     public firstDayTime: Date;
@@ -61,30 +59,32 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
     }
 
     ngOnInit(): void {
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().toDate();
+
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
+        );
+
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
                     this.permissions = data;
-                    // if (!this.commonService.getEnablePermission(this.permissions, 'ipv4-truycap')) {
-                    //     this.router.navigate(['/khong-co-quyen']);
-                    // }
-                    // this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'ipv4-themmoi');
-                    // this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'ipv4-capnhat');
-                    // this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'ipv4-xoa');
-                    // this.enableExport = this.commonService.getEnablePermission(this.permissions, 'ipv4-xuatdulieu');
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieunhapvattu-xuatdulieu');
                 },
                 (error) => {
                     this.phieunhapvattuService.handleError(error);
                 }
             )
         );
-    }
-
-    ngAfterViewInit(): void {
-        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-        //Add 'implements AfterViewInit' to the class.
-
-        this.onLoadData();
     }
 
     ngOnDestroy(): void {
@@ -109,27 +109,27 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
     }
 
     onRowDblClick(e) {
-       /* khởi tạo giá trị cho modal */
-       const initialState = {
-        title: 'XEM LẠI PHIẾU',
-        isView: 'view',
-        phieunhapvattu_id: e.key.id
-    };
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'XEM LẠI PHIẾU',
+            isView: 'view',
+            phieunhapvattu_id: e.key.id
+        };
 
-    /* hiển thị modal */
-    this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
-        class: 'modal-xl modal-dialog-centered',
-        ignoreBackdropClick: false,
-        keyboard: false,
-        initialState
-    });
-    this.bsModalRefChild.content.closeBtnName = 'Đóng';
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
+            class: 'modal-xl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
     }
 
     onAddNew() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM PHIẾU NHẬP VẬT TƯ',
+            title: 'CHỌN LỆNH SẢN XUẤT',
             isView: 'view_add'
         };
 
@@ -144,10 +144,8 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRefChild.content.onClose.subscribe((result) => {
-            if(result){
-
+            if (result) {
                 this.openAddNewModal(result.id);
-
             }
         });
     }
@@ -157,7 +155,7 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
         const initialState = {
             title: 'CẬP NHẬT PHIẾU NHẬP VẬT TƯ',
             isView: 'view_edit',
-            phieunhapvattu_id: id,
+            phieunhapvattu_id: id
         };
 
         /* hiển thị modal */
@@ -171,39 +169,36 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRefChild.content.onClose.subscribe((result) => {
-            if(result){
+            if (result) {
                 this.onLoadData();
             }
         });
     }
 
-    openAddNewModal(lenhsanxuat_id: number){
-      /* khởi tạo giá trị cho modal */
-      const initialState = {
-        title: 'THÊM PHIẾU',
-        isView: 'view_add',
-        lenhsanxuat_id: lenhsanxuat_id
-    };
+    openAddNewModal(lenhsanxuat_id: number) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'THÊM PHIẾU NHẬP VẬT TƯ',
+            isView: 'view_add',
+            lenhsanxuat_id: lenhsanxuat_id
+        };
 
-    /* hiển thị modal */
-    this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
-        class: 'modal-xxl modal-dialog-centered',
-        ignoreBackdropClick: false,
-        keyboard: false,
-        initialState
-    });
-    this.bsModalRefChild.content.closeBtnName = 'Đóng';
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
-    /* nhận kết quả trả về từ modal sau khi đóng */
-    this.bsModalRefChild.content.onClose.subscribe((result) => {
-        if (result) {
-            this.onLoadData();
-        }
-    });
-}
-
-    
-
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
+            if (result) {
+                this.onLoadData();
+            }
+        });
+    }
 
     onRowDelete(id) {
         let result = confirm('<i>Bạn có muốn xóa danh mục này?</i>', 'Xác nhận xóa');

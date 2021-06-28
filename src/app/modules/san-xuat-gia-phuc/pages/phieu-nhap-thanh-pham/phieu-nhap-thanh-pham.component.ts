@@ -10,6 +10,7 @@ import notify from 'devextreme/ui/notify';
 import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
 import { PhieuNhapThanhPhamModalComponent } from '../../modals/phieu-nhap-thanh-pham-modal/phieu-nhap-thanh-pham-modal.component';
 
 @Component({
@@ -22,7 +23,7 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
 
     /* tối ưu subscriptions */
     public subscriptions: Subscription = new Subscription();
-    public bsModalRef: BsModalRef;
+    public bsModalRefChild: BsModalRef;
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
@@ -117,13 +118,13 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
+        this.bsModalRefChild = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
     }
 
     onRowDblClick(e) {
@@ -131,26 +132,51 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
         this.openViewModal(rowData);
     }
 
-    onAddNew() {
+    onAddNew(lenhsanxuat_id: number) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM - PHIẾU NHẬP THÀNH PHẨM',
-            isView: 'view_add'
+            title: 'THÊM MỚI - PHIẾU NHẬP THÀNH PHẨM',
+            isView: 'view_add',
+            lenhsanxuat_id: lenhsanxuat_id
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
+        this.bsModalRefChild = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if (result) {
                 this.onLoadData();
+            }
+        });
+    }
+
+    openModal(){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHỌN LỆNH SẢN XUẤT',
+            isView: 'view_add'
+        };
+
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(DanhSachLenhSanXuatModalComponent, {
+            class: 'modal-xxl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
+            if (result) {
+                this.onAddNew(result.id);
             }
         });
     }
@@ -164,16 +190,16 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
+        this.bsModalRefChild = this.modalService.show(PhieuNhapThanhPhamModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if (result) {
                 this.onLoadData();
             }

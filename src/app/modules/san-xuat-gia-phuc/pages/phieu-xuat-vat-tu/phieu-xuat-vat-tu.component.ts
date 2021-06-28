@@ -49,10 +49,10 @@ export class PhieuXuatVatTuComponent implements OnInit {
     public permissions: any[] = [];
 
     /* danh sách các quyền theo biến số, mặc định false */
-    public enableAddNew: boolean = true;
-    public enableUpdate: boolean = true;
-    public enableDelete: boolean = true;
-    public enableExport: boolean = true;
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - PHIẾU XUẤT VẬT TƯ - ' + moment().format('DD_MM_YYYY');
@@ -77,30 +77,32 @@ export class PhieuXuatVatTuComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.firstDayTime = new Date(moment().get('year'), moment().get('month'), 1);
+        this.currDayTime = moment().toDate();
+
+        this.subscriptions.add(
+            this.authenticationService.currentChiNhanh.subscribe((x) => {
+                this.onLoadData();
+            })
+        );
+
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
                     this.permissions = data;
-                    // if (!this.commonService.getEnablePermission(this.permissions, 'ipv4-truycap')) {
-                    //     this.router.navigate(['/khong-co-quyen']);
-                    // }
-                    // this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'ipv4-themmoi');
-                    // this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'ipv4-capnhat');
-                    // this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'ipv4-xoa');
-                    // this.enableExport = this.commonService.getEnablePermission(this.permissions, 'ipv4-xuatdulieu');
+                    if (!this.commonService.getEnablePermission(this.permissions, 'phieuxuatvattu-truycap')) {
+                        this.router.navigate(['/khong-co-quyen']);
+                    }
+                    this.enableAddNew = this.commonService.getEnablePermission(this.permissions, 'phieuxuatvattu-themmoi');
+                    this.enableUpdate = this.commonService.getEnablePermission(this.permissions, 'phieuxuatvattu-capnhat');
+                    this.enableDelete = this.commonService.getEnablePermission(this.permissions, 'phieuxuatvattu-xoa');
+                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'phieuxuatvattu-xuatdulieu');
                 },
                 (error) => {
                     this.phieuxuatvattuService.handleError(error);
                 }
             )
         );
-    }
-
-    ngAfterViewInit(): void {
-        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-        //Add 'implements AfterViewInit' to the class.
-
-        this.onLoadData();
     }
 
     ngOnDestroy(): void {
@@ -169,7 +171,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
     onRowEdit(id) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'CẬP NHẬT PHIẾU',
+            title: 'CẬP NHẬT - PHIẾU XUẤT VẬT TƯ',
             isView: 'view_edit',
             phieuxuatvattu_id: id
         };
@@ -194,7 +196,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
     openAddNewModal(lenhsanxuat_id: number){
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM PHIẾU',
+            title: 'THÊM MỚI - PHIẾU XUẤT VẬT TƯ',
             isView: 'view_add',
             lenhsanxuat_id: lenhsanxuat_id
         };

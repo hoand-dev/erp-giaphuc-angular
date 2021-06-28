@@ -22,7 +22,7 @@
                         </dxi-item>
 
                         <dxi-item
-                            [colSpan]="8"
+                            [colSpan]="7"
                             [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                             dataField="donvigiacong_id"
                             editorType="dxSelectBox"
@@ -38,12 +38,21 @@
                             <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                         </dxi-item>
                         <dxi-item
-                            [colSpan]="2"
-                            [label]="{ text: 'TỔNG CHI PHÍ' }"
-                            editorType="dxNumberBox"
-                            dataField="tongthanhtien"
-                            [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
-                        ></dxi-item>
+                            [colSpan]="3"
+                            [label]="{ text: 'KHO GC' }"
+                            dataField="khogiacong_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhoHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhohang', 'makhohang'],
+                                displayExpr: 'tenkhohang',
+                                readOnly: true
+                            }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
+                        </dxi-item>
 
                         <dxi-item [colSpan]="2" [label]="{ text: 'MÃ LỆNH' }" dataField="malenhsanxuat" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                         <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="7"></dxi-item>

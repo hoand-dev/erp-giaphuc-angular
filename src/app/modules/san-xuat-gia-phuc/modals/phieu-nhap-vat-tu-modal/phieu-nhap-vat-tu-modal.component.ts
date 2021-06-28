@@ -71,7 +71,6 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
     ngOnInit(): void {
         this.onClose = new Subject();
         this.phieunhapvattu = new PhieuNhapVatTu();
-        this.theCallbackValid = this.theCallbackValid.bind(this);
 
         this.subscriptions.add(
             this.authenticationService.currentChiNhanh.subscribe((x) => {
@@ -181,20 +180,6 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         }
     }
 
-    public onHangHoaChangeRow(col: string, index: number, e: any) {
-       
-    }
-
-    public onHangHoaChanged(index, e) {
-        let selected = e.selectedItem;
-
-        // chỉ thêm row mới khi không tồn tài dòng rỗng nào
-        // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
-        // if (rowsNull.length == 0) {
-        //     this.onHangHoaAdd();
-        // }
-    }
-
     onClickLo(index) {
         if (!this.hanghoas[index].hanghoa_id) {
             custom({ messageHtml: 'Vui lòng chọn hàng hoá.', showTitle: false }).show();
@@ -228,18 +213,8 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         });
     }
 
-
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
-    }
-
-    theCallbackValid(params) {
-        if (this.isView == 'view_add') {
-            return this.phieunhapvattuService.checkExistPhieuNhapVatTu(params.value, null);
-        }
-        if (this.isView == 'view_edit') {
-            return this.phieunhapvattuService.checkExistPhieuNhapVatTu(params.value, this.phieunhapvattu_old);
-        }
     }
 
     onSubmitForm(e) {

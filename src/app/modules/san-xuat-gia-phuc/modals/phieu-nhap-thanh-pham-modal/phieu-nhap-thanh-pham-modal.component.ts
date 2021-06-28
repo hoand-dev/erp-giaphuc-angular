@@ -32,6 +32,7 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
 
     /* thông tin cần để lấy dữ liệu */
     public phieunhapthanhpham_id: number;
+    public lenhsanxuat_id: number; // khi thêm mới
 
     /* thông tin */
     private currentChiNhanh: ChiNhanh;
@@ -119,6 +120,7 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
 
         if (this.isView == 'view_add') {
             this.onHangHoaAdd();
+            this.copyLenhSanXuat(this.lenhsanxuat_id);
         }
 
         if (this.isView == 'view_edit' || this.isView == 'view') {
@@ -152,42 +154,46 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
 
         /* nhận kết quả trả về từ modal sau khi đóng */
         this.bsModalRefChild.content.onClose.subscribe((result) => {
-            if(result){
-                this.hanghoas = [];
-                this.lenhsanxuatService.findLenhSanXuat(result.id).subscribe(
-                    (data) => {
-                        // xử lý phần thông tin phiếu
-                        this.phieunhapthanhpham.donvigiacong_id = data.donvigiacong_id;
-                        this.phieunhapthanhpham.tongthanhtien = data.tongthanhtien;
-                        this.phieunhapthanhpham.loaiphieu = data.loaiphieu;
-                        this.phieunhapthanhpham.lenhsanxuat_id = data.id;
-
-                        // xử lý phần thông tin chi tiết phiếu
-                        data.lenhsanxuat_chitiets.forEach((value, index) => {
-                            if (value.trangthainhap != ETrangThaiPhieu.danhap) {
-                                let item = new PhieuNhapThanhPham_ChiTiet();
-
-                                item.loaihanghoa = value.loaihanghoa;
-                                item.hanghoa_id = value.hanghoa_id;
-                                item.hanghoa_lohang_id = value.hanghoa_lohang_id;
-                                item.dvt_id = value.dvt_id;
-                                item.tilequydoi = value.tilequydoi;
-                                item.soluong = value.soluong - value.soluongtattoan - value.soluongdanhap;
-                                item.dongia = value.dongia;
-                                item.thanhtien = value.thanhtien;
-                                item.chuthich = value.chuthich;
-                                item.lenhsanxuat_chitiet_id = value.id;
-                                
-                                this.hanghoas.push(item);
-                            }
-                        });
-                    },
-                    (error) => {
-                        this.phieunhapthanhphamService.handleError(error);
-                    }
-                );
+            if (result) {
+                this.copyLenhSanXuat(result.id);
             }
         });
+    }
+
+    copyLenhSanXuat(lenhsanxuat_id: number) {
+        this.hanghoas = [];
+        this.lenhsanxuatService.findLenhSanXuat(lenhsanxuat_id).subscribe(
+            (data) => {
+                // xử lý phần thông tin phiếu
+                this.phieunhapthanhpham.donvigiacong_id = data.donvigiacong_id;
+                this.phieunhapthanhpham.tongthanhtien = data.tongthanhtien;
+                this.phieunhapthanhpham.loaiphieu = data.loaiphieu;
+                this.phieunhapthanhpham.lenhsanxuat_id = data.id;
+
+                // xử lý phần thông tin chi tiết phiếu
+                data.lenhsanxuat_chitiets.forEach((value, index) => {
+                    if (value.trangthainhap != ETrangThaiPhieu.danhap) {
+                        let item = new PhieuNhapThanhPham_ChiTiet();
+
+                        item.loaihanghoa = value.loaihanghoa;
+                        item.hanghoa_id = value.hanghoa_id;
+                        item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                        item.dvt_id = value.dvt_id;
+                        item.tilequydoi = value.tilequydoi;
+                        item.soluong = value.soluong - value.soluongtattoan - value.soluongdanhap;
+                        item.dongia = value.dongia;
+                        item.thanhtien = value.thanhtien;
+                        item.chuthich = value.chuthich;
+                        item.lenhsanxuat_chitiet_id = value.id;
+
+                        this.hanghoas.push(item);
+                    }
+                });
+            },
+            (error) => {
+                this.phieunhapthanhphamService.handleError(error);
+            }
+        );
     }
 
     drop(event: CdkDragDrop<string[]>) {
