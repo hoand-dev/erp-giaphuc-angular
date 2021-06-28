@@ -23,7 +23,7 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
 
     /* tối ưu subscriptions */
     subscriptions: Subscription = new Subscription();
-    public bsModalRef: BsModalRef;
+    public bsModalRefChild: BsModalRef;
 
 
     /* Khai báo thời gian bắt đầu và kết thúc */
@@ -34,10 +34,10 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
     public permissions: any[] = [];
 
     /* danh sách các quyền theo biến số, mặc định false */
-    // public enableAddNew: boolean = false;
-    // public enableUpdate: boolean = false;
-    // public enableDelete: boolean = false;
-    // public enableExport: boolean = false;
+    public enableAddNew: boolean = false;
+    public enableUpdate: boolean = false;
+    public enableDelete: boolean = false;
+    public enableExport: boolean = false;
 
     /* dataGrid */
     public exportFileName: string = '[DANH SÁCH] - PHIẾU NHẬP VẬT TƯ   - ' + moment().format('DD_MM_YYYY');
@@ -57,7 +57,7 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
         private phieunhapvattuService: PhieuNhapVatTuService,
         private modalService: BsModalService
     ) {
-        this.titleService.setTitle('IP | ' + this.appInfoService.appName);
+        this.titleService.setTitle('PHIẾU NHẬP VẬT TƯ | ' + this.appInfoService.appName);
     }
 
     ngOnInit(): void {
@@ -88,10 +88,6 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
     }
 
     ngOnDestroy(): void {
-        //Called once, before the instance is destroyed.
-        //Add 'implements OnDestroy' to the class.
-
-        // xử lý trước khi thoát khỏi trang
         this.subscriptions.unsubscribe();
     }
 
@@ -113,8 +109,21 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
     }
 
     onRowDblClick(e) {
-        // chuyển sang view xem chi tiết
-        console.log(`phieunhapvattu_id: ${e.key.id}`);
+       /* khởi tạo giá trị cho modal */
+       const initialState = {
+        title: 'XEM LẠI PHIẾU',
+        isView: 'view',
+        phieunhapvattu_id: e.key.id
+    };
+
+    /* hiển thị modal */
+    this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
+        class: 'modal-xl modal-dialog-centered',
+        ignoreBackdropClick: false,
+        keyboard: false,
+        initialState
+    });
+    this.bsModalRefChild.content.closeBtnName = 'Đóng';
     }
 
     onAddNew() {
@@ -125,19 +134,19 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(DanhSachPhieuXuatVatTuModalComponent, {
+        this.bsModalRefChild = this.modalService.show(DanhSachLenhSanXuatModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if(result){
 
-                this.openModal();
+                this.openAddNewModal(result.id);
 
             }
         });
@@ -148,50 +157,52 @@ export class PhieuNhapVatTuComponent implements  OnInit, OnDestroy, AfterViewIni
         const initialState = {
             title: 'CẬP NHẬT PHIẾU NHẬP VẬT TƯ',
             isView: 'view_edit',
-            ipv4_id: id,
+            phieunhapvattu_id: id,
         };
 
         /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuNhapVatTuModalComponent, {
+        this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
             class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
         });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
         /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
             if(result){
                 this.onLoadData();
             }
         });
     }
 
-    openModal(){
-        /* khởi tạo giá trị cho modal */
-        const initialState = {
-            title: 'THÊM PHIẾU',
-            isView: 'view_add',
-        };
+    openAddNewModal(lenhsanxuat_id: number){
+      /* khởi tạo giá trị cho modal */
+      const initialState = {
+        title: 'THÊM PHIẾU',
+        isView: 'view_add',
+        lenhsanxuat_id: lenhsanxuat_id
+    };
 
-        /* hiển thị modal */
-        this.bsModalRef = this.modalService.show(PhieuNhapVatTuModalComponent, {
-            class: 'modal-xxl modal-dialog-centered',
-            ignoreBackdropClick: false,
-            keyboard: false,
-            initialState
-        });
-        this.bsModalRef.content.closeBtnName = 'Đóng';
+    /* hiển thị modal */
+    this.bsModalRefChild = this.modalService.show(PhieuNhapVatTuModalComponent, {
+        class: 'modal-xxl modal-dialog-centered',
+        ignoreBackdropClick: false,
+        keyboard: false,
+        initialState
+    });
+    this.bsModalRefChild.content.closeBtnName = 'Đóng';
 
-        /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRef.content.onClose.subscribe((result) => {
-            if (result) {
-                this.onLoadData();
-            }
-        });
+    /* nhận kết quả trả về từ modal sau khi đóng */
+    this.bsModalRefChild.content.onClose.subscribe((result) => {
+        if (result) {
+            this.onLoadData();
+        }
+    });
+}
 
-    }
+    
 
 
     onRowDelete(id) {

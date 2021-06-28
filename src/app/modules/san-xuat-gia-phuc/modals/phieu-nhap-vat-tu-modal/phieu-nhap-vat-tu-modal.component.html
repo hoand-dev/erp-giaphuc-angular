@@ -7,19 +7,18 @@
     </button>
 </div>
 <div class="modal-body">
-    <div class="row">
-    </div>
+    <div class="row"></div>
     <div class="row">
         <div class="col-md-12">
             <div id="form-container">
                 <form (submit)="onSubmitForm($event)">
                     <dx-form id="form" [colCount]="12" [formData]="phieunhapvattu" [showValidationSummary]="true" [labelLocation]="'top'">
-                        <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY XUẤT VẬT TƯ' }" dataField="ngayxuatvattu" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
-                            <dxi-validation-rule type="required" message="Chọn ngày xuất"></dxi-validation-rule>
+                        <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY NHẬP VẬT TƯ' }" dataField="ngaynhapvattu" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
+                            <dxi-validation-rule type="required" message="Chọn ngày nhập"></dxi-validation-rule>
                         </dxi-item>
 
                         <dxi-item
-                            [colSpan]="8"
+                            [colSpan]="7"
                             [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                             dataField="donvigiacong_id"
                             editorType="dxSelectBox"
@@ -35,19 +34,28 @@
                             <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                         </dxi-item>
                         <dxi-item
-                            [colSpan]="2"
-                            [label]="{ text: 'TỔNG CHI PHÍ' }"
-                            editorType="dxNumberBox"
-                            dataField="tongthanhtien"
-                            [editorOptions]="{ readOnly: true, format: '#,##0.###' }"
-                        ></dxi-item>
+                            [colSpan]="3"
+                            [label]="{ text: 'KHO GC' }"
+                            dataField="khogiacong_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhoHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhohang', 'makhohang'],
+                                displayExpr: 'tenkhohang',
+                                readOnly: true
+                            }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
+                        </dxi-item>
 
                         <dxi-item [colSpan]="2" [label]="{ text: 'MÃ PHIẾU XUẤT' }" dataField="maphieu" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                         <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="7"></dxi-item>
                         <dxi-item
                             [colSpan]="3"
                             [label]="{ text: 'KHO NHẬP' }"
-                            dataField="khoxuat_id"
+                            dataField="khonhap_id"
                             editorType="dxSelectBox"
                             [editorOptions]="{
                                 dataSource: dataSource_KhoHang,
@@ -67,18 +75,15 @@
                                         <thead>
                                             <tr>
                                                 <th [style.min-width.px]="25">STT</th>
-                                                <th [style.min-width.px]="400">THÀNH PHẨM</th>
+                                                <th [style.min-width.px]="400">HÀNG HOÁ</th>
+                                                <th [style.min-width.px]="80">ĐVT</th>
                                                 <th [style.min-width.px]="80">S.LƯỢNG</th>
-                                                <th [style.min-width.px]="120">ĐƠN GIÁ</th>
-                                                <th [style.min-width.px]="120">PHÍ G/C</th>
+                                                <th [style.min-width.px]="80">SL LOT</th>
                                                 <th [style.min-width.px]="250">GHI CHÚ</th>
-                                                <th [style.max-width.px]="40">
-                                                    <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
-                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of hanghoas; index as i">
+                                            <tr *ngFor="let item of hanghoas; index as i" [ngClass]="[!item.calculate ? 'rthanhpham' : '']">
                                                 <td [style.min-width.px]="25">{{ i + 1 }}</td>
                                                 <td [style.min-width.px]="400">
                                                     <dx-select-box
@@ -93,26 +98,43 @@
                                                         [searchTimeout]="500"
                                                         [searchEnabled]="true"
                                                         [minSearchLength]="0"
-                                                        (onSelectionChanged)="onHangHoaChanged(i, $event)"
                                                     >
                                                     </dx-select-box>
                                                 </td>
-
-                                                <td [style.min-width.px]="80">
-                                                    <dx-number-box
-                                                        [step]="0"
-                                                        format="#,##0.###"
-                                                        [(value)]="item.soluong"
-                                                        valueChangeEvent="input"
-                                                        (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
-                                                    ></dx-number-box>
+                                                <td>
+                                                    <dx-select-box
+                                                        [readOnly]="true"
+                                                        [(value)]="item.dvt_id"
+                                                        [dataSource]="dataSource_DonViTinh"
+                                                        [displayExpr]="'madonvitinh'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['madonvitinh', 'tendonvitinh']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                    >
+                                                    </dx-select-box>
                                                 </td>
-                                              
-                                                <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich"></dx-text-box></td>
-                                               
+                                                <td [style.min-width.px]="80">
+                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" [readOnly]="!item.calculate"></dx-number-box>
+                                                </td>
+                                                <td>
+                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluonglo" valueChangeEvent="input" (click)="onClickLo(i)" [readOnly]="true" [disabled]="!item.calculate"></dx-number-box>
+                                                </td>
+                                                <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich" [readOnly]="!item.calculate"></dx-text-box></td>
                                             </tr>
                                         </tbody>
-                                      
+                                        <tfoot>
+                                            <tr>
+                                                <th [style.min-width.px]="25"></th>
+                                                <th [style.min-width.px]="400">TỔNG CỘNG:</th>
+                                                <th [style.min-width.px]="80"></th>
+                                                <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
+                                                <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluonglo') | number: '1.0-3' }}</th>
+                                                <th [style.min-width.px]="250"></th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

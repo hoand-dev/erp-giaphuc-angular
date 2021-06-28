@@ -1,14 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChiNhanh, PhieuNhapVatTu, PhieuXuatVatTu_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, PhieuNhapVatTu, PhieuNhapVatTu_ChiTiet, PhieuXuatVatTu_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, DonViGiaCongService, HangHoaService, KhoHangService, PhieuNhapVatTuService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, DonViTinhService, HangHoaService, KhoHangService, LenhSanXuatService, PhieuNhapVatTuService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject, Subscription } from 'rxjs';
+import _  from 'lodash';
 import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
+import { custom } from 'devextreme/ui/dialog';
+import { LoHangNhapXuatModalComponent } from '@app/shared/modals';
 
 @Component({
   selector: 'app-phieu-nhap-vat-tu-modal',
@@ -19,6 +22,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
     @ViewChild(DxFormComponent, { static: false }) frmphieunhapvattu: DxFormComponent;
 
     private subscriptions: Subscription = new Subscription();
+    private bsModalRefChild: BsModalRef
     public onClose: Subject<any>;
     public title: string;
     public closeBtnName: string;
@@ -28,6 +32,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
 
     /* thông tin cần để lấy dữ liệu */
     public phieunhapvattu_id: number;
+    public lenhsanxuat_id: number; // khi thêm mới
 
     /* thông tin */
     private currentChiNhanh: ChiNhanh;
@@ -35,12 +40,12 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
     public phieunhapvattu_old: string;
     public saveProcessing = false;
 
-        
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_HangHoa: DataSource;
     public dataSource_KhoHang: DataSource;
+    public dataSource_DonViTinh: DataSource;
 
-    public hanghoas: PhieuXuatVatTu_ChiTiet[] = [];
+    public hanghoas: PhieuNhapVatTu_ChiTiet[] = [];
 
 
     public buttonSubmitOptions: any = {
@@ -57,12 +62,14 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         public sumTotal: SumTotalPipe,
         public khohangService: KhoHangService,
         public donvigiacongService: DonViGiaCongService,
-        public hanghoaService: HangHoaService
+        public hanghoaService: HangHoaService,
+        public donvitinhService: DonViTinhService,
+        public lenhsanxuatService: LenhSanXuatService,
+        public modalService: BsModalService
     ) {}
 
     ngOnInit(): void {
         this.onClose = new Subject();
-
         this.phieunhapvattu = new PhieuNhapVatTu();
         this.theCallbackValid = this.theCallbackValid.bind(this);
 
@@ -92,6 +99,16 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
             })
         );
 
+        this.subscriptions.add(
+            this.donvitinhService.findDonViTinhs().subscribe((x) => {
+                this.dataSource_DonViTinh = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
+            })
+        );
+
         this.dataSource_HangHoa = new DataSource({
             paginate: true,
             pageSize: 50,
@@ -116,8 +133,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
             })
         });
 
-
-        if (this.isView == 'view_add') {
+        if (this.isView == 'view_edit' || this.isView == 'view') {
             this.subscriptions.add(
                 this.phieunhapvattuService.findPhieuNhapVatTu(this.phieunhapvattu_id).subscribe(
                     (data) => {
@@ -129,17 +145,38 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
                 )
             );
         }
-        if (this.isView == 'view_edit') {
-            this.subscriptions.add(
-                this.phieunhapvattuService.findPhieuNhapVatTu(this.phieunhapvattu_id).subscribe(
-                    (data) => {
-                        this.phieunhapvattu = data;
-                        this.phieunhapvattu_old = this.phieunhapvattu.maphieu;
-                    },
-                    (error) => {
-                        this.phieunhapvattuService.handleError(error);
-                    }
-                )
+
+
+        if (this.isView == 'view_add' && this.lenhsanxuat_id) {
+            this.hanghoas = [];
+            this.lenhsanxuatService.findLenhSanXuatVatTu(this.lenhsanxuat_id, "nhapvattu").subscribe(
+                (data) => {
+                    // xử lý phần thông tin phiếu
+                    /* this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id; */
+                    this.phieunhapvattu.donvigiacong_id = data.donvigiacong_id;
+                    this.phieunhapvattu.loaiphieu = data.loaiphieu;
+                    this.phieunhapvattu.lenhsanxuat_id = data.id;
+
+                    // xử lý phần thông tin chi tiết phiếu
+                    data.phieunhapvattu_chitiets.forEach((value, index) => {
+                            let item = new PhieuNhapVatTu_ChiTiet();
+                            item.hanghoa_lohang_id = value.hanghoa_lohang_id;
+                            item.loaihanghoa = value.loaihanghoa;
+                            item.hanghoa_id = value.hanghoa_id;
+                            item.dvt_id = value.dvt_id;
+                            item.tilequydoi = value.tilequydoi;
+                            item.soluongdinhmuc = value.soluong;
+                            item.soluong = value.soluong;
+                            item.soluonglo = 0;
+                            item.chuthich = value.chuthich;
+                            item.calculate = value.calculate;
+
+                            this.hanghoas.push(item);
+                    });
+                },
+                (error) => {
+                    this.phieunhapvattuService.handleError(error);
+                }
             );
         }
     }
@@ -156,6 +193,39 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         // if (rowsNull.length == 0) {
         //     this.onHangHoaAdd();
         // }
+    }
+
+    onClickLo(index) {
+        if (!this.hanghoas[index].hanghoa_id) {
+            custom({ messageHtml: 'Vui lòng chọn hàng hoá.', showTitle: false }).show();
+            return;
+        }
+
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHI TIẾT LÔ', // và nhiều hơn thế nữa
+            khohang_id: this.phieunhapvattu.khonhap_id,
+            hanghoa_id: this.hanghoas[index].hanghoa_id,
+            lohangs: _.cloneDeep(this.hanghoas[index].lohangs)
+        };
+
+        /* hiển thị modal */
+        this.bsModalRefChild = this.modalService.show(LoHangNhapXuatModalComponent, { class: 'modal-md modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRefChild.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRefChild.content.onClose.subscribe((result) => {
+            if (result !== false) {
+                this.hanghoas[index].lohangs = result;
+                let soluonglo: number = 0;
+                result.forEach((e) => {
+                    soluonglo += e.soluong;
+                });
+                this.hanghoas[index].soluonglo = soluonglo;
+                this.hanghoas[index].soluong = this.hanghoas[index].soluongdinhmuc - soluonglo;
+                this.hanghoas[index].soluong = this.hanghoas[index].soluong < 0 ? 0 : this.hanghoas[index].soluong;
+            }
+        });
     }
 
 

@@ -1,3 +1,5 @@
+import { LoHangNhapXuat } from "..";
+
 export class PhieuNhapVatTu{
     
     public phieunhapvatu_chitiets: PhieuNhapVatTu_ChiTiet[];
@@ -17,6 +19,8 @@ export class PhieuNhapVatTu{
     public maphieu        : string ;
     public khonhap_id     : number ;
     public lenhsanxuat_id : number ;
+    public donvigiacong_id :number ;
+    public khogiacong_id   : number ;
 
     constructor(
         id              : number  = null      ,
@@ -34,57 +38,71 @@ export class PhieuNhapVatTu{
         maphieu         : string  = null      ,
         khonhap_id      : number  = null      ,
         lenhsanxuat_id  : number  = null      ,
+        donvigiacong_id : number  = null      ,
+        khogiacong_id   : number  = null      ,
     ){
-        this.id              = id             ;
-        this.chinhanh_id     = chinhanh_id    ;
-        this.kichhoat        = kichhoat       ;
-        this.nguoitao_id     = nguoitao_id    ;
-        this.thoigiantao     = thoigiantao    ;
-        this.nguoisua_id     = nguoisua_id    ;
-        this.thoigiansua     = thoigiansua    ;
-        this.ghichu          = ghichu         ;
-        this.ids             = ids            ;
-        this.sort            = sort           ;
-        this.loaiphieu       = loaiphieu      ;
-        this.ngaynhapvattu   = ngaynhapvattu    ;
-        this.maphieu         = maphieu        ;
-        this.khonhap_id      = khonhap_id     ;
-        this.lenhsanxuat_id  = lenhsanxuat_id ;
+        this.id              = id              ;
+        this.chinhanh_id     = chinhanh_id     ;
+        this.kichhoat        = kichhoat        ;
+        this.nguoitao_id     = nguoitao_id     ;
+        this.thoigiantao     = thoigiantao     ;
+        this.nguoisua_id     = nguoisua_id     ;
+        this.thoigiansua     = thoigiansua     ;
+        this.ghichu          = ghichu          ;
+        this.ids             = ids             ;
+        this.sort            = sort            ;
+        this.loaiphieu       = loaiphieu       ;
+        this.ngaynhapvattu   = ngaynhapvattu   ;
+        this.maphieu         = maphieu         ;
+        this.khonhap_id      = khonhap_id      ;
+        this.lenhsanxuat_id  = lenhsanxuat_id  ;
+        this.donvigiacong_id = donvigiacong_id ;
+        this.khogiacong_id   = khogiacong_id   ;
     }
 }
 
 export class PhieuNhapVatTu_ChiTiet{
-    public id: number;
-    public phieunhapvattu_id: number;
-    public loaihanghoa: string;
-    public hanghoa_id: number;
-    public hanghoa_lohang_id: number;
-    public dvt_id: number;
-    public tylequydoi: number;
-    public soluong: number;
-    public chuthich: string;
+    
+    public soluongdinhmuc    : number = 0           ;
+    public lohangstr         : string               ;
+    public lohangs           : LoHangNhapXuat[] = [];
+    public id                : number               ;
+    public phieunhapvattu_id : number               ;
+    public loaihanghoa       : string               ;
+    public hanghoa_id        : number               ;
+    public hanghoa_lohang_id : number               ;
+    public dvt_id            : number               ;
+    public tilequydoi        : number               ;
+    public soluong           : number               ;
+    public chuthich          : string               ;
+    public soluonglo         : number               ;
+    public calculate         : boolean              ;
     
     constructor (
 
-        id  : number = null, 
-        phieunhapvattu_id   : number = null, 
-        loaihanghoa : string = null, 
-        hanghoa_id  : number = null, 
-        hanghoa_lohang_id   : number = null, 
-        dvt_id  : number = null, 
-        tylequydoi  : number = 1, 
-        soluong : number = 0, 
-        chuthich    : string = null, 
+        id                : number  = null  ,
+        phieunhapvattu_id : number  = null  ,
+        loaihanghoa       : string  = null  ,
+        hanghoa_id        : number  = null  ,
+        hanghoa_lohang_id : number  = null  ,
+        dvt_id            : number  = null  ,
+        tilequydoi        : number  = 1     ,
+        soluong           : number  = 0     ,
+        chuthich          : string  = null  ,
+        soluonglo         : number  = 0     ,
+        calculate         : boolean = false ,
 
     ){
-        this.id = id ;
+        this.id                = id                ;
         this.phieunhapvattu_id = phieunhapvattu_id ;
-        this.loaihanghoa = loaihanghoa ;
-        this.hanghoa_id = hanghoa_id ;
+        this.loaihanghoa       = loaihanghoa       ;
+        this.hanghoa_id        = hanghoa_id        ;
         this.hanghoa_lohang_id = hanghoa_lohang_id ;
-        this.dvt_id = dvt_id ;
-        this.tylequydoi = tylequydoi ;
-        this.soluong = soluong ;
-        this.chuthich = chuthich ;
+        this.dvt_id            = dvt_id            ;
+        this.tilequydoi        = tilequydoi        ;
+        this.soluong           = soluong           ;
+        this.chuthich          = chuthich          ;
+        this.soluonglo         = soluonglo         ;
+        this.calculate         = calculate         ;
     }
 }

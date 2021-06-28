@@ -48,8 +48,6 @@ export class PhieuXuatVatTuComponent implements OnInit {
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
 
-    /* CHƯA BIẾT LÀM TIẾP SAO....  */
-
     /* danh sách các quyền theo biến số, mặc định false */
     public enableAddNew: boolean = true;
     public enableUpdate: boolean = true;
