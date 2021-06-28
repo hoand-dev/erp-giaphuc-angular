@@ -134,7 +134,7 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
     onAddNew() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM - PHIẾU NHẬP THÀNH PHẨM',
+            title: 'THÊM MỚI - PHIẾU NHẬP THÀNH PHẨM',
             isView: 'view_add'
         };
 

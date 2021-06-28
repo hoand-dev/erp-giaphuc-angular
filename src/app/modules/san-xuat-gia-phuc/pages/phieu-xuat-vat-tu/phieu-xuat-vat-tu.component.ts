@@ -169,7 +169,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
     onRowEdit(id) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'CẬP NHẬT PHIẾU',
+            title: 'CẬP NHẬT - PHIẾU XUẤT VẬT TƯ',
             isView: 'view_edit',
             phieuxuatvattu_id: id
         };
@@ -194,7 +194,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
     openAddNewModal(lenhsanxuat_id: number){
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'THÊM PHIẾU',
+            title: 'THÊM MỚI - PHIẾU XUẤT VẬT TƯ',
             isView: 'view_add',
             lenhsanxuat_id: lenhsanxuat_id
         };
