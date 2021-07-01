@@ -178,7 +178,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
 
         /* hiển thị modal */
         this.bsModalRefChild = this.modalService.show(PhieuXuatVatTuModalComponent, {
-            class: 'modal-xl modal-dialog-centered',
+            class: 'modal-xxl modal-dialog-centered',
             ignoreBackdropClick: false,
             keyboard: false,
             initialState
