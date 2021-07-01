@@ -9,7 +9,7 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
-            <button type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()">TỪ LỆNH</button>
+            <button type="button" class="btn btn-sm btn-primary float-right" (click)="openModal()" *ngIf="this.isView == 'view_add'">TỪ LỆNH</button>
         </div>
     </div>
     <div class="row">

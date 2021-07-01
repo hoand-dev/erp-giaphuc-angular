@@ -151,8 +151,8 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
             this.lenhsanxuatService.findLenhSanXuatVatTu(this.lenhsanxuat_id, "nhapvattu").subscribe(
                 (data) => {
                     // xử lý phần thông tin phiếu
-                    /* this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id; */
                     this.phieunhapvattu.donvigiacong_id = data.donvigiacong_id;
+                    this.phieunhapvattu.khogiacong_id = data.khogiacong_id;
                     this.phieunhapvattu.loaiphieu = data.loaiphieu;
                     this.phieunhapvattu.lenhsanxuat_id = data.id;
 
@@ -169,6 +169,8 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
                             item.soluonglo = 0;
                             item.chuthich = value.chuthich;
                             item.calculate = value.calculate;
+
+                            item.lenhsanxuat_chitiet_id = value.lenhsanxuat_chitiet_id;
 
                             this.hanghoas.push(item);
                     });
@@ -213,15 +215,26 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         });
     }
 
+    onCollapseRow(index){
+        this.hanghoas[index].hidden = _.cloneDeep(!this.hanghoas[index].hidden);
+    }
+
+    onHiddenOf(id){
+        let row = this.hanghoas.find(x => x.lenhsanxuat_chitiet_id == id && x.calculate == false);
+        return row.hidden;
+    }
+
     ngOnDestroy(): void {
         this.subscriptions.unsubscribe();
     }
 
     onSubmitForm(e) {
         if (!this.frmphieunhapvattu.instance.validate().isValid) return;
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
 
         let phieunhapvattu_req = this.phieunhapvattu;
         phieunhapvattu_req.chinhanh_id = this.currentChiNhanh.id;
+        phieunhapvattu_req.phieunhapvatu_chitiets = hanghoas;
 
         if (this.isView == 'view_add') {
             this.onAddNew(phieunhapvattu_req);

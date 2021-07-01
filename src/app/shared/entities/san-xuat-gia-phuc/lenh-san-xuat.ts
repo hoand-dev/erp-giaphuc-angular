@@ -26,6 +26,7 @@ export class LenhSanXuat{
     public ngaysanxuat     : Date   ;
     public malenhsanxuat   : string ;
     public donvigiacong_id : number ;
+    public khogiacong_id   : number ;
     public tongthanhtien   : number ;
     public trangthainhap   : string ;
 
@@ -45,6 +46,7 @@ export class LenhSanXuat{
         ngaysanxuat     : Date    = new Date(),
         malenhsanxuat   : string  = null      ,
         donvigiacong_id : number  = null      ,
+        khogiacong_id   : number  = null      ,
         tongthanhtien   : number  = 0         ,
         trangthainhap   : string  = null      ,
     ){
@@ -62,6 +64,7 @@ export class LenhSanXuat{
         this.ngaysanxuat     = ngaysanxuat    ;
         this.malenhsanxuat   = malenhsanxuat  ;
         this.donvigiacong_id = donvigiacong_id;
+        this.khogiacong_id   = khogiacong_id  ;
         this.tongthanhtien   = tongthanhtien  ;
         this.trangthainhap   = trangthainhap  ;
     }

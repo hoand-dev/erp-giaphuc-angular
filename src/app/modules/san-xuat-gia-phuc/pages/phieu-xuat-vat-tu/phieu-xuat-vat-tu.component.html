@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">PHIẾU XUẤT VẬT TƯ</li>
+                    <li class="breadcrumb-item active">Phiếu xuất vật tư</li>
                 </ol>
             </div>
             <!-- /.col -->
@@ -63,15 +63,9 @@
                             </dxi-column>
 
                             <dxi-column dataField="maphieu" caption="Mã phiếu"></dxi-column>
-                            <dxi-column dataField="ngayxuatvattu" dataType="datetime" caption="Ngày xuất vậy tư"></dxi-column>
-                            <dxi-column dataField="tenkhoxuat" caption="Tên Kho Xuất"></dxi-column>
-                            <dxi-column dataField="tendonvigiacong" caption="Tên kho gia công"></dxi-column>
-                            <dxi-column dataField="kichhoat" caption="Trạng thái" cellTemplate="cellTemplateTrangThai">
-                                <div *dxTemplate="let data of 'cellTemplateTrangThai'">
-                                    <div class="text-green" *ngIf="data.value == true">Kích hoạt</div>
-                                    <div class="text-red" *ngIf="data.value != true">Ngưng sử dụng</div>
-                                </div>
-                            </dxi-column>
+                            <dxi-column dataField="ngayxuatvattu" dataType="datetime" caption="Ngày xuất vật tư"></dxi-column>
+                            <dxi-column dataField="tenkhoxuat" caption="Tên kho xuất"></dxi-column>
+                            <dxi-column dataField="tendonvigiacong" caption="Tên đơn vị"></dxi-column>
                             <dxi-column dataField="ghichu" caption="Ghi chú"></dxi-column>
 
                             <dxi-column dataField="nguoitao_hoten" caption="Người tạo"></dxi-column>

@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChiNhanh, LenhSanXuat, LenhSanXuat_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, DonViGiaCong, LenhSanXuat, LenhSanXuat_ChiTiet } from '@app/shared/entities';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, DonViGiaCongService, HangHoaService, LenhSanXuatService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, HangHoaService, KhoHangService, LenhSanXuatService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
@@ -37,8 +37,10 @@ export class LenhSanXuatModalComponent implements OnInit {
 
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_HangHoa: DataSource;
+    public dataSource_KhoHang: DataSource;
 
     public hanghoas: LenhSanXuat_ChiTiet[] = [];
+    public lstDonViGiaCong: DonViGiaCong[];
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -53,6 +55,7 @@ export class LenhSanXuatModalComponent implements OnInit {
         private lenhsanxuatService: LenhSanXuatService,
         private donvigiacongService: DonViGiaCongService,
         private hanghoaService: HangHoaService,
+        public khohangService: KhoHangService,
         public sumTotal: SumTotalPipe
     ) {}
 
@@ -65,7 +68,18 @@ export class LenhSanXuatModalComponent implements OnInit {
                 this.currentChiNhanh = x;
 
                 this.subscriptions.add(
+                    this.khohangService.findKhoHangs(x.id).subscribe((x) => {
+                        this.dataSource_KhoHang = new DataSource({
+                            store: x,
+                            paginate: true,
+                            pageSize: 50
+                        });
+                    })
+                );
+
+                this.subscriptions.add(
                     this.donvigiacongService.findDonViGiaCongs(this.authenticationService.currentChiNhanhValue.id).subscribe((x) => {
+                        this.lstDonViGiaCong = x;
                         this.dataSource_DonViGiaCong = new DataSource({
                             store: x,
                             paginate: true,
@@ -83,7 +97,7 @@ export class LenhSanXuatModalComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'thanhpham', loadOptions)
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'nguyenlieu', loadOptions)
                         .toPromise()
                         .then((result) => {
                             return result;
@@ -171,6 +185,13 @@ export class LenhSanXuatModalComponent implements OnInit {
             tongtienhang += v.thanhtien;
         });
         this.lenhsanxuat.tongthanhtien = tongtienhang;
+    }
+
+    onFormFieldChanged(e) {
+        if (e.dataField == 'donvigiacong_id' && e.value !== undefined) {
+            let donvigiacong = this.lstDonViGiaCong.find((x) => x.id == this.lenhsanxuat.donvigiacong_id);
+            this.lenhsanxuat.khogiacong_id = donvigiacong ? donvigiacong.khogiacong_id : null;
+        }
     }
 
     onSubmitForm(e) {

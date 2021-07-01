@@ -144,6 +144,7 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                 (data) => {
                     // xử lý phần thông tin phiếu
                     this.phieuxuatvattu.donvigiacong_id = data.donvigiacong_id;
+                    this.phieuxuatvattu.khogiacong_id = data.khogiacong_id;
                     this.phieuxuatvattu.loaiphieu = data.loaiphieu;
                     this.phieuxuatvattu.lenhsanxuat_id = data.id;
 
@@ -160,6 +161,8 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                             item.soluonglo = 0;
                             item.chuthich = value.chuthich;
                             item.calculate = value.calculate;
+
+                            item.lenhsanxuat_chitiet_id = value.lenhsanxuat_chitiet_id;
 
                             this.hanghoas.push(item);
                     });
@@ -208,11 +211,22 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
         });
     }
 
+    onCollapseRow(index){
+        this.hanghoas[index].hidden = _.cloneDeep(!this.hanghoas[index].hidden);
+    }
+
+    onHiddenOf(id){
+        let row = this.hanghoas.find(x => x.lenhsanxuat_chitiet_id == id && x.calculate == false);
+        return row.hidden;
+    }
+
     onSubmitForm(e) {
         if (!this.frmPhieuXuatVatTu.instance.validate().isValid) return;
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
 
         let phieuxuatvattu_req = this.phieuxuatvattu;
         phieuxuatvattu_req.chinhanh_id = this.currentChiNhanh.id;
+        phieuxuatvattu_req.phieuxuatvattu_chitiets = hanghoas;
 
         if (this.isView == 'view_add') {
             this.onAddNew(phieuxuatvattu_req);

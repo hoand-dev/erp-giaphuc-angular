@@ -11,13 +11,13 @@
         <div class="col-md-12">
             <div id="form-container">
                 <form (submit)="onSubmitForm($event)">
-                    <dx-form id="form" [colCount]="12" [formData]="lenhsanxuat" [showValidationSummary]="true" [labelLocation]="'top'">
+                    <dx-form id="form" [colCount]="12" [formData]="lenhsanxuat" (onFieldDataChanged)="onFormFieldChanged($event)" [showValidationSummary]="true" [labelLocation]="'top'">
                         <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY SẢN XUẤT' }" dataField="ngaysanxuat" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                             <dxi-validation-rule type="required" message="Chọn ngày sản xuất"></dxi-validation-rule>
                         </dxi-item>
 
                         <dxi-item
-                            [colSpan]="8"
+                            [colSpan]="5"
                             [label]="{ text: 'ĐƠN VỊ GIA CÔNG' }"
                             dataField="donvigiacong_id"
                             editorType="dxSelectBox"
@@ -31,6 +31,24 @@
                         >
                             <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị gia công"></dxi-validation-rule>
                         </dxi-item>
+
+                        <dxi-item
+                            [colSpan]="3"
+                            [label]="{ text: 'KHO GC' }"
+                            dataField="khogiacong_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                dataSource: dataSource_KhoHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhohang', 'makhohang'],
+                                displayExpr: 'tenkhohang',
+                                readOnly: true
+                            }"
+                        >
+                            <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
+                        </dxi-item>
+
                         <dxi-item
                             [colSpan]="2"
                             [label]="{ text: 'TỔNG CHI PHÍ' }"
