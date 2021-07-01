@@ -97,7 +97,7 @@ export class LenhSanXuatModalComponent implements OnInit {
                 key: 'id',
                 load: (loadOptions) => {
                     return this.commonService
-                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'thanhpham', loadOptions)
+                        .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'nguyenlieu', loadOptions)
                         .toPromise()
                         .then((result) => {
                             return result;
