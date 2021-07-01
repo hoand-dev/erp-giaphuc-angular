@@ -118,10 +118,10 @@
                                                     </dx-select-box>
                                                 </td>
                                                 <td [style.min-width.px]="80">
-                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" valueChangeEvent="input" [readOnly]="!item.calculate"></dx-number-box>
+                                                    <dx-number-box [step]="0" format="#,##0.#######" [(value)]="item.soluong" valueChangeEvent="input" [readOnly]="!item.calculate"></dx-number-box>
                                                 </td>
                                                 <td>
-                                                    <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluonglo" valueChangeEvent="input" (click)="onClickLo(i)" [readOnly]="true" [disabled]="!item.calculate"></dx-number-box>
+                                                    <dx-number-box [step]="0" format="#,##0.#######" [(value)]="item.soluonglo" valueChangeEvent="input" (click)="onClickLo(i)" [readOnly]="true" [disabled]="!item.calculate"></dx-number-box>
                                                 </td>
                                                 <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich" [readOnly]="!item.calculate"></dx-text-box></td>
                                                 <td>
