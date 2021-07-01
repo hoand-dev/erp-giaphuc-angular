@@ -83,6 +83,7 @@ export class LenhSanXuat_ChiTiet{
     public tilequydoi: number;
     public soluong: number;
     public soluongtattoan: number;
+    public soluongbu: number;
     public soluongdanhap: number;
     public dongia: number;
     public thanhtien: number;
@@ -99,6 +100,7 @@ export class LenhSanXuat_ChiTiet{
         tilequydoi        : number = 1   ,
         soluong           : number = 0   ,
         soluongtattoan    : number = 0   ,
+        soluongbu         : number = 0   ,
         soluongdanhap     : number = 0   ,
         dongia            : number = 0   ,
         thanhtien         : number = 0   ,
@@ -114,6 +116,7 @@ export class LenhSanXuat_ChiTiet{
         this.tilequydoi        = tilequydoi        ;
         this.soluong           = soluong           ;
         this.soluongtattoan    = soluongtattoan    ;
+        this.soluongbu         = soluongbu         ;
         this.soluongdanhap     = soluongdanhap     ;
         this.dongia            = dongia            ;
         this.thanhtien         = thanhtien         ;
