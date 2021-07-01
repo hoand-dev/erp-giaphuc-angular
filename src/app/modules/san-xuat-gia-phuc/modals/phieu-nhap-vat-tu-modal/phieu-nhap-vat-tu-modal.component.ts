@@ -230,9 +230,11 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
 
     onSubmitForm(e) {
         if (!this.frmphieunhapvattu.instance.validate().isValid) return;
+        let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);
 
         let phieunhapvattu_req = this.phieunhapvattu;
         phieunhapvattu_req.chinhanh_id = this.currentChiNhanh.id;
+        phieunhapvattu_req.phieunhapvatu_chitiets = hanghoas;
 
         if (this.isView == 'view_add') {
             this.onAddNew(phieunhapvattu_req);
