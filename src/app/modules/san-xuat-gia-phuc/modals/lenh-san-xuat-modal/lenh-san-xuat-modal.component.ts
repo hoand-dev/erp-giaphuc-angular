@@ -96,6 +96,7 @@ export class LenhSanXuatModalComponent implements OnInit {
             store: new CustomStore({
                 key: 'id',
                 load: (loadOptions) => {
+                    loadOptions['checkdinhmuc'] = true;
                     return this.commonService
                         .hangHoa_TonKhoHienTai(this.currentChiNhanh.id, null, 'nguyenlieu', loadOptions)
                         .toPromise()
