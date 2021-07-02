@@ -72,6 +72,7 @@
                                             <tr>
                                                 <th [style.min-width.px]="25">STT</th>
                                                 <th [style.min-width.px]="400">THÀNH PHẨM</th>
+                                                <th [style.min-width.px]="100">ĐVT</th>
                                                 <th [style.min-width.px]="80">S.LƯỢNG</th>
                                                 <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                 <th [style.min-width.px]="120">PHÍ G/C</th>
@@ -100,7 +101,21 @@
                                                     >
                                                     </dx-select-box>
                                                 </td>
-
+                                                <td>
+                                                    <dx-select-box
+                                                        [readOnly]="true"
+                                                        [(value)]="item.dvt_id"
+                                                        [dataSource]="dataSource_DonViTinh"
+                                                        [displayExpr]="'madonvitinh'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['madonvitinh', 'tendonvitinh']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                    >
+                                                    </dx-select-box>
+                                                </td>
                                                 <td [style.min-width.px]="80">
                                                     <dx-number-box
                                                         [step]="0"
@@ -130,6 +145,7 @@
                                             <tr>
                                                 <th [style.min-width.px]="25"></th>
                                                 <th [style.min-width.px]="400">TỔNG CỘNG:</th>
+                                                <th [style.min-width.px]="100"></th>
                                                 <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
                                                 <th [style.min-width.px]="120"></th>
                                                 <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
