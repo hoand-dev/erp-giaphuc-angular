@@ -185,7 +185,9 @@ export class LenhSanXuatModalComponent implements OnInit {
         } else {
             this.hanghoas[index].dvt_id = selected.dvt_id;
         }
-
+        
+        this.hanghoas[index].loaihanghoa = selected.loaihanghoa;
+        
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
         if (rowsNull.length == 0) {
