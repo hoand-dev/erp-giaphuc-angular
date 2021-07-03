@@ -1,3 +1,5 @@
+import { LoiGiaCong } from "../san-xuat";
+
 export class PhieuNhapThanhPham {
     public phieunhapthanhpham_chitiets: PhieuNhapThanhPham_ChiTiet[];
 
@@ -68,6 +70,8 @@ export class PhieuNhapThanhPham {
 }
 
 export class PhieuNhapThanhPham_ChiTiet {
+
+    public chitietlois: LoiGiaCong[] = [];
     
     public id                    : number;
     public phieunhapthanhpham_id : number;
@@ -82,6 +86,9 @@ export class PhieuNhapThanhPham_ChiTiet {
     public chuthich              : string;
     public lenhsanxuat_chitiet_id: number;
 
+    public soluongloi            : number;
+    public khonhaploi_id         : number;
+
     constructor(
         id                     : number = null ,
         phieunhapthanhpham_id  : number = null ,
@@ -95,6 +102,9 @@ export class PhieuNhapThanhPham_ChiTiet {
         thanhtien              : number = 0    ,
         chuthich               : string = null ,
         lenhsanxuat_chitiet_id : number = null ,
+
+        soluongloi             : number = 0    ,
+        khonhaploi_id          : number = null ,
     ) {
         this.id                     = id                    ;
         this.phieunhapthanhpham_id  = phieunhapthanhpham_id ;
@@ -108,5 +118,8 @@ export class PhieuNhapThanhPham_ChiTiet {
         this.thanhtien              = thanhtien             ;
         this.chuthich               = chuthich              ;
         this.lenhsanxuat_chitiet_id = lenhsanxuat_chitiet_id;
+
+        this.soluongloi             = soluongloi            ;
+        this.khonhaploi_id          = khonhaploi_id         ;
     }
 }
