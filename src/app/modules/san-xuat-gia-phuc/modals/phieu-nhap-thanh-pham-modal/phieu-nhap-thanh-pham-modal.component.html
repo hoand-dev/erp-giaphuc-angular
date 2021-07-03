@@ -80,12 +80,16 @@
                                             <tr>
                                                 <th [style.min-width.px]="25">STT</th>
                                                 <th [style.min-width.px]="400">THÀNH PHẨM</th>
+                                                <th [style.min-width.px]="80">ĐVT</th>
                                                 <th [style.min-width.px]="80">S.LƯỢNG</th>
+                                                <th [style.min-width.px]="180">LOT</th>
                                                 <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                 <th [style.min-width.px]="120">PHÍ G/C</th>
+                                                <th [style.min-width.px]="100">SL LỖI</th>
+                                                <th [style.min-width.px]="250">KHO NHẬP LỖI</th>
                                                 <th [style.min-width.px]="250">GHI CHÚ</th>
                                                 <th [style.max-width.px]="40">
-                                                    <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
+                                                    <i class="gg-btn gg-add btn-primary"></i>
                                                 </th>
                                             </tr>
                                         </thead>
@@ -109,7 +113,21 @@
                                                     >
                                                     </dx-select-box>
                                                 </td>
-
+                                                <td>
+                                                    <dx-select-box
+                                                        [readOnly]="true"
+                                                        [(value)]="item.dvt_id"
+                                                        [dataSource]="dataSource_DonViTinh"
+                                                        [displayExpr]="'madonvitinh'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['madonvitinh', 'tendonvitinh']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                    >
+                                                    </dx-select-box>
+                                                </td>
                                                 <td [style.min-width.px]="80">
                                                     <dx-number-box
                                                         [step]="0"
@@ -118,6 +136,23 @@
                                                         valueChangeEvent="input"
                                                         (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                     ></dx-number-box>
+                                                </td>
+                                                <td>
+                                                    <dx-select-box
+                                                        id="lohang_row_{{ i }}"
+                                                        [(value)]="item.hanghoa_lohang_id"
+                                                        [dataSource]="dataSource_LoHang[i]"
+                                                        [displayExpr]="'malohang'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['malohang']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                        valueChangeEvent="input"
+                                                        (onValueChanged)="onValueChangeLoHang(i, $event)"
+                                                    >
+                                                    </dx-select-box>
                                                 </td>
                                                 <td [style.min-width.px]="120">
                                                     <dx-number-box
@@ -131,6 +166,32 @@
                                                 <td [style.min-width.px]="120">
                                                     <dx-number-box [readOnly]="true" format="#,##0.###" [value]="item.thanhtien"></dx-number-box>
                                                 </td>
+                                                <td>
+                                                    <dx-number-box
+                                                        [step]="0"
+                                                        [readOnly]="true"
+                                                        format="#,##0.###"
+                                                        [(value)]="item.soluongloi"
+                                                        valueChangeEvent="input"
+                                                        (onValueChanged)="onHangHoaChangeRow('soluongloi', i, $event)"
+                                                        (click)="onclickSoLuongLoi(i)"
+                                                    ></dx-number-box>
+                                                </td>
+                                                <td>
+                                                    <dx-select-box
+                                                        id="somat_row_{{ i }}"
+                                                        [(value)]="item.khonhaploi_id"
+                                                        [dataSource]="dataSource_KhoHang"
+                                                        [displayExpr]="'tenkhohang'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['makhohang', 'tenkhohang']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                    >
+                                                    </dx-select-box>
+                                                </td>
                                                 <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich"></dx-text-box></td>
                                                 <td [style.max-width.px]="20"><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                             </tr>
@@ -139,9 +200,13 @@
                                             <tr>
                                                 <th [style.min-width.px]="25"></th>
                                                 <th [style.min-width.px]="400">TỔNG CỘNG:</th>
+                                                <th [style.min-width.px]="80"></th>
                                                 <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
+                                                <th [style.min-width.px]="180"></th>
                                                 <th [style.min-width.px]="120"></th>
                                                 <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
+                                                <th [style.min-width.px]="100">{{this.sumTotal.transform(this.hanghoas, 'soluongloi') | number: '1.0-3'}}</th>
+                                                <th [style.min-width.px]="250"></th>
                                                 <th [style.min-width.px]="250"></th>
                                                 <th [style.max-width.px]="40">
                                                     <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
