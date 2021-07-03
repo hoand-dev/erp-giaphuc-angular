@@ -130,6 +130,7 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
                 this.phieuxuatvattuService.findPhieuXuatVatTu(this.phieuxuatvattu_id).subscribe(
                     (data) => {
                         this.phieuxuatvattu = data;
+                        this.hanghoas = data.phieuxuatvattu_chitiets;
                     },
                     (error) => {
                         this.phieuxuatvattuService.handleError(error);

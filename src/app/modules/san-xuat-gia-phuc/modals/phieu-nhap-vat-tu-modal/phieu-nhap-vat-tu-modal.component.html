@@ -90,6 +90,7 @@
                                                     <dx-select-box
                                                         id="hanghoa_row_{{ i }}"
                                                         [readOnly]="true"
+                                                        [disabled]="!item.calculate"
                                                         [(value)]="item.hanghoa_id"
                                                         [dataSource]="dataSource_HangHoa"
                                                         [displayExpr]="'tenhanghoa'"
@@ -105,6 +106,7 @@
                                                 <td>
                                                     <dx-select-box
                                                         [readOnly]="true"
+                                                        [disabled]="!item.calculate"
                                                         [(value)]="item.dvt_id"
                                                         [dataSource]="dataSource_DonViTinh"
                                                         [displayExpr]="'madonvitinh'"
@@ -118,12 +120,12 @@
                                                     </dx-select-box>
                                                 </td>
                                                 <td [style.min-width.px]="80">
-                                                    <dx-number-box [step]="0" format="#,##0.#######" [(value)]="item.soluong" valueChangeEvent="input" [readOnly]="!item.calculate"></dx-number-box>
+                                                    <dx-number-box [step]="0" format="#,##0.#######" [(value)]="item.soluong" valueChangeEvent="input" [readOnly]="!item.calculate" [disabled]="!item.calculate"></dx-number-box>
                                                 </td>
                                                 <td>
                                                     <dx-number-box [step]="0" format="#,##0.#######" [(value)]="item.soluonglo" valueChangeEvent="input" (click)="onClickLo(i)" [readOnly]="true" [disabled]="!item.calculate"></dx-number-box>
                                                 </td>
-                                                <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich" [readOnly]="!item.calculate"></dx-text-box></td>
+                                                <td [style.min-width.px]="250"><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich' }" [(value)]="item.chuthich" [readOnly]="!item.calculate" [disabled]="!item.calculate"></dx-text-box></td>
                                                 <td>
                                                     <dx-button [icon]="item.hidden ? 'chevronleft' : 'chevrondown'" type="normal" (click)="onCollapseRow(i)" [ngClass]="{ 'hidden': item.calculate }"> </dx-button>
                                                 </td>

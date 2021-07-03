@@ -137,6 +137,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
                 this.phieunhapvattuService.findPhieuNhapVatTu(this.phieunhapvattu_id).subscribe(
                     (data) => {
                         this.phieunhapvattu = data;
+                        this.hanghoas = data.phieunhapvattu_chitiets;
                     },
                     (error) => {
                         this.phieunhapvattuService.handleError(error);
@@ -234,7 +235,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
 
         let phieunhapvattu_req = this.phieunhapvattu;
         phieunhapvattu_req.chinhanh_id = this.currentChiNhanh.id;
-        phieunhapvattu_req.phieunhapvatu_chitiets = hanghoas;
+        phieunhapvattu_req.phieunhapvattu_chitiets = hanghoas;
 
         if (this.isView == 'view_add') {
             this.onAddNew(phieunhapvattu_req);
