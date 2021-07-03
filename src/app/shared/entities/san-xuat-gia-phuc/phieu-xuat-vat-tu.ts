@@ -4,6 +4,12 @@ export class PhieuXuatVatTu{
 
     public phieuxuatvattu_chitiets: PhieuXuatVatTu_ChiTiet[];
 
+    public tendonvigiacong   : string ;
+    public malenhsanxuat     : string ;
+    public tenkhoxuat        : string ;
+    public nguoitao_hoten    : string ;
+    public nguoisua_hoten    : string ;
+
     public id             : number ;
     public chinhanh_id    : number ;
     public kichhoat       : boolean;

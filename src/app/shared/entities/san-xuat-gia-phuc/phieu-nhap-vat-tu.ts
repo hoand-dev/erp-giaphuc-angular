@@ -2,8 +2,14 @@ import { LoHangNhapXuat } from "..";
 
 export class PhieuNhapVatTu{
     
-    public phieunhapvatu_chitiets: PhieuNhapVatTu_ChiTiet[];
+    public phieunhapvattu_chitiets: PhieuNhapVatTu_ChiTiet[];
 
+    public tendonvigiacong   : string ;
+    public malenhsanxuat     : string ;
+    public tenkhonhap        : string ;
+    public nguoitao_hoten    : string ;
+    public nguoisua_hoten    : string ;
+    
     public id             : number ;
     public chinhanh_id    : number ;
     public kichhoat       : boolean;
