@@ -47,6 +47,15 @@
                             <td> <i class="gg-btn gg-remove" (click)="onDelete_Row(item)"></i> </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th [style.min-width.px]="300">TỔNG CỘNG:</th>
+                            <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.lohangs, 'soluong') | number: '1.0-3' }}</th>
+                            <th [style.max-width.px]="20">
+                                <i class="gg-btn gg-add btn-primary" (click)="onAdd_Row()"></i>
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

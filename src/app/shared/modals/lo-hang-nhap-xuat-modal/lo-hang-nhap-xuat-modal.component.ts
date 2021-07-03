@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoHangNhapXuat } from '@app/shared/entities';
+import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import { CommonService, HangHoaService } from '@app/shared/services';
 
 import { AuthenticationService } from '@app/_services';
@@ -29,6 +30,7 @@ export class LoHangNhapXuatModalComponent implements OnInit {
         public bsModalRef: BsModalRef,
         private authenticationService: AuthenticationService,
         private commonService: CommonService,
+        public sumTotal: SumTotalPipe,
         private hanghoaService: HangHoaService
     ) {}
 
