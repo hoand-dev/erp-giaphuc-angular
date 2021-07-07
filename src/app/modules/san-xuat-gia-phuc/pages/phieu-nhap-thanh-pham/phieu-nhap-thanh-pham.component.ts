@@ -207,7 +207,7 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
     }
 
     onRowDelete(row) {
-        let result = confirm(`<i>Bạn có muốn xóa "${ row.data.maphieunhapthanhpham }" này?</i>`, 'Xác nhận xóa');
+        let result = confirm(`<i>Bạn có muốn xóa "${ row.data.maphieu }" này?</i>`, 'Xác nhận xóa');
         result.then((dialogResult) => {
             if (dialogResult) {
                 // gọi service xóa
