@@ -216,40 +216,18 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
     }
 
-    public onclickSoLuongLoi(index) {
-        /* khởi tạo giá trị cho modal */
-        const initialState = {
-            title: 'CHI TIẾT LỖI', // và nhiều hơn thế nữa
-            chitietlois: this.hanghoas[index].chitietlois
-        };
-
-        /* hiển thị modal */
-        this.bsModalRefChild = this.modalService.show(DanhSachLoiModalComponent, { class: 'modal-xl modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
-        this.bsModalRefChild.content.closeBtnName = 'Đóng';
-
-        /* nhận kết quả trả về từ modal sau khi đóng */
-        this.bsModalRefChild.content.onClose.subscribe((result) => {
-            if (result !== false) {
-                this.hanghoas[index].chitietlois = result;
-                let soluongloi: number = 0;
-                result.forEach((e) => {
-                    soluongloi += e.soluong;
-                });
-                this.hanghoas[index].soluongloi = soluongloi;
-            }
-        });
-    }
     
     onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
         if(e.value){
-            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
-                // this.hanghoas[index].malohang = result.malohang;
-                // this.hanghoas[index].hansudung = result.hansudung;
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
+                this.hanghoas[index].malohang = result.malohang;
+                this.hanghoas[index].hansudung = result.hansudung;
             });
         }
         else{
-            // this.hanghoas[index].malohang = null;
-            // this.hanghoas[index].hansudung = null;
+            this.hanghoas[index].malohang = null;
+            this.hanghoas[index].hansudung = null;
         }
     }
 
@@ -295,6 +273,9 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
 
         this.hanghoas[index].khogiacong_id = this.phieunhapthanhpham.khogiacong_id;
         this.hanghoas[index].khonhap_id = this.phieunhapthanhpham.khonhap_id;
+
+        this.onLoadDataSourceLo(index, selected.id);
+
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
         // if (rowsNull.length == 0) {
