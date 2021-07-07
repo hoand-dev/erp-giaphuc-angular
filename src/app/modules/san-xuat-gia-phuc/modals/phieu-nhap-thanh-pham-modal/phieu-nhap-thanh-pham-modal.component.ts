@@ -293,6 +293,8 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
     public onHangHoaChanged(index, e) {
         let selected = e.selectedItem;
 
+        this.hanghoas[index].khogiacong_id = this.phieunhapthanhpham.khogiacong_id;
+        this.hanghoas[index].khonhap_id = this.phieunhapthanhpham.khonhap_id;
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
         // if (rowsNull.length == 0) {
@@ -311,6 +313,20 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
             tongtienhang += v.thanhtien;
         });
         this.phieunhapthanhpham.tongthanhtien = tongtienhang;
+    }
+
+    onFormFieldChanged(e) {
+        if (e.dataField == 'khogiacong_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khogiacong_id = this.phieunhapthanhpham.khogiacong_id;
+            });
+        }
+
+        if (e.dataField == 'khonhap_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khonhap_id = this.phieunhapthanhpham.khonhap_id;
+            });
+        }
     }
 
     onSubmitForm(e) {
