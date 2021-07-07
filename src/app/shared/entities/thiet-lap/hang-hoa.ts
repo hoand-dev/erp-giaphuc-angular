@@ -205,11 +205,6 @@ export class HangHoa_LoHang{
     public hanghoa                : boolean;
     public malohang               : string ;
     public hansudung              : Date   ;
-    public phieunhapthanhpham_id  : number ;
-    public phieunhapkho_id        : number ;
-    public ngaynhapkho            : Date   ;
-    public nhacungcap_id          : number ;
-    public phieunhapkhogiacong_id : number ;
 
     constructor(
         id                     : number  = null,
@@ -224,11 +219,6 @@ export class HangHoa_LoHang{
         hanghoa                : boolean = null,
         malohang               : string  = null,
         hansudung              : Date    = null,
-        phieunhapthanhpham_id  : number  = null,
-        phieunhapkho_id        : number  = null,
-        ngaynhapkho            : Date    = null,
-        nhacungcap_id          : number  = null,
-        phieunhapkhogiacong_id : number  = null,
     ){
         this.id                     = id                     ;
         this.chinhanh_id            = chinhanh_id            ;
@@ -242,11 +232,6 @@ export class HangHoa_LoHang{
         this.hanghoa                = hanghoa                ;
         this.malohang               = malohang               ;
         this.hansudung              = hansudung              ;
-        this.phieunhapthanhpham_id  = phieunhapthanhpham_id  ;
-        this.phieunhapkho_id        = phieunhapkho_id        ;
-        this.ngaynhapkho            = ngaynhapkho            ;
-        this.nhacungcap_id          = nhacungcap_id          ;
-        this.phieunhapkhogiacong_id = phieunhapkhogiacong_id ;
     }
 }
 

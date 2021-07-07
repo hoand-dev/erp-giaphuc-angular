@@ -230,6 +230,7 @@ export class PhieuNhapMuonHangCapNhatComponent implements OnInit {
             this.hanghoas[index].mahanghoa = selected.mahanghoa;
 
             this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].hanghoa_lohang_id = null;
             this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
@@ -243,7 +244,6 @@ export class PhieuNhapMuonHangCapNhatComponent implements OnInit {
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
-        this.hanghoas[index].hanghoa_lohang_id = null;
         this.onLoadDataSourceLo(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
