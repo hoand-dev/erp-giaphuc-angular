@@ -183,6 +183,7 @@ export class LenhSanXuatModalComponent implements OnInit {
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
         } else {
+            this.hanghoas[index].khogiacong_id = this.lenhsanxuat.khogiacong_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
         }
         
@@ -213,6 +214,12 @@ export class LenhSanXuatModalComponent implements OnInit {
         if (e.dataField == 'donvigiacong_id' && e.value !== undefined) {
             let donvigiacong = this.lstDonViGiaCong.find((x) => x.id == this.lenhsanxuat.donvigiacong_id);
             this.lenhsanxuat.khogiacong_id = donvigiacong ? donvigiacong.khogiacong_id : null;
+        }
+
+        if (e.dataField == 'khogiacong_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khogiacong_id = this.lenhsanxuat.khogiacong_id;
+            });
         }
     }
 

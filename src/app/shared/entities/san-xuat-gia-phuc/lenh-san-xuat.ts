@@ -89,6 +89,7 @@ export class LenhSanXuat_ChiTiet{
     public thanhtien: number;
     public chuthich: string;
     public trangthainhap: string;
+    public khogiacong_id: number;
 
     constructor(
         id                : number = null,
@@ -106,6 +107,7 @@ export class LenhSanXuat_ChiTiet{
         thanhtien         : number = 0   ,
         chuthich          : string = null,
         trangthainhap     : string = null,
+        khogiacong_id     : number = null,
     ){
         this.id                = id                ;
         this.lenhsanxuat_id    = lenhsanxuat_id    ;
@@ -122,5 +124,6 @@ export class LenhSanXuat_ChiTiet{
         this.thanhtien         = thanhtien         ;
         this.chuthich          = chuthich          ;
         this.trangthainhap     = trangthainhap     ;
+        this.khogiacong_id     = khogiacong_id     ;
     }
 }
