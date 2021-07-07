@@ -49,7 +49,6 @@
                             "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
                             "node_modules/admin-lte/plugins/jquery-mapael/maps/usa_states.js",
                             "node_modules/admin-lte/plugins/chart.js/Chart.js",
-                            "node_modules/admin-lte/dist/js/pages/dashboard2.js",
 
                             "src/assets/reports/scripts/stimulsoft.reports.js",
                             "src/assets/reports/scripts/stimulsoft.reports.maps.js",

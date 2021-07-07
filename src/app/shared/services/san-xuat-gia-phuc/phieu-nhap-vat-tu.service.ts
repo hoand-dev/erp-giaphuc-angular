@@ -32,7 +32,7 @@ export class PhieuNhapVatTuService extends BaseService {
     }
 
     updatePhieuNhapVatTu(phieunhapnhattu: PhieuNhapVatTu, tattoan: boolean=false): Observable<PhieuNhapVatTu> {
-        return this.httpClient.put<PhieuNhapVatTu>(this.apiUrl + `/${ (tattoan ? `tattoan`: phieunhapnhattu.id) }`, PhieuNhapVatTu);
+        return this.httpClient.put<PhieuNhapVatTu>(this.apiUrl + `/${ (tattoan ? `tattoan`: phieunhapnhattu.id) }`, phieunhapnhattu);
     }
 
     deletePhieuNhapVatTu(id: number): Observable<PhieuNhapVatTu> {

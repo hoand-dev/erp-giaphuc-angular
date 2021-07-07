@@ -248,6 +248,7 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
         } else {
             this.hanghoas[index].khoxuatchuyen_id = this.phieuxuatchuyenkho.khoxuatchuyen_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].hanghoa_lohang_id = null;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
@@ -260,7 +261,6 @@ export class PhieuXuatChuyenKhoCapNhatComponent implements OnInit {
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
-        this.hanghoas[index].hanghoa_lohang_id = null;
         this.onLoadDataSourceLo(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào

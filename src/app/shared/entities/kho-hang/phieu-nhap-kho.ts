@@ -138,6 +138,7 @@ export class PhieuNhapKho_ChiTiet {
     public soluonghong: number;
     public khonhaphong_id: number;
     public xuathoadon: boolean;
+    public taolo: boolean;
     public malohang: string;
     public hansudung: Date;
 
@@ -177,6 +178,7 @@ export class PhieuNhapKho_ChiTiet {
         soluonghong: number = 0,
         khonhaphong_id: number = null,
         trongluong: number = 0,
+        taolo: boolean = false,
         malohang: string = null,
         hansudung: Date = null,
     ) {
@@ -204,5 +206,6 @@ export class PhieuNhapKho_ChiTiet {
         this.trongluong = trongluong;
         this.malohang = malohang;
         this.hansudung = hansudung;
+        this.taolo = taolo;
     }
 }

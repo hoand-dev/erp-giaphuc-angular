@@ -123,7 +123,11 @@
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
+                                                                itemTemplate="itemLo"
                                                             >
+                                                                <div *dxTemplate="let data of 'itemLo'">
+                                                                    <div style="display: inline-block">{{ data.malohang }}, {{ data.hansudung | date:"dd/MM/yy" }} ({{ data.soluong_tonduocxuat }})</div>
+                                                                </div>
                                                             </dx-select-box>
                                                         </td>
                                                        <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box></td>

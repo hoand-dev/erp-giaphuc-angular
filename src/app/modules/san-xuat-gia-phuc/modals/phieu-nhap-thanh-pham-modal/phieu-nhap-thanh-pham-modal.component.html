@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div id="form-container">
                 <form (submit)="onSubmitForm($event)">
-                    <dx-form id="form" [colCount]="12" [formData]="phieunhapthanhpham" [showValidationSummary]="true" [labelLocation]="'top'">
+                    <dx-form id="form" [colCount]="12" [formData]="phieunhapthanhpham" (onFieldDataChanged)="onFormFieldChanged($event)" [showValidationSummary]="true" [labelLocation]="'top'">
                         <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY NHẬP' }" dataField="ngaynhapthanhpham" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                             <dxi-validation-rule type="required" message="Chọn ngày nhập"></dxi-validation-rule>
                         </dxi-item>
@@ -54,7 +54,7 @@
                             <dxi-validation-rule type="required" message="Vui lòng chọn kho gia công"></dxi-validation-rule>
                         </dxi-item>
 
-                        <dxi-item [colSpan]="2" [label]="{ text: 'MÃ LỆNH' }" dataField="malenhsanxuat" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                        <dxi-item [colSpan]="2" [label]="{ text: 'MÃ LỆNH' }" dataField="maphieu" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
                         <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="7"></dxi-item>
                         <dxi-item
                             [colSpan]="3"
@@ -80,12 +80,15 @@
                                             <tr>
                                                 <th [style.min-width.px]="25">STT</th>
                                                 <th [style.min-width.px]="400">THÀNH PHẨM</th>
+                                                <th [style.min-width.px]="80">ĐVT</th>
                                                 <th [style.min-width.px]="80">S.LƯỢNG</th>
+                                                <th [style.min-width.px]="180">LOT</th>
+                                                <th [style.min-width.px]="145">HSD</th>
                                                 <th [style.min-width.px]="120">ĐƠN GIÁ</th>
                                                 <th [style.min-width.px]="120">PHÍ G/C</th>
                                                 <th [style.min-width.px]="250">GHI CHÚ</th>
                                                 <th [style.max-width.px]="40">
-                                                    <!-- <i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i> -->
+                                                    <i class="gg-btn gg-add btn-primary"></i>
                                                 </th>
                                             </tr>
                                         </thead>
@@ -109,7 +112,21 @@
                                                     >
                                                     </dx-select-box>
                                                 </td>
-
+                                                <td>
+                                                    <dx-select-box
+                                                        [readOnly]="true"
+                                                        [(value)]="item.dvt_id"
+                                                        [dataSource]="dataSource_DonViTinh"
+                                                        [displayExpr]="'madonvitinh'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['madonvitinh', 'tendonvitinh']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                    >
+                                                    </dx-select-box>
+                                                </td>
                                                 <td [style.min-width.px]="80">
                                                     <dx-number-box
                                                         [step]="0"
@@ -119,6 +136,27 @@
                                                         (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"
                                                     ></dx-number-box>
                                                 </td>
+                                                <td>
+                                                    <dx-select-box
+                                                        id="lohang_row_{{ i }}"
+                                                        [(value)]="item.hanghoa_lohang_id"
+                                                        [dataSource]="dataSource_LoHang[i]"
+                                                        [displayExpr]="'malohang'"
+                                                        [valueExpr]="'id'"
+                                                        [searchMode]="'contains'"
+                                                        [searchExpr]="['malohang']"
+                                                        [searchTimeout]="500"
+                                                        [searchEnabled]="true"
+                                                        [minSearchLength]="0"
+                                                        (onSelectionChanged)="onValueChangeLoHang(i, $event)"
+                                                        [itemTemplate]="'itemLo'"
+                                                    >
+                                                        <div *dxTemplate="let data of 'itemLo'">
+                                                            <div style="display: inline-block">{{ data.malohang }}, {{ data.hansudung | date:"dd/MM/yy" }}</div>
+                                                        </div>
+                                                    </dx-select-box>
+                                                </td>
+                                                <td><dx-date-box type="date" [(value)]="item.hansudung" [readOnly]="item.hanghoa_lohang_id"></dx-date-box></td>
                                                 <td [style.min-width.px]="120">
                                                     <dx-number-box
                                                         [step]="0"
@@ -139,7 +177,10 @@
                                             <tr>
                                                 <th [style.min-width.px]="25"></th>
                                                 <th [style.min-width.px]="400">TỔNG CỘNG:</th>
+                                                <th [style.min-width.px]="80"></th>
                                                 <th [style.min-width.px]="80">{{ this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3' }}</th>
+                                                <th [style.min-width.px]="180"></th>
+                                                <th [style.min-width.px]="145"></th>
                                                 <th [style.min-width.px]="120"></th>
                                                 <th [style.min-width.px]="120">{{ this.sumTotal.transform(this.hanghoas, 'thanhtien') | number: '1.0-3' }}</th>
                                                 <th [style.min-width.px]="250"></th>

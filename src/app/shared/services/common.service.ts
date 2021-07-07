@@ -75,7 +75,7 @@ export class CommonService extends BaseService{
     hangHoa_TonKhoHienTai(chinhanh_id: number = null, khohang_id: number = null, loaihanghoa: string = null, loadOptions: LoadOptions = null): Observable<HangHoa[]> {
         let query_params: HttpParams = new HttpParams();
         if(loadOptions){
-            ['skip', 'take', 'sort', 'filter', 'searchExpr', 'searchOperation', 'searchValue', 'group'].forEach((i) => {
+            ['skip', 'take', 'sort', 'filter', 'searchExpr', 'searchOperation', 'searchValue', 'group', 'checkdinhmuc'].forEach((i) => {
                 if (i in loadOptions && this.isNotEmpty(loadOptions[i])) query_params = query_params.set(i, JSON.stringify(loadOptions[i]));
             });
         }

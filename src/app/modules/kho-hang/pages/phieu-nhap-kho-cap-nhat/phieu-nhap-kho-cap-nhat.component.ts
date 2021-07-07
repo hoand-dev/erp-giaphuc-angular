@@ -157,8 +157,9 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
     }
 
     onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
         if(e.value){
-            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
                 this.hanghoas[index].malohang = result.malohang;
                 this.hanghoas[index].hansudung = result.hansudung;
             });
@@ -258,6 +259,7 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
         } else {
             this.hanghoas[index].khonhap_id = this.phieunhapkho.khonhap_id;
             this.hanghoas[index].dvt_id = selected.dvt_id;
+            this.hanghoas[index].hanghoa_lohang_id = null;
 
             this.hanghoas[index].dongia = selected.gianhap == null ? 0 : selected.gianhap;
             this.hanghoas[index].thanhtien = this.hanghoas[index].soluong * this.hanghoas[index].dongia;
@@ -270,7 +272,6 @@ export class PhieuNhapKhoCapNhatComponent implements OnInit {
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
 
-        this.hanghoas[index].hanghoa_lohang_id = null;
         this.onLoadDataSourceLo(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào

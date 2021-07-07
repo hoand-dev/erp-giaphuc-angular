@@ -225,8 +225,9 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     }
 
     onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
         if(e.value){
-            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
                 this.hanghoas[index].malohang = result.malohang;
                 this.hanghoas[index].hansudung = result.hansudung;
             });
@@ -326,6 +327,8 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        this.onLoadDataSourceLo(index, this.hanghoas[index].thanhpham_id);
     }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {

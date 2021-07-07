@@ -276,8 +276,9 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
     }
 
     onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
         if(e.value){
-            this.hanghoaService.findLoHang(e.value).toPromise().then((result) => {
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
                 this.hanghoas[index].malohang = result.malohang;
                 this.hanghoas[index].hansudung = result.hansudung;
             });

@@ -1,9 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DanhSachLoiModalComponent } from '@app/modules/san-xuat/modals';
 import { ChiNhanh, PhieuNhapThanhPham, PhieuNhapThanhPham_ChiTiet } from '@app/shared/entities';
 import { ETrangThaiPhieu } from '@app/shared/enums';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
-import { CommonService, DonViGiaCongService, HangHoaService, KhoHangService, LenhSanXuatService, PhieuNhapThanhPhamService } from '@app/shared/services';
+import { CommonService, DonViGiaCongService, DonViTinhService, HangHoaService, KhoHangService, LenhSanXuatService, PhieuNhapThanhPhamService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
@@ -42,6 +43,8 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
     public dataSource_DonViGiaCong: DataSource;
     public dataSource_HangHoa: DataSource;
     public dataSource_KhoHang: DataSource;
+    protected dataSource_DonViTinh: DataSource;
+    public dataSource_LoHang: DataSource[] = [];
 
     public hanghoas: PhieuNhapThanhPham_ChiTiet[] = [];
 
@@ -58,6 +61,7 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
         private phieunhapthanhphamService: PhieuNhapThanhPhamService,
         private lenhsanxuatService: LenhSanXuatService,
         private donvigiacongService: DonViGiaCongService,
+        private donvitinhService: DonViTinhService,
         private hanghoaService: HangHoaService,
         private khohangService: KhoHangService,
         public sumTotal: SumTotalPipe,
@@ -91,6 +95,16 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
                         });
                     })
                 );
+            })
+        );
+
+        this.subscriptions.add(
+            this.donvitinhService.findDonViTinhs().subscribe((x) => {
+                this.dataSource_DonViTinh = new DataSource({
+                    store: x,
+                    paginate: true,
+                    pageSize: 50
+                });
             })
         );
 
@@ -187,6 +201,7 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
                         item.chuthich = value.chuthich;
                         item.lenhsanxuat_chitiet_id = value.id;
 
+                        this.onLoadDataSourceLo(index, value.hanghoa_id);
                         this.hanghoas.push(item);
                     }
                 });
@@ -199,6 +214,47 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
 
     drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.hanghoas, event.previousIndex, event.currentIndex);
+    }
+
+    
+    onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
+        if(e.value){
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
+                this.hanghoas[index].malohang = result.malohang;
+                this.hanghoas[index].hansudung = result.hansudung;
+            });
+        }
+        else{
+            this.hanghoas[index].malohang = null;
+            this.hanghoas[index].hansudung = null;
+        }
+    }
+
+    onLoadDataSourceLo(index, hanghoa_id) {
+        this.dataSource_LoHang[index] = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoaLoHang_TonKhoHienTai(this.currentChiNhanh.id, null, hanghoa_id, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findLoHang(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
     }
 
     public onHangHoaAdd() {
@@ -214,6 +270,11 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
 
     public onHangHoaChanged(index, e) {
         let selected = e.selectedItem;
+
+        this.hanghoas[index].khogiacong_id = this.phieunhapthanhpham.khogiacong_id;
+        this.hanghoas[index].khonhap_id = this.phieunhapthanhpham.khonhap_id;
+
+        this.onLoadDataSourceLo(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         // let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);
@@ -233,6 +294,20 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
             tongtienhang += v.thanhtien;
         });
         this.phieunhapthanhpham.tongthanhtien = tongtienhang;
+    }
+
+    onFormFieldChanged(e) {
+        if (e.dataField == 'khogiacong_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khogiacong_id = this.phieunhapthanhpham.khogiacong_id;
+            });
+        }
+
+        if (e.dataField == 'khonhap_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khonhap_id = this.phieunhapthanhpham.khonhap_id;
+            });
+        }
     }
 
     onSubmitForm(e) {

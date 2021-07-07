@@ -251,12 +251,11 @@
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
-                                                                valueChangeEvent="input"
-                                                                (onValueChanged)="onValueChangeLoHang(i, $event)"
+                                                                (onSelectionChanged)="onValueChangeLoHang(i, $event)"
                                                             >
                                                             </dx-select-box>
                                                         </td>
-                                                        <td><dx-text-box [(value)]="item.malohang"></dx-text-box></td>
+                                                        <td><dx-text-box [(value)]="item.malohang" [readOnly]="item.hanghoa_lohang_id"></dx-text-box></td>
                                                         <td>
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia" valueChangeEvent="input" (onValueChanged)="onHangHoaChangeRow('dongia', i, $event)"></dx-number-box>
                                                         </td>
