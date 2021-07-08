@@ -11,6 +11,8 @@ import notify from 'devextreme/ui/notify';
 import { confirm } from 'devextreme/ui/dialog';
 import { PhieuNhapVatTuModalComponent } from '../../modals/phieu-nhap-vat-tu-modal/phieu-nhap-vat-tu-modal.component';
 import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
+import { PhieuNhapVatTu } from '@app/shared/entities';
+import { PhieuNhapVatTuInPhieuModalComponent } from '../../modals/phieu-nhap-vat-tu-in-phieu-modal/phieu-nhap-vat-tu-in-phieu-modal.component';
 
 @Component({
     selector: 'app-phieu-nhap-vat-tu',
@@ -23,6 +25,7 @@ export class PhieuNhapVatTuComponent implements OnInit, OnDestroy {
     /* tối ưu subscriptions */
     public subscriptions: Subscription = new Subscription();
     public bsModalRefChild: BsModalRef;
+    public bsModalRef: BsModalRef;
 
     /* Khai báo thời gian bắt đầu và kết thúc */
     public firstDayTime: Date;
@@ -124,6 +127,39 @@ export class PhieuNhapVatTuComponent implements OnInit, OnDestroy {
             initialState
         });
         this.bsModalRefChild.content.closeBtnName = 'Đóng';
+    }
+
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+            e.items.push(
+                {
+                    text: 'In Phiếu Nhập Vật Tư',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuNhapVatTu = e.row.key as PhieuNhapVatTu;
+
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN PHIẾU NHẬP VẬT TƯ',
+                            phieunhapvattu_id: rowData.id
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapVatTuInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+            );
+        }
     }
 
     onAddNew() {

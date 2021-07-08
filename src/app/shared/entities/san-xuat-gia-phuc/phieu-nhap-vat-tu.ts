@@ -9,6 +9,11 @@ export class PhieuNhapVatTu{
     public tenkhonhap        : string ;
     public nguoitao_hoten    : string ;
     public nguoisua_hoten    : string ;
+
+    public ngaylapphieu: string
+    public inphieu_thoigian: string;
+    public inphieu_hoten: string;
+    public tentaixe: string;
     
     public id             : number ;
     public chinhanh_id    : number ;
@@ -69,6 +74,11 @@ export class PhieuNhapVatTu{
 
 export class PhieuNhapVatTu_ChiTiet{
     public hidden: boolean = true;
+
+    public tendonvitinh: string;
+    public tenhanghoa: string;
+    public tentiengtrung: string;
+    public tenthanhpham: string;
     
     public soluongdinhmuc    : number = 0           ;
     public lohangstr         : string               ;

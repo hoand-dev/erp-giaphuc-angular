@@ -10,6 +10,14 @@ export class PhieuXuatVatTu{
     public nguoitao_hoten    : string ;
     public nguoisua_hoten    : string ;
 
+    public ngaylapphieu: string
+    public inphieu_thoigian: string;
+    public inphieu_hoten: string;
+    public tentaixe: string;
+
+    loaiphieuin: string;
+    public tenkhogiacong: string;
+
     public id             : number ;
     public chinhanh_id    : number ;
     public kichhoat       : boolean;
@@ -73,6 +81,11 @@ export class PhieuXuatVatTu_ChiTiet{
     public soluongdinhmuc: number = 0;
     public lohangstr: string;
     public lohangs: LoHangNhapXuat[] = [];
+
+    public tendonvitinh: string;
+    public tenhanghoa: string;
+    public tentiengtrung: string;
+    public tenthanhpham: string;
 
     public id                : number;
     public phieuxuatvattu_id : number;

@@ -1,6 +1,11 @@
 export class PhieuNhapThanhPham {
     public phieunhapthanhpham_chitiets: PhieuNhapThanhPham_ChiTiet[];
 
+    
+    public ngaylapphieu: string
+    public inphieu_thoigian: string;
+    public inphieu_hoten: string;
+
     public tendonvigiacong   : string ;
     public malenhsanxuat     : string ;
     public tenkhonhap        : string ;
@@ -70,6 +75,8 @@ export class PhieuNhapThanhPham {
 export class PhieuNhapThanhPham_ChiTiet {
     public malohang:  string;
     public hansudung: Date;
+    public tenhanghoa: string;
+    public tendonvitinh: string;
 
     public id                    : number;
     public phieunhapthanhpham_id : number;

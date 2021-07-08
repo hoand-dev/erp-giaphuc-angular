@@ -15,9 +15,14 @@ import { PhieuNhapThanhPhamModalComponent } from './modals/phieu-nhap-thanh-pham
 
 import { DanhSachLenhSanXuatModalComponent } from './modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
 import { DanhSachPhieuXuatVatTuModalComponent } from './modals/danh-sach-phieu-xuat-vat-tu-modal/danh-sach-phieu-xuat-vat-tu-modal.component';
+import { PhieuXuatVatTuInPhieuModalComponent } from './modals/phieu-xuat-vat-tu-in-phieu-modal/phieu-xuat-vat-tu-in-phieu-modal.component';
+import { PhieuNhapThanhPhamInPhieuModalComponent } from './modals/phieu-nhap-thanh-pham-in-phieu-modal/phieu-nhap-thanh-pham-in-phieu-modal.component';
+import { PhieuNhapVatTuInPhieuModalComponent } from './modals/phieu-nhap-vat-tu-in-phieu-modal/phieu-nhap-vat-tu-in-phieu-modal.component';
+
+
 
 @NgModule({
-  declarations: [LenhSanXuatComponent, LenhSanXuatModalComponent, PhieuXuatVatTuModalComponent, PhieuXuatVatTuComponent, PhieuNhapVatTuModalComponent, DanhSachLenhSanXuatModalComponent, DanhSachPhieuXuatVatTuModalComponent, PhieuNhapVatTuComponent, PhieuNhapThanhPhamModalComponent, PhieuNhapThanhPhamComponent],
+  declarations: [LenhSanXuatComponent, LenhSanXuatModalComponent, PhieuXuatVatTuModalComponent, PhieuXuatVatTuComponent, PhieuNhapVatTuModalComponent, DanhSachLenhSanXuatModalComponent, DanhSachPhieuXuatVatTuModalComponent, PhieuNhapVatTuComponent, PhieuNhapThanhPhamModalComponent, PhieuNhapThanhPhamComponent, PhieuXuatVatTuInPhieuModalComponent, PhieuNhapThanhPhamInPhieuModalComponent, PhieuNhapVatTuInPhieuModalComponent],
   imports: [
     CommonModule,
     SharedModule,
