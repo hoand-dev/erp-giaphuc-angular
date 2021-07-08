@@ -1,6 +1,7 @@
 import { ChiNhanh, KhachHang, LoHangNhapXuat, PhieuXuatKho, PhieuXuatKho_ChiTiet } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import _  from 'lodash';
 import Swal from 'sweetalert2';
 import notify from 'devextreme/ui/notify';
 import DataSource from 'devextreme/data/data_source';
@@ -377,7 +378,7 @@ export class PhieuXuatKhoThemMoiComponent implements OnInit {
             title: 'CHI TIẾT LÔ', // và nhiều hơn thế nữa
             khohang_id: this.phieuxuatkho.khoxuat_id,
             hanghoa_id: this.hanghoas[index].hanghoa_id,
-            lohangs: this.hanghoas[index].lohangs
+            lohangs: _.cloneDeep(this.hanghoas[index].lohangs)
         };
 
         /* hiển thị modal */
