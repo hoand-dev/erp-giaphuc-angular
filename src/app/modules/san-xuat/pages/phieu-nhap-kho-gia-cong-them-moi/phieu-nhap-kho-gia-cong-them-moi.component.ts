@@ -25,6 +25,7 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import _  from 'lodash';
 import Swal from 'sweetalert2';
 import { DanhSachChiPhiModalComponent } from '../../modals/danh-sach-chi-phi-modal/danh-sach-chi-phi-modal.component';
 import { DanhSachLoiModalComponent } from '../../modals/danh-sach-loi-modal/danh-sach-loi-modal.component';
@@ -416,7 +417,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHI TIẾT LỖI', // và nhiều hơn thế nữa
-            chitietlois: this.hanghoas[index].chitietlois
+            chitietlois: _.cloneDeep(this.hanghoas[index].chitietlois)
         };
 
         /* hiển thị modal */
@@ -440,7 +441,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHI PHÍ PHÁT SINH', // và nhiều hơn thế nữa
-            chitietphiphatsinhs: this.hanghoas[index].chitietphiphatsinhs
+            chitietphiphatsinhs: _.cloneDeep(this.hanghoas[index].chitietphiphatsinhs)
         };
 
         /* hiển thị modal */

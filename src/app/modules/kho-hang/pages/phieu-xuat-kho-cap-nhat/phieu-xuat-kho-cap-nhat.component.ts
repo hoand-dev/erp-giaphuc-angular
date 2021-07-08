@@ -16,6 +16,7 @@ import { HangHoaService } from '@app/shared/services';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import moment from 'moment';
+import _  from 'lodash';
 import CustomStore from 'devextreme/data/custom_store';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -258,7 +259,7 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
             title: 'CHI TIẾT LÔ', // và nhiều hơn thế nữa
             khohang_id: this.phieuxuatkho.khoxuat_id,
             hanghoa_id: this.hanghoas[index].hanghoa_id,
-            lohangs: this.hanghoas[index].lohangs
+            lohangs: _.cloneDeep(this.hanghoas[index].lohangs)
         };
 
         /* hiển thị modal */
