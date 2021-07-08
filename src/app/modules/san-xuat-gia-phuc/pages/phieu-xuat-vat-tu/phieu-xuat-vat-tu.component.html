@@ -46,6 +46,7 @@
                             [allowColumnReordering]="true"
                             [stateStoring]="stateStoringGrid"
                             (onRowDblClick)="onRowDblClick($event)"
+                            (onContextMenuPreparing)="addMenuItems($event)"
                         >
                             <dxo-selection mode="single"></dxo-selection>
                             <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export>
