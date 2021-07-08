@@ -11,6 +11,7 @@ import moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
+import { PhieuNhapThanhPhamInPhieuModalComponent } from '../../modals/phieu-nhap-thanh-pham-in-phieu-modal/phieu-nhap-thanh-pham-in-phieu-modal.component';
 import { PhieuNhapThanhPhamModalComponent } from '../../modals/phieu-nhap-thanh-pham-modal/phieu-nhap-thanh-pham-modal.component';
 
 @Component({
@@ -24,6 +25,7 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
     /* tối ưu subscriptions */
     public subscriptions: Subscription = new Subscription();
     public bsModalRefChild: BsModalRef;
+    public bsModalRef: BsModalRef;
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
@@ -109,6 +111,66 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
         return this.dataGrid.instance.pageIndex() * this.dataGrid.instance.pageSize() + rowIndex + 1;
     }
 
+    addMenuItems(e) {
+        if (e.row.rowType === 'data') {
+            // e.items can be undefined
+            if (!e.items) e.items = [];
+            e.items.push(
+                {
+                    text: 'In Phiếu Nhập Thành Phẩm',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuNhapThanhPham = e.row.key as PhieuNhapThanhPham;
+
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN PHIẾU NHẬP THÀNH PHẨM',
+                            phieunhapthanhpham_id: rowData.id,
+                            loaiphieuin: 'nhapthanhpham'
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                },
+                {
+                    text: 'In Tem Kiện',
+                    icon: 'print',
+                    visible: 'true',
+
+                    onItemClick: () => {
+                        let rowData: PhieuNhapThanhPham = e.row.key as PhieuNhapThanhPham;
+
+                        /*Khởi tạo giá trị trên modal */
+                        const initialState = {
+                            title: 'IN TEM KIỆN',
+                            phieunhapthanhpham_id: rowData.id,
+                            loaiphieuin: 'temkien'
+                        };
+
+                        /* Hiển thị trên modal */
+                        this.bsModalRef = this.modalService.show(PhieuNhapThanhPhamInPhieuModalComponent, {
+                            class: 'modal-xl modal-dialog-centered',
+                            ignoreBackdropClick: false,
+                            keyboard: false,
+                            initialState
+                        });
+                        this.bsModalRef.content.closeBtnName = 'Đóng';
+                    }
+                }
+
+            );
+        }
+    }
+
     openViewModal(rowData: PhieuNhapThanhPham) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
@@ -128,6 +190,7 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
     }
 
     onRowDblClick(e) {
+        console.log(`phieunhapthanhpham_id: ${e.key.id}`);
         let rowData: PhieuNhapThanhPham = e.key;
         this.openViewModal(rowData);
     }
