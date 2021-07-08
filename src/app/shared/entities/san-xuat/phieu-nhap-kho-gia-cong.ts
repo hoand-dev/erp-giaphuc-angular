@@ -1,14 +1,14 @@
 export class PhieuNhapKhoGiaCong {
     public phieunhapkhogiacong_chitiets: PhieuNhapKhoGiaCongCT[];
 
-    nhanviensale_hoten: string;
-    biensoxe: string;
-    ngaylapphieu: string;
-    inphieu_thoigian: string;
-    inphieu_hoten: string;
-    tentaixe: string;
+    public nhanviensale_hoten: string;
+    public biensoxe: string;
+    public ngaylapphieu: string;
+    public inphieu_thoigian: string;
+    public inphieu_hoten: string;
+    public tentaixe: string;
 
-    tenkhoxuat: string;
+    public tenkhoxuat: string;
 
     public tendonvigiacong: string;
     public tenkhogiacong: string;
