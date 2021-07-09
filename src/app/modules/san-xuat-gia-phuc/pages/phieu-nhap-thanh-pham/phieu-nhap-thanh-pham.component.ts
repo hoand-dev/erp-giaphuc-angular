@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { PhieuNhapThanhPham } from '@app/shared/entities';
+import { ETrangThaiPhieu } from '@app/shared/enums';
 import { AppInfoService, CommonService, PhieuNhapThanhPhamService } from '@app/shared/services';
 import { AuthenticationService } from '@app/_services';
 import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
@@ -224,7 +225,7 @@ export class PhieuNhapThanhPhamComponent implements OnInit, OnDestroy {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHỌN LỆNH SẢN XUẤT',
-            isView: 'view_add'
+            trangthainhap: [ETrangThaiPhieu.chuanhap, ETrangThaiPhieu.dangnhap, null]
         };
 
         /* hiển thị modal */

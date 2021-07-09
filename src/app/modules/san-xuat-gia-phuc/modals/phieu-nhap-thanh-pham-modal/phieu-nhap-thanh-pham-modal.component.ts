@@ -159,7 +159,8 @@ export class PhieuNhapThanhPhamModalComponent implements OnInit {
     openModal() {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'DANH SÁCH LỆNH SẢN XUẤT'
+            title: 'CHỌN LỆNH SẢN XUẤT',
+            trangthainhap: [ETrangThaiPhieu.danhap]
         };
 
         /* hiển thị modal */

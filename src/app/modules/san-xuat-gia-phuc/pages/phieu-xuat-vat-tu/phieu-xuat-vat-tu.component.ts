@@ -184,7 +184,7 @@ export class PhieuXuatVatTuComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHỌN LỆNH SẢN XUẤT',
-            isView: 'view_add'
+            trangthainhap: [ETrangThaiPhieu.chuanhap, null]
         };
 
         /* hiển thị modal */
