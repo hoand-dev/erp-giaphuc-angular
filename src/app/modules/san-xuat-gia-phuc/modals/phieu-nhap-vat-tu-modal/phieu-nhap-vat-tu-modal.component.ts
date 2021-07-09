@@ -46,7 +46,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
     public dataSource_DonViTinh: DataSource;
 
     public hanghoas: PhieuNhapVatTu_ChiTiet[] = [];
-
+    private hanghoalenght: number = 0;
 
     public buttonSubmitOptions: any = {
         text: 'Lưu lại',
@@ -136,6 +136,7 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
             this.subscriptions.add(
                 this.phieunhapvattuService.findPhieuNhapVatTu(this.phieunhapvattu_id).subscribe(
                     (data) => {
+                        this.hanghoalenght = data.phieunhapvattu_chitiets.length;
                         this.phieunhapvattu = data;
                         this.hanghoas = data.phieunhapvattu_chitiets;
                     },
@@ -180,6 +181,16 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
                     this.phieunhapvattuService.handleError(error);
                 }
             );
+        }
+    }
+
+    public onHangHoaChanged(index, e) {
+        let selected = e.selectedItem;
+        if (this.hanghoalenght > 0) {
+            this.hanghoalenght--;
+            this.hanghoas[index].lohangs = JSON.parse(this.hanghoas[index].lohangstr);
+        } else {
+            this.hanghoas[index].khonhap_id = this.phieunhapvattu.khonhap_id;
         }
     }
 
@@ -229,6 +240,20 @@ export class PhieuNhapVatTuModalComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    onFormFieldChanged(e) {
+        if (e.dataField == 'khogiacong_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khogiacong_id = this.phieunhapvattu.khogiacong_id;
+            });
+        }
+
+        if (e.dataField == 'khonhap_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khonhap_id = this.phieunhapvattu.khonhap_id;
+            });
+        }
+    }
+    
     onSubmitForm(e) {
         if (!this.frmphieunhapvattu.instance.validate().isValid) return;
         let hanghoas = this.hanghoas.filter((x) => x.hanghoa_id != null);

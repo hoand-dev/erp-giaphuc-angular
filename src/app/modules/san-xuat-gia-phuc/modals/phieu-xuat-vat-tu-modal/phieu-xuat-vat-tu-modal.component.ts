@@ -45,6 +45,7 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
     public dataSource_KhoHang: DataSource;
     protected dataSource_DonViTinh: DataSource;
 
+    private hanghoalenght: number = 0;
     public saveProcessing = false;
 
     constructor(
@@ -129,6 +130,7 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
             this.subscriptions.add(
                 this.phieuxuatvattuService.findPhieuXuatVatTu(this.phieuxuatvattu_id).subscribe(
                     (data) => {
+                        this.hanghoalenght = data.phieuxuatvattu_chitiets.length;
                         this.phieuxuatvattu = data;
                         this.hanghoas = data.phieuxuatvattu_chitiets;
                     },
@@ -179,6 +181,16 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
+    public onHangHoaChanged(index, e) {
+        let selected = e.selectedItem;
+        if (this.hanghoalenght > 0) {
+            this.hanghoalenght--;
+            this.hanghoas[index].lohangs = JSON.parse(this.hanghoas[index].lohangstr);
+        } else {
+            this.hanghoas[index].khoxuat_id = this.phieuxuatvattu.khoxuat_id;
+        }
+    }
+
     onClickLo(index) {
         if (!this.hanghoas[index].hanghoa_id) {
             custom({ messageHtml: 'Vui lòng chọn hàng hoá.', showTitle: false }).show();
@@ -219,6 +231,20 @@ export class PhieuXuatVatTuModalComponent implements OnInit {
     onHiddenOf(id){
         let row = this.hanghoas.find(x => x.lenhsanxuat_chitiet_id == id && x.calculate == false);
         return row.hidden;
+    }
+
+    onFormFieldChanged(e) {
+        if (e.dataField == 'khogiacong_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khogiacong_id = this.phieuxuatvattu.khogiacong_id;
+            });
+        }
+
+        if (e.dataField == 'khoxuat_id' && e.value !== undefined) {
+            this.hanghoas.forEach((v, i) => {
+                v.khoxuat_id = this.phieuxuatvattu.khoxuat_id;
+            });
+        }
     }
 
     onSubmitForm(e) {

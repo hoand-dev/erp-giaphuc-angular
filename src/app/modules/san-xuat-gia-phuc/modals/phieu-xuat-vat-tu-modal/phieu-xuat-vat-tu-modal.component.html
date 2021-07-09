@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div id="form-container">
                 <form (submit)="onSubmitForm($event)">
-                    <dx-form id="form" [colCount]="12" [formData]="phieuxuatvattu" [showValidationSummary]="true" [labelLocation]="'top'">
+                    <dx-form id="form" [colCount]="12" [formData]="phieuxuatvattu" (onFieldDataChanged)="onFormFieldChanged($event)" [showValidationSummary]="true" [labelLocation]="'top'">
                         <dxi-item [colSpan]="2" [label]="{ text: 'NGÀY XUẤT VẬT TƯ' }" dataField="ngayxuatvattu" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
                             <dxi-validation-rule type="required" message="Chọn ngày xuất"></dxi-validation-rule>
                         </dxi-item>
@@ -100,6 +100,7 @@
                                                         [searchTimeout]="500"
                                                         [searchEnabled]="true"
                                                         [minSearchLength]="0"
+                                                        (onSelectionChanged)="onHangHoaChanged(i, $event)"
                                                     >
                                                     </dx-select-box>
                                                 </td>

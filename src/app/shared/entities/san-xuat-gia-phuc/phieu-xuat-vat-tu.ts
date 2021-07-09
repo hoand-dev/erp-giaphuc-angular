@@ -98,7 +98,9 @@ export class PhieuXuatVatTu_ChiTiet{
     public chuthich          : string;
     public soluonglo         : number;
     public calculate         : boolean;
-    public lenhsanxuat_chitiet_id : number;
+    public lenhsanxuat_chitiet_id : number ;
+    public khogiacong_id          : number ;
+    public khoxuat_id             : number ;
     
     constructor (
         id                : number  = null  ,
@@ -112,7 +114,9 @@ export class PhieuXuatVatTu_ChiTiet{
         chuthich          : string  = null  ,
         soluonglo         : number  = 0     ,
         calculate         : boolean = false ,
-        lenhsanxuat_chitiet_id : number = null,
+        lenhsanxuat_chitiet_id : number = null ,
+        khogiacong_id          : number = null ,
+        khoxuat_id             : number = null ,
     ){
         this.id                = id                ;
         this.phieuxuatvattu_id = phieuxuatvattu_id ;
@@ -126,5 +130,7 @@ export class PhieuXuatVatTu_ChiTiet{
         this.soluonglo         = soluonglo         ;
         this.calculate         = calculate         ;
         this.lenhsanxuat_chitiet_id = lenhsanxuat_chitiet_id ;
+        this.khogiacong_id          = khogiacong_id          ;
+        this.khoxuat_id             = khoxuat_id             ;
     }
 }
