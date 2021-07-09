@@ -169,21 +169,22 @@
         </PageHeaderBand1>
         <ReportTitleBand1 Ref="11" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,1.8,19.98,2.8</ClientRectangle>
+          <ClientRectangle>0,1.8,19.98,3.2</ClientRectangle>
           <Components isList="true" count="13">
             <Text6 Ref="12" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,20,0.8</ClientRectangle>
+              <ClientRectangle>0,0,20,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Times New Roman,16,Bold</Font>
+              <Font>Times New Roman,14,Bold</Font>
               <Guid>3d92ff06a0134c6fbd0ed5314d1f40e5</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="7" />
               <Parent isRef="11" />
-              <Text>PHIẾU NHẬP THÀNH PHẨM</Text>
+              <Text>PHIẾU NHẬP THÀNH PHẨM
+(成品入库单)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -191,7 +192,7 @@
             <Text8 Ref="13" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,1.4,4.2,0.6</ClientRectangle>
+              <ClientRectangle>0,1.8,6.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>fc2a6f9263204e2aa0546da09a4a43ca</Guid>
@@ -199,7 +200,7 @@
               <Name>Text8</Name>
               <Page isRef="7" />
               <Parent isRef="11" />
-              <Text>Kho Xuất thành phẩm:</Text>
+              <Text>Kho Xuất thành phẩm 成品出货仓):</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -207,7 +208,7 @@
             <Text9 Ref="14" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,2,4.2,0.6</ClientRectangle>
+              <ClientRectangle>0,2.4,6.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>32ea5eb11aaa47e5b93a49b6f0e6d7c7</Guid>
@@ -215,7 +216,7 @@
               <Name>Text9</Name>
               <Page isRef="7" />
               <Parent isRef="11" />
-              <Text>Kho Nhập thành phẩm:</Text>
+              <Text>Kho Nhập thành phẩm (成品入货仓):</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -223,7 +224,7 @@
             <Text10 Ref="15" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4.2,1.4,10.6,0.6</ClientRectangle>
+              <ClientRectangle>6.4,1.8,8.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>1354b47645284f0c9b2026f75d64e8f7</Guid>
@@ -239,7 +240,7 @@
             <Text11 Ref="16" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4.2,2,7.8,0.6</ClientRectangle>
+              <ClientRectangle>6.6,2.4,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>59161e4284cc4296ade39e501518305e</Guid>
@@ -255,7 +256,7 @@
             <Text15 Ref="17" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,0.8,3.4,0.6</ClientRectangle>
+              <ClientRectangle>16.6,1.2,3.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>8b2268bb7fe64303b8780eac6291bdf6</Guid>
@@ -272,7 +273,7 @@
             <Text4 Ref="18" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.8,4.2,0.6</ClientRectangle>
+              <ClientRectangle>0,1.2,6.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>068ba4c5df41466fa59758309984ec98</Guid>
@@ -280,7 +281,7 @@
               <Name>Text4</Name>
               <Page isRef="7" />
               <Parent isRef="11" />
-              <Text>Ngày nhập thành phẩm:</Text>
+              <Text>Ngày nhập thành phẩm (制作日期):</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -288,7 +289,7 @@
             <Text41 Ref="19" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>4.2,0.8,10.6,0.6</ClientRectangle>
+              <ClientRectangle>6.4,1.2,8.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>6eb3d54bd9114be6b30aa9bf3143990b</Guid>
@@ -304,7 +305,7 @@
             <Text37 Ref="20" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>16.6,1.4,3.4,0.6</ClientRectangle>
+              <ClientRectangle>16.6,1.8,3.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>1106f17b32874b268a688d44ae0b6fe2</Guid>
@@ -321,7 +322,7 @@
             <Text13 Ref="21" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>12,2,1.8,0.6</ClientRectangle>
+              <ClientRectangle>12.4,2.4,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <Guid>c1ef674dbef84acfada455224b5acfb2</Guid>
@@ -337,7 +338,7 @@
             <Text16 Ref="22" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>13.8,2,6.2,0.6</ClientRectangle>
+              <ClientRectangle>14.2,2.4,5.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11</Font>
               <Guid>ffb4798fa4fa451db7f0d76e5ccf55c9</Guid>
@@ -353,7 +354,7 @@
             </Text16>
             <Text26 Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.8,0.8,1.8,0.6</ClientRectangle>
+              <ClientRectangle>14.8,1.2,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <HorAlignment>Right</HorAlignment>
@@ -367,7 +368,7 @@
             </Text26>
             <Text29 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>14.8,1.4,1.8,0.6</ClientRectangle>
+              <ClientRectangle>14.8,1.8,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,11,Bold</Font>
               <HorAlignment>Right</HorAlignment>
@@ -388,7 +389,7 @@
         </ReportTitleBand1>
         <ColumnHeaderBand1 Ref="25" type="Stimulsoft.Report.Components.StiColumnHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,5.4,19.98,0.6</ClientRectangle>
+          <ClientRectangle>0,5.8,19.98,0.6</ClientRectangle>
           <Components isList="true" count="6">
             <Text18 Ref="26" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -419,8 +420,9 @@
               <Name>Text19</Name>
               <Page isRef="7" />
               <Parent isRef="25" />
-              <Text>TÊN HÀNG HÓA</Text>
+              <Text>TÊN HÀNG HÓA (产品名称)</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text19>
             <Text20 Ref="28" type="Text" isKey="true">
@@ -451,8 +453,9 @@
               <Name>Text22</Name>
               <Page isRef="7" />
               <Parent isRef="25" />
-              <Text>GHI CHÚ</Text>
+              <Text>GHI CHÚ (备注)</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text22>
             <Text2 Ref="30" type="Text" isKey="true">
@@ -484,7 +487,7 @@
               <Name>Text5</Name>
               <Page isRef="7" />
               <Parent isRef="25" />
-              <Text>SỐ LOT</Text>
+              <Text>SỐ LOT (批号)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -501,7 +504,7 @@
           <BusinessObjectGuid isNull="true" />
           <CanGrow>False</CanGrow>
           <CanShrink>True</CanShrink>
-          <ClientRectangle>0,6.8,19.98,0.8</ClientRectangle>
+          <ClientRectangle>0,7.2,19.98,0.8</ClientRectangle>
           <Components isList="true" count="6">
             <Text23 Ref="33" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -614,7 +617,7 @@
         </DataBand1>
         <ColumnFooterBand1 Ref="39" type="Stimulsoft.Report.Components.StiColumnFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,8.4,19.98,0.6</ClientRectangle>
+          <ClientRectangle>0,8.8,19.98,0.6</ClientRectangle>
           <Components isList="true" count="3">
             <Text28 Ref="40" type="Text" isKey="true">
               <Border>All;[127:127:127];1;Solid;False;4;Black</Border>
@@ -628,7 +631,7 @@
               <Name>Text28</Name>
               <Page isRef="7" />
               <Parent isRef="39" />
-              <Text>TỔNG CỘNG</Text>
+              <Text>TỔNG CỘNG (总计): </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
@@ -674,7 +677,7 @@
         </ColumnFooterBand1>
         <Footer Ref="43" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,9.8,19.98,2.2</ClientRectangle>
+          <ClientRectangle>0,10.2,19.98,2.2</ClientRectangle>
           <Components isList="true" count="6">
             <Text31 Ref="44" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -687,8 +690,9 @@
               <Name>Text31</Name>
               <Page isRef="7" />
               <Parent isRef="43" />
-              <Text>Người lập phiếu</Text>
+              <Text>Người lập phiếu (制作人)</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text31>
             <Text32 Ref="45" type="Text" isKey="true">
@@ -702,7 +706,7 @@
               <Name>Text32</Name>
               <Page isRef="7" />
               <Parent isRef="43" />
-              <Text>Người kiểm tra</Text>
+              <Text>Người kiểm tra (检查人)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -718,8 +722,9 @@
               <Name>Text33</Name>
               <Page isRef="7" />
               <Parent isRef="43" />
-              <Text>Thủ kho</Text>
+              <Text>Thủ kho (仓库员)</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text33>
             <Text34 Ref="47" type="Text" isKey="true">
@@ -733,8 +738,9 @@
               <Name>Text34</Name>
               <Page isRef="7" />
               <Parent isRef="43" />
-              <Text>(Ký, họ tên)</Text>
+              <Text>(Ký, họ tên) (签字 (写姓名）</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text34>
             <Text35 Ref="48" type="Text" isKey="true">
@@ -748,8 +754,9 @@
               <Name>Text35</Name>
               <Page isRef="7" />
               <Parent isRef="43" />
-              <Text>(Ký, họ tên)</Text>
+              <Text>(Ký, họ tên) 签字 (写姓名）</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text35>
             <Text36 Ref="49" type="Text" isKey="true">
@@ -763,8 +770,9 @@
               <Name>Text36</Name>
               <Page isRef="7" />
               <Parent isRef="43" />
-              <Text>(Ký, họ tên)</Text>
+              <Text>(Ký, họ tên) (签字 (写姓名）</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text36>
           </Components>
@@ -799,10 +807,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/7/2021 5:35:46 PM</ReportChanged>
+  <ReportChanged>7/9/2021 10:09:32 AM</ReportChanged>
   <ReportCreated>1/27/2021 4:07:51 PM</ReportCreated>
   <ReportFile>D:\repositories\erp-giaphuc-angular\src\assets\reports\design\san-xuat\rptPhieuNhapThanhPham_GP.mrt</ReportFile>
-  <ReportGuid>d6ba612ea2004a03ba940e5c20dc2bfe</ReportGuid>
+  <ReportGuid>a99cabf48a724e32bc83b7c3b54479b0</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2019.3.1.0</ReportVersion>
