@@ -14,6 +14,7 @@ export class PhieuNhapVatTu{
     public inphieu_thoigian: string;
     public inphieu_hoten: string;
     public tentaixe: string;
+    public lohangnhap: string;
     
     public id             : number ;
     public chinhanh_id    : number ;
