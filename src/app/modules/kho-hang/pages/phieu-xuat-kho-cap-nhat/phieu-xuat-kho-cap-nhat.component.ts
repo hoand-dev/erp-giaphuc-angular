@@ -296,6 +296,7 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
         // xử lý lại thông tin dựa trên lựa chọn
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
+            this.hanghoas[index].lohangs = JSON.parse(this.hanghoas[index].lohangstr);
             setTimeout(() => {
                 this.hanghoas[index].mahanghoa = selected.mahanghoa;
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;

@@ -13,6 +13,7 @@ import { PhieuNhapVatTuModalComponent } from '../../modals/phieu-nhap-vat-tu-mod
 import { DanhSachLenhSanXuatModalComponent } from '../../modals/danh-sach-lenh-san-xuat-modal/danh-sach-lenh-san-xuat-modal.component';
 import { PhieuNhapVatTu } from '@app/shared/entities';
 import { PhieuNhapVatTuInPhieuModalComponent } from '../../modals/phieu-nhap-vat-tu-in-phieu-modal/phieu-nhap-vat-tu-in-phieu-modal.component';
+import { ETrangThaiPhieu } from '@app/shared/enums';
 
 @Component({
     selector: 'app-phieu-nhap-vat-tu',
@@ -166,7 +167,7 @@ export class PhieuNhapVatTuComponent implements OnInit, OnDestroy {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHỌN LỆNH SẢN XUẤT',
-            isView: 'view_add'
+            trangthainhap: [ETrangThaiPhieu.danhap]
         };
 
         /* hiển thị modal */

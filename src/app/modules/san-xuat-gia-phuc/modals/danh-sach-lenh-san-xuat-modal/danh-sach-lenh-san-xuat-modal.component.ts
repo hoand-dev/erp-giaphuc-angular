@@ -23,7 +23,7 @@ export class DanhSachLenhSanXuatModalComponent  implements OnInit {
     public firstDayTime: Date;
     public currDayTime: Date = new Date();
 
-    public trangthainhap: string = ETrangThaiPhieu.danhap;
+    public trangthainhap: string[] = [ETrangThaiPhieu.danhap];
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
     public stateStoringGrid = {
@@ -56,7 +56,7 @@ export class DanhSachLenhSanXuatModalComponent  implements OnInit {
         this.subscriptions.add(
             this.objlenhsanxuatService.findLenhSanXuats(this.authenticationService.currentChiNhanhValue.id, this.firstDayTime, this.currDayTime).subscribe(
                 (data) => {
-                    this.dataGrid.dataSource = data.filter((x) => x.trangthainhap != this.trangthainhap);
+                    this.dataGrid.dataSource = data.filter((x) => this.trangthainhap.includes(x.trangthainhap));
                 },
                 (error) => {
                     this.objlenhsanxuatService.handleError(error);
