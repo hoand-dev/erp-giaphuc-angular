@@ -28,6 +28,7 @@ import { ThongKeTinhHinhSanXuatDonHangComponent } from './san-xuat/pages/thong-k
 import { ThongKeTyLeHangLoiComponent } from './san-xuat/pages/thong-ke-ty-le-hang-loi/thong-ke-ty-le-hang-loi.component';
 import { ThongKeXuatMuonComponent } from './kho-hang/pages/thong-ke-xuat-muon/thong-ke-xuat-muon.component';
 import { ThongKeMuonNgoaiComponent } from './kho-hang/pages/thong-ke-muon-ngoai/thong-ke-muon-ngoai.component';
+import { ThongKeXuatNhapTonLoHangComponent } from './kho-hang/pages/thong-ke-xuat-nhap-ton-lo-hang/thong-ke-xuat-nhap-ton-lo-hang.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { ThongKeMuonNgoaiComponent } from './kho-hang/pages/thong-ke-muon-ngoai/
         ThongKeTinhHinhSanXuatDonHangComponent,
         ThongKeTyLeHangLoiComponent,
         ThongKeXuatMuonComponent,
-        ThongKeMuonNgoaiComponent
+        ThongKeMuonNgoaiComponent,
+        ThongKeXuatNhapTonLoHangComponent
     ],
     imports: [CommonModule, SharedModule, ThongKeRoutingModule]
 })

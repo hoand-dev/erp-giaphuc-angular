@@ -1,0 +1,181 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thống kê xuất nhập tồn</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<dx-load-panel
+    [shadingColor]="'rgba(0,0,0,0.4)'"
+    [position]="{ of: '#content-wrapper' }"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+>
+</dx-load-panel>
+
+<section class="content" id="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ 'Thống kê xuất nhập tồn' | uppercase }}</h5>
+                        <p class="card-text"></p>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-date-box [style.width.px]="200" type="date" [(value)]="firstDayTime"></dx-date-box>
+                                <dx-date-box [style.width.px]="200" [style.margin-left.px]="5" type="date" [(value)]="currDayTime"></dx-date-box>
+                                <button [style.margin-left.px]="5" class="btn btn-sm btn-success" (click)="onLoadData()">Tải lại</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dx-data-grid
+                                    id="gridContainer"
+                                    [loadPanel]="'{ enable: false }'"
+                                    [showBorders]="true"
+                                    [showRowLines]="true"
+                                    [hoverStateEnabled]="true"
+                                    [columnAutoWidth]="true"
+                                    [allowColumnResizing]="true"
+                                    [allowColumnReordering]="true"
+                                    [columnResizingMode]="'widget'"
+                                    [stateStoring]="stateStoringGrid"
+                                    (onContextMenuPreparing)="addMenuItems($event)"
+                                >
+                                    <dxo-selection mode="single"></dxo-selection>
+
+                                    <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple"></dxo-selection>
+                                    <dxo-export [enabled]="enableExport" [fileName]="exportFileName" [allowExportSelectedData]="true"></dxo-export>
+                                    
+                                    <!-- <dxo-export [enabled]="enableExport" [fileName]="exportFileName"></dxo-export> -->
+
+                                    <!-- dx-data-grid option -->
+                                    <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+                                    <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+                                    <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+
+                                    <dxo-column-chooser [enabled]="true" [allowSearch]="true"></dxo-column-chooser>
+                                    <dxo-scrolling columnRenderingMode="virtual" [useNative]="true" class="dx-scrollable-customizable-scrollbars"></dxo-scrolling>
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showInfo]="true" [showPageSizeSelector]="true" [allowedPageSizes]="[10, 15, 20]" [showNavigationButtons]="true"> </dxo-pager>
+
+                                    <dxi-column caption="STT" cellTemplate="cellTemplateSTT" alignment="center" [visibleIndex]="0">
+                                        <div *dxTemplate="let data of 'cellTemplateSTT'">
+                                            {{ rowNumber(data.rowIndex) }}
+                                        </div>
+                                    </dxi-column>
+
+                                    <dxi-column caption="Thông tin kho" alignment="center" [visibleIndex]="1">
+                                        <dxi-column dataField="makhohang" caption="Mã kho"></dxi-column>
+                                        <dxi-column dataField="tenkhohang" caption="Tên kho"></dxi-column>
+                                    </dxi-column>
+
+                                    <dxi-column caption="Thông tin hàng hoá" alignment="center">
+                                      
+                                        <dxi-column dataField="mahanghoa" caption="Mã hàng hoá"></dxi-column>
+                                        <dxi-column dataField="tenhanghoa" caption="Tên hàng hoá"></dxi-column>
+
+                                    </dxi-column>
+                                    <dxi-column caption="Thông tin Lô Hàng" alignment="center">
+                                      
+                                        <dxi-column dataField="malohang" caption="Mã lô hàng"></dxi-column>
+                                        <dxi-column dataField="hansudung" caption="Hạn sử dụng"></dxi-column>
+
+                                    </dxi-column>
+
+                                    <dxi-column [caption]="lblTimeView" [alignment]="'center'">
+                                        <dxi-column dataField="tondauky" caption="Tồn đầu" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                        <dxi-column dataField="soluongnhap" caption="Tổng nhập" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluongxuat" caption="Tổng xuất" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                        <dxi-column dataField="soluong_dieuchinh" caption="Điều chỉnh" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_nhapkho" caption="Nhập kho" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_xuatkho" caption="Xuất kho" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_xuatchuyen" caption="Xuất chuyển" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_nhapchuyen" caption="Nhập chuyển" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                        <dxi-column dataField="soluong_xuatgiacong_khoxuat" caption="Xuất gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <!-- <dxi-column dataField="soluong_xuatgiacong_khogiacong" caption="" alignment="right" format="#,##0.#######"></dxi-column> -->
+                                        <dxi-column dataField="soluong_nhapgiacong_thanhpham" caption="Nhập gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_nhapgiacong_thanhphamloi" caption="Nhập gia công lỗi" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <!-- <dxi-column dataField="soluong_nhapgiacong_hangtron" caption="" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_nhapgiacong_nguyenlieu" caption="" alignment="right" format="#,##0.#######"></dxi-column> -->
+
+                                        <dxi-column dataField="soluong_xuatmuon" caption="Xuất cho mượn" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_nhaptramuon" caption="Nhập trả mượn" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_nhapmuon" caption="Nhập mượn" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_xuattramuon" caption="Xuất trả mượn" alignment="right" format="#,##0.#######"></dxi-column>
+
+                                        <dxi-column dataField="toncuoiky" caption="Tồn cuối" alignment="right" format="#,##0.#######"></dxi-column>
+                                    </dxi-column>
+
+                                    <dxi-column caption="Tồn kho - Không theo thời gian" alignment="center">
+                                        <dxi-column dataField="soluong_tonhientai" caption="Tồn" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <!-- <dxi-column dataField="soluong_khachdat" caption="Giữ đặt hàng" alignment="right" format="#,##0.#######"></dxi-column> -->
+                                        <dxi-column dataField="soluong_banchuaxuat" caption="Bán chưa xuất" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <!-- <dxi-column dataField="soluong_giuchuyenkho" caption="Giữ chuyển kho" alignment="right" format="#,##0.#######"></dxi-column> -->
+                                        <dxi-column dataField="soluong_giugiacong" caption="Giữ gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_toncuoiduocxuat" caption="Tồn cuối được xuất" alignment="right" format="#,##0.#######"></dxi-column>
+                                    </dxi-column>
+
+                                    <dxi-column caption="Hàng sắp về" alignment="center">
+                                        <dxi-column dataField="soluong_muachuanhap" caption="Mua hàng" alignment="right" format="#,##0.#######"></dxi-column>
+                                        <dxi-column dataField="soluong_thanhphamchuanhap" caption="Gia công" alignment="right" format="#,##0.#######"></dxi-column>
+                                    </dxi-column>
+
+                                    <!-- Thêm trang tổng cộng cuối form -->
+                                    <dxo-summary>
+                                        <dxi-total-item column="soluongm3" summaryType="sum" valueFormat="#,##0.#######" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="mahanghoa" summaryType="count" displayFormat="TỔNG CỘNG: {0}"> </dxi-total-item>
+                                        <dxi-total-item column="tondauky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongnhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluongxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_dieuchinh" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapkho" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatkho" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatchuyen" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapchuyen" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatgiacong_khoxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapgiacong_thanhpham" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapgiacong_thanhphamloi" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuatmuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhaptramuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_nhapmuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_xuattramuon" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="toncuoiky" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_tonhientai" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <!-- <dxi-total-item column="soluong_khachdat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item> -->
+                                        <dxi-total-item column="soluong_banchuaxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <!-- <dxi-total-item column="soluong_giuchuyenkho" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item> -->
+                                        <dxi-total-item column="soluong_giugiacong" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_toncuoiduocxuat" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_muachuanhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                        <dxi-total-item column="soluong_thanhphamchuanhap" summaryType="sum" valueFormat="#,##0" displayFormat="{0}"> </dxi-total-item>
+                                    </dxo-summary>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
