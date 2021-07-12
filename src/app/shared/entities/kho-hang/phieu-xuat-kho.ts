@@ -14,6 +14,7 @@ export class PhieuXuatKho {
     public taixe_hoten: string;
     public biensoxe: string;
     public tenkhoxuat: string;
+    public tentaixe: string;
 
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;

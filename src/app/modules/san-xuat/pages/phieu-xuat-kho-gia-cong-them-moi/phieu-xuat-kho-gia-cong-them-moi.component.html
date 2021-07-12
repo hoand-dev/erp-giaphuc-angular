@@ -44,6 +44,7 @@
                                         editorType="dxSelectBox"
                                         [editorOptions]="{ dataSource: dataSource_TaiXe, valueExpr: 'id', searchEnabled: true, searchExpr: ['tentaixe', 'mataixe'], displayExpr: 'tentaixe' }"
                                     >
+                                    <dxi-validation-rule type="required" message="Vui lòng chọn tài xế"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item
                                         [colSpan]="2"
@@ -52,6 +53,7 @@
                                         editorType="dxSelectBox"
                                         [editorOptions]="{ dataSource: dataSource_Xe, valueExpr: 'id', searchEnabled: true, displayExpr: 'biensoxe' }"
                                     >
+                                    <dxi-validation-rule type="required" message="Vui lòng chọn số xe"></dxi-validation-rule>
                                     </dxi-item>
                                     <dxi-item [label]="{ text: 'TÀI XẾ - ĐIỆN THOẠI' }" dataField="taixe_dienthoai"> </dxi-item>
 
