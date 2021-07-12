@@ -22,14 +22,9 @@ export class HangHoaService extends BaseService {
 
     findHangHoas(loaihanghoa: string = null, kichhoat: boolean = true): Observable<HangHoa[]> {
         let query_params: HttpParams = new HttpParams();
-        if (loaihanghoa) {
-            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
-            query_params = query_params.set('loaihanghoa', loaihanghoa);
-            return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
-        } else {
-            query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
-            return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
-        }
+        query_params = query_params.set('kichhoat', kichhoat ? kichhoat.toString() : null);
+        query_params = query_params.set('loaihanghoa', loaihanghoa);
+        return this.httpClient.get<HangHoa[]>(this.apiUrl, { params: query_params });
     }
 
     findLoHang(hanghoa_lohang_id: number): Observable<HangHoa_LoHang> {
