@@ -6,7 +6,7 @@ import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 
 import moment from 'moment';
-import { ThongKeXuatNhapTon, ThongKeXuatNhapTonTrongNgay, ThongKeXuatNhapTon_ChiTiet, ThongKeXuatNhapTon_ChiTietPhieu } from '@app/shared/entities';
+import { ThongKeXuatNhapTon, ThongKeXuatNhapTonLoHang, ThongKeXuatNhapTonTrongNgay, ThongKeXuatNhapTon_ChiTiet, ThongKeXuatNhapTon_ChiTietPhieu } from '@app/shared/entities';
 import { ThongKeXuatMuonComponent } from '@app/modules/thong-ke/kho-hang/pages/thong-ke-xuat-muon/thong-ke-xuat-muon.component';
 import { ThongKeMuonNgoaiComponent } from '@app/modules/thong-ke/kho-hang/pages/thong-ke-muon-ngoai/thong-ke-muon-ngoai.component';
 
@@ -37,6 +37,17 @@ export class ThongKeKhoHangService extends BaseService {
         query_params = query_params.set('khohang_id', khohang_id ? khohang_id.toString() : null);
 
         return this.httpClient.get<ThongKeXuatNhapTon[]>(this.apiUrl + '/xuat-nhap-ton', { params: query_params });
+    }
+    
+    findsXuatNhapTon_LoHang(fromDay: Date, toDay: Date, chinhanh_id: number = null, khohang_id: number = null, hanghoa_id: number = null): Observable<ThongKeXuatNhapTonLoHang[]> {
+        let query_params: HttpParams = new HttpParams();
+        query_params = query_params.set('tungay', moment(fromDay).format('YYYY-MM-DD HH:mm:ss'));
+        query_params = query_params.set('denngay', moment(toDay).format('YYYY-MM-DD HH:mm:ss'));
+        query_params = query_params.set('chinhanh_id', chinhanh_id ? chinhanh_id.toString() : null);
+        query_params = query_params.set('khohang_id', khohang_id ? khohang_id.toString() : null);
+        query_params = query_params.set('hanghoa_id', hanghoa_id ? hanghoa_id.toString() : null);
+
+        return this.httpClient.get<ThongKeXuatNhapTonLoHang[]>(this.apiUrl + '/xuat-nhap-ton-lo-hang', { params: query_params });
     }
 
     findsXuatNhapTon_ChiTiet(fromDay: Date, toDay: Date, chinhanh_id: number, khohang_id: number, hanghoa_id: number): Observable<ThongKeXuatNhapTon_ChiTiet[]> {

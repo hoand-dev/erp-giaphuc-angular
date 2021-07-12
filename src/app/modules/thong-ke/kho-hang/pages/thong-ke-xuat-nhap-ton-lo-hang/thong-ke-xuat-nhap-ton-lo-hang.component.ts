@@ -39,7 +39,7 @@ export class ThongKeXuatNhapTonLoHangComponent implements OnInit, OnDestroy {
 
     /* dataGrid */
     public dataSource_XuatNhapTonLoHang: ThongKeXuatNhapTonLoHang[];
-    public exportFileName: string = '[THỐNG KÊ] - XUẤT NHẬP TỒN - ' + moment().format('DD_MM_YYYY');
+    public exportFileName: string = '[THỐNG KÊ] - XUẤT NHẬP TỒN LÔ HÀNG - ' + moment().format('DD_MM_YYYY');
 
     public stateStoringGrid = {
         enabled: true,
@@ -66,12 +66,12 @@ export class ThongKeXuatNhapTonLoHangComponent implements OnInit, OnDestroy {
         this.subscriptions.add(
             this.commonService.timKiem_QuyenDuocCap().subscribe(
                 (data) => {
-                    this.permissions = data;
-                    if (!this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhaptonlohang')) {
-                        this.router.navigate(['/khong-co-quyen']);
-                    }
+                    // this.permissions = data;
+                    // if (!this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhaptonlohang')) {
+                    //     this.router.navigate(['/khong-co-quyen']);
+                    // }
 
-                    this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhaptonlohang-xuatdulieu');
+                    // this.enableExport = this.commonService.getEnablePermission(this.permissions, 'thongkekho-xuatnhaptonlohang-xuatdulieu');
                 },
                 (error) => {
                     this.objThongKeKhoHangService.handleError(error);
@@ -101,63 +101,13 @@ export class ThongKeXuatNhapTonLoHangComponent implements OnInit, OnDestroy {
             // Add a custom menu item
             e.items.push(
                 {
-                    text: 'Xem chi tiết - Nhập xuất',
+                    text: 'Xem chi tiết lô - Nhập xuất',
                     icon: 'view',
                     visible: true,
                     onItemClick: () => {
                         this.openModalChiTiet(rowData);
                     }
                 },
-                // {
-                //     text: 'Xem chi tiết - Giữ gia công' + ` (${rowData.soluong_giugiacong})`,
-                //     icon: 'view',
-                //     visible: true,
-                //     onItemClick: () => {
-                //         this.openModal_HangGiuLai(rowData, 'giugiacong');
-                //     }
-                // },
-                // {
-                //     text: 'Xem chi tiết - Giữ bán hàng' + ` (${rowData.soluong_banchuaxuat})`,
-                //     icon: 'view',
-                //     visible: true,
-                //     onItemClick: () => {
-                //         this.openModal_HangGiuLai(rowData, 'giubanhang');
-                //     }
-                // },
-                /* // không còn sử dụng nữa
-                {
-                    text: 'Xem chi tiết - Giữ chuyển kho' + ` (${rowData.soluong_giuchuyenkho})`,
-                    icon: 'view',
-                    visible: true,
-                    onItemClick: () => {
-                        this.openModal_HangGiuLai(rowData, 'giuchuyenkho');
-                    }
-                },
-                {
-                    text: 'Xem chi tiết - Đặt giữ hàng' + ` (${rowData.soluong_khachdat})`,
-                    icon: 'view',
-                    visible: true,
-                    onItemClick: () => {
-                        this.openModal_HangGiuLai(rowData, 'datgiuhang');
-                    }
-                },
-                */
-                // {
-                //     text: 'Xem chi tiết - Đang về' + ` (${rowData.soluong_muachuanhap})`,
-                //     icon: 'view',
-                //     visible: true,
-                //     onItemClick: () => {
-                //         this.openModal_HangGiuLai(rowData, 'muachuanhap');
-                //     }
-                // },
-                // {
-                //     text: 'Xem chi tiết - Đang gia công' + ` (${rowData.soluong_thanhphamchuanhap})`,
-                //     icon: 'view',
-                //     visible: true,
-                //     onItemClick: () => {
-                //         this.openModal_HangGiuLai(rowData, 'yeucauchuanhap');
-                //     }
-                // }
             );
         }
     }
@@ -185,12 +135,13 @@ export class ThongKeXuatNhapTonLoHangComponent implements OnInit, OnDestroy {
     openModalChiTiet(rowData: ThongKeXuatNhapTonLoHang) {
         /* khởi tạo giá trị cho modal */
         const initialState = {
-            title: 'XEM CHI TIẾT - NHẬP XUẤT',
+            title: 'XEM CHI TIẾT LÔ - NHẬP XUẤT',
             tungay: this.firstDayTime,
             denngay: this.currDayTime,
             chinhanh_id: this.authenticationService.currentChiNhanhValue.id,
             khohang_id: rowData.khohang_id,
             hanghoa_id: rowData.hanghoa_id,
+            hanghoa_lohang_id: rowData.hanghoa_lohang_id,
             tondauky: rowData.tondauky,
             toncuoiky: rowData.toncuoiky
         };
@@ -208,7 +159,7 @@ export class ThongKeXuatNhapTonLoHangComponent implements OnInit, OnDestroy {
     onLoadData() {
         this.loadingVisible = true;
         this.subscriptions.add(
-            this.objThongKeKhoHangService.findsXuatNhapTon(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id, null).subscribe(
+            this.objThongKeKhoHangService.findsXuatNhapTon_LoHang(this.firstDayTime, this.currDayTime, this.authenticationService.currentChiNhanhValue.id, null, null).subscribe(
                 (data) => {
                     this.lblTimeView = 'Từ ngày: ' + moment(this.firstDayTime).format('DD/MM/YYYY') + ' - Đến ngày: ' + moment(this.currDayTime).format('DD/MM/YYYY');
                     if(moment(this.firstDayTime).format('DD/MM/YYYY') === moment(this.currDayTime).format('DD/MM/YYYY')){
