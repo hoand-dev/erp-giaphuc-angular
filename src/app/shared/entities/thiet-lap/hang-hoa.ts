@@ -1,6 +1,9 @@
 import { DinhMuc } from './dinh-muc';
 
 export class HangHoa {
+    
+    public hanghoadvts: HangHoaDonViTinh[] = [];
+
     public nguoitao_hoten: string;
     public nguoisua_hoten: string;
 
@@ -66,6 +69,7 @@ export class HangHoa {
     public soluong_tonduocxuat: number;
 
     public loi_id: number;
+    public tiengtrung: string;
 
     constructor(
         id: number = null,
@@ -109,6 +113,7 @@ export class HangHoa {
         giabansi1: number = null,
         dinhmuc_id: number = null,
         loi_id: number = null,
+        tiengtrung: string = null,
     ) {
         this.id = id;
         this.chinhanh_id = chinhanh_id;
@@ -151,5 +156,107 @@ export class HangHoa {
         this.giabansi1 = giabansi1;
         this.dinhmuc_id = dinhmuc_id;
         this.loi_id = loi_id;
+        this.tiengtrung = tiengtrung;
+    }
+}
+
+export class HangHoaDonViTinh{
+
+    public madonvitinh     : string ;
+    public tendonvitinh    : string ;
+
+    public hanghoa_id      : number ;
+    public dvt_id          : number ;
+    public chuyendoi       : number ;
+    public congthuc        : string ;
+    public mota            : string ;
+    public allow_chuyendoi : boolean;
+
+    constructor(
+        hanghoa_id     : number  = null ,
+        dvt_id         : number  = null ,
+        chuyendoi      : number  = 1    ,
+        congthuc       : string  = '*'  ,
+        mota           : string  = null ,
+        allow_chuyendoi: boolean = false,
+    ){
+        this.hanghoa_id      = hanghoa_id     ;
+        this.dvt_id          = dvt_id         ;
+        this.chuyendoi       = chuyendoi      ;
+        this.congthuc        = congthuc       ;
+        this.mota            = mota           ;
+        this.allow_chuyendoi = allow_chuyendoi;
+    }
+}
+
+export class HangHoa_LoHang{
+
+    public maphieu                : string ;
+    
+    public id                     : number ;
+    public chinhanh_id            : number ;
+    public kichhoat               : boolean;
+    public nguoitao_id            : number ;
+    public ngaytao                : Date   ;
+    public nguoisua_id            : number ;
+    public ngaysua                : Date   ;
+    public hanghoa_id             : number ;
+    public loaihanghoa            : string ;
+    public hanghoa                : boolean;
+    public malohang               : string ;
+    public hansudung              : Date   ;
+
+    constructor(
+        id                     : number  = null,
+        chinhanh_id            : number  = null,
+        kichhoat               : boolean = null,
+        nguoitao_id            : number  = null,
+        ngaytao                : Date    = null,
+        nguoisua_id            : number  = null,
+        ngaysua                : Date    = null,
+        hanghoa_id             : number  = null,
+        loaihanghoa            : string  = null,
+        hanghoa                : boolean = null,
+        malohang               : string  = null,
+        hansudung              : Date    = null,
+    ){
+        this.id                     = id                     ;
+        this.chinhanh_id            = chinhanh_id            ;
+        this.kichhoat               = kichhoat               ;
+        this.nguoitao_id            = nguoitao_id            ;
+        this.ngaytao                = ngaytao                ;
+        this.nguoisua_id            = nguoisua_id            ;
+        this.ngaysua                = ngaysua                ;
+        this.hanghoa_id             = hanghoa_id             ;
+        this.loaihanghoa            = loaihanghoa            ;
+        this.hanghoa                = hanghoa                ;
+        this.malohang               = malohang               ;
+        this.hansudung              = hansudung              ;
+    }
+}
+
+export class LoHangNhapXuat {
+
+    public hanghoa_lohang_id: number;
+    public hanghoa_id       : number;
+    public malohang         : string;
+    public hansudung        : string;
+    public soluong          : number;
+    public chitiet_id       : number;
+
+    constructor(
+          hanghoa_lohang_id: number = null
+        , hanghoa_id       : number = null
+        , malohang         : string = null
+        , hansudung        : string = null
+        , soluong          : number = 0
+        , chitiet_id       : number = null
+    ) {
+        this.hanghoa_lohang_id = hanghoa_lohang_id;
+        this.hanghoa_id        = hanghoa_id       ;
+        this.malohang          = malohang         ;
+        this.hansudung         = hansudung        ;
+        this.soluong           = soluong          ;
+        this.chitiet_id        = chitiet_id       ;
     }
 }

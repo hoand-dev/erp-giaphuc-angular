@@ -70,9 +70,10 @@
                                                         <th [style.min-width.px]="75">KIỆN</th>
                                                         <th [style.min-width.px]="75">KL</th>
                                                         <th [style.min-width.px]="80">SL</th>
-                                                        <!-- <th [style.min-width.px]="80">SL HỎNG</th>
-                                                        <th [style.min-width.px]="80">KHO NHẬP HỎNG</th> -->
-
+                                                        <th [style.min-width.px]="80">TẠO LOT</th>
+                                                        <th [style.min-width.px]="180">LOT</th>
+                                                        <th [style.min-width.px]="180">LOT NO</th>
+                                                        <th [style.min-width.px]="145">HSD</th>
                                                         <th [style.min-width.px]="150">GHI CHÚ</th>
                                                         <th [style.max-width.px]="20">
                                                             <i class="gg-btn gg-add btn-primary"> <!-- (click)="onHangHoaAdd()" --> </i>
@@ -112,32 +113,28 @@
                                                         <td>
                                                             <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.soluong" (onValueChanged)="onHangHoaChangeRow('soluong', i, $event)"></dx-number-box>
                                                         </td>
-                                                        <!-- <td>
-                                                            <dx-number-box
-                                                                [max]="item.soluong"
-                                                                format="#,##0.###"
-                                                                [(value)]="item.soluonghong"
-                                                                (onValueChanged)="onHangHoaChangeRow('soluonghong', i, $event)"
-                                                            ></dx-number-box>
+                                                        <td>
+                                                            <dx-check-box [readOnly]="item.malohang" [(value)]="item.taolo"></dx-check-box>
                                                         </td>
                                                         <td>
                                                             <dx-select-box
-                                                                id="khonhaphong_row_{{ i }}"
-                                                                [(value)]="item.khonhaphong_id"
-                                                                [dataSource]="dataSource_KhoNhap"
-                                                                [displayExpr]="'tenkhohang'"
+                                                                id="lohang_row_{{ i }}"
+                                                                [(value)]="item.hanghoa_lohang_id"
+                                                                [dataSource]="dataSource_LoHang[i]"
+                                                                [displayExpr]="'malohang'"
                                                                 [valueExpr]="'id'"
                                                                 [searchMode]="'contains'"
-                                                                [searchExpr]="['makhohang', 'tenkhohang']"
+                                                                [searchExpr]="['malohang']"
                                                                 [searchTimeout]="500"
                                                                 [searchEnabled]="true"
                                                                 [minSearchLength]="0"
-                                                                [readOnly]="item.soluonghong == 0"
+                                                                (onSelectionChanged)="onValueChangeLoHang(i, $event)"
                                                             >
-                                                                <dxi-validation-rule type="required" message="Country is required"> </dxi-validation-rule>
                                                             </dx-select-box>
-                                                        </td> -->
-
+                                                        </td>
+                                                        <td><dx-text-box [(value)]="item.malohang" [readOnly]="item.hanghoa_lohang_id || !item.taolo"></dx-text-box></td>
+                                                        <td><dx-date-box type="date" [(value)]="item.hansudung" [readOnly]="item.hanghoa_lohang_id || !item.taolo"></dx-date-box></td>
+                                                        
                                                         <td><dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" value="ghi chú" [(value)]="item.chuthich"></dx-text-box></td>
                                                         <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
                                                     </tr>
@@ -151,9 +148,10 @@
                                                         <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongkien') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="75">{{this.sumTotal.transform(this.hanghoas, 'tongtrongluong') | number: '1.0-3'}}</th>
                                                         <th [style.min-width.px]="80">{{this.sumTotal.transform(this.hanghoas, 'soluong') | number: '1.0-3'}}</th>
-                                                        <!-- <th [style.min-width.px]="80">SL HỎNG</th>
-                                                        <th [style.min-width.px]="80">KHO NHẬP HỎNG</th> -->
-
+                                                        <th [style.min-width.px]="80"></th>
+                                                        <th [style.min-width.px]="180"></th>
+                                                        <th [style.min-width.px]="180"></th>
+                                                        <th [style.min-width.px]="145"></th>
                                                         <th [style.min-width.px]="150"></th>
                                                         <th [style.max-width.px]="20">
                                                             <i class="gg-btn gg-add btn-primary"> <!-- (click)="onHangHoaAdd()" --> </i>

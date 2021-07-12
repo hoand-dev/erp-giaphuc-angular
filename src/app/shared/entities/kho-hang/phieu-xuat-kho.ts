@@ -1,3 +1,5 @@
+import { LoHangNhapXuat } from "../thiet-lap";
+
 export class PhieuXuatKho {
     public tongthanhtien_bangchu: string;
     public ngaylapphieu: string;
@@ -135,6 +137,10 @@ export class PhieuXuatKho {
 }
 
 export class PhieuXuatKho_ChiTiet {
+
+    public lohangstr: string;
+    public lohangs: LoHangNhapXuat[] = [];
+
     public id: number;
     public phieuxuatkho_id: number;
     public khoxuat_id: number;
@@ -155,6 +161,7 @@ export class PhieuXuatKho_ChiTiet {
     public tenhanghoa_inphieu: string;
     public phieubanhang_chitiet_id: number;
     public phieutrahangncc_chitiet_id: number;
+    public soluonglo: number;
 
     public mahanghoa: string;
     public tenhanghoa: string;
@@ -190,7 +197,8 @@ export class PhieuXuatKho_ChiTiet {
         tenhanghoa_inphieu: string = null,
         phieubanhang_chitiet_id: number = null,
         phieutrahangncc_chitiet_id: number = null,
-        trongluong: number = 0
+        trongluong: number = 0,
+        soluonglo : number = 0,
     ) {
         this.id = id;
         this.phieuxuatkho_id = phieuxuatkho_id;
@@ -212,12 +220,6 @@ export class PhieuXuatKho_ChiTiet {
         this.phieubanhang_chitiet_id = phieubanhang_chitiet_id;
         this.phieutrahangncc_chitiet_id = phieutrahangncc_chitiet_id;
         this.trongluong = trongluong;
+        this.soluonglo = soluonglo;
     }
-}
-
-export class PhieuXuatKho_InPhieu extends PhieuXuatKho{
-
-}
-export class PhieuXuatKho_ChiTiet_InPhieu extends PhieuXuatKho_ChiTiet{
-
 }

@@ -24,6 +24,7 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import _  from 'lodash';
 import Swal from 'sweetalert2';
 import { DanhSachChiPhiModalComponent } from '../../modals/danh-sach-chi-phi-modal/danh-sach-chi-phi-modal.component';
 import { DanhSachLoiModalComponent } from '../../modals/danh-sach-loi-modal/danh-sach-loi-modal.component';
@@ -63,6 +64,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
+    public dataSource_LoHang: DataSource[] = [];
 
     // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu mua hàng
     private hanghoalenght: number = 0;
@@ -223,6 +225,46 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         console.log('claw');
     }
 
+    onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
+        if(e.value){
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
+                this.hanghoas[index].malohang = result.malohang;
+                this.hanghoas[index].hansudung = result.hansudung;
+            });
+        }
+        else{
+            this.hanghoas[index].malohang = null;
+            this.hanghoas[index].hansudung = null;
+        }
+    }
+
+    onLoadDataSourceLo(index, hanghoa_id) {
+        this.dataSource_LoHang[index] = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoaLoHang_TonKhoHienTai(this.currentChiNhanh.id, null, hanghoa_id, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findLoHang(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
+    }
+    
     clickLayGia() {
         if (this.loaiphieu != 'taikho' && this.phieunhapkhogiacong.donvigiacong_id === null) {
             notify(
@@ -286,6 +328,8 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        this.onLoadDataSourceLo(index, this.hanghoas[index].thanhpham_id);
     }
 
     public onHangHoaChangeRow(col: string, index: number, e: any) {
@@ -310,7 +354,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHI TIẾT LỖI', // và nhiều hơn thế nữa
-            chitietlois: this.hanghoas[index].chitietlois
+            chitietlois: _.cloneDeep(this.hanghoas[index].chitietlois)
         };
 
         /* hiển thị modal */
@@ -334,7 +378,7 @@ export class PhieuNhapKhoGiaCongCapNhatComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHI PHÍ PHÁT SINH', // và nhiều hơn thế nữa
-            chitietphiphatsinhs: this.hanghoas[index].chitietphiphatsinhs
+            chitietphiphatsinhs: _.cloneDeep(this.hanghoas[index].chitietphiphatsinhs)
         };
 
         /* hiển thị modal */

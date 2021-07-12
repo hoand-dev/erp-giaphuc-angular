@@ -1,4 +1,4 @@
-import { ChiNhanh, PhieuMuaHangNCC, PhieuMuaHangNCC_ChiTiet } from '@app/shared/entities';
+import { ChiNhanh, HangHoaDonViTinh, PhieuMuaHangNCC, PhieuMuaHangNCC_ChiTiet } from '@app/shared/entities';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import notify from 'devextreme/ui/notify';
@@ -41,7 +41,8 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuMuaHangNCC_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
+    public dataSource_HangHoaDvt: DataSource[] = [];
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -244,6 +245,27 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         this.onTinhTien();
     }
 
+    onValueChangeDvt(index, e) {
+        if(e.value){
+            this.hanghoaService.findHangHoaDvt(this.hanghoas[index].hanghoa_id, e.value).toPromise().then((result) => {
+                this.hanghoas[index].tilequydoi = result.chuyendoi;
+            });
+        }
+    }
+
+    onLoadDataSourceDvt(index, hanghoa_id) {
+        this.hanghoaService
+            .findHangHoaDvts(hanghoa_id)
+            .toPromise()
+            .then((result) => {
+                this.dataSource_HangHoaDvt[index] = new DataSource({
+                    store: result,
+                    paginate: true,
+                    pageSize: 50
+                });
+            });
+    }
+
     public onHangHoaAdd() {
         this.hanghoas.push(new PhieuMuaHangNCC_ChiTiet());
     }
@@ -261,7 +283,6 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         // xử lý lại thông tin dựa trên lựa chọn
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
-            //return;
         } else {
             this.hanghoas[index].dvt_id = selected.dvt_id;
 
@@ -278,6 +299,8 @@ export class PhieuMuaHangNCCThemMoiComponent implements OnInit {
         this.hanghoas[index].m3 = selected.m3;
         this.hanghoas[index].tendonvitinh = selected.tendonvitinh;
         this.hanghoas[index].tendonvitinhphu = selected.tendonvitinhphu;
+
+        this.onLoadDataSourceDvt(index, selected.id);
 
         // chỉ thêm row mới khi không tồn tài dòng rỗng nào
         let rowsNull = this.hanghoas.filter((x) => x.hanghoa_id == null);

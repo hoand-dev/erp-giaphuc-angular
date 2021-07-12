@@ -138,6 +138,9 @@ export class PhieuNhapKho_ChiTiet {
     public soluonghong: number;
     public khonhaphong_id: number;
     public xuathoadon: boolean;
+    public taolo: boolean;
+    public malohang: string;
+    public hansudung: Date;
 
     /* liên kết vs khoá ngoại và thông tin thêm */
     public mahanghoa: string;
@@ -174,7 +177,10 @@ export class PhieuNhapKho_ChiTiet {
         phieukhachtrahang_chitiet_id: number = null,
         soluonghong: number = 0,
         khonhaphong_id: number = null,
-        trongluong: number = 0
+        trongluong: number = 0,
+        taolo: boolean = false,
+        malohang: string = null,
+        hansudung: Date = null,
     ) {
         this.id = id;
         this.phieunhapkho_id = phieunhapkho_id;
@@ -198,5 +204,8 @@ export class PhieuNhapKho_ChiTiet {
         this.soluonghong = soluonghong;
         this.khonhaphong_id = khonhaphong_id;
         this.trongluong = trongluong;
+        this.malohang = malohang;
+        this.hansudung = hansudung;
+        this.taolo = taolo;
     }
 }

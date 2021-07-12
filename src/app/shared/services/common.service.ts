@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { LoadOptions } from 'devextreme/data/load_options';
 import { Observable } from 'rxjs';
-import { HangHoa } from '../entities';
+import { HangHoa, HangHoa_LoHang } from '../entities';
+import { BaseService } from './base-service';
 
 @Injectable({ providedIn: 'root' })
-export class CommonService {
+export class CommonService extends BaseService{
     private apiUrl: string = environment.apiUrl + '/common';
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { super(); }
 
     isNotEmpty(value: any): boolean {
         return value !== undefined && value !== null && value !== '';
@@ -74,11 +75,10 @@ export class CommonService {
     hangHoa_TonKhoHienTai(chinhanh_id: number = null, khohang_id: number = null, loaihanghoa: string = null, loadOptions: LoadOptions = null): Observable<HangHoa[]> {
         let query_params: HttpParams = new HttpParams();
         if(loadOptions){
-            ['skip', 'take', 'sort', 'filter', 'searchExpr', 'searchOperation', 'searchValue', 'group'].forEach((i) => {
+            ['skip', 'take', 'sort', 'filter', 'searchExpr', 'searchOperation', 'searchValue', 'group', 'checkdinhmuc'].forEach((i) => {
                 if (i in loadOptions && this.isNotEmpty(loadOptions[i])) query_params = query_params.set(i, JSON.stringify(loadOptions[i]));
             });
         }
-        
 
         query_params = query_params.set('chinhanh_id', chinhanh_id.toString());
         query_params = query_params.set('khohang_id', khohang_id ? khohang_id.toString() : null);
@@ -89,5 +89,23 @@ export class CommonService {
             query_params = query_params.set('searchValue', ' ');
         }
         return this.httpClient.get<HangHoa[]>(this.apiUrl + '/hanghoa-tonkhohientai', { params: query_params });
+    }
+
+    hangHoaLoHang_TonKhoHienTai(chinhanh_id: number = null, khohang_id: number = null, hanghoa_id: number = null, loadOptions: LoadOptions = null): Observable<HangHoa_LoHang[]> {
+        let query_params: HttpParams = new HttpParams();
+        if(loadOptions){
+            ['skip', 'take', 'sort', 'filter', 'searchExpr', 'searchOperation', 'searchValue', 'group'].forEach((i) => {
+                if (i in loadOptions && this.isNotEmpty(loadOptions[i])) query_params = query_params.set(i, JSON.stringify(loadOptions[i]));
+            });
+        }
+        
+        query_params = query_params.set('chinhanh_id', chinhanh_id.toString());
+        query_params = query_params.set('khohang_id', khohang_id ? khohang_id.toString() : null);
+        query_params = query_params.set('hanghoa_id', hanghoa_id ? hanghoa_id.toString() : null);
+
+        if (query_params.get('searchValue') == null) {
+            query_params = query_params.set('searchValue', ' ');
+        }
+        return this.httpClient.get<HangHoa_LoHang[]>(this.apiUrl + '/hanghoa-tonkhohientai-lohang', { params: query_params });
     }
 }

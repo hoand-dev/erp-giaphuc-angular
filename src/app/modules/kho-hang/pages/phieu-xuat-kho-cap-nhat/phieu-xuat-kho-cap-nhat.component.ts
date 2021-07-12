@@ -16,8 +16,11 @@ import { HangHoaService } from '@app/shared/services';
 import { TaiXe } from '@app/shared/entities/thiet-lap/tai-xe';
 import { DanhSachXe } from '@app/shared/entities/thiet-lap/danh-sach-xe';
 import moment from 'moment';
+import _  from 'lodash';
 import CustomStore from 'devextreme/data/custom_store';
 import { SumTotalPipe } from '@app/shared/pipes/sum-total.pipe';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { LoHangNhapXuatModalComponent } from '@app/shared/modals';
 
 @Component({
     selector: 'app-phieu-xuat-kho-cap-nhat',
@@ -30,7 +33,8 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
     /* tối ưu subscriptions */
     private subscriptions: Subscription = new Subscription();
     private currentChiNhanh: ChiNhanh;
-
+    public bsModalRef: BsModalRef;
+    
     public phieuxuatkho: PhieuXuatKho;
     public lstTaiXe: TaiXe[] = [];
     public lstXe: DanhSachXe[] = [];
@@ -44,7 +48,7 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuXuatKho_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = false;
@@ -69,7 +73,9 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
         private xeService: DanhSachXeService,
         private khohangService: KhoHangService,
         private hanghoaService: HangHoaService,
-        private commonService: CommonService
+        private commonService: CommonService,
+
+        private modalService: BsModalService
     ) {}
 
     ngAfterViewInit() {
@@ -247,6 +253,32 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
         this.onTinhTien();
     }
 
+    onClickLo(index){
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHI TIẾT LÔ', // và nhiều hơn thế nữa
+            khohang_id: this.phieuxuatkho.khoxuat_id,
+            hanghoa_id: this.hanghoas[index].hanghoa_id,
+            lohangs: _.cloneDeep(this.hanghoas[index].lohangs)
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(LoHangNhapXuatModalComponent, { class: 'modal-md modal-dialog-centered', ignoreBackdropClick: true, keyboard: false, initialState });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
+
+        /* nhận kết quả trả về từ modal sau khi đóng */
+        this.bsModalRef.content.onClose.subscribe((result) => {
+            if (result !== false) {
+                this.hanghoas[index].lohangs = result;
+                let soluonglo: number = 0;
+                result.forEach((e) => {
+                    soluonglo += e.soluong;
+                });
+                this.hanghoas[index].soluonglo = soluonglo;
+            }
+        });
+    }
+    
     public onHangHoaAdd() {
         this.hanghoas.push(new PhieuXuatKho_ChiTiet());
     }
@@ -264,6 +296,7 @@ export class PhieuXuatKhoCapNhatComponent implements OnInit {
         // xử lý lại thông tin dựa trên lựa chọn
         if (this.hanghoalenght > 0) {
             this.hanghoalenght--;
+            this.hanghoas[index].lohangs = JSON.parse(this.hanghoas[index].lohangstr);
             setTimeout(() => {
                 this.hanghoas[index].mahanghoa = selected.mahanghoa;
                 this.hanghoas[index].tenhanghoa = selected.tenhanghoa;

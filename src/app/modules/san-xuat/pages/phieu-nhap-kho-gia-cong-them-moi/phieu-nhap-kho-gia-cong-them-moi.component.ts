@@ -25,6 +25,7 @@ import DataSource from 'devextreme/data/data_source';
 import notify from 'devextreme/ui/notify';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import _  from 'lodash';
 import Swal from 'sweetalert2';
 import { DanhSachChiPhiModalComponent } from '../../modals/danh-sach-chi-phi-modal/danh-sach-chi-phi-modal.component';
 import { DanhSachLoiModalComponent } from '../../modals/danh-sach-loi-modal/danh-sach-loi-modal.component';
@@ -64,6 +65,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
     public dataSource_HangHoa: DataSource;
     public dataSource_GiaCong: DataSource;
     public dataSource_SoMat: DataSource;
+    public dataSource_LoHang: DataSource[] = [];
 
     // dùng để kiểm tra load lần đầu (*) nếu được chọn từ phiếu mua hàng
     private hanghoalenght: number = 0;
@@ -132,7 +134,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
                 );
             })
         );
-        
+
         this.subscriptions.add(
             this.khachhangService.findKhachHangs().subscribe((x) => {
                 this.loadingVisible = false;
@@ -145,7 +147,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
                 });
             })
         );
-        
+
         this.subscriptions.add(
             this.giacongService.findDinhMucs().subscribe((x) => {
                 this.lstGiaCong = x;
@@ -254,7 +256,8 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
                                     item.yeucaus = value.yeucaus;
                                     item.phieuyeucaugiacongct_id = value.id;
                                     item.khachhang_id = value.khachhang_id;
-                                    
+
+                                    this.onLoadDataSourceLo(index, value.thanhpham_id);
                                     this.hanghoas.push(item);
                                 }
                             });
@@ -271,6 +274,46 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
     ngOnDestroy(): void {
         this.authenticationService.setDisableChiNhanh(false);
         this.subscriptions.unsubscribe();
+    }
+
+    onValueChangeLoHang(index, e) {
+        e.value = e.selectedItem;
+        if(e.value){
+            this.hanghoaService.findLoHang(e.value.id).toPromise().then((result) => {
+                this.hanghoas[index].malohang = result.malohang;
+                this.hanghoas[index].hansudung = result.hansudung;
+            });
+        }
+        else{
+            this.hanghoas[index].malohang = null;
+            this.hanghoas[index].hansudung = null;
+        }
+    }
+
+    onLoadDataSourceLo(index, hanghoa_id) {
+        this.dataSource_LoHang[index] = new DataSource({
+            paginate: true,
+            pageSize: 50,
+            store: new CustomStore({
+                key: 'id',
+                load: (loadOptions) => {
+                    return this.commonService
+                        .hangHoaLoHang_TonKhoHienTai(this.currentChiNhanh.id, null, hanghoa_id, loadOptions)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                },
+                byKey: (key) => {
+                    return this.hanghoaService
+                        .findLoHang(key)
+                        .toPromise()
+                        .then((result) => {
+                            return result;
+                        });
+                }
+            })
+        });
     }
 
     clickLayGia() {
@@ -374,7 +417,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHI TIẾT LỖI', // và nhiều hơn thế nữa
-            chitietlois: this.hanghoas[index].chitietlois
+            chitietlois: _.cloneDeep(this.hanghoas[index].chitietlois)
         };
 
         /* hiển thị modal */
@@ -398,7 +441,7 @@ export class PhieuNhapKhoGiaCongThemMoiComponent implements OnInit {
         /* khởi tạo giá trị cho modal */
         const initialState = {
             title: 'CHI PHÍ PHÁT SINH', // và nhiều hơn thế nữa
-            chitietphiphatsinhs: this.hanghoas[index].chitietphiphatsinhs
+            chitietphiphatsinhs: _.cloneDeep(this.hanghoas[index].chitietphiphatsinhs)
         };
 
         /* hiển thị modal */

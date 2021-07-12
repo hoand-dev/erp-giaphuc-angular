@@ -1,0 +1,53 @@
+{
+    "rptPhieuNhapVatTu":{
+
+        "id" : null
+        , "chinhanh_id" : null
+        , "kichhoat" : null
+        , "nguoitao_id" : null
+        , "thoigiantao" : null
+        , "nguoisua_id" : null
+        , "thoigiansua" : null
+        , "ghichu" : null
+        , "ids" : null
+        , "sort" : null
+        , "loaiphieu" : null
+        , "ngayxuatvattu" : null
+        , "maphieu" : null
+        , "khoxuat_id" : null
+        , "lenhsanxuat_id" : null
+        , "donvigiacong_id" : null
+        , "khogiacong_id" : null
+
+        , "ngaylapphieu": null
+        , "inphieu_thoigian": null
+        , "inphieu_hoten": null
+        
+        ,"tendonvigiacong": null
+        ,"malenhsanxuat": null
+        ,"tenkhonhap": null
+    },
+    "rptPhieuNhapVatTu_Chitiet":{
+        "id" :null
+        , "phieuxuatvattu_id" :null
+        , "loaihanghoa" :null
+        , "hanghoa_id" :null
+        , "hanghoa_lohang_id" :null
+        , "dvt_id" :null
+        , "tilequydoi" :null
+        , "soluong" :null
+        , "chuthich" :null
+        , "soluonglo" :null
+        , "calculate" :null
+        , "lenhsanxuat_chitiet_id" :null
+
+          
+        , "tendonvitinh": null
+        , "tenhanghoa": null
+        , "tentiengtrung": null
+        , "tenthanhpham": null
+
+        ,"lohangnhap":null
+        
+    }
+}

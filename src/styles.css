@@ -217,3 +217,7 @@ h6,
 .stiEditableFieldSelected {
     box-shadow: none;
 }
+
+.hidden{
+    display: none;
+}

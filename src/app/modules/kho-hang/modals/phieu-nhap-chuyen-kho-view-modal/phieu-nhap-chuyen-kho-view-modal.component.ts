@@ -47,7 +47,7 @@ export class PhieuNhapChuyenKhoViewModalComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuNhapChuyenKho_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
 
     // dùng để kiểm tra load lần đầu (*)
     private hanghoalenght: number = 0;

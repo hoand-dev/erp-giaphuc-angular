@@ -41,7 +41,7 @@ export class PhieuXuatTraMuonHangCapNhatComponent implements OnInit {
     public loadingVisible = true;
 
     public hanghoas: PhieuXuatTraMuonHang_ChiTiet[] = [];
-    public dataSource_HangHoa: any = {};
+    public dataSource_HangHoa: DataSource;
 
     // điều kiện để hiển thị danh sách hàng hoá
     public isValidForm: boolean = true;

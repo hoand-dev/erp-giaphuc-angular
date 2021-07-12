@@ -7,7 +7,9 @@ import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { confirm } from 'devextreme/ui/dialog';
 import notify from 'devextreme/ui/notify';
 import moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { HangHoaLoHangModalComponent } from '../../modals/hang-hoa-lo-hang-modal/hang-hoa-lo-hang-modal.component';
 
 @Component({
     selector: 'app-hang-hoa-nguyen-lieu',
@@ -18,7 +20,8 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     /* tối ưu subscriptions */
-    subscriptions: Subscription = new Subscription();
+    public subscriptions: Subscription = new Subscription();
+    public bsModalRef: BsModalRef;
 
     /* danh sách quyền được cấp */
     public permissions: any[] = [];
@@ -38,7 +41,7 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
         storageKey: 'dxGrid_HangHoaNguyenLieu'
     };
 
-    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private hanghoaService: HangHoaService) {
+    constructor(private titleService: Title, private appInfoService: AppInfoService, private router: Router, private commonService: CommonService, private hanghoaService: HangHoaService, private modalService: BsModalService) {
         this.titleService.setTitle("NGUYÊN LIỆU | " + this.appInfoService.appName);
     }
 
@@ -97,6 +100,23 @@ export class HangHoaNguyenLieuComponent implements OnInit, OnDestroy, AfterViewI
     onRowDblClick(e) {
         // chuyển sang view xem chi tiết
         console.log(`hanghoa_id: ${e.key.id}`);
+    }
+
+    openLoHangModal(row) {
+        /* khởi tạo giá trị cho modal */
+        const initialState = {
+            title: 'CHI TIẾT LÔ HÀNG: ' + row.data.mahanghoa,
+            hanghoa_id: row.data.id
+        };
+
+        /* hiển thị modal */
+        this.bsModalRef = this.modalService.show(HangHoaLoHangModalComponent, {
+            class: 'modal-xl modal-dialog-centered',
+            ignoreBackdropClick: false,
+            keyboard: false,
+            initialState
+        });
+        this.bsModalRef.content.closeBtnName = 'Đóng';
     }
 
     onRowDelete(id) {

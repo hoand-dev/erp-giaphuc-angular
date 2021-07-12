@@ -28,7 +28,14 @@
                         </div>
                         <div id="form-container">
                             <form (submit)="onSubmitForm($event)">
-                                <dx-form id="form" [colCount]="2" [formData]="hanghoa" [showValidationSummary]="true">
+                                <dx-form id="form" [colCount]="4" [formData]="hanghoa" [showValidationSummary]="true" [labelLocation]="'top'">
+                                    <dxi-item
+                                        [label]="{ text: 'GIA CÔNG' }"
+                                        [dataField]="'dinhmuc_giacong'"
+                                        [editorType]="'dxTagBox'"
+                                        [editorOptions]="{ dataSource: dataSource_GiaCong, searchEnabled: true, searchExpr: ['tendinhmuc', 'madinhmuc'], displayExpr: 'tendinhmuc' }"
+                                    >
+                                    </dxi-item>
                                     <dxi-item [label]="{ text: 'MÃ NGUYÊN LIỆU' }" dataField="mahanghoa">
                                         <dxi-validation-rule type="required" message="Nhập mã nguyên liệu"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Mã nguyên liệu quá ngắn"> </dxi-validation-rule>
@@ -39,12 +46,13 @@
                                         <dxi-validation-rule type="required" message="Nhập tên nguyên liệu"> </dxi-validation-rule>
                                         <dxi-validation-rule type="stringLength" [min]="2" message="Tên nguyên liệu quá ngắn"></dxi-validation-rule>
                                     </dxi-item>
+                                    <dxi-item [label]="{ text: 'TIẾNG TRUNG' }" dataField="tiengtrung"></dxi-item>
 
                                     <dxi-item
                                         [label]="{ text: 'ĐƠN VỊ TÍNH' }"
                                         dataField="dvt_id"
                                         editorType="dxSelectBox"
-                                        [editorOptions]="{ dataSource: dataSource_DonViTinh, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendonvitinh' }"
+                                        [editorOptions]="{ buttons: [{name: 'dvtchinh', options: btnExchangeDonViTinh}], dataSource: dataSource_DonViTinh, valueExpr: 'id', searchEnabled: true, displayExpr: 'tendonvitinh' }"
                                     >
                                         <dxi-validation-rule type="required" message="Vui lòng chọn đơn vị tính"></dxi-validation-rule>
                                     </dxi-item>
@@ -53,10 +61,10 @@
                                     <dxi-item [label]="{ text: 'ĐỊNH MỨC TỒN' }" dataField="dinhmucton" editorType="dxNumberBox"></dxi-item>
                                     <dxi-item [label]="{ text: 'TRỌNG LƯỢNG' }" dataField="trongluong" editorType="dxNumberBox"></dxi-item>
 
-                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="2"></dxi-item>
-                                    <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }"></dxi-item>
+                                    <dxi-item [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" editorType="dxTextArea" [colSpan]="4"></dxi-item>
+                                    <dxi-item [label]="{ text: 'TRẠNG THÁI' }" dataField="kichhoat" editorType="dxCheckBox" [editorOptions]="{ text: 'Kích hoạt' }" [colSpan]="2"></dxi-item>
 
-                                    <dxi-item>
+                                    <dxi-item [colSpan]="2">
                                         <div *dxTemplate>
                                             <dx-button icon="back" [routerLink]="['/hang-hoa-nguyen-lieu']" text="Quay lại" [ngClass]="['float-right', 'btn-back']" type="normal"> </dx-button>
                                             <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
