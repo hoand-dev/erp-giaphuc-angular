@@ -209,11 +209,21 @@ export class PhieuNhapKhoGiaCongCT {
 export class LoiGiaCong {
     public phieunhapkhogiacongct_id: number;
     public danhmucloi_id: number;
+    public thanhphamloi_id: number;
+    public hanghoa_lohang_id: number;
     public soluong: number;
 
-    constructor(phieunhapkhogiacongct_id: number = null, danhmucloi_id: number = null, soluong: number = 0) {
+    constructor(
+        phieunhapkhogiacongct_id: number = null
+        , danhmucloi_id: number = null
+        , thanhphamloi_id: number = null
+        , hanghoa_lohang_id: number = null
+        , soluong: number = 0
+    ) {
         this.phieunhapkhogiacongct_id = phieunhapkhogiacongct_id;
         this.danhmucloi_id = danhmucloi_id;
+        this.thanhphamloi_id = thanhphamloi_id;
+        this.hanghoa_lohang_id = hanghoa_lohang_id;
         this.soluong = soluong;
     }
 }
