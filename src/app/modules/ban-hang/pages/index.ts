@@ -1,3 +1,5 @@
+export * from './bang-gia-mel/bang-gia-mel.component';
+
 export * from './bang-gia/bang-gia.component';
 export * from './bang-gia-cap-nhat/bang-gia-cap-nhat.component';
 export * from './bang-gia-them-moi/bang-gia-them-moi.component';

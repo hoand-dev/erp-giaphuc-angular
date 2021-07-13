@@ -1,4 +1,5 @@
 export * from './bang-gia.service';
+export * from './bang-gia-mel.service';
 export * from './phieu-ban-hang.service';
 export * from './phieu-dat-hang.service';
 export * from './phieu-khach-tra-hang.service';

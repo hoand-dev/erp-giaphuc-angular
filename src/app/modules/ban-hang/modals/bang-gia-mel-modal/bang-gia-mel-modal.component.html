@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <h6 class="modal-title pull-left">
+        <b>{{ title }}</b>
+    </h6>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-sm btn-primary float-right" (click)="fileUpload.click()">
+                <i class="fa fa-file-excel" aria-hidden="true"></i> Tải lên từ Excel
+                <input #fileUpload hidden="true" type="file" (change)="onChangeFile($event)" />
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="form-container">
+                <form (submit)="onSubmitForm($event)">
+                    <dx-form id="form" [colCount]="6" [formData]="banggiamel" [showValidationSummary]="true" labelLocation="top" (onFieldDataChanged)="onFormFieldChanged($event)">
+                        <dxi-item [label]="{ text: 'NGÀY CÓ HIỆU LỰC' }" dataField="ngaycohieuluc" editorType="dxDateBox" [editorOptions]="{ type: 'date' }">
+                            <dxi-validation-rule type="required" message="Chọn ngày có hiệu lực"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item
+                            [colSpan]="5"
+                            [label]="{ text: 'KHÁCH HÀNG' }"
+                            dataField="khachhang_id"
+                            editorType="dxSelectBox"
+                            [editorOptions]="{
+                                showClearButton: true,
+                                dataSource: dataSource_KhachHang,
+                                valueExpr: 'id',
+                                searchEnabled: true,
+                                searchExpr: ['tenkhachhang', 'makhachhang'],
+                                displayExpr: 'tenkhachhang'
+                            }"
+                        >
+                        </dxi-item>
+
+                        <dxi-item [label]="{ text: 'MÃ PHIẾU' }" dataField="mabanggia" [editorOptions]="{ readOnly: true, placeholder: 'MÃ TẠO TỰ ĐỘNG' }"></dxi-item>
+                        <dxi-item [editorOptions]="{ inputAttr: { autocomplete: 'on', name: 'ghichu' } }" [label]="{ text: 'GHI CHÚ' }" dataField="ghichu" [colSpan]="5"></dxi-item>
+
+                        <dxi-item [colSpan]="6">
+                            <div class="table-responsive">
+                                <table class="table table-vertical table-hover mt-4">
+                                    <thead>
+                                        <tr>
+                                            <th [style.min-width.px]="25">STT</th>
+                                            <th [style.min-width.px]="220">GIA CÔNG</th>
+                                            <th [style.min-width.px]="120">ĐƠN GIÁ 1M</th>
+                                            <th [style.min-width.px]="120">ĐƠN GIÁ 2M</th>
+                                            <th [style.min-width.px]="250">GHI CHÚ</th>
+                                            <th [style.max-width.px]="20"><i class="gg-btn gg-add btn-primary" (click)="onHangHoaAdd()"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of hanghoas; index as i">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>
+                                                <dx-select-box
+                                                    id="giacong_row_{{ i }}"
+                                                    [(value)]="item.giacong_id"
+                                                    [dataSource]="dataSource_DanhMucGiaCong"
+                                                    [displayExpr]="'tendanhmuc'"
+                                                    [valueExpr]="'id'"
+                                                    [searchMode]="'contains'"
+                                                    [searchExpr]="['madanhmuc', 'tendanhmuc']"
+                                                    [searchTimeout]="500"
+                                                    [searchEnabled]="true"
+                                                    [minSearchLength]="0"
+                                                    (onSelectionChanged)="onHangHoaChanged(i, $event)"
+                                                >
+                                                </dx-select-box>
+                                            </td>
+                                            <td>
+                                                <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia_1mat"></dx-number-box>
+                                            </td>
+                                            <td>
+                                                <dx-number-box [step]="0" format="#,##0.###" [(value)]="item.dongia_2mat"></dx-number-box>
+                                            </td>
+                                            <td>
+                                                <dx-text-box [inputAttr]="{ autocomplete: 'on', name: 'chuthich'}" [(value)]="item.chuthich"></dx-text-box>
+                                            </td>
+                                            <td><i class="gg-btn gg-remove" (click)="onHangHoaDelete(item)"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </dxi-item>
+
+                        <dxi-item [colSpan]="6">
+                            <div *dxTemplate>
+                                <dx-button icon="close" text="{{closeBtnName}}" [ngClass]="['float-right', 'btn-back']" type="normal" (click)="onCancel()"> </dx-button>
+                                <dx-button icon="save" text="Lưu lại" [ngClass]="'float-right'" type="success" [useSubmitBehavior]="true" [disabled]="saveProcessing"> </dx-button>
+                            </div>
+                        </dxi-item>
+                    </dx-form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="onCancel()">{{ closeBtnName }}</button>
+</div> -->
