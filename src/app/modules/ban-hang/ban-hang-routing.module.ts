@@ -6,6 +6,7 @@ import {
     BangGiaCapNhatComponent,
     BangGiaThemMoiComponent,
     BangGiaComponent,
+    BangGiaMelComponent,
     PhieuBanHangCapNhatComponent,
     PhieuBanHangThemMoiComponent,
     PhieuBanHangComponent,
@@ -65,6 +66,11 @@ const routes: Routes = [
             { path: 'them-moi', component: BangGiaThemMoiComponent },
             { path: ':id/cap-nhat', component: BangGiaCapNhatComponent }
         ]
+    },
+    {
+        path: 'bang-gia-mel',
+        canActivate: [AuthGuard],
+        component: BangGiaMelComponent
     }
 ];
 

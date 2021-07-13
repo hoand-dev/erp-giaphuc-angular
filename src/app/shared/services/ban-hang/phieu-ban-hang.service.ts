@@ -48,10 +48,11 @@ export class PhieuBanHangService extends BaseService {
         return this.httpClient.delete<PhieuBanHang>(this.apiUrl + `/${id}`);
     }
 
-    laygiaTheoBangGia(hanghoa_id: number, layvat:boolean, khachhang_id?: number): Observable<number> {
+    laygiaTheoBangGia(hanghoa_id: number, layvat:boolean, phantramvat, khachhang_id?: number): Observable<number> {
         let query_params: HttpParams = new HttpParams();
         query_params = query_params.set("hanghoa_id", hanghoa_id.toString());
         query_params = query_params.set("layvat", layvat.toString());
+        query_params = query_params.set("phantramvat", phantramvat.toString());
         query_params = query_params.set("khachhang_id", khachhang_id != null? khachhang_id.toString() : null);
         return this.httpClient.get<number>(this.apiUrl + `/laygia`, { params: query_params });
     }

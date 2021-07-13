@@ -344,7 +344,7 @@ export class PhieuBanHangCapNhatComponent implements OnInit {
         this.hanghoas.forEach((e) => {
             if (e.hanghoa_id != null)
                 this.subscriptions.add(
-                    this.phieubanhangService.laygiaTheoBangGia(e.hanghoa_id, e.xuathoadon, this.phieubanhang.khachhang_id).subscribe((x) => {
+                    this.phieubanhangService.laygiaTheoBangGia(e.hanghoa_id, e.xuathoadon, e.thuevat, this.phieubanhang.khachhang_id).subscribe((x) => {
                         e.dongia = x;
                     })
                 );

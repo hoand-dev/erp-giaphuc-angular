@@ -1,0 +1,8 @@
+dx-date-box {
+    float: left;
+}
+
+.btn-sm,
+.btn-group-sm > .btn {
+    padding: 0.38rem 0.5rem;
+}
